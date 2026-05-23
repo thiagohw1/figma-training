@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Tokens — teoria e tiers | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="03-02-design-tokens" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🏗️ Módulo 3 · Avançado · Lição 2 de 9</div>
+        <h1>Design Tokens — teoria e tiers</h1>
+        <p class="lead">Design tokens são a camada que transforma valores brutos de design em variáveis nomeadas e reutilizáveis — a cola que une o Figma ao código e garante que uma decisão de design se propague por toda a plataforma com um único clique.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~20 min</span>
+          <span>🎯 Nível: Avançado</span>
+          <span>🛠️ Pratique no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Explicar o que são design tokens e por que eles existem;</li>
+            <li>Diferenciar os três tiers: primitivo/global, semântico/alias e específico de componente;</li>
+            <li>Criar uma nomenclatura coerente e escalável para tokens;</li>
+            <li>Traçar o caminho de um token do valor bruto até a propriedade de um componente;</li>
+            <li>Justificar por que a hierarquia em tiers evita retrabalho em atualizações de tema.</li>
+          </ul>
+        </div>
+
+        <h2>O que são design tokens?</h2>
+        <p>Um <strong>design token</strong> é uma variável nomeada que armazena um valor de design — uma cor, um tamanho de fonte, um espaçamento, um raio de borda, uma sombra. Em vez de usar o valor bruto <code>#6C4CF1</code> ou <code>16px</code> diretamente em toda parte, você usa o nome <code>color.brand.primary</code> ou <code>spacing.md</code>.</p>
+        <p>Parece uma distinção sutil, mas a diferença é enorme. Quando você precisa mudar a cor primária da marca, não precisa caçar todos os lugares onde usou <code>#6C4CF1</code>: basta atualizar o token <code>color.brand.primary</code> uma única vez e tudo se propaga.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Tokens são a língua franca do Design System</span>
+          <p>Um token tem o mesmo nome no Figma (<strong>Variables</strong>), no CSS (<code>var(--color-brand-primary)</code>), no iOS (<code>Color.brandPrimary</code>) e no Android (<code>@color/brand_primary</code>). Essa consistência entre plataformas é o superpoder dos tokens.</p>
+        </div>
+
+        <h2>Por que a hierarquia de tiers?</h2>
+        <p>O maior erro de quem começa com tokens é tentar fazer tudo em uma camada só. "Vou chamar de <code>button-background-color</code> e pronto." Isso parece simples, mas gera um problema: você tem centenas de tokens de componente que não se conversam entre si, e quando a paleta muda, você ainda precisa atualizar dezenas deles.</p>
+        <p>A solução é a arquitetura em três tiers (camadas/níveis), onde cada token de nível superior <em>aponta</em> para o de nível inferior:</p>
+
+        <div class="diagram">
+          <svg viewBox="0 0 580 220" role="img" aria-label="Diagrama dos três tiers de tokens: primitivo na base, semântico no meio, componente no topo">
+            <!-- Tier 1: Primitivos -->
+            <rect x="30" y="155" width="200" height="50" rx="10" fill="var(--primary-soft)" stroke="var(--primary)" stroke-width="1.5"/>
+            <text x="130" y="176" text-anchor="middle" fill="var(--primary)" font-size="12" font-weight="700" font-family="sans-serif">Tier 1 — Primitivos</text>
+            <text x="130" y="194" text-anchor="middle" fill="var(--text-muted)" font-size="11" font-family="sans-serif">color.blue.500 = #6C4CF1</text>
+            <!-- Tier 2: Semânticos -->
+            <rect x="190" y="88" width="210" height="50" rx="10" fill="var(--info-soft)" stroke="var(--info)" stroke-width="1.5"/>
+            <text x="295" y="109" text-anchor="middle" fill="var(--info)" font-size="12" font-weight="700" font-family="sans-serif">Tier 2 — Semânticos</text>
+            <text x="295" y="127" text-anchor="middle" fill="var(--text-muted)" font-size="11" font-family="sans-serif">color.bg.brand → color.blue.500</text>
+            <!-- Tier 3: Componente -->
+            <rect x="350" y="22" width="210" height="50" rx="10" fill="var(--success-soft)" stroke="var(--success)" stroke-width="1.5"/>
+            <text x="455" y="43" text-anchor="middle" fill="var(--success)" font-size="12" font-weight="700" font-family="sans-serif">Tier 3 — Componente</text>
+            <text x="455" y="61" text-anchor="middle" fill="var(--text-muted)" font-size="11" font-family="sans-serif">button.bg.primary → color.bg.brand</text>
+            <!-- Setas -->
+            <line x1="230" y1="155" x2="240" y2="138" stroke="var(--text-soft)" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <line x1="395" y1="88" x2="405" y2="72" stroke="var(--text-soft)" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <defs>
+              <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L8,3 z" fill="var(--text-soft)"/>
+              </marker>
+            </defs>
+          </svg>
+          <p class="mock-label">Cada tier aponta para o anterior. Para mudar a cor da marca inteira, basta alterar o Tier 1.</p>
+        </div>
+
+        <h2>Tier 1 — Tokens Primitivos (Global Tokens)</h2>
+        <p>Os tokens primitivos são os <strong>valores brutos nomeados</strong>. Eles não carregam nenhum contexto de uso — apenas dizem "esta cor existe com este valor". Exemplos:</p>
+        <ul>
+          <li><code>color.blue.50</code> → <code>#EEF2FF</code></li>
+          <li><code>color.blue.500</code> → <code>#6C4CF1</code></li>
+          <li><code>color.blue.900</code> → <code>#1E0A5A</code></li>
+          <li><code>color.neutral.0</code> → <code>#FFFFFF</code></li>
+          <li><code>color.neutral.1000</code> → <code>#000000</code></li>
+          <li><code>size.4</code> → <code>4px</code></li>
+          <li><code>size.8</code> → <code>8px</code></li>
+          <li><code>size.16</code> → <code>16px</code></li>
+        </ul>
+        <p>Pense nos primitivos como a paleta de tinta completa do pintor. Todas as cores existem, mas ainda não sabemos para quê cada uma vai ser usada.</p>
+
+        <div class="callout note">
+          <span class="callout-title">Nomenclatura de primitivos</span>
+          <p>Para cores, use escalas numéricas (50, 100, 200 … 900) como o Tailwind ou o Material. Para espaçamento, use os valores em px diretamente (<code>size.4</code>, <code>size.8</code>, <code>size.16</code>…). Consistência na nomenclatura facilita muito a vida do time.</p>
+        </div>
+
+        <h2>Tier 2 — Tokens Semânticos (Alias Tokens)</h2>
+        <p>Os tokens semânticos <strong>apontam para primitivos</strong> e carregam intenção de uso. Em vez de dizer "azul 500", dizem "cor de fundo de elementos de marca" ou "cor de texto em superfícies de destaque". Exemplos:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Token semântico</th><th>Aponta para (primitivo)</th><th>Significado</th></tr></thead>
+            <tbody>
+              <tr><td><code>color.bg.brand</code></td><td><code>color.blue.500</code></td><td>Fundo de elementos de marca/destaque</td></tr>
+              <tr><td><code>color.bg.brand.hover</code></td><td><code>color.blue.600</code></td><td>Fundo de marca no estado hover</td></tr>
+              <tr><td><code>color.text.on-brand</code></td><td><code>color.neutral.0</code></td><td>Texto sobre fundo de marca (contraste)</td></tr>
+              <tr><td><code>color.bg.surface</code></td><td><code>color.neutral.0</code></td><td>Fundo de superfícies (cards, modais)</td></tr>
+              <tr><td><code>color.bg.subtle</code></td><td><code>color.neutral.50</code></td><td>Fundo levemente diferenciado (sidebar, header)</td></tr>
+              <tr><td><code>color.feedback.danger</code></td><td><code>color.red.600</code></td><td>Cor de erros e ações destrutivas</td></tr>
+              <tr><td><code>spacing.component.sm</code></td><td><code>size.8</code></td><td>Padding pequeno de componentes</td></tr>
+              <tr><td><code>spacing.component.md</code></td><td><code>size.16</code></td><td>Padding médio de componentes</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>O segredo dos tokens semânticos é a troca de tema. Para um tema escuro, basta fazer <code>color.bg.surface</code> apontar para <code>color.neutral.900</code> ao invés de <code>color.neutral.0</code>. Todos os componentes que usam <code>color.bg.surface</code> mudam automaticamente — sem tocar em nenhum componente.</p>
+
+        <div class="callout tip">
+          <span class="callout-title">A regra de ouro dos tokens semânticos</span>
+          <p>Um token semântico deve ser nomeado pelo seu <strong>propósito</strong>, não pela sua aparência. <code>color.bg.brand</code> é correto. <code>color.purple-for-buttons</code> é errado — acopla o nome ao visual e impede reutilização.</p>
+        </div>
+
+        <h2>Tier 3 — Tokens de Componente</h2>
+        <p>Os tokens de componente são específicos de um componente e apontam para semânticos (ou, em casos raros, direto para primitivos). Eles permitem que um componente individual customize seu visual sem quebrar o sistema.</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Token de componente</th><th>Aponta para (semântico)</th><th>Usado em</th></tr></thead>
+            <tbody>
+              <tr><td><code>button.bg.primary</code></td><td><code>color.bg.brand</code></td><td>Fundo do botão primário</td></tr>
+              <tr><td><code>button.bg.primary.hover</code></td><td><code>color.bg.brand.hover</code></td><td>Fundo do botão primário no hover</td></tr>
+              <tr><td><code>button.text.primary</code></td><td><code>color.text.on-brand</code></td><td>Texto do botão primário</td></tr>
+              <tr><td><code>button.padding.x</code></td><td><code>spacing.component.md</code></td><td>Padding horizontal do botão</td></tr>
+              <tr><td><code>input.border.default</code></td><td><code>color.border.default</code></td><td>Borda do input no estado padrão</td></tr>
+              <tr><td><code>input.border.error</code></td><td><code>color.feedback.danger</code></td><td>Borda do input no estado de erro</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Os tokens de componente podem parecer excessivos no início, mas eles permitem um nível de customização muito mais limpo. Se um cliente enterprise quiser que o botão primário dele seja verde ao invés do roxo padrão, você muda apenas <code>button.bg.primary</code> para apontar para <code>color.green.600</code> — sem tocar na estrutura de componente.</p>
+
+        <h2>O caminho completo de um token</h2>
+        <p>Veja o percurso de uma decisão de cor do nível mais primitivo até a propriedade visual de um componente:</p>
+
+        <div class="diagram">
+          <svg viewBox="0 0 600 80" role="img" aria-label="Fluxo: color.blue.500 → color.bg.brand → button.bg.primary → background do botão">
+            <rect x="10" y="18" width="130" height="44" rx="8" fill="var(--primary-soft)" stroke="var(--primary)" stroke-width="1.5"/>
+            <text x="75" y="37" text-anchor="middle" fill="var(--primary)" font-size="11" font-weight="700" font-family="sans-serif">color.blue.500</text>
+            <text x="75" y="53" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="sans-serif">#6C4CF1</text>
+            <text x="147" y="44" fill="var(--text-soft)" font-size="18" font-family="sans-serif">→</text>
+            <rect x="155" y="18" width="150" height="44" rx="8" fill="var(--info-soft)" stroke="var(--info)" stroke-width="1.5"/>
+            <text x="230" y="37" text-anchor="middle" fill="var(--info)" font-size="11" font-weight="700" font-family="sans-serif">color.bg.brand</text>
+            <text x="230" y="53" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="sans-serif">→ color.blue.500</text>
+            <text x="313" y="44" fill="var(--text-soft)" font-size="18" font-family="sans-serif">→</text>
+            <rect x="321" y="18" width="170" height="44" rx="8" fill="var(--success-soft)" stroke="var(--success)" stroke-width="1.5"/>
+            <text x="406" y="37" text-anchor="middle" fill="var(--success)" font-size="11" font-weight="700" font-family="sans-serif">button.bg.primary</text>
+            <text x="406" y="53" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="sans-serif">→ color.bg.brand</text>
+            <text x="498" y="44" fill="var(--text-soft)" font-size="18" font-family="sans-serif">→</text>
+            <rect x="506" y="18" width="84" height="44" rx="8" fill="#6C4CF1"/>
+            <text x="548" y="44" text-anchor="middle" fill="#fff" font-size="11" font-weight="700" font-family="sans-serif">Botão</text>
+          </svg>
+          <p class="mock-label">Mudando apenas <code>color.blue.500</code>, todos os botões primários (e qualquer outro componente que use <code>color.bg.brand</code>) atualizam automaticamente.</p>
+        </div>
+
+        <h2>Nomenclatura de tokens — boas práticas</h2>
+        <p>A convenção mais adotada é o <strong>ponto como separador</strong> com hierarquia de <em>categoria → grupo → variante → estado</em>:</p>
+        <pre><code>categoria.grupo.variante.estado
+color.bg.brand.hover
+spacing.layout.section.top
+typography.body.md.lineHeight</code></pre>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Parte</th><th>O que representa</th><th>Exemplos</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Categoria</strong></td><td>O tipo do token</td><td><code>color</code>, <code>spacing</code>, <code>typography</code>, <code>radius</code>, <code>shadow</code></td></tr>
+              <tr><td><strong>Grupo</strong></td><td>O contexto/subfamília</td><td><code>bg</code>, <code>text</code>, <code>border</code>, <code>component</code>, <code>layout</code></td></tr>
+              <tr><td><strong>Variante</strong></td><td>A variante específica</td><td><code>brand</code>, <code>muted</code>, <code>danger</code>, <code>sm</code>, <code>md</code>, <code>lg</code></td></tr>
+              <tr><td><strong>Estado</strong></td><td>O estado interativo (opcional)</td><td><code>hover</code>, <code>active</code>, <code>focus</code>, <code>disabled</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout warning">
+          <span class="callout-title">Evite nomes ambíguos ou ligados ao visual</span>
+          <p>Tokens como <code>bluePrimary</code>, <code>darkGray</code> ou <code>bigPadding</code> criam problemas no futuro. <code>bluePrimary</code> não pode mais ser renomeado quando a marca mudar para verde. Prefira sempre nomes semânticos: <code>color.bg.brand</code>, <code>color.text.muted</code>, <code>spacing.layout.section</code>.</p>
+        </div>
+
+        <h2>Por que essa hierarquia evita retrabalho</h2>
+        <p>Considere este cenário: o rebranding da empresa muda a cor primária de roxo (#6C4CF1) para azul (#1D6FD1). Veja o trabalho necessário em cada arquitetura:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Arquitetura</th><th>O que precisa mudar</th><th>Risco</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Sem tokens (valores diretos)</td>
+                <td>Caçar e substituir <code>#6C4CF1</code> em todos os componentes, protótipos e exportações CSS</td>
+                <td>Altíssimo — é fácil esquecer instâncias</td>
+              </tr>
+              <tr>
+                <td>Apenas tokens de componente (sem hierarquia)</td>
+                <td>Atualizar <code>button.bg.primary</code>, <code>badge.bg.default</code>, <code>tab.bg.active</code>, <code>chip.bg.selected</code>…</td>
+                <td>Alto — dezenas de tokens de componente</td>
+              </tr>
+              <tr>
+                <td>Hierarquia de tiers (primitivo → semântico → componente)</td>
+                <td>Atualizar <strong>um único primitivo</strong>: <code>color.blue.500</code> de <code>#6C4CF1</code> para <code>#1D6FD1</code></td>
+                <td>Mínimo — tudo se propaga em cascata</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>O IBM Carbon Design System publica seus tokens abertamente. O token <code>$interactive-01</code> (semântico) aponta para <code>$blue-60</code> (primitivo) no tema White, mas aponta para <code>$blue-50</code> no tema Dark — permitindo múltiplos temas sem alterar nenhum componente.</p>
+        <p>O Shopify Polaris segue a mesma lógica: <code>--p-color-bg-primary</code> (semântico) → <code>--p-color-green-700</code> (primitivo), e para o tema Partner (rosa), apenas o primitivo de destaque muda.</p>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Tokens são variáveis nomeadas que armazenam valores de design e têm o mesmo nome no Figma e no código.</li>
+          <li>Tier 1 — Primitivos: valores brutos nomeados (<code>color.blue.500 = #6C4CF1</code>).</li>
+          <li>Tier 2 — Semânticos: apontam para primitivos e carregam intenção (<code>color.bg.brand → color.blue.500</code>).</li>
+          <li>Tier 3 — Componente: específicos de um componente, apontam para semânticos (<code>button.bg.primary → color.bg.brand</code>).</li>
+          <li>A hierarquia em tiers significa que para trocar a paleta inteira, muda-se apenas o Tier 1.</li>
+          <li>Nomes semânticos (pelo propósito) são muito mais escaláveis do que nomes visuais.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Projete tokens para um produto real</h3>
+          <p>Escolha um produto com pelo menos duas cores de destaque (primária e feedback de sucesso/erro). Crie uma tabela no Figma (ou no papel) com:</p>
+          <ol>
+            <li>Pelo menos <strong>6 tokens primitivos</strong> de cor (escala do azul/verde/vermelho que você escolheu);</li>
+            <li>Pelo menos <strong>4 tokens semânticos</strong> que apontem para os primitivos, cobrindo: fundo de marca, texto padrão, borda default, feedback de erro;</li>
+            <li>Pelo menos <strong>3 tokens de componente</strong> para um botão primário (bg, text, border).</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> se a cor primária da marca mudar, você consegue identificar exatamente <em>um</em> token primitivo para atualizar — e todos os semânticos e de componente se propagam sem mais alterações.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Audit de tokens do Carbon ou Polaris</h3>
+          <p>Acesse a documentação de tokens do <strong>IBM Carbon</strong> (carbondesignsystem.com/elements/color/tokens) ou do <strong>Shopify Polaris</strong> (polaris.shopify.com/tokens/color) e mapeie: quantos primitivos de cor existem? Quantos semânticos? Consegue encontrar um token de componente? Liste 5 tokens semânticos e identifique para qual primitivo cada um aponta nos temas claro e escuro.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Qual é a principal vantagem de usar tokens semânticos ao invés de tokens primitivos diretamente nos componentes?</p>
+            <ul class="quiz-options">
+              <li>Tokens semânticos têm nomes mais curtos e são mais rápidos de digitar</li>
+              <li>Permitem trocar o tema inteiro (ex: light→dark) mudando apenas o mapeamento dos semânticos para primitivos, sem tocar em componentes</li>
+              <li>Tokens semânticos suportam valores animados, os primitivos não</li>
+              <li>São obrigatórios para exportar tokens para o código</li>
+            </ul>
+            <div class="quiz-explain">Tokens semânticos carregam <strong>intenção</strong> (<code>color.bg.brand</code>), não aparência. Ao trocar de tema, basta remapear o semântico para outro primitivo — todos os componentes que usam esse semântico atualizam automaticamente.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">2. No exemplo <code>color.blue.500 → color.bg.brand → button.bg.primary</code>, o que representa <code>color.blue.500</code>?</p>
+            <ul class="quiz-options">
+              <li>Um token semântico de fundo</li>
+              <li>Um token de componente</li>
+              <li>Um token primitivo com o valor bruto da cor</li>
+              <li>Um alias de outro token semântico</li>
+            </ul>
+            <div class="quiz-explain"><code>color.blue.500</code> é um <strong>token primitivo</strong> — armazena o valor bruto (<code>#6C4CF1</code>) sem nenhuma intenção de uso. Ele é a base da hierarquia.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">3. Por que o token <code>color.purple-brand</code> é considerado uma má prática de nomenclatura?</p>
+            <ul class="quiz-options">
+              <li>É muito longo para ser digitado no código</li>
+              <li>O Figma não suporta hifens em nomes de tokens</li>
+              <li>Mistura a categoria (color) com o nível de variante de forma confusa</li>
+              <li>Acopla o nome do token ao visual (roxo), tornando-o incorreto quando a cor da marca mudar</li>
+            </ul>
+            <div class="quiz-explain">Nomes baseados em aparência (<code>purple</code>) se tornam mentirosos e confusos quando o visual muda. O nome correto descreve o <strong>propósito</strong>: <code>color.bg.brand</code> continua fazendo sentido mesmo se a marca mudar para azul.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

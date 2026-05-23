@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figma Slides — apresentações | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="08-02-figma-slides" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">✨ Módulo 8 · Recursos 2025/2026 · Lição 2 de 8</div>
+        <h1>Figma Slides — apresentações</h1>
+        <p class="lead">Criar apresentações fora do Figma sempre foi uma dor: você exporta imagens, perde resolução, perde links com o design. O Figma Slides resolve isso de vez — decks bonitos, consistentes com a marca, sem sair do Figma.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~15 min</span>
+          <span>🎯 Nível: Iniciante/Intermediário</span>
+          <span>🛠️ Pratique no Figma Slides</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Entender o que é o Figma Slides e em que situações usá-lo;</li>
+            <li>Criar um deck do zero usando o grid de slides;</li>
+            <li>Aplicar temas, fontes e cores de marca em todo o deck;</li>
+            <li>Usar o modo de apresentação com controles e notas do apresentador;</li>
+            <li>Incorporar frames do Figma Design e elementos interativos em slides.</li>
+          </ul>
+        </div>
+
+        <h2>O que é o Figma Slides?</h2>
+        <p><strong>Figma Slides</strong> é a ferramenta de criação de apresentações integrada ao Figma, lançada oficialmente em 2024. Ela vive na mesma plataforma que o Figma Design e o FigJam, compartilhando o mesmo sistema de arquivos, componentes, fontes e variáveis.</p>
+        <p>O objetivo principal é eliminar o atrito de "exportar o design para o PowerPoint/Google Slides". Com o Figma Slides, designers e stakeholders trabalham na mesma apresentação, garantindo consistência visual com o sistema de design da empresa.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Como acessar o Figma Slides</span>
+          <p>Na dashboard do Figma, clique em "New" e escolha <strong>"Slides"</strong>. Arquivos de slides têm um ícone distinto e a extensão não é a mesma de arquivos de design. Você também pode abrir o Figma Slides a partir de um arquivo de design existente via menu "File".</p>
+        </div>
+
+        <h2>A interface do Figma Slides</h2>
+        <p>A interface do Figma Slides é uma versão especializada da interface do Figma Design, com algumas diferenças importantes:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Elemento</th><th>O que faz</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Painel de slides (esquerda)</strong></td><td>Lista miniaturas de todos os slides em ordem. Clique para navegar, arraste para reordenar.</td></tr>
+              <tr><td><strong>Canvas central</strong></td><td>O slide atual para edição. Cada slide é um frame de 1280×720 px (ou proporção 16:9 equivalente).</td></tr>
+              <tr><td><strong>Grid de slides</strong></td><td>Visão geral de todos os slides em mosaico — ótimo para reorganizar e ter perspectiva do deck inteiro.</td></tr>
+              <tr><td><strong>Painel direito</strong></td><td>Propriedades do elemento selecionado — igual ao Figma Design.</td></tr>
+              <tr><td><strong>Notas do apresentador</strong></td><td>Campo de texto abaixo do slide para anotações visíveis só durante a apresentação.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Criar um deck do zero</h2>
+        <p>Vamos montar uma apresentação de "Design Review" para um projeto de app. A estrutura típica: capa, agenda, contexto, telas do design, próximos passos.</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie um novo arquivo Slides.</strong>
+            Na dashboard, clique em "New" → "Slides". Um deck vazio com um slide em branco é criado.
+          </li>
+          <li>
+            <strong>Escolha um tema base.</strong>
+            No painel direito (com o slide sem nenhum elemento selecionado), clique em "Theme". Escolha um tema da galeria da Figma ou comece com "Blank". O tema define o fundo, a paleta e as fontes padrão.
+          </li>
+          <li>
+            <strong>Edite o slide de capa.</strong>
+            Clique no slide 1 no painel esquerdo. Adicione um título com <kbd>T</kbd>, escreva o nome do projeto. Adicione um subtítulo com a data e o time.
+          </li>
+          <li>
+            <strong>Adicione novos slides.</strong>
+            Clique no botão <strong>"+"</strong> no painel esquerdo ou pressione <kbd>N</kbd> para adicionar um slide em branco. Para usar um layout pronto, clique na seta ao lado do "+" e escolha entre os layouts disponíveis (Título + Conteúdo, Dois colunas, Somente imagem, etc.).
+          </li>
+          <li>
+            <strong>Alterne para o Grid de slides.</strong>
+            Use o botão de grid na barra superior para ver todos os slides em mosaico. Arraste para reordenar. Clique com o botão direito em um slide para duplicar, excluir ou esconder.
+          </li>
+          <li>
+            <strong>Aplique o tema globalmente.</strong>
+            Qualquer alteração no tema (cor de fundo, fonte do título) é aplicada a <em>todos os slides de uma vez</em>. Isso garante consistência sem precisar editar slide por slide.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Use os layouts predefinidos</span>
+          <p>Os layouts (Title Slide, Section Header, Content, Image) poupam muito tempo. Eles são essencialmente frames com Auto Layout que organizam o conteúdo automaticamente. Você ainda pode modificar qualquer elemento, mas o ponto de partida já está alinhado e tipografado.</p>
+        </div>
+
+        <h2>Temas e branding</h2>
+        <p>Um dos grandes diferenciais do Figma Slides em relação ao PowerPoint é o suporte a <strong>Variáveis e Estilos</strong> do Figma. Se a sua empresa tem um Design System no Figma com cores e fontes como variáveis, você pode conectar essas variáveis ao tema dos slides — garantindo que toda vez que a paleta mudar, os slides se atualizem automaticamente.</p>
+
+        <h3>Configurando um tema personalizado</h3>
+        <ul>
+          <li><strong>Cor de fundo:</strong> clique no slide sem selecionar nada → painel direito → Background color.</li>
+          <li><strong>Fonte de título e corpo:</strong> em "Theme" → "Customize", você define a família tipográfica e os tamanhos.</li>
+          <li><strong>Paleta de destaque:</strong> define as cores dos botões, ícones e formas padrão.</li>
+        </ul>
+
+        <div class="callout pro">
+          <span class="callout-title">Templates da comunidade</span>
+          <p>A comunidade do Figma tem centenas de templates de slides profissionais que você pode duplicar. Busque "Slides template" na Figma Community. Eles já vêm com sistemas de temas configurados e componentes de slides reutilizáveis.</p>
+        </div>
+
+        <h2>Incorporando frames do Figma Design</h2>
+        <p>Este é o superpoder do Figma Slides: você pode <strong>incorporar frames do Figma Design diretamente nos slides</strong>. Isso funciona de duas formas:</p>
+
+        <h3>1. Copiar e colar como imagem</h3>
+        <p>Abra o arquivo de design, selecione um frame, copie (<kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>C</kbd>) e cole no slide. O frame aparece como uma imagem estática. Simples, mas não atualiza automaticamente se o design mudar.</p>
+
+        <h3>2. Incorporar com link ao vivo (Embed)</h3>
+        <p>No slide, use o recurso de embed para colar um <em>link de um frame específico</em> do Figma. O slide mostra o frame como uma prévia navegável. Se alguém clicar no embed durante a apresentação, pode interagir com o protótipo. Isso é muito poderoso para apresentações de design review — você apresenta as telas em alta fidelidade diretamente do arquivo de origem.</p>
+
+        <h2>Elementos interativos e mídia</h2>
+        <p>Além dos frames do Figma Design, você pode adicionar aos slides:</p>
+        <ul>
+          <li><strong>Vídeos:</strong> upload de vídeo local ou embed de URL (YouTube, Loom, etc.)</li>
+          <li><strong>Links:</strong> qualquer texto ou forma pode ter um link que abre no modo de apresentação</li>
+          <li><strong>GIFs:</strong> imagens animadas via upload</li>
+          <li><strong>Emojis e ícones:</strong> a mesma biblioteca de ícones e emojis do Figma Design está disponível</li>
+          <li><strong>Tabelas simples:</strong> para dados e comparações</li>
+        </ul>
+
+        <h2>Modo de apresentação</h2>
+        <p>Para apresentar, clique no botão <strong>"Present"</strong> no canto superior direito (ou pressione <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Alt</kbd> + <kbd>Return</kbd>). O Figma Slides entra em modo tela cheia com:</p>
+        <ul>
+          <li><strong>Setas de navegação</strong> (ou teclas de seta do teclado) para avançar/voltar slides</li>
+          <li><strong>Notas do apresentador</strong> visíveis numa janela separada (abra em "Presenter View")</li>
+          <li><strong>Laser pointer</strong> ativado segurando o clique do mouse</li>
+          <li><strong>Link de apresentação:</strong> compartilhe uma URL pública para que a audiência acompanhe no próprio dispositivo</li>
+        </ul>
+
+        <div class="callout tip">
+          <span class="callout-title">Modo espelhado para a audiência</span>
+          <p>No Present mode, clique em "Share" para gerar um link de "Audience View". Qualquer pessoa com o link segue sua apresentação em tempo real — o slide avança na tela delas quando você avança na sua. Ideal para reuniões remotas sem precisar compartilhar tela.</p>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Uma designer de produto precisa apresentar uma proposta de redesign de um aplicativo bancário para stakeholders de negócio. Em vez de exportar screenshots para o PowerPoint (o que geraria imagens desfocadas em telas 4K), ela usa o Figma Slides. Os slides de contexto são criados diretamente no Figma Slides. As telas do app são incorporadas como embeds ao vivo do arquivo de design — qualquer stakeholder pode clicar e navegar pelo protótipo sem sair da apresentação. O tema do deck usa as cores exatas do Design System da empresa via variáveis. Ao final da reunião, ela compartilha o link do deck (com permissão "View only") e todos têm acesso à apresentação com as telas em alta qualidade.</p>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Novo slide</td><td><kbd>N</kbd></td><td><kbd>N</kbd></td></tr>
+              <tr><td>Iniciar apresentação</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Enter</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>Return</kbd></td></tr>
+              <tr><td>Próximo slide (apresentação)</td><td><kbd>→</kbd></td><td><kbd>→</kbd></td></tr>
+              <tr><td>Slide anterior (apresentação)</td><td><kbd>←</kbd></td><td><kbd>←</kbd></td></tr>
+              <tr><td>Texto</td><td><kbd>T</kbd></td><td><kbd>T</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Figma Slides é a ferramenta de apresentações do Figma — decks consistentes com o Design System, sem sair da plataforma.</li>
+          <li>Interface familiar ao Figma Design com painel de slides, canvas e grid de visão geral.</li>
+          <li>Temas garantem branding consistente; variáveis do Design System podem ser conectadas.</li>
+          <li>Frames do Figma Design podem ser incorporados como embeds navegáveis.</li>
+          <li>Modo de apresentação com laser pointer, notas do apresentador e link de audience view.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Crie uma apresentação de design review</h3>
+          <p>Monte um deck de 6 slides para um projeto fictício:</p>
+          <ol>
+            <li>Slide 1: Capa com título do projeto, seu nome e data.</li>
+            <li>Slide 2: Agenda com bullets (Contexto, Problema, Solução, Próximos passos).</li>
+            <li>Slide 3: Contexto — um parágrafo e uma imagem qualquer.</li>
+            <li>Slide 4: Tela do design — coloque um frame do Figma Design (pode ser qualquer coisa) como imagem ou embed.</li>
+            <li>Slide 5: Próximos passos — lista com 3 ações e responsáveis.</li>
+            <li>Slide 6: Obrigado + link de contato.</li>
+          </ol>
+          <p>Aplique um tema consistente em todos os slides.</p>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> o deck tem 6 slides com tema uniforme, pelo menos uma imagem/embed de design e funciona em modo de apresentação (Present) sem erros de layout.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Deck com tema de marca personalizado</h3>
+          <p>Crie um tema personalizado do zero para uma empresa fictícia chamada "NovaBanco". Defina: cor de fundo escura (ex.: azul-marinho), cor de destaque (ex.: verde-limão), fonte de título diferente da fonte de corpo, e um logo simples criado no próprio Figma. Aplique o tema a um deck de 8 slides com conteúdo variado (slide de seção, slide de dois colunas, slide só com imagem). No final, acione o Present mode e compartilhe um link de Audience View.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Qual é a vantagem de incorporar um frame do Figma Design como embed em vez de copiar como imagem?</p>
+            <ul class="quiz-options">
+              <li>O embed ocupa menos espaço no arquivo</li>
+              <li>O embed funciona offline</li>
+              <li>O embed é navegável e pode exibir o protótipo interativo durante a apresentação</li>
+              <li>O embed é atualizado automaticamente sem nenhuma ação do designer</li>
+            </ul>
+            <div class="quiz-explain">O embed permite que a audiência interaja com o protótipo diretamente no slide, tornando design reviews muito mais dinâmicos. (A atualização automática depende de como o embed foi configurado.)</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. O que é o "Audience View" no modo de apresentação do Figma Slides?</p>
+            <ul class="quiz-options">
+              <li>Um link público em que a audiência acompanha os slides avançando em tempo real conforme o apresentador navega</li>
+              <li>Um modo de tela cheia que esconde as notas do apresentador</li>
+              <li>Uma grade de slides visível para o público durante a edição</li>
+              <li>Uma exportação em PDF automática ao final da sessão</li>
+            </ul>
+            <div class="quiz-explain">O Audience View é um link compartilhável em que cada espectador segue a apresentação no próprio dispositivo, com o slide sincronizado com o apresentador em tempo real.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">3. Qual tecla adiciona um novo slide no Figma Slides?</p>
+            <ul class="quiz-options">
+              <li>A</li>
+              <li>S</li>
+              <li>F</li>
+              <li>N</li>
+            </ul>
+            <div class="quiz-explain"><kbd>N</kbd> adiciona um novo slide em branco. É o mesmo atalho usado para criar novos frames no Figma Design (Frame tool).</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

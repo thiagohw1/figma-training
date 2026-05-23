@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Briefing e arquitetura de informação | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="06-01-briefing-arquitetura" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🖥️ Módulo 6 · Projeto Guiado · Lição 1 de 8</div>
+        <h1>Briefing e arquitetura de informação</h1>
+        <p class="lead">Todo projeto de design começa antes do Figma ser aberto. Nesta lição você vai conhecer o <strong>TaskFlow</strong> — o produto SaaS que construiremos juntos — e aprender a transformar um briefing em uma arquitetura de informação sólida.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~20 min</span>
+          <span>🎯 Nível: Projeto prático</span>
+          <span>🛠️ Pratique no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Descrever o produto TaskFlow: público-alvo, problema resolvido e principais funcionalidades;</li>
+            <li>Construir um sitemap hierárquico no Figma para um SaaS de gestão de projetos;</li>
+            <li>Definir o escopo do MVP (Minimum Viable Product) e documentar as telas a serem criadas;</li>
+            <li>Mapear os fluxos de navegação mais críticos do produto;</li>
+            <li>Preparar o arquivo Figma com uma estrutura de páginas profissional antes de começar a desenhar.</li>
+          </ul>
+        </div>
+
+        <h2>Conhecendo o TaskFlow</h2>
+        <p>O <strong>TaskFlow</strong> é um SaaS (Software as a Service) de gestão de projetos para times de médio porte — equipes de 5 a 50 pessoas que trabalham com projetos paralelos, prazos e entregáveis. Pense em uma alternativa mais focada ao Asana ou ao Monday.com: mais simples de adotar, com um dashboard de métricas que os gestores amam e um board Kanban que o time não abandona.</p>
+
+        <h3>O problema que ele resolve</h3>
+        <p>Times de produto, marketing e desenvolvimento perdem em média 2–3 horas por semana tentando entender "onde está cada tarefa" e "quem está travado em quê". O TaskFlow centraliza essa visibilidade em um único lugar, com atualizações em tempo real e uma hierarquia clara: <strong>Espaço de trabalho → Projeto → Lista → Tarefa</strong>.</p>
+
+        <h3>Público-alvo</h3>
+        <ul>
+          <li><strong>Gestores de projeto:</strong> precisam de visão geral (dashboard, timeline, carga do time).</li>
+          <li><strong>Membros do time:</strong> precisam saber o que fazer hoje (Minhas tarefas, notificações).</li>
+          <li><strong>Stakeholders:</strong> precisam de relatórios de progresso sem entrar no detalhe.</li>
+        </ul>
+
+        <div class="callout info">
+          <span class="callout-title">Por que um SaaS de gestão?</span>
+          <p>Aplicativos de gestão de projetos são o caso de uso perfeito para aprender <strong>design de produtos complexos</strong>: eles combinam tabelas de dados, formulários, componentes de status, navegação multi-nível, responsividade e uma hierarquia de informação densa — tudo o que você precisa dominar para trabalhar com dashboards reais.</p>
+        </div>
+
+        <h2>Funcionalidades do MVP</h2>
+        <p>O escopo foi priorizado usando o framework <strong>MoSCoW</strong> (Must have / Should have / Could have / Won't have). Para este projeto guiado, implementaremos o núcleo do produto:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Área</th><th>Funcionalidade</th><th>Prioridade</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Visão geral</td><td>Dashboard de métricas (KPIs, progresso, carga)</td><td><span class="badge level-1">Must have</span></td></tr>
+              <tr><td>Projetos</td><td>Lista de projetos, criação, edição, arquivamento</td><td><span class="badge level-1">Must have</span></td></tr>
+              <tr><td>Tarefas</td><td>Criar, editar, atribuir, definir prazo e prioridade</td><td><span class="badge level-1">Must have</span></td></tr>
+              <tr><td>Board Kanban</td><td>Visualização em colunas (A fazer / Em progresso / Concluído)</td><td><span class="badge level-1">Must have</span></td></tr>
+              <tr><td>Membros</td><td>Convidar, papéis (admin / membro / visualizador)</td><td><span class="badge level-2">Should have</span></td></tr>
+              <tr><td>Notificações</td><td>Menções, prazos e atualizações</td><td><span class="badge level-2">Should have</span></td></tr>
+              <tr><td>Relatórios</td><td>Exportação PDF / gráficos de burndown</td><td><span class="badge level-3">Could have</span></td></tr>
+              <tr><td>Integrações</td><td>Slack, GitHub, Google Calendar</td><td>Won't have (v1)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Arquitetura de informação</h2>
+        <p>A arquitetura de informação (IA) define <em>quais telas existem</em>, <em>como se relacionam</em> e <em>como o usuário navega entre elas</em>. Para um SaaS, isso costuma se traduzir em um sitemap e em fluxos de navegação.</p>
+
+        <h3>O sitemap do TaskFlow</h3>
+
+        <div class="diagram">
+          <svg viewBox="0 0 700 420" role="img" aria-label="Sitemap do TaskFlow mostrando a hierarquia de navegação">
+            <!-- Raiz -->
+            <rect x="290" y="10" width="120" height="38" rx="8" fill="var(--primary)" />
+            <text x="350" y="34" text-anchor="middle" fill="#fff" font-size="13" font-weight="700" font-family="sans-serif">TaskFlow</text>
+
+            <!-- Linha do nível 1 -->
+            <line x1="350" y1="48" x2="350" y2="68" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <line x1="90" y1="68" x2="610" y2="68" stroke="var(--border-strong)" stroke-width="1.5"/>
+
+            <!-- Nível 1: 5 seções -->
+            <line x1="90" y1="68" x2="90" y2="88" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <line x1="220" y1="68" x2="220" y2="88" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <line x1="350" y1="68" x2="350" y2="88" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <line x1="480" y1="68" x2="480" y2="88" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <line x1="610" y1="68" x2="610" y2="88" stroke="var(--border-strong)" stroke-width="1.5"/>
+
+            <!-- Caixas nível 1 -->
+            <rect x="30" y="88" width="120" height="36" rx="7" fill="var(--primary-soft)" stroke="var(--primary-soft-border)" stroke-width="1.5"/>
+            <text x="90" y="111" text-anchor="middle" fill="var(--primary)" font-size="12" font-weight="600" font-family="sans-serif">Dashboard</text>
+
+            <rect x="160" y="88" width="120" height="36" rx="7" fill="var(--primary-soft)" stroke="var(--primary-soft-border)" stroke-width="1.5"/>
+            <text x="220" y="111" text-anchor="middle" fill="var(--primary)" font-size="12" font-weight="600" font-family="sans-serif">Projetos</text>
+
+            <rect x="290" y="88" width="120" height="36" rx="7" fill="var(--primary-soft)" stroke="var(--primary-soft-border)" stroke-width="1.5"/>
+            <text x="350" y="111" text-anchor="middle" fill="var(--primary)" font-size="12" font-weight="600" font-family="sans-serif">Minhas Tarefas</text>
+
+            <rect x="420" y="88" width="120" height="36" rx="7" fill="var(--primary-soft)" stroke="var(--primary-soft-border)" stroke-width="1.5"/>
+            <text x="480" y="111" text-anchor="middle" fill="var(--primary)" font-size="12" font-weight="600" font-family="sans-serif">Membros</text>
+
+            <rect x="550" y="88" width="120" height="36" rx="7" fill="var(--primary-soft)" stroke="var(--primary-soft-border)" stroke-width="1.5"/>
+            <text x="610" y="111" text-anchor="middle" fill="var(--primary)" font-size="12" font-weight="600" font-family="sans-serif">Configurações</text>
+
+            <!-- Nível 2: Projetos -->
+            <line x1="220" y1="124" x2="220" y2="150" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <line x1="155" y1="150" x2="285" y2="150" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <line x1="155" y1="150" x2="155" y2="168" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <line x1="220" y1="150" x2="220" y2="168" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <line x1="285" y1="150" x2="285" y2="168" stroke="var(--border-strong)" stroke-width="1.5"/>
+
+            <rect x="98" y="168" width="114" height="32" rx="6" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="1"/>
+            <text x="155" y="189" text-anchor="middle" fill="var(--text)" font-size="11" font-family="sans-serif">Lista de projetos</text>
+
+            <rect x="163" y="168" width="114" height="32" rx="6" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="1"/>
+            <text x="220" y="189" text-anchor="middle" fill="var(--text)" font-size="11" font-family="sans-serif">Board Kanban</text>
+
+            <rect x="228" y="168" width="114" height="32" rx="6" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="1"/>
+            <text x="285" y="189" text-anchor="middle" fill="var(--text)" font-size="11" font-family="sans-serif">Detalhe da Tarefa</text>
+
+            <!-- Nível 2: Dashboard -->
+            <line x1="90" y1="124" x2="90" y2="150" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <line x1="50" y1="150" x2="130" y2="150" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <line x1="50" y1="150" x2="50" y2="168" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <line x1="130" y1="150" x2="130" y2="168" stroke="var(--border-strong)" stroke-width="1.5"/>
+
+            <rect x="0" y="168" width="100" height="32" rx="6" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="1"/>
+            <text x="50" y="189" text-anchor="middle" fill="var(--text)" font-size="11" font-family="sans-serif">Visão Geral</text>
+
+            <rect x="82" y="168" width="100" height="32" rx="6" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="1"/>
+            <text x="132" y="189" text-anchor="middle" fill="var(--text)" font-size="11" font-family="sans-serif">Relatórios</text>
+
+            <!-- Legenda -->
+            <rect x="30" y="300" width="14" height="14" rx="3" fill="var(--primary)"/>
+            <text x="52" y="312" fill="var(--text-muted)" font-size="12" font-family="sans-serif">Ponto de entrada (raiz)</text>
+            <rect x="30" y="325" width="14" height="14" rx="3" fill="var(--primary-soft)" stroke="var(--primary-soft-border)" stroke-width="1.5"/>
+            <text x="52" y="337" fill="var(--text-muted)" font-size="12" font-family="sans-serif">Seção principal (navegação lateral)</text>
+            <rect x="30" y="350" width="14" height="14" rx="3" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="1"/>
+            <text x="52" y="362" fill="var(--text-muted)" font-size="12" font-family="sans-serif">Sub-tela / view</text>
+          </svg>
+          <p class="mock-label">Sitemap simplificado do TaskFlow. Cada retângulo é uma tela ou estado de tela a ser projetado.</p>
+        </div>
+
+        <h3>Fluxo de navegação principal</h3>
+        <p>No TaskFlow, a navegação segue dois eixos:</p>
+        <ul>
+          <li><strong>Global (sidebar):</strong> Dashboard, Projetos, Minhas Tarefas, Membros, Configurações. Sempre visível no desktop.</li>
+          <li><strong>Contextual (topbar e abas):</strong> dentro de um projeto, o usuário alterna entre as views (Lista, Board, Calendário).</li>
+        </ul>
+        <p>Essa separação é intencional: a sidebar responde a "onde estou no produto?", enquanto as abas respondem a "como quero ver os dados deste projeto?".</p>
+
+        <h2>Estrutura do arquivo Figma</h2>
+        <p>Antes de criar o primeiro frame, profissionais organizam o arquivo em <strong>páginas</strong> dentro do Figma. Isso mantém tudo navegável e facilita o handoff com o time de desenvolvimento.</p>
+
+        <h3>Passo a passo: organizando o arquivo</h3>
+        <ol class="steps">
+          <li>
+            <strong>Crie um novo arquivo.</strong>
+            No Figma, vá em <strong>New design file</strong>. Renomeie-o imediatamente para <strong>"TaskFlow — Design System &amp; UI"</strong> clicando duas vezes no nome no topo.
+          </li>
+          <li>
+            <strong>Crie as páginas do projeto.</strong>
+            Clique no <strong>+</strong> ao lado de "Page 1" no painel esquerdo para adicionar páginas. Crie as seguintes (nesta ordem):
+            <ul>
+              <li><code>📋 Briefing &amp; IA</code></li>
+              <li><code>🎨 Fundação Visual</code></li>
+              <li><code>🧩 Components</code></li>
+              <li><code>🖥️ Desktop (1440)</code></li>
+              <li><code>📱 Tablet (768)</code></li>
+              <li><code>📲 Mobile (375)</code></li>
+              <li><code>🌐 Landing Page</code></li>
+              <li><code>🔗 Protótipo</code></li>
+            </ul>
+          </li>
+          <li>
+            <strong>Na página "Briefing &amp; IA", monte o sitemap.</strong>
+            Use frames (<kbd>F</kbd>) como caixas e conecte-os com setas. Selecione dois frames e use <strong>Add connection</strong> no modo de protótipo, ou simplesmente crie linhas com a ferramenta de vetor (<kbd>P</kbd>). Mantenha tudo em tons de cinza — esta é a fase de estrutura, não de visual.
+          </li>
+          <li>
+            <strong>Documente o escopo.</strong>
+            Adicione um frame de texto ao lado do sitemap listando as telas do MVP. Use a ferramenta Texto (<kbd>T</kbd>) e crie uma hierarquia tipográfica simples (título, subtítulo, item).
+          </li>
+          <li>
+            <strong>Crie frames-referência para as telas.</strong>
+            Na página <code>Desktop (1440)</code>, crie um frame com preset <strong>Desktop → 1440</strong>. Nomeie-o "01 — Dashboard". Isso reserva o espaço e cria a estrutura antes de qualquer design.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Convenção de nomenclatura</span>
+          <p>Profissionais usam prefixos numéricos (<code>01 — Dashboard</code>, <code>02 — Projetos</code>) para manter os frames em ordem no painel de layers. Use <strong>—</strong> (em dash) como separador: fica mais legível do que traço simples.</p>
+        </div>
+
+        <div class="callout warning">
+          <span class="callout-title">Não pule a fase de IA</span>
+          <p>A tentação de abrir o Figma e já começar a desenhar é enorme. Mas designers que pulam a arquitetura de informação frequentemente precisam refatorar metade do projeto depois — porque descobrem que criaram telas que o usuário nunca acharia ou que duplicaram funcionalidades. Dedique 30 minutos ao mapa antes de tocar em pixels.</p>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>O processo descrito aqui é idêntico ao que times de produto usam em empresas como Nubank, iFood e Conta Azul antes de qualquer sprint de design. O designer de produto recebe o briefing (às vezes um PRD — Product Requirements Document), extrai as telas necessárias, mapeia os fluxos críticos e só então começa a explorar visuais. O Figma é o artefato que documenta essa IA para toda a equipe.</p>
+
+        <div class="figma-mock">
+          <div class="device-browser" style="max-width:680px;">
+            <div class="browser-bar">
+              <i></i><i></i><i></i>
+              <span style="flex:1;text-align:center;font-size:12px;color:var(--text-muted);">TaskFlow — Briefing & IA · Figma</span>
+            </div>
+            <div style="padding:20px;display:flex;gap:16px;flex-wrap:wrap;">
+              <!-- Sitemap mockup -->
+              <div style="flex:1;min-width:220px;">
+                <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;">Sitemap</div>
+                <div style="background:var(--primary);color:#fff;padding:8px 14px;border-radius:8px;font-size:13px;font-weight:700;text-align:center;margin-bottom:8px;">TaskFlow</div>
+                <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                  <div style="flex:1;min-width:80px;background:var(--primary-soft);border:1px solid var(--primary-soft-border);padding:6px 10px;border-radius:6px;font-size:11px;font-weight:600;color:var(--primary);text-align:center;">Dashboard</div>
+                  <div style="flex:1;min-width:80px;background:var(--primary-soft);border:1px solid var(--primary-soft-border);padding:6px 10px;border-radius:6px;font-size:11px;font-weight:600;color:var(--primary);text-align:center;">Projetos</div>
+                  <div style="flex:1;min-width:80px;background:var(--primary-soft);border:1px solid var(--primary-soft-border);padding:6px 10px;border-radius:6px;font-size:11px;font-weight:600;color:var(--primary);text-align:center;">Tarefas</div>
+                </div>
+              </div>
+              <!-- Scope list -->
+              <div style="flex:1;min-width:200px;border-left:1px solid var(--border);padding-left:16px;">
+                <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;">Telas do MVP</div>
+                <div style="display:flex;flex-direction:column;gap:6px;">
+                  <div style="display:flex;align-items:center;gap:8px;font-size:12px;"><span style="width:8px;height:8px;background:var(--success);border-radius:50%;flex:none;"></span>01 Dashboard</div>
+                  <div style="display:flex;align-items:center;gap:8px;font-size:12px;"><span style="width:8px;height:8px;background:var(--success);border-radius:50%;flex:none;"></span>02 Lista de Projetos</div>
+                  <div style="display:flex;align-items:center;gap:8px;font-size:12px;"><span style="width:8px;height:8px;background:var(--success);border-radius:50%;flex:none;"></span>03 Board Kanban</div>
+                  <div style="display:flex;align-items:center;gap:8px;font-size:12px;"><span style="width:8px;height:8px;background:var(--warning);border-radius:50%;flex:none;"></span>04 Detalhe Tarefa</div>
+                  <div style="display:flex;align-items:center;gap:8px;font-size:12px;"><span style="width:8px;height:8px;background:var(--border-strong);border-radius:50%;flex:none;"></span>05 Membros</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">Página de briefing no Figma: sitemap à esquerda e lista de telas do MVP à direita — tudo documentado antes do primeiro pixel de design.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Renomear layer/frame selecionado</td><td><kbd>Ctrl</kbd> + <kbd>R</kbd></td><td><kbd>⌘</kbd> + <kbd>R</kbd></td></tr>
+              <tr><td>Criar Frame</td><td><kbd>F</kbd></td><td><kbd>F</kbd></td></tr>
+              <tr><td>Ferramenta Texto</td><td><kbd>T</kbd></td><td><kbd>T</kbd></td></tr>
+              <tr><td>Duplicar layer</td><td><kbd>Ctrl</kbd> + <kbd>D</kbd></td><td><kbd>⌘</kbd> + <kbd>D</kbd></td></tr>
+              <tr><td>Adicionar nova página</td><td>clique no <strong>+</strong> no painel de páginas</td><td>clique no <strong>+</strong> no painel de páginas</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>O TaskFlow é um SaaS de gestão de projetos para times de 5–50 pessoas, com dashboard, Kanban, tarefas e membros.</li>
+          <li>A arquitetura de informação (sitemap + fluxos) deve ser feita <em>antes</em> de qualquer design visual.</li>
+          <li>O arquivo Figma deve ter uma estrutura de páginas clara desde o início: Briefing, Fundação Visual, Components, frames de breakpoint, Landing Page e Protótipo.</li>
+          <li>O escopo do MVP é definido com MoSCoW para evitar feature creep nas primeiras iterações.</li>
+          <li>Nomenclatura consistente (<code>01 — NomeDaTela</code>) mantém o projeto navegável conforme cresce.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Monte o arquivo base do TaskFlow</h3>
+          <p>Crie o arquivo no Figma e configure sua estrutura:</p>
+          <ol>
+            <li>Crie um novo arquivo e nomeie-o <strong>"TaskFlow — [seu nome]"</strong>.</li>
+            <li>Crie as 8 páginas conforme a lista do passo a passo (use os emojis e nomes exatos).</li>
+            <li>Na página <em>Briefing &amp; IA</em>, reproduza o sitemap usando frames e linhas — sem cores, apenas estrutura.</li>
+            <li>Na página <em>Desktop (1440)</em>, crie 5 frames com o preset Desktop 1440 e nomeie-os de 01 a 05 com os nomes das telas do MVP.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> o arquivo tem 8 páginas nomeadas corretamente, a página de briefing contém um sitemap legível e a página desktop tem 5 frames nomeados — tudo antes de qualquer pixel de visual.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Mapeie um fluxo de criação de tarefa</h3>
+          <p>No modo de Protótipo do Figma, conecte os 5 frames que você criou para simular o fluxo de um usuário que entra no dashboard, clica em um projeto, abre o board Kanban e cria uma nova tarefa. Inclua pelo menos um modal (frame flutuante) representando o formulário de criação de tarefa. Use a função <strong>Smart Animate</strong> na transição para o modal e documente o fluxo com anotações de texto.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Qual é a hierarquia correta de navegação no TaskFlow?</p>
+            <ul class="quiz-options">
+              <li>Tarefa → Lista → Projeto → Espaço de trabalho</li>
+              <li>Projeto → Espaço de trabalho → Lista → Tarefa</li>
+              <li>Espaço de trabalho → Projeto → Lista → Tarefa</li>
+              <li>Lista → Projeto → Tarefa → Espaço de trabalho</li>
+            </ul>
+            <div class="quiz-explain">A hierarquia correta é do mais abrangente ao mais específico: <strong>Espaço de trabalho → Projeto → Lista → Tarefa</strong>. Esse padrão é comum em ferramentas como Asana e ClickUp.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">2. No framework MoSCoW, o que significa "Must have"?</p>
+            <ul class="quiz-options">
+              <li>Funcionalidade desejável mas que pode ficar para a v2</li>
+              <li>Funcionalidade obrigatória para o produto ser viável no lançamento</li>
+              <li>Funcionalidade que provavelmente nunca será implementada</li>
+              <li>Funcionalidade que o time adoraria ter mas não há tempo</li>
+            </ul>
+            <div class="quiz-explain"><strong>Must have</strong> são requisitos essenciais — sem eles, o produto não pode ser lançado. São o núcleo do MVP.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Por que separar a sidebar (navegação global) das abas (views contextuais)?</p>
+            <ul class="quiz-options">
+              <li>A sidebar responde "onde estou no produto?" e as abas respondem "como vejo os dados deste contexto?"</li>
+              <li>É apenas uma convenção estética — poderiam ser unificadas sem impacto na UX</li>
+              <li>A sidebar é para mobile e as abas são para desktop</li>
+              <li>As abas são mais rápidas de implementar no código</li>
+            </ul>
+            <div class="quiz-explain">A separação é funcional: a <strong>sidebar</strong> é a navegação global (entre seções do produto) e as <strong>abas</strong> são a navegação local (entre visualizações de um mesmo contexto). Misturá-las cria confusão cognitiva no usuário.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

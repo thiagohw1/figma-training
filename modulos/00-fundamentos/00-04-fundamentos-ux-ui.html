@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fundamentos de UX/UI design | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="00-04-fundamentos-ux-ui" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🚀 Módulo 0 · Fundamentos · Lição 4 de 6</div>
+        <h1>Fundamentos de UX/UI design</h1>
+        <p class="lead">Antes de abrir o Figma e começar a desenhar telas, você precisa entender <em>por que</em> você está desenhando. Design sem fundamentos de UX é decoração — bonito, mas inútil se o usuário não consegue usar.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~20 min</span>
+          <span>🎯 Nível: Fundamentos</span>
+          <span>🛠️ Reflexão e análise prática</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Distinguir UX (User Experience) de UI (User Interface) com clareza;</li>
+            <li>Descrever o processo de design do início ao fim: pesquisa → ideação → wireframe → protótipo → teste → handoff;</li>
+            <li>Explicar os conceitos essenciais: usabilidade, hierarquia visual, affordance, consistência e acessibilidade;</li>
+            <li>Diferenciar fidelidade baixa (low-fi) de alta (high-fi) e saber quando usar cada uma;</li>
+            <li>Analisar criticamente a interface de um app real usando esses conceitos.</li>
+          </ul>
+        </div>
+
+        <h2>UX vs. UI — a diferença que todos confundem</h2>
+        <p>Esses termos aparecem juntos com tanta frequência que muitas pessoas pensam que são a mesma coisa. Não são — mas se complementam profundamente.</p>
+
+        <h3>UX — User Experience (Experiência do Usuário)</h3>
+        <p><strong>UX</strong> é tudo que o usuário <em>sente e pensa</em> ao interagir com um produto. É a disciplina mais ampla: pesquisa com usuários, arquitetura de informação, fluxos de navegação, mapas de jornada, testes de usabilidade. UX responde perguntas como: <em>O usuário consegue completar a tarefa? Ele se sente confuso? Onde ele abandona o fluxo?</em></p>
+        <p>Uma boa UX pode ser invisível — o usuário simplesmente consegue fazer o que quer, sem frustração, sem perceber que houve um trabalho enorme por trás.</p>
+
+        <h3>UI — User Interface (Interface do Usuário)</h3>
+        <p><strong>UI</strong> é a camada visual e interativa: cores, tipografia, ícones, botões, espaçamentos, estados de hover/pressed/disabled, animações de transição. UI responde perguntas como: <em>Qual cor é o botão principal? Qual fonte usar no título? Como o modal aparece na tela?</em></p>
+        <p>Uma boa UI torna a experiência agradável e transmite a identidade da marca. É a "pele" do produto — mas sem um esqueleto de UX bem estruturado, a pele não funciona.</p>
+
+        <div class="callout info">
+          <span class="callout-title">A analogia do restaurante</span>
+          <p><strong>UX</strong> é o layout do restaurante: onde ficam as mesas, o fluxo para chegar ao banheiro, a organização do cardápio, o tempo de espera. <strong>UI</strong> é a decoração: as cores das paredes, as fontes do cardápio, a iluminação, a louça. Você pode ter uma decoração linda em um restaurante mal organizado — e as pessoas não voltam. Você pode ter uma decoração simples em um restaurante com fluxo perfeito — e as pessoas adoram.</p>
+        </div>
+
+        <h2>O processo de design</h2>
+        <p>Design não é "abrir o Figma e começar a desenhar". É um processo iterativo que começa muito antes da primeira tela. Veja as fases:</p>
+
+        <h3>1. Pesquisa (Research)</h3>
+        <p>Quem são os usuários? Quais são seus problemas reais? Que contextos eles vivem? A pesquisa pode ser qualitativa (entrevistas, observação) ou quantitativa (surveys, analytics). Sem pesquisa, você está desenhando para você mesmo — não para o usuário.</p>
+
+        <h3>2. Ideação (Ideation)</h3>
+        <p>Com os problemas mapeados, o time gera ideias. Brainstorming, Crazy 8s (8 ideias em 8 minutos), análise de concorrentes, benchmarking de referências. O objetivo é gerar muitas possibilidades antes de comprometer com uma solução.</p>
+
+        <h3>3. Wireframe</h3>
+        <p>A estrutura sem estilo visual. Um wireframe de baixa fidelidade (low-fi) é geralmente feito em preto e branco, com caixas cinzas e texto simulado. O objetivo é validar a <em>lógica</em> da interface antes de investir tempo em design visual. É muito mais barato corrigir um wireframe do que refazer telas completas.</p>
+
+        <h3>4. Protótipo</h3>
+        <p>Uma versão navegável do design. Pode ser low-fi (wireframes clicáveis) ou high-fi (telas finais com transições). O protótipo simula a experiência sem precisar de código — e é aqui que o Figma brilha.</p>
+
+        <h3>5. Teste com usuários</h3>
+        <p>O protótipo é colocado na mão de usuários reais. Eles tentam completar tarefas enquanto o designer observa (sem ajudar). Cada momento de confusão, hesitação ou erro é dado valioso. Os achados voltam para o ciclo de ideação/design.</p>
+
+        <h3>6. Handoff para desenvolvimento</h3>
+        <p>Com o design aprovado, os arquivos são preparados para os desenvolvedores: especificações de espaçamento, comportamento de componentes, assets exportados e fluxos documentados. No Figma, isso acontece via Dev Mode.</p>
+
+        <div class="diagram">
+          <svg viewBox="0 0 580 130" role="img" aria-label="Processo de design: Pesquisa → Ideação → Wireframe → Protótipo → Teste → Handoff">
+            <!-- fundo das caixas -->
+            <rect x="10"  y="30" width="80" height="70" rx="10" fill="var(--info-soft)"    stroke="var(--info-border)"    stroke-width="1.5"/>
+            <rect x="110" y="30" width="80" height="70" rx="10" fill="var(--success-soft)" stroke="var(--success-border)" stroke-width="1.5"/>
+            <rect x="210" y="30" width="80" height="70" rx="10" fill="var(--warning-soft)" stroke="var(--warning-border)" stroke-width="1.5"/>
+            <rect x="310" y="30" width="80" height="70" rx="10" fill="var(--pro-soft)"     stroke="var(--pro-border)"     stroke-width="1.5"/>
+            <rect x="410" y="30" width="80" height="70" rx="10" fill="var(--danger-soft)"  stroke="var(--danger-border)"  stroke-width="1.5"/>
+            <rect x="490" y="30" width="80" height="70" rx="10" fill="var(--primary-soft)" stroke="var(--primary-soft-border)" stroke-width="1.5"/>
+            <!-- setas -->
+            <path d="M92 65 L108 65" stroke="var(--border-strong)" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <path d="M192 65 L208 65" stroke="var(--border-strong)" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <path d="M292 65 L308 65" stroke="var(--border-strong)" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <path d="M392 65 L408 65" stroke="var(--border-strong)" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <path d="M472 65 L488 65" stroke="var(--border-strong)" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <defs><marker id="arrowhead" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="var(--border-strong)"/></marker></defs>
+            <!-- labels -->
+            <text x="50"  y="60" text-anchor="middle" fill="var(--info)"    font-size="12" font-family="sans-serif" font-weight="700">🔍</text>
+            <text x="50"  y="76" text-anchor="middle" fill="var(--text)"    font-size="10.5" font-family="sans-serif">Pesquisa</text>
+            <text x="150" y="60" text-anchor="middle" fill="var(--success)" font-size="12" font-family="sans-serif" font-weight="700">💡</text>
+            <text x="150" y="76" text-anchor="middle" fill="var(--text)"    font-size="10.5" font-family="sans-serif">Ideação</text>
+            <text x="250" y="60" text-anchor="middle" fill="var(--warning)" font-size="12" font-family="sans-serif" font-weight="700">📐</text>
+            <text x="250" y="76" text-anchor="middle" fill="var(--text)"    font-size="10.5" font-family="sans-serif">Wireframe</text>
+            <text x="350" y="60" text-anchor="middle" fill="var(--pro)"     font-size="12" font-family="sans-serif" font-weight="700">⚡</text>
+            <text x="350" y="76" text-anchor="middle" fill="var(--text)"    font-size="10.5" font-family="sans-serif">Protótipo</text>
+            <text x="450" y="60" text-anchor="middle" fill="var(--danger)"  font-size="12" font-family="sans-serif" font-weight="700">🧪</text>
+            <text x="450" y="76" text-anchor="middle" fill="var(--text)"    font-size="10.5" font-family="sans-serif">Teste</text>
+            <text x="530" y="60" text-anchor="middle" fill="var(--primary)" font-size="12" font-family="sans-serif" font-weight="700">🚀</text>
+            <text x="530" y="76" text-anchor="middle" fill="var(--text)"    font-size="10.5" font-family="sans-serif">Handoff</text>
+            <!-- seta de retorno (iteração) -->
+            <path d="M450 100 Q400 125 300 125 Q200 125 150 100" stroke="var(--border-strong)" stroke-width="1.5" fill="none" stroke-dasharray="4 3" marker-end="url(#arrowhead)"/>
+            <text x="300" y="122" text-anchor="middle" fill="var(--text-soft)" font-size="10" font-family="sans-serif">iteração</text>
+          </svg>
+          <p class="mock-label">O processo de design é <strong>iterativo</strong> — os achados dos testes retroalimentam o ciclo continuamente.</p>
+        </div>
+
+        <h2>Conceitos essenciais de UX/UI</h2>
+        <p>Estes são os pilares que todo designer de interfaces precisa internalizar. Cada um influencia diretamente as decisões que você vai tomar no Figma.</p>
+
+        <h3>Usabilidade</h3>
+        <p>A facilidade com que um usuário consegue aprender e usar um sistema. Jakob Nielsen definiu 10 heurísticas de usabilidade que são referência até hoje — entre elas: visibilidade do status do sistema, controle do usuário, prevenção de erros e reconhecimento em vez de memorização. Um design usável resolve o problema do usuário sem fazê-lo pensar mais do que o necessário.</p>
+
+        <h3>Hierarquia visual</h3>
+        <p>O olho humano não lê uma tela de forma linear — ele percorre elementos em ordem de destaque. A hierarquia visual guia esse percurso usando <strong>tamanho</strong> (maior = mais importante), <strong>peso</strong> (negrito chama atenção), <strong>cor</strong> (contraste destaca), <strong>espaço</strong> (elementos isolados têm mais peso) e <strong>posição</strong> (canto superior esquerdo é lido primeiro em culturas ocidentais).</p>
+
+        <h3>Affordance</h3>
+        <p>A percepção intuitiva de como usar um elemento. Um botão com borda, sombra e cor forte "parece clicável" — isso é affordance visual. Um campo de texto com uma linha embaixo sugere que você pode digitar ali. Quando o affordance falha (ex.: um link que parece texto normal), o usuário não clica e perde conteúdo.</p>
+
+        <h3>Consistência</h3>
+        <p>Elementos com a mesma função devem ter a mesma aparência. Se o botão primário é azul com texto branco em uma tela, ele deve ser igual em todas as telas. Inconsistência gera insegurança — o usuário fica em dúvida se aquele botão de cor diferente faz a mesma coisa. Isso é um dos principais problemas que design systems resolvem.</p>
+
+        <h3>Acessibilidade</h3>
+        <p>Design que funciona para <em>todos</em>, incluindo pessoas com deficiências visuais, motoras, cognitivas ou auditivas. No contexto visual, os pontos mais críticos são: <strong>contraste de cores</strong> (mínimo WCAG AA: 4.5:1 para texto normal), <strong>tamanho de fonte</strong> (mínimo 16px para corpo de texto em mobile), <strong>áreas de toque</strong> (mínimo 44×44px) e <strong>não depender só de cor</strong> para transmitir informação (ex.: usar ícone + cor para indicar erro).</p>
+
+        <h3>Design centrado no usuário (DCU)</h3>
+        <p>Uma abordagem filosófica onde todas as decisões de design são orientadas pelas necessidades reais dos usuários, não pelas preferências do designer ou pelas opiniões do CEO. O DCU envolve pesquisa contínua, testes frequentes e humildade para jogar fora um mês de trabalho se os dados mostrarem que o caminho está errado.</p>
+
+        <div class="callout warning">
+          <span class="callout-title">O erro do "eu mesmo sou usuário"</span>
+          <p>Um viés cognitivo perigoso em design é assumir que porque <em>você</em> entende como usar, <em>todos</em> vão entender. Designers são especialistas no próprio produto — eles não representam o usuário médio. Por isso, testar com pessoas reais é insubstituível.</p>
+        </div>
+
+        <h2>Fidelidade: low-fi vs. high-fi</h2>
+        <p>Fidelidade é o nível de detalhe e realismo de um design. Não existe "melhor" — existe o mais adequado para a fase do projeto:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Aspecto</th><th>Low Fidelity (Baixa)</th><th>High Fidelity (Alta)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Visual</strong></td><td>Preto e branco, formas simples, texto placeholder ("Lorem")</td><td>Cores reais, tipografia final, imagens reais, ícones</td></tr>
+              <tr><td><strong>Interatividade</strong></td><td>Cliques básicos, sem animação</td><td>Transições, micro-interações, estados completos</td></tr>
+              <tr><td><strong>Velocidade</strong></td><td>Muito rápido de criar (horas)</td><td>Mais lento (dias/semanas)</td></tr>
+              <tr><td><strong>Custo de mudança</strong></td><td>Baixo — fácil de jogar fora</td><td>Alto — refazer custa tempo real</td></tr>
+              <tr><td><strong>Quando usar</strong></td><td>Discovery, validação de fluxo, apresentar para stakeholders antes de investir</td><td>Teste com usuários de usabilidade, handoff para dev, apresentações executivas</td></tr>
+              <tr><td><strong>Ferramentas</strong></td><td>Papel, Figma (frames cinzas), FigJam</td><td>Figma (design completo)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout pro">
+          <span class="callout-title">Dica de profissional: comece low-fi, sempre</span>
+          <p>Profissionais experientes fazem wireframes de baixa fidelidade antes de qualquer pixel colorido — não porque são iniciantes, mas porque sabem que é muito mais barato descobrir que um fluxo está errado em 5 minutos de wireframe do que em 5 dias de design de alta fidelidade.</p>
+        </div>
+
+        <h2>Exemplo de uso real: analisando o app Nubank</h2>
+        <p>Vamos aplicar esses conceitos analisando o app Nubank, que é referência de UX/UI no mercado brasileiro:</p>
+
+        <div class="figma-mock">
+          <div class="device-phone">
+            <div style="background:var(--surface);padding:20px 16px;">
+              <!-- barra de status mock -->
+              <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin-bottom:20px;">
+                <span>9:41</span><span>●●●●</span>
+              </div>
+              <!-- header do app mock -->
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+                <div>
+                  <div style="font-size:12px;color:var(--text-muted);">Olá, Maria</div>
+                  <div style="font-size:20px;font-weight:700;color:var(--text);">R$ 2.340,00</div>
+                </div>
+                <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#8a05be,#6200a0);"></div>
+              </div>
+              <!-- botões de ação mock -->
+              <div style="display:flex;gap:12px;margin-bottom:20px;">
+                <div style="flex:1;background:#8a05be;color:white;border-radius:10px;padding:10px;text-align:center;font-size:12px;font-weight:600;">Pagar</div>
+                <div style="flex:1;background:#8a05be;color:white;border-radius:10px;padding:10px;text-align:center;font-size:12px;font-weight:600;">Transferir</div>
+                <div style="flex:1;border:1.5px solid #8a05be;color:#8a05be;border-radius:10px;padding:10px;text-align:center;font-size:12px;font-weight:600;">Mais</div>
+              </div>
+              <!-- card simplificado -->
+              <div style="background:linear-gradient(135deg,#8a05be,#6200a0);border-radius:12px;padding:14px;color:white;">
+                <div style="font-size:11px;opacity:.8;margin-bottom:6px;">Cartão de crédito</div>
+                <div style="font-size:18px;font-weight:700;">•••• 4521</div>
+                <div style="font-size:11px;opacity:.8;margin-top:6px;">Fatura: R$ 840,20</div>
+              </div>
+            </div>
+          </div>
+          <div style="flex:1;min-width:200px;padding:8px;">
+            <p style="font-size:14px;font-weight:700;margin:0 0 12px;color:var(--text);">Análise UX/UI</p>
+            <ul style="font-size:13px;color:var(--text-muted);margin:0;padding-left:18px;line-height:1.8;">
+              <li><strong>Hierarquia visual:</strong> saldo em destaque (tamanho maior), ações secundárias menores</li>
+              <li><strong>Affordance:</strong> botões com fundo roxo = ação principal; borda = ação secundária</li>
+              <li><strong>Consistência:</strong> cor roxa como identidade visual em todos os elementos interativos</li>
+              <li><strong>Acessibilidade:</strong> texto branco em fundo roxo escuro (contraste adequado)</li>
+              <li><strong>UX:</strong> as 3 ações mais usadas (Pagar, Transferir, Mais) estão logo abaixo do saldo</li>
+            </ul>
+          </div>
+          <p class="mock-label">Análise UX/UI simplificada da tela inicial do Nubank — referência de boas práticas no Brasil.</p>
+        </div>
+
+        <h2>Por que estudar UX/UI antes de abrir o Figma</h2>
+        <p>Muitas pessoas que aprendem Figma tecnicamente — sabem usar todas as ferramentas, conhecem todos os atalhos — produzem designs que não funcionam na prática. O Figma é o <em>meio</em>, não o <em>fim</em>. Entender UX/UI te dá o <em>porquê</em> por trás de cada decisão:</p>
+        <ul>
+          <li>Por que usar 16px de fonte em vez de 12px? — <strong>Acessibilidade.</strong></li>
+          <li>Por que o botão principal é colorido e o secundário é ghost? — <strong>Hierarquia visual e affordance.</strong></li>
+          <li>Por que as ações mais importantes ficam no centro/baixo da tela mobile? — <strong>Alcance do polegar (zona de conforto de toque).</strong></li>
+          <li>Por que fazemos wireframe antes? — <strong>Custo de mudança baixo durante validação.</strong></li>
+        </ul>
+        <p>Com esses fundamentos, cada escolha no Figma vai ter um motivo — e você vai conseguir argumentar suas decisões de design para qualquer stakeholder.</p>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li><strong>UX</strong> = a experiência completa (pesquisa, fluxos, usabilidade); <strong>UI</strong> = a camada visual (cores, tipografia, componentes). Ambos são essenciais.</li>
+          <li>O processo de design segue: Pesquisa → Ideação → Wireframe → Protótipo → Teste → Handoff — e é iterativo.</li>
+          <li>Conceitos essenciais: usabilidade, hierarquia visual, affordance, consistência, acessibilidade e design centrado no usuário.</li>
+          <li>Low-fi serve para validar lógica rapidamente; high-fi serve para validar experiência e entregar para dev.</li>
+          <li>Entender esses fundamentos é o que transforma um operador de ferramenta em um designer de verdade.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Análise crítica de interface</h3>
+          <p>Escolha um app que você usa no dia a dia (iFood, Instagram, WhatsApp, Mercado Livre, etc.) e analise a tela principal usando os conceitos desta lição:</p>
+          <ol>
+            <li>Identifique a hierarquia visual: qual é o elemento mais destacado? Por quê?</li>
+            <li>Aponte 2 affordances: o que nessa tela claramente "parece clicável" ou "parece digitável"?</li>
+            <li>Encontre um exemplo de consistência (elementos similares com aparência similar).</li>
+            <li>Verifique acessibilidade básica: algum texto tem contraste muito baixo com o fundo?</li>
+            <li>Identifique uma decisão de UX: algo que foi colocado em destaque porque é a ação mais importante.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> você conseguiu identificar e nomear pelo menos 4 dos 5 conceitos na tela escolhida.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Critique e proponha melhorias</h3>
+          <p>Volte ao app que você analisou no exercício. Agora encontre pelo menos <strong>2 problemas de UX ou UI</strong> (ex.: botão sem affordance suficiente, hierarquia confusa, texto com baixo contraste, ação importante escondida). Para cada problema, escreva uma proposta de melhoria justificada pelos conceitos desta lição. Não precisa de Figma ainda — texto é suficiente. Esse exercício simula exatamente o que um designer faz em uma análise heurística.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Qual é a principal diferença entre UX e UI design?</p>
+            <ul class="quiz-options">
+              <li>UX cuida das cores e UI cuida do fluxo de navegação</li>
+              <li>UX é sobre a experiência e fluxo do usuário; UI é sobre a aparência visual da interface</li>
+              <li>UX é feito por desenvolvedores e UI por designers</li>
+              <li>UX é para mobile e UI é para web</li>
+            </ul>
+            <div class="quiz-explain"><strong>UX (User Experience)</strong> abrange pesquisa, fluxos, usabilidade e arquitetura de informação. <strong>UI (User Interface)</strong> é a camada visual: cores, tipografia, ícones e estados dos componentes. Ambos são necessários em um produto de qualidade.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">2. O que é "affordance" em design de interfaces?</p>
+            <ul class="quiz-options">
+              <li>A capacidade de um design de rodar em múltiplos dispositivos</li>
+              <li>O espaçamento entre elementos de uma interface</li>
+              <li>A percepção intuitiva de como interagir com um elemento (ex.: botão "parece clicável")</li>
+              <li>A cor usada para indicar ações de perigo</li>
+            </ul>
+            <div class="quiz-explain"><strong>Affordance</strong> é a pista visual que diz ao usuário como interagir com um elemento. Um botão com sombra e cor de destaque tem boa affordance porque "parece clicável". Quando a affordance falha, o usuário não descobre como usar a interface.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Por que fazer wireframes de baixa fidelidade antes do design final?</p>
+            <ul class="quiz-options">
+              <li>Porque é muito mais barato descobrir problemas de fluxo em wireframes do que refazer telas de alta fidelidade</li>
+              <li>Porque stakeholders preferem designs em preto e branco</li>
+              <li>Porque o Figma não suporta cores em wireframes</li>
+              <li>Porque wireframes de baixa fidelidade são obrigatórios por lei em projetos digitais</li>
+            </ul>
+            <div class="quiz-explain">O principal argumento para começar com baixa fidelidade é o <strong>custo de mudança</strong>: corrigir um wireframe em preto e branco leva minutos; refazer telas de alta fidelidade pode levar dias. Wireframes validam a lógica antes de investir em design visual.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FigJam — ideação e whiteboard | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="08-01-figjam" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">✨ Módulo 8 · Recursos 2025/2026 · Lição 1 de 8</div>
+        <h1>FigJam — ideação e whiteboard</h1>
+        <p class="lead">Antes de abrir o Figma e desenhar pixels, as melhores ideias nascem numa lousa em branco. O FigJam é esse espaço: um whiteboard colaborativo, integrado ao ecossistema Figma, feito para pensar junto em tempo real.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~16 min</span>
+          <span>🎯 Nível: Iniciante/Intermediário</span>
+          <span>🛠️ Pratique no FigJam</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Explicar o que é o FigJam e quando usá-lo no fluxo de design;</li>
+            <li>Criar um board com sticky notes, conectores, formas e stamps;</li>
+            <li>Organizar uma retrospectiva ou sessão de brainstorm no FigJam;</li>
+            <li>Usar templates prontos e instalar widgets;</li>
+            <li>Identificar e usar os recursos de IA disponíveis no FigJam.</li>
+          </ul>
+        </div>
+
+        <h2>O que é o FigJam?</h2>
+        <p><strong>FigJam</strong> é o produto de whiteboard colaborativo da Figma, lançado em 2021 e continuamente evoluído desde então. Pense nele como uma <em>lousa digital infinita</em> onde você e sua equipe podem colar notas adesivas, desenhar diagramas, criar fluxos, fazer votações e conduzir workshops — tudo ao mesmo tempo, de qualquer lugar do mundo.</p>
+        <p>A grande diferença em relação a outras ferramentas de whiteboard é a <strong>integração nativa com o Figma Design</strong>: você pode incorporar frames do Figma diretamente no FigJam, copiar componentes entre as duas ferramentas e manter todo o trabalho no mesmo ecossistema.</p>
+
+        <div class="callout info">
+          <span class="callout-title">FigJam vs. Figma Design</span>
+          <p>O FigJam é uma ferramenta <em>separada</em> dentro da plataforma Figma. Arquivos FigJam têm a extensão <code>.jam</code> e um ícone laranja na dashboard. Use o Figma Design para criar interfaces; use o FigJam para pensar, discutir e mapear antes (e durante) o projeto.</p>
+        </div>
+
+        <h2>Quando usar o FigJam?</h2>
+        <p>O FigJam brilha em momentos de colaboração e geração de ideias:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Situação</th><th>O que fazer no FigJam</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Kickoff de projeto</strong></td><td>Mapa mental dos objetivos, personas e restrições</td></tr>
+              <tr><td><strong>Brainstorm de features</strong></td><td>Chuva de ideias em sticky notes + votação com stamps</td></tr>
+              <tr><td><strong>Mapeamento de fluxos</strong></td><td>Fluxogramas com formas e conectores inteligentes</td></tr>
+              <tr><td><strong>Retrospectiva de sprint</strong></td><td>Quadros "Funcionou / Melhorar / Tentar" com notas coloridas</td></tr>
+              <tr><td><strong>User journey mapping</strong></td><td>Linha do tempo de etapas, emoções e touchpoints</td></tr>
+              <tr><td><strong>Workshop de UX</strong></td><td>Exercícios de "Crazy 8s", card sorting, diagrama de afinidades</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>A interface do FigJam</h2>
+        <p>Ao criar um novo arquivo FigJam (no menu "New" da dashboard, escolha "FigJam"), você verá uma lousa em branco com uma barra de ferramentas na parte inferior da tela. Essa barra é o centro de tudo:</p>
+
+        <div class="diagram">
+          <svg viewBox="0 0 600 80" role="img" aria-label="Barra de ferramentas do FigJam com ícones de cada ferramenta">
+            <rect x="80" y="10" width="440" height="60" rx="16" fill="var(--surface)" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <!-- ferramentas -->
+            <rect x="102" y="22" width="36" height="36" rx="8" fill="var(--warning-soft)" stroke="var(--warning-border)"/>
+            <text x="120" y="46" text-anchor="middle" font-size="18">🗒️</text>
+            <rect x="150" y="22" width="36" height="36" rx="8" fill="var(--primary-soft)" stroke="var(--primary-soft-border)"/>
+            <text x="168" y="46" text-anchor="middle" font-size="18">✏️</text>
+            <rect x="198" y="22" width="36" height="36" rx="8" fill="var(--success-soft)" stroke="var(--success-border)"/>
+            <text x="216" y="46" text-anchor="middle" font-size="18">⬡</text>
+            <rect x="246" y="22" width="36" height="36" rx="8" fill="var(--info-soft)" stroke="var(--info-border)"/>
+            <text x="264" y="46" text-anchor="middle" font-size="18">↗️</text>
+            <rect x="294" y="22" width="36" height="36" rx="8" fill="var(--danger-soft)" stroke="var(--danger-border)"/>
+            <text x="312" y="46" text-anchor="middle" font-size="18">📝</text>
+            <rect x="342" y="22" width="36" height="36" rx="8" fill="var(--pro-soft)" stroke="var(--pro-border)"/>
+            <text x="360" y="46" text-anchor="middle" font-size="18">👍</text>
+            <rect x="390" y="22" width="36" height="36" rx="8" fill="var(--surface-2)" stroke="var(--border)"/>
+            <text x="408" y="46" text-anchor="middle" font-size="18">🖼️</text>
+            <rect x="438" y="22" width="36" height="36" rx="8" fill="var(--surface-2)" stroke="var(--border)"/>
+            <text x="456" y="46" text-anchor="middle" font-size="18">🔷</text>
+          </svg>
+          <p class="mock-label">Barra inferior do FigJam: Sticky Note, Marcador, Formas, Conector, Texto, Stamps, Mídia e mais.</p>
+        </div>
+
+        <h2>Ferramentas essenciais do FigJam</h2>
+
+        <h3>Sticky Notes (Post-its)</h3>
+        <p>A ferramenta mais usada do FigJam. Pressione <kbd>S</kbd> para ativar o modo de sticky note e clique no board para criar uma. Você pode escolher entre <strong>seis cores</strong>, ajustar o tamanho e digitardiretamente. Cada nota pode receber um <strong>emoji de reação</strong>, o que é ótimo para dar contexto ("ideia principal", "bloqueio", "dúvida").</p>
+        <p>Durante um brainstorm, o ideal é ter cada ideia em uma nota separada — assim você consegue mover, agrupar e priorizar depois.</p>
+
+        <h3>Conectores</h3>
+        <p>Pressione <kbd>L</kbd> para usar o conector de linha. No FigJam, os conectores são <em>inteligentes</em>: você os "encaixa" em dois objetos e eles se ajustam automaticamente quando você move os elementos. Perfeito para fluxogramas e mapas de jornada. É possível adicionar rótulos aos conectores clicando duas vezes sobre eles.</p>
+
+        <h3>Formas</h3>
+        <p>Tecla <kbd>O</kbd> para elipses, <kbd>R</kbd> para retângulos. No FigJam, as formas são mais "expressivas" (cores chapadas, bordas grossas) do que no Figma Design — propositalmente, para estimular o esboço e não o pixel-perfect. Existe uma variedade de formas especiais (setas, losangos, hexágonos) clicando no ícone de formas na barra inferior.</p>
+
+        <h3>Stamps (Selos e Reações)</h3>
+        <p>Os stamps são reações visuais: polegares, corações, foguinhos, checkmarks e selos personalizados. Pressione <kbd>E</kbd> para acessar o painel de stamps. Usados em votações ("qual ideia você gostou mais?") ou para marcar itens importantes durante um workshop.</p>
+
+        <h3>Marcador</h3>
+        <p>Pressione <kbd>P</kbd> para o modo de desenho livre a mão. O FigJam oferece o marcador (<em>marker</em>) com diferentes espessuras. O recurso de "caneta highlighter" serve para destacar conteúdo existente no board sem cobri-lo.</p>
+
+        <h3>Textos e Tabelas</h3>
+        <p>Tecla <kbd>T</kbd> para texto livre. O FigJam também suporta <strong>tabelas simples</strong> — ótimas para comparar opções ou fazer uma matrix de priorização (Esforço × Impacto, por exemplo). Acesse pelas formas especiais na barra inferior.</p>
+
+        <div class="callout tip">
+          <span class="callout-title">Dica de facilitação</span>
+          <p>Durante workshops remotos, peça a todos que adicionem suas notas em silêncio por 5 minutos antes de discutir (técnica do "brainwriting silencioso"). O FigJam permite isso facilmente: todos editam ao mesmo tempo, mas o facilitador pode pedir que não conversem até o tempo acabar.</p>
+        </div>
+
+        <h2>Templates do FigJam</h2>
+        <p>Na dashboard, ao criar um novo arquivo FigJam, você tem acesso a uma biblioteca de <strong>templates prontos</strong> da Figma e da comunidade. Templates populares incluem:</p>
+        <ul>
+          <li><strong>Brainstorm:</strong> grade de sticky notes por categoria</li>
+          <li><strong>Retrospectiva:</strong> colunas "O que funcionou", "O que melhorar", "O que tentar"</li>
+          <li><strong>User Story Map:</strong> linha do tempo de épicos e histórias</li>
+          <li><strong>Diagrama de afinidade:</strong> para organizar pesquisa qualitativa</li>
+          <li><strong>Crazy 8s:</strong> 8 esboços em 8 minutos para ideação rápida</li>
+          <li><strong>Kanban:</strong> quadro de tarefas simples</li>
+        </ul>
+        <p>Para usar um template: ao criar um novo arquivo FigJam, clique em "Browse templates" no modal de criação. Você pode usar o template como ponto de partida e customizá-lo à vontade.</p>
+
+        <h2>Widgets no FigJam</h2>
+        <p><strong>Widgets</strong> são mini-aplicativos interativos que rodam dentro do board. Diferente dos plugins do Figma Design (que são executados pelo designer), os widgets são <em>objetos persistentes no board</em> que todos os participantes podem interagir.</p>
+        <p>Exemplos de widgets populares:</p>
+        <ul>
+          <li><strong>Timer:</strong> cronômetro visível para todos — ótimo para timebox de exercícios</li>
+          <li><strong>Votação (Dot Voting):</strong> cada participante recebe N pontos para distribuir entre ideias</li>
+          <li><strong>Spotify:</strong> toca músicas de fundo durante workshops (disponível via widget)</li>
+          <li><strong>GitHub Issues:</strong> exibe issues abertas diretamente no board</li>
+          <li><strong>Table:</strong> tabela colaborativa editável por todos</li>
+        </ul>
+        <p>Para instalar um widget: clique em <strong>"+"</strong> no canto inferior direito do board, vá em "Widgets" e pesquise. Widgets publicados na comunidade ficam disponíveis via <strong>Figma Community</strong>.</p>
+
+        <div class="callout pro">
+          <span class="callout-title">Widgets vs. Plugins</span>
+          <p>Plugins do Figma Design rodam para <em>um usuário</em> e geram objetos estáticos. Widgets ficam no board, são interativos e <em>todos os participantes</em> podem clicar e editar. Um widget de votação, por exemplo, registra os votos de cada pessoa em tempo real.</p>
+        </div>
+
+        <h2>Recursos de IA no FigJam</h2>
+        <p>A partir de 2024, o FigJam recebeu recursos de inteligência artificial que aceleram a facilitação:</p>
+
+        <h3>FigJam AI — organizar sticky notes</h3>
+        <p>Selecione um conjunto de sticky notes bagunçadas e use <strong>"Organize with AI"</strong> no menu de contexto. O FigJam lê o conteúdo das notas e as <em>agrupa automaticamente por tema</em>, criando seções com rótulos gerados. É útil após um brainstorm para estruturar rapidamente as ideias antes de priorizar.</p>
+
+        <h3>FigJam AI — gerar boards</h3>
+        <p>No menu inicial ou via <kbd>/</kbd> no board, há a opção de <strong>gerar um board a partir de um prompt</strong>. Por exemplo: "Crie um board de retrospectiva para um sprint de duas semanas com foco em qualidade". O resultado é um template preenchido com estrutura sugerida, que você ajusta. Esse recurso estava em evolução ativa durante 2024–2025.</p>
+
+        <h3>Resumo automático</h3>
+        <p>O FigJam AI também pode <strong>resumir o conteúdo de um board</strong> em bullet points — útil para mandar um e-mail de wrap-up após um workshop sem precisar ler todas as notas manualmente.</p>
+
+        <div class="callout warning">
+          <span class="callout-title">Disponibilidade dos recursos de IA</span>
+          <p>Os recursos de IA do FigJam dependem do plano da sua organização e da região geográfica. Alguns recursos de IA podem estar em beta ou disponíveis apenas em planos pagos (Professional, Organization, Enterprise). Sempre confira a página de novidades do Figma para o status atual.</p>
+        </div>
+
+        <h2>Passo a passo: board de brainstorm simples</h2>
+        <p>Vamos criar um board de brainstorm para decidir features de um app de leitura. Abra o FigJam e acompanhe:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie um novo arquivo FigJam.</strong>
+            Na dashboard, clique em "New" e escolha "FigJam". Dê um nome ao board, por exemplo: "Brainstorm — App de Leitura".
+          </li>
+          <li>
+            <strong>Adicione o tema central.</strong>
+            Pressione <kbd>T</kbd>, clique no centro do board e escreva "App de Leitura" em letras grandes. Aumente o tamanho da fonte no painel superior.
+          </li>
+          <li>
+            <strong>Crie sticky notes com ideias.</strong>
+            Pressione <kbd>S</kbd> e clique em volta do texto central. Adicione pelo menos 8 notas, uma ideia por nota: "Modo escuro", "Listas de desejos", "Notas nos trechos", "Recomendações por IA", etc. Use cores diferentes para categorias (ex.: laranja = social, roxo = personalização).
+          </li>
+          <li>
+            <strong>Conecte ideias relacionadas.</strong>
+            Pressione <kbd>L</kbd> e arraste de uma nota à outra para criar conectores. Adicione um rótulo clicando duas vezes no conector ("tem relação", "depende de", etc.).
+          </li>
+          <li>
+            <strong>Convide alguém para colaborar.</strong>
+            Clique em "Share" no canto superior direito e compartilhe o link com permissão "Can edit". Peça à pessoa que adicione as próprias notas.
+          </li>
+          <li>
+            <strong>Vote com stamps.</strong>
+            Pressione <kbd>E</kbd>, escolha o stamp de coração ou estrela e clique nas notas que cada participante considera mais importantes. Em minutos você tem uma votação visual.
+          </li>
+          <li>
+            <strong>Organize com IA (se disponível).</strong>
+            Selecione todas as sticky notes, clique com o botão direito e escolha "Organize with AI" para ver o agrupamento por tema sugerido.
+          </li>
+        </ol>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Um time de produto de um aplicativo de finanças pessoais usa o FigJam toda segunda-feira para a cerimônia de retrospectiva. O facilitador usa o template de retrospectiva "Barco" (o barco tem vento = o que nos ajudou, âncoras = o que atrasou, recife = riscos). Cada membro adiciona suas notas em 5 minutos de silêncio, depois discutem por ordem de votos. Ao final da reunião, o FigJam AI gera um resumo que é copiado para o Confluence. Todo o processo leva 45 minutos.</p>
+
+        <div class="callout example">
+          <span class="callout-title">Integração com o Figma Design</span>
+          <p>Você pode copiar frames do Figma Design e colá-los diretamente no FigJam (eles aparecem como imagens navegáveis). Isso é poderoso para apresentações de design critique: o time comenta nas ideias do FigJam enquanto o designer mostra as telas coladas no board.</p>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>O FigJam é o whiteboard colaborativo da Figma, ideal para ideação, fluxos e workshops.</li>
+          <li>Ferramentas principais: sticky notes (<kbd>S</kbd>), conectores (<kbd>L</kbd>), formas (<kbd>O</kbd>/<kbd>R</kbd>), stamps (<kbd>E</kbd>), marcador (<kbd>P</kbd>).</li>
+          <li>Templates prontos cobrem os principais rituais ágeis e de design.</li>
+          <li>Widgets são mini-apps interativos persistentes no board para votação, timer e mais.</li>
+          <li>Recursos de IA permitem organizar notas, gerar boards e resumir sessões (disponibilidade varia por plano).</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Monte uma retrospectiva de sprint</h3>
+          <p>Crie um board FigJam simulando uma retrospectiva:</p>
+          <ol>
+            <li>Use o template "Retrospective" da biblioteca ou crie três seções manualmente: "Funcionou", "Melhorar", "Tentar".</li>
+            <li>Adicione pelo menos 3 sticky notes em cada coluna com situações fictícias de um sprint.</li>
+            <li>Use stamps para "votar" nas notas mais importantes (ao menos 5 stamps distribuídos).</li>
+            <li>Conecte duas notas que tenham relação entre si com um conector rotulado.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> o board tem 9+ notas em 3 colunas, pelo menos 5 stamps e 1 conector com rótulo — e está visualmente organizado para uma discussão real.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Workshop de user journey</h3>
+          <p>Mapeie a jornada de um usuário comprando um produto em um e-commerce fictício. Crie uma linha do tempo horizontal com etapas (Descoberta → Busca → Detalhes → Carrinho → Pagamento → Pós-compra). Para cada etapa, adicione: uma nota de <em>ação</em> (o que o usuário faz), uma nota de <em>emoção</em> (feliz, frustrado, confuso) e uma nota de <em>oportunidade</em> (o que o time pode melhorar). Use conectores para ligar as etapas e um widget de Timer para cronometrar o exercício.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Qual é a principal diferença entre Widgets e Plugins no contexto do FigJam?</p>
+            <ul class="quiz-options">
+              <li>Plugins são gratuitos; widgets são pagos</li>
+              <li>Widgets ficam persistentes no board e todos interagem; plugins rodam para um usuário e geram objetos estáticos</li>
+              <li>Widgets funcionam só offline; plugins precisam de internet</li>
+              <li>Não há diferença prática entre os dois</li>
+            </ul>
+            <div class="quiz-explain">Widgets são objetos interativos <em>no board</em> que todos os participantes podem usar em tempo real (ex.: votação, timer). Plugins rodam na sessão de um usuário e normalmente geram conteúdo estático.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. Para criar uma sticky note no FigJam, qual tecla de atalho você usa?</p>
+            <ul class="quiz-options">
+              <li>S</li>
+              <li>N</li>
+              <li>P</li>
+              <li>T</li>
+            </ul>
+            <div class="quiz-explain"><kbd>S</kbd> ativa o modo de sticky note. <kbd>T</kbd> é para texto livre, <kbd>P</kbd> é o marcador e <kbd>L</kbd> é o conector.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">3. O recurso "Organize with AI" do FigJam serve para:</p>
+            <ul class="quiz-options">
+              <li>Gerar uma apresentação de slides automaticamente</li>
+              <li>Criar um fluxograma a partir de um texto</li>
+              <li>Agrupar sticky notes selecionadas por tema, criando seções com rótulos sugeridos</li>
+              <li>Traduzir o conteúdo do board para outro idioma</li>
+            </ul>
+            <div class="quiz-explain">O "Organize with AI" lê o conteúdo das notas e as agrupa por tema, gerando seções automaticamente — muito útil para estruturar brainstorms bagunçados.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estados, dark mode e responsividade | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="05-06-estados-darkmode" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">📱 Módulo 5 · Projeto Guiado · Lição 6 de 8</div>
+        <h1>Estados, dark mode e responsividade</h1>
+        <p class="lead">Uma tela só existe em um estado. Um produto real existe em dezenas: loading, erro, vazio, cheio, dark, light, em telas diferentes. Nesta lição você vai dominar os estados do FinView, aplicar dark mode via Variable Modes e preparar o design para múltiplos tamanhos de tela mobile.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~25 min</span>
+          <span>🎯 Nível: Projeto prático</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Criar os estados Loading (skeleton), Empty e Error para as telas do FinView;</li>
+            <li>Aplicar Variable Modes para trocar entre Light e Dark em um único clique;</li>
+            <li>Adaptar as telas para tamanhos de tela mobile diferentes (iPhone SE, iPhone 16 Pro Max, Android);</li>
+            <li>Usar Constraints e Fill para que elementos se adaptem à largura da tela;</li>
+            <li>Respeitar as safe areas em diferentes modelos de iPhone.</li>
+          </ul>
+        </div>
+
+        <h2>Estados de interface: além do estado padrão</h2>
+        <p>Todo designer iniciante projeta o "happy path" — a tela perfeita com dados bonitos. Mas os usuários reais encontram situações muito diferentes: o primeiro acesso ao app (vazio), a internet caiu (erro), os dados estão carregando (loading). Projetar apenas o estado padrão é como construir uma casa sem pensar em chuva.</p>
+        <p>Para o FinView, os estados críticos são:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Estado</th><th>Gatilho</th><th>O que mostrar</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Default (Loaded)</strong></td><td>App com dados</td><td>Tela normal com saldo, lista, cartões</td></tr>
+              <tr><td><strong>Loading (Skeleton)</strong></td><td>App abrindo, sincronizando</td><td>Placeholders animados em cinza</td></tr>
+              <tr><td><strong>Empty</strong></td><td>Primeiro acesso, sem transações</td><td>Ilustração motivadora + CTA de "Adicionar primeira transação"</td></tr>
+              <tr><td><strong>Error</strong></td><td>Falha de rede, erro no servidor</td><td>Ícone de erro + mensagem + botão "Tentar novamente"</td></tr>
+              <tr><td><strong>Partial empty</strong></td><td>Tem saldo mas não tem meta</td><td>Card de meta com CTA "Criar sua primeira meta"</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout info">
+          <span class="callout-title">O que é um Skeleton Screen?</span>
+          <p>Um skeleton screen (tela esqueleto) é uma representação do layout da tela com blocos cinzas no lugar do conteúdo real, exibida durante o carregamento. Popularizada por apps como LinkedIn e Facebook, ela é preferível ao tradicional spinner porque comunica a <em>estrutura</em> da tela que vai chegar — reduzindo a sensação de espera. No Figma, você cria um skeleton duplicando a tela default e substituindo todos os textos e ícones por retângulos cinzas com bordas arredondadas.</p>
+        </div>
+
+        <h2>Construindo o estado Skeleton da Home</h2>
+
+        <ol class="steps">
+          <li>
+            <strong>Duplique o frame da Home padrão.</strong>
+            Na page iOS, selecione o frame <code>01 — Home</code> e duplique (<kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>D</kbd>). Renomeie para <code>01 — Home (Loading)</code>. Posicione ao lado do frame original.
+          </li>
+          <li>
+            <strong>Substitua o card de saldo por skeleton.</strong>
+            Selecione a área de texto do valor principal. Troque por um retângulo de 160×28 px, fill <code>#2B313C</code> (em dark mode), corner radius 6. Faça o mesmo com os textos de receita e gasto — retângulos mais estreitos.
+          </li>
+          <li>
+            <strong>Substitua os cartões de conta.</strong>
+            Cada card de conta vira um retângulo de 140×80 px com fill <code>#222731</code>, radius 12. Sem texto interno.
+          </li>
+          <li>
+            <strong>Substitua os itens da lista.</strong>
+            Para cada item de transação: o ícone vira um quadrado 44×44 radius 12 em <code>#2B313C</code>; o texto do nome vira um retângulo 120×12 radius 4; a categoria vira um retângulo 80×10 radius 4; o valor vira um retângulo 60×14 radius 4. Use opacidade diferente (o bloco mais escuro = mais destaque) para criar hierarquia visual mesmo no skeleton.
+          </li>
+          <li>
+            <strong>Adicione o efeito de shimmer (opcional mas recomendado).</strong>
+            No Figma, a animação de shimmer (brilho deslizante) é simulada com um gradiente linear de branco a transparente em 90°, aplicado sobre os retângulos de skeleton. Para animar no protótipo, use Smart Animate — veremos na Lição 7.
+          </li>
+        </ol>
+
+        <h2>Estado Empty: a primeira vez do usuário</h2>
+        <p>O estado vazio é uma oportunidade de design frequentemente ignorada. É o primeiro contato do usuário novo com o app — e pode ser motivador ou desanimador. Para o FinView:</p>
+
+        <div class="figma-mock">
+          <div class="device-phone" style="width:210px;">
+            <div style="background:#0C0E12;min-height:380px;display:flex;flex-direction:column;align-items:stretch;">
+              <!-- Header area -->
+              <div style="height:50px;display:flex;justify-content:center;align-items:flex-end;padding-bottom:4px;">
+                <div style="width:80px;height:28px;background:#000;border-radius:99px;"></div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 16px;">
+                <span style="color:#E8EAEE;font-size:14px;font-weight:700;">Olá, Lucas 👋</span>
+                <div style="width:32px;height:32px;background:linear-gradient(135deg,#6C4CF1,#9B3FD4);border-radius:50%;"></div>
+              </div>
+              <!-- Empty state illustration area -->
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;">
+                <div style="width:80px;height:80px;background:#1A1E26;border-radius:20px;display:grid;place-items:center;font-size:36px;margin-bottom:16px;">🎯</div>
+                <div style="font-size:16px;font-weight:700;color:#E8EAEE;text-align:center;margin-bottom:8px;">Comece a controlar seu dinheiro</div>
+                <div style="font-size:11px;color:#A3ACBA;text-align:center;margin-bottom:20px;line-height:1.5;">Adicione sua primeira transação e veja seu saldo crescendo ao longo do mês.</div>
+                <div style="background:#6C4CF1;border-radius:12px;height:44px;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;">
+                  <span style="color:#fff;font-size:13px;font-weight:700;">+ Adicionar transação</span>
+                </div>
+              </div>
+              <!-- Tab bar -->
+              <div style="background:#1A1E26;border-top:1px solid #2B313C;display:flex;justify-content:space-around;padding:8px 0 16px;align-items:center;">
+                <span style="font-size:8px;text-align:center;color:#9B81FF;">🏠<br>Home</span>
+                <span style="font-size:8px;text-align:center;color:#A3ACBA;">📊<br>Metas</span>
+                <span style="font-size:8px;text-align:center;color:#A3ACBA;">➕<br>Add</span>
+                <span style="font-size:8px;text-align:center;color:#A3ACBA;">💳<br>Cartões</span>
+                <span style="font-size:8px;text-align:center;color:#A3ACBA;">👤<br>Perfil</span>
+              </div>
+            </div>
+          </div>
+          <div class="device-phone" style="width:210px;">
+            <div style="background:#0C0E12;min-height:380px;display:flex;flex-direction:column;align-items:stretch;">
+              <!-- Header -->
+              <div style="height:50px;display:flex;justify-content:center;align-items:flex-end;padding-bottom:4px;">
+                <div style="width:80px;height:28px;background:#000;border-radius:99px;"></div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 16px;">
+                <span style="color:#E8EAEE;font-size:14px;font-weight:700;">Olá, Lucas 👋</span>
+                <div style="width:32px;height:32px;background:linear-gradient(135deg,#6C4CF1,#9B3FD4);border-radius:50%;"></div>
+              </div>
+              <!-- Balance card skeleton -->
+              <div style="background:#1A1E26;margin:8px 16px;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px;">
+                <div style="background:#2B313C;width:80px;height:10px;border-radius:4px;"></div>
+                <div style="background:#2B313C;width:140px;height:22px;border-radius:6px;"></div>
+                <div style="display:flex;gap:8px;">
+                  <div style="background:#222731;width:80px;height:16px;border-radius:4px;"></div>
+                  <div style="background:#222731;width:80px;height:16px;border-radius:4px;"></div>
+                </div>
+              </div>
+              <!-- List skeleton -->
+              <div style="padding:0 16px;display:flex;flex-direction:column;gap:12px;margin-top:10px;">
+                <div style="display:flex;gap:10px;align-items:center;">
+                  <div style="background:#2B313C;width:44px;height:44px;border-radius:10px;flex:none;"></div>
+                  <div style="flex:1;display:flex;flex-direction:column;gap:6px;">
+                    <div style="background:#2B313C;width:100px;height:10px;border-radius:4px;"></div>
+                    <div style="background:#222731;width:70px;height:8px;border-radius:4px;"></div>
+                  </div>
+                  <div style="background:#2B313C;width:50px;height:12px;border-radius:4px;"></div>
+                </div>
+                <div style="display:flex;gap:10px;align-items:center;">
+                  <div style="background:#2B313C;width:44px;height:44px;border-radius:10px;flex:none;"></div>
+                  <div style="flex:1;display:flex;flex-direction:column;gap:6px;">
+                    <div style="background:#2B313C;width:80px;height:10px;border-radius:4px;"></div>
+                    <div style="background:#222731;width:60px;height:8px;border-radius:4px;"></div>
+                  </div>
+                  <div style="background:#2B313C;width:40px;height:12px;border-radius:4px;"></div>
+                </div>
+                <div style="display:flex;gap:10px;align-items:center;opacity:0.5;">
+                  <div style="background:#2B313C;width:44px;height:44px;border-radius:10px;flex:none;"></div>
+                  <div style="flex:1;display:flex;flex-direction:column;gap:6px;">
+                    <div style="background:#2B313C;width:110px;height:10px;border-radius:4px;"></div>
+                    <div style="background:#222731;width:75px;height:8px;border-radius:4px;"></div>
+                  </div>
+                  <div style="background:#2B313C;width:55px;height:12px;border-radius:4px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">Empty State (esquerda): primeiro acesso com ilustração motivadora e CTA direto. Skeleton Loading (direita): placeholders cinzas representando a estrutura que vai carregar.</p>
+        </div>
+
+        <h2>Passo a passo: aplicando Dark Mode com Variable Modes</h2>
+        <p>Nas lições anteriores criamos a coleção <code>Semantic/Colors</code> com os modos Light e Dark. Agora vamos criar as versões light de todas as telas principais:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Duplique as telas para criar versões Light.</strong>
+            Selecione todos os frames na page iOS (<kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>A</kbd>). Duplique (<kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>D</kbd>). Mova as cópias para uma nova linha abaixo das originais com 40 px de espaçamento. Renomeie adicionando " — Light" no final: <code>01 — Home — Light</code>.
+          </li>
+          <li>
+            <strong>Troque o Variable Mode dos frames copiados.</strong>
+            Selecione o frame <code>01 — Home — Light</code>. No painel direito, em <strong>Layer</strong>, procure a seção de Variable Modes (aparece como um seletor de pill abaixo do nome do frame). Mude de <strong>Dark</strong> para <strong>Light</strong>. Observe a tela inteira mudando de cor instantaneamente.
+          </li>
+          <li>
+            <strong>Verifique os elementos que não mudaram.</strong>
+            Alguns elementos podem não ter mudado — provavelmente porque usam cores hardcoded (hex digitado diretamente) em vez de variables. Selecione cada um e troque para a variable semântica correta. Esses são os "buracos" no sistema de tokens.
+          </li>
+          <li>
+            <strong>Ajuste os gradientes para light mode.</strong>
+            O card de saldo usa um gradiente. Gradientes lineares com múltiplas paradas não suportam variables diretamente. A solução: crie uma variante do card (<code>BalanceCard/Light</code>) com um gradiente diferente (mais claro, ex.: violeta médio para roxo). Alterne a instância via component property.
+          </li>
+          <li>
+            <strong>Documente a paleta light na page de Design Tokens.</strong>
+            Adicione um frame na page de tokens mostrando as telas Home Dark e Home Light lado a lado, com anotações de quais tokens mudaram. Isso é o "entregável de dark mode" para a documentação do design system.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Verifique contraste em AMBOS os modos</span>
+          <p>Uma cor que tem contraste adequado no dark mode pode falhar no light mode. Use o plugin <strong>Contrast</strong> ou <strong>A11y - Color Contrast Checker</strong> no Figma para verificar o ratio de contraste (mínimo WCAG AA: 4.5:1 para texto normal, 3:1 para texto grande e elementos gráficos). No FinView, o verde de receita (#18C98A) sobre fundo branco precisa ser checado — pode precisar de um tom mais escuro no light mode.</p>
+        </div>
+
+        <h2>Responsividade mobile: safe areas e tamanhos de tela</h2>
+        <p>Dispositivos iOS têm áreas de sistema que não devem ser usadas pelo app: o Dynamic Island / notch na parte superior e o indicador de Home na parte inferior. Essas são as <strong>safe areas</strong>.</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Dispositivo</th><th>Resolução lógica</th><th>Safe area top</th><th>Safe area bottom</th></tr></thead>
+            <tbody>
+              <tr><td>iPhone SE (3rd gen)</td><td>375×667 pt</td><td>20 pt (status bar)</td><td>0 pt (botão Home físico)</td></tr>
+              <tr><td>iPhone 16</td><td>390×844 pt</td><td>59 pt (Dynamic Island)</td><td>34 pt (home indicator)</td></tr>
+              <tr><td>iPhone 16 Pro Max</td><td>440×956 pt</td><td>62 pt (Dynamic Island)</td><td>34 pt (home indicator)</td></tr>
+              <tr><td>Android (Pixel 8)</td><td>393×851 dp</td><td>24 dp (status bar)</td><td>Variável (barra de gestos)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>No Figma, use um frame de safe area como guia: crie um retângulo com fill azul 10% de opacidade representando as zonas proibidas (top safe area + bottom safe area) e coloque-o como overlay no frame de tela. Seus elementos de UI não devem se sobrepor a essas áreas.</p>
+
+        <h3>Adaptando a Home para iPhone SE</h3>
+        <p>O iPhone SE tem uma tela significativamente menor (375×667 vs. 390×844). Elementos que cabem bem no iPhone 16 podem ficar apertados. Estratégias de adaptação:</p>
+        <ul>
+          <li><strong>Reduzir o card de saldo:</strong> de 180 px para 150 px de altura, reduzindo o font-size do valor.</li>
+          <li><strong>Remover o carrossel de cartões</strong> ou reduzir a altura dos cards de conta de 80 para 64 px.</li>
+          <li><strong>Usar Constraints:</strong> todos os elementos com largura <em>Fill</em> se adaptam automaticamente à largura do frame (375 vs. 390 px).</li>
+        </ul>
+
+        <div class="callout warning">
+          <span class="callout-title">Teste sempre no menor dispositivo suportado</span>
+          <p>Designers tendem a trabalhar em telas grandes e testar em iPhones novos. Mas uma parte significativa dos usuários usa dispositivos mais antigos e menores. Se o design funciona bem no iPhone SE (375×667), ele funcionará em todos os outros. Adicione sempre um frame de iPhone SE ao lado do iPhone 16 para "stress test" visual da tela.</p>
+        </div>
+
+        <h2>Usando Constraints para responsividade</h2>
+        <p>Constraints no Figma definem como um elemento se comporta quando o frame pai muda de tamanho. Para que o FinView funcione em múltiplos tamanhos de tela, configure:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Elemento</th><th>Constraint horizontal</th><th>Constraint vertical</th></tr></thead>
+            <tbody>
+              <tr><td>Card de saldo</td><td>Left + Right (stretch)</td><td>Top (fixo ao topo)</td></tr>
+              <tr><td>Ícone do usuário no header</td><td>Right (fixo à direita)</td><td>Top</td></tr>
+              <tr><td>Tab Bar</td><td>Left + Right (stretch)</td><td>Bottom (fixo ao rodapé)</td></tr>
+              <tr><td>Botão de ação flutuante</td><td>Right</td><td>Bottom</td></tr>
+              <tr><td>Lista de transações</td><td>Left + Right (stretch)</td><td>Top + Bottom (stretch)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Para aplicar: selecione o elemento dentro de um frame que <strong>não</strong> tem Auto Layout. No painel direito, em <strong>Constraints</strong>, defina as direções. Nota: dentro de frames com Auto Layout, os constraints de posição não se aplicam — mas os de tamanho (Fill/Hug/Fixed) funcionam.</p>
+
+        <div class="callout pro">
+          <span class="callout-title">Auto Layout > Constraints para responsividade</span>
+          <p>Para responsividade real, <strong>Auto Layout com largura Fill</strong> é mais poderoso que Constraints. Um elemento filho com width=Fill dentro de um Auto Layout parent sempre ocupa todo o espaço disponível, independente do tamanho do frame pai. Reserve Constraints para elementos que não estão dentro de um Auto Layout, como overlays e elementos posicionados absolutamente.</p>
+        </div>
+
+        <h2>Estado de Erro</h2>
+        <p>A tela de erro deve ser amigável, não técnica. Para o FinView, o estado de erro na Home mostra:</p>
+        <ul>
+          <li>Um ícone de Wi-Fi desconectado ou nuvem com X (ilustração simples)</li>
+          <li>Título: "Não conseguimos carregar seus dados"</li>
+          <li>Subtítulo: "Verifique sua conexão e tente novamente"</li>
+          <li>Botão primário: "Tentar novamente"</li>
+          <li>Link secundário: "Ver dados offline" (se o app suportar cache)</li>
+        </ul>
+        <p>O card de saldo e a lista ficam visíveis mas em estado skeleton — comunicando que os dados existem, só não foram atualizados. Isso é o padrão "stale content + error overlay" comum em apps modernos.</p>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Estados críticos para o FinView: Default, Loading (skeleton), Empty, Error e Partial empty.</li>
+          <li>Skeleton screens comunicam a estrutura da tela durante o carregamento, reduzindo a percepção de espera.</li>
+          <li>Variable Modes permitem trocar entre Dark e Light no frame inteiro com um único clique — desde que todos os elementos usem tokens semânticos.</li>
+          <li>Safe areas variam por modelo: iPhone 16 tem 59 pt no topo (Dynamic Island) e 34 pt na base; iPhone SE tem apenas 20 pt no topo.</li>
+          <li>Constraints e Auto Layout com Fill garantem que o design se adapte a diferentes larguras de tela.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Criar todos os estados da Home</h3>
+          <p>No seu arquivo FinView, crie 4 versões do frame Home na page iOS:</p>
+          <ol>
+            <li><code>01 — Home</code> — estado padrão (dark)</li>
+            <li><code>01 — Home (Light)</code> — estado padrão em light mode</li>
+            <li><code>01 — Home (Loading)</code> — skeleton com placeholders cinzas em todos os elementos dinâmicos</li>
+            <li><code>01 — Home (Empty)</code> — estado vazio com ilustração e CTA</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> a versão Light usa exatamente as mesmas variables semânticas que a Dark — apenas o Variable Mode é diferente, não os tokens aplicados. O skeleton reproduz fielmente a estrutura da Home padrão.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Adaptar o FinView para iPhone SE</h3>
+          <p>Crie uma versão da Home otimizada para o <strong>iPhone SE</strong> (375×667 pt). O desafio: todo o conteúdo crítico (saldo, pelo menos 3 transações e a tab bar) deve ser visível <em>sem scroll</em> nessa tela menor. Isso vai exigir reduzir alturas, adaptar tamanhos de fonte e talvez remover elementos menos críticos. Documente no frame quais ajustes foram necessários e por quê — como uma nota de decisão de design. Dica: crie um frame de overlay com a safe area do SE para guiar seu design.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. O que é uma "safe area" em design mobile iOS?</p>
+            <ul class="quiz-options">
+              <li>A área do frame que pode ser clicada sem risco de toque acidental</li>
+              <li>A região da tela que não é coberta por elementos de sistema (Dynamic Island, home indicator), onde o conteúdo do app deve ficar</li>
+              <li>Um constraint que impede elementos de sair do frame</li>
+              <li>A resolução mínima que uma imagem deve ter para não pixelar</li>
+            </ul>
+            <div class="quiz-explain"><strong>Safe areas</strong> são as regiões da tela que ficam fora dos elementos de sistema do iOS (Dynamic Island, status bar, home indicator). O conteúdo do app deve respeitar essas margens para não ficar coberto pelo sistema. Diferentes modelos de iPhone têm safe areas com dimensões diferentes.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">2. Por que um skeleton screen é preferível a um spinner de loading genérico?</p>
+            <ul class="quiz-options">
+              <li>Porque spinners consomem mais memória do dispositivo</li>
+              <li>Porque spinners não funcionam em dark mode</li>
+              <li>Porque o Figma não suporta animação de spinners</li>
+              <li>Porque o skeleton comunica a estrutura da tela que vai chegar, reduzindo percepção de espera e orientando o usuário</li>
+            </ul>
+            <div class="quiz-explain">O <strong>skeleton screen</strong> reduz a percepção de espera ao mostrar a estrutura do conteúdo que está carregando — o usuário sabe exatamente o que vai aparecer. Um spinner genérico deixa o usuário sem referência. Pesquisas de UX mostram que skeleton screens são percebidos como carregamento mais rápido mesmo quando o tempo real é o mesmo.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Qual abordagem é mais eficiente para responsividade mobile no Figma?</p>
+            <ul class="quiz-options">
+              <li>Auto Layout com children em width=Fill — os elementos preenchem automaticamente o espaço disponível</li>
+              <li>Criar um frame separado para cada tamanho de tela, duplicando todos os elementos</li>
+              <li>Usar apenas Constraints com Left+Right em todos os elementos</li>
+              <li>Definir posições X fixas para cada elemento em cada tamanho de tela</li>
+            </ul>
+            <div class="quiz-explain"><strong>Auto Layout com Fill</strong> é a abordagem mais eficiente: ao definir a largura de um elemento filho como Fill, ele automaticamente ocupa o espaço disponível no parent. Quando o frame pai muda de 390 para 375 px (iPhone 16 → SE), os elementos Fill se ajustam sem intervenção manual — exatamente como Flexbox no CSS.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

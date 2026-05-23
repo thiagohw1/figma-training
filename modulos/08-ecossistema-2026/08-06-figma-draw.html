@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figma Draw — ilustração | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="08-06-figma-draw" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">✨ Módulo 8 · Recursos 2025/2026 · Lição 6 de 8</div>
+        <h1>Figma Draw — ilustração</h1>
+        <p class="lead">O Figma sempre teve ferramentas vetoriais. Com o Figma Draw, a plataforma dá um salto significativo para o território da ilustração profissional — brushes expressivos, texturas, efeitos avançados e uma experiência muito mais próxima do Illustrator ou Procreate.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~16 min</span>
+          <span>🎯 Nível: Intermediário/Avançado</span>
+          <span>🛠️ Pratique no Figma Draw</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Entender o que é o Figma Draw e como ele se diferencia das ferramentas vetoriais originais do Figma;</li>
+            <li>Usar brushes, texturas e ferramentas de pintura para criar ilustrações;</li>
+            <li>Editar vetores com as ferramentas avançadas do Draw;</li>
+            <li>Aplicar efeitos específicos de ilustração;</li>
+            <li>Integrar ilustrações criadas no Draw com designs de UI no Figma.</li>
+          </ul>
+        </div>
+
+        <h2>O que é o Figma Draw?</h2>
+        <p><strong>Figma Draw</strong> é a expansão das capacidades de ilustração e arte vetorial do Figma, anunciada na Config 2024/2025. Enquanto o Figma Design sempre teve a ferramenta de caneta (Pen tool) e o editor de vetores básico, o Draw adiciona uma suíte de ferramentas voltadas para a <em>criação expressiva</em>: brushes com física realista, texturas, pintura digital, efeitos de mistura e muito mais.</p>
+        <p>O objetivo é que designers que precisam criar ilustrações — ícones customizados, mascotes, padrões decorativos, backgrounds expressivos, elementos de onboarding — possam fazer tudo <strong>dentro do Figma</strong>, sem precisar ir ao Adobe Illustrator, Affinity Designer ou Procreate e depois importar.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Figma Draw e o editor vetorial original</span>
+          <p>O editor vetorial do Figma (Pen tool, Bézier, Boolean Operations) continua existindo e é compatível com o Draw. O Draw adiciona <em>camadas por cima</em> desse fundamento: brushes, efeitos de textura e ferramentas de desenho a mão. Você pode alternar entre as ferramentas tradicionais e as do Draw no mesmo arquivo.</p>
+        </div>
+
+        <h2>Ferramentas de brushes</h2>
+        <p>O grande destaque do Figma Draw é a biblioteca de <strong>brushes (pincéis)</strong>. Diferente do marcador simples do FigJam, os brushes do Draw têm propriedades avançadas:</p>
+
+        <h3>Tipos de brush</h3>
+        <ul>
+          <li><strong>Brush de tinta:</strong> simula a textura de tinta aquarela ou guache, com opacidade variável baseada na pressão (para usuários com tablet e stylus).</li>
+          <li><strong>Brush seco:</strong> efeito de lápis, grafite ou pastel seco — traços com textura granulada nas bordas.</li>
+          <li><strong>Brush de calígrafia:</strong> ponta plana que cria variações espessa/fina dependendo do ângulo.</li>
+          <li><strong>Brush de padrão:</strong> stamp que repete um elemento ao longo do traçado — útil para criar fileiras de folhas, flores, estrelas etc.</li>
+          <li><strong>Brush vetorial suave:</strong> traço limpo e escalável, com suavização automática para linhas de ilustração nítidas.</li>
+        </ul>
+
+        <h3>Propriedades de brush</h3>
+        <p>Cada brush tem propriedades configuráveis:</p>
+        <ul>
+          <li><strong>Tamanho:</strong> espessura do traço em pixels</li>
+          <li><strong>Opacidade:</strong> transparência do traço (e variação por pressão)</li>
+          <li><strong>Hardness:</strong> quão dura é a borda do brush (0 = difusa, 100 = nítida)</li>
+          <li><strong>Jitter:</strong> variação aleatória no tamanho/opacidade para efeitos orgânicos</li>
+          <li><strong>Spacing:</strong> distância entre os "stamps" para brushes de padrão</li>
+        </ul>
+
+        <div class="callout tip">
+          <span class="callout-title">Mesa digitalizadora + Figma Draw</span>
+          <p>Para desbloquear o potencial completo dos brushes do Draw, use uma mesa digitalizadora com stylus (Wacom, Huion, iPad com Apple Pencil). A sensibilidade à pressão controla a espessura e opacidade do traço dinamicamente — o que cria ilustrações muito mais expressivas do que desenhar com mouse.</p>
+        </div>
+
+        <h2>Texturas e preenchimentos de ilustração</h2>
+        <p>Além dos brushes, o Figma Draw expande as opções de preenchimento com recursos voltados para ilustração:</p>
+
+        <h3>Preenchimento com textura</h3>
+        <p>Formas vetoriais podem receber preenchimentos de textura (noise, grain, hatch, cross-hatch) que dão um aspecto artesanal e não-digital às ilustrações. Você controla a escala, intensidade e o blend mode da textura.</p>
+
+        <h3>Efeitos de granulado (Grain)</h3>
+        <p>Um efeito de granulado aplicado às formas simula papel ou textura de impressão. Muito popular em estilos de ilustração contemporâneos de editorial e branding.</p>
+
+        <h3>Preenchimento de padrão (Pattern Fill)</h3>
+        <p>Preenche uma forma com um padrão repetitivo definido a partir de qualquer frame do Figma. Por exemplo: um círculo preenchido com um padrão de pontos ou linhas diagonais.</p>
+
+        <h2>Edição vetorial avançada</h2>
+        <p>O Figma Draw também melhora as ferramentas de edição de vetores existentes:</p>
+
+        <h3>Suavização de traço automática</h3>
+        <p>Ao desenhar com brush ou pencil, o Figma Draw pode suavizar automaticamente os traços irregulares do mouse, convertendo linhas trêmulas em curvas Bézier limpas.</p>
+
+        <h3>Expand stroke</h3>
+        <p>Converte o traço (stroke) de um vetor em um caminho fechado (fill). Essencial quando você quer editar a forma do traço como uma área de preenchimento. Funciona com a opção "Outline stroke" no menu de vetores.</p>
+
+        <h3>Ferramentas de seleção avançada</h3>
+        <p>Novas opções de seleção de nós Bézier: selecionar todos os nós de uma vez, selecionar apenas nós de um tipo (corner, smooth), e alinhar/distribuir nós selecionados.</p>
+
+        <h2>Quando usar o Figma Draw</h2>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Tarefa de ilustração</th><th>Figma Draw?</th><th>Nota</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Ícones customizados para UI</td><td>✅ Sim</td><td>Vetorial, integrado ao design</td></tr>
+              <tr><td>Mascote ou personagem simples</td><td>✅ Sim</td><td>Brushes + booleans são suficientes</td></tr>
+              <tr><td>Padrão decorativo repetitivo</td><td>✅ Sim</td><td>Pattern brush + Pattern fill</td></tr>
+              <tr><td>Ilustrações editoriais complexas</td><td>⚠️ Depende</td><td>Para altíssima complexidade, Illustrator pode ser mais adequado</td></tr>
+              <tr><td>Pintura digital realista</td><td>⚠️ Limitado</td><td>Procreate ainda tem mais recursos para pintura raster</td></tr>
+              <tr><td>Backgrounds e texturas decorativas</td><td>✅ Sim</td><td>Grain e texture fill são excelentes para isso</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Integração com o design de UI</h2>
+        <p>O maior benefício do Figma Draw estar dentro do Figma é a <strong>integração nativa com os designs de UI</strong>. Isso significa:</p>
+        <ul>
+          <li>Você cria a ilustração no Draw e ela fica no mesmo arquivo que os componentes de UI.</li>
+          <li>Ilustrações criadas no Draw são vetoriais e podem ser transformadas em componentes do Design System.</li>
+          <li>Os efeitos (sombras, blurs) do Figma Design funcionam igualmente nas ilustrações do Draw.</li>
+          <li>Você pode usar as mesmas variáveis de cor do Design System nas ilustrações — garantindo que ao mudar a paleta, as ilustrações se atualizam automaticamente.</li>
+          <li>Ao fazer handoff no Dev Mode, os desenvolvedores veem o código SVG das ilustrações com as propriedades corretas.</li>
+        </ul>
+
+        <div class="callout pro">
+          <span class="callout-title">Componente de ilustração com variantes</span>
+          <p>Uma técnica avançada: crie um personagem mascote no Draw e transforme-o em um componente com variantes (feliz, triste, surpreso, pensativo). Nas telas de onboarding do app, você troca a variante de acordo com o contexto. A ilustração fica responsiva ao estado da UI — e tudo dentro do Figma.</p>
+        </div>
+
+        <h2>Passo a passo: criar um ícone ilustrativo com Draw</h2>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie um frame de 64×64 px.</strong>
+            No Figma, pressione <kbd>F</kbd> e desenhe um quadrado de 64 px. Este será o "canvas" do ícone.
+          </li>
+          <li>
+            <strong>Ative as ferramentas de Draw.</strong>
+            No painel de ferramentas, acesse a seção Draw. Escolha o brush vetorial suave (Vector brush).
+          </li>
+          <li>
+            <strong>Esboce a forma principal.</strong>
+            Desenhe a silhueta do ícone com traços amplos. Não se preocupe com perfeição ainda — o suavizador cuidará das curvas.
+          </li>
+          <li>
+            <strong>Refine com o editor de vetores.</strong>
+            Pressione <kbd>Enter</kbd> para entrar no modo de edição de nós. Ajuste os pontos Bézier para refinar a forma.
+          </li>
+          <li>
+            <strong>Adicione detalhes com brush fino.</strong>
+            Use um brush mais fino para adicionar detalhes internos (linhas, sombreamento leve) com opacidade reduzida.
+          </li>
+          <li>
+            <strong>Aplique textura se quiser.</strong>
+            Selecione uma das formas preenchidas, abra Fill no painel direito e adicione um texture fill com grain leve para um look artesanal.
+          </li>
+          <li>
+            <strong>Transforme em componente.</strong>
+            Selecione todos os elementos do ícone, agrupe e crie um componente (<kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Alt</kbd> + <kbd>K</kbd>). Agora o ícone está disponível para uso em qualquer lugar do arquivo.
+          </li>
+        </ol>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Uma startup de educação infantil precisava de um conjunto de 30 ícones ilustrativos para o aplicativo — com um estilo "mão-desenhada", cores vibrantes e um toque de textura. Antes do Figma Draw, o processo seria: designer de UI encomenda ao ilustrador (Illustrator/Procreate) → ilustrador entrega SVGs → designer importa → ajusta no Figma. Com o Draw, o designer de UI aprendeu a criar ilustrações simples no próprio Figma. O estilo ficou consistente porque tudo usou os mesmos brushes e a mesma paleta de variáveis do Design System. A iteração foi muito mais rápida pois não havia round-trips entre ferramentas.</p>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Figma Draw expande as capacidades de ilustração do Figma com brushes, texturas e edição vetorial avançada.</li>
+          <li>Tipos de brush: tinta, seco, caligrafia, padrão e vetorial suave — cada um com propriedades configuráveis.</li>
+          <li>Texturas, grain e pattern fill dão aspecto artesanal às ilustrações.</li>
+          <li>A integração com o Figma Design permite usar variáveis, criar componentes e fazer handoff de ilustrações no mesmo fluxo de trabalho.</li>
+          <li>Ideal para ícones, mascotes, padrões e backgrounds. Pintura digital raster muito complexa ainda pertence a ferramentas especializadas.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Crie um conjunto de 3 ícones ilustrativos</h3>
+          <p>Usando o Figma Draw (ou o editor vetorial do Figma se o Draw não estiver disponível):</p>
+          <ol>
+            <li>Crie três frames de 48×48 px para três ícones: "Casa", "Coração" e "Estrela".</li>
+            <li>Use a caneta (P) ou o brush vetorial para traçar cada ícone com um estilo consistente — mesma espessura de traço, mesmo nível de detalhe.</li>
+            <li>Aplique as mesmas cores em todos (cor de linha e cor de preenchimento). Use estilos ou variáveis de cor para garantir consistência.</li>
+            <li>Transforme cada ícone em um componente.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> os 3 ícones têm estilo visualmente coerente, são vetoriais (escalam sem perda de qualidade), e estão organizados como componentes no painel de assets.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Mascote com variantes de emoção</h3>
+          <p>Crie um mascote simples (pode ser um robô, animal, planta — qualquer coisa que represente um app fictício de sua escolha) usando os brushes e ferramentas vetoriais do Figma Draw. O mascote deve ter ao menos três variantes de emoção: <strong>Feliz</strong>, <strong>Pensativo</strong> e <strong>Comemorando</strong>. Organize as variantes como um componente único com a propriedade "Emoção". Coloque o mascote em um card de onboarding de app, trocando a variante de acordo com o contexto da tela.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Qual é a principal vantagem de criar ilustrações no Figma Draw em vez de criar no Illustrator e importar?</p>
+            <ul class="quiz-options">
+              <li>O Figma Draw tem mais tipos de brush que o Illustrator</li>
+              <li>As ilustrações ficam no mesmo arquivo que o design de UI, podem usar variáveis de cor do Design System e são exportadas diretamente no handoff do Dev Mode</li>
+              <li>O Figma Draw suporta arquivos .ai nativamente</li>
+              <li>Ilustrações no Draw são automaticamente otimizadas para mobile</li>
+            </ul>
+            <div class="quiz-explain">A integração nativa é o grande diferencial: sem round-trips entre ferramentas, as ilustrações usam as mesmas variáveis de cor do Design System e aparecem automaticamente no handoff para desenvolvimento.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">2. O que faz a opção "Outline stroke" (Expand stroke) no editor vetorial do Figma?</p>
+            <ul class="quiz-options">
+              <li>Aumenta a espessura do traço em 1px</li>
+              <li>Aplica uma sombra externa ao redor do traço</li>
+              <li>Converte um fill em stroke mantendo a mesma forma</li>
+              <li>Converte o stroke (traço) em um caminho vetorial fechado (fill), permitindo editar a forma do traço</li>
+            </ul>
+            <div class="quiz-explain">Outline stroke transforma o traço (que é uma propriedade do caminho) em um caminho preenchido independente — essencial quando você quer editar a geometria do traço como uma forma sólida.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">3. Para qual tipo de trabalho o Figma Draw é MENOS adequado?</p>
+            <ul class="quiz-options">
+              <li>Criação de ícones customizados para UI</li>
+              <li>Padrões decorativos repetitivos</li>
+              <li>Pintura digital fotorrealista de alta complexidade com dezenas de camadas raster</li>
+              <li>Mascotes e personagens simples para apps</li>
+            </ul>
+            <div class="quiz-explain">Para pintura digital raster muito complexa e fotorrealista (o tipo que você vê em arte conceitual ou book de ilustração profissional), ferramentas especializadas como Procreate ou Photoshop ainda têm vantagem sobre o Draw.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

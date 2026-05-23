@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colaboração em tempo real e comentários | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="07-01-colaboracao-comentarios" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🤝 Módulo 7 · Profissional · Lição 1 de 6</div>
+        <h1>Colaboração em tempo real e comentários</h1>
+        <p class="lead">O Figma nasceu na nuvem — e isso muda radicalmente como equipes de design trabalham juntas. Nesta lição você vai dominar todas as ferramentas de colaboração, desde ver o cursor dos seus colegas até organizar threads de feedback que realmente evoluem para decisões.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~20 min</span>
+          <span>🎯 Nível: Profissional</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Entender o modelo multiplayer do Figma e os recursos de presença em tempo real;</li>
+            <li>Usar o Observation Mode e o Follow para acompanhar colegas na tela;</li>
+            <li>Criar, responder, resolver e mencionar comentários de forma eficiente;</li>
+            <li>Usar o cursor chat para comunicação rápida durante sessões ao vivo;</li>
+            <li>Aplicar boas práticas de colaboração que reduzem ruído e aceleram decisões.</li>
+          </ul>
+        </div>
+
+        <h2>O Figma como plataforma multiplayer</h2>
+        <p>Quando você abre um arquivo Figma e outra pessoa também está com ele aberto, vocês entram no que a Figma chama de <strong>modo multiplayer</strong>. Diferente de ferramentas como Sketch ou Photoshop, onde arquivos são locais e enviados por e-mail, o Figma é intrinsecamente colaborativo — como um Google Docs para design.</p>
+        <p>Cada colaborador aparece como um <strong>cursor colorido com avatar</strong> que se move em tempo real pelo canvas. As cores são atribuídas automaticamente para que cada pessoa seja identificável. Você vê exatamente onde seus colegas estão olhando, o que estão selecionando e até o zoom atual deles.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Por que isso importa para o processo</span>
+          <p>Em uma revisão assíncrona tradicional, você exporta o design, envia por e-mail, espera feedback e depois implementa. Com o multiplayer do Figma, uma sessão de revisão de 30 minutos ao vivo substitui dias de idas e vindas — todos veem e discutem o mesmo artefato ao mesmo tempo.</p>
+        </div>
+
+        <h3>Presença e avatares</h3>
+        <p>Na barra superior do Figma, você verá os <strong>avatares</strong> de todos que estão com o arquivo aberto. Clicar em um avatar te leva diretamente ao ponto do canvas onde aquela pessoa está — é como um teleporte. Cada avatar mostra o nome completo ao passar o mouse, e um indicador de cor coordena com o cursor no canvas.</p>
+        <p>Se o arquivo tiver muitos colaboradores simultâneos, os avatares excedentes são agrupados em um contador. Clicar no contador expande a lista completa.</p>
+
+        <h3>Zooming e navegação visível</h3>
+        <p>Uma das nuances menos conhecidas: quando alguém muda de frame ou dá zoom num elemento, você pode ver isso acontecendo — os cursores dos outros se movem conforme navegam. Isso ajuda a entender o contexto da discussão sem precisar perguntar "em qual tela você está falando?".</p>
+
+        <div class="diagram">
+          <svg viewBox="0 0 560 200" role="img" aria-label="Diagrama mostrando cursores de três colaboradores no canvas do Figma">
+            <!-- Canvas background -->
+            <rect x="10" y="10" width="540" height="180" rx="12" fill="var(--surface)" stroke="var(--border)" stroke-width="1.5"/>
+            <!-- Frames no canvas -->
+            <rect x="50" y="40" width="120" height="80" rx="6" fill="var(--primary-soft)" stroke="var(--primary)" stroke-width="1.5"/>
+            <text x="110" y="85" text-anchor="middle" fill="var(--primary)" font-size="11" font-family="sans-serif">Tela Home</text>
+            <rect x="210" y="40" width="120" height="80" rx="6" fill="var(--success-soft)" stroke="var(--success)" stroke-width="1.5"/>
+            <text x="270" y="85" text-anchor="middle" fill="var(--success)" font-size="11" font-family="sans-serif">Tela Login</text>
+            <rect x="370" y="40" width="120" height="80" rx="6" fill="var(--warning-soft)" stroke="var(--warning)" stroke-width="1.5"/>
+            <text x="430" y="85" text-anchor="middle" fill="var(--warning)" font-size="11" font-family="sans-serif">Tela Perfil</text>
+            <!-- Cursor 1 (Ana) -->
+            <polygon points="90,130 98,148 95,143 103,155 97,158 89,146 86,152" fill="var(--primary)" opacity="0.9"/>
+            <rect x="96" y="155" width="40" height="16" rx="4" fill="var(--primary)"/>
+            <text x="116" y="166" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">Ana</text>
+            <!-- Cursor 2 (Bruno) -->
+            <polygon points="255,55 263,73 260,68 268,80 262,83 254,71 251,77" fill="var(--success)" opacity="0.9"/>
+            <rect x="261" y="80" width="48" height="16" rx="4" fill="var(--success)"/>
+            <text x="285" y="91" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">Bruno</text>
+            <!-- Cursor 3 (Carol) -->
+            <polygon points="420,100 428,118 425,113 433,125 427,128 419,116 416,122" fill="#e85d8a" opacity="0.9"/>
+            <rect x="426" y="125" width="44" height="16" rx="4" fill="#e85d8a"/>
+            <text x="448" y="136" text-anchor="middle" fill="white" font-size="9" font-family="sans-serif">Carol</text>
+          </svg>
+          <p class="mock-label">Três colaboradores trabalhando simultaneamente: Ana na Home, Bruno revisando Login, Carol ajustando Perfil.</p>
+        </div>
+
+        <h2>Observation Mode e Follow</h2>
+        <p>Às vezes você quer seguir o que um colega está fazendo em tempo real — seja numa apresentação de design, numa sessão de revisão ou enquanto alguém explica uma decisão. É para isso que existem o <strong>Observation Mode</strong> e o <strong>Follow</strong>.</p>
+
+        <h3>Follow (Seguir um colega)</h3>
+        <p>Clicar no avatar de uma pessoa na barra superior ativa o <strong>Follow</strong>: sua tela passa a acompanhar exatamente o zoom e a posição do canvas daquela pessoa. Se ela navegar para outro frame, você acompanha. Se ela der zoom num botão, você vê o mesmo botão no mesmo nível de zoom.</p>
+        <p>Um indicador visual (borda colorida na tela) indica que você está no modo Follow. Para sair, basta pressionar <kbd>Esc</kbd> ou mover seu próprio canvas.</p>
+
+        <h3>Observation Mode (para apresentações)</h3>
+        <p>O <strong>Observation Mode</strong> é o lado inverso: você ativa quando está <em>apresentando</em> e quer que todos os outros te sigam automaticamente. É o equivalente ao "compartilhar tela" mas nativo do Figma — os observadores veem seu canvas em tempo real sem precisar clicar manualmente no seu avatar.</p>
+        <p>Para ativar: clique no seu avatar na barra superior e selecione <strong>Enable Observation Mode</strong>. Um banner aparece para os outros colaboradores indicando que você está apresentando e convidando-os a te seguir.</p>
+
+        <div class="callout tip">
+          <span class="callout-title">Use em reuniões de design review</span>
+          <p>Em vez de compartilhar tela no Zoom/Meet (com resolução ruim e lag), ative o Observation Mode no Figma e peça para todos abrirem o arquivo. A experiência é muito mais nítida e permite que os participantes também interajam com o arquivo ao mesmo tempo.</p>
+        </div>
+
+        <h2>Comentários: o sistema de feedback do Figma</h2>
+        <p>Os comentários são a principal ferramenta de comunicação assíncrona dentro do Figma. Eles ficam <em>ancorados ao canvas</em> — vinculados a posições específicas, frames ou componentes — o que elimina a ambiguidade do "aquele botão lá em cima da tela 3".</p>
+
+        <h3>Adicionando um comentário</h3>
+        <ol class="steps">
+          <li>
+            <strong>Ative a ferramenta de comentário.</strong>
+            Pressione <kbd>C</kbd> no teclado (ou clique no ícone de balão de fala na barra de ferramentas superior). O cursor muda para um ícone de pin.
+          </li>
+          <li>
+            <strong>Clique no local desejado.</strong>
+            Clique em qualquer ponto do canvas ou diretamente sobre um elemento. Uma caixa de texto aparece ancorada àquela posição. Você pode clicar em qualquer lugar — dentro de frames, sobre componentes ou no canvas vazio.
+          </li>
+          <li>
+            <strong>Escreva o comentário.</strong>
+            Digite sua observação. Use <kbd>@</kbd> seguido do nome para mencionar um colega — ele receberá uma notificação por e-mail e na central de notificações do Figma.
+          </li>
+          <li>
+            <strong>Publique o comentário.</strong>
+            Pressione <kbd>Enter</kbd> para publicar. O comentário vira um pin no canvas com um número sequencial.
+          </li>
+          <li>
+            <strong>Para voltar ao modo de edição.</strong>
+            Pressione <kbd>Esc</kbd> ou <kbd>V</kbd> para voltar à ferramenta de seleção.
+          </li>
+        </ol>
+
+        <h3>Respondendo e resolvendo threads</h3>
+        <p>Clicar em um pin abre o <strong>thread de comentários</strong> — uma conversa contextual ancorada naquele ponto. Qualquer colaborador pode responder nessa thread. Quando a discussão chega a uma conclusão, o criador do comentário (ou um editor do arquivo) pode clicar em <strong>Resolve</strong> — o pin desaparece do canvas mas fica arquivado e consultável na lista de comentários.</p>
+
+        <div class="callout warning">
+          <span class="callout-title">Não resolva comentários alheios sem permissão</span>
+          <p>Resolver um comentário sinaliza que a ação foi tomada. Se você resolver o comentário de um stakeholder sem realmente implementar a mudança, gera confusão e quebra a confiança. Resolva apenas quando a questão estiver de fato tratada.</p>
+        </div>
+
+        <h3>Mencionar com @</h3>
+        <p>Dentro de qualquer comentário ou resposta, digitar <kbd>@</kbd> abre um seletor de pessoas com todos os membros do time que têm acesso ao arquivo. Ao mencionar alguém, essa pessoa recebe uma notificação. Use menções para:</p>
+        <ul>
+          <li>Pedir revisão específica de alguém: <em>"@Bruno, você aprova essa paleta?"</em></li>
+          <li>Atribuir uma tarefa: <em>"@Ana, precisamos do ícone final aqui."</em></li>
+          <li>Chamar atenção do desenvolvedor responsável: <em>"@Carlos, essa animação precisa de 300ms."</em></li>
+        </ul>
+
+        <h3>Fixar (Pin) comentários</h3>
+        <p>Nos planos pagos (Figma Professional e acima), você pode <strong>fixar</strong> comentários importantes para que fiquem sempre visíveis, mesmo quando outros forem resolvidos. Isso é útil para decisões de design que devem ser lembradas, como "aprovado pelo cliente em 15/01/2026 — não alterar."</p>
+
+        <h3>Navegando por comentários</h3>
+        <p>O painel lateral de comentários (ícone de balão na barra esquerda) lista todos os comentários do arquivo, filtráveis por "Abertos", "Resolvidos" e "Menções para mim". Clicar em um comentário na lista leva automaticamente ao ponto do canvas correspondente — útil quando o arquivo é grande e tem muitos pins espalhados.</p>
+
+        <h2>Cursor chat: comunicação instantânea no canvas</h2>
+        <p>O <strong>cursor chat</strong> permite enviar mensagens curtas que aparecem brevemente ao lado do seu cursor — como um balão de fala que some após alguns segundos. É ideal para comunicação rápida durante sessões ao vivo, sem precisar alternar para outra ferramenta de chat.</p>
+        <p>Para usar: pressione <kbd>/</kbd> (barra) enquanto estiver com qualquer ferramenta ativa. Um campo de texto minúsculo aparece ao lado do cursor. Digite e pressione <kbd>Enter</kbd>. A mensagem fica visível para todos os outros colaboradores presentes por alguns segundos.</p>
+
+        <div class="callout example">
+          <span class="callout-title">Casos de uso do cursor chat</span>
+          <p>"Olha aqui" → navega para um elemento e envia "→ esse padding está 2px a mais". "Aprovado!" → durante uma revisão ao vivo, sinaliza OK sem precisar abrir o microfone. "BRB" → avisa que vai sair brevemente da sessão. Para conversas longas, use comentários ou o chat do Slack/Meet.</p>
+        </div>
+
+        <h2>Reações com emojis</h2>
+        <p>Além do cursor chat, o Figma permite reações rápidas com emojis que aparecem flutuando no canvas. Pressione <kbd>E</kbd> para abrir o seletor de emojis e clique para lançar uma reação — útil para aprovações rápidas durante apresentações ("👍", "❤️", "🔥") sem interromper quem está falando.</p>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Imagine um projeto de redesign de um app bancário. O designer principal compartilha o arquivo com o time de produto, engenharia e o cliente. Durante a revisão:</p>
+        <ul>
+          <li>O <strong>gerente de produto</strong> adiciona comentários com perguntas de UX ancoradas em cada tela;</li>
+          <li>O <strong>engenheiro frontend</strong> responde nos threads com considerações de implementação;</li>
+          <li>O <strong>cliente</strong> (stakeholder externo com acesso de View) vê os designs e deixa feedbacks;</li>
+          <li>O <strong>designer</strong> resolve os comentários conforme implementa as mudanças, mantendo rastreabilidade;</li>
+          <li>Na reunião semanal ao vivo, o designer usa o <strong>Observation Mode</strong> para guiar todos pelo que mudou.</li>
+        </ul>
+        <p>Toda essa comunicação fica centralizada <em>dentro do Figma</em>, vinculada ao design — sem e-mails perdidos ou screenshots fora de contexto.</p>
+
+        <h2>Boas práticas de colaboração no Figma</h2>
+
+        <h3>Para quem adiciona comentários</h3>
+        <ul>
+          <li><strong>Seja específico e acionável:</strong> "O contraste deste texto não atende WCAG AA — trocar para #1a1d23" é muito melhor que "esse texto não está bom".</li>
+          <li><strong>Um comentário por assunto:</strong> evite comentários longos que misturam múltiplos problemas. Crie threads separadas para que cada uma possa ser resolvida independentemente.</li>
+          <li><strong>Mencione (@) quem precisa agir:</strong> sem menção, o designer pode não saber que precisa responder.</li>
+          <li><strong>Use reações para aprovações simples:</strong> se você concorda com um comentário de alguém, um 👍 é suficiente — não polua com "Concordo!" em texto.</li>
+        </ul>
+
+        <h3>Para quem recebe feedback</h3>
+        <ul>
+          <li><strong>Responda todos os comentários,</strong> mesmo que seja "vou avaliar". Silêncio gera desconfiança.</li>
+          <li><strong>Resolva apenas quando implementado:</strong> um comentário resolvido sem mudança no design é pior do que nenhuma resposta.</li>
+          <li><strong>Use a resposta para explicar decisões:</strong> se decidir não implementar um feedback, explique o porquê na thread — isso documenta a decisão para o futuro.</li>
+        </ul>
+
+        <h3>Gestão de arquivos com muitos colaboradores</h3>
+        <ul>
+          <li>Defina <strong>permissões corretas</strong>: stakeholders externos geralmente devem ter acesso de "Can view" para não editar acidentalmente.</li>
+          <li>Use <strong>páginas separadas</strong> para rascunhos em andamento — evita que colaboradores confundam WIP com design aprovado.</li>
+          <li>Crie uma <strong>página "Aprovado / Pronto para dev"</strong> onde apenas frames finalizados são movidos.</li>
+        </ul>
+
+        <div class="callout pro">
+          <span class="callout-title">Colaboração com stakeholders externos</span>
+          <p>No Figma, você pode convidar pessoas externas como "commenters" (podem comentar mas não editar). Em times Enterprise, pode-se configurar domínios de e-mail permitidos. Para clientes avulsos, gere um link de compartilhamento com permissão "Can comment" — eles não precisam ter conta para comentar.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Ferramenta de comentário</td><td><kbd>C</kbd></td><td><kbd>C</kbd></td></tr>
+              <tr><td>Publicar comentário</td><td><kbd>Enter</kbd></td><td><kbd>Enter</kbd></td></tr>
+              <tr><td>Voltar à seleção</td><td><kbd>V</kbd> ou <kbd>Esc</kbd></td><td><kbd>V</kbd> ou <kbd>Esc</kbd></td></tr>
+              <tr><td>Cursor chat</td><td><kbd>/</kbd></td><td><kbd>/</kbd></td></tr>
+              <tr><td>Reações com emoji</td><td><kbd>E</kbd></td><td><kbd>E</kbd></td></tr>
+              <tr><td>Sair do Follow</td><td><kbd>Esc</kbd></td><td><kbd>Esc</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>O Figma é multiplayer nativo: cursores, avatares e presença em tempo real eliminam o ciclo de exportar/enviar/revisar.</li>
+          <li><strong>Follow</strong> acompanha o canvas de um colega; <strong>Observation Mode</strong> faz todos te seguirem — ambos ideais para reviews ao vivo.</li>
+          <li>Comentários (<kbd>C</kbd>) ficam ancorados ao canvas, têm threads com respostas, menções com <kbd>@</kbd> e resolução rastreável.</li>
+          <li>O <strong>cursor chat</strong> (<kbd>/</kbd>) e as <strong>reações</strong> (<kbd>E</kbd>) servem para comunicação rápida sem sair do Figma.</li>
+          <li>Boas práticas: comentários específicos e acionáveis, resolver apenas quando implementado, e permissões corretas para cada papel.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Sessão de comentários colaborativa</h3>
+          <p>Faça este exercício com pelo menos um colega (ou em dois navegadores com contas diferentes):</p>
+          <ol>
+            <li>Abra um arquivo de design compartilhado e ative a ferramenta de comentário (<kbd>C</kbd>).</li>
+            <li>Adicione 3 comentários ancorados a elementos diferentes, cada um com uma observação específica e uma menção <kbd>@</kbd>.</li>
+            <li>No segundo navegador/conta, responda a um dos comentários e resolva outro.</li>
+            <li>Ative o Observation Mode no primeiro usuário e veja o segundo sendo "puxado" para seguir.</li>
+            <li>Use o cursor chat (<kbd>/</kbd>) para enviar uma mensagem rápida visível no canvas.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> os pins de comentário aparecem no canvas correto, as menções geram notificações, o Observation Mode sincroniza as telas e o cursor chat exibe a mensagem para o outro usuário.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Fluxo de revisão completo</h3>
+          <p>Simule um ciclo de feedback real: convide um colega com permissão "Can comment" (sem edição), deixe que ele adicione pelo menos 5 comentários em um design seu, depois implemente as mudanças cabíveis e resolva os comentários com uma resposta explicando cada decisão — inclusive os que você optou por não implementar. Ao final, a lista de comentários abertos deve estar zerada, com rastreabilidade completa do que foi decidido e por quê.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Qual tecla ativa a ferramenta de comentário no Figma?</p>
+            <ul class="quiz-options">
+              <li>T</li>
+              <li>C</li>
+              <li>K</li>
+              <li>B</li>
+            </ul>
+            <div class="quiz-explain">A tecla <strong>C</strong> ativa a ferramenta de comentário, mudando o cursor para um ícone de pin que você clica no canvas para ancorar comentários.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. O que o Observation Mode faz no Figma?</p>
+            <ul class="quiz-options">
+              <li>Faz todos os colaboradores presentes seguirem automaticamente o canvas de quem apresenta</li>
+              <li>Deixa o arquivo em modo somente leitura para todos</li>
+              <li>Oculta os cursores dos outros colaboradores</li>
+              <li>Exporta uma gravação da sessão</li>
+            </ul>
+            <div class="quiz-explain">O <strong>Observation Mode</strong> é ativado por quem está apresentando — todos os outros colaboradores passam a seguir automaticamente o canvas dessa pessoa, como um "compartilhamento de tela" nativo do Figma.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">3. Qual é a boa prática ao resolver um comentário de feedback?</p>
+            <ul class="quiz-options">
+              <li>Resolver imediatamente ao receber para limpar a interface</li>
+              <li>Nunca resolver — manter todos os comentários visíveis</li>
+              <li>Resolver somente comentários de stakeholders, nunca de devs</li>
+              <li>Resolver apenas quando a mudança solicitada for realmente implementada no design</li>
+            </ul>
+            <div class="quiz-explain">Resolver um comentário sinaliza que a ação foi tomada. Resolver antes de implementar cria confusão e quebra a confiança — a boa prática é resolver <strong>após</strong> implementar, respondendo na thread o que foi feito.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

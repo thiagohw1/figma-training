@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Overlays, scroll e fixed/sticky | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="04-04-overlays-scroll" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">⚡ Módulo 4 · Prototipagem · Lição 4 de 7</div>
+        <h1>Overlays, scroll e fixed/sticky</h1>
+        <p class="lead">Modais, bottom sheets, drawers, cabeçalhos fixos e listas longas roláveis — esses padrões são onipresentes em qualquer app ou site. Nesta lição você vai aprender a simular todos eles fielmente no Figma, com o comportamento correto de scroll e sobreposição.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~22 min</span>
+          <span>🎯 Nível: Intermediário/Avançado</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Criar overlays (modais, bottom sheets, tooltips) com as actions Open, Close e Swap overlay;</li>
+            <li>Configurar posicionamento e backdrop do overlay corretamente;</li>
+            <li>Fazer frames roláveis com Overflow Scrolling (vertical e horizontal);</li>
+            <li>Fixar elementos na tela durante o scroll usando a opção Fixed position;</li>
+            <li>Usar Sticky scroll para elementos que ficam fixos após atingir uma posição de scroll.</li>
+          </ul>
+        </div>
+
+        <h2>Overlays — conteúdo por cima da tela</h2>
+        <p>Um <strong>overlay</strong> é um frame que aparece <em>por cima</em> da tela atual, sem substitui-la completamente. É o padrão correto para modais de confirmação, menus de contexto, tooltips, bottom sheets e drawers laterais — qualquer UI que aparece temporariamente enquanto o contexto anterior permanece visível (ou ao menos bloqueado) ao fundo.</p>
+
+        <h3>As três actions de overlay</h3>
+        <ul>
+          <li><strong>Open overlay:</strong> abre um novo frame por cima da tela atual. Você escolhe qual frame abrir, onde posicioná-lo e se deve ter um backdrop escurecido.</li>
+          <li><strong>Close overlay:</strong> fecha o overlay ativo mais recente. Use em botões de "X", "Cancelar" ou em áreas de toque fora do overlay.</li>
+          <li><strong>Swap overlay:</strong> substitui o overlay atual por outro sem fechar e reabrir — útil para fluxos em múltiplos passos dentro de um modal (ex.: "Dados → Confirmação → Sucesso" sem fechar o modal entre passos).</li>
+        </ul>
+
+        <h3>Posicionamento do overlay</h3>
+        <p>Ao configurar a action <strong>Open overlay</strong>, o campo <strong>Position</strong> define onde o overlay aparece:</p>
+        <ul>
+          <li><strong>Manual:</strong> você arrasta o overlay para a posição exata no canvas; ele sempre abre naquele ponto relativo ao frame pai.</li>
+          <li><strong>Center:</strong> centralizado na tela (padrão para modais de diálogo).</li>
+          <li><strong>Top, Bottom, Left, Right:</strong> fixado na borda correspondente (Bottom = bottom sheet, Left/Right = drawer lateral, Top = notification banner).</li>
+        </ul>
+
+        <h3>Backdrop — o fundo escurecido</h3>
+        <p>Ative a opção <strong>Add background behind overlay</strong> para adicionar um backdrop semitransparente que cobre a tela por baixo do overlay. Você define a cor (geralmente preto com 40–60% de opacidade). Este backdrop também pode ter a ação <strong>Close overlay on click outside</strong> — quando o usuário toca fora do modal, ele fecha automaticamente.</p>
+
+        <div class="callout tip">
+          <span class="callout-title">Estrutura recomendada para overlays</span>
+          <p>Crie o frame do overlay fora do frame da tela principal no canvas (lado a lado, não dentro). O Figma vai sobreposicioná-lo corretamente durante o Present mode. Se você colocar o frame do overlay <em>dentro</em> do frame da tela, ele pode se comportar de maneira inesperada.</p>
+        </div>
+
+        <h2>Passo a passo: modal de confirmação</h2>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie o frame de tela principal.</strong>
+            Frame "iPhone 14" com uma lista de itens e um botão "Deletar item" em vermelho.
+          </li>
+          <li>
+            <strong>Crie o frame do modal.</strong>
+            Crie um frame separado de ~320×200 px. Adicione título ("Deletar item?"), subtítulo e dois botões: "Cancelar" e "Confirmar". Aplique corner radius de 16 px, fill branco e uma leve sombra. Chame de "Modal Deletar".
+          </li>
+          <li>
+            <strong>Adicione a conexão de abertura.</strong>
+            Selecione o botão "Deletar item" na tela principal. Aba Prototype → arraste hotspot. Action: <strong>Open overlay</strong>. Destination: "Modal Deletar". Position: <strong>Center</strong>. Ative "Add background behind overlay" com preto a 50%. Ative "Close when clicking outside".
+          </li>
+          <li>
+            <strong>Adicione a conexão de fechamento.</strong>
+            No "Modal Deletar", selecione o botão "Cancelar". Action: <strong>Close overlay</strong>. Selecione o botão "Confirmar" e use <strong>Navigate to</strong> (para a tela de sucesso) — o overlay fecha automaticamente ao navegar.
+          </li>
+          <li>
+            <strong>Teste no Present mode.</strong>
+            Clique em "Deletar item" — o modal aparece sobre a tela com backdrop. Clique fora ou em "Cancelar" — fecha. Clique em "Confirmar" — navega para a próxima tela.
+          </li>
+        </ol>
+
+        <h2>Scroll — listas e conteúdo longo</h2>
+        <p>Quando o conteúdo de um frame é maior do que a área visível (altura do frame), o Figma permite que o protótipo role para revelar o restante. Isso é controlado pelas configurações de <strong>Overflow Scrolling</strong> no painel de Prototype do frame.</p>
+
+        <h3>Ativando o scroll</h3>
+        <p>Selecione o frame (não um elemento filho, mas o próprio frame). Na aba Prototype, procure a seção <strong>Overflow scrolling</strong>. Três opções:</p>
+        <ul>
+          <li><strong>No scrolling:</strong> padrão. O conteúdo que sai da área do frame fica oculto.</li>
+          <li><strong>Vertical scrolling:</strong> permite rolar para cima/baixo. Use em listas, feeds, páginas longas.</li>
+          <li><strong>Horizontal scrolling:</strong> permite rolar para os lados. Use em carrosséis, listas de chips, abas deslizáveis.</li>
+        </ul>
+        <p>Para que o scroll funcione, o conteúdo interno deve ser maior que o frame. Se todos os elementos cabem na tela, não há o que rolar. Dica: no painel de Design do frame, ative <strong>Clip content</strong> para que o conteúdo extra fique oculto no canvas (mas ainda rolável no protótipo).</p>
+
+        <div class="callout info">
+          <span class="callout-title">Scroll horizontal em carrosséis</span>
+          <p>Para um carrossel horizontal: crie um frame com a largura da tela, ative Horizontal scrolling. Dentro, coloque os cards lado a lado com Auto Layout horizontal. A largura total dos cards deve ser maior que o frame pai — aí o carrossel rola. No Present mode, arraste lateralmente para navegar.</p>
+        </div>
+
+        <h2>Fixed position — elementos que não rolam</h2>
+        <p>Em um app real, o cabeçalho e a barra de navegação inferior não sobem quando o usuário rola o conteúdo — eles permanecem fixos. Para replicar isso no Figma:</p>
+        <ol>
+          <li>Selecione o elemento que deve ficar fixo (ex.: o frame "Header" ou "Bottom Nav").</li>
+          <li>No painel de Design à direita, na seção <strong>Constraints</strong>, ative a opção <strong>Fix position when scrolling</strong>.</li>
+          <li>No Present mode, ao rolar a lista, o elemento fica parado enquanto o conteúdo por trás se move.</li>
+        </ol>
+
+        <div class="callout warning">
+          <span class="callout-title">Posição no topo da hierarquia de layers</span>
+          <p>Para que o Fixed position funcione corretamente, o elemento fixo deve ser um filho <strong>direto do frame principal</strong> (o frame que tem o Overflow scrolling ativado). Se ele estiver dentro de um grupo ou sub-frame, o comportamento pode ser incorreto. Sempre mantenha headers e navbars como filhos diretos do frame de tela.</p>
+        </div>
+
+        <h2>Sticky scroll</h2>
+        <p>O comportamento "sticky" (usado em tabelas com cabeçalho fixo, seções de categoria em listas agrupadas, etc.) é mais limitado no Figma em comparação ao CSS <code>position: sticky</code>. A simulação mais comum é:</p>
+        <ul>
+          <li>Criar dois frames da mesma tela: um com o elemento na posição normal, outro com o elemento já "colado" no topo.</li>
+          <li>Usar <strong>After delay</strong> ou um trigger específico para transicionar entre eles após o scroll atingir certo ponto.</li>
+        </ul>
+        <p>Para testes de usabilidade simples, o Fixed position cobre a maioria dos casos práticos. O Sticky "real" é melhor validado diretamente no código durante o desenvolvimento.</p>
+
+        <h2>Exemplo de uso real: app de delivery</h2>
+        <p>Um app de delivery típico usa todos esses recursos juntos:</p>
+
+        <div class="figma-mock">
+          <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;align-items:flex-start;">
+            <!-- Tela principal -->
+            <div style="width:200px;background:var(--surface);border:1.5px solid var(--border-strong);border-radius:12px;overflow:hidden;">
+              <!-- Header fixo -->
+              <div style="background:var(--surface);border-bottom:1px solid var(--border);padding:10px 12px;display:flex;justify-content:space-between;align-items:center;">
+                <div style="font-size:12px;font-weight:700;">🍕 Delivery</div>
+                <div style="font-size:12px;background:var(--primary);color:#fff;border-radius:6px;padding:3px 7px;">Filtros</div>
+              </div>
+              <!-- Conteúdo rolável -->
+              <div style="padding:10px;display:flex;flex-direction:column;gap:8px;max-height:180px;overflow:hidden;">
+                <div style="padding:8px;border:1px solid var(--border);border-radius:8px;font-size:11px;">🍕 Pizzaria Roma · 25 min</div>
+                <div style="padding:8px;border:1px solid var(--border);border-radius:8px;font-size:11px;">🍔 Burguer King · 20 min</div>
+                <div style="padding:8px;border:1px solid var(--border);border-radius:8px;font-size:11px;">🌮 Tacos & Co · 30 min</div>
+                <div style="padding:8px;border:1px solid var(--border);border-radius:8px;font-size:11px;opacity:.5;">… (rola)</div>
+              </div>
+              <!-- Bottom nav fixo -->
+              <div style="background:var(--surface);border-top:1px solid var(--border);padding:8px 12px;display:flex;justify-content:space-around;font-size:18px;">
+                <span>🏠</span><span>🔍</span><span>🛒</span><span>👤</span>
+              </div>
+            </div>
+            <!-- Modal -->
+            <div style="width:200px;background:var(--surface);border:1.5px solid var(--primary-soft-border);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px;">
+              <div style="font-size:13px;font-weight:700;">Confirmar pedido?</div>
+              <div style="font-size:11px;color:var(--text-muted);">2 itens · R$ 68,00</div>
+              <div style="display:flex;gap:8px;">
+                <div style="flex:1;padding:7px;background:var(--surface-2);border-radius:7px;font-size:11px;text-align:center;border:1px solid var(--border);">Cancelar</div>
+                <div style="flex:1;padding:7px;background:var(--primary);border-radius:7px;font-size:11px;text-align:center;color:#fff;">Confirmar</div>
+              </div>
+              <div style="font-size:10px;color:var(--text-soft);text-align:center;">← Open overlay (Center + backdrop)</div>
+            </div>
+          </div>
+          <p class="mock-label">Cabeçalho e barra inferior com Fixed position (não rolam). Lista central com Vertical scrolling. Modal aberto com Open overlay + backdrop.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Selecionar frame pai</td><td><kbd>Esc</kbd></td><td><kbd>Esc</kbd></td></tr>
+              <tr><td>Entrar dentro do frame (selecionar filho)</td><td><kbd>Enter</kbd> ou duplo clique</td><td><kbd>Enter</kbd> ou duplo clique</td></tr>
+              <tr><td>Abrir Present mode</td><td><kbd>Ctrl</kbd> + <kbd>Enter</kbd></td><td><kbd>⌘</kbd> + <kbd>Enter</kbd></td></tr>
+              <tr><td>Aba Prototype</td><td><kbd>Alt</kbd> + <kbd>8</kbd></td><td><kbd>⌥</kbd> + <kbd>8</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li><strong>Open overlay</strong> abre um frame por cima da tela atual; configure posição, backdrop e "fechar ao clicar fora".</li>
+          <li><strong>Close overlay</strong> fecha o overlay ativo; <strong>Swap overlay</strong> substitui um pelo outro sem fechar.</li>
+          <li>O frame do overlay deve estar fora do frame da tela principal no canvas.</li>
+          <li>Ative <strong>Overflow Scrolling</strong> (vertical ou horizontal) no frame para permitir rolagem no protótipo.</li>
+          <li>Use <strong>Fix position when scrolling</strong> nos filhos do frame para replicar headers e navbars fixos.</li>
+          <li>Sticky real é difícil de simular no Figma — para protótipos simples, Fixed position costuma ser suficiente.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Tela com scroll, header fixo e modal</h3>
+          <ol>
+            <li>Crie um frame "iPhone 14". Adicione um Header fixo no topo e uma Bottom Navigation fixada na base.</li>
+            <li>No corpo da tela, crie uma lista de pelo menos 8 itens (mais alta que o espaço disponível). Ative <strong>Vertical scrolling</strong> no frame.</li>
+            <li>Marque o Header e o Bottom Nav com <strong>Fix position when scrolling</strong>.</li>
+            <li>Adicione um botão "Deletar" em um dos itens. Crie um modal de confirmação e conecte com <strong>Open overlay</strong> (Center, backdrop 50%, fechar ao clicar fora).</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> no Present mode, rolar a lista não move o header nem o bottom nav. Clicar em "Deletar" abre o modal com backdrop. Clicar fora fecha o modal.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Bottom sheet em múltiplos passos com Swap overlay</h3>
+          <p>Crie um fluxo de checkout dentro de um bottom sheet usando Swap overlay: ao clicar em "Checkout", abre o bottom sheet "Endereço". Ao clicar "Próximo", troca para o bottom sheet "Pagamento" (Swap overlay, sem fechar e reabrir). Ao clicar "Confirmar", navega para a tela de sucesso e o overlay fecha. Use Slide In de baixo para a abertura e Smart Animate para as trocas internas.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Qual action usaria para substituir um modal de "Dados de endereço" por um modal de "Dados de pagamento" sem fechar o modal intermediário?</p>
+            <ul class="quiz-options">
+              <li>Close overlay, depois Open overlay</li>
+              <li>Navigate to</li>
+              <li>Swap overlay</li>
+              <li>Back</li>
+            </ul>
+            <div class="quiz-explain"><strong>Swap overlay</strong> substitui o overlay atual por outro em uma única ação, sem o flash visual de fechar e reabrir. É ideal para fluxos multi-etapa dentro de modais ou bottom sheets.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. Para que um header fique fixo durante o scroll no protótipo, o que você deve fazer?</p>
+            <ul class="quiz-options">
+              <li>Ativar "Fix position when scrolling" no header, que deve ser filho direto do frame com scroll</li>
+              <li>Colocar o header num frame separado fora da área de scroll</li>
+              <li>Usar Constraints "Top" no header</li>
+              <li>Criar um overlay que simula o header fixo</li>
+            </ul>
+            <div class="quiz-explain">A opção <strong>Fix position when scrolling</strong> está disponível quando o elemento é filho direto do frame que tem Overflow Scrolling ativado. Marcar essa opção faz o elemento ficar parado durante o scroll no Present mode.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">3. Onde deve estar o frame de um overlay (modal) no canvas em relação ao frame da tela principal?</p>
+            <ul class="quiz-options">
+              <li>Dentro do frame da tela principal, como filho</li>
+              <li>Fora do frame da tela principal, lado a lado no canvas</li>
+              <li>Em outra página do arquivo</li>
+              <li>Não importa — o Figma posiciona corretamente em qualquer caso</li>
+            </ul>
+            <div class="quiz-explain">O frame do overlay deve estar <strong>fora do frame da tela principal</strong> no canvas. Se estiver dentro como filho, o comportamento de sobreposição pode ser incorreto. O Figma usa a posição configurada na action (Center, Bottom, etc.) para posicioná-lo corretamente no Present mode.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

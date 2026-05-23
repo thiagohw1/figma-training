@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Constraints e responsividade | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="02-03-constraints-responsividade" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">📦 Módulo 2 · Intermediário · Lição 3 de 9</div>
+        <h1>Constraints e responsividade</h1>
+        <p class="lead">Constraints são a resposta do Figma para "o que acontece com esse elemento quando o frame é redimensionado?". Combinados com Auto Layout, eles permitem criar designs que se comportam exatamente como interfaces reais em diferentes tamanhos de tela.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~18 min</span>
+          <span>🎯 Nível: Intermediário</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Aplicar os cinco Constraints horizontais e os cinco verticais;</li>
+            <li>Prever como um elemento se move e redimensiona ao esticar um frame;</li>
+            <li>Distinguir quando usar Constraints e quando usar Auto Layout;</li>
+            <li>Construir um header full-width que se estica e um botão fixo no rodapé.</li>
+          </ul>
+        </div>
+
+        <h2>O que são Constraints?</h2>
+        <p><strong>Constraints</strong> (restrições) definem a relação de um elemento com as bordas do seu frame pai. Pense nelas como âncoras invisíveis: "este elemento fica sempre a 20px da borda direita" ou "este elemento ocupa sempre 100% da largura do pai".</p>
+        <p>Elas funcionam em frames normais (sem Auto Layout) e também dentro de frames com Auto Layout quando um elemento usa <strong>Absolute position</strong>. Em ambos os casos, a lógica é a mesma: o Figma olha para a posição atual do elemento e calcula a relação com as bordas do pai.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Constraints vs Auto Layout: o resumo rápido</span>
+          <p><strong>Constraints</strong> = como um elemento reage quando o <em>container pai</em> muda de tamanho. <strong>Auto Layout</strong> = como o container organiza seus <em>filhos</em>. Os dois se complementam: Auto Layout cuida do fluxo interno; Constraints cuidam de como o próprio container (e seus filhos absolutos) responde ao redimensionamento.</p>
+        </div>
+
+        <h2>Constraints horizontais (eixo X)</h2>
+        <p>Com um elemento selecionado dentro de um frame, você verá a seção Constraints no painel direito. No eixo horizontal há cinco opções:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Constraint</th><th>Comportamento</th><th>Caso de uso</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Left</strong></td>
+                <td>Mantém distância fixa da borda esquerda. A largura do elemento não muda.</td>
+                <td>Ícone ancorado à esquerda de um header</td>
+              </tr>
+              <tr>
+                <td><strong>Right</strong></td>
+                <td>Mantém distância fixa da borda direita. A largura do elemento não muda.</td>
+                <td>Botão de fechar no canto superior direito</td>
+              </tr>
+              <tr>
+                <td><strong>Center</strong></td>
+                <td>Mantém o elemento centralizado horizontalmente. A largura não muda.</td>
+                <td>Logo centralizado em um splash screen</td>
+              </tr>
+              <tr>
+                <td><strong>Scale</strong></td>
+                <td>O elemento escala proporcionalmente ao frame. Largura e posição X aumentam/diminuem em proporção.</td>
+                <td>Imagem de fundo que deve cobrir sempre</td>
+              </tr>
+              <tr>
+                <td><strong>Left + Right</strong></td>
+                <td>O elemento se <em>estica</em> para manter distância fixa das duas bordas. A largura muda.</td>
+                <td>Input, barra de busca, divisor full-width</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Constraints verticais (eixo Y)</h2>
+        <p>No eixo vertical, as cinco opções espelham as horizontais:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Constraint</th><th>Comportamento</th><th>Caso de uso</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Top</strong></td>
+                <td>Mantém distância fixa do topo. A altura não muda.</td>
+                <td>Header fixo no topo da tela</td>
+              </tr>
+              <tr>
+                <td><strong>Bottom</strong></td>
+                <td>Mantém distância fixa da base. A altura não muda.</td>
+                <td>Botão CTA fixo no rodapé</td>
+              </tr>
+              <tr>
+                <td><strong>Center</strong></td>
+                <td>Mantém o elemento centralizado verticalmente.</td>
+                <td>Spinner de carregamento central</td>
+              </tr>
+              <tr>
+                <td><strong>Scale</strong></td>
+                <td>A altura e posição Y escalam proporcionalmente ao frame.</td>
+                <td>Imagem de capa que escala com o frame</td>
+              </tr>
+              <tr>
+                <td><strong>Top + Bottom</strong></td>
+                <td>O elemento se <em>estica</em> verticalmente, mantendo distâncias fixas do topo e da base.</td>
+                <td>Sidebar lateral que cresce com a página</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Visualizando Constraints em ação</h2>
+
+        <div class="diagram">
+          <svg viewBox="0 0 540 300" role="img" aria-label="Diagrama de Constraints mostrando Left+Right esticando um elemento e Bottom ancorando outro na base">
+            <!-- Frame original -->
+            <rect x="20" y="20" width="220" height="260" rx="10" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="2"/>
+            <text x="130" y="15" fill="var(--text-muted)" font-size="11" text-anchor="middle" font-family="sans-serif">Frame original (390px)</text>
+            <!-- Header Left+Right -->
+            <rect x="30" y="32" width="200" height="36" rx="6" fill="var(--primary-soft)" stroke="var(--primary)" stroke-width="1.5"/>
+            <text x="130" y="54" fill="var(--primary)" font-size="11" text-anchor="middle" font-family="sans-serif" font-weight="600">Header · Left+Right</text>
+            <!-- Botão Bottom -->
+            <rect x="65" y="244" width="110" height="26" rx="6" fill="var(--success-soft)" stroke="var(--success)" stroke-width="1.5"/>
+            <text x="120" y="261" fill="var(--success)" font-size="11" text-anchor="middle" font-family="sans-serif" font-weight="600">Botão CTA · Bottom</text>
+            <!-- Seta indicando redimensionamento -->
+            <line x1="255" y1="150" x2="295" y2="150" stroke="var(--warning)" stroke-width="2" stroke-dasharray="4 3"/>
+            <polygon points="295,150 286,145 286,155" fill="var(--warning)"/>
+            <text x="275" y="143" fill="var(--warning)" font-size="11" text-anchor="middle" font-family="sans-serif">redimensionar</text>
+            <!-- Frame redimensionado -->
+            <rect x="300" y="20" width="220" height="260" rx="10" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="2"/>
+            <text x="410" y="15" fill="var(--text-muted)" font-size="11" text-anchor="middle" font-family="sans-serif">Frame maior (540px)</text>
+            <!-- Header esticado -->
+            <rect x="310" y="32" width="200" height="36" rx="6" fill="var(--primary-soft)" stroke="var(--primary)" stroke-width="1.5"/>
+            <text x="410" y="54" fill="var(--primary)" font-size="11" text-anchor="middle" font-family="sans-serif" font-weight="600">Header · esticou!</text>
+            <!-- Botão ainda ancorado em baixo -->
+            <rect x="345" y="244" width="110" height="26" rx="6" fill="var(--success-soft)" stroke="var(--success)" stroke-width="1.5"/>
+            <text x="400" y="261" fill="var(--success)" font-size="11" text-anchor="middle" font-family="sans-serif" font-weight="600">Botão CTA · fixo!</text>
+            <!-- Rótulos -->
+            <text x="130" y="290" fill="var(--text-soft)" font-size="10" text-anchor="middle" font-family="sans-serif">Left+Right estica o header</text>
+            <text x="410" y="290" fill="var(--text-soft)" font-size="10" text-anchor="middle" font-family="sans-serif">Bottom mantém botão na base</text>
+          </svg>
+          <p class="mock-label">Constraint <strong>Left+Right</strong> no header: ele se estica ao redimensionar. Constraint <strong>Bottom</strong> no botão: ele fica ancorado na base, independentemente da altura do frame.</p>
+        </div>
+
+        <h2>Como aplicar Constraints passo a passo</h2>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie um frame.</strong>
+            Use <kbd>F</kbd> e desenhe um frame grande (ex.: 390×844, tamanho do iPhone). Coloque alguns elementos dentro — um retângulo no topo (header) e um botão na parte inferior.
+          </li>
+          <li>
+            <strong>Selecione o header.</strong>
+            Clique nele no canvas ou nas Layers. No painel direito, role até a seção <strong>Constraints</strong>. Você verá dois menus: um horizontal (H) e um vertical (V).
+          </li>
+          <li>
+            <strong>Defina Left + Right.</strong>
+            No menu horizontal, selecione <strong>Left and Right</strong>. O header vai manter a mesma distância das duas bordas ao redimensionar o frame.
+          </li>
+          <li>
+            <strong>Selecione o botão inferior.</strong>
+            No menu vertical, selecione <strong>Bottom</strong>. O botão vai ficar ancorado à base do frame.
+          </li>
+          <li>
+            <strong>Teste.</strong>
+            Selecione o frame e arraste a alça lateral para esticar a largura. O header se estica. Arraste a alça inferior para aumentar a altura — o botão desce junto mantendo a distância da base.
+          </li>
+        </ol>
+
+        <h2>Constraints e Auto Layout juntos</h2>
+        <p>Os dois sistemas não se excluem — eles se complementam em camadas diferentes da hierarquia:</p>
+        <ul>
+          <li><strong>Auto Layout</strong> controla como os filhos se organizam <em>dentro</em> de um container: ordem, gap, padding, wrap.</li>
+          <li><strong>Constraints</strong> controlam como o container (ou um filho absoluto) reage ao redimensionamento do <em>pai</em>.</li>
+        </ul>
+        <p>Na prática, você usa Constraints principalmente em dois contextos:</p>
+        <ol>
+          <li><strong>Frames sem Auto Layout</strong> (telas inteiras desenhadas com posicionamento manual).</li>
+          <li><strong>Elementos com Absolute position</strong> dentro de um Auto Layout — o elemento sai do fluxo e passa a se comportar como em um frame normal, respondendo às Constraints.</li>
+        </ol>
+
+        <div class="callout pro">
+          <span class="callout-title">Fluxo profissional: quando usar cada um</span>
+          <p><strong>Auto Layout</strong> para tudo que é fluxo de conteúdo: listas, formulários, cards, navbars. <strong>Constraints</strong> para posicionar elementos que precisam ser ancorados a bordas específicas (rodapé, sidebar, overlay) ou para frames que precisam escalar sem reconstrução (banners, imagens de fundo). No dia a dia, Auto Layout vem primeiro; Constraints entram quando você precisa de ancoragem relativa à borda.</p>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <h3>Header full-width que se estica</h3>
+        <p>Um header de aplicativo web tem o próprio frame com Constraint <strong>Left + Right</strong> (horizontal) e <strong>Top</strong> (vertical) dentro da tela principal. Isso faz com que, ao redimensionar o frame de tela de 1440px para 768px (tablet), o header estica para cobrir toda a largura mantendo-se no topo.</p>
+
+        <h3>Botão CTA fixo no rodapé mobile</h3>
+        <p>Em fluxos de compra mobile, o botão "Finalizar compra" precisa estar sempre visível no final da tela, independentemente da quantidade de conteúdo acima. A solução: Constraint <strong>Bottom</strong> + <strong>Left + Right</strong> no botão. Se a tela tiver 812px ou 926px de altura (iPhones diferentes), o botão sempre fica a 20px da base, esticado para toda a largura.</p>
+
+        <div class="figma-mock">
+          <div class="device-browser" style="max-width:320px;">
+            <div class="browser-bar"><i></i><i></i><i></i></div>
+            <div style="position:relative;height:400px;background:var(--surface);display:flex;flex-direction:column;">
+              <div style="background:var(--primary);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;">
+                <span style="color:white;font-weight:700;">Finalizar Compra</span>
+                <span style="color:rgba(255,255,255,.7);font-size:13px;">3 itens</span>
+              </div>
+              <div style="flex:1;padding:16px;overflow:hidden;">
+                <div style="background:var(--surface-2);border-radius:8px;padding:12px;margin-bottom:10px;">
+                  <div style="font-weight:600;font-size:14px;">Fone Bluetooth Pro</div>
+                  <div style="color:var(--text-muted);font-size:13px;margin-top:2px;">R$ 499,00</div>
+                </div>
+                <div style="background:var(--surface-2);border-radius:8px;padding:12px;margin-bottom:10px;">
+                  <div style="font-weight:600;font-size:14px;">Cabo USB-C (2m)</div>
+                  <div style="color:var(--text-muted);font-size:13px;margin-top:2px;">R$ 49,90</div>
+                </div>
+                <div style="background:var(--surface-2);border-radius:8px;padding:12px;">
+                  <div style="font-weight:600;font-size:14px;">Carregador 65W</div>
+                  <div style="color:var(--text-muted);font-size:13px;margin-top:2px;">R$ 129,90</div>
+                </div>
+              </div>
+              <div style="padding:16px;border-top:1px solid var(--border);background:var(--surface);">
+                <div style="background:var(--primary);color:white;text-align:center;padding:14px;border-radius:10px;font-weight:700;font-size:15px;">Pagar R$ 678,80</div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">O botão "Pagar" usa Constraint Bottom + Left and Right: fica sempre ancorado na base e se estica para toda a largura da tela.</p>
+        </div>
+
+        <h2>Erros comuns com Constraints</h2>
+
+        <div class="callout warning">
+          <span class="callout-title">Constraint errada causa elementos "voando"</span>
+          <p>O erro mais comum: deixar um elemento com Constraint <strong>Left</strong> dentro de um frame que você pretende redimensionar pela direita. O elemento fica ancorado à esquerda (correto), mas como tem largura fixa, não acompanha o redimensionamento — e ao invés de se esticar, simplesmente fica no mesmo lugar enquanto o frame cresce ao redor dele. A solução é <strong>Left + Right</strong> para elementos que devem esticar.</p>
+        </div>
+
+        <div class="callout tip">
+          <span class="callout-title">Ative "Fix position when scrolling" para elementos fixos</span>
+          <p>Em protótipos, você pode querer que a navbar ou o botão de rodapé fiquem fixos enquanto o usuário rola a página. Além de definir a Constraint correta, ative a opção <strong>Fix position when scrolling</strong> no painel direito. Assim, ao criar um protótipo com overflow vertical, o elemento se comporta como <code>position: fixed</code> no CSS.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Criar Frame</td><td><kbd>F</kbd></td><td><kbd>F</kbd></td></tr>
+              <tr><td>Redimensionar frame (arrastar alça)</td><td>Arraste alça + <kbd>Alt</kbd> para proporcional</td><td>Arraste alça + <kbd>⌥</kbd> para proporcional</td></tr>
+              <tr><td>Selecionar frame pai</td><td><kbd>Esc</kbd></td><td><kbd>Esc</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Constraints definem como um elemento reage ao redimensionamento do seu frame pai.</li>
+          <li><strong>Left/Right/Top/Bottom</strong> ancoram o elemento a uma borda; <strong>Center</strong> centraliza; <strong>Scale</strong> escala proporcionalmente; <strong>Left+Right / Top+Bottom</strong> esticam o elemento.</li>
+          <li>Constraints e Auto Layout são complementares: Auto Layout organiza o fluxo interno; Constraints anchoram elementos às bordas do pai.</li>
+          <li>Use <strong>Fix position when scrolling</strong> para simular elementos fixos em protótipos.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Tela mobile responsiva com Constraints</h3>
+          <ol>
+            <li>Crie um frame de <strong>390×844px</strong> (iPhone 14 Pro).</li>
+            <li>Adicione um header de 56px no topo. Defina Constraints: <strong>Left and Right</strong> + <strong>Top</strong>.</li>
+            <li>Adicione um botão de 52px no rodapé. Defina Constraints: <strong>Left and Right</strong> + <strong>Bottom</strong>.</li>
+            <li>Adicione uma área de conteúdo no meio com Constraints: <strong>Left and Right</strong> + <strong>Top and Bottom</strong>.</li>
+            <li>Redimensione o frame para <strong>768×1024px</strong> (tablet). Observe como cada elemento responde.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> ao ampliar o frame, o header e o botão mantêm distâncias corretas das bordas e a área central se estica para preencher o espaço.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Tela de login responsiva</h3>
+          <p>Crie uma tela de login que funciona bem de 320px a 1440px de largura. O formulário (campos de e-mail, senha e botão) deve ter largura fixa de 360px e ficar centralizado (Constraint Center horizontal e vertical). O plano de fundo (um degradê ou imagem) deve cobrir 100% com Constraint Scale. Uma logo no topo esquerdo com Left + Top. Ao esticar de 390px para 1440px, o background escala, a logo fica no canto e o form fica centralizado.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">1. Qual Constraint horizontal faz um elemento se <em>esticar</em> quando o frame é redimensionado?</p>
+            <ul class="quiz-options">
+              <li>Left</li>
+              <li>Right</li>
+              <li>Center</li>
+              <li>Left and Right</li>
+            </ul>
+            <div class="quiz-explain"><strong>Left and Right</strong> mantém o elemento ancorado às duas bordas simultaneamente, fazendo-o esticar quando o frame muda de largura — equivalente ao <code>width: 100%</code> com margens fixas no CSS.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">2. Um botão CTA deve sempre aparecer 20px acima da borda inferior da tela, seja no iPhone SE (667px) ou iPhone Pro Max (932px). Qual Constraint vertical usar?</p>
+            <ul class="quiz-options">
+              <li>Top</li>
+              <li>Bottom</li>
+              <li>Center</li>
+              <li>Top and Bottom</li>
+            </ul>
+            <div class="quiz-explain"><strong>Bottom</strong> ancora o elemento à borda inferior do frame. A distância de 20px se mantém independentemente da altura total do frame — como <code>position: fixed; bottom: 20px</code> no CSS.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Qual é a principal diferença entre Auto Layout e Constraints?</p>
+            <ul class="quiz-options">
+              <li>Auto Layout organiza o fluxo interno dos filhos; Constraints anchoram elementos às bordas do frame pai</li>
+              <li>Auto Layout funciona apenas em mobile; Constraints em desktop</li>
+              <li>Constraints substituem Auto Layout em frames com posicionamento manual</li>
+              <li>São a mesma coisa com nomes diferentes</li>
+            </ul>
+            <div class="quiz-explain">Auto Layout e Constraints são complementares: Auto Layout cuida de como os filhos se organizam <em>dentro</em> do container; Constraints cuidam de como o elemento (ou o container inteiro) reage quando seu <em>pai</em> muda de tamanho.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

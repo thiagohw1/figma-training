@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modes — light/dark, densidade, marca | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="03-04-modes" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🏗️ Módulo 3 · Avançado · Lição 4 de 9</div>
+        <h1>Modes — light/dark, densidade, marca</h1>
+        <p class="lead">Modes são a funcionalidade mais poderosa das Variables — eles permitem que o mesmo design mude completamente de aparência com um único clique, sem duplicar nenhuma tela.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~22 min</span>
+          <span>🎯 Nível: Avançado</span>
+          <span>🛠️ Pratique no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Explicar o que são Modes dentro de uma Collection de Variables;</li>
+            <li>Criar um par de Modes light/dark e mapear os valores corretamente;</li>
+            <li>Aplicar Modes a frames e entender como a herança funciona em frames aninhados;</li>
+            <li>Usar Modes para casos além de cor: densidade compacto/confortável, multi-marca, multi-idioma;</li>
+            <li>Conhecer os limites de Modes por plano do Figma.</li>
+          </ul>
+        </div>
+
+        <h2>O que são Modes?</h2>
+        <p>Dentro de uma Collection de Variables, você pode definir múltiplos <strong>Modes</strong> — cada Mode é essencialmente uma coluna de valores alternativos para todas as variables daquela Collection. Uma variable Color chamada <code>color/bg/surface</code> pode ter o valor <code>#FFFFFF</code> no Mode "Light" e <code>#1A1E26</code> no Mode "Dark".</p>
+        <p>Quando você aplica um Mode a um Frame, todas as variables daquela Collection dentro do frame assumem os valores desse Mode — a troca é instantânea e afeta o frame inteiro, incluindo todos os componentes aninhados.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Analogia: planilha com colunas</span>
+          <p>Pense em uma Collection como uma planilha. Cada linha é uma variable. Cada <strong>coluna</strong> é um Mode. Para ver a versão "Dark" de uma tela, você simplesmente "ativa" a coluna Dark — o Figma lê os valores dessa coluna em todos os lugares onde as variables estão aplicadas.</p>
+        </div>
+
+        <h2>Criando um par Light/Dark</h2>
+        <p>Vamos criar uma Collection semântica com dois Modes. Este é o fluxo de trabalho padrão para dark mode no Figma:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie uma nova Collection.</strong>
+            No painel de Variables, clique em <strong>+ Collection</strong>. Renomeie para <code>Semantic/Color</code>.
+          </li>
+          <li>
+            <strong>Renomeie o Mode padrão.</strong>
+            Por padrão, a Collection tem um Mode chamado "Value". Clique duas vezes nele e renomeie para <strong>Light</strong>.
+          </li>
+          <li>
+            <strong>Adicione o segundo Mode.</strong>
+            Clique no ícone de <strong>+</strong> ao lado dos Modes (no cabeçalho do painel) para adicionar um novo Mode. Renomeie para <strong>Dark</strong>.
+          </li>
+          <li>
+            <strong>Adicione as variables semânticas.</strong>
+            Crie <code>color/bg/surface</code>. Para o Mode Light, defina o valor como <code>#FFFFFF</code> (ou vincule ao primitivo <code>neutral/0</code>). Para o Mode Dark, defina como <code>#1A1E26</code> (ou primitivo <code>neutral/950</code>).
+          </li>
+          <li>
+            <strong>Continue com as demais variables.</strong>
+            <code>color/bg/subtle</code>, <code>color/text/default</code>, <code>color/text/muted</code>, <code>color/border/default</code>, <code>color/bg/brand</code>, <code>color/feedback/danger</code> — cada uma com valores diferentes para Light e Dark.
+          </li>
+          <li>
+            <strong>Aplique o Mode a um Frame.</strong>
+            Selecione um Frame no canvas. No painel direito, role até a seção <strong>Variables</strong>. Você verá as Collections disponíveis. Clique em <code>Semantic/Color</code> e selecione o Mode que deseja aplicar a esse Frame.
+          </li>
+          <li>
+            <strong>Alterne entre os Modes.</strong>
+            Selecione o Frame, troque de "Light" para "Dark" no painel. O design inteiro muda instantaneamente.
+          </li>
+        </ol>
+
+        <div class="diagram">
+          <svg viewBox="0 0 560 200" role="img" aria-label="Diagrama mostrando uma Collection com Modes Light e Dark e os valores de cada variable em cada Mode">
+            <!-- Cabeçalho da tabela -->
+            <rect x="10" y="10" width="540" height="36" rx="6" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1"/>
+            <text x="160" y="32" text-anchor="middle" fill="var(--text-muted)" font-size="12" font-weight="700" font-family="sans-serif">Variable</text>
+            <text x="360" y="32" text-anchor="middle" fill="var(--info)" font-size="12" font-weight="700" font-family="sans-serif">☀️ Mode: Light</text>
+            <text x="490" y="32" text-anchor="middle" fill="var(--pro)" font-size="12" font-weight="700" font-family="sans-serif">🌙 Mode: Dark</text>
+            <!-- Linhas -->
+            <rect x="10" y="46" width="540" height="30" rx="0" fill="var(--surface)"/>
+            <text x="30" y="65" fill="var(--text)" font-size="11" font-family="sans-serif">color/bg/surface</text>
+            <circle cx="350" cy="61" r="8" fill="#FFFFFF" stroke="var(--border)" stroke-width="1"/>
+            <text x="365" y="65" fill="var(--text-muted)" font-size="11" font-family="sans-serif">#FFFFFF</text>
+            <circle cx="480" cy="61" r="8" fill="#1A1E26" stroke="var(--border)" stroke-width="1"/>
+            <text x="495" y="65" fill="var(--text-muted)" font-size="11" font-family="sans-serif">#1A1E26</text>
+            <!-- Linha 2 -->
+            <rect x="10" y="76" width="540" height="30" rx="0" fill="var(--surface-2)"/>
+            <text x="30" y="95" fill="var(--text)" font-size="11" font-family="sans-serif">color/text/default</text>
+            <circle cx="350" cy="91" r="8" fill="#1A1D23" stroke="var(--border)" stroke-width="1"/>
+            <text x="365" y="95" fill="var(--text-muted)" font-size="11" font-family="sans-serif">#1A1D23</text>
+            <circle cx="480" cy="91" r="8" fill="#E8EAEE" stroke="var(--border)" stroke-width="1"/>
+            <text x="495" y="95" fill="var(--text-muted)" font-size="11" font-family="sans-serif">#E8EAEE</text>
+            <!-- Linha 3 -->
+            <rect x="10" y="106" width="540" height="30" rx="0" fill="var(--surface)"/>
+            <text x="30" y="125" fill="var(--text)" font-size="11" font-family="sans-serif">color/bg/brand</text>
+            <circle cx="350" cy="121" r="8" fill="#6C4CF1" stroke="var(--border)" stroke-width="1"/>
+            <text x="365" y="125" fill="var(--text-muted)" font-size="11" font-family="sans-serif">#6C4CF1</text>
+            <circle cx="480" cy="121" r="8" fill="#9B81FF" stroke="var(--border)" stroke-width="1"/>
+            <text x="495" y="125" fill="var(--text-muted)" font-size="11" font-family="sans-serif">#9B81FF</text>
+            <!-- Linha 4 -->
+            <rect x="10" y="136" width="540" height="30" rx="0" fill="var(--surface-2)"/>
+            <text x="30" y="155" fill="var(--text)" font-size="11" font-family="sans-serif">color/feedback/danger</text>
+            <circle cx="350" cy="151" r="8" fill="#D23B3B" stroke="var(--border)" stroke-width="1"/>
+            <text x="365" y="155" fill="var(--text-muted)" font-size="11" font-family="sans-serif">#D23B3B</text>
+            <circle cx="480" cy="151" r="8" fill="#F47171" stroke="var(--border)" stroke-width="1"/>
+            <text x="495" y="155" fill="var(--text-muted)" font-size="11" font-family="sans-serif">#F47171</text>
+            <!-- Borda externa -->
+            <rect x="10" y="10" width="540" height="156" rx="6" fill="none" stroke="var(--border)" stroke-width="1"/>
+            <!-- Separador de colunas -->
+            <line x1="270" y1="10" x2="270" y2="166" stroke="var(--border)" stroke-width="1"/>
+            <line x1="420" y1="10" x2="420" y2="166" stroke="var(--border)" stroke-width="1"/>
+          </svg>
+          <p class="mock-label">Uma Collection com Modes Light e Dark. Cada variable tem dois valores — um por Mode.</p>
+        </div>
+
+        <h2>Herança de Modes em frames aninhados</h2>
+        <p>Quando você aplica um Mode a um Frame pai, todos os frames filhos <strong>herdam</strong> esse Mode automaticamente. Você não precisa aplicar o Mode em cada elemento individualmente.</p>
+        <p>No entanto, você pode sobrescrever o Mode em um frame filho — por exemplo, ter a tela principal em Light Mode mas um modal específico sempre em Dark Mode para criar um efeito visual específico. O frame filho com o Mode sobrescrito ignora o valor herdado do pai.</p>
+
+        <div class="callout warning">
+          <span class="callout-title">Herança funciona apenas para Collections ativas</span>
+          <p>A herança de Mode acontece somente para a Collection que você aplicou ao frame pai. Se um frame filho usa variables de uma Collection diferente (ex: Semantic vs. Brand), cada Collection precisa ter seu Mode definido ou herdado separadamente.</p>
+        </div>
+
+        <h2>Casos de uso além de Light/Dark</h2>
+        <p>Modes não são apenas para temas de cor. Qualquer dimensão de variação que o seu produto precise pode ser modelada com Modes:</p>
+
+        <h3>Densidade: Compacto e Confortável</h3>
+        <p>Crie uma Collection <code>Semantic/Spacing</code> com Modes "Comfortable" e "Compact". No Mode Comfortable, <code>spacing/component/md</code> vale 16. No Mode Compact, vale 12. Aplique o Mode Compact em um frame para ver toda a interface comprimida — útil para dashboards com muito dado onde o usuário escolhe a densidade de informação.</p>
+
+        <h3>Multi-marca (White Label)</h3>
+        <p>Empresas que vendem software white-label para múltiplos clientes podem ter um Mode por cliente. A marca A usa roxo, a marca B usa azul petróleo, a marca C usa verde — cada uma é um Mode da Collection <code>Brand/Color</code>. Um único arquivo Figma, três marcas, sem duplicação.</p>
+
+        <h3>Multi-idioma</h3>
+        <p>Crie uma Collection <code>Content/Copy</code> com Modes "pt-BR", "en-US" e "es-MX". Cada variable String tem o texto na língua correspondente. Ao trocar o Mode do frame, toda a interface muda de idioma — perfeito para apresentar um produto para um cliente internacional.</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Caso de uso</th><th>Collection</th><th>Modes</th><th>Tipo de variable</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Tema visual</td>
+                <td>Semantic/Color</td>
+                <td>Light, Dark, High Contrast</td>
+                <td>Color</td>
+              </tr>
+              <tr>
+                <td>Densidade de espaçamento</td>
+                <td>Semantic/Spacing</td>
+                <td>Comfortable, Compact</td>
+                <td>Number</td>
+              </tr>
+              <tr>
+                <td>Multi-marca</td>
+                <td>Brand/Color</td>
+                <td>Brand A, Brand B, Brand C</td>
+                <td>Color</td>
+              </tr>
+              <tr>
+                <td>Idioma</td>
+                <td>Content/Copy</td>
+                <td>pt-BR, en-US, es-MX</td>
+                <td>String</td>
+              </tr>
+              <tr>
+                <td>Plataforma</td>
+                <td>Semantic/Radius</td>
+                <td>Mobile (mais arredondado), Desktop (mais quadrado)</td>
+                <td>Number</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Limites de Modes por plano</h2>
+        <p>O Figma limita o número de Modes por Collection de acordo com o plano:</p>
+        <ul>
+          <li><strong>Starter (gratuito):</strong> 1 Mode por Collection (sem alternância real de tema);</li>
+          <li><strong>Professional:</strong> até 4 Modes por Collection;</li>
+          <li><strong>Organization / Enterprise:</strong> Modes ilimitados por Collection.</li>
+        </ul>
+
+        <div class="callout note">
+          <span class="callout-title">Estratégia para planos limitados</span>
+          <p>Se você tem apenas 4 Modes disponíveis, priorize os mais críticos: Light e Dark são quase sempre os primeiros. Os outros dois podem ser, por exemplo, dois idiomas ou duas densidades, dependendo das necessidades do produto.</p>
+        </div>
+
+        <h2>Exemplo de uso real: dark mode em 3 passos</h2>
+        <p>Imagine que você já tem uma tela de login completamente montada com variables semânticas de cor aplicadas. Para criar o dark mode:</p>
+        <ol>
+          <li><strong>Adicione o Mode "Dark"</strong> na Collection <code>Semantic/Color</code>;</li>
+          <li><strong>Preencha os valores Dark</strong> de cada variable (bg/surface → <code>#1A1E26</code>, text/default → <code>#E8EAEE</code>, etc.) — 10 a 15 variáveis no total;</li>
+          <li><strong>Selecione o Frame da tela</strong> e troque o Mode para "Dark" no painel direito.</li>
+        </ol>
+        <p>A tela inteira — todos os inputs, botões, texto, backgrounds — muda para dark mode instantaneamente. Zero retrabalho em componentes.</p>
+
+        <div class="figma-mock">
+          <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
+            <!-- Light version -->
+            <div style="background:#FFFFFF;border:1px solid #E2E6EC;border-radius:12px;padding:20px;width:200px;box-shadow:0 4px 12px rgba(16,22,33,.08);">
+              <div style="font-weight:700;font-size:15px;color:#1A1D23;margin-bottom:6px;">Bem-vindo</div>
+              <div style="font-size:12px;color:#5B6573;margin-bottom:12px;">Faça login para continuar</div>
+              <div style="background:#F0F2F5;border-radius:6px;padding:8px;margin-bottom:8px;font-size:12px;color:#5B6573;">e-mail@exemplo.com</div>
+              <div style="background:#F0F2F5;border-radius:6px;padding:8px;margin-bottom:12px;font-size:12px;color:#5B6573;">••••••••</div>
+              <div style="background:#6C4CF1;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#fff;font-weight:600;">Entrar</div>
+              <div style="text-align:center;margin-top:8px;font-size:11px;color:#6C4CF1;">Esqueci minha senha</div>
+            </div>
+            <!-- Dark version -->
+            <div style="background:#1A1E26;border:1px solid #2B313C;border-radius:12px;padding:20px;width:200px;box-shadow:0 4px 12px rgba(0,0,0,.4);">
+              <div style="font-weight:700;font-size:15px;color:#E8EAEE;margin-bottom:6px;">Bem-vindo</div>
+              <div style="font-size:12px;color:#A3ACBA;margin-bottom:12px;">Faça login para continuar</div>
+              <div style="background:#222731;border-radius:6px;padding:8px;margin-bottom:8px;font-size:12px;color:#A3ACBA;">e-mail@exemplo.com</div>
+              <div style="background:#222731;border-radius:6px;padding:8px;margin-bottom:12px;font-size:12px;color:#A3ACBA;">••••••••</div>
+              <div style="background:#9B81FF;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#14171D;font-weight:600;">Entrar</div>
+              <div style="text-align:center;margin-top:8px;font-size:11px;color:#9B81FF;">Esqueci minha senha</div>
+            </div>
+          </div>
+          <p class="mock-label">A mesma tela de login nos Modes "Light" e "Dark". Apenas o Mode foi trocado — zero duplicação de frames.</p>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Modes são colunas de valores alternativos dentro de uma Collection — uma variable tem um valor diferente para cada Mode.</li>
+          <li>Aplicar um Mode a um Frame muda instantaneamente todos os elementos que usam variables daquela Collection.</li>
+          <li>Frames filhos herdam o Mode do pai; é possível sobrescrever em frames específicos.</li>
+          <li>Modes servem para: light/dark, densidade, multi-marca, multi-idioma, multi-plataforma.</li>
+          <li>O limite de Modes depende do plano: 1 (Starter), 4 (Professional), ilimitado (Organization+).</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Implemente o dark mode em uma tela existente</h3>
+          <ol>
+            <li>Crie uma tela simples (card de produto ou tela de login) usando apenas variables da Collection <code>Semantic/Color</code> no Mode Light;</li>
+            <li>Adicione o Mode Dark à Collection e preencha os valores invertidos para cada variable;</li>
+            <li>Selecione o Frame da tela e troque para o Mode Dark;</li>
+            <li>Ajuste os valores até a versão dark estar bem contrastada e legível (use pelo menos razão de contraste 4.5:1 para texto).</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> a mesma tela funciona nos dois Modes sem nenhuma duplicação de frames e sem nenhum valor de cor "hardcoded" (tudo via variables).
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>White label com 3 marcas</h3>
+          <p>Monte um componente de header com logo placeholder, título do app, avatar e botão de ação. Crie uma Collection <code>Brand</code> com 3 Modes — "Marca A" (roxo), "Marca B" (azul petróleo <code>#0D7377</code>) e "Marca C" (laranja <code>#E8630A</code>). Configure as variables de cor de destaque para cada marca. Ao trocar o Mode no Frame do header, o botão, o logo e os destaques devem mudar de cor sem alterar nenhum componente.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. O que acontece com os frames filhos quando você aplica um Mode a um frame pai?</p>
+            <ul class="quiz-options">
+              <li>Nada — Modes só afetam o frame ao qual são aplicados diretamente</li>
+              <li>Os frames filhos recebem o Mode oposto automaticamente para criar contraste</li>
+              <li>Os frames filhos herdam o Mode do pai, a menos que tenham um Mode sobrescrito explicitamente</li>
+              <li>Os frames filhos precisam ser selecionados manualmente para receber o Mode</li>
+            </ul>
+            <div class="quiz-explain">Modes são herdados em cascata: um frame filho recebe o Mode do pai automaticamente. Mas você pode sobrescrever o Mode em qualquer frame filho para criar exceções localizadas.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. Qual plano do Figma permite usar Modes ilimitados por Collection?</p>
+            <ul class="quiz-options">
+              <li>Organization ou Enterprise</li>
+              <li>Professional</li>
+              <li>Starter (gratuito)</li>
+              <li>Qualquer plano pago</li>
+            </ul>
+            <div class="quiz-explain">Apenas os planos <strong>Organization e Enterprise</strong> têm Modes ilimitados. O Professional é limitado a 4 Modes por Collection; o Starter a apenas 1 (sem alternância real de tema).</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">3. Além de light/dark, qual outro caso de uso de Modes é mencionado na lição?</p>
+            <ul class="quiz-options">
+              <li>Animações de transição entre estados</li>
+              <li>Densidade de espaçamento (Comfortable/Compact) para interfaces com mais ou menos informação</li>
+              <li>Versionamento histórico de mudanças de design</li>
+              <li>Diferentes resoluções de exportação (1x, 2x, 3x)</li>
+            </ul>
+            <div class="quiz-explain">Modes de <strong>densidade</strong> permitem ter uma interface compacta (menos padding) e uma confortável (mais padding) a partir da mesma estrutura de componentes — muito útil em dashboards e aplicações enterprise.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

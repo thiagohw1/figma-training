@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estruturando um Design System escalável | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="03-06-design-system-escalavel" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🏗️ Módulo 3 · Avançado · Lição 6 de 9</div>
+        <h1>Estruturando um Design System escalável</h1>
+        <p class="lead">Chegou a hora de juntar tudo: foundations, tokens, Collections, aliases, Modes e convenções de nomenclatura numa arquitetura coerente, construída do zero, passo a passo.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~28 min</span>
+          <span>🎯 Nível: Avançado</span>
+          <span>🛠️ Pratique no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Montar a arquitetura completa de Collections (primitives, semantic, component) para um DS real;</li>
+            <li>Definir as foundations completas: cor, tipografia, espaçamento, radius, sombras e grade;</li>
+            <li>Aplicar naming consistente em todos os níveis de token;</li>
+            <li>Estruturar um arquivo Figma com páginas organizadas seguindo boas práticas de DS;</li>
+            <li>Construir a fundação de tokens do zero num projeto real.</li>
+          </ul>
+        </div>
+
+        <h2>A arquitetura em três camadas</h2>
+        <p>Um Design System escalável no Figma tem três camadas de Collections de Variables, cada uma com uma responsabilidade clara:</p>
+
+        <div class="diagram">
+          <svg viewBox="0 0 580 180" role="img" aria-label="Três camadas: Primitives na base, Semantic no meio, Component no topo">
+            <!-- Primitives -->
+            <rect x="30" y="120" width="520" height="48" rx="10" fill="var(--primary-soft)" stroke="var(--primary)" stroke-width="1.5"/>
+            <text x="290" y="139" text-anchor="middle" fill="var(--primary)" font-size="13" font-weight="700" font-family="sans-serif">Primitives</text>
+            <text x="290" y="157" text-anchor="middle" fill="var(--text-muted)" font-size="11" font-family="sans-serif">Primitives/Color · Primitives/Number · (valores brutos sem contexto)</text>
+            <!-- Semantic -->
+            <rect x="90" y="66" width="400" height="46" rx="10" fill="var(--info-soft)" stroke="var(--info)" stroke-width="1.5"/>
+            <text x="290" y="85" text-anchor="middle" fill="var(--info)" font-size="13" font-weight="700" font-family="sans-serif">Semantic</text>
+            <text x="290" y="102" text-anchor="middle" fill="var(--text-muted)" font-size="11" font-family="sans-serif">Semantic/Color · Semantic/Spacing · Semantic/Radius (aliases com propósito)</text>
+            <!-- Component -->
+            <rect x="160" y="14" width="260" height="44" rx="10" fill="var(--success-soft)" stroke="var(--success)" stroke-width="1.5"/>
+            <text x="290" y="33" text-anchor="middle" fill="var(--success)" font-size="13" font-weight="700" font-family="sans-serif">Component Tokens</text>
+            <text x="290" y="50" text-anchor="middle" fill="var(--text-muted)" font-size="11" font-family="sans-serif">button.bg.primary · input.border.error (aliases de semânticos)</text>
+          </svg>
+          <p class="mock-label">A arquitetura em três camadas. Primitives fornecem os valores; Semantic dá contexto; Component tokens específicos permitem overrides sem quebrar a hierarquia.</p>
+        </div>
+
+        <h2>Foundations completas — o que precisa existir</h2>
+        <p>Antes de criar qualquer componente, você precisa definir todas as foundations. Aqui está o checklist completo:</p>
+
+        <h3>1. Cor</h3>
+        <ul>
+          <li><strong>Escala da cor primária:</strong> 10 tons (50, 100, 200, 300, 400, 500, 600, 700, 800, 900);</li>
+          <li><strong>Cores semânticas:</strong> success (verde), warning (amarelo), danger (vermelho), info (azul);</li>
+          <li><strong>Neutros:</strong> 11 tons (0 = branco → 1000 = preto), usados para textos, fundos, bordas;</li>
+          <li><strong>Tokens semânticos:</strong> bg/surface, bg/subtle, text/default, text/muted, border/default, border/strong, feedback/success, feedback/warning, feedback/danger, feedback/info.</li>
+        </ul>
+
+        <h3>2. Tipografia</h3>
+        <ul>
+          <li><strong>Família de fonte:</strong> sistema (Inter, -apple-system…) ou fonte da marca;</li>
+          <li><strong>Escala de tamanhos:</strong> 12, 14, 16, 18, 20, 24, 28, 32, 40, 48 (tokens Number primitivos);</li>
+          <li><strong>Pesos:</strong> 400 (regular), 500 (medium), 600 (semibold), 700 (bold);</li>
+          <li><strong>Line-heights:</strong> 1.2 (display), 1.35 (heading), 1.5 (body), 1.7 (relaxed);</li>
+          <li><strong>Text Styles:</strong> display-xl, display-lg, heading-xl, heading-lg, heading-md, body-lg, body-md, body-sm, label-lg, label-sm, caption.</li>
+        </ul>
+
+        <h3>3. Espaçamento</h3>
+        <p>Use uma <strong>escala de 4 px</strong> — todos os valores são múltiplos de 4:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Token</th><th>Valor</th><th>Uso típico</th></tr></thead>
+            <tbody>
+              <tr><td><code>spacing/1</code></td><td>4px</td><td>Micro gaps, ícones inline</td></tr>
+              <tr><td><code>spacing/2</code></td><td>8px</td><td>Gaps mínimos entre elementos relacionados</td></tr>
+              <tr><td><code>spacing/3</code></td><td>12px</td><td>Padding pequeno de componentes</td></tr>
+              <tr><td><code>spacing/4</code></td><td>16px</td><td>Padding padrão de componentes</td></tr>
+              <tr><td><code>spacing/6</code></td><td>24px</td><td>Padding generoso, gaps entre seções de card</td></tr>
+              <tr><td><code>spacing/8</code></td><td>32px</td><td>Padding de seções, gaps entre cards</td></tr>
+              <tr><td><code>spacing/12</code></td><td>48px</td><td>Espaçamento entre seções de página</td></tr>
+              <tr><td><code>spacing/16</code></td><td>64px</td><td>Margens grandes, seções hero</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>4. Radius (arredondamento de cantos)</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Token semântico</th><th>Valor</th><th>Usado em</th></tr></thead>
+            <tbody>
+              <tr><td><code>radius/none</code></td><td>0</td><td>Imagens de borda-a-borda, tabelas</td></tr>
+              <tr><td><code>radius/sm</code></td><td>4px</td><td>Tags, badges, tooltips</td></tr>
+              <tr><td><code>radius/md</code></td><td>8px</td><td>Inputs, dropdowns, menus</td></tr>
+              <tr><td><code>radius/lg</code></td><td>12px</td><td>Cards, modais pequenos</td></tr>
+              <tr><td><code>radius/xl</code></td><td>16px</td><td>Modais, sheets, drawers</td></tr>
+              <tr><td><code>radius/full</code></td><td>9999px</td><td>Botões pill, avatares circulares, chips</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>5. Sombras (Elevation)</h3>
+        <ul>
+          <li><code>shadow/sm</code> — sombra muito leve, usada em inputs e elementos de formulário;</li>
+          <li><code>shadow/md</code> — sombra de cards e surfaces elevadas;</li>
+          <li><code>shadow/lg</code> — sombra de dropdowns, popovers e tooltips;</li>
+          <li><code>shadow/xl</code> — sombra de modais e sheets.</li>
+        </ul>
+        <p>Sombras ainda requerem <strong>Effect Styles</strong> no Figma (não Variables) pois podem ter múltiplas camadas. Mas você pode criar tokens Number para os valores de blur e offset e aplicá-los via Variables às Effect Styles via Code Syntax.</p>
+
+        <h3>6. Grade e Layout</h3>
+        <ul>
+          <li><strong>Mobile:</strong> 4 colunas, 16 px de margem, 8 px de gutter;</li>
+          <li><strong>Tablet:</strong> 8 colunas, 24 px de margem, 16 px de gutter;</li>
+          <li><strong>Desktop:</strong> 12 colunas, 32–64 px de margem, 24 px de gutter;</li>
+          <li><strong>Largura máxima de conteúdo:</strong> 1200–1440 px dependendo do produto.</li>
+        </ul>
+
+        <h2>Passo a passo: construindo a fundação do zero</h2>
+        <p>Siga esta sequência para montar um DS funcional em um arquivo Figma novo:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Estruture as páginas do arquivo.</strong>
+            Crie as páginas: <code>🏠 Cover</code>, <code>🎨 Foundations</code>, <code>📦 Components</code>, <code>🧩 Patterns</code>, <code>📄 Templates</code>. A página Foundations concentra todas as samples visuais; as Variables ficam no painel de Variables, não em páginas separadas.
+          </li>
+          <li>
+            <strong>Crie a Collection <code>Primitives/Color</code>.</strong>
+            No painel de Variables, crie a Collection. Adicione os tokens primitivos: escala de azul (50–900), escala de verde/vermelho/amarelo para feedback, neutros (0–1000). Sem Modes — primitivos são absolutos.
+          </li>
+          <li>
+            <strong>Crie a Collection <code>Primitives/Number</code>.</strong>
+            Adicione a escala de spacing (4, 8, 12, 16, 24, 32, 48, 64), escala de font-size (12, 14, 16, 18, 20, 24, 28, 32), e valores de radius (0, 4, 8, 12, 16, 9999).
+          </li>
+          <li>
+            <strong>Crie a Collection <code>Semantic/Color</code> com Modes Light e Dark.</strong>
+            Adicione todos os tokens semânticos como aliases para primitivos. Preencha os dois Modes com os valores corretos. Ative o Scoping correto para cada token.
+          </li>
+          <li>
+            <strong>Crie a Collection <code>Semantic/Spacing</code>.</strong>
+            Adicione tokens semânticos de spacing: <code>spacing/component/xs</code>, <code>sm</code>, <code>md</code>, <code>lg</code>; <code>spacing/layout/xs</code>, <code>sm</code>, <code>md</code>, <code>lg</code>; <code>spacing/inset/sm</code>, <code>md</code>, <code>lg</code>. Crie Modes Comfortable e Compact com valores distintos.
+          </li>
+          <li>
+            <strong>Crie a Collection <code>Semantic/Radius</code>.</strong>
+            Tokens semânticos: <code>radius/button</code>, <code>radius/input</code>, <code>radius/card</code>, <code>radius/modal</code>, <code>radius/chip</code>, <code>radius/avatar</code>. Cada um aponta para o primitivo correto.
+          </li>
+          <li>
+            <strong>Crie as Text Styles.</strong>
+            No painel de Styles, crie os Text Styles usando as fontes e tamanhos definidos. Conecte as cores de texto aos tokens semânticos usando Variables.
+          </li>
+          <li>
+            <strong>Crie as Effect Styles para sombras.</strong>
+            Adicione os 4 níveis de sombra como Effect Styles.
+          </li>
+          <li>
+            <strong>Monte as amostras visuais na página Foundations.</strong>
+            Na página Foundations, crie um frame por categoria de foundation com amostras — a paleta de cores, a escala de tipos, os ícones, as sombras. Isso serve tanto como documentação visual quanto como teste de que as variables estão corretamente aplicadas.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Commece menor, escale depois</span>
+          <p>Não precisa criar tudo de uma vez. Comece com as 3 Collections mais importantes: <code>Primitives/Color</code>, <code>Semantic/Color</code> (com Light/Dark) e <code>Primitives/Number</code>. Isso já cobre 80% das necessidades. Adicione Semantic/Spacing, Radius e as demais Collections à medida que os primeiros componentes forem construídos e as necessidades ficarem claras.</p>
+        </div>
+
+        <h2>Naming consistente em todos os níveis</h2>
+        <p>A tabela abaixo mostra a progressão completa do naming de um token de cor desde o primitivo até o componente:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Nível</th><th>Collection</th><th>Exemplo de nome</th><th>Valor ou alias</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Primitivo</td>
+                <td><code>Primitives/Color</code></td>
+                <td><code>color/blue/500</code></td>
+                <td><code>#6C4CF1</code></td>
+              </tr>
+              <tr>
+                <td>Semântico</td>
+                <td><code>Semantic/Color</code></td>
+                <td><code>color/bg/brand</code></td>
+                <td>→ <code>color/blue/500</code></td>
+              </tr>
+              <tr>
+                <td>Componente</td>
+                <td><code>Components/Button</code> (opcional)</td>
+                <td><code>button/bg/primary</code></td>
+                <td>→ <code>color/bg/brand</code></td>
+              </tr>
+              <tr>
+                <td>Propriedade CSS</td>
+                <td>—</td>
+                <td><code>--button-bg-primary</code></td>
+                <td>via Code Syntax</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>A empresa de software B2B "Ventura" está construindo um DS para seus 3 produtos (CRM, ERP, HCM). A arquitetura escolhida:</p>
+        <ul>
+          <li><strong>4 Collections primitivas</strong> (Color, Spacing, Radius, Typography Size) — sem Modes;</li>
+          <li><strong>3 Collections semânticas</strong> (Color com Light/Dark, Spacing com Comfortable/Compact, Radius sem Modes) — usando aliases para primitivos;</li>
+          <li><strong>1 Collection de Brand</strong> com 3 Modes (CRM = azul, ERP = verde, HCM = laranja) — aliases para os primitivos de cor;</li>
+          <li>Text Styles e Effect Styles para tipografia e sombras;</li>
+          <li>Total de 180 tokens. Equipe de 8 designers, todos trabalhando no mesmo arquivo de Library.</li>
+        </ul>
+        <p>Resultado: qualquer um dos 3 produtos pode ser gerado a partir do mesmo arquivo de componentes apenas trocando o Mode de Brand + Light/Dark. 80% de reuso de componentes entre produtos.</p>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>A arquitetura em 3 camadas (Primitives → Semantic → Component) é a base de todo DS escalável.</li>
+          <li>Foundations completas: cor, tipografia, espaçamento, radius, sombras e grade.</li>
+          <li>Use escala de 4 px para spacing e Text Styles para tipografia composta.</li>
+          <li>Sombras ainda precisam de Effect Styles; demais valores numéricos e de cor usam Variables.</li>
+          <li>Naming consistente segue: categoria/grupo/variante/estado em todos os níveis.</li>
+          <li>Comece com 3 Collections, escale conforme a necessidade aparece.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Construa a fundação completa</h3>
+          <p>Crie um arquivo "Meu Design System" e:</p>
+          <ol>
+            <li>Estruture 5 páginas: Cover, Foundations, Components, Patterns, Templates;</li>
+            <li>Crie as Collections <code>Primitives/Color</code>, <code>Primitives/Number</code> e <code>Semantic/Color</code> (com Modes Light e Dark);</li>
+            <li>Monte a amostra visual da paleta na página Foundations — grades de cor com os 10 tons de cada família, aplicando as variables de cor;</li>
+            <li>Crie pelo menos 6 Text Styles cobrindo display, heading, body, label e caption;</li>
+            <li>Crie 4 Effect Styles para sombras (sm, md, lg, xl).</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> o arquivo tem todas as foundations definidas, a amostra de paleta muda de aparência ao trocar o Mode do Frame pai para Dark, e todos os elementos usam Variables ou Styles — zero valores hardcoded.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>DS para um produto real existente</h3>
+          <p>Escolha um app que você usa frequentemente (pode ser Spotify, iFood, Airbnb, Nubank). Faça um audit visual completo: identifique as cores primárias, secundárias e neutras, a fonte usada, os tamanhos típicos de texto, os padrões de espaçamento e os raios de cantos. A partir desse audit, construa a fundação de tokens do DS desse produto — com Primitives e Semânticos — no Figma. O objetivo não é ser pixel-perfect, mas sim demonstrar que você entende a estrutura do DS subjacente a esse produto.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Por que sombras ainda requerem Effect Styles em vez de Variables no Figma?</p>
+            <ul class="quiz-options">
+              <li>Variables não podem armazenar valores relacionados a sombras por limitação técnica</li>
+              <li>Sombras podem ter múltiplas camadas e propriedades compostas (blur, spread, offset, cor), que Variables de tipo único não suportam</li>
+              <li>Effect Styles aparecem no Dev Mode e Variables não</li>
+              <li>Variables de sombra estão disponíveis apenas no plano Enterprise</li>
+            </ul>
+            <div class="quiz-explain">Effect Styles suportam sombras com múltiplas camadas, combinações de Inner Shadow + Drop Shadow, opacidade e blend modes — uma composição complexa que Variables (que armazenam um único valor primitivo) não conseguem representar.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">2. Qual é a escala de espaçamento recomendada na lição para garantir consistência?</p>
+            <ul class="quiz-options">
+              <li>Escala de 5 px: 5, 10, 15, 20, 25, 30…</li>
+              <li>Escala de 8 px apenas: 8, 16, 24, 32, 64…</li>
+              <li>Escala de 4 px: 4, 8, 12, 16, 24, 32, 48, 64 (múltiplos de 4)</li>
+              <li>Qualquer escala, desde que seja consistente internamente</li>
+            </ul>
+            <div class="quiz-explain">A <strong>escala de 4 px</strong> é a mais adotada em Design Systems profissionais. Ela permite granularidade suficiente (4, 8, 12) para componentes densos sem criar valores caóticos, e alinha perfeitamente com grades de 8 px usadas em grids de layout.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">3. Por que tokens semânticos de radius (ex: <code>radius/button</code>) são preferíveis a usar tokens primitivos diretamente nos componentes?</p>
+            <ul class="quiz-options">
+              <li>Tokens semânticos têm nomes mais curtos</li>
+              <li>Tokens primitivos não podem ser vinculados a Corner Radius</li>
+              <li>Tokens semânticos são exportados automaticamente para CSS</li>
+              <li>Permitem mudar o radius de todos os botões alterando um único token semântico, sem tocar em cada instância de componente</li>
+            </ul>
+            <div class="quiz-explain">Tokens semânticos de radius (<code>radius/button</code> apontando para <code>radius/lg</code>) permitem que uma decisão de design ("botões devem ser mais quadrados") seja implementada mudando <strong>um único valor</strong>, sem caçar todos os componentes que usam radius.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

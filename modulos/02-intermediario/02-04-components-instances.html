@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Components e instances | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="02-04-components-instances" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">📦 Módulo 2 · Intermediário · Lição 4 de 9</div>
+        <h1>Components e instances</h1>
+        <p class="lead">Components são a base de qualquer design system no Figma: crie uma vez, use em qualquer lugar e, ao atualizar o original, todas as cópias se atualizam automaticamente. Essa é a diferença entre um arquivo de 100 frames e um design system real.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~20 min</span>
+          <span>🎯 Nível: Intermediário</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Criar um componente (Main Component) a partir de qualquer elemento;</li>
+            <li>Usar e distribuir instances em múltiplas telas;</li>
+            <li>Aplicar overrides de texto, cor e layout em uma instance sem afetar o Main;</li>
+            <li>Resetar overrides, fazer detach e navegar no painel Assets;</li>
+            <li>Estruturar componentes aninhados para máxima flexibilidade.</li>
+          </ul>
+        </div>
+
+        <h2>Main Component vs Instance</h2>
+        <p>O Figma trabalha com um modelo de <strong>herança unidirecional</strong>: existe o componente original (<strong>Main Component</strong>) e existem suas cópias (<strong>Instances</strong>). A relação é simples:</p>
+        <ul>
+          <li>Alterações feitas no Main Component se propagam para todas as instances.</li>
+          <li>Alterações feitas em uma instance (chamadas de <strong>overrides</strong>) ficam locais — não afetam o Main nem outras instances.</li>
+          <li>Se o Main mudar, as instances recebem a atualização, mas mantêm seus próprios overrides quando possível.</li>
+        </ul>
+
+        <div class="callout info">
+          <span class="callout-title">Identificando Main Component e Instance visualmente</span>
+          <p>No canvas, o <strong>Main Component</strong> tem um ícone de losango com borda sólida (<code>◆</code>) na lista de Layers e no cabeçalho do painel. A <strong>Instance</strong> tem um losango cheio (<code>◈</code>). No painel direito, ao selecionar uma instance, você verá o nome do componente de origem e um botão de link para ir até o Main.</p>
+        </div>
+
+        <h2>Criando um componente</h2>
+
+        <ol class="steps">
+          <li>
+            <strong>Desenhe o elemento.</strong>
+            Crie o elemento que você quer tornar reutilizável. Por exemplo: um botão com Auto Layout horizontal, padding 12×20, texto "Primário", fill com a cor da marca, border-radius 8.
+          </li>
+          <li>
+            <strong>Selecione e crie o componente.</strong>
+            Com o elemento selecionado, pressione <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>K</kbd> (Windows) / <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>K</kbd> (Mac). Ou clique com o botão direito e escolha <strong>Create component</strong>. O ícone na lista de Layers muda para o losango de Main Component.
+          </li>
+          <li>
+            <strong>Nomeie com cuidado.</strong>
+            Dê um nome descritivo. Para organizar em grupos no painel Assets, use a barra "/" como separador: <code>Buttons/Primary</code>, <code>Buttons/Secondary</code>, <code>Forms/Input</code>.
+          </li>
+          <li>
+            <strong>Crie uma instance.</strong>
+            Segure <kbd>Alt</kbd> (Windows) / <kbd>⌥</kbd> (Mac) e arraste o Main Component — isso cria uma instance no lugar. Ou pressione <kbd>Ctrl</kbd> + <kbd>D</kbd> para duplicar (também gera uma instance).
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Boas práticas de organização</span>
+          <p>Mantenha seus Main Components em uma página separada chamada <strong>"🧩 Components"</strong> ou <strong>"Library"</strong>. Assim, o arquivo de design fica limpo e você sabe exatamente onde está cada componente. O Figma permite publicar essa biblioteca para toda a equipe via <strong>Publish styles and components</strong>.</p>
+        </div>
+
+        <h2>Overrides: personalizando sem quebrar</h2>
+        <p>Uma instance herda tudo do Main Component — mas você pode sobrescrever (override) certas propriedades para adaptar à situação. As overrides possíveis em instances simples são:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Override</th><th>O que muda</th><th>Exemplo</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Texto</strong></td><td>Conteúdo do texto</td><td>"Continuar" em vez de "Primário"</td></tr>
+              <tr><td><strong>Fill / cor</strong></td><td>Cor de fundo ou de texto</td><td>Botão vermelho para ação destrutiva</td></tr>
+              <tr><td><strong>Stroke</strong></td><td>Borda do elemento</td><td>Adicionar borda tracejada</td></tr>
+              <tr><td><strong>Imagem</strong></td><td>Conteúdo de um fill de imagem</td><td>Avatar de usuário diferente em cada card</td></tr>
+              <tr><td><strong>Visibilidade</strong></td><td>Mostrar/ocultar camadas internas</td><td>Esconder ícone em uma variante sem ícone</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout warning">
+          <span class="callout-title">O que você NÃO deve (ou não pode) fazer em uma instance</span>
+          <p>Você não pode mover camadas internas de uma instance para fora dela, nem adicionar novas camadas. Se você precisar dessas alterações estruturais, use <strong>Detach</strong> (veja adiante) ou, melhor ainda, use <strong>Variants e Component Properties</strong> (próximas lições) para criar variações formais no próprio componente.</p>
+        </div>
+
+        <h3>Resetar overrides</h3>
+        <p>Se você fez overrides em uma instance e quer voltar ao estado do Main Component, clique com o botão direito na instance e escolha <strong>Reset all overrides</strong>. Para resetar apenas uma propriedade específica, clique com o botão direito na camada interna e escolha <strong>Reset changes</strong>.</p>
+
+        <h2>Detach: desconectando uma instance</h2>
+        <p>Às vezes você precisa modificar estruturalmente uma cópia — adicionar uma camada, mover elementos internos, alterar a hierarquia. Para isso, use o <strong>Detach instance</strong>: a instance se transforma em um frame comum, sem vínculo com o Main Component. Alterações futuras no Main não mais afetarão essa cópia.</p>
+        <p>Para fazer o detach: clique com o botão direito na instance e escolha <strong>Detach instance</strong>, ou use <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>B</kbd> (Windows) / <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>B</kbd> (Mac).</p>
+
+        <div class="callout danger">
+          <span class="callout-title">Detach é irreversível</span>
+          <p>Após o detach, não existe "re-attach". Se você perceber que precisava de uma variação formal, o caminho correto é criar um Variant (próxima lição) ou uma Component Property no componente original, não fazer detach. Use detach apenas quando realmente precisa de uma versão completamente única e ad-hoc.</p>
+        </div>
+
+        <h2>O painel Assets</h2>
+        <p>O painel <strong>Assets</strong> (ícone de quatro quadradinhos na barra esquerda, ou <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>O</kbd> / <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>O</kbd>) é onde você encontra todos os componentes disponíveis — do arquivo local e de bibliotecas publicadas da equipe.</p>
+        <p>Funcionalidades do painel Assets:</p>
+        <ul>
+          <li><strong>Busca:</strong> encontre rapidamente qualquer componente pelo nome.</li>
+          <li><strong>Grupos:</strong> componentes nomeados com "/" aparecem organizados em pastas.</li>
+          <li><strong>Drag-and-drop:</strong> arraste um componente do painel para o canvas — o Figma cria automaticamente uma instance.</li>
+          <li><strong>Libraries:</strong> ative ou desative bibliotecas de equipe na aba Libraries.</li>
+        </ul>
+
+        <h2>Instâncias aninhadas</h2>
+        <p>Componentes podem conter outros componentes dentro deles — são as <strong>instâncias aninhadas</strong>. Isso é fundamental para design systems mais complexos:</p>
+        <ul>
+          <li>Um componente <code>Card/Product</code> pode conter uma instance de <code>Button/Primary</code>.</li>
+          <li>Um componente <code>Navigation/Header</code> pode conter instances de <code>Icon/Menu</code> e <code>Avatar/Small</code>.</li>
+        </ul>
+        <p>Quando o componente de botão interno for atualizado (ex.: nova cor ou border-radius), todos os cards que usam esse botão se atualizam automaticamente. Isso é a base de um design system verdadeiro.</p>
+
+        <div class="callout pro">
+          <span class="callout-title">Substituindo instâncias aninhadas (Instance swap)</span>
+          <p>Dentro de uma instance, você pode trocar um sub-componente por outro: selecione a instance aninhada, e no painel direito você verá um menu de seleção de componente. Use isso para trocar ícones sem fazer detach. Na próxima lição vamos ver como formalizar isso com Component Properties do tipo Instance Swap.</p>
+        </div>
+
+        <h2>Exemplo de uso real: botão reutilizável em 20 telas</h2>
+        <p>Imagine um app com 20 telas. Cada tela tem ao menos um botão principal. Sem components, você tem 20 retângulos independentes — mudar a cor do botão exige 20 alterações manuais.</p>
+        <p>Com components: você cria <strong>um único Main Component</strong> <code>Button/Primary</code>. Em cada tela, você usa uma instance. Quando o cliente pede "o botão agora é verde, não roxo", você muda a cor no Main Component. Todas as 20 telas se atualizam em um segundo.</p>
+
+        <div class="figma-mock">
+          <div style="display:flex;flex-direction:column;gap:16px;width:100%;max-width:500px;">
+            <div style="background:var(--surface);border:2px solid var(--primary);border-radius:10px;padding:14px 18px;">
+              <div style="font-size:11px;color:var(--primary);font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;">◆ Main Component — Button/Primary</div>
+              <div style="display:flex;gap:10px;align-items:center;">
+                <div style="background:var(--primary);color:white;padding:10px 20px;border-radius:8px;font-weight:600;font-size:14px;display:inline-flex;gap:8px;align-items:center;">
+                  <span>→</span><span>Continuar</span>
+                </div>
+                <div style="color:var(--text-muted);font-size:13px;">← componente original</div>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+              <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px;">
+                <div style="font-size:10px;color:var(--text-soft);margin-bottom:6px;">◈ Instance — Tela de Login</div>
+                <div style="background:var(--primary);color:white;padding:10px 20px;border-radius:8px;font-weight:600;font-size:14px;text-align:center;">Entrar</div>
+                <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">override: texto "Entrar"</div>
+              </div>
+              <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px;">
+                <div style="font-size:10px;color:var(--text-soft);margin-bottom:6px;">◈ Instance — Tela de Checkout</div>
+                <div style="background:var(--primary);color:white;padding:10px 20px;border-radius:8px;font-weight:600;font-size:14px;text-align:center;">Pagar R$ 199</div>
+                <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">override: texto do preço</div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">Um Main Component, duas instances com overrides de texto diferentes. Ao mudar a cor no Main, ambas se atualizam.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Criar componente</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>K</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>K</kbd></td></tr>
+              <tr><td>Abrir painel Assets</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>O</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>O</kbd></td></tr>
+              <tr><td>Detach instance</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>B</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>B</kbd></td></tr>
+              <tr><td>Duplicar (cria instance)</td><td><kbd>Ctrl</kbd> + <kbd>D</kbd></td><td><kbd>⌘</kbd> + <kbd>D</kbd></td></tr>
+              <tr><td>Ir para Main Component</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + clique no link</td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + clique no link</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>O <strong>Main Component</strong> é o único original; <strong>Instances</strong> são as cópias vinculadas.</li>
+          <li>Alterações no Main se propagam para todas as instances automaticamente.</li>
+          <li><strong>Overrides</strong> (texto, cor, imagem, visibilidade) personalizam instances localmente sem afetar o Main.</li>
+          <li><strong>Detach</strong> desvincula a instance permanentemente — use só quando necessário.</li>
+          <li>O painel <strong>Assets</strong> centraliza todos os componentes para arrastar e usar.</li>
+          <li>Componentes aninhados formam a estrutura de um design system real.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Biblioteca de botões</h3>
+          <ol>
+            <li>Crie três variações de botão com Auto Layout: Primary (fundo colorido), Secondary (apenas borda), Destructive (fundo vermelho). Nomeie-os como <code>Button/Primary</code>, <code>Button/Secondary</code>, <code>Button/Destructive</code>.</li>
+            <li>Transforme cada um em Main Component (<kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Alt</kbd>/<kbd>⌥</kbd> + <kbd>K</kbd>).</li>
+            <li>Crie uma tela de confirmação com todos os três: "Confirmar" (Primary), "Cancelar" (Secondary), "Excluir conta" (Destructive) — cada um como instance.</li>
+            <li>Mude a cor de fundo do botão Primary. Verifique que a instance "Confirmar" se atualizou.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> ao alterar o Main Component Primary, a instance na tela de confirmação reflete a mudança imediatamente.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Card aninhado com componentes</h3>
+          <p>Crie um componente <code>Card/Product</code> que contenha internamente instances de <code>Button/Primary</code> e <code>Badge/Sale</code> (um badge que você também deve criar como componente). Use o card em três telas diferentes, com overrides de texto (nome do produto, preço) e imagem em cada instance. Ao final, altere o border-radius do card no Main Component — confirme que os três cards nas telas se atualizam.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">1. Você alterou a cor do botão no Main Component. O que acontece com as instances já espalhadas pelas telas?</p>
+            <ul class="quiz-options">
+              <li>Recebem a atualização automaticamente, mantendo overrides individuais</li>
+              <li>Nada muda — cada instance é independente</li>
+              <li>Recebem a atualização, mas perdem todos os overrides</li>
+              <li>O Figma exibe um aviso pedindo confirmação para cada instance</li>
+            </ul>
+            <div class="quiz-explain">Alterações no Main Component propagam para todas as instances automaticamente. Overrides existentes (como textos diferentes) são mantidos, pois sobreescrevem somente as propriedades que o designer alterou explicitamente.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">2. Qual atalho cria um componente a partir da seleção?</p>
+            <ul class="quiz-options">
+              <li>Ctrl/⌘ + G</li>
+              <li>Ctrl/⌘ + K</li>
+              <li>Ctrl/⌘ + Alt/⌥ + K</li>
+              <li>Shift + C</li>
+            </ul>
+            <div class="quiz-explain"><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>K</kbd> (Win) / <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>K</kbd> (Mac) cria um componente da seleção atual. O Ctrl + G cria um Group (sem superpoderes de componente).</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">3. Quando você deve usar "Detach instance"?</p>
+            <ul class="quiz-options">
+              <li>Sempre que quiser mudar o texto de uma instance</li>
+              <li>Para propagar uma mudança para todas as outras instances</li>
+              <li>Para criar uma nova variação formal do componente</li>
+              <li>Quando precisa modificar a estrutura interna de uma cópia específica de forma única e irreversível</li>
+            </ul>
+            <div class="quiz-explain">Detach converte a instance em um frame comum, sem vínculo com o Main. Use apenas quando precisar de uma versão estruturalmente única, irreversível. Para variações formais, prefira Variants e Component Properties.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

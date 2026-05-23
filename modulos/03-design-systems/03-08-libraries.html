@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Libraries: publicar, consumir, versionar | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="03-08-libraries" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🏗️ Módulo 3 · Avançado · Lição 8 de 9</div>
+        <h1>Libraries: publicar, consumir, versionar</h1>
+        <p class="lead">Uma Library transforma seu DS de um arquivo privado em uma fonte de verdade compartilhada — qualquer arquivo do time pode consumir os mesmos componentes, styles e variables, e receber atualizações automaticamente quando o DS evolui.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~22 min</span>
+          <span>🎯 Nível: Avançado</span>
+          <span>🛠️ Pratique no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Publicar um arquivo como Library, incluindo Components, Styles e Variables;</li>
+            <li>Habilitar uma Library em arquivos de produto e usar seus recursos;</li>
+            <li>Revisar e aceitar updates quando a Library for atualizada;</li>
+            <li>Entender o modelo de versionamento do Figma para Libraries;</li>
+            <li>Gerenciar Team Libraries e adotar boas práticas de governança.</li>
+          </ul>
+        </div>
+
+        <h2>O que é uma Library no Figma?</h2>
+        <p>Uma <strong>Library</strong> (biblioteca) é um arquivo Figma publicado que disponibiliza seus componentes, Text Styles, Color Styles, Effect Styles e Variables para outros arquivos dentro do mesmo time (Team) ou organização.</p>
+        <p>Sem Libraries, cada arquivo de produto precisa ter suas próprias cópias dos componentes — quando o botão muda, você precisa atualizar em cada arquivo separadamente. Com uma Library, a mudança acontece no arquivo do DS e todos os arquivos consumidores podem aceitar a atualização com um clique.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Library vs. cópia local</span>
+          <p>Uma instância de componente vinda de uma Library mantém uma <strong>conexão permanente</strong> com o componente original. Uma cópia local (componente criado diretamente no arquivo de produto) não recebe updates automáticos. Sempre prefira instâncias de Library para componentes compartilhados.</p>
+        </div>
+
+        <h2>O que pode ser publicado em uma Library</h2>
+        <ul>
+          <li><strong>Components:</strong> todos os componentes marcados como publicáveis (não-ocultos);</li>
+          <li><strong>Color Styles:</strong> estilos de cor criados no arquivo;</li>
+          <li><strong>Text Styles:</strong> estilos de tipografia;</li>
+          <li><strong>Effect Styles:</strong> sombras e blurs;</li>
+          <li><strong>Grid Styles:</strong> grades e layouts;</li>
+          <li><strong>Variables:</strong> todas as Collections de Variables do arquivo.</li>
+        </ul>
+
+        <h2>Passo a passo: publicando sua Library</h2>
+
+        <ol class="steps">
+          <li>
+            <strong>Prepare o arquivo do DS.</strong>
+            Certifique-se de que todos os componentes têm nomes claros, as Variables estão organizadas em Collections, e os Styles estão nomeados corretamente. Componentes com nome começando em <code>_</code> podem ser marcados como "Private" para não aparecerem na Library.
+          </li>
+          <li>
+            <strong>Abra o menu de Library.</strong>
+            No arquivo do DS, clique no menu hamburger (≡) no canto superior esquerdo → <strong>Libraries</strong>. O painel de Libraries abre.
+          </li>
+          <li>
+            <strong>Publique o arquivo.</strong>
+            No painel de Libraries, clique em <strong>Publish</strong> (ou "Publish all changes" se já foi publicado antes). Uma caixa de diálogo mostra o que será publicado — revise a lista.
+          </li>
+          <li>
+            <strong>Adicione uma descrição da atualização.</strong>
+            No campo de mensagem, descreva o que mudou: "Adicionados componentes de Input; corrigido padding do Button/MD; adicionado Mode Dark em Semantic/Color". Essa mensagem aparece para os consumidores quando eles recebem o update.
+          </li>
+          <li>
+            <strong>Confirme a publicação.</strong>
+            Clique em <strong>Publish</strong>. O arquivo agora está disponível como Library para os arquivos do team.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Publish seletivo</span>
+          <p>O painel de publicação mostra quais itens têm mudanças pendentes. Você pode <strong>desselecionar</strong> itens que ainda não estão prontos para publicação — útil quando está trabalhando em novos componentes em WIP que não devem ser consumidos ainda.</p>
+        </div>
+
+        <h2>Habilitando uma Library em outros arquivos</h2>
+
+        <ol class="steps">
+          <li>
+            <strong>Abra o arquivo de produto</strong> onde você quer usar a Library.
+          </li>
+          <li>
+            <strong>Acesse o painel de Libraries.</strong>
+            Menu hamburger (≡) → <strong>Libraries</strong>. O painel mostra todas as Libraries disponíveis no seu Team.
+          </li>
+          <li>
+            <strong>Ative a Library.</strong>
+            Encontre o arquivo do DS na lista e ative o toggle. A partir deste momento, os componentes, Styles e Variables da Library estão disponíveis neste arquivo.
+          </li>
+          <li>
+            <strong>Use os componentes.</strong>
+            No painel de Assets (<kbd>Alt</kbd>/<kbd>⌥</kbd> + 2), você verá os componentes da Library na seção "Libraries". Arraste para o canvas ou use a busca para encontrar componentes específicos.
+          </li>
+          <li>
+            <strong>Use os Styles e Variables.</strong>
+            Ao selecionar um Fill, os Color Styles da Library aparecem no seletor. No painel de Variables, as Collections da Library ficam disponíveis para aplicação.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Atalho para Assets</span>
+          <p>Pressione <kbd>Alt</kbd> + <kbd>2</kbd> (Windows) ou <kbd>⌥</kbd> + <kbd>2</kbd> (Mac) para abrir o painel de Assets. Use a busca do painel para encontrar componentes da Library por nome — muito mais rápido do que navegar pela hierarquia.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Abrir painel Assets</td><td><kbd>Alt</kbd> + <kbd>2</kbd></td><td><kbd>⌥</kbd> + <kbd>2</kbd></td></tr>
+              <tr><td>Abrir painel Layers</td><td><kbd>Alt</kbd> + <kbd>1</kbd></td><td><kbd>⌥</kbd> + <kbd>1</kbd></td></tr>
+              <tr><td>Detach instance</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>B</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>B</kbd></td></tr>
+              <tr><td>Go to main component</td><td><kbd>Alt</kbd> + clique duplo</td><td><kbd>⌥</kbd> + clique duplo</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Recebendo e aceitando updates</h2>
+        <p>Quando o arquivo de DS é publicado com alterações, os arquivos consumidores recebem uma notificação. O fluxo para aceitar:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Veja a notificação.</strong>
+            Uma bandeirinha azul aparece no canto inferior da tela — "Updates available from [nome da Library]".
+          </li>
+          <li>
+            <strong>Revise as mudanças.</strong>
+            Clique na notificação → <strong>View changes</strong>. O Figma mostra um diff visual de cada componente/style alterado, com antes e depois.
+          </li>
+          <li>
+            <strong>Aceite ou ignore.</strong>
+            Clique em <strong>Update all</strong> para aceitar todos os updates de uma vez, ou selecione individualmente quais deseja aceitar. Há também a opção de ignorar um update específico para não quebrar trabalho em andamento.
+          </li>
+          <li>
+            <strong>Verifique depois.</strong>
+            Após aceitar, percorra as telas para garantir que nada quebrou visivelmente. Se uma mudança de estrutura no componente causou problemas visuais, você precisará ajustar as instâncias afetadas.
+          </li>
+        </ol>
+
+        <div class="callout warning">
+          <span class="callout-title">Updates que podem quebrar layouts</span>
+          <p>Mudanças de estrutura em componentes (adicionar ou remover layers, mudar o Auto Layout direction) podem afetar como as instâncias se comportam nos arquivos consumidores. Sempre <strong>comunique o time</strong> antes de publicar mudanças estruturais grandes, e dê tempo para as equipes revisarem antes de aceitar o update.</p>
+        </div>
+
+        <h2>Versionamento de Libraries</h2>
+        <p>O Figma mantém um <strong>histórico de versões</strong> de cada arquivo. Para Libraries, isso significa que você pode voltar a uma versão anterior se um update causar problemas:</p>
+        <ul>
+          <li><strong>Version history:</strong> Menu hamburger → <strong>Show version history</strong>. Mostra todas as versões salvas com timestamps.</li>
+          <li><strong>Named versions:</strong> Você pode criar versões nomeadas manualmente (ctrl/⌘ + alt + S) para marcar releases significativos: "v1.0 — Lançamento inicial", "v1.1 — Adicionados componentes de Form".</li>
+          <li><strong>Restaurar versão:</strong> Clique em uma versão no histórico e selecione "Restore" para voltar a esse estado. Atenção: isso afeta o arquivo de DS, e a próxima publicação refletirá o estado restaurado.</li>
+        </ul>
+
+        <div class="callout note">
+          <span class="callout-title">Versionamento semântico</span>
+          <p>Adote <strong>versionamento semântico</strong> para as versões nomeadas da Library: <code>v1.0.0</code> (maior.menor.patch). Mudanças quebradoras aumentam o major; novas features aumentam o minor; correções aumentam o patch. Documente o changelog nas descriptions ou em uma página dedicada do arquivo.</p>
+        </div>
+
+        <h2>Team Libraries e governança</h2>
+        <p>Em times maiores, pode existir mais de uma Library — por exemplo, uma Library de foundations e uma por produto. As responsabilidades ficam claras quando você define <strong>quem pode editar e publicar</strong> cada Library:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Tipo</th><th>Conteúdo</th><th>Quem publica</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Foundation Library</strong></td>
+                <td>Tokens, Primitives, Text Styles, grids</td>
+                <td>Lead Designer ou DS team</td>
+              </tr>
+              <tr>
+                <td><strong>Component Library</strong></td>
+                <td>Todos os componentes do DS</td>
+                <td>DS team</td>
+              </tr>
+              <tr>
+                <td><strong>Product Library</strong></td>
+                <td>Componentes específicos de produto que estendem o DS</td>
+                <td>Lead do produto</td>
+              </tr>
+              <tr>
+                <td><strong>Icon Library</strong></td>
+                <td>Todos os ícones como componentes</td>
+                <td>DS team ou design lead</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Processo de governança recomendado</h3>
+        <ul>
+          <li><strong>RFC (Request for Change):</strong> qualquer designer pode propor uma mudança ao DS; a proposta é revisada pelo DS team antes de ser implementada;</li>
+          <li><strong>Branch para features:</strong> use Figma Branches para trabalhar em novas features da Library em isolamento, sem afetar a versão publicada atual;</li>
+          <li><strong>Review antes de publicar:</strong> pelo menos uma segunda pessoa revisa as mudanças antes de publicar;</li>
+          <li><strong>Changelog documentado:</strong> toda publicação tem uma mensagem de mudança clara, idealmente com uma página de changelog no arquivo;</li>
+          <li><strong>Comunicação:</strong> avisar o time antes de publicar mudanças significativas, especialmente as que mudam estrutura de componentes.</li>
+        </ul>
+
+        <div class="callout pro">
+          <span class="callout-title">Figma Branches para o DS</span>
+          <p>O recurso <strong>Branches</strong> (disponível no plano Professional+) permite criar uma cópia temporária do arquivo de Library para trabalhar em mudanças sem afetar a versão publicada. Ao terminar, você faz o <strong>merge</strong> de volta para o arquivo principal — como um git branch para design. Ideal para refatorações grandes ou adição de novos conjuntos de componentes.</p>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>O DS do sistema de e-commerce "Shopper" tem a seguinte estrutura de Libraries:</p>
+        <ul>
+          <li><strong>Shopper DS — Foundations:</strong> tokens primitivos, semânticos, Text Styles, sombras, ícones;</li>
+          <li><strong>Shopper DS — Components:</strong> 80+ componentes baseados nas foundations;</li>
+          <li><strong>Shopper DS — Icons:</strong> 500 ícones como componentes separados (Library própria pelo volume);</li>
+        </ul>
+        <p>Os arquivos de produto (App Mobile, Web, Admin Dashboard, Seller Portal) habilitam as três Libraries. Quando o botão primário recebe um update de radius (de 8 para 10 px), o DS team publica a mudança nos Components. Os 4 arquivos de produto recebem a notificação e aceitam com um clique — 4 produtos atualizados em segundos, sem nenhum trabalho manual.</p>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Libraries compartilham Components, Styles e Variables entre arquivos de um Team ou organização.</li>
+          <li>Para publicar: menu hamburger → Libraries → Publish. Adicione uma descrição da mudança.</li>
+          <li>Para consumir: no arquivo de produto, menu hamburger → Libraries → ative a Library desejada.</li>
+          <li>Updates aparecem como notificação; revise o diff e aceite (all ou seletivo).</li>
+          <li>Use named versions para marcar releases e mantenha um changelog.</li>
+          <li>Governança: RFC, Branches para features, review antes de publicar, comunicação ao time.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Publique e consuma sua Library</h3>
+          <ol>
+            <li>No arquivo de DS criado nas lições anteriores, publique a Library incluindo components, styles e variables;</li>
+            <li>Crie um <strong>novo arquivo</strong> chamado "Produto — Tela de Login" no mesmo Team;</li>
+            <li>Habilite a Library do DS nesse arquivo;</li>
+            <li>Monte uma tela de login usando apenas componentes da Library (Button, Input, Text Styles) e Variables para as cores;</li>
+            <li>Volte ao arquivo de DS e faça uma pequena mudança (ex: aumente o corner radius do Button de 8 para 12);</li>
+            <li>Publique a mudança e aceite o update no arquivo de produto.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> após aceitar o update, os botões na tela de login refletem o novo radius sem nenhuma edição manual. A instância ainda está vinculada à Library (ícone de componente visível no painel).
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Multi-Library architecture</h3>
+          <p>Separe seu DS em duas Libraries: uma de <strong>Foundations</strong> (tokens, styles, variáveis primitivas e semânticas) e uma de <strong>Components</strong> (todos os componentes que consomem as foundations). Configure a Library de Components para ter a de Foundations como dependência (ative Foundations na Library de Components). Crie um arquivo de produto que habilita apenas a Components Library — confirme que os tokens da Foundations Library também estão disponíveis via transitivo (pois Components os usa).</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. O que acontece com uma instância de componente de Library quando o componente original é atualizado?</p>
+            <ul class="quiz-options">
+              <li>A instância é automaticamente atualizada sem nenhuma ação do designer</li>
+              <li>A instância é deletada e precisa ser reinserida</li>
+              <li>Uma notificação aparece no arquivo consumidor; o designer escolhe quando aceitar o update</li>
+              <li>A instância fica desconectada da Library permanentemente</li>
+            </ul>
+            <div class="quiz-explain">O Figma notifica os arquivos consumidores sobre updates disponíveis, mas não aplica automaticamente — o designer <strong>escolhe quando aceitar</strong>, podendo revisar o diff antes. Isso evita surpresas em trabalho em andamento.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. Para que serve o recurso Figma Branches aplicado a Libraries?</p>
+            <ul class="quiz-options">
+              <li>Permite trabalhar em mudanças na Library em isolamento sem afetar a versão publicada, fazendo merge quando pronto</li>
+              <li>Cria múltiplas versões do arquivo de DS para diferentes times usarem simultaneamente</li>
+              <li>Faz backup automático do arquivo de Library em um repositório Git externo</li>
+              <li>Permite que múltiplos designers publiquem a Library ao mesmo tempo sem conflitos</li>
+            </ul>
+            <div class="quiz-explain">Branches funcionam como branches de Git para design: você cria um branch para uma nova feature ou refatoração, trabalha sem afetar a versão publicada e faz o merge quando tudo está revisado e aprovado.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">3. Qual é a principal vantagem de usar componentes de uma Library ao invés de copiar componentes diretamente para os arquivos de produto?</p>
+            <ul class="quiz-options">
+              <li>Componentes de Library são mais rápidos de renderizar no Figma</li>
+              <li>Mantêm conexão com o componente original; quando o DS atualiza, todos os arquivos consumidores podem aceitar a mudança com um clique</li>
+              <li>Componentes de Library ocupam menos espaço no arquivo</li>
+              <li>Só componentes de Library podem ter Variants e Component Properties</li>
+            </ul>
+            <div class="quiz-explain">A conexão com a Library é o superpoder: uma mudança no DS se propaga para todos os arquivos de produto ao aceitar o update — mantendo consistência em escala sem trabalho manual em cada arquivo.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O que é um Design System | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="03-01-o-que-e-design-system" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🏗️ Módulo 3 · Avançado · Lição 1 de 9</div>
+        <h1>O que é um Design System</h1>
+        <p class="lead">Um Design System não é apenas uma biblioteca de componentes — é a linguagem compartilhada entre design e desenvolvimento que permite que equipes construam produtos consistentes em qualquer escala.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~22 min</span>
+          <span>🎯 Nível: Avançado</span>
+          <span>🛠️ Pratique no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Definir com precisão o que é um Design System e diferenciá-lo de uma simples biblioteca de componentes;</li>
+            <li>Identificar as camadas da anatomia de um DS (foundations, tokens, components, patterns, guidelines);</li>
+            <li>Explicar os benefícios mensuráveis de adotar um DS em equipe;</li>
+            <li>Reconhecer quando faz sentido criar um DS e quando é desperdício;</li>
+            <li>Aplicar o modelo do Atomic Design para organizar componentes de forma escalável.</li>
+          </ul>
+        </div>
+
+        <h2>Definição: o que é um Design System?</h2>
+        <p>Um <strong>Design System</strong> é um conjunto de decisões de design documentadas e compartilhadas — padrões visuais, componentes reutilizáveis, diretrizes de uso e a infraestrutura que conecta tudo isso — que serve como fonte única de verdade (<em>single source of truth</em>) para toda a equipe de produto.</p>
+        <p>Pense assim: se você tem cinco designers e dez desenvolvedores trabalhando no mesmo produto, sem um DS cada um toma micro-decisões diferentes todos os dias. Qual shade de azul usar neste botão? O padding desta lista é 12 ou 16 px? A sombra deste card é igual à do modal? Essas perguntas consomem horas e criam inconsistência invisível que acumula dívida de design ao longo do tempo.</p>
+        <p>Um Design System responde a todas essas perguntas <em>de antemão</em>, de forma centralizada e acessível a todos.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Design System vs. biblioteca de componentes</span>
+          <p>Uma biblioteca de componentes é <em>parte</em> de um Design System, mas não é o todo. Um DS inclui também os tokens (valores de cor, espaçamento, tipografia), os padrões de interação, as diretrizes de acessibilidade, a documentação de uso e a governança — quem decide o que muda e como.</p>
+        </div>
+
+        <h2>A anatomia de um Design System</h2>
+        <p>Todo DS maduro tem camadas bem definidas. Visualize-as de baixo para cima:</p>
+
+        <div class="diagram">
+          <svg viewBox="0 0 560 320" role="img" aria-label="Pirâmide das camadas de um Design System: Foundations na base, tokens, components, patterns e guidelines no topo">
+            <!-- Camada 1: Foundations -->
+            <rect x="40" y="250" width="480" height="50" rx="10" fill="var(--primary-soft)" stroke="var(--primary)" stroke-width="1.5"/>
+            <text x="280" y="280" text-anchor="middle" fill="var(--primary)" font-size="14" font-weight="700" font-family="sans-serif">Foundations (Cor, Tipografia, Espaçamento, Grade, Ícones)</text>
+            <!-- Camada 2: Tokens -->
+            <rect x="70" y="194" width="420" height="46" rx="10" fill="var(--info-soft)" stroke="var(--info)" stroke-width="1.5"/>
+            <text x="280" y="221" text-anchor="middle" fill="var(--info)" font-size="14" font-weight="700" font-family="sans-serif">Design Tokens (primitivos → semânticos → componente)</text>
+            <!-- Camada 3: Components -->
+            <rect x="110" y="142" width="340" height="44" rx="10" fill="var(--success-soft)" stroke="var(--success)" stroke-width="1.5"/>
+            <text x="280" y="168" text-anchor="middle" fill="var(--success)" font-size="14" font-weight="700" font-family="sans-serif">Components (Button, Input, Card, Modal…)</text>
+            <!-- Camada 4: Patterns -->
+            <rect x="150" y="94" width="260" height="40" rx="10" fill="var(--warning-soft)" stroke="var(--warning)" stroke-width="1.5"/>
+            <text x="280" y="118" text-anchor="middle" fill="var(--warning)" font-size="14" font-weight="700" font-family="sans-serif">Patterns (Forms, Navigation, Empty States…)</text>
+            <!-- Camada 5: Guidelines + Docs -->
+            <rect x="190" y="48" width="180" height="38" rx="10" fill="var(--pro-soft)" stroke="var(--pro)" stroke-width="1.5"/>
+            <text x="280" y="71" text-anchor="middle" fill="var(--pro)" font-size="14" font-weight="700" font-family="sans-serif">Guidelines &amp; Docs</text>
+          </svg>
+          <p class="mock-label">As cinco camadas de um Design System. Cada camada é construída sobre a anterior.</p>
+        </div>
+
+        <h3>1. Foundations (Fundações)</h3>
+        <p>São as decisões mais primitivas: a paleta de cores, a escala tipográfica, o sistema de espaçamento (spacing scale), os raios de borda (border radius), as sombras (elevation), a grade de layout e a biblioteca de ícones. Tudo o mais é construído sobre as foundations.</p>
+
+        <h3>2. Design Tokens</h3>
+        <p>Tokens são as foundations transformadas em variáveis nomeadas e reutilizáveis. <code>color.brand.primary</code>, <code>spacing.md</code>, <code>radius.button</code>. Eles criam uma ponte entre o Figma e o código — o mesmo token tem o mesmo significado nos dois mundos. Veremos tokens em profundidade nas próximas lições.</p>
+
+        <h3>3. Components</h3>
+        <p>São os blocos de construção da interface: Button, Input, Checkbox, Card, Badge, Toast, Modal, Tooltip… Cada componente consome tokens, tem variantes documentadas, propriedades bem definidas e estados (default, hover, focus, disabled, error).</p>
+
+        <h3>4. Patterns</h3>
+        <p>Padrões de interação recorrentes que combinam vários componentes: formulários de login, flows de onboarding, telas de empty state, navegação mobile, tabelas de dados. São receitas de composição documentadas.</p>
+
+        <h3>5. Guidelines e Documentação</h3>
+        <p>As regras de uso: quando usar um botão primário vs. secundário, como escrever textos de erro, princípios de acessibilidade, voz e tom. Sem documentação, o DS é uma caixa fechada que poucos conseguem usar bem.</p>
+
+        <h2>Os benefícios mensuráveis de um Design System</h2>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Benefício</th><th>Impacto no design</th><th>Impacto no desenvolvimento</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Consistência</strong></td>
+                <td>Mesma linguagem visual em todas as telas</td>
+                <td>Mesmos tokens no código → menos CSS ad hoc</td>
+              </tr>
+              <tr>
+                <td><strong>Velocidade</strong></td>
+                <td>Componentes prontos; menos decisões repetidas</td>
+                <td>Copiar e adaptar ao invés de criar do zero</td>
+              </tr>
+              <tr>
+                <td><strong>Escala</strong></td>
+                <td>Novas telas sem reinventar a roda</td>
+                <td>Time maior ainda compartilha o mesmo código base</td>
+              </tr>
+              <tr>
+                <td><strong>Qualidade</strong></td>
+                <td>Estados e acessibilidade pensados uma vez e reusados</td>
+                <td>Menos bugs de UI por variação não prevista</td>
+              </tr>
+              <tr>
+                <td><strong>Handoff</strong></td>
+                <td>Especificações embutidas nos tokens/componentes</td>
+                <td>Dev Mode mostra tokens em vez de valores soltos</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout tip">
+          <span class="callout-title">Dado real</span>
+          <p>O Design System da Atlassian (Atlaskit) reduziu o tempo de construção de novas funcionalidades em <strong>30–50%</strong> segundo seus próprios relatos. O Material Design do Google cobre mais de 100 produtos com a mesma linguagem visual.</p>
+        </div>
+
+        <h2>Quando criar um Design System — e quando não criar</h2>
+        <p>Criar um DS tem um custo inicial alto de tempo e manutenção. Nem sempre é a escolha certa.</p>
+
+        <h3>Faz sentido quando:</h3>
+        <ul>
+          <li>O time tem mais de 3–4 designers ou 5+ desenvolvedores de frontend;</li>
+          <li>O produto tem múltiplos produtos ou plataformas (web, iOS, Android, TV);</li>
+          <li>Há retrabalho visível e recorrente de componentes similares;</li>
+          <li>A inconsistência visual já está causando confusão nos usuários;</li>
+          <li>O produto vai crescer significativamente nos próximos 12–18 meses.</li>
+        </ul>
+
+        <h3>Pode não fazer sentido quando:</h3>
+        <ul>
+          <li>O produto é um MVP ou experimento com vida útil incerta;</li>
+          <li>A equipe é pequena (1 designer, 2 devs) e o produto não vai escalar;</li>
+          <li>Já existe um DS de terceiros (Material, Ant Design, Radix) que atende 80% das necessidades — considere adotar ao invés de criar do zero.</li>
+        </ul>
+
+        <div class="callout warning">
+          <span class="callout-title">A armadilha do "design system por princípio"</span>
+          <p>Criar um DS complexo para um produto pequeno é como construir uma fábrica para fazer pão caseiro. Comece simples: um arquivo de estilos compartilhados já resolve muito. Evolua para um DS formal quando a dor aparecer de verdade.</p>
+        </div>
+
+        <h2>Exemplos famosos de Design Systems</h2>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Design System</th><th>Empresa</th><th>Plataforma</th><th>Destaque</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Material Design</strong></td>
+                <td>Google</td>
+                <td>Web, Android</td>
+                <td>Referência em componentes, motion e acessibilidade; tokens bem documentados</td>
+              </tr>
+              <tr>
+                <td><strong>Apple HIG</strong></td>
+                <td>Apple</td>
+                <td>iOS, macOS, watchOS</td>
+                <td>Human Interface Guidelines; foco em plataforma nativa e integração com SO</td>
+              </tr>
+              <tr>
+                <td><strong>Polaris</strong></td>
+                <td>Shopify</td>
+                <td>Web (e-commerce)</td>
+                <td>Fortíssima documentação de padrões; tokens publicados como open source</td>
+              </tr>
+              <tr>
+                <td><strong>Carbon</strong></td>
+                <td>IBM</td>
+                <td>Web (enterprise)</td>
+                <td>Tokens semânticos avançados; múltiplos temas (White, G10, G90, G100)</td>
+              </tr>
+              <tr>
+                <td><strong>Fluent 2</strong></td>
+                <td>Microsoft</td>
+                <td>Web, Windows</td>
+                <td>Integração profunda com Figma Variables; multi-platform</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout example">
+          <span class="callout-title">Vale estudar</span>
+          <p>Acesse <strong>material.io</strong>, <strong>polaris.shopify.com</strong> e <strong>carbondesignsystem.com</strong> e explore a estrutura de tokens, os componentes e, principalmente, a seção de guidelines. É de graça e vale mais do que qualquer curso sobre o assunto.</p>
+        </div>
+
+        <h2>Atomic Design — a metodologia que organiza tudo</h2>
+        <p>Em 2013, o designer Brad Frost publicou o Atomic Design — uma forma de pensar componentes inspirada na química. A ideia central: interfaces são feitas de partes progressivamente mais complexas, assim como a matéria é feita de átomos, moléculas e organismos.</p>
+
+        <div class="diagram">
+          <svg viewBox="0 0 620 120" role="img" aria-label="Progressão do Atomic Design: átomos, moléculas, organismos, templates e páginas">
+            <!-- Átomos -->
+            <rect x="10" y="30" width="90" height="60" rx="10" fill="var(--primary-soft)" stroke="var(--primary)" stroke-width="1.5"/>
+            <text x="55" y="58" text-anchor="middle" fill="var(--primary)" font-size="13" font-weight="700" font-family="sans-serif">⚛️ Átomos</text>
+            <text x="55" y="76" text-anchor="middle" fill="var(--text-muted)" font-size="11" font-family="sans-serif">Button, Label</text>
+            <!-- seta -->
+            <text x="108" y="64" fill="var(--text-soft)" font-size="16" font-family="sans-serif">→</text>
+            <!-- Moléculas -->
+            <rect x="122" y="30" width="100" height="60" rx="10" fill="var(--info-soft)" stroke="var(--info)" stroke-width="1.5"/>
+            <text x="172" y="58" text-anchor="middle" fill="var(--info)" font-size="13" font-weight="700" font-family="sans-serif">🔬 Moléculas</text>
+            <text x="172" y="76" text-anchor="middle" fill="var(--text-muted)" font-size="11" font-family="sans-serif">Form Field</text>
+            <!-- seta -->
+            <text x="228" y="64" fill="var(--text-soft)" font-size="16" font-family="sans-serif">→</text>
+            <!-- Organismos -->
+            <rect x="242" y="30" width="106" height="60" rx="10" fill="var(--success-soft)" stroke="var(--success)" stroke-width="1.5"/>
+            <text x="295" y="58" text-anchor="middle" fill="var(--success)" font-size="13" font-weight="700" font-family="sans-serif">🧬 Organismos</text>
+            <text x="295" y="76" text-anchor="middle" fill="var(--text-muted)" font-size="11" font-family="sans-serif">Login Form</text>
+            <!-- seta -->
+            <text x="354" y="64" fill="var(--text-soft)" font-size="16" font-family="sans-serif">→</text>
+            <!-- Templates -->
+            <rect x="368" y="30" width="106" height="60" rx="10" fill="var(--warning-soft)" stroke="var(--warning)" stroke-width="1.5"/>
+            <text x="421" y="58" text-anchor="middle" fill="var(--warning)" font-size="13" font-weight="700" font-family="sans-serif">📐 Templates</text>
+            <text x="421" y="76" text-anchor="middle" fill="var(--text-muted)" font-size="11" font-family="sans-serif">Login Screen</text>
+            <!-- seta -->
+            <text x="480" y="64" fill="var(--text-soft)" font-size="16" font-family="sans-serif">→</text>
+            <!-- Páginas -->
+            <rect x="494" y="30" width="106" height="60" rx="10" fill="var(--pro-soft)" stroke="var(--pro)" stroke-width="1.5"/>
+            <text x="547" y="58" text-anchor="middle" fill="var(--pro)" font-size="13" font-weight="700" font-family="sans-serif">📄 Páginas</text>
+            <text x="547" y="76" text-anchor="middle" fill="var(--text-muted)" font-size="11" font-family="sans-serif">com dados reais</text>
+          </svg>
+          <p class="mock-label">O Atomic Design organiza componentes em cinco níveis de complexidade crescente.</p>
+        </div>
+
+        <h3>Os cinco níveis do Atomic Design</h3>
+        <ul>
+          <li><strong>Átomos:</strong> os elementos mais básicos e indivisíveis — um botão, um ícone, um campo de texto, uma tag. Não fazem sentido sozinhos na maioria dos contextos.</li>
+          <li><strong>Moléculas:</strong> grupos de átomos com uma função específica — um campo de formulário (label + input + mensagem de erro), um item de menu, uma linha de produto.</li>
+          <li><strong>Organismos:</strong> grupos de moléculas que formam seções distintas — um cabeçalho completo, um formulário de login, uma lista de produtos.</li>
+          <li><strong>Templates:</strong> organismos organizados em um layout de página, sem dados reais — wireframes de alta fidelidade.</li>
+          <li><strong>Páginas:</strong> templates preenchidos com conteúdo real e estados reais. São o que o usuário final vê.</li>
+        </ul>
+
+        <div class="callout pro">
+          <span class="callout-title">Atomic Design no Figma</span>
+          <p>No Figma, você pode organizar suas páginas seguindo a hierarquia do Atomic Design: uma página "Foundations", uma página "Components/Atoms", uma "Components/Molecules" e assim por diante. Use <strong>Sections</strong> para separar visualmente cada nível e facilite a navegação da sua equipe.</p>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Imagine que você está construindo o aplicativo do banco digital Nubank. O DS deles precisaria ter:</p>
+        <ul>
+          <li><strong>Foundations:</strong> a paleta roxa e branca, a escala tipográfica com a Graphik, o sistema de espaçamento em múltiplos de 8 px;</li>
+          <li><strong>Tokens:</strong> <code>color.brand.primary</code> → roxo da marca, <code>color.feedback.success</code> → verde dos fluxos de pagamento;</li>
+          <li><strong>Components:</strong> Button (primário, fantasma, destrutivo), Input (texto, CPF, senha), Card (conta, cobrança, transação);</li>
+          <li><strong>Patterns:</strong> fluxo de pagamento (passo a passo), onboarding de novos usuários, tela de transação vazia;</li>
+          <li><strong>Guidelines:</strong> como comunicar erros de forma humana, quando usar roxo vs. preto, regras de acessibilidade de contraste.</li>
+        </ul>
+        <p>Resultado: um time de 50+ designers pode trabalhar nos apps de cartão, conta, empréstimo, investimento e seguros com consistência visual e comportamental — e os 200+ desenvolvedores usam os mesmos tokens no código.</p>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Um Design System é a fonte única de verdade: tokens, componentes, padrões e guidelines.</li>
+          <li>As cinco camadas são Foundations → Tokens → Components → Patterns → Guidelines.</li>
+          <li>Os benefícios incluem consistência, velocidade, escala, qualidade e handoff facilitado.</li>
+          <li>Criar um DS faz sentido quando o produto e o time crescem; para MVPs, um arquivo de estilos já resolve.</li>
+          <li>Os grandes exemplos (Material, Polaris, Carbon, HIG) são fontes gratuitas de aprendizado.</li>
+          <li>O Atomic Design organiza componentes em átomos → moléculas → organismos → templates → páginas.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Mapeie as camadas do seu produto</h3>
+          <p>Abra um aplicativo que você usa no dia a dia (Instagram, Nubank, iFood, Mercado Livre) e:</p>
+          <ol>
+            <li>Identifique 5 <strong>átomos</strong> (botões, ícones, tags, campos);</li>
+            <li>Identifique 3 <strong>moléculas</strong> que combinem esses átomos;</li>
+            <li>Identifique 2 <strong>organismos</strong> completos (seções da tela);</li>
+            <li>Liste quais seriam as <strong>foundations</strong> desse produto (cores, fontes).</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> você consegue descrever a hierarquia do produto escolhido usando a nomenclatura do Atomic Design, com exemplos concretos de cada nível.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Audit de consistência</h3>
+          <p>Abra o Figma e examine um projeto existente (pode ser um arquivo pessoal ou um template da comunidade). Identifique três casos de <em>inconsistência</em> — lugares onde o mesmo elemento visual aparece com valores diferentes sem motivo claro (dois botões primários com shades diferentes, espaçamentos que não seguem um padrão, etc.). Documente o que seria necessário para criar as foundations desse projeto.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Qual das alternativas melhor define um Design System?</p>
+            <ul class="quiz-options">
+              <li>Uma biblioteca de ícones no Figma</li>
+              <li>Um conjunto de componentes React compartilhados entre times</li>
+              <li>Fonte única de verdade com tokens, componentes, padrões e diretrizes de uso</li>
+              <li>Um styleguide em PDF para os desenvolvedores</li>
+            </ul>
+            <div class="quiz-explain">Um DS vai muito além de ícones ou componentes React — inclui também tokens, padrões de interação e guidelines de uso. É a <strong>fonte única de verdade</strong> compartilhada entre design e desenvolvimento.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">2. No Atomic Design, o que são "moléculas"?</p>
+            <ul class="quiz-options">
+              <li>Os elementos mais primitivos e indivisíveis da interface</li>
+              <li>Grupos de átomos com uma função específica, como um campo de formulário (label + input + erro)</li>
+              <li>Seções completas de uma página, como um cabeçalho</li>
+              <li>Layouts de página sem dados reais</li>
+            </ul>
+            <div class="quiz-explain">Moléculas são grupos de átomos que juntos formam uma unidade funcional coesa — como um campo de formulário que combina uma label, um input e uma mensagem de erro.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Para qual cenário é mais adequado criar um Design System formal?</p>
+            <ul class="quiz-options">
+              <li>Um produto com múltiplas plataformas e um time de 10+ designers/devs com crescimento previsto</li>
+              <li>Um MVP sendo validado por 1 designer e 2 desenvolvedores</li>
+              <li>Um projeto freelance de site institucional</li>
+              <li>Um experimento de uma semana para testar hipótese de negócio</li>
+            </ul>
+            <div class="quiz-explain">Um DS formal exige investimento significativo de tempo e manutenção contínua. Vale a pena quando o time é grande, o produto é multiplataforma e o crescimento é certo.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

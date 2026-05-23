@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testar, compartilhar e coletar feedback | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="04-07-testar-compartilhar" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">⚡ Módulo 4 · Prototipagem · Lição 7 de 7</div>
+        <h1>Testar, compartilhar e coletar feedback</h1>
+        <p class="lead">Um protótipo que fica somente no seu computador não serve a ninguém. Nesta última lição do módulo você vai aprender a compartilhar seu trabalho com o mundo — stakeholders, desenvolvedores e usuários reais — e a transformar o feedback recebido em aprendizado que melhora o produto.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~18 min</span>
+          <span>🎯 Nível: Intermediário</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Usar o Present mode para apresentar um protótipo profissionalmente;</li>
+            <li>Gerar e configurar links de compartilhamento com as permissões corretas;</li>
+            <li>Embutir o protótipo em outras ferramentas via embed;</li>
+            <li>Configurar device frames e visualizar o protótipo no app mobile do Figma;</li>
+            <li>Coletar comentários no Figma e aplicar noções básicas de teste de usabilidade.</li>
+          </ul>
+        </div>
+
+        <h2>Present mode — apresentando com confiança</h2>
+        <p>O <strong>Present mode</strong> é o ambiente de apresentação do Figma: uma aba do navegador (ou janela separada) onde o protótipo roda sem a interface do editor. Para o espectador, parece um app real. Para você, algumas opções tornam a experiência mais profissional:</p>
+
+        <h3>Como abrir</h3>
+        <ul>
+          <li>Atalho: <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Enter</kbd> (abre o flow selecionado).</li>
+          <li>Botão de play ▶ no canto superior direito do editor.</li>
+          <li>Via link compartilhado (o destinatário abre diretamente no Present mode).</li>
+        </ul>
+
+        <h3>Controles no Present mode</h3>
+        <ul>
+          <li><strong>Teclas ← →:</strong> navega manualmente entre frames (útil para apresentações lineares sem cliques).</li>
+          <li><strong>Esc:</strong> volta ao editor (se você estiver editando).</li>
+          <li><strong>R:</strong> reinicia o protótipo do Starting Point (reseta variáveis ao valor inicial).</li>
+          <li><strong>Shift + R:</strong> reinicia sem fechar o Present mode.</li>
+          <li><strong>Seletor de Flow:</strong> no canto inferior esquerdo, alterna entre Flows do arquivo.</li>
+          <li><strong>Hotspot hints:</strong> pressione <kbd>H</kbd> para mostrar "placas" azuis em todas as áreas clicáveis — útil em demos quando você quer orientar o espectador.</li>
+        </ul>
+
+        <div class="callout tip">
+          <span class="callout-title">Dica para apresentações</span>
+          <p>Antes de uma demo importante, teste o flow completo uma vez com <kbd>Shift + R</kbd> para garantir que as variáveis estão resetadas. Use Hotspot hints (<kbd>H</kbd>) apenas se o moderador não souber onde clicar — em testes com usuários reais, <em>nunca</em> ative esse recurso, pois distorce o comportamento natural.</p>
+        </div>
+
+        <h2>Device frames — molduras de dispositivo</h2>
+        <p>Na aba <strong>Prototype</strong> do painel direito, a seção <strong>Device</strong> permite adicionar uma moldura de dispositivo ao Present mode:</p>
+        <ul>
+          <li><strong>iPhone 16 Pro, Pixel 9, iPad…:</strong> molduras realistas com notch/câmera e bordas do dispositivo.</li>
+          <li><strong>Desktop/Browser:</strong> exibe o protótipo em uma moldura de janela de navegador.</li>
+          <li><strong>Presentation:</strong> sem moldura — para protótipos web ou quando a moldura distrairia.</li>
+          <li><strong>Custom:</strong> defina dimensões manualmente para dispositivos não listados.</li>
+        </ul>
+        <p>A cor de fundo do Present mode (atrás da moldura) também é configurável aqui. Um fundo neutro cinza-escuro ou branco é o mais comum.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Device frame não afeta o design</span>
+          <p>A moldura de dispositivo é visual apenas no Present mode. Ela não redimensiona seus frames nem afeta o design. Se o seu frame "iPhone 14" tem 390×844 px, ele será exibido com esse tamanho dentro da moldura escolhida.</p>
+        </div>
+
+        <h2>Compartilhando o protótipo — link de apresentação</h2>
+        <p>Para compartilhar o protótipo com alguém que não tem acesso ao editor do Figma:</p>
+        <ol>
+          <li>No Present mode, clique em <strong>Share prototype</strong> (ícone de compartilhar no canto superior direito).</li>
+          <li>Um modal abre com o link direto para o protótipo no modo de apresentação.</li>
+          <li>Configure as permissões (veja abaixo).</li>
+          <li>Copie o link e envie.</li>
+        </ol>
+        <p>Alternativamente, no editor, clique em <strong>Share</strong> (botão superior direito) → "Copy link" e envie o link — quem abrir esse link com permissão de visualização verá o protótipo em Present mode por padrão.</p>
+
+        <h3>Permissões de compartilhamento</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Permissão</th><th>O que o destinatário pode fazer</th><th>Quando usar</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Can view</strong></td><td>Ver o design e o protótipo, inspecionar propriedades no Dev Mode</td><td>Desenvolvedores, stakeholders</td></tr>
+              <tr><td><strong>Can comment</strong></td><td>Ver + deixar comentários no design e no protótipo</td><td>PMs, clientes, equipe de UX para revisão</td></tr>
+              <tr><td><strong>Can edit</strong></td><td>Editar o arquivo completo</td><td>Colaboradores diretos do design</td></tr>
+              <tr><td><strong>Anyone with the link</strong></td><td>Acesso público sem login no Figma</td><td>Testes com usuários externos, demos públicas</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout warning">
+          <span class="callout-title">Cuidado com permissões públicas</span>
+          <p>A opção "Anyone with the link" permite que qualquer pessoa acesse o arquivo sem login — incluindo concorrentes. Para arquivos com designs confidenciais ou em desenvolvimento, use "Can view" ou "Can comment" e envie o link apenas para as pessoas necessárias.</p>
+        </div>
+
+        <h2>Embed — incorporar o protótipo em outras ferramentas</h2>
+        <p>O Figma permite incorporar o editor ou o Present mode em outras páginas e ferramentas via <strong>iframe embed</strong>. Use cases comuns:</p>
+        <ul>
+          <li>Incorporar o protótipo em uma página de documentação (Notion, Confluence, Google Sites).</li>
+          <li>Mostrar o design em slides de apresentação que suportam embeds.</li>
+          <li>Adicionar o protótipo a um relatório de pesquisa ou brief de produto.</li>
+        </ul>
+        <p>Para gerar o código de embed: no Present mode, clique em <strong>Share prototype</strong> → "Get embed code". O código gerado é um <code>&lt;iframe&gt;</code> que você cola na ferramenta desejada.</p>
+
+        <div class="callout note">
+          <span class="callout-title">Embed depende da visibilidade do arquivo</span>
+          <p>Para que o embed funcione para visitantes sem conta no Figma, o arquivo deve ter permissão de "Anyone with the link - Can view". Caso contrário, o iframe exibirá uma tela de login.</p>
+        </div>
+
+        <h2>Preview no app mobile do Figma (Figma Mirror)</h2>
+        <p>Para testar o protótipo no tamanho e contexto reais de um smartphone:</p>
+        <ol>
+          <li>Instale o app <strong>Figma</strong> no seu celular (iOS ou Android — o app substitui o antigo Figma Mirror).</li>
+          <li>Faça login com a mesma conta do editor web/desktop.</li>
+          <li>No app mobile, acesse o arquivo e abra o protótipo pelo ícone de play.</li>
+          <li>Ou: no editor desktop, acesse o menu Present → selecione "Mirror on mobile".</li>
+        </ol>
+        <p>O app mobile espelha o Present mode em tempo real: ao interagir no celular, o protótipo responde como se fosse um app real. Toque nos hotspots, role frames com scroll habilitado e veja os overlays funcionando. É a forma mais fidedigna de testar antes de desenvolver.</p>
+
+        <h2>Gravando sessões de teste</h2>
+        <p>Para testes de usabilidade moderados ou não-moderados, você pode combinar o Present mode do Figma com ferramentas externas de gravação:</p>
+        <ul>
+          <li><strong>Loom:</strong> compartilhe seu link do protótipo com o participante e peça que ele grave a tela com Loom enquanto navega.</li>
+          <li><strong>Lookback, UserTesting, Maze:</strong> ferramentas especializadas em teste de usabilidade que integram com Figma — o participante recebe uma tarefa e a ferramenta grava a tela, o áudio e até os cliques com mapas de calor.</li>
+          <li><strong>Maze:</strong> cria tarefas baseadas no protótipo Figma e coleta dados quantitativos (taxa de conclusão, tempo, cliques errados) automaticamente.</li>
+        </ul>
+
+        <h2>Coletando comentários no Figma</h2>
+        <p>O sistema de comentários do Figma funciona tanto no editor quanto no Present mode:</p>
+        <ol>
+          <li>No Present mode, stakeholders com permissão "Can comment" podem pressionar <kbd>C</kbd> para ativar o modo de comentário.</li>
+          <li>Ao clicar em qualquer parte da tela, um balão de comentário é criado com a posição marcada.</li>
+          <li>O designer recebe uma notificação por e-mail e vê o comentário diretamente no canvas do editor.</li>
+          <li>Você pode responder, resolver (marcar como "done") ou deletar comentários.</li>
+        </ol>
+        <p>Para revisões assíncronas com clientes ou PMs, envie o link com permissão "Can comment" e peça que marquem os pontos de dúvida diretamente no protótipo. Isso é muito mais eficiente do que e-mails ou prints.</p>
+
+        <div class="callout pro">
+          <span class="callout-title">Organize comentários com @menções e tarefas</span>
+          <p>Use <code>@nome</code> nos comentários para notificar diretamente o responsável por aquela correção. Resolva comentários quando a alteração for feita. Isso transforma o Figma em um sistema de revisão rastreável — essencial em equipes grandes ou com clientes externos.</p>
+        </div>
+
+        <h2>Noções de teste de usabilidade com protótipos</h2>
+        <p>Construir o protótipo é só o começo. Testá-lo com usuários reais é o que gera o aprendizado mais valioso. Algumas diretrizes básicas:</p>
+
+        <h3>Antes do teste</h3>
+        <ul>
+          <li>Defina 3–5 <strong>tarefas</strong> claras e objetivas (ex.: "Encontre e adicione um item ao carrinho").</li>
+          <li>Teste o protótipo você mesmo e com um colega — elimine conexões quebradas antes.</li>
+          <li>Prepare um Starting Point limpo (variáveis no valor inicial).</li>
+          <li>Decida: teste moderado (você ao lado do usuário) ou não-moderado (usuário sozinho com gravação).</li>
+        </ul>
+
+        <h3>Durante o teste</h3>
+        <ul>
+          <li>Peça ao usuário para <strong>pensar em voz alta</strong> enquanto navega.</li>
+          <li>Não ajude nem corrija — observe onde ele trava, hesita ou clica no lugar errado.</li>
+          <li>Anote observações, não interpretações: "clicou no ícone X antes de encontrar o botão" (não "ficou confuso").</li>
+          <li>5 usuários já revelam a maioria dos problemas de usabilidade — você não precisa de dezenas de participantes.</li>
+        </ul>
+
+        <h3>Depois do teste</h3>
+        <ul>
+          <li>Agrupe as observações por tema (navegação, nomenclatura, hierarquia visual).</li>
+          <li>Priorize os problemas por frequência e impacto.</li>
+          <li>Itere no protótipo e teste novamente se as mudanças forem significativas.</li>
+        </ul>
+
+        <div class="figma-mock">
+          <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:flex-start;">
+            <!-- Card: link -->
+            <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:16px;width:160px;text-align:center;display:flex;flex-direction:column;gap:8px;align-items:center;">
+              <div style="font-size:28px;">🔗</div>
+              <div style="font-size:12px;font-weight:700;">Compartilhar link</div>
+              <div style="font-size:11px;color:var(--text-muted);">Anyone with link · Can view</div>
+            </div>
+            <!-- Card: embed -->
+            <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:16px;width:160px;text-align:center;display:flex;flex-direction:column;gap:8px;align-items:center;">
+              <div style="font-size:28px;">📌</div>
+              <div style="font-size:12px;font-weight:700;">Embed (iframe)</div>
+              <div style="font-size:11px;color:var(--text-muted);">Notion, Confluence, Slides</div>
+            </div>
+            <!-- Card: mobile -->
+            <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:16px;width:160px;text-align:center;display:flex;flex-direction:column;gap:8px;align-items:center;">
+              <div style="font-size:28px;">📱</div>
+              <div style="font-size:12px;font-weight:700;">App Figma</div>
+              <div style="font-size:11px;color:var(--text-muted);">Testar no celular real</div>
+            </div>
+            <!-- Card: comentários -->
+            <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:16px;width:160px;text-align:center;display:flex;flex-direction:column;gap:8px;align-items:center;">
+              <div style="font-size:28px;">💬</div>
+              <div style="font-size:12px;font-weight:700;">Comentários</div>
+              <div style="font-size:11px;color:var(--text-muted);">Can comment · revisão async</div>
+            </div>
+          </div>
+          <p class="mock-label">As quatro formas principais de compartilhar e coletar feedback sobre um protótipo no Figma.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Abrir Present mode</td><td><kbd>Ctrl</kbd> + <kbd>Enter</kbd></td><td><kbd>⌘</kbd> + <kbd>Enter</kbd></td></tr>
+              <tr><td>Reiniciar protótipo (no Present)</td><td><kbd>R</kbd></td><td><kbd>R</kbd></td></tr>
+              <tr><td>Mostrar hotspot hints</td><td><kbd>H</kbd></td><td><kbd>H</kbd></td></tr>
+              <tr><td>Modo de comentário (no Present)</td><td><kbd>C</kbd></td><td><kbd>C</kbd></td></tr>
+              <tr><td>Navegar entre frames manualmente</td><td><kbd>←</kbd> <kbd>→</kbd></td><td><kbd>←</kbd> <kbd>→</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>O <strong>Present mode</strong> exibe o protótipo em tela cheia, com controles de navegação, hotspot hints e seletor de Flow.</li>
+          <li>Pressione <kbd>R</kbd> para reiniciar o protótipo e resetar as variáveis ao valor inicial.</li>
+          <li><strong>Device frames</strong> adicionam molduras de dispositivo reais no Present mode — configure na aba Prototype.</li>
+          <li>Links de compartilhamento têm permissões granulares: Can view, Can comment, Can edit, público.</li>
+          <li>O código de <strong>embed (iframe)</strong> permite incorporar o protótipo em Notion, Confluence e outros.</li>
+          <li>O <strong>app Figma no celular</strong> é a forma mais fidedigna de testar protótipos mobile.</li>
+          <li>O sistema de <strong>comentários</strong> transforma revisões async em tarefas rastreáveis no canvas.</li>
+          <li><strong>5 usuários</strong> em um teste de usabilidade já revelam a maioria dos problemas de navegação e fluxo.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Compartilhe e colete feedback</h3>
+          <ol>
+            <li>Pegue o protótipo criado nas lições anteriores deste módulo (ou qualquer protótipo funcional).</li>
+            <li>Defina um device frame adequado (iPhone para mobile, Desktop para web).</li>
+            <li>Gere um link de compartilhamento com permissão <strong>Can comment</strong>.</li>
+            <li>Envie para um colega ou familiar e peça que ele realize a tarefa principal do fluxo (ex.: "complete o processo de checkout").</li>
+            <li>Peça que ele deixe pelo menos 2 comentários nos pontos onde teve dúvida ou travou.</li>
+            <li>Volte ao editor e resolva ou responda cada comentário.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> o colega consegue abrir o protótipo pelo link sem conta no Figma (ou com conta, conforme a permissão). Você recebe e responde os comentários no editor.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Teste de usabilidade de 5 minutos</h3>
+          <p>Conduza um mini teste de usabilidade com 2–3 pessoas (colegas, familiares). Defina 2 tarefas específicas para o seu protótipo. Observe (sem ajudar) enquanto cada pessoa tenta completar as tarefas. Anote os pontos de hesitação e os erros de navegação. Após o teste, liste os 3 maiores problemas encontrados e faça pelo menos um ajuste no protótipo para mitigar o principal problema. Compare o comportamento antes e depois da correção.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">1. Qual atalho de teclado, pressionado no Present mode, exibe placas azuis indicando todas as áreas clicáveis do protótipo?</p>
+            <ul class="quiz-options">
+              <li>H (Hotspot hints)</li>
+              <li>C (Comment mode)</li>
+              <li>R (Restart)</li>
+              <li>F (Fullscreen)</li>
+            </ul>
+            <div class="quiz-explain">A tecla <strong>H</strong> ativa os <strong>Hotspot hints</strong> no Present mode — placas azuis que revelam todas as áreas interativas. Útil em demos quando você quer orientar o espectador, mas deve ser evitado em testes com usuários reais.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">2. Qual permissão de compartilhamento permite que alguém deixe comentários no protótipo sem poder editar o design?</p>
+            <ul class="quiz-options">
+              <li>Can view</li>
+              <li>Can edit</li>
+              <li>Can comment</li>
+              <li>Owner</li>
+            </ul>
+            <div class="quiz-explain"><strong>Can comment</strong> dá acesso de visualização + a capacidade de deixar e responder comentários, mas não permite editar o arquivo. É o nível ideal para revisões com stakeholders, PMs e clientes.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">3. Segundo estudos de usabilidade, quantos participantes são suficientes para revelar a maioria dos problemas em um teste de usabilidade?</p>
+            <ul class="quiz-options">
+              <li>Ao menos 20 participantes para resultados estatisticamente válidos</li>
+              <li>5 participantes já revelam a maioria dos problemas de usabilidade</li>
+              <li>10 participantes é o mínimo aceitável</li>
+              <li>1 participante especialista é suficiente para cobrir todos os casos</li>
+            </ul>
+            <div class="quiz-explain">A pesquisa clássica de Nielsen e Landauer mostra que <strong>5 participantes</strong> revelam aproximadamente 85% dos problemas de usabilidade em um produto. Adicionar mais participantes traz retornos decrescentes — é mais eficiente fazer mais rodadas com menos pessoas do que uma rodada enorme.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

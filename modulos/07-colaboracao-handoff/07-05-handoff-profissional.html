@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Handoff profissional | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="07-05-handoff-profissional" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🤝 Módulo 7 · Profissional · Lição 5 de 6</div>
+        <h1>Handoff profissional</h1>
+        <p class="lead">Um handoff ruim transforma um design perfeito em implementação medíocre — e culpar o desenvolvedor não adianta nada. A responsabilidade pelo handoff é do designer. Nesta lição você aprende a preparar e entregar designs com clareza absoluta, usando todas as ferramentas que o Figma oferece para isso.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~25 min</span>
+          <span>🎯 Nível: Profissional</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Usar Annotations para documentar specs e intenções diretamente no canvas;</li>
+            <li>Organizar o arquivo Figma para máxima clareza na entrega;</li>
+            <li>Comunicar estados, comportamentos e edge cases com precisão;</li>
+            <li>Executar uma checklist completa de handoff antes de passar para o time de dev;</li>
+            <li>Manter uma comunicação eficiente com desenvolvedores durante a implementação.</li>
+          </ul>
+        </div>
+
+        <h2>Por que o handoff é responsabilidade do designer</h2>
+        <p>Existe um mito no mundo do design de produto: "o design é meu trabalho, a implementação é trabalho deles". Na realidade, a qualidade da implementação depende diretamente da qualidade da entrega do designer. Um design ambíguo — sem estados, sem medidas explícitas, sem documentação de comportamentos — garante uma implementação problemática, independente da competência do desenvolvedor.</p>
+        <p>O handoff profissional não é sobre criar "mais documentação" — é sobre <em>antecipar perguntas</em>. Cada pergunta que o dev não precisar fazer durante a implementação é tempo economizado para o projeto inteiro.</p>
+
+        <div class="callout info">
+          <span class="callout-title">O custo de um handoff ruim</span>
+          <p>Estudos de processos ágeis mostram que uma pergunta não respondida no design gera em média 3 idas e vindas entre dev e designer, custando entre 2–4 horas de trabalho combinado. Um arquivo com 20 ambiguidades = 40–80 horas de retrabalho. Um handoff bem feito que leva 2h extras no design economiza dias no desenvolvimento.</p>
+        </div>
+
+        <h2>Annotations: documentando no canvas</h2>
+        <p>As <strong>Annotations</strong> são notas de design que ficam visíveis no Dev Mode mas são ocultas no modo de edição normal — perfeitas para comunicar intenções técnicas sem poluir o canvas de design.</p>
+
+        <h3>Como adicionar annotations</h3>
+        <ol class="steps">
+          <li>
+            <strong>No Dev Mode, ative o painel de Annotations.</strong>
+            No modo de edição, vá em <strong>Main Menu → Plugins → Annotations</strong> ou use o painel de anotações no Dev Mode (ícone de nota no painel esquerdo).
+          </li>
+          <li>
+            <strong>Selecione um elemento e adicione uma nota.</strong>
+            Com o elemento selecionado, clique em "Add annotation". Uma caixa de texto vinculada ao elemento aparece no canvas. As annotations ficam ancoradas ao elemento — se ele se mover, a nota o acompanha.
+          </li>
+          <li>
+            <strong>Escreva a spec técnica ou a intenção de comportamento.</strong>
+            Exemplos: "Animação de entrada: fade-in 200ms ease-out", "Truncar com reticências após 2 linhas", "Placeholder desaparece ao focar — não usar float label aqui".
+          </li>
+          <li>
+            <strong>As annotations ficam visíveis no Dev Mode.</strong>
+            Quando o dev acessa o Dev Mode, vê todas as annotations ancoradas aos elementos correspondentes — exatamente onde ele precisa da informação.
+          </li>
+        </ol>
+
+        <h3>O que documentar com annotations</h3>
+        <ul>
+          <li><strong>Comportamentos de interação:</strong> "ao clicar, exibir dropdown com 4px de deslocamento para baixo";</li>
+          <li><strong>Animações e transições:</strong> "expand/collapse: height auto, 250ms, ease-in-out";</li>
+          <li><strong>Edge cases de texto:</strong> "máximo 3 linhas antes de truncar com '...'";</li>
+          <li><strong>Acessibilidade:</strong> "alt text: 'Foto de perfil de [nome do usuário]'";</li>
+          <li><strong>Responsividade:</strong> "em mobile, empilhar verticalmente; em desktop, lado a lado";</li>
+          <li><strong>Lógica condicional:</strong> "este badge só aparece quando unread_count > 0".</li>
+        </ul>
+
+        <div class="callout tip">
+          <span class="callout-title">Annotations vs. comentários: qual usar?</span>
+          <p>Use <strong>annotations</strong> para specs técnicas permanentes que o dev precisa consultar durante toda a implementação. Use <strong>comentários</strong> para discussões, perguntas e feedbacks que precisam de resposta e serão resolvidos. Annotations são documentação; comentários são conversa.</p>
+        </div>
+
+        <h2>Organizando o arquivo para entrega</h2>
+        <p>Um arquivo bem organizado reduz drasticamente a confusão no handoff. Existem convenções que o time inteiro deve conhecer:</p>
+
+        <h3>Estrutura de páginas</h3>
+        <p>Organize o arquivo em páginas com papéis claros:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Página</th><th>Conteúdo</th><th>Quem acessa</th></tr></thead>
+            <tbody>
+              <tr><td><strong>📋 Cover</strong></td><td>Resumo do projeto, versão, responsáveis</td><td>Todos</td></tr>
+              <tr><td><strong>✅ Ready for Dev</strong></td><td>Apenas frames aprovados e prontos</td><td>Devs (principal)</td></tr>
+              <tr><td><strong>🎨 Design</strong></td><td>Exploração e telas em progresso</td><td>Designers e PMs</td></tr>
+              <tr><td><strong>🧱 Components</strong></td><td>Biblioteca de componentes</td><td>Todos</td></tr>
+              <tr><td><strong>📐 Specs</strong></td><td>Guias de espaçamento, grids, tipos</td><td>Devs e designers</td></tr>
+              <tr><td><strong>🗄️ Archive</strong></td><td>Versões antigas, exploração descartada</td><td>Designers</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Nomeando frames e layers</h3>
+        <p>Nomes descritivos são fundamentais. Compare:</p>
+        <ul>
+          <li>Ruim: "Frame 47", "Rectangle 3", "Group 12"</li>
+          <li>Bom: "Home/Mobile/Feed", "Button/Primary/Default", "Card/Product/Compact"</li>
+        </ul>
+        <p>Use barras (<code>/</code>) para criar hierarquia semântica — o Figma respeita essa convenção em vários lugares (painel de componentes, Dev Mode, plugins).</p>
+
+        <h3>Usando o status "Ready for dev"</h3>
+        <p>Marque frames como <strong>Ready for dev</strong> apenas quando:</p>
+        <ul>
+          <li>O design foi revisado por pelo menos outro designer;</li>
+          <li>O PM/stakeholder aprovou o fluxo;</li>
+          <li>Todos os estados do componente estão documentados;</li>
+          <li>As annotations de comportamento estão preenchidas;</li>
+          <li>Os assets exportáveis estão configurados.</li>
+        </ul>
+
+        <h2>Documentando estados e comportamentos</h2>
+        <p>Um dos maiores erros de handoff é entregar apenas o estado padrão (default) de uma interface, esquecendo todos os outros. Para cada componente interativo, documente:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Estado</th><th>Quando ocorre</th><th>O que muda visualmente</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Default</strong></td><td>Estado inicial, sem interação</td><td>—</td></tr>
+              <tr><td><strong>Hover</strong></td><td>Mouse sobre o elemento</td><td>Cor de fundo, cursor, sombra</td></tr>
+              <tr><td><strong>Focus</strong></td><td>Foco via teclado ou tab</td><td>Outline de foco (crítico para acessibilidade)</td></tr>
+              <tr><td><strong>Active/Pressed</strong></td><td>Durante o clique</td><td>Estado pressionado (scale, sombra, cor)</td></tr>
+              <tr><td><strong>Disabled</strong></td><td>Ação indisponível</td><td>Opacidade reduzida, cursor not-allowed</td></tr>
+              <tr><td><strong>Loading</strong></td><td>Aguardando resposta assíncrona</td><td>Spinner, skeleton, texto alternativo</td></tr>
+              <tr><td><strong>Error</strong></td><td>Validação falhou ou erro de sistema</td><td>Cor vermelha, mensagem de erro, ícone</td></tr>
+              <tr><td><strong>Success</strong></td><td>Ação concluída com sucesso</td><td>Cor verde, checkmark, mensagem</td></tr>
+              <tr><td><strong>Empty</strong></td><td>Sem dados para exibir</td><td>Empty state ilustrado ou mensagem</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout warning">
+          <span class="callout-title">O estado que todos esquecem: focus</span>
+          <p>O estado de <strong>focus</strong> (visível quando o usuário navega com o teclado) é frequentemente ausente dos designs. Isso é um problema crítico de acessibilidade — a WCAG 2.1 exige que todos os elementos interativos tenham um indicador de foco visível (critério 2.4.7). Inclua sempre o estado de focus no seu handoff.</p>
+        </div>
+
+        <h2>Comunicando espaçamento e grid</h2>
+        <p>Além das medidas individuais dos componentes, documente o sistema de espaçamento global:</p>
+        <ul>
+          <li><strong>Base unit:</strong> qual o menor incremento de espaço (geralmente 4px ou 8px);</li>
+          <li><strong>Escala de espaçamento:</strong> os valores da escala (4, 8, 12, 16, 24, 32, 48...);</li>
+          <li><strong>Grid de colunas:</strong> quantas colunas, largura das colunas, gutters, margens externas;</li>
+          <li><strong>Breakpoints:</strong> mobile, tablet, desktop, wide — e como o layout muda em cada.</li>
+        </ul>
+        <p>O ideal é ter uma página "Specs" dedicada com exemplos visuais de cada valor da escala de espaçamento e a grade de layout.</p>
+
+        <h2>A checklist de handoff</h2>
+        <p>Antes de marcar qualquer tela como "Ready for dev", passe por esta checklist:</p>
+
+        <div class="exercise">
+          <span class="tag">📋 Checklist de handoff</span>
+          <h3>Verificação completa antes da entrega</h3>
+          <ul>
+            <li><strong>Organização</strong>
+              <ul>
+                <li>Todos os frames têm nomes descritivos (sem "Frame 47" ou "Group 3")</li>
+                <li>Layers e grupos internos estão nomeados e organizados</li>
+                <li>Telas prontas estão na página "Ready for Dev"</li>
+                <li>Rascunhos e WIP estão em páginas separadas e claramente marcados</li>
+              </ul>
+            </li>
+            <li><strong>Completude dos estados</strong>
+              <ul>
+                <li>Default, hover, focus, active, disabled, loading, error, success, empty</li>
+                <li>Estados de validação de formulários (erros, sucesso, em progresso)</li>
+                <li>Empty states para listas e feeds</li>
+                <li>Responsividade (mobile, tablet, desktop) onde aplicável</li>
+              </ul>
+            </li>
+            <li><strong>Specs e documentação</strong>
+              <ul>
+                <li>Annotations de comportamento preenchidas para interações não óbvias</li>
+                <li>Animações e transições documentadas (duração, easing, trigger)</li>
+                <li>Edge cases de texto documentados (textos longos, truncamento, zero resultados)</li>
+                <li>Regras de acessibilidade anotadas (alt texts, ARIA labels, order de foco)</li>
+              </ul>
+            </li>
+            <li><strong>Assets e exportação</strong>
+              <ul>
+                <li>Ícones configurados para export como SVG</li>
+                <li>Imagens configuradas para export em 1x, 2x, 3x</li>
+                <li>Ilustrações e assets especiais com export configurado</li>
+              </ul>
+            </li>
+            <li><strong>Design system</strong>
+              <ul>
+                <li>Componentes usando instâncias da biblioteca (não cópias manuais)</li>
+                <li>Cores usando styles ou variables (não valores literais soltos)</li>
+                <li>Tipografia usando text styles</li>
+                <li>Espaçamentos usando a escala definida (não valores arbitrários)</li>
+              </ul>
+            </li>
+          </ul>
+          <div class="success-criteria">
+            <strong>Padrão de qualidade:</strong> um desenvolvedor deve conseguir implementar qualquer tela sem precisar perguntar ao designer — todas as informações necessárias devem estar no arquivo.
+          </div>
+        </div>
+
+        <h2>Comunicação com devs durante a implementação</h2>
+        <p>O handoff não termina quando você entrega o arquivo — ele termina quando o feature está em produção. Durante a implementação, mantenha:</p>
+        <ul>
+          <li><strong>Disponibilidade para perguntas:</strong> responda rápido; cada pergunta não respondida é um bloqueio para o dev;</li>
+          <li><strong>Canal definido:</strong> combine onde as perguntas devem ser feitas (comentários no Figma, Slack, Jira) — não misture canais;</li>
+          <li><strong>Revisão de implementação:</strong> agende uma sessão para revisar o componente implementado antes de ir para produção — "design QA";</li>
+          <li><strong>Documentação de decisões:</strong> quando uma pergunta revelar uma ambiguidade no design, resolva-a E documente a resposta como annotation para que outros também vejam;</li>
+          <li><strong>Flexibilidade inteligente:</strong> algumas specs podem ser difíceis de implementar por limitações técnicas. Esteja aberto a negociar, mas entenda o impacto visual antes de aceitar.</li>
+        </ul>
+
+        <div class="callout pro">
+          <span class="callout-title">Design QA: a última milha do handoff</span>
+          <p>Reserve tempo na sprint para revisar a implementação antes do merge para main. Crie uma lista de itens que não batem com o design e priorize por impacto visual. Itens de 1px a mais num padding raramente valem o custo de reabrir um PR — saiba escolher suas batalhas. Itens de acessibilidade, contraste e comportamento de erro sempre valem.</p>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Um designer está entregando o redesign da tela de cadastro de um app de saúde. O processo de handoff profissional:</p>
+        <ol>
+          <li>Cria a página "Cadastro V2 - Ready for Dev" com apenas os 7 frames aprovados;</li>
+          <li>Marca todos os 7 frames como "Ready for dev" no Dev Mode;</li>
+          <li>Adiciona annotations: "campo CPF aceita formato com ou sem pontuação" e "mostrar/ocultar senha: ícone toggled, não dois campos separados";</li>
+          <li>Documenta todos os estados dos campos de input: default, focus, filled, error, disabled;</li>
+          <li>Configura exports para os 3 ícones usados na tela (SVG);</li>
+          <li>Verifica que todos os componentes são instâncias da biblioteca, não cópias;</li>
+          <li>Faz uma walkthrough de 15 min ao vivo com o dev para alinhar os comportamentos mais complexos;</li>
+          <li>3 dias depois, revisa a implementação no staging e deixa 2 comentários de ajuste — nada crítico, apenas polish.</li>
+        </ol>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Marcar como Ready for dev</td><td>Dev Mode → botão de status</td><td>Dev Mode → botão de status</td></tr>
+              <tr><td>Adicionar annotation</td><td>Dev Mode → painel Annotations</td><td>Dev Mode → painel Annotations</td></tr>
+              <tr><td>Ver apenas frames "Ready"</td><td>Dev Mode → filtro de status</td><td>Dev Mode → filtro de status</td></tr>
+              <tr><td>Renomear layer</td><td><kbd>Ctrl</kbd> + <kbd>R</kbd></td><td><kbd>⌘</kbd> + <kbd>R</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>O handoff é responsabilidade do designer — ambiguidades no design viram bugs na implementação.</li>
+          <li><strong>Annotations</strong> documentam specs técnicas e comportamentos diretamente no canvas, visíveis no Dev Mode.</li>
+          <li>Organize o arquivo com páginas específicas: Ready for Dev, Design (WIP), Components, Specs, Archive.</li>
+          <li>Documente todos os estados: default, hover, focus, active, disabled, loading, error, success, empty.</li>
+          <li>Use a checklist de handoff antes de marcar qualquer tela como pronta — um dev deve conseguir implementar sem perguntas.</li>
+          <li>Mantenha disponibilidade durante a implementação e reserve tempo para Design QA.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Handoff completo de um formulário</h3>
+          <p>Escolha um formulário simples de 2–3 campos (login, contato ou cadastro) e prepare um handoff completo:</p>
+          <ol>
+            <li>Crie uma página "Formulário - Ready for Dev" e mova os frames finalizados para lá.</li>
+            <li>Documente todos os estados de pelo menos um campo de input (default, focus, filled, error, disabled).</li>
+            <li>Adicione annotations para pelo menos 3 comportamentos não óbvios (ex: validação, mensagem de erro, comportamento do botão de submit).</li>
+            <li>Configure o export do ícone de alerta/erro como SVG.</li>
+            <li>Marque todos os frames como "Ready for dev".</li>
+            <li>Passe pela checklist de handoff e corrija os itens pendentes.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> um desenvolvedor que nunca viu o design deve conseguir implementar o formulário completo (incluindo todos os estados e comportamentos) apenas com o que está no arquivo Figma — sem precisar perguntar nada.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Revisão cruzada de handoff</h3>
+          <p>Troque um arquivo de design com um colega designer. Tente "implementar" o design dele apenas com as informações disponíveis no Figma — sem fazer perguntas verbalmente. Anote cada vez que você ficou em dúvida sobre algo. Depois, compile a lista de dúvidas e compartilhe com o colega como feedback sobre o handoff. Faça o mesmo processo invertido: receba o feedback sobre o seu arquivo. Use o feedback para preencher as lacunas identificadas com annotations e estados faltantes.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Qual a diferença principal entre Annotations e Comentários no Figma?</p>
+            <ul class="quiz-options">
+              <li>Annotations são visíveis apenas para o designer; comentários são visíveis para todos</li>
+              <li>Annotations são documentação técnica permanente visível no Dev Mode; comentários são para discussões e feedbacks que serão resolvidos</li>
+              <li>Annotations precisam de um plugin pago; comentários são gratuitos</li>
+              <li>Comentários ficam vinculados a elementos; annotations ficam no canvas livre</li>
+            </ul>
+            <div class="quiz-explain"><strong>Annotations</strong> são documentação permanente de specs técnicas — "animação de 200ms fade-in", "truncar após 2 linhas" — visíveis no Dev Mode para consulta durante toda a implementação. <strong>Comentários</strong> são conversas que têm início, meio e fim (são resolvidos).</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">2. Qual estado de interface é crítico para acessibilidade e frequentemente esquecido nos handoffs?</p>
+            <ul class="quiz-options">
+              <li>Estado hover</li>
+              <li>Estado loading</li>
+              <li>Estado disabled</li>
+              <li>Estado focus (indicador de foco via teclado)</li>
+            </ul>
+            <div class="quiz-explain">O estado de <strong>focus</strong> é exigido pela WCAG 2.1 (critério 2.4.7) e frequentemente ausente nos designs. Ele deve ser visível quando o usuário navega com teclado — essencial para acessibilidade de pessoas com deficiência motora ou que não usam mouse.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Quando um designer deve marcar um frame como "Ready for dev" no Dev Mode?</p>
+            <ul class="quiz-options">
+              <li>Apenas após aprovação do design, documentação de todos os estados, annotations preenchidas e assets configurados para export</li>
+              <li>Assim que terminar de criar o frame, para o dev poder acompanhar o progresso</li>
+              <li>Quando o cliente aprovar verbalmente em reunião, mesmo sem documentação formal</li>
+              <li>Apenas na última sprint, nunca durante o desenvolvimento iterativo</li>
+            </ul>
+            <div class="quiz-explain">"Ready for dev" é um <strong>contrato</strong>: significa que o frame está completo e aprovado. Marcar prematuramente gera retrabalho quando o dev implementa algo que ainda vai mudar. A boa prática é marcar apenas após aprovação, com todos os estados e annotations documentados.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frames vs Groups | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="01-01-frames-vs-groups" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🎨 Módulo 1 · Iniciante · Lição 1 de 8</div>
+        <h1>Frames vs Groups</h1>
+        <p class="lead">Antes de desenhar qualquer coisa no Figma, você precisa entender a diferença fundamental entre Frame e Group — a escolha errada aqui vai te travar em lições futuras.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~16 min</span>
+          <span>🎯 Nível: Iniciante</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Explicar com suas palavras a diferença entre Frame e Group;</li>
+            <li>Criar frames usando presets de dispositivos (iPhone, Desktop, etc.);</li>
+            <li>Decidir com segurança quando usar um ou outro;</li>
+            <li>Entender por que o Frame é o bloco fundamental do design no Figma;</li>
+            <li>Trabalhar com frames aninhados (frames dentro de frames).</li>
+          </ul>
+        </div>
+
+        <h2>O que é um Frame?</h2>
+        <p>Um <strong>Frame</strong> é o container mais importante do Figma. Pense nele como uma <em>tela em branco com dimensões próprias</em> — assim como o canvas de um aplicativo mobile ou o viewport de um site. Todo projeto profissional no Figma começa com Frames.</p>
+        <p>Tecnicamente, um Frame é um container que:</p>
+        <ul>
+          <li>Tem <strong>largura e altura definidas</strong> de forma independente do conteúdo;</li>
+          <li>Pode ter <strong>fill próprio</strong> (cor de fundo, gradiente, imagem);</li>
+          <li>Suporta <strong>clipping</strong> — conteúdo que ultrapassa as bordas pode ser ocultado;</li>
+          <li>Aceita <strong>Layout Grids</strong> (guias de colunas, linhas e grid uniforme);</li>
+          <li>Pode ser transformado em <strong>Auto Layout</strong>, <strong>Componente</strong> e <strong>protótipo de tela</strong>;</li>
+          <li>Suporta <strong>Constraints</strong> (regras de ancoragem para os filhos);</li>
+          <li>Aparece no handoff para developers com metadados precisos.</li>
+        </ul>
+
+        <div class="callout info">
+          <span class="callout-title">Frame = Artboard no Sketch/XD/Illustrator</span>
+          <p>Se você veio de outras ferramentas, o Frame do Figma é o equivalente ao <em>Artboard</em> do Sketch ou do Adobe XD. A diferença é que no Figma os Frames são muito mais poderosos: eles podem ser aninhados infinitamente e viram componentes, protótipos e Auto Layouts.</p>
+        </div>
+
+        <h3>O clip content</h3>
+        <p>Uma propriedade fundamental do Frame é o <strong>Clip content</strong> (ocultar conteúdo além das bordas). Quando ativado, tudo que sair da área do Frame fica invisível — como uma janela por onde você vê apenas o que está dentro. Isso é essencial para simular scroll, carousels e modais.</p>
+
+        <h2>O que é um Group?</h2>
+        <p>Um <strong>Group</strong> é uma maneira simples de juntar elementos para movê-los ou selecioná-los juntos. Diferente do Frame, o Group:</p>
+        <ul>
+          <li><strong>Não tem dimensões próprias</strong> — o bounding box é calculado automaticamente a partir dos filhos;</li>
+          <li><strong>Não tem fill, border ou efeitos próprios</strong>;</li>
+          <li><strong>Não suporta Layout Grids</strong>;</li>
+          <li><strong>Não aceita Auto Layout</strong>;</li>
+          <li>Redimensiona <em>todos os filhos proporcionalmente</em> ao ser esticado;</li>
+          <li>É apenas uma conveniência de organização — não é um container real.</li>
+        </ul>
+
+        <div class="callout warning">
+          <span class="callout-title">Group não é Frame — cuidado!</span>
+          <p>Um erro clássico de iniciante é criar grupos achando que eles são containers. Se você tentar adicionar Auto Layout a um Group, o Figma <strong>converte automaticamente o Group em Frame</strong>. Isso mostra que o Group é uma estrutura mais fraca — ele não tem capacidade de organizar filhos.</p>
+        </div>
+
+        <h2>Tabela de diferenças</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Característica</th><th>Frame</th><th>Group</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Dimensões próprias (W/H)</td><td>✅ Sim — independente dos filhos</td><td>❌ Não — calculado pelos filhos</td></tr>
+              <tr><td>Fill / cor de fundo</td><td>✅ Sim</td><td>❌ Não</td></tr>
+              <tr><td>Border / stroke próprio</td><td>✅ Sim</td><td>❌ Não</td></tr>
+              <tr><td>Clip content</td><td>✅ Sim</td><td>❌ Não</td></tr>
+              <tr><td>Layout Grid</td><td>✅ Sim</td><td>❌ Não</td></tr>
+              <tr><td>Auto Layout</td><td>✅ Sim</td><td>❌ Não (converte para Frame)</td></tr>
+              <tr><td>Constraints nos filhos</td><td>✅ Sim</td><td>❌ Não</td></tr>
+              <tr><td>Redimensionar altera filhos?</td><td>Depende das Constraints</td><td>Sim, proporcionalmente</td></tr>
+              <tr><td>Pode ser protótipo de tela</td><td>✅ Sim</td><td>❌ Não</td></tr>
+              <tr><td>Atalho para criar</td><td><kbd>F</kbd></td><td><kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>G</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Quando usar cada um?</h2>
+
+        <h3>Use Frame quando:</h3>
+        <ul>
+          <li>For uma <strong>tela do app ou página do site</strong> (sempre);</li>
+          <li>For um <strong>componente</strong> (botão, card, modal, header…);</li>
+          <li>Precisar de <strong>fill, border ou efeito</strong> no container;</li>
+          <li>For usar <strong>Auto Layout</strong>;</li>
+          <li>Precisar que o conteúdo que ultrapasse as bordas seja <strong>oculto</strong>;</li>
+          <li>For criar <strong>Layout Grids</strong>;</li>
+          <li>For fazer <strong>protótipos interativos</strong>.</li>
+        </ul>
+
+        <h3>Use Group quando:</h3>
+        <ul>
+          <li>For <strong>agrupar ícones ou elementos decorativos</strong> para mover juntos sem complexidade;</li>
+          <li>For um <strong>agrupamento temporário</strong> durante a edição;</li>
+          <li>Os elementos <strong>não precisam de container com estilo próprio</strong>;</li>
+          <li>For agrupar ilustrações ou vetores onde o bounding box automático é desejado.</li>
+        </ul>
+
+        <div class="callout tip">
+          <span class="callout-title">Regra prática do dia a dia</span>
+          <p>Na dúvida, <strong>sempre use Frame</strong>. Se mais tarde você precisar de Auto Layout, fill ou constraints, já está no container certo. Um Frame sem fill parece um Group, mas é muito mais capaz.</p>
+        </div>
+
+        <h2>Frames aninhados</h2>
+        <p>Um dos poderes do Figma é a capacidade de colocar <strong>Frames dentro de Frames</strong>. Uma tela de app é um Frame grande que contém Frames menores: o Header é um Frame, o Card é um Frame, o Botão dentro do Card é outro Frame. Essa hierarquia é o que permite construir interfaces complexas com precisão.</p>
+
+        <div class="diagram">
+          <svg viewBox="0 0 520 260" role="img" aria-label="Diagrama mostrando frames aninhados: tela > card > botão">
+            <!-- Tela principal -->
+            <rect x="20" y="20" width="480" height="220" rx="12" fill="var(--primary-soft)" stroke="var(--primary)" stroke-width="2"/>
+            <text x="36" y="44" fill="var(--primary)" font-size="12" font-family="sans-serif" font-weight="700">Frame: Tela (390×844)</text>
+            <!-- Card -->
+            <rect x="50" y="60" width="420" height="140" rx="10" fill="var(--surface)" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <text x="66" y="82" fill="var(--text)" font-size="11" font-family="sans-serif" font-weight="700">Frame: Card (358×120)</text>
+            <!-- Área de texto -->
+            <rect x="70" y="95" width="200" height="40" rx="6" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1"/>
+            <text x="82" y="120" fill="var(--text-muted)" font-size="10" font-family="sans-serif">Textos (Group)</text>
+            <!-- Botão -->
+            <rect x="300" y="95" width="150" height="40" rx="8" fill="var(--primary)" stroke="none"/>
+            <text x="340" y="120" fill="#fff" font-size="11" font-family="sans-serif" font-weight="700">Frame: Botão</text>
+            <!-- Seta hierarquia -->
+            <text x="20" y="252" fill="var(--text-muted)" font-size="11" font-family="sans-serif">Tela → Card → Botão: todos são Frames aninhados</text>
+          </svg>
+          <p class="mock-label">Frames aninhados formam a estrutura hierárquica de qualquer tela profissional.</p>
+        </div>
+
+        <h2>Presets de Frame</h2>
+        <p>O Figma oferece <strong>presets prontos</strong> com as dimensões exatas dos dispositivos mais comuns. Quando você pressiona <kbd>F</kbd> e olha para o painel direito, vê categorias como:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Categoria</th><th>Preset</th><th>Dimensões</th></tr></thead>
+            <tbody>
+              <tr><td rowspan="3">Phone</td><td>iPhone 14 &amp; 15</td><td>390 × 844</td></tr>
+              <tr><td>iPhone SE</td><td>375 × 667</td></tr>
+              <tr><td>Android Large</td><td>360 × 800</td></tr>
+              <tr><td rowspan="2">Tablet</td><td>iPad Pro 12.9"</td><td>1024 × 1366</td></tr>
+              <tr><td>iPad Mini</td><td>768 × 1024</td></tr>
+              <tr><td rowspan="3">Desktop</td><td>MacBook Pro 14"</td><td>1512 × 982</td></tr>
+              <tr><td>Desktop</td><td>1440 × 1024</td></tr>
+              <tr><td>Full HD</td><td>1920 × 1080</td></tr>
+              <tr><td>Presentation</td><td>Slide 16:9</td><td>1920 × 1080</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout note">
+          <span class="callout-title">Presets são apenas um ponto de partida</span>
+          <p>Os presets facilitam começar, mas você pode digitar qualquer dimensão nos campos W e H do painel direito. Para web responsivo, 1440px de largura é o padrão mais usado em 2025.</p>
+        </div>
+
+        <h2>Passo a passo: criar uma tela a partir de preset</h2>
+        <p>Vamos criar sua primeira tela de app no Figma:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Ative a ferramenta Frame.</strong>
+            Pressione <kbd>F</kbd> no teclado. O cursor muda para uma cruz. No painel direito, aparece a lista de presets.
+          </li>
+          <li>
+            <strong>Escolha o preset de iPhone.</strong>
+            No painel direito, clique em <strong>Phone → iPhone 14 &amp; 15</strong>. Um Frame de 390×844 px aparece automaticamente no canvas.
+          </li>
+          <li>
+            <strong>Ou desenhe manualmente.</strong>
+            Com <kbd>F</kbd> ativo, clique e arraste no canvas para criar um Frame de qualquer tamanho. Segure <kbd>Shift</kbd> para forçar proporções quadradas.
+          </li>
+          <li>
+            <strong>Dê um nome ao Frame.</strong>
+            No painel de Layers (esquerda), clique duas vezes sobre o nome do Frame e renomeie para "Home – iPhone 14". Nomes descritivos são essenciais.
+          </li>
+          <li>
+            <strong>Adicione um fill de fundo.</strong>
+            Com o Frame selecionado, clique no <strong>+</strong> ao lado de "Fill" no painel direito. Escolha uma cor clara (#F5F6F8, por exemplo). Você acabou de criar sua primeira tela!
+          </li>
+          <li>
+            <strong>Crie um Frame aninhado para o header.</strong>
+            Com <kbd>F</kbd>, arraste dentro do Frame de tela para criar um Frame filho de 390×60 px no topo. Dê um fill branco e renomeie para "Header".
+          </li>
+        </ol>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Em um projeto de aplicativo de delivery, a estrutura típica de Frames seria:</p>
+
+        <div class="figma-mock">
+          <div class="device-phone">
+            <div style="background:#f5f6f8;min-height:400px;display:flex;flex-direction:column;">
+              <!-- header -->
+              <div style="background:#fff;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e2e6ec;">
+                <strong style="font-size:15px;">🍕 QuickEats</strong>
+                <span style="background:#6c4cf1;color:#fff;font-size:11px;padding:4px 10px;border-radius:20px;">Entregar</span>
+              </div>
+              <!-- card de restaurante -->
+              <div style="margin:16px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08);">
+                <div style="height:100px;background:linear-gradient(135deg,#f2994a,#f27121);"></div>
+                <div style="padding:12px;">
+                  <strong style="font-size:13px;">Pizzaria Bella Napoli</strong>
+                  <p style="font-size:11px;color:#5b6573;margin:4px 0 0;">⭐ 4.8 · 25–35 min · R$ 5 entrega</p>
+                </div>
+              </div>
+              <!-- texto muted -->
+              <p style="font-size:11px;color:#5b6573;text-align:center;margin-top:8px;">Frame: Tela → Frame: Header → Frame: Card</p>
+            </div>
+          </div>
+          <p class="mock-label">Cada seção da UI é um Frame aninhado dentro do Frame principal da tela.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Criar Frame</td><td><kbd>F</kbd></td><td><kbd>F</kbd></td></tr>
+              <tr><td>Criar Group</td><td><kbd>Ctrl</kbd> + <kbd>G</kbd></td><td><kbd>⌘</kbd> + <kbd>G</kbd></td></tr>
+              <tr><td>Desagrupar</td><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>G</kbd></td><td><kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>G</kbd></td></tr>
+              <tr><td>Renomear camada</td><td><kbd>Ctrl</kbd> + <kbd>R</kbd></td><td><kbd>⌘</kbd> + <kbd>R</kbd></td></tr>
+              <tr><td>Selecionar filho de Group/Frame</td><td>Duplo-clique</td><td>Duplo-clique</td></tr>
+              <tr><td>Selecionar pai</td><td><kbd>Esc</kbd></td><td><kbd>Esc</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li><strong>Frame</strong> é um container com dimensões próprias, fill, clip, grids e suporte a Auto Layout — use para telas, seções e componentes.</li>
+          <li><strong>Group</strong> é apenas um agrupamento conveniente sem propriedades de container — use para organizar elementos que devem se mover juntos.</li>
+          <li>Frames podem ser aninhados infinitamente, formando a hierarquia de qualquer interface.</li>
+          <li>Presets de Frame oferecem dimensões prontas para os dispositivos mais comuns.</li>
+          <li>Na dúvida, <strong>prefira Frame</strong> — ele oferece todos os recursos que o Group oferece, e muito mais.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Monte a estrutura de uma tela simples</h3>
+          <p>Coloque a mão na massa:</p>
+          <ol>
+            <li>Crie um Frame usando o preset <strong>iPhone 14 &amp; 15</strong> e renomeie para "Tela – Início".</li>
+            <li>Dentro dele, crie um Frame filho de 390×60 px no topo, fill branco, renomeado "Header".</li>
+            <li>Crie um segundo Frame filho de 390×120 px abaixo do header, fill branco com sombra, renomeado "Card – Produto".</li>
+            <li>Dentro do Card, adicione dois textos (título e subtítulo) usando a ferramenta <kbd>T</kbd>.</li>
+            <li>Agora crie um <strong>Group</strong> com os dois textos (<kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>G</kbd>) e observe que o Group não tem fill próprio.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> no painel de Layers, você deve ver "Tela – Início" > "Header" e "Card – Produto" como Frames (ícone de Frame), e dentro do Card um Group com dois textos.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Estrutura de 3 telas conectadas</h3>
+          <p>Crie 3 Frames de iPhone lado a lado representando "Splash Screen", "Login" e "Home". Cada um deve ter fill e pelo menos 3 Frames filhos internos. Organize todos os Frames dentro de outro Frame maior chamado "Fluxo – Onboarding" (sim, um Frame pode conter outros Frames de tela inteira). Isso simula a organização de um projeto real.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Qual é a principal diferença entre um Frame e um Group no Figma?</p>
+            <ul class="quiz-options">
+              <li>Frame não aceita filhos; Group aceita</li>
+              <li>Frame tem dimensões próprias e aceita fills, grids e Auto Layout; Group não tem dimensões independentes</li>
+              <li>Group pode ser convertido em componente; Frame não</li>
+              <li>Frame só funciona em telas mobile</li>
+            </ul>
+            <div class="quiz-explain">O Frame é um container independente com W, H, fills, borders, Layout Grids e suporte a Auto Layout. O Group apenas junta elementos e seu tamanho é calculado automaticamente pelos filhos.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. Qual atalho cria um Frame no Figma?</p>
+            <ul class="quiz-options">
+              <li><kbd>F</kbd></li>
+              <li><kbd>Ctrl</kbd> + <kbd>G</kbd></li>
+              <li><kbd>R</kbd></li>
+              <li><kbd>Shift</kbd> + <kbd>A</kbd></li>
+            </ul>
+            <div class="quiz-explain">A tecla <strong>F</strong> ativa a ferramenta Frame. <kbd>Ctrl/⌘ + G</kbd> cria um Group, <kbd>R</kbd> cria um retângulo e <kbd>Shift + A</kbd> aplica Auto Layout.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">3. O que acontece quando você tenta aplicar Auto Layout em um Group?</p>
+            <ul class="quiz-options">
+              <li>O Figma exibe um erro e impede a ação</li>
+              <li>O Auto Layout é aplicado, mas sem funcionar</li>
+              <li>O Figma converte o Group em Frame automaticamente</li>
+              <li>O Group é deletado</li>
+            </ul>
+            <div class="quiz-explain">Ao aplicar Auto Layout (<kbd>Shift + A</kbd>) em um Group, o Figma converte automaticamente o Group em Frame — porque Auto Layout requer as capacidades de um Frame.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

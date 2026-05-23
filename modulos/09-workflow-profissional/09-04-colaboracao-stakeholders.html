@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colaboração com PMs, devs e stakeholders | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="09-04-colaboracao-stakeholders" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🎯 Módulo 9 · Profissional · Lição 4 de 6</div>
+        <h1>Colaboração com PMs, devs e stakeholders</h1>
+        <p class="lead">O design não termina quando você fecha o Figma. Saber apresentar, receber feedback e documentar decisões é tão importante quanto criar boas interfaces — e é o que separa designers que entregam dos que ficam eternamente em revisão.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~20 min</span>
+          <span>🎯 Nível: Profissional</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Estruturar uma apresentação de design eficiente para diferentes audiências;</li>
+            <li>Receber, organizar e priorizar feedback de stakeholders no Figma;</li>
+            <li>Conduzir e participar de design reviews produtivos;</li>
+            <li>Documentar decisões de design e suas justificativas diretamente no arquivo;</li>
+            <li>Usar os recursos de comentários e anotações do Figma para comunicação assíncrona.</li>
+          </ul>
+        </div>
+
+        <h2>Trabalhando com Product Managers</h2>
+        <p>O Product Manager (PM) é o parceiro mais próximo do designer no dia a dia. Ele traz o contexto de negócio, as métricas e as restrições; você traz a solução de experiência. Para que essa colaboração funcione bem:</p>
+
+        <h3>Antes de começar a desenhar</h3>
+        <ul>
+          <li><strong>Alinhe o problema, não a solução.</strong> Pergunte: "Qual problema estamos resolvendo? Para qual usuário? Como mediremos o sucesso?" Designers que começam a desenhar sem isso criam soluções bonitas para os problemas errados.</li>
+          <li><strong>Entenda as restrições técnicas e de negócio.</strong> Há uma deadline? Há restrições de engenharia que eliminam certas abordagens? Há requisitos regulatórios (LGPD, etc.)?</li>
+          <li><strong>Defina o escopo juntos.</strong> O que está dentro e fora do escopo desta iteração. Documente isso na página Cover do arquivo.</li>
+        </ul>
+
+        <h3>Durante o design</h3>
+        <ul>
+          <li><strong>Compartilhe rascunhos cedo.</strong> Um link de view-only compartilhado com o PM ao final do primeiro dia evita surpresas na revisão final. Prefira "feio e certo" a "bonito e errado".</li>
+          <li><strong>Use comentários para perguntas abertas.</strong> Quando tiver uma decisão incerta (ex.: "Devo mostrar o preço antes ou depois do CTA?"), deixe um comentário no Figma direcionado ao PM com a pergunta. Isso documenta a dúvida e permite resposta assíncrona.</li>
+        </ul>
+
+        <h2>Trabalhando com desenvolvedores</h2>
+        <p>A relação designer-dev é onde a maioria dos projetos ganha ou perde qualidade na implementação. O Figma tem ferramentas poderosas para isso — mas elas só funcionam se o arquivo estiver bem organizado (como aprendemos nas lições anteriores).</p>
+
+        <h3>Dev Mode: o canal de handoff nativo</h3>
+        <p>O <strong>Dev Mode</strong> do Figma (ativado com <kbd>Shift</kbd> + <kbd>D</kbd>) mostra aos desenvolvedores as specs de todos os elementos: tamanhos, espaçamentos, cores (com os valores das variáveis), tipografia e até snippets de código CSS, iOS e Android. Para que o Dev Mode seja útil:</p>
+        <ul>
+          <li>Todos os textos devem usar estilos de texto vinculados, não valores avulsos;</li>
+          <li>Todas as cores devem usar variáveis ou estilos nomeados;</li>
+          <li>Componentes devem estar nomeados de forma que corresponda à nomenclatura do código;</li>
+          <li>O arquivo deve estar com o status "Ready for dev" (marcação de seção verde).</li>
+        </ul>
+
+        <div class="callout tip">
+          <span class="callout-title">Seção "Ready for Development" no Figma</span>
+          <p>No Figma, você pode marcar frames como "Ready for development" clicando com o botão direito no frame e escolhendo essa opção. Os frames marcados ficam destacados em verde no Dev Mode, sinalizando para os devs o que já pode ser implementado.</p>
+        </div>
+
+        <h3>O que documentar para os devs</h3>
+        <p>Além do que o Dev Mode mostra automaticamente, documente manualmente:</p>
+        <ul>
+          <li><strong>Comportamentos e animações:</strong> o Figma não descreve velocidades de transição ou easings nativamente. Adicione anotações: "Slide-in da direita, 300ms, ease-out".</li>
+          <li><strong>Estados interativos:</strong> mostre todos os estados de um componente (default, hover, focus, disabled, loading, error) agrupados no mesmo frame.</li>
+          <li><strong>Responsividade:</strong> mostre como o layout se comporta em diferentes breakpoints (mobile, tablet, desktop).</li>
+          <li><strong>Exceções e edge cases:</strong> como fica a tela com texto muito longo? Com 0 resultados? Com erro de conexão?</li>
+        </ul>
+
+        <h2>Apresentando designs para stakeholders</h2>
+        <p>Stakeholders (diretores, CEOs, clientes) têm pouco tempo e contexto técnico de design. Uma apresentação eficaz de design não é uma tour pelo arquivo Figma — é uma narrativa que conecta o problema de negócio à solução visual.</p>
+
+        <h3>A estrutura de apresentação que funciona</h3>
+        <ol class="steps">
+          <li>
+            <strong>Contexto do problema.</strong>
+            1–2 slides/frames: qual problema de usuário estamos resolvendo? Qual métrica esperamos melhorar? (Ex.: "Temos 60% de abandono na etapa de pagamento.")
+          </li>
+          <li>
+            <strong>O que foi explorado.</strong>
+            Mostre brevemente 2–3 abordagens consideradas, mesmo que as descartadas. Isso demonstra que a solução escolhida não foi arbitrária.
+          </li>
+          <li>
+            <strong>A solução proposta.</strong>
+            O design em si, com foco na experiência do usuário. Use um protótipo clicável — stakeholders entendem muito melhor ao interagir do que ao olhar frames estáticos.
+          </li>
+          <li>
+            <strong>Decisões-chave e trade-offs.</strong>
+            Explique 2–3 decisões importantes e por que foram tomadas. Ex.: "Removemos o campo de CPF desta tela porque pesquisas mostraram que ele aumenta o abandono."
+          </li>
+          <li>
+            <strong>Próximos passos.</strong>
+            O que precisa de aprovação? Quais são as próximas etapas? O que você precisa deles?
+          </li>
+        </ol>
+
+        <div class="callout info">
+          <span class="callout-title">Apresente contexto antes de mostrar pixels</span>
+          <p>O erro mais comum é abrir o Figma e mostrar imediatamente a tela. Stakeholders sem contexto imediatamente começam a opinar sobre estética ("essa cor é feia", "mude a fonte"). Se você contextualizar o problema antes, as discussões ficam no nível certo: funcionalidade e objetivos de negócio.</p>
+        </div>
+
+        <h2>Recebendo e organizando feedback</h2>
+        <p>Receber feedback bem é uma habilidade que precisa ser desenvolvida. Feedback ruim recebido bem gera bom design; feedback bom recebido mal gera retrabalho infinito.</p>
+
+        <h3>Como organizar feedback no Figma</h3>
+        <p>Use os <strong>comentários do Figma</strong> (<kbd>C</kbd> para abrir a ferramenta de comentário) para registrar feedback diretamente sobre os frames. Configure quem pode comentar no arquivo (File → Share → "can comment").</p>
+
+        <p>Para gerenciar o volume de feedback:</p>
+        <ul>
+          <li><strong>Categorize por tipo:</strong> use prefixos nos comentários — <code>[BUG]</code> para problemas funcionais, <code>[COPY]</code> para texto, <code>[VISUAL]</code> para estética, <code>[QUESTION]</code> para dúvidas;</li>
+          <li><strong>Priorize com o PM:</strong> nem todo feedback precisa ser implementado. Decida junto com o PM o que é crítico, o que é backlog e o que é "nice-to-have";</li>
+          <li><strong>Documente o que foi aceito e recusado:</strong> quando você decide não implementar um feedback, deixe uma resposta no comentário explicando o porquê. Isso evita que a mesma discussão aconteça na próxima revisão.</li>
+        </ul>
+
+        <div class="figma-mock">
+          <div class="device-browser" style="max-width: 480px;">
+            <div class="browser-bar"><i></i><i></i><i></i><span style="margin-left:8px;font-size:12px;color:var(--text-soft)">figma.com — comentários</span></div>
+            <div style="padding:16px;display:flex;flex-direction:column;gap:12px;">
+              <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:12px;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                  <div style="width:24px;height:24px;border-radius:50%;background:var(--primary);display:grid;place-items:center;color:#fff;font-size:11px;font-weight:700;">PM</div>
+                  <strong style="font-size:13px;">Ana (PM)</strong>
+                  <span style="font-size:11px;color:var(--text-soft)">há 2h</span>
+                </div>
+                <p style="font-size:13px;margin:0;color:var(--text)">[COPY] O botão "Continuar" está genérico — pode ser "Ir para pagamento"?</p>
+              </div>
+              <div style="background:var(--success-soft);border:1px solid var(--success-border);border-radius:8px;padding:12px;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                  <div style="width:24px;height:24px;border-radius:50%;background:var(--success);display:grid;place-items:center;color:#fff;font-size:11px;font-weight:700;">D</div>
+                  <strong style="font-size:13px;">Você (Designer)</strong>
+                  <span style="font-size:11px;color:var(--text-soft)">há 1h</span>
+                </div>
+                <p style="font-size:13px;margin:0;color:var(--text)">Aceito. Atualizado. ✓ Resolvido</p>
+              </div>
+              <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:12px;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                  <div style="width:24px;height:24px;border-radius:50%;background:var(--warning);display:grid;place-items:center;color:#fff;font-size:11px;font-weight:700;">C</div>
+                  <strong style="font-size:13px;">Carlos (Dev)</strong>
+                  <span style="font-size:11px;color:var(--text-soft)">há 45min</span>
+                </div>
+                <p style="font-size:13px;margin:0;color:var(--text)">[QUESTION] Qual o comportamento do botão em loading? Preciso do estado.</p>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">Comentários categorizados com prefixos facilitam a triagem e priorização do feedback no Figma.</p>
+        </div>
+
+        <h2>Design reviews: estrutura e cultura</h2>
+        <p>Uma <strong>design review</strong> é uma reunião estruturada onde o designer apresenta o trabalho ao time para obter feedback antes de prosseguir. Quando feita bem, economiza tempo; quando feita mal, cria mais trabalho.</p>
+
+        <h3>Antes da review</h3>
+        <ul>
+          <li>Compartilhe o link do arquivo com pelo menos 24h de antecedência com a pauta;</li>
+          <li>Defina claramente o objetivo: "estou buscando feedback sobre o fluxo de checkout, não sobre a paleta de cores";</li>
+          <li>Marque as seções "Em revisão" com a cor de status correta no Figma.</li>
+        </ul>
+
+        <h3>Durante a review</h3>
+        <ul>
+          <li>Apresente o contexto primeiro (problema, objetivos);</li>
+          <li>Use um protótipo clicável, não frames estáticos;</li>
+          <li>Peça feedback específico, não geral: "O que impede o usuário de completar essa ação?"</li>
+          <li>Anote todo o feedback como comentários no Figma em tempo real;</li>
+          <li>Evite justificar cada escolha imediatamente — ouça primeiro.</li>
+        </ul>
+
+        <h3>Depois da review</h3>
+        <ul>
+          <li>Envie um resumo com o que foi decidido (aceito, recusado, backlog) para todos os participantes;</li>
+          <li>Atualize o status das telas revisadas no Figma;</li>
+          <li>Documente as decisões como comentários resolvidos ou anotações no arquivo.</li>
+        </ul>
+
+        <h2>Documentando decisões de design</h2>
+        <p>Decisões de design são esquecidas. Em seis meses, quando alguém perguntar "por que fizemos assim?", ninguém vai lembrar. Documente enquanto ainda está fresco.</p>
+
+        <h3>Formas de documentar no Figma</h3>
+        <ul>
+          <li><strong>Anotações de design:</strong> frames de texto ao lado das telas explicando decisões específicas: "Usamos dropdown em vez de radio buttons porque o campo é secundário e aparece acima da dobra em mobile."</li>
+          <li><strong>Comentários resolvidos:</strong> o histórico de comentários do Figma é preservado mesmo após resolver. Use os comentários como log de decisões.</li>
+          <li><strong>ADR (Architecture Decision Record) simplificado:</strong> para decisões grandes, crie um frame com: Contexto → Opções consideradas → Decisão → Consequências.</li>
+        </ul>
+
+        <div class="callout pro">
+          <span class="callout-title">O log de decisões que evita retrabalho</span>
+          <p>Crie uma página chamada <strong>Decisions Log</strong> no arquivo com uma tabela simples: Data | Decisão | Razão | Quem decidiu. Qualquer novo integrante do time pode ler essa página e entender em 10 minutos por que as coisas estão como estão — sem precisar interromper ninguém.</p>
+        </div>
+
+        <h2>Comunicação assíncrona no Figma</h2>
+        <p>Em times distribuídos (diferentes fusos, modelos híbridos), a comunicação assíncrona no próprio arquivo é muito mais eficiente do que reuniões frequentes. Ferramentas e práticas:</p>
+        <ul>
+          <li><strong>Comentários com @menção:</strong> use <code>@</code> para notificar uma pessoa específica no comentário. Ela recebe uma notificação por email e na inbox do Figma.</li>
+          <li><strong>Status nos frames:</strong> prefixos no nome do frame indicam status sem precisar de reunião: <code>[REVIEW NEEDED]</code>, <code>[APPROVED]</code>, <code>[WIP]</code>.</li>
+          <li><strong>Loom embeds:</strong> grave um vídeo curto explicando as decisões do design e cole o link como comentário. É mais eficiente do que uma longa thread de texto.</li>
+          <li><strong>FigJam para brainstorm:</strong> para sessões de ideação com o PM ou stakeholders remotos, use o FigJam (parte do Figma). É mais adequado para workshops do que o Figma Editor.</li>
+        </ul>
+
+        <h2>Exemplo de uso real</h2>
+        <p>O time de design da Stripe tem uma prática chamada <em>"Design Doc"</em>: antes de qualquer projeto novo, o designer escreve um documento de uma página (pode ser um frame no Figma mesmo) descrevendo o problema, as restrições, as abordagens consideradas e a proposta. Esse documento é comentado assincronamente pelos stakeholders antes da primeira pixel ser criada.</p>
+        <p>Resultado: os designs chegam na primeira revisão muito mais alinhados, porque todos os questionamentos básicos já foram respondidos no Doc. A review foca em detalhes de execução, não em questionar a direção.</p>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Alinhe o problema com o PM antes de começar a desenhar; documente escopo e restrições no Cover.</li>
+          <li>Prepare o arquivo para Dev Mode: estilos vinculados, variáveis nomeadas, estados documentados.</li>
+          <li>Apresente contexto antes de mostrar designs; use protótipos clicáveis em vez de frames estáticos.</li>
+          <li>Categorize feedback com prefixos (<code>[BUG]</code>, <code>[COPY]</code>, etc.) e documente o que foi aceito e recusado.</li>
+          <li>Documente decisões de design no arquivo — como comentários, anotações ou uma página "Decisions Log".</li>
+          <li>Use comentários com @menção e status nos frames para comunicação assíncrona eficiente.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Prepare um arquivo para revisão</h3>
+          <p>Pegue um arquivo de design e prepare-o para uma design review fictícia com PM e devs:</p>
+          <ol>
+            <li>Adicione comentários nas 3 principais decisões de design do arquivo explicando o raciocínio.</li>
+            <li>Marque as telas prontas como "Ready for development" (botão direito no frame).</li>
+            <li>Crie um frame de "Estados do componente" para o componente mais complexo da tela (ex.: botão com todos os estados: default, hover, focus, disabled, loading).</li>
+            <li>Crie um protótipo clicável do fluxo principal (3–5 telas ligadas por interações).</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> um desenvolvedor consegue abrir o arquivo no Dev Mode e entender todos os estados e comportamentos sem precisar perguntar nada ao designer.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Simule uma design review completa</h3>
+          <p>Pegue um design de 5+ telas, crie um protótipo clicável, e prepare uma apresentação de 10 minutos seguindo a estrutura desta lição: contexto do problema, explorações, solução proposta, decisões-chave e próximos passos. Grave a apresentação (tela + voz) e cole o link como comentário no Figma. Peça feedback a um colega usando o sistema de comentários com prefixos e @menções.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Para que serve o atalho Shift + D no Figma?</p>
+            <ul class="quiz-options">
+              <li>Deletar uma layer selecionada</li>
+              <li>Duplicar um frame para outra página</li>
+              <li>Ativar o Dev Mode para handoff com desenvolvedores</li>
+              <li>Criar um design doc automático</li>
+            </ul>
+            <div class="quiz-explain"><kbd>Shift</kbd> + <kbd>D</kbd> alterna para o <strong>Dev Mode</strong>, onde os desenvolvedores visualizam specs, valores de variáveis e snippets de código gerados automaticamente pelo Figma.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. Qual é o erro mais comum ao apresentar designs para stakeholders?</p>
+            <ul class="quiz-options">
+              <li>Mostrar os pixels antes de contextualizar o problema que está sendo resolvido</li>
+              <li>Usar protótipos clicáveis em vez de frames estáticos</li>
+              <li>Apresentar mais de uma opção de design</li>
+              <li>Incluir desenvolvedor na apresentação de stakeholders</li>
+            </ul>
+            <div class="quiz-explain">O erro mais comum é abrir o Figma e mostrar pixels imediatamente. Stakeholders sem contexto começam a opinar sobre estética ("essa cor é feia") em vez de discutir funcionalidade e objetivos de negócio, que é o que importa.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">3. Qual prática ajuda a evitar que a mesma discussão aconteça em múltiplas design reviews?</p>
+            <ul class="quiz-options">
+              <li>Fazer apenas uma revisão por projeto</li>
+              <li>Documentar o que foi aceito e recusado, com justificativa, como comentários no Figma</li>
+              <li>Remover os comentários antigos para não poluir o arquivo</li>
+              <li>Usar apenas reuniões síncronas para feedback</li>
+            </ul>
+            <div class="quiz-explain">Ao <strong>documentar decisões</strong> (aceitas e recusadas com justificativa) como comentários no Figma ou numa página "Decisions Log", você cria um histórico que qualquer pessoa pode consultar — evitando que a mesma discussão se repita em futuras revisões.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

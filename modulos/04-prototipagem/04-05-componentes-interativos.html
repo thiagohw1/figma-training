@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Componentes interativos | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="04-05-componentes-interativos" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">⚡ Módulo 4 · Prototipagem · Lição 5 de 7</div>
+        <h1>Componentes interativos</h1>
+        <p class="lead">Sem Interactive Components, criar um protótipo com 50 botões em estados diferentes exigiria 50 conexões individuais. Com Interactive Components, você define a interação uma única vez dentro do componente — e ela funciona em todas as instâncias automaticamente, eliminando a "teia de setas" que torna os protótipos difíceis de manter.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~20 min</span>
+          <span>🎯 Nível: Intermediário/Avançado</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Explicar o que são Interactive Components e como eles diferem das conexões normais;</li>
+            <li>Adicionar interações dentro de um Component Set entre suas Variants;</li>
+            <li>Criar estados Hover, Pressed e outros usando While hovering / While pressing;</li>
+            <li>Implementar componentes interativos comuns: botão, toggle, tabs e accordion;</li>
+            <li>Usar nested interactive components para combinar comportamentos.</li>
+          </ul>
+        </div>
+
+        <h2>O problema que Interactive Components resolve</h2>
+        <p>Imagine um formulário de login com 10 campos de input. Sem Interactive Components, para mostrar o estado "focused" de cada campo você precisaria criar 10 conexões separadas (cada instância do campo → sua versão focused). Isso é trabalhoso, difícil de atualizar e cria uma teia de setas ilegível no canvas.</p>
+        <p>Com <strong>Interactive Components</strong>, a interação vive <em>dentro do Component Set</em>, entre suas variants. Cada instância do componente herda a interação automaticamente. Você define uma vez, funciona em todo lugar.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Pré-requisito: Component Sets com Variants</span>
+          <p>Interactive Components funcionam dentro de um <strong>Component Set</strong> — o quadrado tracejado que agrupa todas as variants de um componente. Se você ainda não está confortável com Variants, revise a Lição 6 do Módulo 3 antes de continuar.</p>
+        </div>
+
+        <h2>Como funciona: interações entre variants</h2>
+        <p>Dentro de um Component Set, cada variant é uma versão do componente (Default, Hover, Pressed, Focused, Disabled, etc.). Com Interactive Components, você pode criar conexões <em>entre essas variants</em> — da mesma forma que cria conexões entre frames normais:</p>
+        <ol>
+          <li>Abra o Component Set. Entre em modo de edição do componente (duplo clique).</li>
+          <li>Vá para a aba <strong>Prototype</strong>.</li>
+          <li>Selecione a variant "Default" e arraste o hotspot para a variant "Hover".</li>
+          <li>Configure: Trigger = <strong>While hovering</strong>, Animation = <strong>Smart Animate</strong>.</li>
+          <li>Agora toda instância deste componente no canvas automaticamente mostra o estado Hover quando o cursor passa por cima.</li>
+        </ol>
+
+        <div class="diagram">
+          <svg viewBox="0 0 580 200" role="img" aria-label="Diagrama mostrando um Component Set com três variants conectadas: Default, Hover e Pressed. Setas de interação entre cada estado.">
+            <!-- Quadrado tracejado do Component Set -->
+            <rect x="10" y="10" width="560" height="180" rx="12" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-dasharray="6 4"/>
+            <text x="24" y="26" fill="var(--primary)" font-size="11" font-family="sans-serif" font-weight="600">Component Set — Botão</text>
+            <!-- Variant Default -->
+            <rect x="30" y="50" width="140" height="110" rx="10" fill="var(--surface)" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <text x="100" y="86" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="sans-serif">Variant: Default</text>
+            <rect x="55" y="96" width="90" height="30" rx="6" fill="var(--primary)"/>
+            <text x="100" y="116" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="sans-serif">Botão</text>
+            <!-- Seta Default → Hover -->
+            <line x1="170" y1="105" x2="215" y2="105" stroke="var(--primary)" stroke-width="2"/>
+            <polygon points="215,105 207,101 207,109" fill="var(--primary)"/>
+            <text x="192" y="97" text-anchor="middle" fill="var(--text-muted)" font-size="9" font-family="sans-serif">While hovering</text>
+            <!-- Variant Hover -->
+            <rect x="215" y="50" width="140" height="110" rx="10" fill="var(--primary-soft)" stroke="var(--primary)" stroke-width="1.5"/>
+            <text x="285" y="86" text-anchor="middle" fill="var(--primary)" font-size="10" font-family="sans-serif">Variant: Hover</text>
+            <rect x="240" y="96" width="90" height="30" rx="6" fill="var(--primary-hover)"/>
+            <text x="285" y="116" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="sans-serif">Botão</text>
+            <!-- Seta Hover → Pressed -->
+            <line x1="355" y1="105" x2="400" y2="105" stroke="var(--primary)" stroke-width="2"/>
+            <polygon points="400,105 392,101 392,109" fill="var(--primary)"/>
+            <text x="377" y="97" text-anchor="middle" fill="var(--text-muted)" font-size="9" font-family="sans-serif">While pressing</text>
+            <!-- Variant Pressed -->
+            <rect x="400" y="50" width="140" height="110" rx="10" fill="var(--surface)" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <text x="470" y="86" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="sans-serif">Variant: Pressed</text>
+            <rect x="425" y="96" width="90" height="30" rx="6" fill="#4a30c0"/>
+            <text x="470" y="116" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="sans-serif">Botão</text>
+          </svg>
+          <p class="mock-label">Dentro do Component Set, setas conectam as variants. Toda instância do componente herda automaticamente essas interações.</p>
+        </div>
+
+        <h2>Os triggers mais usados em Interactive Components</h2>
+
+        <h3>While hovering</h3>
+        <p>Ativado enquanto o cursor está sobre o componente. Perfeito para estados Hover de botões, cards, links e ícones. A transição acontece ao entrar e a reversão ao sair — automaticamente, sem configurar o "retorno".</p>
+
+        <h3>While pressing</h3>
+        <p>Ativado enquanto o usuário mantém o clique pressionado. Ideal para feedback visual de botões (estado Pressed) e long-press em mobile. A variant retorna ao estado anterior ao soltar.</p>
+
+        <h3>On click</h3>
+        <p>Disparado em um único clique. Usado para toggles (alternar entre dois estados permanentemente), checkboxes, radio buttons e qualquer componente cujo estado muda e <em>persiste</em> após a interação.</p>
+
+        <h3>Mouse enter / Mouse leave</h3>
+        <p>Similar ao While hovering, mas com controle mais granular: Mouse enter dispara ao entrar, Mouse leave ao sair. Útil quando a animação de entrada e saída deve ser diferente (ex.: tooltip que aparece rápido e desaparece devagar).</p>
+
+        <h2>Exemplos práticos</h2>
+
+        <h3>Botão com estados Default, Hover e Pressed</h3>
+        <ul>
+          <li>3 variants no Component Set: Default, Hover, Pressed.</li>
+          <li>Default → Hover: While hovering, Smart Animate, 150 ms, Ease Out.</li>
+          <li>Hover → Pressed: While pressing, Smart Animate, 80 ms, Ease Out.</li>
+          <li>O Figma cria automaticamente as transições de retorno (Hover → Default ao sair, Pressed → Hover ao soltar).</li>
+        </ul>
+
+        <h3>Toggle (checkbox ou switch)</h3>
+        <ul>
+          <li>2 variants: Checked=false, Checked=true.</li>
+          <li>Checked=false → Checked=true: On click, Smart Animate, 200 ms, Ease Out.</li>
+          <li>Checked=true → Checked=false: On click, Smart Animate, 200 ms, Ease Out (retorno).</li>
+          <li>Em cada instância do canvas, o toggle funciona independentemente — sem conexões extras.</li>
+        </ul>
+
+        <h3>Tabs (abas de navegação)</h3>
+        <ul>
+          <li>4 variants: Tab1 ativo, Tab2 ativo, Tab3 ativo, Tab4 ativo.</li>
+          <li>Cada variant tem a aba correspondente marcada como ativa (cor diferente, underline, etc.).</li>
+          <li>Conecte cada aba com On click → Smart Animate para a variant correspondente.</li>
+          <li>O indicador ativo desliza suavemente entre as abas graças ao Smart Animate (layers com mesmo nome).</li>
+        </ul>
+
+        <h3>Accordion (expansão de seção)</h3>
+        <ul>
+          <li>2 variants: Collapsed, Expanded.</li>
+          <li>Collapsed: altura reduzida, ícone de seta para baixo.</li>
+          <li>Expanded: altura completa, conteúdo visível, ícone rotacionado 180°.</li>
+          <li>On click → Smart Animate, 300 ms. A altura anima e a seta gira.</li>
+        </ul>
+
+        <div class="callout tip">
+          <span class="callout-title">Nomeie as variants de forma semântica</span>
+          <p>Use propriedades de variant claras: <code>State = Default/Hover/Pressed/Focused/Disabled</code>. Isso facilita a seleção de instâncias no canvas e mantém o sistema de componentes legível para toda a equipe.</p>
+        </div>
+
+        <h2>Nested Interactive Components</h2>
+        <p>Componentes interativos podem ser <strong>aninhados</strong> dentro de outros componentes. Por exemplo: um card de produto que contém um botão de "Favoritar" (toggle interativo). O botão funciona independentemente dentro do card, e o card pode ter suas próprias interações por cima.</p>
+        <p>Regras importantes para nested interactive components:</p>
+        <ul>
+          <li>As interações do componente filho não interferem nas interações do componente pai — cada um age independentemente.</li>
+          <li>No Present mode, você pode clicar no toggle dentro do card sem acionar o clique do card.</li>
+          <li>Não há limite de níveis de aninhamento, mas muitos níveis podem tornar a estrutura difícil de manter.</li>
+        </ul>
+
+        <div class="callout warning">
+          <span class="callout-title">Interações de instância vs. interações do Component Set</span>
+          <p>Você pode adicionar interações diretamente em uma <em>instância</em> no canvas (não no Component Set). Essas interações são locais — só funcionam naquela instância. Interações no Component Set são globais — funcionam em todas as instâncias. Para comportamentos padrão, defina sempre no Component Set. Reserve interações de instância para exceções.</p>
+        </div>
+
+        <h2>Por que Interactive Components reduzem a "teia de setas"</h2>
+        <p>Considere uma tela de formulário com 20 campos de input, cada um com estados Default, Focused, Filled e Error. Sem Interactive Components, você precisaria de 20 × 4 = até 80 conexões para cobrir todas as transições de cada campo. O canvas ficaria ilegível.</p>
+        <p>Com Interactive Components, você define as 4 transições uma única vez no Component Set do Input. Nos 20 campos da tela, zero conexões adicionais são necessárias. O canvas fica limpo e o protótipo funciona perfeitamente.</p>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Em um Design System corporativo, o componente <strong>Button</strong> tem 5 variants de estado (Default, Hover, Pressed, Focused, Disabled) e 3 tipos (Primary, Secondary, Destructive). Com Interactive Components, os 15 botões resultantes têm seus estados configurados uma única vez. Ao longo de 200 telas de um produto, cada botão se comporta corretamente sem nenhuma conexão manual nas telas.</p>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li><strong>Interactive Components</strong> são interações definidas dentro do Component Set entre suas variants.</li>
+          <li>Toda instância do componente herda as interações — zero conexões manuais nas telas.</li>
+          <li>Os triggers mais usados: <strong>While hovering</strong>, <strong>While pressing</strong>, <strong>On click</strong>.</li>
+          <li>Combine com Smart Animate para transições fluidas entre estados.</li>
+          <li>Nested interactive components permitem comportamentos independentes em componentes aninhados.</li>
+          <li>Defina interações no Component Set para comportamento global; reserve interações de instância para exceções.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Botão com três estados</h3>
+          <ol>
+            <li>Crie um Component Set com 3 variants de botão: Default (azul sólido), Hover (azul mais escuro, leve sombra), Pressed (azul bem escuro, escala ligeiramente menor).</li>
+            <li>Dentro do Component Set (aba Prototype), adicione as interações: Default → Hover (While hovering, Smart Animate, 150 ms), Hover → Pressed (While pressing, Smart Animate, 80 ms).</li>
+            <li>Volte ao canvas. Coloque 5 instâncias do botão em uma tela.</li>
+            <li>No Present mode, confirme que todos os 5 botões respondem ao hover e ao press — sem nenhuma conexão nas telas.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> todos os botões têm os estados funcionando no Present mode. O canvas não tem setas de conexão fora do Component Set.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Sistema de tabs com indicador animado</h3>
+          <p>Crie um componente de Tab Bar com 4 abas. Cada aba deve ter um "indicator" (underline ou ponto) que desliza para a aba ativa com Smart Animate quando o usuário clica. O layer do indicator deve ter o mesmo nome nas 4 variants para que o Smart Animate o anime corretamente. Coloque 3 instâncias do componente em uma tela e confirme que cada uma navega independentemente.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Qual é a principal vantagem de definir interações dentro de um Component Set em vez de nas instâncias no canvas?</p>
+            <ul class="quiz-options">
+              <li>As interações ficam visíveis somente no Present mode, não no canvas</li>
+              <li>Permite usar triggers que não existem em frames normais</li>
+              <li>Todas as instâncias do componente herdam a interação automaticamente, eliminando conexões manuais nas telas</li>
+              <li>As animações ficam mais rápidas no Present mode</li>
+            </ul>
+            <div class="quiz-explain">A vantagem principal é que <strong>todas as instâncias herdam automaticamente</strong> as interações definidas no Component Set — sem precisar adicionar conexões em cada instância individualmente. Isso elimina a "teia de setas" e facilita manutenção.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">2. Qual trigger você usaria para um botão que deve mostrar feedback visual apenas enquanto o usuário mantém o dedo/mouse pressionado?</p>
+            <ul class="quiz-options">
+              <li>On click</li>
+              <li>While pressing</li>
+              <li>Mouse down</li>
+              <li>After delay</li>
+            </ul>
+            <div class="quiz-explain"><strong>While pressing</strong> ativa a variant enquanto o botão é mantido pressionado e reverte automaticamente ao soltar — ideal para o estado "Pressed" de botões. On click dispara apenas uma vez ao clicar, sem reter o estado durante o press.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Você tem um card interativo que contém um botão "Favoritar" (também interativo). O que acontece quando o usuário clica no botão no Present mode?</p>
+            <ul class="quiz-options">
+              <li>O botão Favoritar responde à sua própria interação; o card não é acionado</li>
+              <li>O card captura o clique e o botão não responde</li>
+              <li>Ocorre um erro — não é possível aninhar componentes interativos</li>
+              <li>Ambas as interações disparam ao mesmo tempo</li>
+            </ul>
+            <div class="quiz-explain">Nested interactive components funcionam de forma independente. O clique no botão <strong>Favoritar</strong> aciona apenas a interação daquele componente filho, sem propagar para o componente pai (o card). Cada componente gerencia suas próprias interações.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

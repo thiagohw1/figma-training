@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tokens → código | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="07-06-tokens-codigo" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🤝 Módulo 7 · Profissional · Lição 6 de 6</div>
+        <h1>Tokens → código</h1>
+        <p class="lead">Design tokens são a linguagem que design e código compartilham. Quando um designer muda o token <code>--color-primary</code>, o CSS, o app iOS e o app Android podem todos refletir essa mudança automaticamente — sem e-mails, sem planilhas, sem "lembra de atualizar aqui também". Esta lição fecha o ciclo: de Variables no Figma até variáveis no código de produção.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~28 min</span>
+          <span>🎯 Nível: Profissional</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Entender o que são design tokens e sua relação com as Variables do Figma;</li>
+            <li>Exportar Variables/tokens via a REST API do Figma;</li>
+            <li>Usar o plugin Tokens Studio para gerenciar e exportar tokens com mais controle;</li>
+            <li>Entender o formato W3C Design Tokens e por que ele importa;</li>
+            <li>Compreender o papel do Style Dictionary no pipeline design→código;</li>
+            <li>Montar um pipeline básico para manter design e código sincronizados.</li>
+          </ul>
+        </div>
+
+        <h2>Design tokens: a cola entre design e código</h2>
+        <p><strong>Design tokens</strong> são pares nome–valor que representam decisões de design — cores, tipografia, espaçamento, elevação — numa forma que tanto designers quanto desenvolvedores podem usar como fonte única de verdade.</p>
+        <p>Em vez de o designer dizer "use aquele roxo" e o dev tentar achar a cor certa, o token <code>color.primary.600</code> tem um valor exato (<code>#6C4CF1</code>) que é idêntico no Figma, no CSS, no iOS e no Android. A mudança desse valor num único lugar propaga automaticamente para todos os destinos.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Variables do Figma = Design Tokens</span>
+          <p>As <strong>Variables</strong> do Figma (lançadas em 2023 e expandidas continuamente) são a implementação nativa de design tokens dentro do Figma. Uma Variable de cor chamada <code>color/primary/600</code> com valor <code>#6C4CF1</code> é, na prática, um design token. O que muda é como você <em>exporta</em> essas Variables para uso no código.</p>
+        </div>
+
+        <h3>Tipos de tokens</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Tipo</th><th>Exemplos</th><th>Variable no Figma</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Cor</strong></td><td><code>color.primary.600</code>, <code>color.neutral.100</code></td><td>Color Variable</td></tr>
+              <tr><td><strong>Tipografia</strong></td><td><code>font.size.md</code>, <code>font.weight.bold</code></td><td>Number Variable</td></tr>
+              <tr><td><strong>Espaçamento</strong></td><td><code>spacing.sm</code>, <code>spacing.xl</code></td><td>Number Variable</td></tr>
+              <tr><td><strong>Border radius</strong></td><td><code>radius.sm</code>, <code>radius.pill</code></td><td>Number Variable</td></tr>
+              <tr><td><strong>Elevação / sombra</strong></td><td><code>elevation.low</code>, <code>elevation.high</code></td><td>String Variable (valor de shadow)</td></tr>
+              <tr><td><strong>Duração</strong></td><td><code>motion.duration.fast</code></td><td>Number Variable (ms)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Hierarquia de tokens: primitivos, semânticos e de componente</h2>
+        <p>Tokens bem arquitetados têm três camadas:</p>
+        <ul>
+          <li><strong>Primitivos (Global):</strong> todos os valores brutos possíveis. <code>color.blue.500 = #3B82F6</code>. Esses tokens raramente são usados diretamente em componentes.</li>
+          <li><strong>Semânticos (Alias):</strong> tokens com significado contextual que referenciam primitivos. <code>color.action.primary = {color.blue.500}</code>. Esses são usados em componentes. Troque o tema escuro apenas aqui.</li>
+          <li><strong>De componente:</strong> tokens específicos de um componente. <code>button.background.default = {color.action.primary}</code>. Permitem ajustes finos por componente sem quebrar a escala global.</li>
+        </ul>
+
+        <div class="diagram">
+          <svg viewBox="0 0 560 180" role="img" aria-label="Hierarquia de tokens: primitivos apontando para semânticos, que apontam para tokens de componente">
+            <!-- Colunas -->
+            <!-- Primitivos -->
+            <rect x="20" y="20" width="140" height="140" rx="10" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+            <text x="90" y="42" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-weight="bold" font-family="sans-serif" text-transform="uppercase">PRIMITIVOS</text>
+            <rect x="32" y="52" width="116" height="22" rx="5" fill="var(--primary-soft)"/>
+            <text x="90" y="67" text-anchor="middle" fill="var(--primary)" font-size="9" font-family="sans-serif">color.blue.500 = #3B82F6</text>
+            <rect x="32" y="80" width="116" height="22" rx="5" fill="var(--primary-soft)"/>
+            <text x="90" y="95" text-anchor="middle" fill="var(--primary)" font-size="9" font-family="sans-serif">color.purple.600 = #7C3AED</text>
+            <rect x="32" y="108" width="116" height="22" rx="5" fill="var(--primary-soft)"/>
+            <text x="90" y="123" text-anchor="middle" fill="var(--primary)" font-size="9" font-family="sans-serif">spacing.4 = 16px</text>
+            <!-- Semânticos -->
+            <rect x="200" y="20" width="150" height="140" rx="10" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+            <text x="275" y="42" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-weight="bold" font-family="sans-serif">SEMÂNTICOS</text>
+            <rect x="212" y="52" width="126" height="22" rx="5" fill="var(--success-soft)"/>
+            <text x="275" y="67" text-anchor="middle" fill="var(--success)" font-size="9" font-family="sans-serif">color.action = {blue.500}</text>
+            <rect x="212" y="80" width="126" height="22" rx="5" fill="var(--success-soft)"/>
+            <text x="275" y="95" text-anchor="middle" fill="var(--success)" font-size="9" font-family="sans-serif">color.brand = {purple.600}</text>
+            <rect x="212" y="108" width="126" height="22" rx="5" fill="var(--success-soft)"/>
+            <text x="275" y="123" text-anchor="middle" fill="var(--success)" font-size="9" font-family="sans-serif">spacing.md = {spacing.4}</text>
+            <!-- Componente -->
+            <rect x="390" y="20" width="150" height="140" rx="10" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+            <text x="465" y="42" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-weight="bold" font-family="sans-serif">COMPONENTE</text>
+            <rect x="402" y="52" width="126" height="22" rx="5" fill="var(--warning-soft)"/>
+            <text x="465" y="67" text-anchor="middle" fill="var(--warning)" font-size="9" font-family="sans-serif">btn.bg = {color.action}</text>
+            <rect x="402" y="80" width="126" height="22" rx="5" fill="var(--warning-soft)"/>
+            <text x="465" y="95" text-anchor="middle" fill="var(--warning)" font-size="9" font-family="sans-serif">btn.color = {color.brand}</text>
+            <rect x="402" y="108" width="126" height="22" rx="5" fill="var(--warning-soft)"/>
+            <text x="465" y="123" text-anchor="middle" fill="var(--warning)" font-size="9" font-family="sans-serif">btn.padding = {spacing.md}</text>
+            <!-- Setas -->
+            <line x1="160" y1="90" x2="198" y2="90" stroke="var(--border-strong)" stroke-width="1.5" marker-end="url(#arrT)"/>
+            <line x1="350" y1="90" x2="388" y2="90" stroke="var(--border-strong)" stroke-width="1.5" marker-end="url(#arrT)"/>
+            <defs>
+              <marker id="arrT" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+                <polygon points="0,0 7,3.5 0,7" fill="var(--border-strong)"/>
+              </marker>
+            </defs>
+          </svg>
+          <p class="mock-label">Primitivos definem valores brutos; semânticos criam significado; componentes consomem semânticos. Para trocar o tema, você só precisa reescrever a camada semântica.</p>
+        </div>
+
+        <h2>Exportando Variables via REST API do Figma</h2>
+        <p>O Figma expõe as Variables de um arquivo pela sua <strong>REST API</strong>. Isso significa que você pode automatizar a exportação dos tokens sem precisar de plugin ou ferramenta extra:</p>
+
+        <pre>GET https://api.figma.com/v1/files/:file_key/variables/local
+Authorization: Bearer SEU_TOKEN_DE_API</pre>
+
+        <p>A resposta é um JSON com todas as coleções de variables, seus modos e valores. Um token de cor, por exemplo, aparece assim:</p>
+        <pre>{
+  "id": "VariableID:123:456",
+  "name": "color/primary/600",
+  "resolvedType": "COLOR",
+  "valuesByMode": {
+    "light-mode-id": { "r": 0.424, "g": 0.298, "b": 0.945, "a": 1 },
+    "dark-mode-id": { "r": 0.608, "g": 0.506, "b": 1.0, "a": 1 }
+  }
+}</pre>
+        <p>Note que as cores vêm em formato RGBA normalizado (0–1). Você precisará converter para HEX ou RGB para uso no CSS. Essa conversão pode ser feita por um script Node.js simples ou pelo Style Dictionary.</p>
+
+        <div class="callout tip">
+          <span class="callout-title">Use um token de API de leitura</span>
+          <p>Para automação, crie um token de API pessoal no Figma com escopo de <strong>leitura apenas</strong> (não escrita). Isso garante que o script de exportação não pode modificar acidentalmente o arquivo. Guarde o token como variável de ambiente (<code>FIGMA_TOKEN</code>) e nunca o commit no repositório.</p>
+        </div>
+
+        <h2>Tokens Studio: gerenciamento avançado de tokens</h2>
+        <p>O <strong>Tokens Studio for Figma</strong> (anteriormente "Figma Tokens") é o plugin mais adotado para gerenciar design tokens no Figma. Ele oferece recursos que a interface nativa de Variables ainda não tem (em 2025/2026):</p>
+        <ul>
+          <li><strong>Formato de arquivo universal:</strong> exporta tokens como JSON em múltiplos formatos;</li>
+          <li><strong>Sincronização com Git:</strong> conecta diretamente ao GitHub/GitLab/Bitbucket — o time de design faz "push" dos tokens direto para o repositório;</li>
+          <li><strong>Tokens compostos:</strong> typography, shadow e outros tokens que agrupam múltiplas propriedades em um único token;</li>
+          <li><strong>Math tokens:</strong> tokens que são cálculos — <code>spacing.xl = {spacing.base} * 3</code>;</li>
+          <li><strong>Temas múltiplos:</strong> gerencia light, dark, e temas de marca (white-label) com facilidade.</li>
+        </ul>
+
+        <h3>Workflow básico com Tokens Studio</h3>
+        <ol class="steps">
+          <li>
+            <strong>Instale o plugin.</strong>
+            No Figma, abra o painel de Plugins e instale "Tokens Studio for Figma".
+          </li>
+          <li>
+            <strong>Importe ou crie seus tokens.</strong>
+            No painel do plugin, você pode criar tokens manualmente ou importar um JSON existente. Se você já tem Variables no Figma, o plugin pode importá-las automaticamente.
+          </li>
+          <li>
+            <strong>Configure a sincronização com Git (opcional, mas recomendado).</strong>
+            No painel de configurações do plugin, conecte ao repositório Git onde os tokens devem viver. O plugin cria/atualiza um arquivo <code>tokens.json</code> no repositório.
+          </li>
+          <li>
+            <strong>Exporte os tokens.</strong>
+            Use o botão "Export" do plugin para gerar o JSON de tokens. Escolha o formato: W3C Design Tokens, Style Dictionary, ou o formato nativo do plugin.
+          </li>
+        </ol>
+
+        <h2>O formato W3C Design Tokens</h2>
+        <p>Em 2025, o W3C finalizou a especificação <strong>Design Tokens Format Module</strong> — um formato JSON padronizado para design tokens que pode ser lido por qualquer ferramenta que implemente o spec. Isso é importante porque significa que você pode trocar de ferramenta (Figma → Penpot, por exemplo) sem precisar reescrever o pipeline.</p>
+        <p>Um token de cor no formato W3C parece assim:</p>
+        <pre>{
+  "color": {
+    "primary": {
+      "600": {
+        "$type": "color",
+        "$value": "#6C4CF1",
+        "$description": "Primary brand color, main action"
+      }
+    }
+  }
+}</pre>
+        <p>Ferramentas como Tokens Studio e Style Dictionary já suportam esse formato. O <code>$type</code> indica o tipo do token, <code>$value</code> o valor e <code>$description</code> a documentação.</p>
+
+        <div class="callout example">
+          <span class="callout-title">Por que o formato W3C importa</span>
+          <p>Antes da padronização, cada ferramenta usava seu próprio JSON. Migrar de ferramenta significava reescrever o pipeline inteiro. Com o W3C Format, o JSON de tokens é portável — qualquer ferramenta compatível pode ler e processar sem transformação. É o mesmo princípio das variáveis CSS Custom Properties vs. variáveis Sass proprietárias.</p>
+        </div>
+
+        <h2>Style Dictionary: transformando tokens em código</h2>
+        <p>O <strong>Style Dictionary</strong> (criado pela Amazon, open source) é a ferramenta mais usada para transformar um arquivo JSON de tokens em outputs de código para múltiplas plataformas simultaneamente:</p>
+        <ul>
+          <li>CSS Custom Properties (<code>--color-primary-600: #6C4CF1;</code>);</li>
+          <li>Sass/LESS variables (<code>$color-primary-600: #6C4CF1;</code>);</li>
+          <li>JavaScript/TypeScript objects (<code>colorPrimary600: "#6C4CF1"</code>);</li>
+          <li>Swift constants para iOS;</li>
+          <li>Kotlin/XML para Android;</li>
+          <li>JSON para React Native.</li>
+        </ul>
+        <p>A configuração básica do Style Dictionary define quais transformações aplicar e quais outputs gerar:</p>
+        <pre>// style-dictionary.config.js
+module.exports = {
+  source: ["tokens/**/*.json"],
+  platforms: {
+    css: {
+      transformGroup: "css",
+      prefix: "ds",
+      buildPath: "build/css/",
+      files: [{ destination: "variables.css", format: "css/variables" }]
+    },
+    ios: {
+      transformGroup: "ios-swift",
+      buildPath: "build/ios/",
+      files: [{ destination: "StyleDictionary.swift", format: "ios-swift/class.swift" }]
+    }
+  }
+};</pre>
+
+        <div class="callout pro">
+          <span class="callout-title">Um JSON → cinco plataformas</span>
+          <p>A beleza do Style Dictionary é que você mantém <em>um</em> arquivo de tokens (o JSON do Figma) e ele gera automaticamente CSS, SCSS, iOS Swift, Android XML e qualquer outro formato que seu time precise. Uma mudança de cor no Figma, exportada pelo Tokens Studio e processada pelo Style Dictionary, atualiza simultaneamente o web, o iOS e o Android — sem trabalho manual em nenhuma plataforma.</p>
+        </div>
+
+        <h2>O pipeline completo: design → código</h2>
+        <p>Veja como todas as peças se encaixam num pipeline de produção:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Etapa</th><th>Ferramenta</th><th>Output</th></tr></thead>
+            <tbody>
+              <tr><td>1. Definir tokens</td><td>Figma Variables + Tokens Studio</td><td>JSON de tokens (formato W3C)</td></tr>
+              <tr><td>2. Versionamento</td><td>Git (GitHub/GitLab)</td><td><code>tokens.json</code> no repositório</td></tr>
+              <tr><td>3. Build dos tokens</td><td>Style Dictionary + CI/CD</td><td>CSS, Swift, Kotlin, JS...</td></tr>
+              <tr><td>4. Publicação</td><td>npm / CocoaPods / Maven</td><td>Pacote instalável no projeto</td></tr>
+              <tr><td>5. Uso no código</td><td>CSS/Tailwind/RN...</td><td><code>var(--color-primary-600)</code></td></tr>
+              <tr><td>6. Atualização</td><td>Repetir a partir do passo 1</td><td>Mudança propagada automaticamente</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Mantendo design e código sincronizados</h3>
+        <p>A sincronização contínua é o objetivo final. Para isso, automatize o máximo possível:</p>
+        <ul>
+          <li><strong>GitHub Action / CI:</strong> configure uma action que, quando o arquivo de tokens é atualizado no repositório (via Tokens Studio push), executa o Style Dictionary e abre um PR com as mudanças no código;</li>
+          <li><strong>Changelog de tokens:</strong> o diff do arquivo JSON no Git mostra exatamente quais tokens mudaram — é o changelog automático do seu design system;</li>
+          <li><strong>Semver nos tokens:</strong> trate o arquivo de tokens como um pacote com versionamento semântico. Adicionar um token = patch. Renomear um token existente = major (breaking change).</li>
+        </ul>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Um design system de um banco digital tem tokens para light mode e dark mode. O pipeline funciona assim:</p>
+        <ol>
+          <li>O designer atualiza a cor <code>color.primary.600</code> de <code>#6C4CF1</code> para <code>#5A3CE0</code> no Figma (feedback da equipe de acessibilidade: contraste maior);</li>
+          <li>Usando o Tokens Studio, faz push do <code>tokens.json</code> atualizado para o repositório GitHub;</li>
+          <li>Uma GitHub Action detecta a mudança, executa o Style Dictionary e abre um PR com <code>--color-primary-600: #5A3CE0</code> no CSS, <code>colorPrimary600 = UIColor(red:0.35...)</code> no Swift, e o valor equivalente no Kotlin;</li>
+          <li>O tech lead revisa o PR em 5 minutos — é apenas uma mudança de valor de cor — e faz o merge;</li>
+          <li>O pipeline de deploy atualiza automaticamente o web, o app iOS e o app Android;</li>
+          <li>Total de tempo do designer ao prod: ~15 minutos. Sem e-mails, sem planilha de "cores para atualizar".</li>
+        </ol>
+
+        <div class="callout note">
+          <span class="callout-title">Comece simples, escale conforme necessário</span>
+          <p>Você não precisa implantar o pipeline completo no dia 1. Comece com: Variables no Figma + exportação manual via REST API + CSS Custom Properties no projeto. Conforme o time crescer e a frequência de mudanças aumentar, adicione Tokens Studio, Style Dictionary e a automação CI/CD progressivamente.</p>
+        </div>
+
+        <h2>Atalhos e ferramentas desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ferramenta / Ação</th><th>Uso</th></tr></thead>
+            <tbody>
+              <tr><td>Figma Variables REST API</td><td><code>GET /v1/files/:key/variables/local</code></td></tr>
+              <tr><td>Tokens Studio plugin</td><td>Gerenciar, exportar e sincronizar tokens com Git</td></tr>
+              <tr><td>W3C Design Tokens Format</td><td>Formato JSON padronizado e portável</td></tr>
+              <tr><td>Style Dictionary</td><td>Transformar JSON de tokens em CSS, Swift, Kotlin etc.</td></tr>
+              <tr><td>GitHub Actions</td><td>Automatizar o build de tokens no CI/CD</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li><strong>Design tokens</strong> são pares nome–valor que unificam decisões de design entre Figma e código. Variables do Figma são tokens nativas.</li>
+          <li>A hierarquia recomendada é primitivos → semânticos → componente — troque temas apenas nos semânticos.</li>
+          <li>A <strong>REST API do Figma</strong> expõe Variables em JSON; o <strong>Tokens Studio</strong> oferece exportação e sincronização com Git mais amigáveis.</li>
+          <li>O <strong>formato W3C Design Tokens</strong> é a especificação portável que todas as ferramentas modernas estão adotando.</li>
+          <li>O <strong>Style Dictionary</strong> transforma um JSON de tokens em CSS, Swift, Kotlin e outros formatos simultaneamente.</li>
+          <li>O pipeline completo é: Figma → JSON (Git) → Style Dictionary (CI/CD) → pacotes de plataforma → uso no código.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Pipeline básico de tokens</h3>
+          <p>Monte um pipeline simplificado de design tokens:</p>
+          <ol>
+            <li>No Figma, crie uma coleção de Variables chamada "Colors" com pelo menos 5 tokens de cor (primitivos) e 3 tokens semânticos que referenciam os primitivos.</li>
+            <li>Use a REST API (com seu token pessoal do Figma) para fazer um GET no endpoint de variables e salve o JSON de resposta.</li>
+            <li>Instale o Tokens Studio no Figma e importe as suas Variables. Exporte como JSON no formato W3C Design Tokens.</li>
+            <li>Instale o Style Dictionary (<code>npm install -g style-dictionary</code>) e configure-o para transformar o JSON em CSS Custom Properties e um arquivo JavaScript.</li>
+            <li>Abra o CSS gerado e verifique que os tokens aparecem como <code>--color-*</code> variables.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> você tem um arquivo <code>variables.css</code> gerado automaticamente pelo Style Dictionary com as cores que você criou no Figma — mudando o valor no Figma, exportando pelo Tokens Studio e executando o Style Dictionary novamente, o CSS atualiza com os novos valores.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Pipeline automatizado com GitHub Actions</h3>
+          <p>Implemente o pipeline completo com automação: configure o Tokens Studio para sincronizar com um repositório GitHub (branch <code>tokens</code>). Configure uma GitHub Action que, ao detectar mudança no <code>tokens.json</code>, executa o Style Dictionary e abre um PR automático com as atualizações de CSS e JavaScript para a branch <code>main</code>. O PR deve incluir no título qual token foi alterado (extraído do diff do JSON). Documente o processo num arquivo README do repositório. Ao final, teste o pipeline completo: mude uma cor no Figma, faça push pelo Tokens Studio e verifique que o PR aparece no GitHub em menos de 2 minutos.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Qual é a diferença entre tokens primitivos e tokens semânticos?</p>
+            <ul class="quiz-options">
+              <li>Primitivos são usados diretamente em componentes; semânticos são apenas para documentação</li>
+              <li>Primitivos definem todos os valores brutos possíveis; semânticos criam significado contextual referenciando primitivos — e são usados em componentes</li>
+              <li>Primitivos só existem no Figma; semânticos só existem no código</li>
+              <li>Não há diferença prática — são apenas duas formas de nomear a mesma coisa</li>
+            </ul>
+            <div class="quiz-explain"><strong>Primitivos</strong> são a paleta completa — todos os valores existentes. <strong>Semânticos</strong> atribuem significado: <code>color.action = {color.blue.500}</code>. Os componentes consomem semânticos, não primitivos. Para trocar o tema dark, você só modifica os semânticos — os primitivos ficam intactos.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">2. O que o Style Dictionary faz no pipeline de design tokens?</p>
+            <ul class="quiz-options">
+              <li>Cria e gerencia tokens diretamente no Figma via plugin</li>
+              <li>Sincroniza automaticamente o Figma com repositórios Git</li>
+              <li>Transforma um arquivo JSON de tokens em código para múltiplas plataformas (CSS, Swift, Kotlin, JS) simultaneamente</li>
+              <li>Valida os tokens do Figma contra o formato W3C Design Tokens</li>
+            </ul>
+            <div class="quiz-explain">O <strong>Style Dictionary</strong> pega um JSON de tokens como input e gera CSS Custom Properties, variáveis Swift, recursos Android XML, objetos JavaScript e outros formatos de saída — todos a partir de uma única fonte de verdade.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Por que o formato W3C Design Tokens é importante?</p>
+            <ul class="quiz-options">
+              <li>É uma especificação padronizada e portável — tokens em W3C Format podem ser lidos por qualquer ferramenta que implemente o spec, sem lock-in de fornecedor</li>
+              <li>É o único formato que o Figma exporta nativamente via REST API</li>
+              <li>Garante que os tokens funcionem automaticamente em todos os browsers sem build step</li>
+              <li>É obrigatório para publicar componentes na npm</li>
+            </ul>
+            <div class="quiz-explain">O <strong>W3C Design Tokens Format</strong> resolve o problema de portabilidade: antes, cada ferramenta usava seu JSON proprietário. Com a especificação W3C, um arquivo de tokens é portável entre ferramentas (Figma, Penpot, Tokens Studio, Style Dictionary) sem reescrita — eliminando o lock-in de fornecedor.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

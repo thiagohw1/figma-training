@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figma Sites — publicar sites | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="08-03-figma-sites" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">✨ Módulo 8 · Recursos 2025/2026 · Lição 3 de 8</div>
+        <h1>Figma Sites — publicar sites</h1>
+        <p class="lead">E se você pudesse publicar um site direto do Figma, sem precisar de um desenvolvedor ou de uma ferramenta de no-code separada? O Figma Sites torna isso realidade — do design ao ar em minutos.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~18 min</span>
+          <span>🎯 Nível: Intermediário</span>
+          <span>🛠️ Pratique no Figma Sites</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Entender o que é o Figma Sites e quais tipos de projetos ele atende;</li>
+            <li>Configurar breakpoints para responsividade em diferentes tamanhos de tela;</li>
+            <li>Adicionar interações nativas (scroll, parallax, marquee);</li>
+            <li>Fazer preview do HTML gerado diretamente no canvas;</li>
+            <li>Publicar um site na web pelo Figma Sites.</li>
+          </ul>
+        </div>
+
+        <h2>O que é o Figma Sites?</h2>
+        <p><strong>Figma Sites</strong> é a funcionalidade do Figma que permite transformar designs em sites reais publicados na web, sem precisar escrever código. Foi anunciado na Config 2025 como uma das maiores novidades da plataforma.</p>
+        <p>A proposta é fechar o gap entre design e publicação para determinados tipos de site — especialmente <strong>landing pages, sites de produto, portfólios e microsites de campanha</strong>. Para projetos com necessidade de back-end, autenticação ou lógica complexa, o Figma Sites não é a ferramenta ideal; nesse caso, o Figma Make (próxima lição) ou o fluxo de handoff para desenvolvimento continuam sendo o caminho.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Figma Sites vs. Figma Prototyping</span>
+          <p>O Figma Prototyping simula interações dentro do Figma para testes de usabilidade. O Figma Sites <em>publica HTML real</em> na internet — o resultado é um site indexável, compartilhável via URL e acessível em qualquer browser, não um protótipo encapsulado na plataforma.</p>
+        </div>
+
+        <h2>Quais sites são adequados para o Figma Sites?</h2>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Adequado para Figma Sites</th><th>Melhor usar outra abordagem</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Landing pages de produto ou campanha</td><td>E-commerce com carrinho e pagamento</td></tr>
+              <tr><td>Portfólios de designer</td><td>Aplicativos web com login e banco de dados</td></tr>
+              <tr><td>Microsites de eventos</td><td>Blogs com CMS editorial complexo</td></tr>
+              <tr><td>Páginas institucionais simples</td><td>Plataformas SaaS com muitas features</td></tr>
+              <tr><td>Protótipos de alta fidelidade publicáveis</td><td>Sites com SEO técnico avançado</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Do design ao site: o fluxo</h2>
+        <p>O fluxo do Figma Sites começa em um arquivo de design comum do Figma. Você desenha normalmente, usando frames, Auto Layout, componentes e variáveis. Quando estiver pronto para publicar, ativa o Figma Sites e ele "interpreta" seu design como HTML/CSS.</p>
+
+        <div class="diagram">
+          <svg viewBox="0 0 600 80" role="img" aria-label="Fluxo: Design no Figma → Configurar Sites → Preview HTML → Publicar na web">
+            <rect x="10" y="20" width="120" height="40" rx="8" fill="var(--primary-soft)" stroke="var(--primary)"/>
+            <text x="70" y="44" text-anchor="middle" font-size="12" fill="var(--primary)" font-family="sans-serif" font-weight="600">Design no Figma</text>
+            <polygon points="140,40 155,32 155,48" fill="var(--text-soft)"/>
+            <rect x="165" y="20" width="130" height="40" rx="8" fill="var(--info-soft)" stroke="var(--info)"/>
+            <text x="230" y="38" text-anchor="middle" font-size="12" fill="var(--info)" font-family="sans-serif" font-weight="600">Configurar Sites</text>
+            <text x="230" y="52" text-anchor="middle" font-size="11" fill="var(--info)" font-family="sans-serif">(breakpoints, efeitos)</text>
+            <polygon points="305,40 320,32 320,48" fill="var(--text-soft)"/>
+            <rect x="330" y="20" width="120" height="40" rx="8" fill="var(--warning-soft)" stroke="var(--warning)"/>
+            <text x="390" y="38" text-anchor="middle" font-size="12" fill="var(--warning)" font-family="sans-serif" font-weight="600">Preview HTML</text>
+            <text x="390" y="52" text-anchor="middle" font-size="11" fill="var(--warning)" font-family="sans-serif">no canvas</text>
+            <polygon points="460,40 475,32 475,48" fill="var(--text-soft)"/>
+            <rect x="485" y="20" width="105" height="40" rx="8" fill="var(--success-soft)" stroke="var(--success)"/>
+            <text x="537" y="38" text-anchor="middle" font-size="12" fill="var(--success)" font-family="sans-serif" font-weight="600">Publicar</text>
+            <text x="537" y="52" text-anchor="middle" font-size="11" fill="var(--success)" font-family="sans-serif">na web</text>
+          </svg>
+          <p class="mock-label">O fluxo completo do Figma Sites: do design até o URL público.</p>
+        </div>
+
+        <h2>Breakpoints e responsividade</h2>
+        <p>Um dos recursos mais importantes do Figma Sites é o suporte a <strong>breakpoints</strong> — pontos de quebra em que o layout muda para se adaptar a diferentes tamanhos de tela (desktop, tablet, mobile).</p>
+
+        <h3>Como configurar breakpoints</h3>
+        <p>No painel do Figma Sites (acessível via menu "Sites" ou plugin), você define os breakpoints desejados. Para cada breakpoint, você cria ou ajusta um frame no arquivo de design com a largura correspondente. O Figma Sites entende que esses frames são versões responsivas da mesma página:</p>
+        <ul>
+          <li><strong>Desktop:</strong> frame com 1440 px de largura (ou 1280 px)</li>
+          <li><strong>Tablet:</strong> frame com 768 px de largura</li>
+          <li><strong>Mobile:</strong> frame com 390 px de largura</li>
+        </ul>
+        <p>A lógica de responsividade é baseada nos <strong>Constraints</strong> e no <strong>Auto Layout</strong> que você já configurou nos frames. Por isso, designs bem estruturados com Auto Layout e Constraints corretos "se adaptam" naturalmente ao serem publicados.</p>
+
+        <div class="callout tip">
+          <span class="callout-title">Auto Layout é o segredo da responsividade</span>
+          <p>Quanto mais você usar Auto Layout com tamanhos "Fill container" e "Hug content" em vez de valores fixos em pixels, melhor o Figma Sites consegue adaptar o layout para diferentes larguras. É o mesmo princípio do Flexbox no CSS.</p>
+        </div>
+
+        <h2>Interações nativas</h2>
+        <p>O Figma Sites suporta interações CSS e JavaScript nativas que você configura visualmente:</p>
+
+        <h3>Scroll</h3>
+        <p>Seções com scroll interno (overflow: scroll) podem ser configuradas no painel do Figma Sites. Carrosséis horizontais e listas scrolláveis são exemplos de uso.</p>
+
+        <h3>Parallax</h3>
+        <p>Efeito de paralaxe — onde elementos se movem a velocidades diferentes durante o scroll da página, criando profundidade. No Figma Sites, você seleciona um elemento e define o <strong>fator de parallax</strong> (ex.: 0.5 = move à metade da velocidade do scroll).</p>
+
+        <h3>Marquee (texto em loop)</h3>
+        <p>Faixa de texto ou logos que se movem continuamente da direita para a esquerda (estilo "ticker"). Bastante popular em landing pages modernas para exibir logos de clientes, badges ou headlines. Configure via painel de efeitos do Figma Sites.</p>
+
+        <h3>Animações de entrada</h3>
+        <p>Você pode definir que elementos apareçam com uma animação quando entram na viewport durante o scroll (fade in, slide up, etc.). Esses efeitos são configurados por elemento no painel do Sites.</p>
+
+        <div class="callout warning">
+          <span class="callout-title">Limitações de interação</span>
+          <p>O Figma Sites não suporta lógica de programação — não há formulários com envio real de dados, login, queries a banco de dados ou lógica condicional complexa. Para essas necessidades, use o Figma Make ou desenvolva com um framework.</p>
+        </div>
+
+        <h2>Preview de HTML no canvas</h2>
+        <p>Um recurso exclusivo do Figma Sites é poder ver o <strong>preview do HTML gerado diretamente no canvas do Figma</strong>. Isso funciona assim: com o painel do Sites aberto, você tem um botão "Preview" que renderiza uma prévia interativa do site dentro de um frame no próprio Figma. Você pode testar o scroll, clicar em links e verificar a responsividade sem precisar publicar.</p>
+        <p>Isso acelera muito o ciclo de iteração — você ajusta o design, confere o preview, ajusta novamente, tudo sem sair do Figma.</p>
+
+        <h2>Publicar na web</h2>
+        <p>Quando o site estiver pronto, clique em <strong>"Publish"</strong> no painel do Figma Sites. O processo:</p>
+        <ol>
+          <li>O Figma converte o design em HTML, CSS e JavaScript otimizados.</li>
+          <li>O site é hospedado na infraestrutura da Figma (<code>seusite.figma.site</code> por padrão).</li>
+          <li>Você recebe uma URL pública para compartilhar.</li>
+          <li>É possível configurar um <strong>domínio personalizado</strong> nas configurações do site (feature disponível em planos pagos).</li>
+        </ol>
+
+        <div class="callout info">
+          <span class="callout-title">Domínio personalizado e CMS</span>
+          <p>O Figma Sites suporta a configuração de domínios personalizados via CNAME. Recursos de CMS (gerenciamento de conteúdo por não-designers) e Code Layers (camadas que injetam HTML/CSS/JS personalizado) são funcionalidades em desenvolvimento ativo, com disponibilidade variando conforme o plano. Consulte a documentação oficial para o status atual.</p>
+        </div>
+
+        <h2>Code Layers (menção)</h2>
+        <p><strong>Code Layers</strong> são camadas especiais no Figma Sites onde você pode injetar HTML, CSS ou JavaScript personalizado — estendendo as capacidades além do que o editor visual permite. Por exemplo: incorporar um widget de chat, adicionar um script de analytics, ou criar uma animação CSS que não está disponível nativamente. Esse recurso é destinado a designers com conhecimento de código ou em colaboração com desenvolvedores.</p>
+
+        <h2>Passo a passo conceitual: do design ao site</h2>
+
+        <ol class="steps">
+          <li>
+            <strong>Desenhe a landing page no Figma Design.</strong>
+            Crie frames para Desktop (1440 px) e Mobile (390 px) com Auto Layout e Constraints bem configurados. Sections em Auto Layout vertical, conteúdo com Fill container.
+          </li>
+          <li>
+            <strong>Ative o Figma Sites.</strong>
+            No menu do arquivo ou no painel direito, acesse a seção Sites. Associe os frames de Desktop e Mobile às suas respectivas viewport widths.
+          </li>
+          <li>
+            <strong>Configure as interações.</strong>
+            Selecione os elementos que devem ter parallax, marquee ou animações de entrada. Configure pelo painel de efeitos do Sites.
+          </li>
+          <li>
+            <strong>Visualize o preview no canvas.</strong>
+            Clique em "Preview" e confira o site renderizado. Teste o scroll e a responsividade. Ajuste os frames conforme necessário.
+          </li>
+          <li>
+            <strong>Configure SEO básico.</strong>
+            No painel do Sites, preencha título da página, descrição e imagem de OG (Open Graph) para compartilhamentos em redes sociais.
+          </li>
+          <li>
+            <strong>Publique.</strong>
+            Clique em "Publish". Aguarde o build e receba a URL pública. Se quiser domínio personalizado, configure nas Settings do site.
+          </li>
+        </ol>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Uma agência de design criou a landing page de lançamento de um aplicativo de meditação. O designer desenhou o layout no Figma com três breakpoints (1440, 768 e 390 px). Usou Auto Layout em todas as seções e Constraints corretos nas imagens. Configurou um efeito de parallax no hero (a imagem do app se move mais devagar que o texto ao fazer scroll) e um marquee com logos de imprensa na seção de validação. Em vez de esperar o desenvolvedor disponível, o próprio designer publicou o site no Figma Sites, com um subdomínio <code>applaunch.figma.site</code>, e enviou para aprovação do cliente no mesmo dia. Depois de aprovado, configuraram o domínio personalizado <code>meditalancar.com.br</code>.</p>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Figma Sites transforma designs do Figma em sites HTML reais publicados na web.</li>
+          <li>Ideal para landing pages, portfólios e microsites — não para apps complexos com back-end.</li>
+          <li>Breakpoints são configurados associando frames de diferentes larguras a viewport widths.</li>
+          <li>Interações nativas: scroll, parallax, marquee e animações de entrada.</li>
+          <li>Preview do HTML roda diretamente no canvas sem precisar publicar.</li>
+          <li>Publicação gera uma URL <code>*.figma.site</code>; domínio personalizado disponível em planos pagos.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Landing page de um app fictício</h3>
+          <p>Crie uma landing page simples para um app de tarefas fictício chamado "TaskFlow":</p>
+          <ol>
+            <li>Crie dois frames: Desktop (1440 px) e Mobile (390 px).</li>
+            <li>Hero section: título grande, subtítulo, botão CTA e uma imagem placeholder.</li>
+            <li>Features section: 3 cards de benefícios com ícone e texto.</li>
+            <li>Footer: copyright e dois links fictícios.</li>
+            <li>Configure Auto Layout e Constraints corretos em todos os elementos.</li>
+            <li>Ative o Figma Sites e visualize o preview.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> o preview no canvas mostra o layout correto em Desktop e Mobile sem elementos sobrepostos ou cortados.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Parallax e marquee na prática</h3>
+          <p>Adicione ao seu site TaskFlow: (1) um efeito de parallax no hero image — a imagem se move 30% mais devagar que o restante da página durante o scroll; (2) uma faixa marquee com o texto "Disponível para iOS e Android · Grátis para sempre · 50 mil usuários · " repetido em loop. Configure ambos pelo painel do Figma Sites e verifique no preview. Publique o site e compartilhe a URL.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. O Figma Sites é mais adequado para qual tipo de projeto?</p>
+            <ul class="quiz-options">
+              <li>E-commerce com carrinho de compras e pagamento integrado</li>
+              <li>Landing page de produto e portfólio de designer</li>
+              <li>Aplicativo SaaS com login e banco de dados</li>
+              <li>Blog com CMS editorial e múltiplos autores</li>
+            </ul>
+            <div class="quiz-explain">O Figma Sites é ideal para sites estáticos ou de baixa complexidade — landing pages, portfólios, microsites. Projetos com back-end, autenticação e banco de dados precisam de outras abordagens.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">2. Para que serve o recurso "Preview" no Figma Sites?</p>
+            <ul class="quiz-options">
+              <li>Para exportar o HTML do site como arquivo .zip</li>
+              <li>Para compartilhar o site com o cliente antes de publicar</li>
+              <li>Para testar o protótipo no Figma Prototyping</li>
+              <li>Para renderizar e testar o site diretamente no canvas do Figma, sem publicar</li>
+            </ul>
+            <div class="quiz-explain">O Preview renderiza o HTML resultante diretamente no canvas do Figma, permitindo testar scroll, responsividade e interações sem precisar publicar — acelerando a iteração.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Qual recurso do design Figma é mais importante para garantir boa responsividade no Figma Sites?</p>
+            <ul class="quiz-options">
+              <li>Auto Layout com tamanhos Fill e Hug, e Constraints bem configurados</li>
+              <li>Usar somente cores sólidas sem gradientes</li>
+              <li>Criar todos os frames com largura exatamente de 1440 px</li>
+              <li>Usar apenas fontes do Google Fonts</li>
+            </ul>
+            <div class="quiz-explain">Auto Layout com Fill/Hug e Constraints corretos fazem os elementos se adaptarem naturalmente a diferentes larguras — o mesmo princípio do Flexbox no CSS. É o que o Figma Sites usa para gerar o CSS responsivo.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

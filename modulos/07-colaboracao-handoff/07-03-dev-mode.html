@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dev Mode: inspeção e specs | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="07-03-dev-mode" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🤝 Módulo 7 · Profissional · Lição 3 de 6</div>
+        <h1>Dev Mode: inspeção e specs</h1>
+        <p class="lead">O Dev Mode é a interface do Figma projetada especificamente para desenvolvedores — um modo de leitura especializado onde cada propriedade de design se torna uma spec mensurável e copiável. Nesta lição você aprende a usá-lo para fazer um handoff preciso e sem ambiguidade.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~24 min</span>
+          <span>🎯 Nível: Profissional</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Alternar para o Dev Mode e entender sua interface;</li>
+            <li>Inspecionar medidas, espaçamentos, cores e tipografia de qualquer elemento;</li>
+            <li>Copiar valores de propriedades prontos para colar no código;</li>
+            <li>Usar "Compare changes" para ver o que mudou entre versões;</li>
+            <li>Marcar frames como "Ready for dev" e usar o Focus view para navegação eficiente.</li>
+          </ul>
+        </div>
+
+        <h2>O que é o Dev Mode?</h2>
+        <p>Até 2023, desenvolvedores inspecionavam designs usando o painel Inspect dentro do modo de edição do Figma — funcionava, mas era uma experiência de segunda classe. Em junho de 2023, o Figma lançou o <strong>Dev Mode</strong>: uma interface completamente separada, projetada do zero para o fluxo de trabalho de desenvolvimento.</p>
+        <p>No Dev Mode, o arquivo se comporta de forma diferente:</p>
+        <ul>
+          <li>A interface é simplificada — sem as ferramentas de criação que o dev não precisa;</li>
+          <li>O painel direito mostra specs técnicas em vez de controles de edição;</li>
+          <li>Valores são <strong>copiáveis em um clique</strong> no formato pronto para o código;</li>
+          <li>Há integrações com ferramentas de desenvolvimento (VS Code, Jira, Storybook etc.);</li>
+          <li>Existe um sistema de status ("Ready for dev", "In progress", "Complete") para rastrear o que está pronto para implementar.</li>
+        </ul>
+
+        <div class="callout info">
+          <span class="callout-title">Dev Mode e planos do Figma</span>
+          <p>O Dev Mode com recursos completos (geração de código, plugins, compare changes) está disponível nos planos <strong>Professional e acima</strong> para visualizadores (viewers). Desenvolvedores podem ter um assento de "Dev" com preço diferente dos editores. No plano Starter, o acesso é limitado.</p>
+        </div>
+
+        <h2>Alternando para o Dev Mode</h2>
+        <p>Para entrar no Dev Mode, use o alternador no canto superior direito da tela: clique no ícone de <strong>sinal de menor/maior (<code>&lt;/&gt;</code>)</strong>. A interface muda imediatamente — o canvas permanece, mas os painéis laterais se transformam em ferramentas de inspeção.</p>
+        <p>Para sair, clique novamente no mesmo ícone ou use <kbd>Shift</kbd> + <kbd>D</kbd>. Usuários com acesso somente de visualização entram automaticamente no Dev Mode quando abrem o arquivo.</p>
+
+        <h2>Inspecionando elementos</h2>
+        <p>Com o Dev Mode ativo, clicar em qualquer elemento no canvas abre o painel de inspeção completo à direita. Esse painel é organizado em seções que correspondem às propriedades mais usadas no código:</p>
+
+        <h3>Medidas e posicionamento</h3>
+        <p>O painel mostra as dimensões exatas do elemento (<strong>W</strong> × <strong>H</strong>), sua posição no frame pai (X, Y), e os valores de border radius. Ao passar o mouse sobre outros elementos com um elemento selecionado, o Figma exibe <strong>medidas de distância</strong> em destaque vermelho — a mesma funcionalidade de "medir" do modo de edição, mas mais proeminente aqui.</p>
+
+        <h3>Cores e opacidade</h3>
+        <p>Todas as cores do elemento aparecem em formatos copiáveis: <strong>HEX, RGB, HSL e CSS</strong>. Se o projeto usa Variables (tokens), o nome da variável é exibido ao lado do valor hexadecimal. Para copiar, basta clicar no valor — ele vai para a área de transferência automaticamente.</p>
+
+        <h3>Tipografia</h3>
+        <p>Para elementos de texto, o painel mostra: font family, font weight, font size, line height, letter spacing, text transform e outras propriedades. Cada valor é individualmente copiável.</p>
+
+        <h3>Estilos e componentes</h3>
+        <p>Se o elemento usa um <strong>Color Style</strong> ou <strong>Text Style</strong>, o nome do estilo é exibido com link. Se for uma instância de <strong>Component</strong>, o painel mostra o nome do componente e quais propriedades (variants) estão ativas.</p>
+
+        <h3>Auto Layout como Flexbox</h3>
+        <p>Frames com Auto Layout têm suas propriedades traduzidas para termos de CSS: direction, gap, padding, align-items, justify-content. Isso elimina a necessidade de "tradução" manual pelo desenvolvedor.</p>
+
+        <div class="figma-mock">
+          <div class="device-browser" style="max-width:480px;">
+            <div class="browser-bar"><i></i><i></i><i></i></div>
+            <div style="display:flex;height:240px;font-size:13px;">
+              <!-- Canvas simulado -->
+              <div style="flex:1;background:var(--bg-subtle);display:flex;align-items:center;justify-content:center;padding:16px;">
+                <div style="background:var(--primary);color:white;padding:12px 20px;border-radius:8px;font-weight:600;outline:2px solid var(--warning);outline-offset:2px;">
+                  Confirmar pedido
+                </div>
+              </div>
+              <!-- Painel de specs -->
+              <div style="width:200px;background:var(--surface);border-left:1px solid var(--border);padding:12px;overflow:auto;">
+                <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px;">Inspect</div>
+                <div style="margin-bottom:10px;">
+                  <div style="font-size:10px;color:var(--text-soft);margin-bottom:3px;">DIMENSÕES</div>
+                  <code style="font-size:11px;display:block;">W: 160px H: 44px</code>
+                </div>
+                <div style="margin-bottom:10px;">
+                  <div style="font-size:10px;color:var(--text-soft);margin-bottom:3px;">PREENCHIMENTO</div>
+                  <div style="display:flex;align-items:center;gap:6px;">
+                    <div style="width:12px;height:12px;border-radius:2px;background:#6c4cf1;flex:none;"></div>
+                    <code style="font-size:11px;">#6C4CF1</code>
+                  </div>
+                </div>
+                <div style="margin-bottom:10px;">
+                  <div style="font-size:10px;color:var(--text-soft);margin-bottom:3px;">TIPOGRAFIA</div>
+                  <code style="font-size:11px;display:block;">Inter 600</code>
+                  <code style="font-size:11px;display:block;">14px / 1.2</code>
+                </div>
+                <div style="margin-bottom:10px;">
+                  <div style="font-size:10px;color:var(--text-soft);margin-bottom:3px;">BORDER RADIUS</div>
+                  <code style="font-size:11px;">8px</code>
+                </div>
+                <div>
+                  <div style="font-size:10px;color:var(--text-soft);margin-bottom:3px;">PADDING</div>
+                  <code style="font-size:11px;">12px 20px</code>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">O Dev Mode expõe todas as specs de um botão — dimensões, cor, tipografia, border radius e padding — prontas para copiar.</p>
+        </div>
+
+        <h2>Copiando valores para o código</h2>
+        <p>No Dev Mode, toda propriedade tem um botão de cópia que aparece ao passar o mouse. Mas há uma forma mais eficiente: o painel de código à direita gera automaticamente snippets completos — você escolhe a linguagem (CSS, iOS/SwiftUI, Android/Compose) e copia o bloco inteiro.</p>
+        <p>Para um texto selecionado, por exemplo, o snippet CSS gerado pode ser algo como:</p>
+        <pre>font-family: 'Inter', sans-serif;
+font-size: 14px;
+font-weight: 600;
+line-height: 1.2;
+color: #FFFFFF;</pre>
+        <p>Para frames com Auto Layout, o snippet incluirá as propriedades flex:</p>
+        <pre>display: flex;
+flex-direction: row;
+align-items: center;
+gap: 8px;
+padding: 12px 20px;</pre>
+
+        <div class="callout tip">
+          <span class="callout-title">Clique duplo para copiar o valor isolado</span>
+          <p>No painel de inspeção, clicar uma vez numa propriedade copia o valor nú (ex.: <code>#6C4CF1</code>). O botão "Copy CSS" no painel de código copia o snippet completo com declarações CSS. Use o primeiro para colar em tokens; o segundo para colar diretamente no código.</p>
+        </div>
+
+        <h2>Compare changes: vendo o que mudou</h2>
+        <p>Um dos recursos mais poderosos do Dev Mode é o <strong>Compare changes</strong>. Ele permite que o desenvolvedor compare a versão atual do design com uma versão anterior, vendo exatamente quais frames foram alterados.</p>
+        <p>Para acessar: no Dev Mode, clique em <strong>Compare changes</strong> no painel ou acesse pelo menu. Selecione duas versões do histórico para comparar. O Figma exibe um overlay visual mostrando:</p>
+        <ul>
+          <li><strong>Verde</strong> = novo elemento ou frame adicionado;</li>
+          <li><strong>Vermelho</strong> = elemento ou frame removido;</li>
+          <li><strong>Amarelo/laranja</strong> = elemento modificado.</li>
+        </ul>
+        <p>Isso é valioso quando o design muda após o início da implementação — o dev pode ver <em>exatamente</em> o que foi alterado sem precisar revisar o arquivo inteiro.</p>
+
+        <h2>Marcando como "Ready for dev"</h2>
+        <p>O sistema de status do Dev Mode resolve um problema antigo: "esse design está finalizado ou ainda vai mudar?" Para marcar um frame ou seção como pronto para implementação:</p>
+        <ol class="steps">
+          <li>
+            <strong>Selecione o frame no Dev Mode.</strong>
+            Pode ser um frame de tela inteira ou um componente específico.
+          </li>
+          <li>
+            <strong>Clique em "Mark as ready for dev".</strong>
+            No painel direito, há um botão/toggle de status. Clique em <strong>Ready for dev</strong>. O frame recebe um indicador visual (ícone verde) visível para todos.
+          </li>
+          <li>
+            <strong>Desenvolvedores filtram por status.</strong>
+            No Dev Mode, os devs podem filtrar a visualização para ver apenas frames marcados como "Ready for dev" — evitando trabalhar em telas que ainda estão em rascunho.
+          </li>
+          <li>
+            <strong>Atualize conforme o progresso.</strong>
+            O status pode ser alterado para "In progress" quando o dev começa a implementar, e "Completed" quando terminar — criando um kanban nativo dentro do Figma.
+          </li>
+        </ol>
+
+        <div class="callout pro">
+          <span class="callout-title">Status como processo de qualidade</span>
+          <p>Defina uma regra no time: apenas o designer responsável pode marcar como "Ready for dev", e somente após a aprovação do design lead. Isso cria um gate de qualidade que evita que devs implementem designs em progresso — um dos maiores geradores de retrabalho em times de produto.</p>
+        </div>
+
+        <h2>Focus view: navegando de frame em frame</h2>
+        <p>O <strong>Focus view</strong> é um modo de navegação no Dev Mode onde você vê apenas um frame por vez, com setas para navegar entre eles sequencialmente. É ideal para um desenvolvedor que precisa implementar um fluxo completo:</p>
+        <ul>
+          <li>Clique em <strong>Focus</strong> no painel do Dev Mode para entrar nesse modo;</li>
+          <li>O frame selecionado ocupa toda a área do canvas (sem os outros frames ao redor);</li>
+          <li>Botões de navegação permitem ir para o próximo ou anterior frame do fluxo;</li>
+          <li>O painel de specs na direita permanece atualizado para o frame focado.</li>
+        </ul>
+        <p>Isso é especialmente útil quando o arquivo tem dezenas de frames e o desenvolvedor precisa focar apenas no fluxo que está implementando naquela sprint.</p>
+
+        <h2>Navegação otimizada para desenvolvedores</h2>
+        <p>O Dev Mode tem vários recursos pensados para o fluxo de trabalho de desenvolvimento:</p>
+        <ul>
+          <li><strong>Busca por componentes:</strong> campo de busca no painel esquerdo para encontrar componentes específicos rapidamente;</li>
+          <li><strong>Filtro por status:</strong> mostrar apenas frames "Ready for dev", "In progress" ou todos;</li>
+          <li><strong>Anotações (Annotations):</strong> designers podem deixar notas técnicas visíveis apenas no Dev Mode (veremos detalhes na lição 5);</li>
+          <li><strong>Links para Jira/Storybook:</strong> plugins permitem vincular frames a tickets e componentes de código;</li>
+          <li><strong>Exportar assets:</strong> selecionar e exportar ícones, imagens e ilustrações diretamente do Dev Mode sem precisar pedir ao designer.</li>
+        </ul>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Uma desenvolvedora front-end recebe um link para o Figma com o design da tela de checkout. Usando o Dev Mode:</p>
+        <ol>
+          <li>Ela filtra por <strong>Ready for dev</strong> — vê apenas os 3 frames aprovados;</li>
+          <li>Usa o <strong>Focus view</strong> para trabalhar frame a frame sem distração;</li>
+          <li>Clica no campo de e-mail e copia o snippet CSS da tipografia;</li>
+          <li>Passa o mouse sobre os espaçamentos internos para ver os valores de gap e padding;</li>
+          <li>Clica em "Compare changes" para ver o que o designer alterou desde ontem — apenas o botão mudou de cor;</li>
+          <li>Exporta os ícones SVG diretamente do painel de exportação.</li>
+        </ol>
+        <p>Todo esse processo sem precisar falar com o designer, sem screenshots, sem planilhas de spec.</p>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Alternar Dev Mode</td><td><kbd>Shift</kbd> + <kbd>D</kbd></td><td><kbd>Shift</kbd> + <kbd>D</kbd></td></tr>
+              <tr><td>Medir distância (hover)</td><td>Hover + <kbd>Alt</kbd></td><td>Hover + <kbd>⌥</kbd></td></tr>
+              <tr><td>Copiar propriedade selecionada</td><td><kbd>Ctrl</kbd> + <kbd>C</kbd></td><td><kbd>⌘</kbd> + <kbd>C</kbd></td></tr>
+              <tr><td>Selecionar elemento pai</td><td><kbd>Esc</kbd></td><td><kbd>Esc</kbd></td></tr>
+              <tr><td>Entrar no elemento filho</td><td>Duplo clique</td><td>Duplo clique</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>O Dev Mode é uma interface separada do Figma projetada para desenvolvedores — specs limpas, valores copiáveis, sem ruído de ferramentas de criação.</li>
+          <li>Alterne com <kbd>Shift</kbd> + <kbd>D</kbd>; o painel direito mostra medidas, cores, tipografia e code snippets.</li>
+          <li><strong>Compare changes</strong> mostra exatamente o que mudou entre duas versões do design.</li>
+          <li><strong>Ready for dev</strong> cria um sistema de status formal: o dev só implementa o que está aprovado.</li>
+          <li><strong>Focus view</strong> permite navegar frame a frame sem distração — ideal para implementação sequencial de fluxos.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Inspecionando um design completo</h3>
+          <p>Abra qualquer arquivo de design no Figma e entre no Dev Mode (<kbd>Shift</kbd> + <kbd>D</kbd>):</p>
+          <ol>
+            <li>Selecione um botão e copie todos os valores: cor de preenchimento (HEX), border radius, padding (valores individuais), e o snippet CSS completo.</li>
+            <li>Selecione um texto e copie a tipografia completa (family, size, weight, line-height).</li>
+            <li>Com um elemento selecionado, passe o mouse sobre outros elementos vizinhos e anote as distâncias exibidas.</li>
+            <li>Marque um frame como "Ready for dev" e verifique que o indicador visual aparece.</li>
+            <li>Ative o Focus view e navegue entre 3 frames sequencialmente.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> você consegue listar todos os valores de spec de um componente sem consultar o designer, e o status "Ready for dev" é visível tanto no modo de edição quanto no Dev Mode.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Implementar a partir do Dev Mode</h3>
+          <p>Escolha um componente do seu design (botão, card, formulário) e implemente-o em HTML/CSS usando <em>apenas</em> o Dev Mode como fonte de verdade — sem perguntar ao designer nem adivinhar valores. Todos os valores de cor, tipografia, espaçamento e border radius devem vir diretamente do painel de inspeção. Compare o resultado no navegador com o design original; a diferença visual deve ser imperceptível.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Qual atalho alterna entre o modo de edição e o Dev Mode no Figma?</p>
+            <ul class="quiz-options">
+              <li>Ctrl/⌘ + D</li>
+              <li>Alt + D</li>
+              <li>Shift + D</li>
+              <li>D</li>
+            </ul>
+            <div class="quiz-explain"><strong>Shift + D</strong> alterna entre o modo de edição e o Dev Mode. Você também pode clicar no ícone <code>&lt;/&gt;</code> no canto superior direito da interface.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. O que o recurso "Compare changes" no Dev Mode permite fazer?</p>
+            <ul class="quiz-options">
+              <li>Ver visualmente o que mudou no design entre duas versões do histórico, com indicadores de adicionado, removido e modificado</li>
+              <li>Comparar o design do Figma com o componente implementado no código</li>
+              <li>Comparar dois arquivos Figma diferentes lado a lado</li>
+              <li>Ver as diferenças entre branches antes de fazer o merge</li>
+            </ul>
+            <div class="quiz-explain">O <strong>Compare changes</strong> compara a versão atual do arquivo com uma versão anterior do Version History, destacando em verde (novo), vermelho (removido) e amarelo (modificado) — perfeito para devs que precisam saber o que mudou desde ontem.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">3. Qual é o propósito do status "Ready for dev" no Dev Mode?</p>
+            <ul class="quiz-options">
+              <li>Travar o frame para edição até que o dev termine a implementação</li>
+              <li>Exportar automaticamente os assets do frame para um repositório Git</li>
+              <li>Notificar o designer que o desenvolvimento foi concluído</li>
+              <li>Sinalizar ao desenvolvedor que aquele frame foi aprovado pelo designer e está pronto para implementação</li>
+            </ul>
+            <div class="quiz-explain">O status <strong>"Ready for dev"</strong> é um sinal do designer para o desenvolvedor: "este design está finalizado e aprovado, pode implementar". Ele resolve o problema clássico de devs implementando designs que ainda estavam em rascunho.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

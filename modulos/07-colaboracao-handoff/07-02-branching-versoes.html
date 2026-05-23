@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Branching e version history | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="07-02-branching-versoes" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🤝 Módulo 7 · Profissional · Lição 2 de 6</div>
+        <h1>Branching e version history</h1>
+        <p class="lead">Trabalhar em um design de produto sem controle de versão é como programar sem Git — você não sabe o que mudou, não consegue voltar atrás e cada "tentativa experimental" arriscaa o design principal. Nesta lição você aprende a gerenciar versões e trabalhar de forma isolada com branches.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~22 min</span>
+          <span>🎯 Nível: Profissional</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Entender o que é o Version History e como o Figma salva automaticamente;</li>
+            <li>Criar versões nomeadas em marcos importantes do projeto;</li>
+            <li>Restaurar e comparar versões anteriores;</li>
+            <li>Criar e trabalhar em branches para explorar mudanças sem afetar o arquivo principal;</li>
+            <li>Fazer review e merge de uma branch de volta ao arquivo principal.</li>
+          </ul>
+        </div>
+
+        <h2>Version History: o histórico automático do Figma</h2>
+        <p>O Figma salva automaticamente cada mudança que você faz — continuamente, em segundo plano, sem precisar apertar <kbd>Ctrl</kbd> + <kbd>S</kbd>. Esse histórico de auto-save é o <strong>Version History</strong>, e ele funciona como uma linha do tempo completa de tudo que aconteceu no arquivo.</p>
+        <p>Pense nisso como um sistema de commits automático: cada sessão de edição gera um ponto no histórico. Se você quebrar algo, basta voltar a uma versão anterior. Se quiser ver quando uma decisão foi tomada, basta procurar no histórico.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Retenção do histórico por plano</span>
+          <p>No plano <strong>Starter (gratuito)</strong>, o Figma mantém os últimos 30 dias de histórico automático. Nos planos pagos (Professional, Organization, Enterprise), o histórico é <strong>ilimitado</strong> — você pode ver literalmente o primeiro traço feito no arquivo desde sua criação.</p>
+        </div>
+
+        <h3>Passo a passo: acessando o Version History</h3>
+        <ol class="steps">
+          <li>
+            <strong>Abra o menu do arquivo.</strong>
+            No modo de edição, clique no nome do arquivo na barra superior para abrir o menu do arquivo (ou use o menu <strong>Main Menu → File → Show version history</strong>).
+          </li>
+          <li>
+            <strong>Selecione "Show version history".</strong>
+            O painel lateral direito se transforma no painel de histórico, mostrando uma lista cronológica de versões com data, hora e nome do editor responsável.
+          </li>
+          <li>
+            <strong>Navegue pelo histórico.</strong>
+            Clique em qualquer versão na lista. O canvas se torna somente leitura e mostra o estado do arquivo naquele momento exato. Você pode inspecionar qualquer elemento, zoom, etc.
+          </li>
+          <li>
+            <strong>Compare visualmente.</strong>
+            Navegue entre versões para ver o que mudou. O Figma não tem um diff visual automático, mas você pode abrir duas abas do navegador com versões diferentes e comparar lado a lado.
+          </li>
+          <li>
+            <strong>Restaure se necessário.</strong>
+            Clique nos três pontos "..." ao lado de uma versão e selecione <strong>Restore this version</strong>. O arquivo volta àquele estado — e a versão atual automaticamente vira um ponto salvo no histórico antes da restauração, para que você não perca nada.
+          </li>
+        </ol>
+
+        <h3>Criando versões nomeadas</h3>
+        <p>As versões automáticas têm nomes genéricos como "Autosaved". Para criar um <strong>marco rastreável</strong> — por exemplo, "Aprovado pelo cliente — Sprint 3" — você pode nomear uma versão manualmente:</p>
+        <ol class="steps">
+          <li>
+            <strong>Acesse o Version History</strong> conforme descrito acima.
+          </li>
+          <li>
+            <strong>Clique em "Save current version"</strong> no topo do painel, ou use <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd> (Windows) / <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>S</kbd> (Mac) diretamente no modo de edição.
+          </li>
+          <li>
+            <strong>Digite um nome descritivo</strong> para a versão (ex: "V2 - Aprovada pelo time de produto, 20/01/2026") e clique em Save. Essa versão aparece destacada com um ícone diferente no histórico.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Quando criar versões nomeadas</span>
+          <p>Crie versões nomeadas em momentos de marco: antes de uma apresentação importante, após aprovação do cliente, ao iniciar uma nova sprint, antes de uma experimentação arriscada, e ao finalizar uma feature. Isso cria uma narrativa do projeto que vale ouro meses depois.</p>
+        </div>
+
+        <div class="diagram">
+          <svg viewBox="0 0 560 160" role="img" aria-label="Linha do tempo do Version History com versões automáticas e nomeadas">
+            <!-- Linha do tempo -->
+            <line x1="30" y1="80" x2="530" y2="80" stroke="var(--border-strong)" stroke-width="2"/>
+            <!-- Versões automáticas (círculos pequenos) -->
+            <circle cx="70" cy="80" r="6" fill="var(--border-strong)"/>
+            <circle cx="110" cy="80" r="6" fill="var(--border-strong)"/>
+            <circle cx="150" cy="80" r="6" fill="var(--border-strong)"/>
+            <circle cx="230" cy="80" r="6" fill="var(--border-strong)"/>
+            <circle cx="270" cy="80" r="6" fill="var(--border-strong)"/>
+            <circle cx="380" cy="80" r="6" fill="var(--border-strong)"/>
+            <circle cx="420" cy="80" r="6" fill="var(--border-strong)"/>
+            <circle cx="490" cy="80" r="6" fill="var(--border-strong)"/>
+            <!-- Versões nomeadas (estrelas / maiores) -->
+            <circle cx="190" cy="80" r="12" fill="var(--primary)" stroke="var(--primary-soft)" stroke-width="2"/>
+            <text x="190" y="85" text-anchor="middle" fill="white" font-size="10" font-weight="bold">V1</text>
+            <text x="190" y="105" text-anchor="middle" fill="var(--primary)" font-size="10" font-family="sans-serif">Sprint 1</text>
+            <text x="190" y="118" text-anchor="middle" fill="var(--text-muted)" font-size="9" font-family="sans-serif">Aprovado</text>
+            <circle cx="330" cy="80" r="12" fill="var(--success)" stroke="var(--success-soft)" stroke-width="2"/>
+            <text x="330" y="85" text-anchor="middle" fill="white" font-size="10" font-weight="bold">V2</text>
+            <text x="330" y="105" text-anchor="middle" fill="var(--success)" font-size="10" font-family="sans-serif">Sprint 2</text>
+            <text x="330" y="118" text-anchor="middle" fill="var(--text-muted)" font-size="9" font-family="sans-serif">Cliente ok</text>
+            <circle cx="460" cy="80" r="12" fill="var(--warning)" stroke="var(--warning-soft)" stroke-width="2"/>
+            <text x="460" y="85" text-anchor="middle" fill="white" font-size="10" font-weight="bold">V3</text>
+            <text x="460" y="105" text-anchor="middle" fill="var(--warning)" font-size="10" font-family="sans-serif">Sprint 3</text>
+            <text x="460" y="118" text-anchor="middle" fill="var(--text-muted)" font-size="9" font-family="sans-serif">Dev ready</text>
+            <!-- Rótulo autosave -->
+            <text x="80" y="55" text-anchor="middle" fill="var(--text-soft)" font-size="9" font-family="sans-serif">autosave</text>
+            <text x="250" y="55" text-anchor="middle" fill="var(--text-soft)" font-size="9" font-family="sans-serif">autosave</text>
+          </svg>
+          <p class="mock-label">Versões automáticas (pequenos pontos) intercaladas com versões nomeadas (V1, V2, V3) em marcos importantes.</p>
+        </div>
+
+        <h2>Branching: trabalhando em isolamento</h2>
+        <p>O <strong>Branching</strong> é um recurso dos planos pagos (Professional e acima) que permite criar uma <em>cópia divergente</em> do arquivo — uma branch — onde você pode fazer mudanças sem afetar o arquivo principal (a "main"). Quando as mudanças estão aprovadas, você faz o <strong>merge</strong> de volta.</p>
+        <p>Se você usa Git no desenvolvimento, o conceito é exatamente o mesmo: <code>main</code> é o arquivo estável, branches são experimentos isolados que depois podem ser integrados.</p>
+
+        <h3>Por que usar branches?</h3>
+        <ul>
+          <li><strong>Experimentos sem risco:</strong> quer testar uma direção visual completamente diferente? Faça numa branch — se não funcionar, descarte sem afetar nada.</li>
+          <li><strong>Trabalho paralelo:</strong> dois designers podem trabalhar em features diferentes ao mesmo tempo, cada um na sua branch, sem conflito.</li>
+          <li><strong>Processo de aprovação:</strong> branches criam um fluxo formal de review — a mudança não vai para a main até ser revisada e aprovada.</li>
+          <li><strong>Entrega faseada:</strong> você pode ter branches para diferentes sprints ou releases em andamento simultaneamente.</li>
+        </ul>
+
+        <h3>Passo a passo: criando e usando uma branch</h3>
+        <ol class="steps">
+          <li>
+            <strong>Abra o menu do arquivo.</strong>
+            Clique no nome do arquivo na barra superior para abrir o menu principal do arquivo.
+          </li>
+          <li>
+            <strong>Selecione "Create branch".</strong>
+            Na seção de branching, clique em <strong>Create branch</strong>. O Figma pedirá um nome para a branch — use nomes descritivos como "redesign-header-sprint4" ou "experimento-tipografia-sans".
+          </li>
+          <li>
+            <strong>Trabalhe na branch normalmente.</strong>
+            A branch se abre como um arquivo separado. O indicador na barra superior mostra o nome da branch com um ícone de "fork". Faça suas edições aqui sem preocupação com o arquivo principal.
+          </li>
+          <li>
+            <strong>Solicite review (opcional).</strong>
+            Quando terminar, compartilhe o link da branch com revisores. Eles podem adicionar comentários diretamente na branch.
+          </li>
+          <li>
+            <strong>Faça o merge para a main.</strong>
+            No menu do arquivo da branch, clique em <strong>Merge branch</strong>. O Figma mostra um preview das mudanças — novos frames, frames modificados e frames deletados — e você confirma o merge. As mudanças aparecem no arquivo principal.
+          </li>
+        </ol>
+
+        <div class="callout warning">
+          <span class="callout-title">Conflitos de merge</span>
+          <p>Se alguém modificou os mesmos frames no arquivo principal enquanto você trabalhava na branch, pode haver conflitos. O Figma apresenta um painel de resolução de conflitos onde você escolhe qual versão manter (a da branch ou a da main) para cada frame em conflito. Revise com cuidado antes de confirmar.</p>
+        </div>
+
+        <h3>Visualizando diferenças antes do merge</h3>
+        <p>Antes de confirmar o merge, o Figma exibe um <strong>painel de diferenças</strong> (diff view) que mostra lado a lado:</p>
+        <ul>
+          <li><strong>Frames novos</strong> (existem na branch mas não na main);</li>
+          <li><strong>Frames modificados</strong> (existem em ambas, mas com diferenças);</li>
+          <li><strong>Frames deletados</strong> (existem na main mas foram removidos na branch).</li>
+        </ul>
+        <p>Você pode navegar por cada diff, inspecionar as mudanças e optar por incluir ou excluir frames específicos do merge.</p>
+
+        <div class="callout note">
+          <span class="callout-title">Branching é exclusivo de planos pagos</span>
+          <p>O recurso de branching está disponível apenas nos planos <strong>Professional, Organization e Enterprise</strong>. No plano Starter (gratuito), você pode simular o conceito duplicando o arquivo manualmente — mas sem o merge integrado.</p>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Uma startup de fintech está redesenhando o fluxo de onboarding. O time tem dois designers:</p>
+        <ul>
+          <li><strong>Designer A</strong> cria uma branch "onboarding-v2-stepbystep" para redesenhar o fluxo com etapas progressivas;</li>
+          <li><strong>Designer B</strong> cria "onboarding-v2-singlepage" para uma abordagem em página única com scroll;</li>
+          <li>Ambos trabalham por uma semana sem interferência. O arquivo principal continua estável para o time de dev que está implementando a v1;</li>
+          <li>Na sprint review, o time vota: a abordagem step-by-step vence;</li>
+          <li>Designer A faz o merge da sua branch para a main, e a branch de B é descartada sem deixar rastro;</li>
+          <li>Uma versão nomeada "Onboarding V2 aprovado — 28/01/2026" é criada na main como marco.</li>
+        </ul>
+
+        <div class="callout pro">
+          <span class="callout-title">Branches como processo de aprovação</span>
+          <p>Em times maiores, é comum ter uma regra: "nenhuma mudança vai para a main sem passar por uma branch com aprovação de pelo menos um outro designer". Isso cria um processo de code review para design — aumenta a qualidade e distribui o conhecimento do sistema.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Salvar versão nomeada</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>S</kbd></td></tr>
+              <tr><td>Abrir Version History</td><td>Menu arquivo → Show version history</td><td>Menu arquivo → Show version history</td></tr>
+              <tr><td>Criar branch</td><td>Menu arquivo → Create branch</td><td>Menu arquivo → Create branch</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>O <strong>Version History</strong> salva automaticamente todo o histórico do arquivo; planos pagos têm histórico ilimitado.</li>
+          <li>Crie <strong>versões nomeadas</strong> em marcos importantes para documentar decisões e facilitar a navegação futura.</li>
+          <li>Você pode <strong>restaurar</strong> qualquer versão anterior sem perder o estado atual — o Figma salva o ponto antes da restauração.</li>
+          <li><strong>Branching</strong> (planos pagos) permite trabalho isolado: crie uma branch, faça mudanças, revise e faça merge com diff visual.</li>
+          <li>Use branches para experimentos, trabalho paralelo e processos formais de aprovação.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Histórico e versões nomeadas</h3>
+          <p>Pratique o Version History em um arquivo seu:</p>
+          <ol>
+            <li>Abra um arquivo existente e faça 3 ou 4 mudanças sequenciais (mova elementos, mude cores, altere textos).</li>
+            <li>Acesse o Version History (menu do arquivo → Show version history).</li>
+            <li>Navegue pelas versões automáticas e confirme que consegue ver cada estado do design.</li>
+            <li>Salve uma versão nomeada: <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Alt</kbd>/<kbd>⌥</kbd> + <kbd>S</kbd> com o nome "Exercício módulo 7 — versão inicial".</li>
+            <li>Faça mais uma mudança drástica (delete algo importante), depois restaure a versão nomeada.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> a versão nomeada aparece destacada no painel de histórico, e após a restauração o arquivo volta exatamente ao estado em que foi salvo — o elemento deletado reaparece.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Fluxo completo de branch e merge</h3>
+          <p>Se você tem acesso a um plano pago: crie uma branch a partir de um arquivo de design, redesenhe de forma significativa pelo menos 3 telas na branch (mudança de layout, não apenas cores), depois faça o merge de volta à main usando o diff view para revisar cada mudança antes de confirmar. Documente o processo com uma versão nomeada "Pós-merge sprint X" após o merge. Se estiver no plano gratuito: simule duplicando o arquivo, faça as mudanças na cópia e documente quais frames seriam "mergeados" usando comentários.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. O que acontece com o arquivo quando você restaura uma versão anterior no Figma?</p>
+            <ul class="quiz-options">
+              <li>O histórico é deletado permanentemente</li>
+              <li>Apenas os frames selecionados voltam ao estado anterior</li>
+              <li>O arquivo volta ao estado daquela versão, e o estado atual é salvo automaticamente como um ponto no histórico antes da restauração</li>
+              <li>Uma cópia do arquivo atual é criada antes da restauração, separada do arquivo principal</li>
+            </ul>
+            <div class="quiz-explain">O Figma é seguro: ao restaurar, ele <strong>salva automaticamente o estado atual como um ponto no histórico</strong> antes de restaurar a versão escolhida — você nunca perde trabalho feito.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. Em quais planos do Figma o recurso de Branching está disponível?</p>
+            <ul class="quiz-options">
+              <li>Professional, Organization e Enterprise (planos pagos)</li>
+              <li>Todos os planos, incluindo o Starter gratuito</li>
+              <li>Apenas no plano Enterprise</li>
+              <li>Starter e Professional</li>
+            </ul>
+            <div class="quiz-explain">O <strong>Branching</strong> é um recurso exclusivo dos planos pagos: Professional, Organization e Enterprise. O plano Starter gratuito não tem acesso a branches.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">3. Qual é o principal benefício de criar versões nomeadas no Version History?</p>
+            <ul class="quiz-options">
+              <li>Aumentar o limite de retenção do histórico no plano gratuito</li>
+              <li>Criar marcos rastreáveis com contexto — como "Aprovado pelo cliente sprint 3" — facilitando encontrar e restaurar estados importantes no futuro</li>
+              <li>Bloquear o arquivo para edições até que a versão seja aprovada</li>
+              <li>Sincronizar o arquivo com um repositório Git externo</li>
+            </ul>
+            <div class="quiz-explain">Versões nomeadas criam <strong>marcos rastreáveis</strong> com contexto humano — muito mais útil que "Autosaved 14:32:07". Elas ficam destacadas no histórico e são fáceis de encontrar quando você precisar voltar meses depois.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

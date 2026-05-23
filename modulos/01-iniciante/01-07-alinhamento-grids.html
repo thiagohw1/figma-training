@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alinhamento, distribuição e Layout Grids | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="01-07-alinhamento-grids" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🎨 Módulo 1 · Iniciante · Lição 7 de 8</div>
+        <h1>Alinhamento, distribuição e Layout Grids</h1>
+        <p class="lead">O que diferencia um design feito no olho de um feito com precisão? Alinhamento rigoroso, distribuição consistente e um grid sólido como base. É aqui que a interface ganha ritmo e coerência.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~20 min</span>
+          <span>🎯 Nível: Iniciante</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Alinhar elementos pelos 6 eixos (esquerda, centro, direita, topo, meio, base);</li>
+            <li>Distribuir elementos com espaçamento uniforme;</li>
+            <li>Usar Smart Selection e Tidy Up para organizar grupos de elementos;</li>
+            <li>Criar e configurar Layout Grids (Columns, Rows e Grid);</li>
+            <li>Aplicar o grid de 8pt para espaçamentos consistentes.</li>
+          </ul>
+        </div>
+
+        <h2>Ferramentas de alinhamento</h2>
+        <p>Selecione dois ou mais elementos e o painel direito mostra a barra de alinhamento com 6 botões. Para um único elemento, o alinhamento é relativo ao Frame pai; para múltiplos elementos, é relativo ao bounding box da seleção (ou a um elemento de referência).</p>
+
+        <h3>Alinhar pela seleção ou pelo frame</h3>
+        <p>Por padrão, os botões de alinhamento alinham <strong>em relação à seleção inteira</strong> (bounding box de todos os selecionados). Para alinhar dentro do Frame pai, use a opção no dropdown do ícone de alinhamento: <strong>Align to frame</strong> ou <strong>Align to selection</strong>. Você também pode segurar um elemento específico como "âncora" clicando nele com <kbd>Alt</kbd>/<kbd>⌥</kbd> — ele fica fixo e os demais se movem para se alinhar com ele.</p>
+
+        <h3>Os 6 alinhamentos</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Ícone</th><th>Ação</th><th>Alinha os elementos…</th></tr></thead>
+            <tbody>
+              <tr><td>◧</td><td>Align Left</td><td>Pela borda esquerda</td></tr>
+              <tr><td>◫</td><td>Align Center (H)</td><td>Pelo centro horizontal</td></tr>
+              <tr><td>◨</td><td>Align Right</td><td>Pela borda direita</td></tr>
+              <tr><td>⬆</td><td>Align Top</td><td>Pela borda superior</td></tr>
+              <tr><td>⬛</td><td>Align Middle (V)</td><td>Pelo centro vertical</td></tr>
+              <tr><td>⬇</td><td>Align Bottom</td><td>Pela borda inferior</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Distribuição</h2>
+        <p>Além de alinhar, você pode <strong>distribuir</strong> elementos com espaçamento uniforme. Os dois botões de distribuição (ao lado dos de alinhamento):</p>
+        <ul>
+          <li><strong>Distribute Horizontal Spacing:</strong> distribui os elementos horizontalmente com o mesmo espaço entre eles;</li>
+          <li><strong>Distribute Vertical Spacing:</strong> distribui verticalmente.</li>
+        </ul>
+        <p>O Figma calcula automaticamente o espaçamento com base no espaço disponível entre o primeiro e o último elemento da seleção. Se você quiser espaçamento específico, use o campo de <strong>spacing</strong> que aparece ao selecionar múltiplos elementos.</p>
+
+        <h2>Smart Selection e Tidy Up</h2>
+        <p>Quando você seleciona múltiplos elementos, o Figma ativa a <strong>Smart Selection</strong>: handles cor-de-rosa aparecem entre os elementos, mostrando o espaçamento atual. Você pode arrastar esses handles para ajustar o gap entre todos de uma vez.</p>
+        <p>O botão <strong>Tidy Up</strong> (ícone de grade no painel, ou via botão direito) reorganiza automaticamente elementos selecionados em uma grade regular, espaçando-os uniformemente tanto horizontal quanto verticalmente. É ideal para ícones, cards e qualquer elemento repetido.</p>
+
+        <div class="callout tip">
+          <span class="callout-title">Tidy Up: o atalho secreto</span>
+          <p>Selecione vários elementos desordenados e pressione <kbd>Tidy Up</kbd> no painel direito. Em segundos, eles se organizam numa grade perfeita. Se os elementos têm tamanhos diferentes, o Figma os centraliza no grid. Economiza minutos de ajuste manual.</p>
+        </div>
+
+        <h2>Layout Grids</h2>
+        <p>Um <strong>Layout Grid</strong> é uma grade visual sobreposta a um Frame para guiar o posicionamento dos elementos. Ele é visível durante o design mas não exportado. Pense nele como as linhas de caderno — você vê enquanto escreve, mas não aparecem no resultado final.</p>
+
+        <h3>Tipos de Layout Grid</h3>
+        <p>Com um Frame selecionado, clique em <strong>+</strong> na seção "Layout grid" do painel direito:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Tipo</th><th>Para que serve</th><th>Propriedades</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Grid</strong></td><td>Quadrícula uniforme (útil para ícones e espaçamento 8pt)</td><td>Tamanho do grid, cor, opacidade</td></tr>
+              <tr><td><strong>Columns</strong></td><td>Colunas verticais (padrão para layout de página)</td><td>Count, Type (stretch/left/center/right), Width, Margin, Gutter</td></tr>
+              <tr><td><strong>Rows</strong></td><td>Linhas horizontais (baseline grid para tipografia)</td><td>Count, Type, Height, Margin, Gutter</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>O grid de colunas — configuração padrão</h3>
+        <p>Para uma página web de 1440 px de largura, o grid padrão da indústria é:</p>
+        <ul>
+          <li><strong>12 colunas</strong> (ou 6 para simplificar);</li>
+          <li><strong>Gutter (espaço entre colunas):</strong> 24 px;</li>
+          <li><strong>Margin (espaço nas bordas):</strong> 80 px (ou 160 px para conteúdo centrado);</li>
+          <li>Type: <strong>Stretch</strong> — as colunas preenchem o espaço disponível.</li>
+        </ul>
+        <p>Para mobile (390 px), use 4 colunas, 16 px de gutter e 16 px de margin.</p>
+
+        <h2>Diagrama: grid de 12 colunas</h2>
+
+        <div class="diagram">
+          <svg viewBox="0 0 520 180" role="img" aria-label="Diagrama de grid de 12 colunas com margins e gutters">
+            <!-- fundo do frame -->
+            <rect x="10" y="20" width="500" height="140" rx="8" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1"/>
+            <!-- margins -->
+            <rect x="10" y="20" width="30" height="140" fill="var(--warning-soft)" opacity=".7"/>
+            <rect x="480" y="20" width="30" height="140" fill="var(--warning-soft)" opacity=".7"/>
+            <!-- colunas (12) e gutters -->
+            <!-- coluna 1 -->
+            <rect x="40" y="20" width="32" height="140" fill="var(--primary-soft)" opacity=".6"/>
+            <rect x="72" y="20" width="6" height="140" fill="none"/>
+            <rect x="78" y="20" width="32" height="140" fill="var(--primary-soft)" opacity=".6"/>
+            <rect x="110" y="20" width="6" height="140" fill="none"/>
+            <rect x="116" y="20" width="32" height="140" fill="var(--primary-soft)" opacity=".6"/>
+            <rect x="148" y="20" width="6" height="140" fill="none"/>
+            <rect x="154" y="20" width="32" height="140" fill="var(--primary-soft)" opacity=".6"/>
+            <rect x="186" y="20" width="6" height="140" fill="none"/>
+            <rect x="192" y="20" width="32" height="140" fill="var(--primary-soft)" opacity=".6"/>
+            <rect x="224" y="20" width="6" height="140" fill="none"/>
+            <rect x="230" y="20" width="32" height="140" fill="var(--primary-soft)" opacity=".6"/>
+            <rect x="262" y="20" width="6" height="140" fill="none"/>
+            <rect x="268" y="20" width="32" height="140" fill="var(--primary-soft)" opacity=".6"/>
+            <rect x="300" y="20" width="6" height="140" fill="none"/>
+            <rect x="306" y="20" width="32" height="140" fill="var(--primary-soft)" opacity=".6"/>
+            <rect x="338" y="20" width="6" height="140" fill="none"/>
+            <rect x="344" y="20" width="32" height="140" fill="var(--primary-soft)" opacity=".6"/>
+            <rect x="376" y="20" width="6" height="140" fill="none"/>
+            <rect x="382" y="20" width="32" height="140" fill="var(--primary-soft)" opacity=".6"/>
+            <rect x="414" y="20" width="6" height="140" fill="none"/>
+            <rect x="420" y="20" width="32" height="140" fill="var(--primary-soft)" opacity=".6"/>
+            <rect x="452" y="20" width="6" height="140" fill="none"/>
+            <rect x="458" y="20" width="22" height="140" fill="var(--primary-soft)" opacity=".6"/>
+            <!-- labels -->
+            <text x="18" y="174" fill="var(--warning)" font-size="10" font-family="sans-serif" font-weight="700">Margin</text>
+            <text x="205" y="174" fill="var(--primary)" font-size="10" font-family="sans-serif" font-weight="700">Colunas (12)</text>
+            <text x="75" y="174" fill="var(--text-muted)" font-size="10" font-family="sans-serif">Gutter</text>
+          </svg>
+          <p class="mock-label">Grid de 12 colunas: margins laterais (laranja) + colunas (roxo) + gutters (espaço entre colunas).</p>
+        </div>
+
+        <h2>O sistema de 8pt</h2>
+        <p>O <strong>grid de 8pt</strong> (ou 8px) é um sistema de espaçamento onde todos os valores de padding, margin, gap e tamanho são múltiplos de 8: 8, 16, 24, 32, 40, 48, 64, 80, 96… O benefício é triplo:</p>
+        <ul>
+          <li><strong>Consistência visual:</strong> todos os espaçamentos do design estão em harmonia;</li>
+          <li><strong>Facilidade de handoff:</strong> developers adoram valores de grid — são fáceis de traduzir para código;</li>
+          <li><strong>Compatibilidade com telas HiDPI:</strong> múltiplos de 8 se dividem perfeitamente em @2x e @3x sem valores fracionários.</li>
+        </ul>
+        <p>Para casos onde 8 px é muito, use múltiplos de 4 (4, 8, 12, 16…). Para micros espaçamentos em ícones, use múltiplos de 2.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Baseline grid</span>
+          <p>O <strong>Baseline Grid</strong> é um grid de linhas horizontais no intervalo do line-height do texto de corpo (ex: 8 px ou 4 px). Ele garante que textos de diferentes tamanhos se alinhem na mesma linha de base, criando ritmo vertical consistente — como nas linhas de um caderno. Configure um Layout Grid de Rows com Height igual ao seu line-height (ex: 8 px).</p>
+        </div>
+
+        <h2>Passo a passo: aplicar um grid de colunas</h2>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie um Frame de Desktop.</strong>
+            Pressione <kbd>F</kbd> e selecione o preset "Desktop" (1440×1024 px). Renomeie para "Home – Desktop".
+          </li>
+          <li>
+            <strong>Adicione um Layout Grid de colunas.</strong>
+            Com o Frame selecionado, no painel direito, clique em <strong>+</strong> na seção Layout Grid. O Figma adiciona um grid uniforme por padrão.
+          </li>
+          <li>
+            <strong>Configure como Columns.</strong>
+            Clique no ícone do grid para abrir as opções. Mude o tipo para <strong>Columns</strong>. Configure: Count: 12, Type: Stretch, Gutter: 24, Margin: 80.
+          </li>
+          <li>
+            <strong>Ajuste a cor e visibilidade.</strong>
+            Clique no swatch de cor do grid. Use vermelho (<code>#FF0000</code>) com 10% de opacidade — o rosa suave é o padrão da indústria para guias visuais. Pressione <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>4</kbd> para mostrar/ocultar os grids a qualquer momento.
+          </li>
+          <li>
+            <strong>Adicione elementos dentro do grid.</strong>
+            Crie um header que ocupe toda a largura (de margin a margin). Crie 3 cards que ocupem 4 colunas cada (em 12 colunas, 3 × 4 = 12). Os elementos devem se encaixar perfeitamente nas colunas.
+          </li>
+        </ol>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Em um redesign de landing page de SaaS, a estrutura de grid seria:</p>
+
+        <div class="figma-mock">
+          <div class="device-browser">
+            <div class="browser-bar"><i></i><i></i><i></i></div>
+            <div style="padding:20px;background:var(--surface);position:relative;">
+              <!-- simulação do grid de colunas -->
+              <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:8px;margin-bottom:16px;">
+                <div style="grid-column:1/-1;background:var(--primary-soft);border-radius:6px;padding:14px;text-align:center;">
+                  <strong style="font-size:13px;">Header — span 12 colunas</strong>
+                </div>
+                <div style="grid-column:span 8;background:var(--surface-2);border-radius:6px;padding:20px;min-height:80px;">
+                  <p style="margin:0;font-size:13px;font-weight:600;">Hero — span 8 colunas</p>
+                  <p style="margin:4px 0 0;font-size:11px;color:var(--text-muted);">Título + CTA</p>
+                </div>
+                <div style="grid-column:span 4;background:var(--surface-2);border-radius:6px;padding:20px;min-height:80px;display:flex;align-items:center;justify-content:center;">
+                  <span style="font-size:11px;color:var(--text-muted);">Imagem · span 4</span>
+                </div>
+                <div style="grid-column:span 4;background:var(--surface-2);border-radius:6px;padding:12px;">
+                  <p style="margin:0;font-size:11px;font-weight:600;">Card · 4 col</p>
+                </div>
+                <div style="grid-column:span 4;background:var(--surface-2);border-radius:6px;padding:12px;">
+                  <p style="margin:0;font-size:11px;font-weight:600;">Card · 4 col</p>
+                </div>
+                <div style="grid-column:span 4;background:var(--surface-2);border-radius:6px;padding:12px;">
+                  <p style="margin:0;font-size:11px;font-weight:600;">Card · 4 col</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">Layout de landing page usando grid de 12 colunas — hero 8+4, cards 3×4, header fullwidth.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Mostrar/ocultar Layout Grids</td><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>4</kbd></td><td><kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>4</kbd></td></tr>
+              <tr><td>Mostrar/ocultar Rulers</td><td><kbd>Ctrl</kbd> + <kbd>R</kbd></td><td><kbd>⌘</kbd> + <kbd>R</kbd></td></tr>
+              <tr><td>Mover 1 px</td><td><kbd>↑ ↓ ← →</kbd></td><td><kbd>↑ ↓ ← →</kbd></td></tr>
+              <tr><td>Mover 10 px (grande)</td><td><kbd>Shift</kbd> + <kbd>↑↓←→</kbd></td><td><kbd>Shift</kbd> + <kbd>↑↓←→</kbd></td></tr>
+              <tr><td>Mover 8 px (grid de 8pt)</td><td><kbd>Shift</kbd> + seta (padrão 10, ajuste nas prefs)</td><td><kbd>Shift</kbd> + seta</td></tr>
+              <tr><td>Alinhar ao centro do frame</td><td>Botões de alinhamento → Align to frame → Center</td><td>Igual</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Os 6 botões de alinhamento alinham seleções pela borda ou centro em ambos os eixos.</li>
+          <li>Distribuição cria espaçamento uniforme entre elementos; <strong>Smart Selection</strong> permite ajustar o gap interativamente.</li>
+          <li><strong>Tidy Up</strong> organiza elementos em grade automaticamente.</li>
+          <li>Layout Grids (Columns, Rows, Grid) são guias visuais não exportadas que garantem consistência de layout.</li>
+          <li>Para web: 12 colunas, 24px gutter, 80px margin. Para mobile: 4 colunas, 16px gutter, 16px margin.</li>
+          <li>O <strong>grid de 8pt</strong> garante espaçamentos harmônicos e compatíveis com múltiplas resoluções.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Layout de cards com grid de colunas</h3>
+          <ol>
+            <li>Crie um Frame Desktop (1440×900 px).</li>
+            <li>Adicione um Layout Grid de 12 colunas (Gutter: 24, Margin: 80, Type: Stretch).</li>
+            <li>Crie um header que ocupe as 12 colunas (span 12), altura 72 px.</li>
+            <li>Crie 4 cards abaixo do header, cada um ocupando 3 colunas (span 3), com 240 px de altura.</li>
+            <li>Certifique-se de que as bordas dos cards se alinham às bordas das colunas do grid.</li>
+            <li>Use o alinhamento e distribuição para garantir que os 4 cards tenham o mesmo espaço entre eles (gutter do grid = 24 px).</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> os cards se encaixam perfeitamente nas colunas do grid; ao mostrar o Layout Grid (<kbd>Ctrl/⌘ + Shift + 4</kbd>), as bordas dos cards coincidem com as colunas.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Sistema de spacing com grid de 8pt</h3>
+          <p>Crie um Frame de 600×800 px chamado "Spacing System". Nele, documente visualmente o seu sistema de spacing: crie swatches visuais para cada valor do grid de 8pt (4, 8, 12, 16, 24, 32, 40, 48, 64, 80, 96 px). Cada swatch é um retângulo cujo tamanho representa o valor (ex: um retângulo de 4 px de altura para o valor 4 px), com um label ao lado. Adicione um Layout Grid de 8 px uniforme ao Frame para visualizar como os swatches se encaixam no grid. Este é o começo de um Style Guide real.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Qual configuração de Layout Grid é mais usada para layout de página desktop?</p>
+            <ul class="quiz-options">
+              <li>Grid uniforme de 8px</li>
+              <li>Columns com 12 colunas, Stretch, Gutter 24px, Margin 80px</li>
+              <li>Rows com 6 linhas, Height 80px</li>
+              <li>Grid uniforme de 64px</li>
+            </ul>
+            <div class="quiz-explain">O padrão da indústria para desktop é <strong>12 colunas com Stretch</strong>, gutter de 24 px e margens laterais de 80 px. Isso permite layouts flexíveis: 1, 2, 3, 4 ou 6 colunas de conteúdo.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">2. O que o recurso "Tidy Up" faz no Figma?</p>
+            <ul class="quiz-options">
+              <li>Apaga layers sem nome</li>
+              <li>Alinha todos os elementos à borda esquerda do frame</li>
+              <li>Reorganiza automaticamente os elementos selecionados em uma grade com espaçamento uniforme</li>
+              <li>Converte groups em frames</li>
+            </ul>
+            <div class="quiz-explain"><strong>Tidy Up</strong> reorganiza elementos selecionados em uma grade regular, distribuindo-os uniformemente tanto horizontal quanto verticalmente — perfeito para ícones, cards e listas desordenadas.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">3. Por que o grid de 8pt é amplamente adotado em UI design?</p>
+            <ul class="quiz-options">
+              <li>Porque 8 é o número da sorte no design</li>
+              <li>Porque facilita o uso de frações de pixel</li>
+              <li>Porque é o padrão do CSS Grid</li>
+              <li>Porque garante espaçamentos harmônicos, facilita o handoff e se divide perfeitamente em telas @2x e @3x</li>
+            </ul>
+            <div class="quiz-explain">O <strong>grid de 8pt</strong> produz valores que escalam perfeitamente para telas de alta densidade (8 × 2 = 16, 8 × 3 = 24, sem valores fracionários), garante consistência visual e simplifica o handoff para developers.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

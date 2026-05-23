@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto Layout — avançado | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="02-02-auto-layout-avancado" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">📦 Módulo 2 · Intermediário · Lição 2 de 9</div>
+        <h1>Auto Layout — avançado</h1>
+        <p class="lead">Você já sabe aplicar Auto Layout. Agora vem a parte que transforma seus designs em sistemas de verdade: controlar como cada elemento <em>reage ao redimensionamento</em>, dobrar linhas como o CSS faz, e posicionar elementos de forma absoluta dentro do container.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~22 min</span>
+          <span>🎯 Nível: Intermediário</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Distinguir e aplicar os três modos de resizing: <strong>Hug contents</strong>, <strong>Fill container</strong> e <strong>Fixed</strong>;</li>
+            <li>Configurar alinhamento e distribuição internos (Packed vs Space between);</li>
+            <li>Criar grades de tags com o modo <strong>Wrap</strong>;</li>
+            <li>Definir <strong>min/max width e height</strong> para layouts fluidos;</li>
+            <li>Usar <strong>Absolute position</strong> para elementos "flutuantes" dentro do Auto Layout;</li>
+            <li>Controlar a ordem de empilhamento (z-index) e o padding individual por lado.</li>
+          </ul>
+        </div>
+
+        <h2>O conceito-chave: Resizing</h2>
+        <p>O Resizing é a pergunta mais importante do Auto Layout: <em>"quando o container mudar de tamanho, o que acontece com este elemento?"</em>. O Figma oferece três respostas.</p>
+
+        <div class="diagram">
+          <svg viewBox="0 0 560 210" role="img" aria-label="Diagrama comparando Hug contents, Fill container e Fixed">
+            <!-- Hug contents -->
+            <rect x="20" y="40" width="130" height="50" rx="8" fill="var(--primary-soft)" stroke="var(--primary)" stroke-width="2"/>
+            <rect x="34" y="55" width="42" height="20" rx="4" fill="var(--primary)" opacity=".5"/>
+            <rect x="84" y="55" width="52" height="20" rx="4" fill="var(--primary)" opacity=".5"/>
+            <text x="85" y="108" fill="var(--text)" font-size="12" font-family="sans-serif" text-anchor="middle">Hug contents</text>
+            <text x="85" y="122" fill="var(--text-muted)" font-size="10" font-family="sans-serif" text-anchor="middle">abraça o conteúdo</text>
+            <!-- Fill container -->
+            <rect x="200" y="20" width="160" height="92" rx="8" fill="var(--surface-3)" stroke="var(--border-strong)" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <rect x="210" y="40" width="140" height="50" rx="8" fill="var(--success-soft)" stroke="var(--success)" stroke-width="2"/>
+            <rect x="222" y="55" width="42" height="20" rx="4" fill="var(--success)" opacity=".5"/>
+            <text x="280" y="130" fill="var(--text)" font-size="12" font-family="sans-serif" text-anchor="middle">Fill container</text>
+            <text x="280" y="144" fill="var(--text-muted)" font-size="10" font-family="sans-serif" text-anchor="middle">ocupa o espaço disponível</text>
+            <!-- Fixed -->
+            <rect x="420" y="40" width="120" height="50" rx="8" fill="var(--warning-soft)" stroke="var(--warning)" stroke-width="2"/>
+            <rect x="434" y="55" width="30" height="20" rx="4" fill="var(--warning)" opacity=".5"/>
+            <text x="480" y="108" fill="var(--text)" font-size="12" font-family="sans-serif" text-anchor="middle">Fixed</text>
+            <text x="480" y="122" fill="var(--text-muted)" font-size="10" font-family="sans-serif" text-anchor="middle">tamanho fixo, não muda</text>
+            <!-- Legendas dos valores de exemplo -->
+            <text x="85" y="175" fill="var(--text-soft)" font-size="10" font-family="sans-serif" text-anchor="middle">Largura: variável</text>
+            <text x="280" y="175" fill="var(--text-soft)" font-size="10" font-family="sans-serif" text-anchor="middle">Largura: expande até preencher</text>
+            <text x="480" y="175" fill="var(--text-soft)" font-size="10" font-family="sans-serif" text-anchor="middle">Largura: 120 px fixo</text>
+          </svg>
+          <p class="mock-label">Os três modos de Resizing. O mesmo princípio se aplica tanto à largura (W) quanto à altura (H).</p>
+        </div>
+
+        <h3>Hug contents — "abraça o conteúdo"</h3>
+        <p><strong>Hug contents</strong> faz o container encolher ou crescer para envolver exatamente seu conteúdo. É o comportamento natural de um botão: quando o texto aumenta, o botão cresce junto. No código, equivale a não definir largura explícita — o tamanho é ditado pelo conteúdo.</p>
+        <p>Use Hug quando o frame <em>deve</em> se adaptar ao que está dentro: botões, chips, tags, badges, tooltips.</p>
+
+        <h3>Fill container — "preenche o espaço"</h3>
+        <p><strong>Fill container</strong> faz o elemento crescer para ocupar todo o espaço disponível dentro do seu Auto Layout pai. Pense em uma coluna de texto em um layout de duas colunas: você quer que ela preencha o restante. No CSS é equivalente a <code>flex: 1</code>.</p>
+        <p>Use Fill em elementos que devem se expandir para preencher espaço vazio: campo de input, conteúdo principal, barra de progresso, separadores.</p>
+
+        <h3>Fixed — "tamanho fixo"</h3>
+        <p><strong>Fixed</strong> bloqueia a dimensão em um valor específico. O elemento não cresce nem encolhe independentemente do container ou do conteúdo. Use quando um elemento precisa de dimensão exata: uma imagem de thumbnail sempre 80×80, um avatar sempre 40×40, uma sidebar sempre 320 px.</p>
+
+        <div class="callout tip">
+          <span class="callout-title">Como alterar o Resizing</span>
+          <p>Selecione o elemento filho dentro do Auto Layout. No painel direito, você verá dois campos de dimensão (W e H) com um ícone de seta ao lado. Clique nesse ícone para alternar entre Hug, Fill e Fixed. Você também pode clicar com o botão direito no valor de W ou H e escolher o modo.</p>
+        </div>
+
+        <h2>Spacing Mode: Packed vs Space between</h2>
+        <p>Dentro do painel de Auto Layout, o campo de gap pode operar em dois modos:</p>
+        <ul>
+          <li><strong>Packed:</strong> os itens ficam agrupados (com o gap que você definiu entre eles) e o alinhamento controla onde o grupo fica dentro do frame. É o comportamento padrão.</li>
+          <li><strong>Space between:</strong> o espaço disponível é distribuído <em>entre</em> os itens, empurrando o primeiro para a borda inicial e o último para a borda final. Equivale ao <code>justify-content: space-between</code> do Flexbox.</li>
+        </ul>
+
+        <div class="figma-mock">
+          <div style="display:flex;flex-direction:column;gap:16px;width:100%;max-width:480px;">
+            <div>
+              <p style="font-size:12px;color:var(--text-muted);margin:0 0 6px;font-weight:600;">PACKED (gap: 16)</p>
+              <div style="display:flex;align-items:center;gap:16px;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;">
+                <div style="width:36px;height:36px;border-radius:8px;background:var(--primary);"></div>
+                <span style="font-weight:600;font-size:14px;">Logo do App</span>
+              </div>
+            </div>
+            <div>
+              <p style="font-size:12px;color:var(--text-muted);margin:0 0 6px;font-weight:600;">SPACE BETWEEN (header típico)</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;">
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <div style="width:32px;height:32px;border-radius:8px;background:var(--primary);"></div>
+                  <span style="font-weight:600;font-size:14px;">Logo</span>
+                </div>
+                <div style="display:flex;gap:8px;">
+                  <div style="width:32px;height:32px;border-radius:8px;background:var(--surface-3);border:1px solid var(--border);"></div>
+                  <div style="width:32px;height:32px;border-radius:8px;background:var(--surface-3);border:1px solid var(--border);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">Packed agrupa os itens; Space between os distribui pelas extremidades. O segundo é o padrão de todo cabeçalho de app.</p>
+        </div>
+
+        <h2>Alinhamento interno</h2>
+        <p>A grade de 9 botões de alinhamento no painel de Auto Layout controla onde os itens ficam posicionados dentro do container. Em direção horizontal, você controla:</p>
+        <ul>
+          <li><strong>Alinhamento vertical dos filhos:</strong> topo, centro ou base da linha.</li>
+          <li><strong>Distribuição horizontal:</strong> Packed (agrupados) ou Space between.</li>
+        </ul>
+        <p>Em direção vertical, os papéis se invertem. Pense na grade como uma combinação de <code>justify-content</code> + <code>align-items</code> do Flexbox.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Alinhamento baseline</span>
+          <p>Em direção horizontal, existe ainda o alinhamento <strong>baseline</strong>: os textos de diferentes tamanhos se alinham pela linha de base tipográfica, como se estivessem na mesma régua invisível. Use em linhas mistas com ícones + texto de tamanhos variados.</p>
+        </div>
+
+        <h2>Wrap: quebra de linha automática</h2>
+        <p>O modo <strong>Wrap</strong> (ícone de seta que vira para baixo no seletor de direção) é o equivalente ao <code>flex-wrap: wrap</code> do CSS. Quando os itens não cabem em uma linha, eles "quebram" para a próxima linha automaticamente.</p>
+        <p>É perfeito para:</p>
+        <ul>
+          <li><strong>Grades de tags/chips:</strong> tags de categoria que se adaptam ao número de itens.</li>
+          <li><strong>Galerias:</strong> miniaturas de fotos que se reorganizam conforme a largura.</li>
+          <li><strong>Listas de botões de filtro:</strong> botões que quebram para não passar da largura do container.</li>
+        </ul>
+
+        <div class="figma-mock">
+          <div style="max-width:380px;width:100%;">
+            <p style="font-size:12px;color:var(--text-muted);margin:0 0 8px;font-weight:600;">GRADE DE TAGS COM WRAP</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:10px;">
+              <span style="background:var(--primary-soft);color:var(--primary);border:1px solid var(--primary-soft-border);padding:4px 12px;border-radius:99px;font-size:13px;font-weight:600;">Design</span>
+              <span style="background:var(--success-soft);color:var(--success);border:1px solid var(--success-border);padding:4px 12px;border-radius:99px;font-size:13px;font-weight:600;">UI/UX</span>
+              <span style="background:var(--warning-soft);color:var(--warning);border:1px solid var(--warning-border);padding:4px 12px;border-radius:99px;font-size:13px;font-weight:600;">Prototipagem</span>
+              <span style="background:var(--info-soft);color:var(--info);border:1px solid var(--info-border);padding:4px 12px;border-radius:99px;font-size:13px;font-weight:600;">Components</span>
+              <span style="background:var(--pro-soft);color:var(--pro);border:1px solid var(--pro-border);padding:4px 12px;border-radius:99px;font-size:13px;font-weight:600;">Variables</span>
+              <span style="background:var(--surface-2);color:var(--text-muted);border:1px solid var(--border);padding:4px 12px;border-radius:99px;font-size:13px;font-weight:600;">Handoff</span>
+              <span style="background:var(--danger-soft);color:var(--danger);border:1px solid var(--danger-border);padding:4px 12px;border-radius:99px;font-size:13px;font-weight:600;">Figma 2025</span>
+            </div>
+          </div>
+          <p class="mock-label">Com Wrap ativado, adicionar mais tags reorganiza o layout automaticamente. Reduzindo a largura do frame, as tags quebram para novas linhas.</p>
+        </div>
+
+        <h2>Min/Max Width e Height</h2>
+        <p>Para criar layouts verdadeiramente fluidos, você pode definir limites para as dimensões dos elementos. Isso é especialmente poderoso combinado com Fill container:</p>
+        <ul>
+          <li><strong>Min Width:</strong> o elemento nunca fica mais estreito do que esse valor, mesmo que o container encolha.</li>
+          <li><strong>Max Width:</strong> o elemento não ultrapassa esse valor, mesmo que haja mais espaço disponível.</li>
+          <li><strong>Min/Max Height:</strong> o mesmo princípio aplicado à altura.</li>
+        </ul>
+        <p>Para definir, selecione o elemento, clique nos campos W ou H e ative os campos Min/Max que aparecem ao expandir a seção.</p>
+
+        <div class="callout example">
+          <span class="callout-title">Caso prático: campo de busca</span>
+          <p>Um campo de busca em um header geralmente tem <strong>Fill container</strong> para crescer junto com o header, mas com <strong>Min Width: 200px</strong> (não encolhe demais em telas menores) e <strong>Max Width: 480px</strong> (não fica largo demais em monitores grandes). Isso reflete exatamente o <code>flex: 1; min-width: 200px; max-width: 480px</code> do CSS.</p>
+        </div>
+
+        <h2>Absolute position dentro do Auto Layout</h2>
+        <p>Às vezes você precisa de um elemento que "flutua" sobre o layout sem empurrar os outros — um badge de notificação sobre um ícone, uma sobreposição de texto sobre uma imagem, um botão "fechar" no canto de um modal.</p>
+        <p>O Figma resolve isso com a opção <strong>Absolute position</strong> (ou "Absolute" no painel de Constraints quando dentro de um Auto Layout). Para ativar:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Selecione o elemento filho</strong> dentro de um frame com Auto Layout.
+          </li>
+          <li>
+            <strong>Ative Absolute position.</strong> No painel direito, clique nos três pontos (⋯) da seção Auto Layout, ou procure o botão de posição absoluta ao lado dos campos de alinhamento. Também pode usar <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>A</kbd> (Windows) / <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>A</kbd> (Mac).
+          </li>
+          <li>
+            <strong>Posicione com Constraints.</strong> O elemento agora se comporta como se estivesse em um frame normal. Use os campos X/Y ou as Constraints para ancorar à posição desejada (ex.: canto superior direito = Right + Top).
+          </li>
+        </ol>
+
+        <div class="callout warning">
+          <span class="callout-title">Absolute position não empurra irmãos</span>
+          <p>Um elemento com Absolute position é ignorado pelo sistema de layout. Ele não ocupa espaço no fluxo, não conta para o gap e não influencia o tamanho do frame se este estiver em modo Hug. É exatamente como <code>position: absolute</code> remove o elemento do fluxo no CSS.</p>
+        </div>
+
+        <h2>Ordem de empilhamento (z-index no Figma)</h2>
+        <p>Dentro de um Auto Layout, a ordem de empilhamento (quem fica "em cima" de quem) é controlada pela posição na lista de camadas (<strong>canvas stacking</strong>). Diferente do CSS onde o <code>z-index</code> é um número explícito, no Figma a regra é simples:</p>
+        <ul>
+          <li>Camadas mais <strong>abaixo</strong> na lista do painel de Layers ficam <em>na frente</em> visualmente.</li>
+          <li>Camadas mais <strong>acima</strong> na lista ficam <em>atrás</em>.</li>
+        </ul>
+        <p>Para reordenar, arraste as camadas na lista ou use <kbd>Ctrl</kbd> + <kbd>[</kbd> / <kbd>]</kbd> para mover para baixo/cima na pilha.</p>
+
+        <div class="callout note">
+          <span class="callout-title">Por que essa lógica parece invertida?</span>
+          <p>O Figma segue a convenção de softwares de design (Illustrator, Sketch): a camada do topo da lista é desenhada por último, mas visualmente aparece "na frente". Quando você usa Absolute position com um badge sobre um ícone, o badge deve estar <em>abaixo</em> do ícone na lista de camadas para aparecer na frente.</p>
+        </div>
+
+        <h2>Padding individual por lado</h2>
+        <p>Por padrão, o padding pode ser uniforme (um valor para todos os lados) ou vertical/horizontal separados. Mas você pode definir um valor independente para cada lado: topo, base, esquerda e direita.</p>
+        <p>Para isso, clique no ícone de padding no painel (parece um quadrado com setas) para expandir os quatro campos individualmente. Isso permite, por exemplo, um botão com <code>padding: 12px 20px 12px 16px</code> para acomodar visualmente um ícone à esquerda.</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Propriedade</th><th>Equivalente CSS</th><th>Quando usar</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Padding uniforme</strong></td><td><code>padding: 16px</code></td><td>Botões simples, chips</td></tr>
+              <tr><td><strong>Padding horizontal/vertical</strong></td><td><code>padding: 12px 20px</code></td><td>Maioria dos elementos</td></tr>
+              <tr><td><strong>Padding por lado</strong></td><td><code>padding: 8px 16px 8px 12px</code></td><td>Listas com ícone, menus, inputs</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <h3>1. Header com Space between</h3>
+        <p>Um header full-width de aplicativo é o exemplo clássico de Space between. O frame tem largura Fill container (ou Fixed na largura da tela), padding horizontal de 20px, e gap em Space between. Dentro: um grupo com logo + nome (agrupados com gap 8) e um grupo com ícones de ação (agrupados com gap 4). O espaço do meio se distribui automaticamente.</p>
+
+        <h3>2. Lista de tags com Wrap</h3>
+        <p>Em uma página de produto de e-commerce, as tags de especificação (Bluetooth, NFC, IP68, etc.) ficam em um Auto Layout horizontal com Wrap ativado, gap de 8 e padding de 12. Quando o designer redimensiona o frame ou a equipe de desenvolvimento muda a viewport, as tags quebram para novas linhas automaticamente — sem nenhum ajuste manual.</p>
+
+        <div class="figma-mock">
+          <div style="width:100%;max-width:520px;display:flex;flex-direction:column;gap:0;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border);">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--primary),#b0367a);"></div>
+                <span style="font-weight:700;font-size:15px;">MeuApp</span>
+              </div>
+              <div style="display:flex;gap:8px;">
+                <div style="width:32px;height:32px;border-radius:8px;background:var(--surface-2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;">🔔</div>
+                <div style="width:32px;height:32px;border-radius:8px;background:var(--surface-2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;">👤</div>
+              </div>
+            </div>
+            <div style="padding:16px 18px;">
+              <p style="font-weight:700;font-size:14px;margin:0 0 10px;color:var(--text-muted);">ESPECIFICAÇÕES</p>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                <span style="background:var(--primary-soft);color:var(--primary);border:1px solid var(--primary-soft-border);padding:5px 12px;border-radius:99px;font-size:13px;">Bluetooth 5.3</span>
+                <span style="background:var(--success-soft);color:var(--success);border:1px solid var(--success-border);padding:5px 12px;border-radius:99px;font-size:13px;">NFC</span>
+                <span style="background:var(--info-soft);color:var(--info);border:1px solid var(--info-border);padding:5px 12px;border-radius:99px;font-size:13px;">IP68</span>
+                <span style="background:var(--warning-soft);color:var(--warning);border:1px solid var(--warning-border);padding:5px 12px;border-radius:99px;font-size:13px;">30h bateria</span>
+                <span style="background:var(--surface-2);color:var(--text-muted);border:1px solid var(--border);padding:5px 12px;border-radius:99px;font-size:13px;">USB-C</span>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">Header com Space between (logo esquerda, ícones direita) e grade de tags com Wrap — dois padrões profissionais de Auto Layout avançado.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Ativar Absolute position</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>A</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>A</kbd></td></tr>
+              <tr><td>Mover camada para baixo na pilha</td><td><kbd>Ctrl</kbd> + <kbd>[</kbd></td><td><kbd>⌘</kbd> + <kbd>[</kbd></td></tr>
+              <tr><td>Mover camada para cima na pilha</td><td><kbd>Ctrl</kbd> + <kbd>]</kbd></td><td><kbd>⌘</kbd> + <kbd>]</kbd></td></tr>
+              <tr><td>Enviar para o fundo</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>[</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>[</kbd></td></tr>
+              <tr><td>Trazer para a frente</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>]</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>]</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li><strong>Hug contents</strong> abraça o conteúdo; <strong>Fill container</strong> expande para preencher; <strong>Fixed</strong> bloqueia a dimensão.</li>
+          <li><strong>Space between</strong> distribui o espaço entre os itens — fundamental para headers e navbars.</li>
+          <li><strong>Wrap</strong> quebra itens para a próxima linha automaticamente — perfeito para grades de tags.</li>
+          <li><strong>Min/Max</strong> criam limites para layouts fluidos sem quebrar o design em extremos.</li>
+          <li><strong>Absolute position</strong> remove o elemento do fluxo — use para badges, overlays e botões flutuantes.</li>
+          <li>A ordem na lista de camadas define o empilhamento visual (quem fica na frente).</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Header + grade de tags</h3>
+          <p>Monte as duas estruturas descritas nesta lição:</p>
+          <ol>
+            <li>Crie um frame de <strong>390px × 56px</strong> (largura de um iPhone 14 Pro). Aplique Auto Layout horizontal, Space between, padding horizontal 20px. Dentro: grupo logo+nome à esquerda e grupo com 2 ícones à direita.</li>
+            <li>Crie um frame de <strong>390px × altura Hug</strong>. Aplique Auto Layout horizontal com <strong>Wrap</strong>, gap 8, padding 16. Adicione 8 tags com textos diferentes e observe o wrap funcionando. Então reduza a largura do frame para 240px e veja as tags se reorganizando.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> o header mantém logo e ícones nas extremidades independentemente da largura. As tags quebram naturalmente para novas linhas sem overflow.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Card de produto com badge "Novo"</h3>
+          <p>Crie um card de produto com Auto Layout vertical. Sobre a imagem principal, adicione um badge "Novo" usando <strong>Absolute position</strong> no canto superior esquerdo (padding 8px, constrangido a Left + Top). A imagem deve ter <strong>Fixed height</strong> e <strong>Fill container width</strong>. O título e o preço devem usar Fill container. Ao final, reduza a largura do card de 320px para 200px — o badge deve continuar no canto correto e todo o layout deve se adaptar.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Qual modo de Resizing equivale ao <code>flex: 1</code> do CSS?</p>
+            <ul class="quiz-options">
+              <li>Hug contents</li>
+              <li>Fill container</li>
+              <li>Fixed</li>
+              <li>Auto</li>
+            </ul>
+            <div class="quiz-explain"><strong>Fill container</strong> faz o elemento crescer para preencher o espaço disponível no container pai, exatamente como <code>flex: 1</code> no CSS.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. Você quer que os filhos de um Auto Layout fiquem um em cada extremidade do frame, como logo à esquerda e ícones à direita. Que configuração usar?</p>
+            <ul class="quiz-options">
+              <li>Gap em modo Space between</li>
+              <li>Gap em modo Packed com alinhamento Center</li>
+              <li>Absolute position em todos os filhos</li>
+              <li>Wrap com gap 0</li>
+            </ul>
+            <div class="quiz-explain"><strong>Space between</strong> distribui o espaço disponível entre os itens, empurrando o primeiro para o início e o último para o fim — o comportamento clássico de um header.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">3. Um badge de notificação deve aparecer sobre um ícone sem empurrar os outros elementos. Qual recurso do Auto Layout resolve isso?</p>
+            <ul class="quiz-options">
+              <li>Hug contents no badge</li>
+              <li>Space between no container</li>
+              <li>Absolute position no badge</li>
+              <li>Wrap no container</li>
+            </ul>
+            <div class="quiz-explain"><strong>Absolute position</strong> remove o elemento do fluxo do Auto Layout, permitindo que ele flutue sobre os outros itens sem empurrá-los ou ocupar espaço na distribuição.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

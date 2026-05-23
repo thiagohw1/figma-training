@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Performance e higiene de arquivos | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="09-03-performance-higiene" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🎯 Módulo 9 · Profissional · Lição 3 de 6</div>
+        <h1>Performance e higiene de arquivos</h1>
+        <p class="lead">Um arquivo Figma lento trava reuniões, frustra o time e destrói a produtividade. Entenda o que pesa, como limpar e como manter seu arquivo rápido e organizado ao longo do projeto.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~18 min</span>
+          <span>🎯 Nível: Profissional</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Identificar os principais causadores de lentidão em arquivos Figma;</li>
+            <li>Otimizar o uso de imagens, instâncias e efeitos para manter o arquivo ágil;</li>
+            <li>Limpar estilos, variáveis e componentes não utilizados;</li>
+            <li>Organizar e arquivar conteúdo sem perder histórico;</li>
+            <li>Decidir quando dividir um arquivo grande em múltiplos arquivos menores.</li>
+          </ul>
+        </div>
+
+        <h2>Por que arquivos Figma ficam lentos?</h2>
+        <p>O Figma renderiza tudo no browser via WebGL. Cada camada visível, cada efeito e cada imagem contribui para a carga de processamento. Em arquivos de longa duração, o acúmulo de camadas ocultas, imagens não otimizadas, efeitos custosos e instâncias quebradas vai degradando a performance progressivamente.</p>
+        <p>Os principais culpados, em ordem de impacto:</p>
+
+        <div class="diagram">
+          <svg viewBox="0 0 540 260" role="img" aria-label="Ranking dos principais causadores de lentidão no Figma">
+            <!-- Barras de impacto -->
+            <text x="20" y="30" font-size="13" font-weight="700" fill="var(--text)" font-family="sans-serif">Impacto na performance</text>
+            <!-- Imagens pesadas -->
+            <rect x="20" y="44" width="420" height="28" rx="6" fill="var(--danger-soft)" stroke="var(--danger-border)" stroke-width="1"/>
+            <rect x="20" y="44" width="420" height="28" rx="6" fill="var(--danger)"/>
+            <text x="30" y="63" font-size="12" fill="var(--primary-contrast)" font-family="sans-serif" font-weight="600">Imagens grandes não otimizadas</text>
+            <text x="448" y="63" font-size="12" fill="var(--text-muted)" font-family="sans-serif">Alto</text>
+            <!-- Efeitos custosos -->
+            <rect x="20" y="82" width="340" height="28" rx="6" fill="var(--warning)"/>
+            <text x="30" y="101" font-size="12" fill="var(--primary-contrast)" font-family="sans-serif" font-weight="600">Blur, sombras e efeitos em excesso</text>
+            <text x="368" y="101" font-size="12" fill="var(--text-muted)" font-family="sans-serif">Médio-Alto</text>
+            <!-- layers ocultas -->
+            <rect x="20" y="120" width="260" height="28" rx="6" fill="var(--warning-soft)" stroke="var(--warning-border)" stroke-width="1"/>
+            <text x="30" y="139" font-size="12" fill="var(--warning)" font-family="sans-serif" font-weight="600">Camadas ocultas acumuladas</text>
+            <text x="288" y="139" font-size="12" fill="var(--text-muted)" font-family="sans-serif">Médio</text>
+            <!-- cópias vs instâncias -->
+            <rect x="20" y="158" width="200" height="28" rx="6" fill="var(--info-soft)" stroke="var(--info-border)" stroke-width="1"/>
+            <text x="30" y="177" font-size="12" fill="var(--info)" font-family="sans-serif" font-weight="600">Cópias em vez de instâncias</text>
+            <text x="228" y="177" font-size="12" fill="var(--text-muted)" font-family="sans-serif">Médio</text>
+            <!-- estilos não usados -->
+            <rect x="20" y="196" width="140" height="28" rx="6" fill="var(--surface-3)" stroke="var(--border-strong)" stroke-width="1"/>
+            <text x="30" y="215" font-size="12" fill="var(--text-muted)" font-family="sans-serif" font-weight="600">Estilos não usados</text>
+            <text x="168" y="215" font-size="12" fill="var(--text-muted)" font-family="sans-serif">Baixo</text>
+          </svg>
+          <p class="mock-label">Imagens não otimizadas são a maior causa de lentidão. Efeitos em excesso vêm logo depois.</p>
+        </div>
+
+        <h2>Imagens: o maior peso do arquivo</h2>
+        <p>Uma foto de produto em 4K (4000×3000 px, 8 MB) inserida num frame de 300×200 px no Figma ainda pesa 8 MB. O Figma não redimensiona nem comprime automaticamente. Multiplique por 50 imagens assim e você tem 400 MB de arquivo.</p>
+
+        <h3>Boas práticas para imagens</h3>
+        <ul>
+          <li><strong>Redimensione antes de importar.</strong> Se a imagem vai ser exibida em 600px de largura, exporte-a a 1200px (2× para Retina) e comprima antes de importar. Use ferramentas como Squoosh, TinyPNG ou ImageOptim.</li>
+          <li><strong>Use o formato correto.</strong> JPEG para fotos; PNG para imagens com transparência; WebP para web (menor tamanho). No Figma, PNG é o padrão de importação.</li>
+          <li><strong>Evite imagens vetoriais como bitmap.</strong> Se você tem um ícone SVG, importe como SVG (File → Place Image ou arraste o .svg), não como PNG. Vetores são infinitamente escaláveis e pesam bytes, não megabytes.</li>
+          <li><strong>Use fill em vez de imagem solta.</strong> Em vez de colocar uma imagem sobre um frame, use-a como Fill do próprio frame (clique no fill, troque para Image). Isso evita uma camada extra e mantém o recorte consistente.</li>
+        </ul>
+
+        <div class="callout tip">
+          <span class="callout-title">Verifique o tamanho do arquivo</span>
+          <p>No menu principal do Figma, vá em <strong>File → File size</strong>. Arquivos acima de 50 MB começam a ficar lentos em conexões normais; acima de 100 MB, espere lentidão mesmo em boas conexões. Se seu arquivo está nessa faixa, é hora de agir.</p>
+        </div>
+
+        <h2>Instâncias vs. cópias: não duplique, instancie</h2>
+        <p>Quando você pressiona <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>C</kbd> e <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>V</kbd> em um componente, você cria uma <strong>instância</strong> — uma referência ao componente mestre que compartilha a definição original. Isso é leve e correto.</p>
+        <p>O problema é quando você usa <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>D</kbd> (duplicate) em um frame que <em>não é</em> componente, ou quando desanexa instâncias desnecessariamente. Cada cópia desanexada é um objeto independente que carrega todo o seu conteúdo duplicado.</p>
+
+        <h3>Como identificar cópias desnecessárias</h3>
+        <ol class="steps">
+          <li>
+            <strong>Selecione todos os frames de tela.</strong>
+            Use <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>A</kbd> na página, depois filtre por frames no painel esquerdo.
+          </li>
+          <li>
+            <strong>Verifique quais são instâncias de componente.</strong>
+            Instâncias mostram o ícone de componente (losango roxo) na sidebar. Elementos sem esse ícone são cópias soltas.
+          </li>
+          <li>
+            <strong>Reconverta grupos repetidos em componentes.</strong>
+            Se você tem o mesmo card copiado 20 vezes, selecione uma cópia, pressione <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Alt</kbd> + <kbd>K</kbd> para criar o componente mestre, depois substitua as cópias por instâncias.
+          </li>
+          <li>
+            <strong>Use o plugin "Similayer" para localizar duplicatas.</strong>
+            O Similayer identifica camadas com o mesmo nome ou estrutura e ajuda a consolidá-las em componentes.
+          </li>
+        </ol>
+
+        <h2>Efeitos custosos: use com moderação</h2>
+        <p>O Figma calcula efeitos como <strong>Background Blur</strong>, <strong>Layer Blur</strong> e <strong>Drop Shadow complexas</strong> em tempo real. Em telas com muitos elementos com blur ou sombras sofisticadas, o desempenho de renderização cai visivelmente.</p>
+
+        <h3>Regras práticas para efeitos</h3>
+        <ul>
+          <li><strong>Blur:</strong> limite a 1–2 elementos com blur por tela. Background blur (frosted glass) é especialmente pesado — nunca aplique em mais de 3 elementos por tela.</li>
+          <li><strong>Sombras:</strong> prefira sombras simples (1 camada, offset pequeno, spread zero). Empilhar 3–4 camadas de sombra num card multiplica o custo de renderização.</li>
+          <li><strong>Gradientes em texto:</strong> texto com fill de gradiente é calculado de forma diferente do texto com cor sólida. Use com parcimônia.</li>
+          <li><strong>Efeitos em grupos grandes:</strong> aplicar blur ou sombra num frame que contém 50 camadas é muito mais custoso do que aplicar no frame mais interno.</li>
+        </ul>
+
+        <div class="callout warning">
+          <span class="callout-title">Background blur no iOS/Android é ilusão no Figma</span>
+          <p>No Figma, o Background Blur usa o conteúdo do próprio arquivo como fundo, não o conteúdo real do app. Em protótipos exportados, o efeito pode não aparecer corretamente se não houver conteúdo atrás. Sempre coloque um fundo colorido ou uma imagem representativa atrás dos elementos com blur para o protótipo ficar correto.</p>
+        </div>
+
+        <h2>Camadas órfãs: o lixo invisível</h2>
+        <p>"Camadas órfãs" são objetos que estão no arquivo mas não fazem parte de nenhuma tela entregável: elementos ocultos esquecidos, frames fora da área de trabalho, objetos que sobraram de tentativas descartadas. Elas contribuem para o tamanho do arquivo e para a confusão na sidebar.</p>
+
+        <h3>Como limpar camadas órfãs</h3>
+        <ol class="steps">
+          <li>
+            <strong>Mude a visualização para "Show all layers".</strong>
+            No painel de layers, certifique-se de que layers ocultas estão visíveis (ícone de olho na barra superior do painel).
+          </li>
+          <li>
+            <strong>Selecione tudo na página com Ctrl/⌘ + A.</strong>
+            Depois olhe quantos itens estão selecionados. Se o número for muito maior que o esperado, há conteúdo escondido.
+          </li>
+          <li>
+            <strong>Mova objetos suspeitos para a página Archive.</strong>
+            Nunca delete imediatamente — mova primeiro. Depois de uma sprint sem reclames, delete da Archive.
+          </li>
+          <li>
+            <strong>Use o plugin "Clean Document".</strong>
+            Este plugin identifica e lista camadas ocultas, frames vazios e elementos fora da área de trabalho para você revisar e limpar em lote.
+          </li>
+        </ol>
+
+        <h2>Limpar estilos e variáveis não utilizados</h2>
+        <p>Ao longo de um projeto, styles de cor, de texto e de efeitos acumulam: cores testadas e descartadas, tipografias trocadas, efeitos de uma versão antiga. No Figma, eles continuam existindo mesmo sem usar nenhum elemento.</p>
+
+        <h3>Como limpar estilos não utilizados</h3>
+        <p>Infelizmente o Figma nativo não tem um botão "Limpar estilos não utilizados". Use o plugin <strong>Style Organizer</strong> ou <strong>Variables Cleaner</strong> para:</p>
+        <ul>
+          <li>Listar todos os estilos/variáveis do arquivo;</li>
+          <li>Identificar quais não têm nenhuma referência no documento;</li>
+          <li>Deletar em lote os não utilizados com um clique.</li>
+        </ul>
+        <p>Execute essa limpeza ao final de cada fase do projeto (antes de uma revisão, antes de entregar para dev).</p>
+
+        <div class="callout pro">
+          <span class="callout-title">Limpeza como ritual de sprint</span>
+          <p>Os melhores times têm uma "sexta de limpeza": 30 minutos na última sexta de cada sprint dedicados exclusivamente à higiene do arquivo. Sem design novo, apenas limpeza: renomear, arquivar, limpar estilos, verificar componentes. Isso evita que a dívida técnica do design se acumule.</p>
+        </div>
+
+        <h2>Quando dividir um arquivo grande</h2>
+        <p>Às vezes o problema não é limpeza — é tamanho intrínseco. Um produto grande com 200 telas, sistema de design e protótipos em um único arquivo vai ser lento por natureza. Considere dividir quando:</p>
+        <ul>
+          <li>O arquivo tem mais de 80–100 MB;</li>
+          <li>O carregamento inicial demora mais de 15–20 segundos;</li>
+          <li>Múltiplos designers trabalhando simultaneamente causam conflitos frequentes;</li>
+          <li>O arquivo mistura sistema de design com telas de produto (sempre devem ser arquivos separados).</li>
+        </ul>
+
+        <h3>Estratégia de divisão recomendada</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Arquivo</th><th>Conteúdo</th><th>Quem usa</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Design System</strong></td><td>Componentes, tokens, estilos, variáveis</td><td>Time inteiro (somente leitura para a maioria)</td></tr>
+              <tr><td><strong>Product — [Área]</strong></td><td>Telas de um fluxo ou área específica</td><td>Designer(s) responsável(eis) pelo fluxo</td></tr>
+              <tr><td><strong>Explorations</strong></td><td>Pesquisa visual, conceitos, benchmarks</td><td>Designer + Product Manager</td></tr>
+              <tr><td><strong>Handoff</strong></td><td>Telas aprovadas prontas para dev</td><td>Desenvolvedores (somente leitura)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>O time de design do Nubank mantém o design system (Nautilus) em um arquivo separado do qual os arquivos de produto apenas importam componentes. Quando um arquivo de produto fica grande demais (geralmente acima de 60 MB), ele é dividido por squads: um arquivo por feature team. Cada squad tem seu próprio arquivo de produto que consome do sistema central.</p>
+        <p>Essa estrutura permite que dezenas de designers trabalhem em paralelo sem conflitos e sem degradar a performance do arquivo compartilhado.</p>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Otimize imagens antes de importar: redimensione para o tamanho de exibição × 2 e comprima (Squoosh, TinyPNG).</li>
+          <li>Prefira instâncias a cópias; nunca desanexe componentes sem necessidade.</li>
+          <li>Limite blur e sombras complexas; aplique efeitos nos frames mais internos possíveis.</li>
+          <li>Limpe camadas ocultas/órfãs e mova para Archive antes de deletar.</li>
+          <li>Use plugins (Clean Document, Style Organizer, Variables Cleaner) para limpeza em lote.</li>
+          <li>Divida arquivos acima de 80–100 MB em múltiplos arquivos por responsabilidade.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Auditoria e limpeza de arquivo</h3>
+          <p>Pegue um arquivo Figma que você usa (ou crie um com propósito), e execute uma auditoria completa de performance:</p>
+          <ol>
+            <li>Verifique o tamanho do arquivo em <strong>File → File size</strong> e anote o valor inicial.</li>
+            <li>Identifique as 3 maiores imagens do arquivo (verifique os fills de frame). Se alguma passar de 1 MB, comprima e reimporte.</li>
+            <li>Instale o plugin Clean Document e execute-o. Liste quantas camadas ocultas e frames vazios ele encontrou.</li>
+            <li>Limpe os estilos não utilizados com o Style Organizer.</li>
+            <li>Verifique o tamanho do arquivo novamente. Qual foi a redução?</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> o arquivo ficou pelo menos 20% menor, ou você documentou por que não havia muito a limpar.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Crie um ritual de manutenção para o seu time</h3>
+          <p>Escreva um checklist de "higiene quinzenal de arquivo" para um time fictício de 4 designers. O checklist deve incluir: quando executar cada tarefa, quem é responsável, quais plugins usar e como medir o sucesso (ex.: arquivo abaixo de X MB, zero camadas sem nome). Formate o checklist como um frame no próprio Figma que pode ser colado na página Cover do arquivo.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">1. Qual é o principal causador de lentidão em arquivos Figma, segundo as boas práticas?</p>
+            <ul class="quiz-options">
+              <li>Imagens grandes não otimizadas</li>
+              <li>Excesso de componentes criados</li>
+              <li>Muitas páginas no arquivo</li>
+              <li>Uso de variáveis em vez de estilos</li>
+            </ul>
+            <div class="quiz-explain"><strong>Imagens grandes não otimizadas</strong> são o maior causador de arquivos pesados no Figma. Uma única foto em 4K pode pesar mais que centenas de frames vetoriais.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">2. Qual é a diferença fundamental entre criar uma instância e fazer uma cópia de um frame no Figma?</p>
+            <ul class="quiz-options">
+              <li>Instâncias são mais difíceis de editar do que cópias</li>
+              <li>Cópias mantêm o vínculo com o componente mestre; instâncias não</li>
+              <li>Instâncias compartilham a definição do componente mestre; cópias são objetos independentes</li>
+              <li>Não há diferença — ambas pedem a mesma quantidade de memória</li>
+            </ul>
+            <div class="quiz-explain"><strong>Instâncias</strong> são referências ao componente mestre — quando o mestre muda, todas as instâncias atualizam. Cópias desanexadas são objetos independentes que acumulam dados duplicados e não se atualizam com o mestre.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">3. A partir de qual tamanho de arquivo o Figma começa a apresentar lentidão notável em condições normais de conexão?</p>
+            <ul class="quiz-options">
+              <li>10 MB</li>
+              <li>25 MB</li>
+              <li>40 MB</li>
+              <li>50–80 MB</li>
+            </ul>
+            <div class="quiz-explain">Arquivos acima de <strong>50 MB</strong> começam a ficar lentos em conexões normais. Acima de 100 MB, a lentidão é perceptível mesmo em boas conexões. O ideal é manter arquivos de produção abaixo de 50 MB.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

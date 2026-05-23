@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layout grids e breakpoints para web | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="06-02-grids-breakpoints" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🖥️ Módulo 6 · Projeto Guiado · Lição 2 de 8</div>
+        <h1>Layout grids e breakpoints para web</h1>
+        <p class="lead">Grids não são decoração — são a <strong>espinha dorsal matemática</strong> do seu design. Configurar o grid certo no Figma garante que cada elemento se alinhe perfeitamente e que o desenvolvedor consiga traduzir o layout para CSS sem surpresas.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~22 min</span>
+          <span>🎯 Nível: Projeto prático</span>
+          <span>🛠️ Pratique no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Configurar um Layout Grid de 12 colunas no Figma para desktop, tablet e mobile;</li>
+            <li>Definir container max-width, gutters e margens laterais para cada breakpoint;</li>
+            <li>Criar frames corretamente dimensionados para 1440, 1280, 768 e 375 px;</li>
+            <li>Usar Styles para salvar os grids e reutilizá-los em todos os frames do projeto;</li>
+            <li>Entender como o grid do Figma corresponde ao CSS Grid e ao framework de colunas.</li>
+          </ul>
+        </div>
+
+        <h2>Por que o grid de 12 colunas?</h2>
+        <p>O sistema de 12 colunas é onipresente no design web — do Bootstrap ao Tailwind, do Material Design ao Ant Design — porque 12 é divisível por 2, 3, 4 e 6. Isso significa que você pode criar layouts de metade, terços, quartos e sextos sem cálculos fracionários. Uma sidebar de 3 colunas + conteúdo de 9 colunas? Perfeito para um dashboard. Três cards de 4 colunas? Ideal para uma linha de KPIs.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Grid no Figma vs. Grid no CSS</span>
+          <p>O Layout Grid do Figma é uma <em>visualização de referência</em> — ele não gera código, mas comunica ao desenvolvedor exatamente as métricas do sistema de colunas (<code>grid-template-columns</code>, <code>gap</code>, <code>max-width</code>, <code>padding</code>) para replicar fielmente no CSS.</p>
+        </div>
+
+        <h2>Os três conceitos do sistema de colunas</h2>
+
+        <h3>1. Colunas (Columns)</h3>
+        <p>O número de divisões verticais do layout. No desktop usamos 12; no tablet podemos usar 8; no mobile, 4. Cada coluna tem uma largura calculada automaticamente pelo Figma com base na largura do frame, no número de colunas, nos gutters e nas margens.</p>
+
+        <h3>2. Gutters</h3>
+        <p>O espaço <em>entre</em> as colunas. No design de produtos web, um gutter de <strong>24 px</strong> é um valor clássico para desktop. É esse espaço que impede os blocos de conteúdo de colarem uns nos outros, criando respiração visual.</p>
+
+        <h3>3. Margens (Margins)</h3>
+        <p>O espaço entre o conteúdo e as bordas do frame — equivalente ao <code>padding</code> no container CSS. Em um container de 1440 px com conteúdo máximo de 1280 px, a margem de cada lado é de <strong>80 px</strong>. No mobile de 375 px, a margem cai para <strong>16–20 px</strong>.</p>
+
+        <div class="diagram">
+          <svg viewBox="0 0 640 180" role="img" aria-label="Diagrama do sistema de grid: margens, colunas e gutters">
+            <!-- Frame externo -->
+            <rect x="10" y="20" width="620" height="140" rx="10" fill="var(--surface)" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <!-- Margem esquerda -->
+            <rect x="10" y="20" width="50" height="140" rx="0" fill="var(--warning-soft)" opacity="0.8"/>
+            <text x="35" y="95" text-anchor="middle" fill="var(--warning)" font-size="10" font-weight="700" font-family="sans-serif" transform="rotate(-90 35 95)">margin</text>
+            <!-- Margem direita -->
+            <rect x="580" y="20" width="50" height="140" rx="0" fill="var(--warning-soft)" opacity="0.8"/>
+            <text x="605" y="95" text-anchor="middle" fill="var(--warning)" font-size="10" font-weight="700" font-family="sans-serif" transform="rotate(90 605 95)">margin</text>
+            <!-- Colunas (6 visíveis para simplificar) -->
+            <rect x="60" y="35" width="74" height="110" rx="5" fill="var(--primary-soft)" stroke="var(--primary-soft-border)" stroke-width="1"/>
+            <rect x="150" y="35" width="74" height="110" rx="5" fill="var(--primary-soft)" stroke="var(--primary-soft-border)" stroke-width="1"/>
+            <rect x="240" y="35" width="74" height="110" rx="5" fill="var(--primary-soft)" stroke="var(--primary-soft-border)" stroke-width="1"/>
+            <rect x="330" y="35" width="74" height="110" rx="5" fill="var(--primary-soft)" stroke="var(--primary-soft-border)" stroke-width="1"/>
+            <rect x="420" y="35" width="74" height="110" rx="5" fill="var(--primary-soft)" stroke="var(--primary-soft-border)" stroke-width="1"/>
+            <rect x="510" y="35" width="74" height="110" rx="5" fill="var(--primary-soft)" stroke="var(--primary-soft-border)" stroke-width="1"/>
+            <!-- Labels colunas -->
+            <text x="97" y="96" text-anchor="middle" fill="var(--primary)" font-size="11" font-weight="600" font-family="sans-serif">col</text>
+            <text x="187" y="96" text-anchor="middle" fill="var(--primary)" font-size="11" font-weight="600" font-family="sans-serif">col</text>
+            <text x="277" y="96" text-anchor="middle" fill="var(--primary)" font-size="11" font-weight="600" font-family="sans-serif">col</text>
+            <text x="367" y="96" text-anchor="middle" fill="var(--primary)" font-size="11" font-weight="600" font-family="sans-serif">col</text>
+            <text x="457" y="96" text-anchor="middle" fill="var(--primary)" font-size="11" font-weight="600" font-family="sans-serif">col</text>
+            <text x="547" y="96" text-anchor="middle" fill="var(--primary)" font-size="11" font-weight="600" font-family="sans-serif">col</text>
+            <!-- Gutter seta -->
+            <line x1="134" y1="158" x2="150" y2="158" stroke="var(--text-muted)" stroke-width="1.5" marker-end="url(#arr)"/>
+            <line x1="134" y1="158" x2="134" y2="158" stroke="var(--text-muted)" stroke-width="1.5"/>
+            <text x="142" y="172" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="sans-serif">gutter</text>
+            <!-- "…" entre col 3 e 4 indicando que são 12 -->
+            <text x="310" y="100" text-anchor="middle" fill="var(--text-soft)" font-size="18" font-family="sans-serif">…</text>
+          </svg>
+          <p class="mock-label">Sistema de grid: <strong>margens</strong> (espaço nas bordas) + <strong>colunas</strong> (divisões de conteúdo) + <strong>gutters</strong> (espaço entre colunas). No desktop, são 12 colunas.</p>
+        </div>
+
+        <h2>Breakpoints do TaskFlow</h2>
+        <p>Breakpoints são as larguras em que o layout muda de comportamento — equivalentes aos <code>@media</code> queries no CSS. Para o TaskFlow, adotaremos três breakpoints principais:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Breakpoint</th><th>Largura do frame</th><th>Colunas</th><th>Gutter</th><th>Margem lateral</th><th>Container</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Desktop Large</strong></td><td>1440 px</td><td>12</td><td>24 px</td><td>80 px</td><td>máx. 1280 px</td></tr>
+              <tr><td><strong>Desktop</strong></td><td>1280 px</td><td>12</td><td>24 px</td><td>40 px</td><td>100%</td></tr>
+              <tr><td><strong>Tablet</strong></td><td>768 px</td><td>8</td><td>20 px</td><td>24 px</td><td>100%</td></tr>
+              <tr><td><strong>Mobile</strong></td><td>375 px</td><td>4</td><td>16 px</td><td>16 px</td><td>100%</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout tip">
+          <span class="callout-title">Por que 1440 como referência principal?</span>
+          <p>Em 2025, a maioria dos monitores de laptop tem resolução nativa entre 1280 e 1920 px, e a resolução lógica mais comum em monitores externos 4K com 200% de escala é 1920/2 = 960 px. Usar 1440 px cobre bem o cenário mais comum de desktop sem ficar excessivamente largo. É o tamanho-padrão do Figma ao selecionar "Desktop".</p>
+        </div>
+
+        <h2>Passo a passo: configurando os grids no Figma</h2>
+
+        <ol class="steps">
+          <li>
+            <strong>Selecione o frame de Desktop (1440).</strong>
+            Na página <em>Desktop (1440)</em>, selecione o frame <code>01 — Dashboard</code> que você criou na lição anterior. Se não existir ainda, pressione <kbd>F</kbd> e escolha o preset <strong>Desktop → 1440</strong> no painel direito.
+          </li>
+          <li>
+            <strong>Adicione um Layout Grid.</strong>
+            No painel direito, localize a seção <strong>Layout grid</strong> e clique no <strong>+</strong>. Um grid uniforme (tiles) aparece por padrão. Precisamos mudar para colunas.
+          </li>
+          <li>
+            <strong>Configure o grid de colunas.</strong>
+            Clique no ícone de grade para abrir as opções. Mude:
+            <ul>
+              <li><strong>Type:</strong> Columns</li>
+              <li><strong>Count:</strong> 12</li>
+              <li><strong>Type (sizing):</strong> Stretch (as colunas preenchem o espaço disponível)</li>
+              <li><strong>Gutter:</strong> 24</li>
+              <li><strong>Margin:</strong> 80</li>
+              <li><strong>Color:</strong> azul com ~10% de opacidade (para não poluir o design)</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Salve como Style.</strong>
+            Clique no ícone de quatro pontos ao lado do grid na seção Layout grid e escolha <strong>Create style</strong>. Nomeie-o <code>Grid/Desktop 1440</code>. Agora você pode aplicar esse grid a qualquer frame com um clique.
+          </li>
+          <li>
+            <strong>Repita para tablet e mobile.</strong>
+            Crie frames de 768 e 375 px e configure os grids conforme a tabela acima. Salve como <code>Grid/Tablet 768</code> e <code>Grid/Mobile 375</code>.
+          </li>
+          <li>
+            <strong>Adicione um grid de linha (rows) opcional.</strong>
+            Clique no <strong>+</strong> novamente e adicione um segundo grid do tipo <strong>Rows</strong> com altura de <strong>8 px</strong> e cor vermelha a ~8% de opacidade. Isso cria uma grade de 8 px — sua unidade base de espaçamento.
+          </li>
+          <li>
+            <strong>Visualize/oculte o grid.</strong>
+            Use <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + 4 (Windows) / <kbd>⌘</kbd> + <kbd>Shift</kbd> + 4 (Mac) para alternar a visibilidade do grid. Você vai usar isso centenas de vezes ao longo do projeto.
+          </li>
+        </ol>
+
+        <div class="callout pro">
+          <span class="callout-title">Dica de profissional: grid dentro de grid</span>
+          <p>O frame do dashboard ocupa a <em>área de conteúdo</em> da tela (excluindo a sidebar). Na prática, muitos times criam um frame interno apenas para a área de conteúdo com seu próprio grid de 12 colunas — assim o grid se alinha ao conteúdo, não à tela inteira. Experimente os dois e veja qual comunica melhor para o seu time.</p>
+        </div>
+
+        <h2>Como o grid do Figma vira CSS</h2>
+        <p>Veja a correspondência direta entre as configurações do Figma e o código CSS que o desenvolvedor vai escrever:</p>
+
+        <pre><code>/* Desktop 1440 — equivalente ao grid configurado no Figma */
+.container {
+  max-width: 1280px;      /* container máximo */
+  margin-inline: auto;   /* centraliza */
+  padding-inline: 80px;  /* margem lateral do Figma */
+}
+
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;             /* gutter do Figma */
+}
+
+/* Tablet 768 */
+@media (max-width: 768px) {
+  .container { padding-inline: 24px; }
+  .grid-12 { grid-template-columns: repeat(8, 1fr); gap: 20px; }
+}
+
+/* Mobile 375 */
+@media (max-width: 375px) {
+  .container { padding-inline: 16px; }
+  .grid-12 { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+}</code></pre>
+
+        <h2>Exemplo de uso real: o layout do dashboard</h2>
+        <p>No dashboard do TaskFlow, a área de conteúdo usa o grid de 12 colunas para organizar os KPI cards (3 colunas cada = 4 cards por linha), o gráfico principal (8 colunas) e o painel lateral de tarefas (4 colunas). Sem o grid, alinhar esses elementos com precisão levaria o triplo do tempo.</p>
+
+        <div class="figma-mock">
+          <div class="device-browser" style="max-width:700px;">
+            <div class="browser-bar">
+              <i></i><i></i><i></i>
+              <span style="flex:1;text-align:center;font-size:12px;color:var(--text-muted);">taskflow.app/dashboard — Grid ativo</span>
+            </div>
+            <div style="padding:16px;display:flex;flex-direction:column;gap:12px;">
+              <!-- Topbar mock -->
+              <div style="height:48px;background:var(--surface-2);border-radius:8px;display:flex;align-items:center;padding:0 14px;gap:10px;">
+                <div style="width:28px;height:28px;background:var(--primary);border-radius:6px;"></div>
+                <span style="font-weight:700;font-size:13px;">TaskFlow</span>
+                <div style="flex:1;"></div>
+                <div style="width:120px;height:28px;background:var(--surface-3);border-radius:6px;"></div>
+                <div style="width:28px;height:28px;background:var(--surface-3);border-radius:50%;"></div>
+              </div>
+              <!-- Grid line overlay indicator -->
+              <div style="position:relative;">
+                <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:6px;position:absolute;inset:0;opacity:0.12;pointer-events:none;">
+                  <div style="background:#6c4cf1;height:100%;border-radius:2px;"></div>
+                  <div style="background:#6c4cf1;height:100%;border-radius:2px;"></div>
+                  <div style="background:#6c4cf1;height:100%;border-radius:2px;"></div>
+                  <div style="background:#6c4cf1;height:100%;border-radius:2px;"></div>
+                  <div style="background:#6c4cf1;height:100%;border-radius:2px;"></div>
+                  <div style="background:#6c4cf1;height:100%;border-radius:2px;"></div>
+                  <div style="background:#6c4cf1;height:100%;border-radius:2px;"></div>
+                  <div style="background:#6c4cf1;height:100%;border-radius:2px;"></div>
+                  <div style="background:#6c4cf1;height:100%;border-radius:2px;"></div>
+                  <div style="background:#6c4cf1;height:100%;border-radius:2px;"></div>
+                  <div style="background:#6c4cf1;height:100%;border-radius:2px;"></div>
+                  <div style="background:#6c4cf1;height:100%;border-radius:2px;"></div>
+                </div>
+                <!-- KPI row: 4 cards de 3 colunas -->
+                <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:8px;">
+                  <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;">
+                    <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px;">Projetos ativos</div>
+                    <div style="font-size:20px;font-weight:800;color:var(--primary);">12</div>
+                  </div>
+                  <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;">
+                    <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px;">Tarefas abertas</div>
+                    <div style="font-size:20px;font-weight:800;color:var(--warning);">84</div>
+                  </div>
+                  <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;">
+                    <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px;">Concluídas hoje</div>
+                    <div style="font-size:20px;font-weight:800;color:var(--success);">7</div>
+                  </div>
+                  <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;">
+                    <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px;">Membros</div>
+                    <div style="font-size:20px;font-weight:800;">18</div>
+                  </div>
+                </div>
+                <!-- Gráfico + painel lateral: 8 + 4 colunas -->
+                <div style="display:grid;grid-template-columns:2fr 1fr;gap:8px;">
+                  <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;min-height:80px;">
+                    <div style="font-size:11px;font-weight:600;margin-bottom:8px;">Progresso semanal</div>
+                    <div style="display:flex;align-items:flex-end;gap:4px;height:50px;">
+                      <div style="flex:1;background:var(--primary);border-radius:3px 3px 0 0;height:60%;opacity:0.8;"></div>
+                      <div style="flex:1;background:var(--primary);border-radius:3px 3px 0 0;height:80%;opacity:0.8;"></div>
+                      <div style="flex:1;background:var(--primary);border-radius:3px 3px 0 0;height:50%;opacity:0.8;"></div>
+                      <div style="flex:1;background:var(--primary);border-radius:3px 3px 0 0;height:100%;opacity:0.8;"></div>
+                      <div style="flex:1;background:var(--primary);border-radius:3px 3px 0 0;height:70%;opacity:0.8;"></div>
+                    </div>
+                  </div>
+                  <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;">
+                    <div style="font-size:11px;font-weight:600;margin-bottom:8px;">Minhas tarefas</div>
+                    <div style="display:flex;flex-direction:column;gap:5px;">
+                      <div style="height:14px;background:var(--surface-2);border-radius:4px;"></div>
+                      <div style="height:14px;background:var(--surface-2);border-radius:4px;width:80%;"></div>
+                      <div style="height:14px;background:var(--surface-2);border-radius:4px;width:90%;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">Dashboard do TaskFlow com grid de 12 colunas ativo (colunas azuis translúcidas). Os 4 KPI cards ocupam 3 colunas cada; o gráfico ocupa 8 colunas e o painel lateral, 4 colunas.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Mostrar/ocultar grids</td><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>4</kbd></td><td><kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>4</kbd></td></tr>
+              <tr><td>Mostrar/ocultar réguas</td><td><kbd>Ctrl</kbd> + <kbd>R</kbd></td><td><kbd>⌘</kbd> + <kbd>R</kbd></td></tr>
+              <tr><td>Criar Frame</td><td><kbd>F</kbd></td><td><kbd>F</kbd></td></tr>
+              <tr><td>Abrir painel de estilo de grid</td><td>clique nos 4 pontos ao lado do grid</td><td>clique nos 4 pontos ao lado do grid</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>O sistema de 12 colunas é universal no design web por ser divisível por 2, 3, 4 e 6.</li>
+          <li>Cada breakpoint tem suas próprias configurações de colunas, gutter e margens — configure e salve como Style.</li>
+          <li>Os valores do Figma mapeiam diretamente para <code>max-width</code>, <code>gap</code> e <code>padding-inline</code> no CSS.</li>
+          <li>Use <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>4</kbd> para alternar a visibilidade do grid enquanto trabalha.</li>
+          <li>Crie um Style para cada breakpoint (<code>Grid/Desktop 1440</code>, etc.) e aplique com um clique em qualquer frame.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Configure os 3 grids do TaskFlow</h3>
+          <ol>
+            <li>Crie frames de 1440, 768 e 375 px na página correspondente do seu arquivo.</li>
+            <li>Configure o Layout Grid em cada um conforme a tabela da lição (colunas, gutter, margem).</li>
+            <li>Salve cada grid como Style com o nome correto (<code>Grid/Desktop 1440</code>, etc.).</li>
+            <li>Adicione um segundo grid de linhas de 8 px no frame de 1440 px para usar como base de espaçamento.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> os 3 frames têm grids corretamente configurados e salvos como Styles. Ao clicar em qualquer frame novo e acessar Layout grid, o estilo aparece na biblioteca e pode ser aplicado em 1 clique.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Layout adaptativo com blocos de conteúdo</h3>
+          <p>No frame de 1440 px, esboce a distribuição de blocos do dashboard usando apenas retângulos coloridos (sem texto real, sem cores de marca). Use a regra de grid: KPI cards em 3 colunas cada, gráfico em 8 colunas, painel lateral em 4 colunas. Depois duplique o frame, redimensione para 768 px e redistribua os blocos em 8 colunas (2 cards por linha, gráfico em 8 colunas ocupando a linha toda). Isso é o wireframe de layout — a base para a lição de responsividade.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Por que o sistema de 12 colunas é o mais usado no design web?</p>
+            <ul class="quiz-options">
+              <li>Porque é o número de meses do ano e fica fácil de lembrar</li>
+              <li>Porque frameworks como Bootstrap foram os primeiros e estabeleceram o padrão</li>
+              <li>Porque 12 é divisível por 2, 3, 4 e 6, permitindo divisões inteiras de layouts comuns</li>
+              <li>Porque é o limite máximo que o CSS Grid suporta</li>
+            </ul>
+            <div class="quiz-explain">12 é divisível por 2, 3, 4 e 6 — isso permite criar colunas iguais para metades, terços, quartos e sextos sem frações. É pura matemática a favor do design.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. O que é o "gutter" em um sistema de grid?</p>
+            <ul class="quiz-options">
+              <li>O espaço entre as colunas de conteúdo</li>
+              <li>A margem lateral entre o conteúdo e a borda do frame</li>
+              <li>O número de colunas no grid</li>
+              <li>O espaço acima e abaixo de cada linha de conteúdo</li>
+            </ul>
+            <div class="quiz-explain"><strong>Gutter</strong> é o espaço entre colunas. Já o espaço entre o conteúdo e as bordas do frame é a <strong>margem</strong>. Confundir os dois é o erro mais comum ao configurar grids.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">3. Qual atalho alterna a visibilidade do Layout Grid no Figma?</p>
+            <ul class="quiz-options">
+              <li><kbd>Ctrl/⌘</kbd> + <kbd>G</kbd></li>
+              <li><kbd>Ctrl/⌘</kbd> + <kbd>Alt</kbd> + <kbd>G</kbd></li>
+              <li><kbd>Ctrl/⌘</kbd> + <kbd>R</kbd></li>
+              <li><kbd>Ctrl/⌘</kbd> + <kbd>Shift</kbd> + <kbd>4</kbd></li>
+            </ul>
+            <div class="quiz-explain"><kbd>Ctrl/⌘</kbd> + <kbd>Shift</kbd> + <kbd>4</kbd> mostra/oculta todos os grids do canvas. É um dos atalhos mais usados durante o design de interfaces web.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

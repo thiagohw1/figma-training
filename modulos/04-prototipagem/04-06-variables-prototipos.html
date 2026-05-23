@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Variables em protótipos: lógica e expressões | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="04-06-variables-prototipos" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">⚡ Módulo 4 · Prototipagem · Lição 6 de 7</div>
+        <h1>Variables em protótipos: lógica e expressões</h1>
+        <p class="lead">Variables transformam protótipos estáticos em experiências com lógica real: contadores que somam, formulários que validam, temas que alternam e fluxos que seguem caminhos diferentes conforme o estado da aplicação — tudo sem código, dentro do Figma.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~25 min</span>
+          <span>🎯 Nível: Avançado</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Criar e organizar Variables de diferentes tipos para uso em protótipos;</li>
+            <li>Usar a action Set variable para alterar valores durante a interação;</li>
+            <li>Criar lógica condicional (if/else) com a action Conditional;</li>
+            <li>Escrever expressões simples para cálculos e comparações;</li>
+            <li>Implementar exemplos funcionais: contador de carrinho, toggle de tema e login básico.</li>
+          </ul>
+        </div>
+
+        <h2>Variables no contexto de protótipos</h2>
+        <p>No Módulo 3, você aprendeu Variables como ferramenta de Design Tokens (cores, espaçamentos). Em protótipos, as Variables ganham um papel completamente diferente: elas armazenam <strong>estado</strong> — informações que mudam conforme o usuário interage.</p>
+        <p>Pense em uma variável de protótipo como uma memória temporária: ela guarda "quantos itens estão no carrinho", "o usuário está logado?" ou "o tema atual é claro ou escuro". Quando o usuário interage, você altera o valor da variável; o protótipo lê esse valor e exibe o conteúdo correto.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Tipos de Variable para protótipos</span>
+          <p><strong>Number:</strong> valores numéricos (contador, quantidade, progresso). <strong>String:</strong> texto (nome do usuário, mensagem de erro). <strong>Boolean:</strong> verdadeiro/falso (logado, tema escuro, menu aberto). <strong>Color:</strong> uma cor (para alternar temas dinamicamente nos Design Tokens).</p>
+        </div>
+
+        <h2>Onde criar Variables para protótipos</h2>
+        <ol>
+          <li>Abra o painel de Variables: <strong>Local variables</strong> via menu Edit → Local variables, ou o ícone de variável no painel direito.</li>
+          <li>Crie uma coleção chamada "Prototype State" (ou qualquer nome descritivo).</li>
+          <li>Dentro da coleção, adicione as variáveis necessárias. Para expô-las no protótipo, marque a opção <strong>"Can be hidden in publishing"</strong> como false e certifique-se de que o escopo inclui <strong>All scopes</strong> ou <strong>Prototype</strong>.</li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Valores iniciais importam</span>
+          <p>O valor inicial de uma variável é o estado de "reset" do protótipo. Ao reiniciar o Present mode, todas as variáveis voltam ao valor inicial. Defina valores iniciais que representem o estado vazio ou padrão da experiência: contador = 0, logado = false, tema = "light".</p>
+        </div>
+
+        <h2>A action Set variable</h2>
+        <p>A action <strong>Set variable</strong> altera o valor de uma variável quando um trigger é ativado. Na configuração da Connection:</p>
+        <ul>
+          <li><strong>Variable:</strong> qual variável alterar.</li>
+          <li><strong>Value:</strong> novo valor fixo (ex.: <code>1</code>, <code>"dark"</code>, <code>true</code>) ou uma <strong>expressão</strong> (ex.: <code>carrinho + 1</code>).</li>
+        </ul>
+        <p>Você pode encadear múltiplas actions em uma única interação: On click → Navigate to (frame) + Set variable (carrinho = carrinho + 1). Ambas acontecem ao mesmo tempo.</p>
+
+        <h2>Expressões</h2>
+        <p>Expressões permitem calcular o novo valor de uma variável com base no valor atual ou em outras variáveis. A sintaxe é simples, similar a uma calculadora:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Expressão</th><th>O que faz</th><th>Exemplo</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>variavel + 1</code></td><td>Incrementa em 1</td><td>Adicionar item ao carrinho</td></tr>
+              <tr><td><code>variavel - 1</code></td><td>Decrementa em 1</td><td>Remover item do carrinho</td></tr>
+              <tr><td><code>!variavel</code></td><td>Inverte booleano (NOT)</td><td>Alternar toggle, trocar tema</td></tr>
+              <tr><td><code>variavel * 2</code></td><td>Multiplica</td><td>Dobrar quantidade</td></tr>
+              <tr><td><code>"Olá, " + nome</code></td><td>Concatena strings</td><td>Saudação personalizada</td></tr>
+              <tr><td><code>preco * quantidade</code></td><td>Produto de duas variáveis</td><td>Calcular total do carrinho</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Conditional — lógica if/else</h2>
+        <p>A action <strong>Conditional</strong> avalia uma condição e executa ações diferentes dependendo do resultado:</p>
+        <ul>
+          <li><strong>If (condição):</strong> executa a action do ramo verdadeiro.</li>
+          <li><strong>Else:</strong> executa a action do ramo falso (opcional).</li>
+        </ul>
+        <p>Exemplos de condições:</p>
+        <ul>
+          <li><code>carrinho > 0</code> — há itens no carrinho?</li>
+          <li><code>logado == true</code> — o usuário está logado?</li>
+          <li><code>senha == "1234"</code> — a senha está correta? (para login simulado)</li>
+          <li><code>tema == "dark"</code> — o tema atual é escuro?</li>
+        </ul>
+
+        <div class="callout warning">
+          <span class="callout-title">Limitações das condições</span>
+          <p>O Conditional do Figma suporta comparações simples (<code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>). Não suporta <code>&&</code> (AND) ou <code>||</code> (OR) diretamente na mesma condição — para lógica combinada, use Conditionals aninhados ou variáveis auxiliares.</p>
+        </div>
+
+        <h2>Vinculando Variables a conteúdo de texto</h2>
+        <p>Para que o protótipo exiba o valor atual de uma variável em um texto:</p>
+        <ol>
+          <li>Selecione a camada de texto no canvas.</li>
+          <li>No painel de Design, ao lado do conteúdo do texto, clique no ícone de variável.</li>
+          <li>Selecione a variável desejada. O texto agora exibe o valor atual da variável.</li>
+        </ol>
+        <p>Ao alterar a variável via Set variable durante a interação, o texto se atualiza automaticamente no Present mode — sem precisar navegar para outro frame.</p>
+
+        <h2>Passo a passo: contador de carrinho funcional</h2>
+        <p>Vamos criar um contador de itens que incrementa e decrementa com cliques reais:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie a variável.</strong>
+            Abra Local variables. Crie uma coleção "Carrinho". Adicione uma variável <code>quantidade</code> do tipo <strong>Number</strong>, valor inicial <code>0</code>.
+          </li>
+          <li>
+            <strong>Monte a UI do contador.</strong>
+            Crie um frame com três elementos: botão "–" (minus), um texto de exibição (ex.: "0") e botão "+" (plus). O texto de exibição deve ser uma camada de texto chamada "Quantidade display".
+          </li>
+          <li>
+            <strong>Vincule o texto à variável.</strong>
+            Selecione a camada "Quantidade display". No painel Design, clique no ícone de variável ao lado do conteúdo do texto e selecione <code>quantidade</code>.
+          </li>
+          <li>
+            <strong>Configure o botão "+".</strong>
+            Aba Prototype → selecione o botão "+". Adicione interação: Trigger = <strong>On click</strong>. Action = <strong>Set variable</strong>. Variable = <code>quantidade</code>. Value = <code>quantidade + 1</code> (expressão).
+          </li>
+          <li>
+            <strong>Configure o botão "–".</strong>
+            Selecione o botão "–". Trigger = On click. Action = <strong>Conditional</strong>. Condição: <code>quantidade > 0</code>. Se verdadeiro: Set variable → <code>quantidade</code> = <code>quantidade - 1</code>. (O else pode ficar vazio — não faz nada se já for 0.)
+          </li>
+          <li>
+            <strong>Teste no Present mode.</strong>
+            Clique em "+" várias vezes — o número sobe. Clique em "–" — desce, mas para em 0. Reinicie o protótipo — volta a 0. O contador funciona!
+          </li>
+        </ol>
+
+        <div class="figma-mock">
+          <div style="display:flex;align-items:center;justify-content:center;gap:0;">
+            <div style="padding:32px;background:var(--surface);border:1.5px solid var(--border-strong);border-radius:16px;display:flex;flex-direction:column;align-items:center;gap:20px;min-width:220px;">
+              <div style="font-size:14px;font-weight:700;">Itens no carrinho</div>
+              <div style="display:flex;align-items:center;gap:20px;">
+                <div style="width:40px;height:40px;border-radius:10px;border:1.5px solid var(--border-strong);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:var(--text-muted);background:var(--surface-2);">−</div>
+                <div style="font-size:36px;font-weight:800;min-width:40px;text-align:center;color:var(--primary);">3</div>
+                <div style="width:40px;height:40px;border-radius:10px;border:1.5px solid var(--primary);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:var(--primary);background:var(--primary-soft);">+</div>
+              </div>
+              <div style="font-size:12px;color:var(--text-muted);">variável <code>quantidade</code> = 3</div>
+            </div>
+          </div>
+          <p class="mock-label">Contador funcional: o texto exibe o valor da variável. O botão "+" usa Set variable com expressão <code>quantidade + 1</code>. O botão "–" usa Conditional para não ir abaixo de 0.</p>
+        </div>
+
+        <h2>Exemplo 2: toggle de tema claro/escuro</h2>
+        <p>Variável: <code>tema</code> (Boolean, valor inicial: <code>false</code> = claro).</p>
+        <ul>
+          <li>No botão de toggle de tema, On click → Set variable: <code>tema</code> = <code>!tema</code> (inverte o booleano).</li>
+          <li>Vincule as cores dos frames (via Variables de cor) ao modo "light" ou "dark" da coleção de design tokens.</li>
+          <li>Na prática avançada: crie duas coleções de color variables (light e dark) e use o valor de <code>tema</code> para alternar entre elas via Set variable com a variável de modo do collection.</li>
+        </ul>
+
+        <h2>Exemplo 3: login simples com Conditional</h2>
+        <p>Variáveis: <code>senhaCorreta</code> (Boolean, false); <code>tentativas</code> (Number, 0).</p>
+        <ul>
+          <li>Campo de senha: o usuário digita (simulado com variants de input).</li>
+          <li>Botão "Entrar": On click → Conditional: <code>senhaCorreta == true</code>. If true → Navigate to "Home". Else → Set variable <code>tentativas</code> = <code>tentativas + 1</code> + Conditional: <code>tentativas >= 3</code> → Navigate to "Conta bloqueada".</li>
+          <li>Para o protótipo funcionar, você precisará de um botão "Senha correta" em modo de apresentação que defina <code>senhaCorreta = true</code> — um "modo de teste" oculto fora da tela.</li>
+        </ul>
+
+        <div class="callout pro">
+          <span class="callout-title">Variables + Interactive Components = protótipos ricos</span>
+          <p>A combinação mais poderosa: Interactive Components gerenciam estados visuais (hover, pressed, checked), enquanto Variables gerenciam estados de dados (contadores, autenticação, preferências). Juntos, eles cobrem praticamente toda a lógica necessária para testes de usabilidade realistas — sem código.</p>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Em um protótipo de app de e-commerce para teste de usabilidade:</p>
+        <ul>
+          <li><strong>Variável <code>carrinhoCount</code> (Number):</strong> cada botão "Adicionar ao carrinho" incrementa a variável. O ícone do carrinho no header mostra o valor via text binding. O badge fica visível só quando o valor é maior que 0 (Conditional).</li>
+          <li><strong>Variável <code>favorito</code> (Boolean) por produto:</strong> o botão de coração alterna com <code>!favorito</code>. O ícone troca entre coração vazio e preenchido (Interactive Component + Set variable).</li>
+          <li><strong>Variável <code>enderecoSalvo</code> (Boolean):</strong> no checkout, se o endereço já está salvo (true), pula direto para pagamento; se não (false), mostra o formulário de endereço (Conditional no botão "Continuar").</li>
+        </ul>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Variables armazenam <strong>estado</strong> no protótipo: números, textos, booleanos e cores.</li>
+          <li>A action <strong>Set variable</strong> altera o valor — com um valor fixo ou uma expressão.</li>
+          <li><strong>Expressões</strong> permitem cálculos simples: <code>variavel + 1</code>, <code>!variavel</code>, concatenação.</li>
+          <li>A action <strong>Conditional</strong> cria ramificações if/else baseadas em condições.</li>
+          <li>Vincule variáveis a camadas de texto para exibir valores dinâmicos no Present mode.</li>
+          <li>Variables + Interactive Components = protótipos com lógica real sem código.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Contador funcional de carrinho</h3>
+          <ol>
+            <li>Crie a variável <code>quantidade</code> (Number, valor inicial 0).</li>
+            <li>Monte a UI com botões "–", display de número e "+".</li>
+            <li>Vincule o display à variável.</li>
+            <li>Configure o botão "+": On click → Set variable → <code>quantidade + 1</code>.</li>
+            <li>Configure o botão "–": On click → Conditional (<code>quantidade &gt; 0</code>) → Set variable → <code>quantidade - 1</code>.</li>
+            <li>Adicione um badge "Carrinho (N)" em um header usando a mesma variável.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> no Present mode, o contador incrementa e decrementa. Nunca vai abaixo de 0. O badge no header atualiza em tempo real com o mesmo valor.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Formulário com validação</h3>
+          <p>Crie um formulário de login com dois campos (email e senha — simulados com variants de componente de input). Crie variáveis booleanas <code>emailPreenchido</code> e <code>senhaPreenchida</code>. Ao "preencher" cada campo (clicar em uma variante Filled do Input), defina a variável correspondente como true. O botão "Entrar" deve usar Conditional encadeado: se ambas as variáveis forem true, navega para o Dashboard; caso contrário, exibe uma mensagem de erro (Set variable em uma variável <code>mostrarErro</code> que controla a visibilidade de um texto de alerta).</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">1. Qual expressão você usaria no campo "Value" de um Set variable para inverter um booleano chamado "menuAberto"?</p>
+            <ul class="quiz-options">
+              <li><code>menuAberto = false</code></li>
+              <li><code>menuAberto == true</code></li>
+              <li><code>menuAberto - 1</code></li>
+              <li><code>!menuAberto</code></li>
+            </ul>
+            <div class="quiz-explain">O operador <code>!</code> (NOT) inverte um booleano: se for <code>true</code>, torna-se <code>false</code>, e vice-versa. É a expressão correta para alternar um toggle, menu ou tema com uma única action.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">2. Para exibir o valor atual de uma variável Number em uma camada de texto no Present mode, o que você deve fazer?</p>
+            <ul class="quiz-options">
+              <li>Criar uma Connection com a action "Set variable" apontando para a camada de texto</li>
+              <li>Selecionar a camada de texto e vincular a variável via o ícone de variável no painel de Design, ao lado do conteúdo do texto</li>
+              <li>Renomear a camada de texto com o mesmo nome da variável</li>
+              <li>Usar a action "Scroll to" com a variável como parâmetro</li>
+            </ul>
+            <div class="quiz-explain">O <strong>text binding</strong> é feito selecionando a camada de texto e clicando no ícone de variável no painel de Design (ao lado do valor do texto). Após vincular, o texto exibe o valor atual da variável dinamicamente no Present mode.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Qual é o comportamento das variáveis quando o usuário reinicia o protótipo (fecha e reabre o Present mode)?</p>
+            <ul class="quiz-options">
+              <li>Todas as variáveis voltam aos seus valores iniciais definidos na coleção</li>
+              <li>As variáveis mantêm os últimos valores (estado persistido)</li>
+              <li>As variáveis são deletadas e precisam ser redefinidas</li>
+              <li>Apenas variáveis Boolean fazem reset; Number e String mantêm os valores</li>
+            </ul>
+            <div class="quiz-explain">Ao reiniciar o Present mode, <strong>todas as variáveis voltam ao valor inicial</strong> definido na coleção de variáveis. Isso é importante para definir o estado correto do protótipo no início de cada sessão de teste.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

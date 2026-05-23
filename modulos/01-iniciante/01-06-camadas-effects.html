@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camadas, organização e effects | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="01-06-camadas-effects" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🎨 Módulo 1 · Iniciante · Lição 6 de 8</div>
+        <h1>Camadas, organização e effects</h1>
+        <p class="lead">Um arquivo desorganizado é um arquivo que ninguém quer abrir. Saber organizar camadas e usar effects com critério é o que diferencia um designer profissional de um amador.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~17 min</span>
+          <span>🎯 Nível: Iniciante</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Navegar e manipular o painel de Layers com eficiência;</li>
+            <li>Renomear, reordenar, bloquear e ocultar camadas;</li>
+            <li>Buscar layers específicos no painel;</li>
+            <li>Aplicar Drop Shadow, Inner Shadow, Layer Blur e Background Blur;</li>
+            <li>Criar um card profissional com sombra suave.</li>
+          </ul>
+        </div>
+
+        <h2>O painel de Layers</h2>
+        <p>O painel de Layers (lado esquerdo, ícone de camadas) é o mapa hierárquico do seu arquivo. Cada elemento, grupo e frame aparece aqui em ordem de empilhamento — <strong>elementos mais altos na lista ficam visualmente na frente</strong>.</p>
+
+        <h3>Navegando no painel</h3>
+        <ul>
+          <li><strong>Expandir/colapsar:</strong> clique na seta ao lado de um Frame ou Group para ver os filhos;</li>
+          <li><strong>Selecionar:</strong> clique em um layer para selecioná-lo no canvas;</li>
+          <li><strong>Duplo-clique no nome:</strong> edita o nome inline (mais rápido que <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>R</kbd> quando o painel está aberto);</li>
+          <li><strong>Ctrl/⌘ + clique:</strong> seleciona múltiplos layers não contíguos;</li>
+          <li><strong>Shift + clique:</strong> seleciona um intervalo de layers.</li>
+        </ul>
+
+        <h3>Ações essenciais no painel de Layers</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Ação</th><th>Como fazer</th><th>Atalho</th></tr></thead>
+            <tbody>
+              <tr><td>Renomear layer</td><td>Duplo-clique no nome (no painel) ou selecione e use o atalho</td><td><kbd>Ctrl/⌘</kbd> + <kbd>R</kbd></td></tr>
+              <tr><td>Ocultar/mostrar</td><td>Hover no layer → clique no ícone de olho</td><td><kbd>Ctrl/⌘</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd></td></tr>
+              <tr><td>Bloquear/desbloquear</td><td>Hover no layer → clique no ícone de cadeado</td><td><kbd>Ctrl/⌘</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd></td></tr>
+              <tr><td>Mover para cima na pilha</td><td>Arrastar no painel ou usar atalho</td><td><kbd>Ctrl/⌘</kbd> + <kbd>]</kbd></td></tr>
+              <tr><td>Mover para baixo na pilha</td><td>Arrastar no painel ou usar atalho</td><td><kbd>Ctrl/⌘</kbd> + <kbd>[</kbd></td></tr>
+              <tr><td>Mover para o topo</td><td>Arrastar ou atalho</td><td><kbd>Ctrl/⌘</kbd> + <kbd>Alt</kbd> + <kbd>]</kbd></td></tr>
+              <tr><td>Mover para o fundo</td><td>Arrastar ou atalho</td><td><kbd>Ctrl/⌘</kbd> + <kbd>Alt</kbd> + <kbd>[</kbd></td></tr>
+              <tr><td>Buscar layer por nome</td><td>Campo de busca no topo do painel (ícone de lupa)</td><td><kbd>Ctrl/⌘</kbd> + <kbd>F</kbd> (em alguns contextos)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Busca no painel de layers</h3>
+        <p>Em projetos grandes, o painel de layers pode ter centenas de elementos. Use o <strong>campo de busca</strong> no topo do painel para filtrar por nome. O Figma destaca e expande apenas os layers que contêm o texto buscado. Dica: use nomes descritivos e consistentes para que a busca seja eficiente.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Ícones dos layers</span>
+          <p>O Figma usa ícones diferentes para cada tipo de layer: <strong>Frame</strong> (quadrado com bordas), <strong>Group</strong> (setas entrelaçadas), <strong>Text</strong> (T), <strong>Component</strong> (dois losangos), <strong>Instance</strong> (losango com preenchimento), <strong>Vector</strong> (caneta), <strong>Image</strong> (imagem). Reconhecer esses ícones acelera muito a navegação.</p>
+        </div>
+
+        <h2>Boas práticas de nomeação de camadas</h2>
+        <p>Um arquivo bem organizado é legível para você em 6 meses e para qualquer colega de equipe. As regras fundamentais:</p>
+
+        <h3>Nomenclatura consistente</h3>
+        <ul>
+          <li><strong>Descritiva e semântica:</strong> "Button/Primary/Default" em vez de "Rectangle 32";</li>
+          <li><strong>Sem espaços duplos ou caracteres especiais</strong> desnecessários;</li>
+          <li><strong>Hierarquia com barras:</strong> "Header/Nav/Logo" indica que Logo está dentro de Nav, que está dentro de Header;</li>
+          <li><strong>Inglês ou português consistente</strong> — não misture os dois no mesmo projeto.</li>
+        </ul>
+
+        <h3>Organize com Frames, não com Groups</h3>
+        <p>Prefira agrupar seções da UI em <strong>Frames nomeados</strong> a usar Groups. Frames aparecem melhor no handoff para developers e são mais fáceis de navegar no painel.</p>
+
+        <div class="callout tip">
+          <span class="callout-title">Renomeação em massa</span>
+          <p>Selecione múltiplos layers e pressione <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>R</kbd>. O Figma abre um diálogo de <strong>renomeação em massa</strong> com suporte a expressões regulares e variáveis como <code>$n</code> (numeração automática). Por exemplo: "Icon $n" renomeia os layers selecionados para "Icon 1", "Icon 2", "Icon 3"…</p>
+        </div>
+
+        <h2>Effects no Figma</h2>
+        <p>A seção <strong>Effects</strong> no painel direito permite adicionar sombras e desfoque a qualquer elemento. Cada effect é configurável individualmente e pode ser ativado/desativado sem ser deletado.</p>
+
+        <h3>Drop Shadow (sombra externa)</h3>
+        <p>O effect mais usado em UI. Simula um elemento "flutuando" sobre a superfície abaixo. Os parâmetros:</p>
+        <ul>
+          <li><strong>X e Y offset:</strong> deslocamento da sombra em relação ao elemento (0,4 para sombra abaixo);</li>
+          <li><strong>Blur:</strong> quanto a sombra está desfocada — quanto maior, mais suave e difusa;</li>
+          <li><strong>Spread:</strong> expansão da sombra além das bordas do elemento (use com moderação);</li>
+          <li><strong>Cor e opacidade:</strong> use preto ou a cor primária com baixa opacidade para sombras realistas.</li>
+        </ul>
+
+        <h3>Inner Shadow (sombra interna)</h3>
+        <p>Como o Drop Shadow, mas projetada <em>para dentro</em> da forma. Útil para criar efeitos de profundidade em campos de input, botões pressionados (neumorphism) e elementos "afundados".</p>
+
+        <h3>Layer Blur (desfoque da camada)</h3>
+        <p>Desfocar o próprio elemento. Útil para criar efeitos de foco e profundidade de campo em mockups — elementos em "desfoque" parecem estar em um plano diferente de profundidade. O parâmetro é o raio de blur em pixels.</p>
+
+        <h3>Background Blur (desfoque de fundo)</h3>
+        <p>Desfoca o que está <strong>atrás</strong> do elemento — o famoso efeito de vidro fosco (<em>glassmorphism</em>). Para funcionar, o elemento precisa ter um fill semitransparente (opacidade &lt; 100%). Este effect é idêntico ao <code>backdrop-filter: blur()</code> do CSS.</p>
+
+        <div class="callout warning">
+          <span class="callout-title">Background Blur é pesado para browsers</span>
+          <p>O <code>backdrop-filter</code> (equivalente ao Background Blur) pode impactar o desempenho em dispositivos menos potentes. Use com moderação em interfaces web, especialmente em elementos que aparecem com frequência ou em animações. Em apps native, o equivalente (UIVisualEffectView no iOS) é muito otimizado.</p>
+        </div>
+
+        <h2>Anatomia de uma boa sombra de card</h2>
+        <p>Sombras em UI não devem ser pretas sólidas — isso parece digitação dos anos 90. Use estas técnicas:</p>
+        <ul>
+          <li><strong>Cor:</strong> preto com 6–12% de opacidade para sombras neutras; matiz da cor primária com 20–30% para sombras coloridas;</li>
+          <li><strong>Layers de sombra dupla:</strong> uma sombra pequena e escura (Y: 2, Blur: 4, opacidade: 12%) + uma grande e suave (Y: 8, Blur: 24, opacidade: 6%) criam profundidade realista;</li>
+          <li><strong>Direção consistente:</strong> todas as sombras do projeto devem vir da mesma direção de luz.</li>
+        </ul>
+
+        <h2>Exemplo de uso real: card com sombra suave</h2>
+        <p>Vamos criar um card profissional com sombra em duas camadas:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie o Frame do card.</strong>
+            Retângulo de 320×160 px, fill branco (<code>#FFFFFF</code>), corner radius 16 px.
+          </li>
+          <li>
+            <strong>Adicione a primeira sombra (próxima, densa).</strong>
+            Effects → <strong>+</strong> → Drop Shadow. Configure: X: 0, Y: 2, Blur: 6, Spread: 0, cor: <code>#000000</code>, opacidade: 8%.
+          </li>
+          <li>
+            <strong>Adicione a segunda sombra (distante, difusa).</strong>
+            Clique em <strong>+</strong> novamente em Effects → Drop Shadow. Configure: X: 0, Y: 8, Blur: 24, Spread: 0, cor: <code>#000000</code>, opacidade: 6%.
+          </li>
+          <li>
+            <strong>Adicione conteúdo ao card.</strong>
+            Um título em 18px/600, subtítulo em 14px/400 cor muted, e um label colorido (badge com fill de cor suave).
+          </li>
+          <li>
+            <strong>Renomeie todas as camadas.</strong>
+            Abra o painel de Layers e renomeie: o Frame raiz como "Card/Article", os textos como "Card/Title" e "Card/Subtitle", o badge como "Card/Badge".
+          </li>
+        </ol>
+
+        <div class="figma-mock">
+          <div style="padding:32px;background:var(--surface-2);">
+            <div style="background:var(--surface);border-radius:16px;padding:20px;box-shadow:0 2px 6px rgba(0,0,0,.08),0 8px 24px rgba(0,0,0,.06);max-width:320px;margin:0 auto;">
+              <span style="background:var(--primary-soft);color:var(--primary);font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;text-transform:uppercase;letter-spacing:.05em;">Design</span>
+              <h3 style="margin:10px 0 6px;font-size:17px;">Princípios de design visual</h3>
+              <p style="font-size:13px;color:var(--text-muted);margin:0 0 14px;">Como hierarquia, contraste e ritmo visual tornam um layout poderoso.</p>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div style="width:28px;height:28px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:700;">A</div>
+                <span style="font-size:12px;color:var(--text-muted);">Ana Silva · 5 min leitura</span>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">Card com dupla sombra suave — profissional e sutil, sem virar decoração de anos 90.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Renomear layer</td><td><kbd>Ctrl</kbd> + <kbd>R</kbd></td><td><kbd>⌘</kbd> + <kbd>R</kbd></td></tr>
+              <tr><td>Ocultar/mostrar layer</td><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd></td><td><kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd></td></tr>
+              <tr><td>Bloquear/desbloquear layer</td><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd></td><td><kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd></td></tr>
+              <tr><td>Mover layer para cima</td><td><kbd>Ctrl</kbd> + <kbd>]</kbd></td><td><kbd>⌘</kbd> + <kbd>]</kbd></td></tr>
+              <tr><td>Mover layer para baixo</td><td><kbd>Ctrl</kbd> + <kbd>[</kbd></td><td><kbd>⌘</kbd> + <kbd>[</kbd></td></tr>
+              <tr><td>Mover para o topo da pilha</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>]</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>]</kbd></td></tr>
+              <tr><td>Mover para o fundo da pilha</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>[</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>[</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>O painel de Layers mostra a hierarquia do arquivo — elementos mais altos ficam visualmente na frente.</li>
+          <li>Renomear, ocultar e bloquear são ações cotidianas; use nomes semânticos e hierárquicos.</li>
+          <li>A busca de layers filtra o painel por nome — só funciona bem com nomes descritivos.</li>
+          <li><strong>Drop Shadow</strong> projeta sombra para fora; <strong>Inner Shadow</strong>, para dentro.</li>
+          <li><strong>Layer Blur</strong> desfocar o elemento; <strong>Background Blur</strong> desfoca o que está atrás (glassmorphism).</li>
+          <li>Sombras duplas (uma pequena/densa + uma grande/difusa) criam profundidade realista.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Organize um arquivo bagunçado</h3>
+          <ol>
+            <li>Crie um Frame de 400×500 px com 8 elementos aleatórios (textos, retângulos, elipses).</li>
+            <li>Renomeie cada layer com um nome descritivo e semântico.</li>
+            <li>Agrupe elementos relacionados em Frames nomeados (ex: "Header", "Card", "Footer").</li>
+            <li>Bloqueie o layer de fundo (o retângulo base do Frame).</li>
+            <li>Adicione Drop Shadow ao Frame principal do card: duas sombras, como descrito na lição.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> nenhuma layer tem nome genérico ("Rectangle 1", "Frame 4"…); o painel de Layers mostra hierarquia clara; a sombra do card é visualmente suave e realista.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Painel de controle com glassmorphism</h3>
+          <p>Crie um Frame de 800×500 px com um fundo rico (gradiente angular ou imagem de paisagem). Sobre ele, crie 3 cards com efeito glassmorphism: fill branco com 15% de opacidade, Background Blur de 20 px, stroke branco 1 px com 30% de opacidade. Cada card deve ter conteúdo diferente (estatísticas, gráfico placeholder com SVG, lista de itens). Renomeie todas as layers com hierarquia clara. Crie pelo menos uma Inner Shadow nos cards para reforçar o efeito de profundidade.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. No painel de Layers do Figma, um elemento "mais alto" na lista está visualmente…</p>
+            <ul class="quiz-options">
+              <li>Atrás dos outros elementos</li>
+              <li>Na mesma posição — a ordem na lista não afeta a visualização</li>
+              <li>Na frente dos outros elementos</li>
+              <li>Oculto por padrão</li>
+            </ul>
+            <div class="quiz-explain">No Figma (como na maioria das ferramentas de design), elementos mais <strong>altos no painel de Layers ficam visualmente na frente</strong>. Para colocar um elemento "embaixo" de outro, mova-o para baixo na lista.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">2. Qual effect cria o famoso efeito de vidro fosco (glassmorphism) desfocando o que está atrás do elemento?</p>
+            <ul class="quiz-options">
+              <li>Drop Shadow</li>
+              <li>Inner Shadow</li>
+              <li>Layer Blur</li>
+              <li>Background Blur</li>
+            </ul>
+            <div class="quiz-explain"><strong>Background Blur</strong> desfoca tudo que está atrás do elemento — é o equivalente ao <code>backdrop-filter: blur()</code> do CSS e cria o efeito glassmorphism quando combinado com um fill semitransparente.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Qual atalho abre o modo de renomeação em massa de layers no Figma?</p>
+            <ul class="quiz-options">
+              <li><kbd>Ctrl/⌘</kbd> + <kbd>R</kbd></li>
+              <li><kbd>Ctrl/⌘</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd></li>
+              <li><kbd>F2</kbd></li>
+              <li><kbd>Ctrl/⌘</kbd> + <kbd>E</kbd></li>
+            </ul>
+            <div class="quiz-explain"><strong>Ctrl/⌘ + R</strong> com múltiplos layers selecionados abre o diálogo de renomeação em massa, com suporte a regex e numeração automática com <code>$n</code>.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

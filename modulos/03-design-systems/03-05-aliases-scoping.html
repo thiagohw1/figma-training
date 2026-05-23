@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aliases, scoping e organização | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="03-05-aliases-scoping" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🏗️ Módulo 3 · Avançado · Lição 5 de 9</div>
+        <h1>Aliases, scoping e organização</h1>
+        <p class="lead">Aliases constroem a ponte entre tokens primitivos e semânticos diretamente no Figma. Scoping garante que cada variable apareça somente nos seletores onde faz sentido — mantendo o painel limpo e a equipe produtiva.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~20 min</span>
+          <span>🎯 Nível: Avançado</span>
+          <span>🛠️ Pratique no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Criar aliases — variables que apontam para outras variables — para montar tokens semânticos;</li>
+            <li>Configurar o Scoping de uma variable para limitar onde ela aparece nos seletores do painel;</li>
+            <li>Configurar Code Syntax para web (CSS), iOS e Android;</li>
+            <li>Conhecer as novidades de composite/array variables (2025);</li>
+            <li>Aplicar boas práticas de organização de Collections em um arquivo de Design System.</li>
+          </ul>
+        </div>
+
+        <h2>O que são Aliases?</h2>
+        <p>Um <strong>alias</strong> é uma variable cujo valor <em>aponta para outra variable</em> ao invés de armazenar um valor bruto. É exatamente assim que o Tier 2 (semântico) e o Tier 3 (componente) da hierarquia de tokens são implementados no Figma.</p>
+        <p>Ao clicar no campo de valor de uma variable e usar o ícone de grid para selecionar outra variable (ao invés de digitar um valor direto), você está criando um alias.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Alias = referência, não cópia</span>
+          <p>Quando <code>color/bg/brand</code> aponta para <code>color/blue/500</code>, o Figma não copia o valor — ele cria uma <em>referência</em>. Se <code>color/blue/500</code> mudar de <code>#6C4CF1</code> para <code>#1D6FD1</code>, o <code>color/bg/brand</code> atualiza automaticamente sem nenhuma ação manual.</p>
+        </div>
+
+        <h2>Criando aliases na prática</h2>
+
+        <ol class="steps">
+          <li>
+            <strong>Abra a Collection semântica.</strong>
+            No painel de Variables, selecione a Collection <code>Semantic/Color</code>. Se ela não existir, crie-a conforme a lição anterior.
+          </li>
+          <li>
+            <strong>Crie uma nova variable.</strong>
+            Adicione uma variable Color chamada <code>color/bg/brand</code>. Por padrão, ela pede um valor de cor.
+          </li>
+          <li>
+            <strong>Ative o modo de seleção de variable.</strong>
+            Em vez de clicar no swatch de cor para digitar um hex, clique no ícone de <strong>grid (4 quadradinhos)</strong> que aparece à direita do campo de valor. O painel troca para o seletor de variables existentes.
+          </li>
+          <li>
+            <strong>Selecione a variable primitiva.</strong>
+            Navegue até <code>Primitives/Color</code> → <code>blue</code> → <code>500</code>. Clique para confirmar o alias.
+          </li>
+          <li>
+            <strong>Verifique o resultado.</strong>
+            A variable <code>color/bg/brand</code> agora mostra um ícone de seta indicando que ela é um alias — e herda o valor atual de <code>color/blue/500</code>. Se você alterar o primitivo, o semântico atualiza junto.
+          </li>
+          <li>
+            <strong>Repita para o Mode Dark.</strong>
+            No Mode Dark de <code>color/bg/brand</code>, selecione o alias para <code>color/blue/400</code> (um tom mais claro, pois no dark mode cores primárias costumam ser mais claras para manter contraste). Agora o semântico tem aliases diferentes por Mode.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Aliases entre Collections diferentes</span>
+          <p>No Figma, aliases podem cruzar Collections. Uma variable em <code>Semantic/Color</code> pode apontar para uma variável em <code>Primitives/Color</code>. Esta é exatamente a forma de montar a arquitetura de tiers — Collections separadas por nível de abstração com aliases conectando-as.</p>
+        </div>
+
+        <h2>Scoping — controlando onde a variable aparece</h2>
+        <p><strong>Scoping</strong> define em quais <em>propriedades</em> e <em>seletores</em> do painel uma variable aparece quando o designer a procura. Sem scoping, uma variable de cor de fundo apareceria nos campos de stroke, de texto e de todos os outros seletores de cor — criando ruído e confusão.</p>
+        <p>Para configurar o scoping de uma variable, clique com o botão direito nela e escolha <strong>Edit Variable</strong>. Na janela que abre, há uma seção <strong>Scoping</strong> com checkboxes:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Scope (Color)</th><th>Onde aparece</th><th>Uso típico</th></tr></thead>
+            <tbody>
+              <tr><td><strong>All color properties</strong></td><td>Em qualquer seletor de cor</td><td>Variables primitivas (devem estar disponíveis em tudo)</td></tr>
+              <tr><td><strong>Frame fill</strong></td><td>Somente em Fill de frames</td><td>Variables de background de surface</td></tr>
+              <tr><td><strong>Shape fill</strong></td><td>Somente em Fill de shapes</td><td>Variables de cor de ícones e ilustrações</td></tr>
+              <tr><td><strong>Text fill</strong></td><td>Somente em cor de texto</td><td>Variables de cor de tipografia</td></tr>
+              <tr><td><strong>Stroke</strong></td><td>Somente em Stroke</td><td>Variables de cor de bordas</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Scope (Number)</th><th>Onde aparece</th><th>Uso típico</th></tr></thead>
+            <tbody>
+              <tr><td><strong>All number properties</strong></td><td>Em qualquer campo numérico</td><td>Variables primitivas de número</td></tr>
+              <tr><td><strong>Width / Height</strong></td><td>Nos campos W e H</td><td>Variables de tamanho fixo de componentes</td></tr>
+              <tr><td><strong>Corner radius</strong></td><td>Somente em Corner Radius</td><td>Variables de radius sistematizadas</td></tr>
+              <tr><td><strong>Horizontal / Vertical padding</strong></td><td>Nos campos de padding do Auto Layout</td><td>Variables de spacing de componente</td></tr>
+              <tr><td><strong>Gap between items</strong></td><td>No campo de gap do Auto Layout</td><td>Variables de gap sistematizadas</td></tr>
+              <tr><td><strong>Stroke width</strong></td><td>No campo de stroke width</td><td>Variables de espessura de borda</td></tr>
+              <tr><td><strong>Opacity</strong></td><td>No campo de opacidade</td><td>Variables de opacidade de overlay</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout pro">
+          <span class="callout-title">Scoping reduz erros</span>
+          <p>Se um designer aplicar por engano um token de <code>color/text/default</code> no fundo de um botão, ele terá aplicado o token errado — e pode ser que ninguém perceba no tema claro, mas vai criar um bug no dark mode. Com scoping correto, <code>color/text/default</code> só aparece nos seletores de texto, tornando o erro impossível de acontecer.</p>
+        </div>
+
+        <h2>Code Syntax — conectando tokens ao código</h2>
+        <p>O Figma permite configurar o <strong>Code Syntax</strong> de cada variable — ou seja, como o nome do token aparece nas diferentes plataformas de código. Isso facilita o handoff para desenvolvedores que trabalham com CSS, Swift (iOS) ou Kotlin (Android).</p>
+        <p>Para acessar, clique com o botão direito → <strong>Edit Variable</strong> → seção <strong>Code Syntax</strong>:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Plataforma</th><th>Convenção</th><th>Exemplo para <code>color/bg/brand</code></th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Web (CSS)</strong></td>
+                <td>kebab-case com -- prefix</td>
+                <td><code>--color-bg-brand</code></td>
+              </tr>
+              <tr>
+                <td><strong>iOS (Swift)</strong></td>
+                <td>camelCase</td>
+                <td><code>colorBgBrand</code></td>
+              </tr>
+              <tr>
+                <td><strong>Android (Kotlin/XML)</strong></td>
+                <td>snake_case com prefixo</td>
+                <td><code>color_bg_brand</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>No <strong>Dev Mode</strong>, quando um desenvolvedor inspecionar um elemento que usa uma variable com Code Syntax configurado, ele verá o nome no formato correto para a plataforma selecionada — sem precisar fazer a conversão manualmente.</p>
+
+        <div class="callout example">
+          <span class="callout-title">Plugins de exportação de tokens</span>
+          <p>Ferramentas como <strong>Tokens Studio for Figma</strong> (antigo Figma Tokens), <strong>Style Dictionary</strong> e <strong>Theo</strong> exportam tokens como arquivos JSON, CSS, Swift ou Kotlin. O Code Syntax configurado no Figma alimenta diretamente esses exports, garantindo naming consistente no código.</p>
+        </div>
+
+        <h2>Composite e Array variables (novidade 2025)</h2>
+        <p>Em 2025, o Figma introduziu suporte experimental a <strong>composite variables</strong> — variables que agregam múltiplos valores em uma única entidade, similar a como um Text Style combina família, tamanho, peso e entrelinha.</p>
+        <p>Um exemplo de composite seria um token de sombra que agrega blur, spread, offset X/Y e cor — todos controláveis como uma unidade. Outro seria um token de tipografia que combina <code>font-size</code>, <code>line-height</code> e <code>font-weight</code>.</p>
+        <p>Na data de escrita (2025/2026), composite variables estão em beta e disponíveis apenas para alguns planos. Verifique o changelog oficial do Figma para o estado atual desse recurso.</p>
+
+        <h2>Boas práticas de organização de Collections</h2>
+
+        <h3>Estrutura recomendada</h3>
+        <p>Use Collections separadas por nível de abstração e tipo de valor. Uma estrutura sólida para um DS de médio porte:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Collection</th><th>Conteúdo</th><th>Modes</th></tr></thead>
+            <tbody>
+              <tr><td><code>Primitives/Color</code></td><td>Paleta completa de cores brutas (azul 50–900, verde, vermelho, neutros)</td><td>Apenas 1 (sem Mode)</td></tr>
+              <tr><td><code>Primitives/Number</code></td><td>Escala de espaçamento (4, 8, 12, 16…) e scale de font-size</td><td>Apenas 1</td></tr>
+              <tr><td><code>Semantic/Color</code></td><td>Tokens semânticos de cor (bg/surface, text/default, border/default, feedback/…)</td><td>Light, Dark (+ High Contrast opcional)</td></tr>
+              <tr><td><code>Semantic/Spacing</code></td><td>Spacing semântico (component/sm, component/md, layout/section)</td><td>Comfortable, Compact</td></tr>
+              <tr><td><code>Semantic/Radius</code></td><td>Radius semântico (button, input, card, chip)</td><td>Mobile, Desktop (opcional)</td></tr>
+              <tr><td><code>Brand</code></td><td>Cores de marca de cada cliente (somente para white label)</td><td>Brand A, Brand B…</td></tr>
+              <tr><td><code>Content</code></td><td>Strings de conteúdo (somente se multilíngue)</td><td>pt-BR, en-US…</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Dicas de organização dentro de Collections</h3>
+        <ul>
+          <li>Use grupos (/) para criar hierarquias claras: <code>color/bg/brand</code>, não <code>colorBgBrand</code>.</li>
+          <li>Mantenha primitivos e semânticos em Collections separadas — nunca misture os dois níveis na mesma Collection.</li>
+          <li>Nomeie Modes com nomes descritivos e consistentes ("Light"/"Dark", não "Mode 1"/"Mode 2").</li>
+          <li>Adicione descrições nas variables (campo Description na janela Edit Variable) para documentar o propósito de cada token.</li>
+          <li>Revise e limpe Collections periodicamente — tokens obsoletos criam confusão.</li>
+        </ul>
+
+        <div class="callout warning">
+          <span class="callout-title">Evite a proliferação de Collections</span>
+          <p>É tentador criar uma Collection para cada micro-categoria, mas isso fragmenta demais e torna o painel difícil de navegar. Comece com 3–5 Collections e só crie novas quando o motivo for claro (ex: multi-brand realmente justifica uma Collection separada).</p>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>O Design System do produto de fintech "Paggo" tem a seguinte estrutura de Collections:</p>
+        <ul>
+          <li><code>Primitives/Color</code> — 120 tokens de cor (4 famílias × 10 tons + neutros);</li>
+          <li><code>Semantic/Color</code> com Modes Light e Dark — 32 tokens semânticos, todos aliases para primitivos;</li>
+          <li><code>Semantic/Spacing</code> com Modes Comfortable e Compact — 12 tokens;</li>
+          <li><code>Semantic/Radius</code> — 6 tokens (button, input, card, chip, modal, avatar);</li>
+        </ul>
+        <p>Total: menos de 200 tokens bem organizados cobrem 100% das necessidades visuais do produto. O Code Syntax está configurado para web e iOS. Ao exportar com Tokens Studio, o output é um JSON com os tokens completos que alimenta o repositório de código.</p>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Aliases são variables que apontam para outras variables — a forma de criar tokens semânticos que referenciam primitivos.</li>
+          <li>Ao mudar um primitivo, todos os semânticos (aliases) que apontam para ele atualizam automaticamente.</li>
+          <li>Scoping limita onde uma variable aparece nos seletores, evitando erros de aplicação incorreta.</li>
+          <li>Code Syntax configura como o token aparece no Dev Mode para CSS, iOS e Android.</li>
+          <li>Composite variables (2025) permitem agregar múltiplos valores em um único token.</li>
+          <li>Separe primitivos e semânticos em Collections diferentes; use grupos com (/) para hierarquia.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Monte a cadeia de aliases</h3>
+          <ol>
+            <li>Com a Collection <code>Primitives/Color</code> já criada (lição anterior), crie a Collection <code>Semantic/Color</code> com Modes Light e Dark;</li>
+            <li>Crie 8 tokens semânticos usando aliases para os primitivos: <code>color/bg/surface</code>, <code>color/bg/subtle</code>, <code>color/bg/brand</code>, <code>color/text/default</code>, <code>color/text/muted</code>, <code>color/border/default</code>, <code>color/feedback/danger</code>, <code>color/feedback/success</code>;</li>
+            <li>Configure o <strong>Scoping</strong> de <code>color/text/default</code> para aparecer apenas em "Text fill";</li>
+            <li>Configure o <strong>Code Syntax</strong> de pelo menos 3 tokens para web CSS.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> ao tentar aplicar <code>color/text/default</code> a um fill de retângulo, ela não aparece na lista. Ao inspecionar um texto no Dev Mode com essa variable, o nome CSS configurado aparece corretamente.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Auditoria de tokens em um arquivo real</h3>
+          <p>Abra um arquivo Figma de um projeto existente (seu ou da comunidade). Identifique todos os valores de cor "hardcoded" (sem variable aplicada) em componentes e frames. Calcule quantos valores únicos existem. Proponha uma arquitetura de tokens com primitivos e semânticos para substituir todos esses valores — e estime quantos tokens primitivos e semânticos você precisaria criar. Documente a proposta em uma página dedicada do arquivo.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. O que é um alias no contexto de Variables do Figma?</p>
+            <ul class="quiz-options">
+              <li>Um segundo nome para uma variable dentro de uma Collection</li>
+              <li>Um Mode alternativo de uma variable</li>
+              <li>Uma variable cujo valor aponta para outra variable ao invés de armazenar um valor bruto</li>
+              <li>Um atalho de teclado personalizado para variáveis frequentes</li>
+            </ul>
+            <div class="quiz-explain">Um alias é uma <strong>referência</strong>: uma variable que aponta para outra. Quando o primitivo muda, o alias atualiza automaticamente — essa cadeia de referências é o que torna a hierarquia de tokens eficiente.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">2. Para que serve o Scoping de uma variable?</p>
+            <ul class="quiz-options">
+              <li>Para esconder a variable de outros designers do time</li>
+              <li>Para limitar em quais propriedades (Fill, Stroke, Text, etc.) a variable aparece quando o designer está escolhendo um valor</li>
+              <li>Para definir em quais arquivos a variable é visível</li>
+              <li>Para proteger a variable contra alterações acidentais</li>
+            </ul>
+            <div class="quiz-explain">O Scoping filtra onde a variable aparece nos seletores do painel. Uma variable de <code>color/text/default</code> com scope "Text fill" não aparecerá ao tentar aplicar uma cor a um retângulo — prevenindo erros de uso.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Qual é a convenção de nomenclatura recomendada para Code Syntax de tokens em CSS?</p>
+            <ul class="quiz-options">
+              <li>kebab-case com prefixo <code>--</code>, ex: <code>--color-bg-brand</code></li>
+              <li>camelCase sem prefixo, ex: <code>colorBgBrand</code></li>
+              <li>UPPER_SNAKE_CASE, ex: <code>COLOR_BG_BRAND</code></li>
+              <li>PascalCase, ex: <code>ColorBgBrand</code></li>
+            </ul>
+            <div class="quiz-explain">CSS Custom Properties (variáveis CSS) usam <strong>kebab-case com o prefixo <code>--</code></strong>. Essa é a convenção padrão adotada por Material, Carbon, Polaris e a maioria dos Design Systems modernos.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

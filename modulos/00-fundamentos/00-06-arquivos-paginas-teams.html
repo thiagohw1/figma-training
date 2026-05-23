@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arquivos, páginas, projetos e teams | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="00-06-arquivos-paginas-teams" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🚀 Módulo 0 · Fundamentos · Lição 6 de 6</div>
+        <h1>Arquivos, páginas, projetos e teams</h1>
+        <p class="lead">Antes de mergulhar no design em si, você precisa entender como o Figma organiza tudo — do arquivo individual até a estrutura de uma empresa inteira. Uma boa organização agora vai te poupar horas de confusão no futuro.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~18 min</span>
+          <span>🎯 Nível: Fundamentos</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Entender a hierarquia organizacional completa do Figma: Teams → Projects → Files → Pages;</li>
+            <li>Criar um projeto, adicionar arquivos e organizar páginas dentro de um arquivo;</li>
+            <li>Configurar permissões de acesso (view/edit) para colaboradores;</li>
+            <li>Usar o Version History para revisar e restaurar versões anteriores;</li>
+            <li>Adotar boas práticas de organização para trabalhar com eficiência.</li>
+          </ul>
+        </div>
+
+        <h2>A hierarquia organizacional do Figma</h2>
+        <p>O Figma organiza o trabalho em quatro níveis aninhados. Entender essa estrutura é essencial para não se perder — especialmente em equipes maiores:</p>
+
+        <div class="diagram">
+          <svg viewBox="0 0 580 300" role="img" aria-label="Hierarquia do Figma: Teams contém Projects, que contém Files, que contém Pages">
+            <!-- Team -->
+            <rect x="10" y="10" width="560" height="270" rx="14" fill="var(--info-soft)" stroke="var(--info)" stroke-width="2" stroke-dasharray="6 4"/>
+            <text x="30" y="34" fill="var(--info)" font-size="13" font-family="sans-serif" font-weight="700">🏢 Team — "Startup XYZ"</text>
+
+            <!-- Project 1 -->
+            <rect x="28" y="48" width="240" height="210" rx="10" fill="var(--success-soft)" stroke="var(--success)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <text x="44" y="68" fill="var(--success)" font-size="12" font-family="sans-serif" font-weight="700">📁 Project — "App Mobile"</text>
+
+            <!-- File 1 dentro de Project 1 -->
+            <rect x="42" y="78" width="200" height="60" rx="8" fill="var(--surface)" stroke="var(--success-border)" stroke-width="1.5"/>
+            <text x="56" y="96" fill="var(--text)" font-size="11" font-family="sans-serif" font-weight="600">📄 File — "Design v2"</text>
+            <text x="56" y="110" fill="var(--text-muted)" font-size="10" font-family="sans-serif">Page 1: Cover</text>
+            <text x="56" y="122" fill="var(--text-muted)" font-size="10" font-family="sans-serif">Page 2: Wireframes  Page 3: UI</text>
+
+            <!-- File 2 dentro de Project 1 -->
+            <rect x="42" y="148" width="200" height="50" rx="8" fill="var(--surface)" stroke="var(--success-border)" stroke-width="1.5"/>
+            <text x="56" y="166" fill="var(--text)" font-size="11" font-family="sans-serif" font-weight="600">📄 File — "Design System"</text>
+            <text x="56" y="180" fill="var(--text-muted)" font-size="10" font-family="sans-serif">Page 1: Tokens  Page 2: Componentes</text>
+
+            <!-- File 3 rascunho -->
+            <rect x="42" y="208" width="200" height="36" rx="8" fill="var(--surface)" stroke="var(--success-border)" stroke-width="1.5"/>
+            <text x="56" y="224" fill="var(--text)" font-size="11" font-family="sans-serif" font-weight="600">📄 File — "Explorations"</text>
+            <text x="56" y="236" fill="var(--text-muted)" font-size="10" font-family="sans-serif">Page 1: Exploração  Page 2: Arquivo</text>
+
+            <!-- Project 2 -->
+            <rect x="292" y="48" width="240" height="100" rx="10" fill="var(--pro-soft)" stroke="var(--pro)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <text x="308" y="68" fill="var(--pro)" font-size="12" font-family="sans-serif" font-weight="700">📁 Project — "Dashboard Web"</text>
+            <rect x="308" y="78" width="210" height="54" rx="8" fill="var(--surface)" stroke="var(--pro-border)" stroke-width="1.5"/>
+            <text x="322" y="96" fill="var(--text)" font-size="11" font-family="sans-serif" font-weight="600">📄 File — "TaskFlow v1"</text>
+            <text x="322" y="110" fill="var(--text-muted)" font-size="10" font-family="sans-serif">Page 1: Cover  Page 2: UI  Page 3: Handoff</text>
+            <text x="308" y="138" fill="var(--text-muted)" font-size="10" font-family="sans-serif">+ outros arquivos...</text>
+
+            <!-- Drafts -->
+            <rect x="292" y="162" width="240" height="56" rx="10" fill="var(--warning-soft)" stroke="var(--warning)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <text x="308" y="182" fill="var(--warning)" font-size="12" font-family="sans-serif" font-weight="700">🗒 Drafts (rascunhos pessoais)</text>
+            <text x="308" y="198" fill="var(--text-muted)" font-size="10" font-family="sans-serif">Arquivos privados — não compartilhados com o time</text>
+            <text x="308" y="210" fill="var(--text-muted)" font-size="10" font-family="sans-serif">Máx. 3 arquivos no plano Starter</text>
+          </svg>
+          <p class="mock-label">Hierarquia: <strong>Team</strong> → <strong>Projects</strong> → <strong>Files</strong> → <strong>Pages</strong>. Drafts é o espaço pessoal fora dos projetos.</p>
+        </div>
+
+        <h2>Drafts — seu espaço pessoal</h2>
+        <p>Quando você cria uma conta, o Figma cria automaticamente um espaço chamado <strong>Drafts</strong> (Rascunhos). É o seu espaço pessoal — privado por padrão. Qualquer arquivo que você cria por conta própria vai parar aqui.</p>
+        <p>Drafts é ótimo para:</p>
+        <ul>
+          <li>Exploração e experimentos pessoais;</li>
+          <li>Aprendizado (como neste curso);</li>
+          <li>Arquivos que ainda não estão prontos para compartilhar com o time.</li>
+        </ul>
+        <p>No plano Starter gratuito, você pode ter até <strong>3 arquivos editáveis</strong> em Drafts. Para ter mais, você precisa mover os arquivos para um projeto de Team (que pode ter ilimitados se alguém no time tiver plano pago) ou arquivar os antigos.</p>
+
+        <div class="callout tip">
+          <span class="callout-title">Arquivando arquivos para liberar o limite</span>
+          <p>No plano Starter, se você atingiu o limite de 3 arquivos, clique com o botão direito em um arquivo antigo e escolha <strong>"Archive"</strong>. O arquivo some do Drafts mas permanece acessível em <strong>Settings → Archived files</strong>. Isso libera uma vaga sem perder o trabalho.</p>
+        </div>
+
+        <h2>Teams — a estrutura de equipe</h2>
+        <p>Um <strong>Team</strong> é o espaço colaborativo no Figma. É dentro de um Team que projetos e arquivos são criados para serem compartilhados com toda a equipe. Um Team pode ter vários membros, com diferentes papéis:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Papel no Team</th><th>O que pode fazer</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Owner</strong></td><td>Administrador completo: gerencia membros, configurações, faturamento e pode excluir o team</td></tr>
+              <tr><td><strong>Admin</strong></td><td>Gerencia membros e configurações, mas não pode excluir o team</td></tr>
+              <tr><td><strong>Member (Editor)</strong></td><td>Pode criar, editar e excluir arquivos e projetos dentro do team</td></tr>
+              <tr><td><strong>Viewer</strong></td><td>Pode visualizar e comentar arquivos, mas não pode editar (gratuito em todos os planos)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>No plano Starter, você pode criar um Team gratuito com até 2 editores (você + 1 colaborador). A partir do plano Professional, Teams têm editores ilimitados.</p>
+
+        <h2>Projects — pasta organizadora</h2>
+        <p>Dentro de um Team, você organiza os arquivos em <strong>Projects</strong> (Projetos). Um Project é basicamente uma pasta. Exemplos comuns de organização:</p>
+        <ul>
+          <li><strong>Por produto:</strong> "App iOS", "Site Institucional", "Admin Dashboard"</li>
+          <li><strong>Por cliente:</strong> "Cliente A", "Cliente B" (comum em agências)</li>
+          <li><strong>Por fase:</strong> "Discovery Q1", "Design System", "Campanha de Verão"</li>
+        </ul>
+        <p>Projects podem ter suas próprias permissões de acesso — você pode dar acesso a um projeto específico sem dar acesso ao Team inteiro. Isso é útil para freelancers ou parceiros externos que só precisam ver um projeto.</p>
+
+        <h2>Files — os arquivos de design</h2>
+        <p>Dentro de um Project ficam os <strong>Files</strong>. Cada arquivo é um canvas independente com suas próprias Pages. Um arquivo pode ser:</p>
+        <ul>
+          <li><strong>Design file:</strong> o arquivo principal onde você cria telas e componentes.</li>
+          <li><strong>FigJam file:</strong> lousa de brainstorming (identificada com ícone diferente).</li>
+          <li><strong>Slides file:</strong> apresentação criada no Figma Slides.</li>
+        </ul>
+        <p>Cada arquivo tem uma URL única — e qualquer pessoa com o link pode acessar (dependendo das permissões configuradas).</p>
+
+        <h2>Pages — múltiplas telas no mesmo arquivo</h2>
+        <p>Dentro de um File, você pode criar múltiplas <strong>Pages</strong> (páginas). Cada página tem seu próprio canvas infinito e sua própria lista de layers. As páginas são visíveis na parte inferior do painel esquerdo.</p>
+
+        <h3>Boas práticas de organização por páginas</h3>
+        <p>Uma estrutura consagrada de páginas para projetos profissionais:</p>
+        <ul>
+          <li><strong>Cover:</strong> capa do arquivo com nome do projeto, versão atual e data da última atualização.</li>
+          <li><strong>Wireframes:</strong> sketches e wireframes de baixa fidelidade, organizados por fluxo.</li>
+          <li><strong>Design:</strong> telas de alta fidelidade — é aqui que fica o trabalho principal.</li>
+          <li><strong>Components / UI Kit:</strong> todos os componentes, estilos e tokens usados no projeto.</li>
+          <li><strong>Prototype Flows:</strong> telas conectadas para protótipos (ou pode ficar na mesma página do Design).</li>
+          <li><strong>Archive:</strong> telas antigas ou descartadas que você não quer apagar mas não usa mais.</li>
+        </ul>
+
+        <div class="callout note">
+          <span class="callout-title">Não existe fórmula única</span>
+          <p>A organização de páginas varia de equipe para equipe. O que importa é que <em>todos do time entendam a estrutura</em> sem precisar perguntar. Se você é freelancer ou estudante, crie uma convenção e siga-a consistentemente em todos os projetos.</p>
+        </div>
+
+        <h2>Multiplayer e permissões de acesso</h2>
+        <p>O Figma permite colaboração em tempo real. Quando múltiplas pessoas abrem o mesmo arquivo, cada uma vê o cursor dos outros com nome e cor identificadora. Você pode ver o que seus colegas estão fazendo em tempo real — exatamente como o Google Docs.</p>
+
+        <h3>Compartilhando um arquivo</h3>
+        <p>Clique no botão <strong>"Share"</strong> na topbar. Você tem três opções:</p>
+        <ul>
+          <li><strong>Invite people:</strong> convida pessoas pelo e-mail, com escolha de permissão (Can edit ou Can view).</li>
+          <li><strong>Share link:</strong> cria um link de acesso. Você define se qualquer pessoa com o link pode visualizar, ou somente as pessoas convidadas.</li>
+          <li><strong>Publish to Community:</strong> publica o arquivo na Figma Community para que qualquer pessoa no mundo possa ver e duplicar.</li>
+        </ul>
+
+        <div class="callout warning">
+          <span class="callout-title">Can edit vs. Can view</span>
+          <p><strong>Can edit</strong> dá pleno poder: criar, modificar, excluir qualquer elemento. Conceda apenas para quem vai trabalhar ativamente no design. <strong>Can view</strong> permite apenas visualizar e adicionar comentários — ideal para PMs, stakeholders e desenvolvedores que precisam consultar o design mas não devem modificá-lo.</p>
+        </div>
+
+        <h2>A Community — templates e recursos gratuitos</h2>
+        <p>A <strong>Figma Community</strong> (figma.com/community) é um repositório público onde designers do mundo inteiro publicam templates, design systems, ícones, mockups e plugins gratuitos.</p>
+        <p>Ao encontrar algo interessante, clique em <strong>"Duplicate"</strong> — o arquivo é copiado para seus Drafts e você pode editá-lo livremente. Isso é perfeito para:</p>
+        <ul>
+          <li>Estudar como profissionais organizam seus arquivos;</li>
+          <li>Usar design systems prontos (Material Design, Apple HIG, etc.);</li>
+          <li>Encontrar mockups de dispositivos para apresentações;</li>
+          <li>Explorar plugins recomendados pela comunidade.</li>
+        </ul>
+
+        <h2>Version History — histórico de versões</h2>
+        <p>O Figma salva automaticamente cada mudança que você faz. Você pode acessar o histórico de versões em <strong>Menu principal → File → Show version history</strong> (ou <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Alt</kbd>/<kbd>⌥</kbd> + <kbd>S</kbd>).</p>
+        <p>O painel de Version History aparece no lado direito e mostra uma lista de snapshots com data e hora. Você pode:</p>
+        <ul>
+          <li><strong>Navegar</strong> clicando em qualquer versão para visualizá-la (sem modificar o arquivo atual);</li>
+          <li><strong>Restaurar</strong> uma versão anterior clicando em "Restore this version";</li>
+          <li><strong>Salvar uma versão nomeada</strong> clicando em "Save version" — útil antes de fazer mudanças grandes (ex.: "Versão aprovada pelo cliente — 15/05").</li>
+        </ul>
+        <p>No plano Starter, o histórico é mantido por <strong>30 dias</strong>. Nos planos pagos, o histórico é ilimitado.</p>
+
+        <div class="callout pro">
+          <span class="callout-title">Salve versões nomeadas antes de grandes mudanças</span>
+          <p>Antes de fazer um redesign radical ou aceitar feedback que vai mudar muito o arquivo, salve uma versão nomeada. Algo como "Aprovado pelo PM — 2025-05-20" é um checkpoint que você pode restaurar se precisar voltar atrás. Isso substitui a prática antiquada de criar arquivos como "design_final_v2_DEFINITIVO.fig".</p>
+        </div>
+
+        <h2>Passo a passo: criar projeto → arquivo → páginas</h2>
+
+        <ol class="steps">
+          <li>
+            <strong>Acesse a tela inicial.</strong>
+            Na tela inicial do Figma (figma.com ou app desktop), você vê a seção "Drafts" e, se tiver um team, a seção do team. Localize a área <strong>Drafts</strong> ou navegue até um Team.
+          </li>
+          <li>
+            <strong>Crie um novo Project (em um Team).</strong>
+            Se estiver em um Team, clique em <strong>"New project"</strong> no painel esquerdo. Digite um nome (ex.: "Curso Figma — Exercícios") e pressione <kbd>Enter</kbd>.
+          </li>
+          <li>
+            <strong>Crie um novo arquivo.</strong>
+            Dentro do projeto, clique em <strong>"New design file"</strong>. O Figma cria o arquivo e o abre imediatamente.
+          </li>
+          <li>
+            <strong>Renomeie o arquivo.</strong>
+            No topo do arquivo, clique no nome "Untitled" e digite "Módulo 0 — Exercícios". Pressione <kbd>Enter</kbd>. O nome é salvo automaticamente.
+          </li>
+          <li>
+            <strong>Adicione páginas.</strong>
+            No painel esquerdo, na parte inferior, clique no "+" ao lado de "Pages" para adicionar uma nova página. Crie: "Cover", "Wireframes" e "Design". Renomeie cada uma com duplo clique.
+          </li>
+          <li>
+            <strong>Configure o compartilhamento.</strong>
+            Clique em <strong>Share</strong> na topbar. Mude o link de acesso para "Anyone with the link can view". Copie o link — esse é o URL que você vai usar para mostrar seu trabalho a outras pessoas.
+          </li>
+          <li>
+            <strong>Salve uma versão nomeada.</strong>
+            Vá em <strong>Menu principal → File → Save to version history</strong> e nomeie como "Estrutura inicial criada". Confirme. Agora você tem um checkpoint seguro.
+          </li>
+        </ol>
+
+        <h2>Boas práticas de organização</h2>
+        <p>Designers profissionais seguem convenções que tornam os arquivos fáceis de entender para qualquer pessoa da equipe, mesmo meses depois:</p>
+
+        <h3>Nomeação consistente</h3>
+        <ul>
+          <li>Use nomes descritivos em vez de "Frame 1", "Rectangle 3": prefira "Card — Produto", "Header — Home".</li>
+          <li>Use prefixos para indicar o tipo: <code>🖼 [Screen]</code>, <code>⚡ [Component]</code>, <code>📐 [Template]</code>.</li>
+          <li>Siga a convenção da equipe — o mais importante é ser consistente.</li>
+        </ul>
+
+        <h3>Use Sections para organizar o canvas</h3>
+        <p>Agrupe telas relacionadas em Sections (<kbd>S</kbd>) com títulos descritivos: "Fluxo de Login", "Telas de Configuração". Isso torna o canvas navegável mesmo com dezenas de telas.</p>
+
+        <h3>Mantenha o Cover atualizado</h3>
+        <p>A Page de Cover deve ter: nome do projeto, versão, data e nome do(s) designer(s) responsável(is). Quando alguém abre o arquivo pela primeira vez, a Cover é a primeira coisa que vê.</p>
+
+        <h3>Archive em vez de deletar</h3>
+        <p>Antes de apagar um elemento, mova-o para uma Page "Archive" com a data. Em algum momento futuro você pode precisar daquela ideia descartada.</p>
+
+        <h2>Exemplo de uso real: estrutura de um arquivo de design system</h2>
+        <p>Empresas com design systems maduros geralmente organizam o arquivo principal assim:</p>
+
+        <div class="figma-mock">
+          <div class="device-browser">
+            <div class="browser-bar"><i></i><i></i><i></i><span style="font-size:12px;color:var(--text-muted);margin-left:8px;">Design System — Startup XYZ</span></div>
+            <div style="display:flex;gap:0;height:260px;">
+              <!-- sidebar mock de pages -->
+              <div style="width:140px;background:var(--surface-2);border-right:1px solid var(--border);padding:12px 10px;flex:none;">
+                <div style="font-size:10px;font-weight:700;color:var(--text-soft);margin-bottom:8px;">PÁGINAS</div>
+                <div style="font-size:12px;color:var(--primary);font-weight:600;padding:4px 6px;background:var(--primary-soft);border-radius:6px;margin-bottom:4px;">📄 Cover</div>
+                <div style="font-size:12px;color:var(--text-muted);padding:4px 6px;margin-bottom:4px;">📄 Foundations</div>
+                <div style="font-size:12px;color:var(--text-muted);padding:4px 6px;margin-bottom:4px;">📄 Typography</div>
+                <div style="font-size:12px;color:var(--text-muted);padding:4px 6px;margin-bottom:4px;">📄 Colors</div>
+                <div style="font-size:12px;color:var(--text-muted);padding:4px 6px;margin-bottom:4px;">📄 Spacing</div>
+                <div style="font-size:12px;color:var(--text-muted);padding:4px 6px;margin-bottom:4px;">📄 Buttons</div>
+                <div style="font-size:12px;color:var(--text-muted);padding:4px 6px;margin-bottom:4px;">📄 Forms</div>
+                <div style="font-size:12px;color:var(--text-muted);padding:4px 6px;margin-bottom:4px;">📄 Cards</div>
+                <div style="font-size:12px;color:var(--text-muted);padding:4px 6px;margin-bottom:4px;">📄 Navigation</div>
+              </div>
+              <!-- conteúdo mock da cover page -->
+              <div style="flex:1;padding:18px;display:flex;flex-direction:column;gap:8px;">
+                <div style="font-size:9px;color:var(--text-soft);font-weight:700;text-transform:uppercase;letter-spacing:.05em;">DESIGN SYSTEM</div>
+                <div style="font-size:22px;font-weight:800;color:var(--text);">Startup XYZ</div>
+                <div style="font-size:13px;color:var(--text-muted);">Versão 2.4.1 · Atualizado em 20/05/2025</div>
+                <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;">
+                  <span style="background:var(--primary-soft);color:var(--primary);border-radius:99px;padding:3px 10px;font-size:11px;font-weight:600;">83 componentes</span>
+                  <span style="background:var(--success-soft);color:var(--success);border-radius:99px;padding:3px 10px;font-size:11px;font-weight:600;">12 pages</span>
+                  <span style="background:var(--warning-soft);color:var(--warning);border-radius:99px;padding:3px 10px;font-size:11px;font-weight:600;">3 designers</span>
+                </div>
+                <div style="margin-top:10px;font-size:12px;color:var(--text-muted);">Owner: Ana Silva &nbsp;|&nbsp; Editors: João P., Luisa R.</div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">Estrutura típica de um arquivo de Design System: Cover informativa + páginas por categoria de componente.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Abrir Version History</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>S</kbd></td></tr>
+              <tr><td>Salvar versão nomeada</td><td>Menu → File → Save to version history</td><td>Menu → File → Save to version history</td></tr>
+              <tr><td>Adicionar comentário</td><td><kbd>C</kbd></td><td><kbd>C</kbd></td></tr>
+              <tr><td>Criar Section</td><td><kbd>S</kbd></td><td><kbd>S</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>A hierarquia é: <strong>Team → Projects → Files → Pages</strong>. Drafts é o espaço pessoal fora dos projetos.</li>
+          <li>Permissões: <strong>Can edit</strong> para quem trabalha no arquivo; <strong>Can view</strong> para quem só consulta.</li>
+          <li>A Community tem templates e recursos gratuitos — use o botão "Duplicate" para copiar para seus Drafts.</li>
+          <li>Version History guarda o histórico de mudanças (30 dias no plano gratuito, ilimitado nos planos pagos).</li>
+          <li>Boas práticas: nomes descritivos, Sections para organizar o canvas, Cover atualizada e Archive em vez de deletar.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Monte a estrutura do seu arquivo de estudos</h3>
+          <ol>
+            <li>Crie (ou abra) um arquivo chamado <strong>"Módulo 0 — Exercícios"</strong> nos seus Drafts.</li>
+            <li>Adicione 4 páginas: "Cover", "Wireframes", "Design" e "Archive".</li>
+            <li>Na página "Cover", crie um Frame de 1440×960px. Dentro dele, adicione um texto com o nome do projeto e a data de hoje.</li>
+            <li>Configure o compartilhamento: link aberto para <strong>"Anyone with the link can view"</strong>.</li>
+            <li>Salve uma versão nomeada: "Estrutura inicial".</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> o arquivo tem 4 páginas nomeadas, a Cover tem um Frame com texto, e você tem uma versão salva no Version History.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Explore a Community e duplique um Design System</h3>
+          <p>Acesse <strong>figma.com/community</strong> e busque por "Design System". Encontre um design system bem avaliado (por exemplo, "Material Design 3" ou "Untitled UI") e clique em <strong>"Duplicate"</strong>. Explore o arquivo duplicado nos seus Drafts: quantas páginas ele tem? Como os componentes estão organizados? Quais convenções de nomeação ele usa? Documente pelo menos 3 práticas de organização que você quer adotar nos seus próprios arquivos.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Qual é a hierarquia organizacional correta no Figma?</p>
+            <ul class="quiz-options">
+              <li>Files → Projects → Teams → Pages</li>
+              <li>Pages → Files → Drafts → Teams</li>
+              <li>Teams → Projects → Files → Pages</li>
+              <li>Projects → Teams → Pages → Files</li>
+            </ul>
+            <div class="quiz-explain">A hierarquia correta é <strong>Teams → Projects → Files → Pages</strong>. Drafts fica fora dessa hierarquia, como espaço pessoal do usuário. Cada nível é um contêiner do próximo.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">2. O que a permissão "Can view" permite que um colaborador faça em um arquivo do Figma?</p>
+            <ul class="quiz-options">
+              <li>Editar qualquer elemento do arquivo</li>
+              <li>Visualizar o design e adicionar comentários, mas não editar</li>
+              <li>Criar novos arquivos no mesmo projeto</li>
+              <li>Exportar todos os assets do arquivo</li>
+            </ul>
+            <div class="quiz-explain"><strong>Can view</strong> permite apenas <strong>visualizar e comentar</strong> — é a permissão ideal para PMs, stakeholders e desenvolvedores que precisam consultar o design. <strong>Can edit</strong> dá poder total de modificação.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">3. Por quanto tempo o Figma mantém o Version History no plano Starter (gratuito)?</p>
+            <ul class="quiz-options">
+              <li>7 dias</li>
+              <li>15 dias</li>
+              <li>60 dias</li>
+              <li>30 dias</li>
+            </ul>
+            <div class="quiz-explain">No plano <strong>Starter (gratuito)</strong>, o Version History é mantido por <strong>30 dias</strong>. Nos planos Professional, Organization e Enterprise, o histórico é <strong>ilimitado</strong>. Por isso, salvar versões nomeadas é tão importante no plano gratuito.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

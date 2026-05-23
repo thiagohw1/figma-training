@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing page do produto | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="06-08-landing-page" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🖥️ Módulo 6 · Projeto Guiado · Lição 8 de 8</div>
+        <h1>Landing page do produto</h1>
+        <p class="lead">O projeto TaskFlow está quase completo. Para fechar com chave de ouro, vamos projetar a <strong>landing page</strong> — a primeira impressão do produto para visitantes ainda não cadastrados. Uma página que converte visitantes em usuários começa aqui, no Figma.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~30 min</span>
+          <span>🎯 Nível: Projeto prático</span>
+          <span>🛠️ Pratique no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Estruturar uma landing page eficaz com as seções canônicas: hero, features, social proof, pricing e footer;</li>
+            <li>Construir um Hero section com impacto visual usando Auto Layout e tipografia de display;</li>
+            <li>Criar a seção de Pricing com cards de planos e toggle anual/mensal;</li>
+            <li>Adaptar a landing page para mobile com os mesmos princípios de responsividade aprendidos;</li>
+            <li>Aplicar hierarquia visual e ritmo tipográfico para guiar o olhar do visitante até o CTA.</li>
+          </ul>
+        </div>
+
+        <h2>A anatomia de uma landing page SaaS</h2>
+        <p>Uma landing page de produto SaaS segue uma estrutura narrativa testada por milhares de empresas. Cada seção tem uma função específica na jornada de convencimento do visitante:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Seção</th><th>Objetivo</th><th>Elementos-chave</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Navbar</strong></td><td>Orientação e CTA rápido</td><td>Logo, links de navegação, botão "Entrar" + "Começar grátis"</td></tr>
+              <tr><td><strong>Hero</strong></td><td>Comunicar o valor em 5 segundos</td><td>Headline poderosa, subheadline, CTA primário, screenshot do produto</td></tr>
+              <tr><td><strong>Social Proof</strong></td><td>Reduzir ceticismo com provas sociais</td><td>Logos de clientes, número de usuários, média de avaliações</td></tr>
+              <tr><td><strong>Features</strong></td><td>Detalhar o que o produto faz</td><td>Ícone + título + descrição para cada funcionalidade principal</td></tr>
+              <tr><td><strong>Screenshot / Demo</strong></td><td>Mostrar o produto em ação</td><td>Screenshot real do dashboard, vídeo demo, animação</td></tr>
+              <tr><td><strong>Pricing</strong></td><td>Eliminar dúvidas sobre preço</td><td>Planos com features, destaque do plano recomendado, FAQ</td></tr>
+              <tr><td><strong>Testimonials</strong></td><td>Prova social de pessoas reais</td><td>Avatar + nome + cargo + empresa + depoimento</td></tr>
+              <tr><td><strong>CTA final</strong></td><td>Última chamada para conversão</td><td>Headline + CTA + garantia (sem cartão de crédito)</td></tr>
+              <tr><td><strong>Footer</strong></td><td>Navegação complementar</td><td>Links legais, redes sociais, contato, copyright</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout info">
+          <span class="callout-title">Por que essa ordem importa?</span>
+          <p>A sequência segue a <strong>lógica de persuasão AIDA</strong>: Atenção (Hero) → Interesse (Features) → Desejo (Social Proof + Pricing) → Ação (CTA final). Pular etapas ou reordená-las arbitrariamente reduz a taxa de conversão — há décadas de dados de A/B testing por trás dessa estrutura.</p>
+        </div>
+
+        <h2>Passo a passo: construindo o Hero Section</h2>
+        <p>O Hero é a seção mais importante da landing page — é onde você tem menos de 5 segundos para convencer o visitante de que vale a pena continuar lendo.</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie o frame da seção Hero.</strong>
+            Frame de 1440 px de largura e altura automática (Height: Hug). Auto Layout vertical, padding vertical 120, align center. Fundo: gradiente sutil do background para um tom levemente mais saturado de primary (<code>linear-gradient(160deg, #fafafa 0%, #f0ebff 100%)</code> no Light mode).
+          </li>
+          <li>
+            <strong>Monte o container de conteúdo.</strong>
+            Dentro do hero, crie um frame filho com largura fixa de 800 px, Auto Layout vertical, gap 24, align center. Este é o "container do hero" — centralizado na tela com margem automática.
+          </li>
+          <li>
+            <strong>Adicione a eyebrow tag.</strong>
+            Uma pequena tag acima do headline: badge pill com ícone ✨ + texto "Novo: Board Kanban com IA". Fill primary-soft, texto primary, border-radius 999 px. Isso chama atenção e posiciona o produto como moderno.
+          </li>
+          <li>
+            <strong>Adicione o headline principal.</strong>
+            Texto com estilo <code>Display/48</code> (Inter, 800, line-height 1.1), text-align center, max-width 700 px. Conteúdo: <em>"Gestão de projetos que o seu time vai <span style="color: var(--primary)">realmente usar</span>"</em>. Use a cor primária como destaque em uma palavra-chave — crie um texto span aninhado com a cor de brand.
+          </li>
+          <li>
+            <strong>Adicione o subtítulo.</strong>
+            Texto <code>Body/18</code> (Inter, 400, line-height 1.6), cor text-muted, text-align center, max-width 560 px. Conteúdo: <em>"TaskFlow centraliza projetos, tarefas e colaboração em um único lugar. Do kickoff ao entregável, sem planilhas e sem caos."</em>
+          </li>
+          <li>
+            <strong>Adicione o grupo de CTAs.</strong>
+            Auto Layout horizontal, gap 12, align center:
+            <ul>
+              <li>Botão primário: "Começar grátis" → 48 px de altura, padding 0 28, border-radius 10, fill primary.</li>
+              <li>Botão ghost: "Ver demonstração →" → mesma altura, border 1 px border-strong, fundo surface.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Adicione a nota de confiança.</strong>
+            Abaixo dos CTAs: texto Caption (<em>"Grátis por 14 dias · Sem cartão de crédito · Cancelamento a qualquer momento"</em>), cor text-muted. Esta micro-copy remove fricção na decisão de cadastro.
+          </li>
+          <li>
+            <strong>Adicione o screenshot do produto.</strong>
+            Abaixo de todo o texto, inclua uma imagem (ou o mock do dashboard que você construiu). Frame de 1200×700 px, border-radius 16, sombra Shadow/lg, com borda sutil de 1 px. Posicione levemente saindo do container (overflow visível) para criar profundidade visual.
+          </li>
+        </ol>
+
+        <div class="figma-mock">
+          <div class="device-browser" style="max-width:700px;">
+            <div class="browser-bar"><i></i><i></i><i></i><span style="flex:1;text-align:center;font-size:12px;color:var(--text-muted);">taskflow.app</span></div>
+            <div style="background:linear-gradient(160deg,var(--bg) 0%,var(--primary-soft) 100%);padding:40px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px;">
+              <!-- Navbar mockup -->
+              <div style="width:100%;max-width:600px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <div style="width:26px;height:26px;background:linear-gradient(135deg,#6c4cf1,#b0367a);border-radius:6px;"></div>
+                  <span style="font-weight:800;font-size:14px;">TaskFlow</span>
+                </div>
+                <div style="display:flex;gap:16px;font-size:12px;color:var(--text-muted);">
+                  <span>Funcionalidades</span><span>Preços</span><span>Blog</span>
+                </div>
+                <div style="display:flex;gap:8px;">
+                  <div style="padding:6px 14px;border-radius:8px;border:1px solid var(--border);font-size:11px;font-weight:600;background:var(--surface);">Entrar</div>
+                  <div style="padding:6px 14px;border-radius:8px;background:var(--primary);color:#fff;font-size:11px;font-weight:600;">Começar grátis</div>
+                </div>
+              </div>
+              <!-- Eyebrow badge -->
+              <div style="display:inline-flex;align-items:center;gap:6px;background:var(--primary-soft);border:1px solid var(--primary-soft-border);color:var(--primary);padding:4px 14px;border-radius:999px;font-size:11px;font-weight:600;">
+                ✨ Novo: Board Kanban com IA
+              </div>
+              <!-- Headline -->
+              <div style="font-size:28px;font-weight:800;line-height:1.15;max-width:500px;letter-spacing:-.02em;">
+                Gestão de projetos que o seu time vai <span style="color:var(--primary);">realmente usar</span>
+              </div>
+              <!-- Subhead -->
+              <div style="font-size:14px;color:var(--text-muted);max-width:400px;line-height:1.6;">
+                TaskFlow centraliza projetos, tarefas e colaboração em um único lugar. Do kickoff ao entregável, sem planilhas e sem caos.
+              </div>
+              <!-- CTAs -->
+              <div style="display:flex;gap:10px;align-items:center;">
+                <div style="padding:10px 22px;border-radius:10px;background:var(--primary);color:#fff;font-size:13px;font-weight:700;">Começar grátis</div>
+                <div style="padding:10px 20px;border-radius:10px;border:1px solid var(--border);background:var(--surface);font-size:13px;font-weight:600;">Ver demonstração →</div>
+              </div>
+              <!-- Trust copy -->
+              <div style="font-size:11px;color:var(--text-soft);">Grátis por 14 dias · Sem cartão de crédito · Cancelamento a qualquer momento</div>
+              <!-- Dashboard screenshot mock -->
+              <div style="width:100%;max-width:580px;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-lg);padding:12px;margin-top:8px;">
+                <div style="display:flex;height:100px;gap:8px;">
+                  <div style="width:80px;background:var(--surface-2);border-radius:8px;display:flex;flex-direction:column;gap:3px;padding:6px;">
+                    <div style="height:6px;background:var(--primary);border-radius:3px;opacity:.7;"></div>
+                    <div style="height:6px;background:var(--surface-3);border-radius:3px;"></div>
+                    <div style="height:6px;background:var(--surface-3);border-radius:3px;"></div>
+                    <div style="height:6px;background:var(--surface-3);border-radius:3px;"></div>
+                  </div>
+                  <div style="flex:1;display:flex;flex-direction:column;gap:6px;">
+                    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;">
+                      <div style="background:var(--surface-2);border-radius:6px;padding:6px;"><div style="font-size:9px;color:var(--text-muted);">Projetos</div><div style="font-size:14px;font-weight:800;color:var(--primary);">12</div></div>
+                      <div style="background:var(--surface-2);border-radius:6px;padding:6px;"><div style="font-size:9px;color:var(--text-muted);">Tarefas</div><div style="font-size:14px;font-weight:800;color:var(--warning);">84</div></div>
+                      <div style="background:var(--surface-2);border-radius:6px;padding:6px;"><div style="font-size:9px;color:var(--text-muted);">Membros</div><div style="font-size:14px;font-weight:800;">18</div></div>
+                      <div style="background:var(--surface-2);border-radius:6px;padding:6px;"><div style="font-size:9px;color:var(--text-muted);">Concluídas</div><div style="font-size:14px;font-weight:800;color:var(--success);">7</div></div>
+                    </div>
+                    <div style="flex:1;background:var(--surface-2);border-radius:6px;display:flex;align-items:flex-end;gap:3px;padding:6px 8px 4px;">
+                      <div style="flex:1;background:var(--primary);opacity:.7;border-radius:2px 2px 0 0;height:40%;"></div>
+                      <div style="flex:1;background:var(--primary);opacity:.7;border-radius:2px 2px 0 0;height:65%;"></div>
+                      <div style="flex:1;background:var(--primary);opacity:.7;border-radius:2px 2px 0 0;height:45%;"></div>
+                      <div style="flex:1;background:var(--primary);opacity:.7;border-radius:2px 2px 0 0;height:80%;"></div>
+                      <div style="flex:1;background:var(--primary);opacity:.7;border-radius:2px 2px 0 0;height:60%;"></div>
+                      <div style="flex:1;background:var(--primary);opacity:.7;border-radius:2px 2px 0 0;height:95%;"></div>
+                      <div style="flex:1;background:var(--primary);opacity:.7;border-radius:2px 2px 0 0;height:70%;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">Hero section completo do TaskFlow: eyebrow badge, headline com destaque de cor, subheadline, CTAs duplos, micro-copy de confiança e screenshot do dashboard abaixo.</p>
+        </div>
+
+        <h2>Passo a passo: seção de Pricing</h2>
+        <p>A seção de pricing é a que mais impacta a decisão de conversão. Deve ser clara, honesta e fazer o plano mais rentável parecer a escolha óbvia — sem ser manipulativa.</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie o frame da seção Pricing.</strong>
+            Frame de 1440 px, Auto Layout vertical, padding vertical 96, align center, fundo <code>color/surface/subtle</code>. Adicione o título da seção ("Preços simples e transparentes") e subtítulo acima dos cards.
+          </li>
+          <li>
+            <strong>Adicione o toggle Mensal/Anual.</strong>
+            Um Toggle component com labels "Mensal" e "Anual" e uma tag "Economize 20%" no label anual. Usar Variable booleana <code>billing/annual</code> para controlar qual preço é exibido em cada card. No protótipo, o toggle alterna os valores por Set variable.
+          </li>
+          <li>
+            <strong>Crie o PricingCard Component.</strong>
+            Frame de 340 px de largura, Auto Layout vertical, gap 20, padding 28, border-radius 16. Conteúdo:
+            <ul>
+              <li>Header: nome do plano (h2) + descrição (body muted)</li>
+              <li>Preço: valor principal (Display/48, Bold) + período (<code>/mês</code>, muted)</li>
+              <li>CTA: botão de 100% de largura (fill container)</li>
+              <li>Lista de features: Auto Layout vertical, gap 10. Cada item: ícone check (success) + texto (body/14)</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Crie 3 instâncias do PricingCard.</strong>
+            <strong>Free:</strong> R$ 0/mês, 5 membros, 3 projetos. CTA ghost "Começar grátis". <strong>Pro (recomendado):</strong> R$ 49/mês. Border 2 px primary, fundo primary-soft, adicione badge "Mais popular". CTA primário "Assinar Pro". <strong>Enterprise:</strong> "Sob consulta". Funcionalidades ilimitadas. CTA ghost "Falar com vendas".
+          </li>
+          <li>
+            <strong>Monte a linha dos 3 cards.</strong>
+            Container com Auto Layout horizontal, gap 16, align center. O card Pro tem transform: scale(1.04) para se destacar sutilmente acima dos outros — use padding negativo no container ou sombra maior (Shadow/lg) para criar essa elevação.
+          </li>
+        </ol>
+
+        <div class="callout pro">
+          <span class="callout-title">Ancoragem de preço (Price Anchoring)</span>
+          <p>Colocar o plano Enterprise com preço mais alto à direita faz o plano Pro parecer mais razoável por comparação — mesmo que o Pro seja o mais caro que você queria vender inicialmente. É a mesma técnica que restaurantes usam ao colocar o vinho mais caro no topo da carta. No design, você pode amplificar esse efeito com tamanho, sombra e cor do plano recomendado.</p>
+        </div>
+
+        <h2>Seção de Social Proof</h2>
+        <p>Uma faixa de logos de empresas clientes, logo abaixo do hero, reduz dramaticamente o ceticismo. Crie uma seção horizontal com: texto "<em>Confiado por mais de 5.000 times</em>" + logos em cinza (use a cor text-soft para neutralizar — logos coloridos competem visualmente com o restante da página).</p>
+
+        <h2>Seção de Features</h2>
+        <p>Grid de 3 colunas × 2 linhas com cards de feature. Cada card: ícone em fundo primary-soft (40×40 px, border-radius 10) + título (h3) + descrição (body/14 muted). Auto Layout vertical, gap 10. O grid usa Auto Layout horizontal com wrap — 3 colunas em desktop, 2 no tablet, 1 no mobile.</p>
+
+        <h2>Seção de Testimonials</h2>
+        <p>Grade de 3 depoimentos lado a lado. Cada TestimonialCard: texto entre aspas + foto do usuário + nome + cargo + empresa. Destaque o melhor depoimento no centro com borda primary sutil.</p>
+
+        <h2>CTA final e Footer</h2>
+        <p>Antes do footer, uma seção de CTA limpa: background com gradiente de brand, headline grande ("Pronto para transformar como seu time trabalha?"), botão CTA enorme, e a nota de confiança. Essa seção captura os usuários que rolaram até o final mas ainda não converteram.</p>
+        <p>O footer tem 4 colunas: logo + descrição (col 1), links de produto (col 2), empresa (col 3), legal + social (col 4). Em mobile, as colunas se empilham com Auto Layout Wrap.</p>
+
+        <div class="callout tip">
+          <span class="callout-title">Ritmo visual: whitespace é funcional</span>
+          <p>Em landing pages, o espaço em branco não é desperdício — é ritmo. Cada seção precisa de "respiração" (padding generoso, geralmente 80–120 px vertical) para que o olhar saiba que uma seção terminou e outra começou. Seções coladas umas nas outras criam confusão visual e cansam o visitante mais rápido.</p>
+        </div>
+
+        <h2>Responsividade da landing page</h2>
+        <p>A landing page segue os mesmos princípios da lição anterior:</p>
+        <ul>
+          <li><strong>Hero mobile:</strong> headline menor (28 px), screenshot em largura total abaixo dos CTAs, CTAs empilhados verticalmente.</li>
+          <li><strong>Features mobile:</strong> Auto Layout Wrap vira 1 coluna automaticamente.</li>
+          <li><strong>Pricing mobile:</strong> cards empilhados verticalmente, em tela cheia. O card recomendado fica no topo.</li>
+          <li><strong>Footer mobile:</strong> apenas logo + links essenciais + copyright. As 4 colunas desktop se colapsam em 2 e depois em 1.</li>
+        </ul>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Analise as landing pages de Linear (linear.app), Notion (notion.so) e Loom (loom.com) — todas seguem a estrutura Hero → Social Proof → Features → Demo → Pricing → CTA → Footer. O que muda é o visual, o tom de voz e os detalhes de hierarquia. Passeie pelo Figma Community e procure "SaaS Landing Page" para ver dezenas de referências profissionais abertas para inspeção.</p>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Criar seção (Section) no Figma</td><td><kbd>S</kbd></td><td><kbd>S</kbd></td></tr>
+              <tr><td>Alinhar ao centro horizontal</td><td><kbd>Alt</kbd> + <kbd>H</kbd></td><td><kbd>⌥</kbd> + <kbd>H</kbd></td></tr>
+              <tr><td>Distribuir espaçamento igual</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd></td></tr>
+              <tr><td>Ferramenta Frame</td><td><kbd>F</kbd></td><td><kbd>F</kbd></td></tr>
+              <tr><td>Entrar em Presentation View</td><td><kbd>Ctrl</kbd> + <kbd>Enter</kbd></td><td><kbd>⌘</kbd> + <kbd>Enter</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>A landing page segue a estrutura AIDA: Hero → Social Proof → Features → Pricing → CTA → Footer.</li>
+          <li>O Hero tem menos de 5 segundos para comunicar o valor — headline clara, CTA visível e screenshot do produto são essenciais.</li>
+          <li>O pricing usa ancoragem para fazer o plano recomendado parecer a escolha natural.</li>
+          <li>Whitespace generoso (80–120 px de padding entre seções) cria ritmo e não é desperdício.</li>
+          <li>A estrutura da landing page usa os mesmos componentes do app (botões, badges, cards) garantindo consistência visual.</li>
+          <li>O módulo inteiro do TaskFlow — do briefing à landing page — é um projeto de portfólio completo e real.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Monte o Hero e a seção de Pricing completos</h3>
+          <ol>
+            <li>Crie a página <em>Landing Page</em> com a navbar (fixada no topo com Constraint Top + Left&amp;Right).</li>
+            <li>Monte o Hero section com todas as camadas: eyebrow tag, headline com destaque de cor, subtítulo, CTAs duplos, nota de confiança e screenshot do dashboard.</li>
+            <li>Crie o <code>PricingCard</code> como Component e instancie os 3 planos (Free, Pro, Enterprise).</li>
+            <li>Adapte o Hero para mobile (375 px): headline menor, screenshot abaixo dos CTAs, CTAs empilhados.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> a landing page desktop tem um hero visualmente impactante com o screenshot do dashboard visível sem scroll; a seção de pricing tem 3 cards com o plano Pro destacado visualmente acima dos outros; e a versão mobile adapta os CTAs para empilhamento vertical sem overflow de conteúdo.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Landing page completa e responsiva</h3>
+          <p>Monte todas as 9 seções da landing page (Navbar, Hero, Social Proof, Features, Screenshot/Demo, Pricing, Testimonials, CTA Final, Footer) no frame de 1440 px. Em seguida, crie a versão mobile de 375 px adaptando cada seção com as técnicas de responsividade aprendidas. Por fim, construa o protótipo: conecte o botão "Começar grátis" da landing page ao fluxo de cadastro (modal de criação de conta) e em seguida ao dashboard principal. Esta é a entrega final do Módulo 6 — um projeto de portfólio completo, do briefing ao produto ao marketing.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Qual é a função da "micro-copy de confiança" abaixo dos CTAs do Hero ("Grátis por 14 dias · Sem cartão de crédito…")?</p>
+            <ul class="quiz-options">
+              <li>Preencher espaço visual vazio abaixo dos botões</li>
+              <li>Melhorar o SEO da página com palavras-chave de cauda longa</li>
+              <li>Remover fricção psicológica na decisão de cadastro, respondendo antecipadamente as objeções mais comuns do visitante</li>
+              <li>Cumprir requisitos legais de transparência de preços</li>
+            </ul>
+            <div class="quiz-explain">Micro-copy de confiança responde às objeções antes que o usuário as vocalize. "Sem cartão de crédito" elimina o medo de ser cobrado indevidamente; "Cancelamento a qualquer momento" elimina o medo de ficar preso. Remover essas fricções pode aumentar a taxa de clique no CTA em 10–30%.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. O que é "ancoragem de preço" (price anchoring) e como ela funciona em um pricing de 3 planos?</p>
+            <ul class="quiz-options">
+              <li>Colocar um plano mais caro para fazer o plano do meio parecer mais razoável; o cérebro usa o preço mais alto como referência e percebe o intermediário como "bom negócio"</li>
+              <li>Mostrar o preço original riscado ao lado do preço atual para indicar desconto</li>
+              <li>Deixar o preço do plano gratuito em destaque para atrair mais cadastros</li>
+              <li>Mostrar o preço anual em vez do mensal para que pareça mais barato</li>
+            </ul>
+            <div class="quiz-explain"><strong>Price anchoring</strong>: o plano Enterprise (caro) ancora a percepção do visitante, fazendo o plano Pro parecer acessível por comparação. É psicologia comportamental aplicada a design de pricing — documentada em estudos de Dan Ariely e amplamente usada por SaaS.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">3. Completando o Módulo 6, qual é o benefício de usar os mesmos componentes (botões, badges, cards) na landing page e no app?</p>
+            <ul class="quiz-options">
+              <li>Reduz o tamanho do arquivo Figma</li>
+              <li>Facilita a exportação de assets para o desenvolvedor</li>
+              <li>É exigido pelas diretrizes de acessibilidade WCAG 2.2</li>
+              <li>Garante consistência visual entre o marketing e o produto — o usuário que clicou no CTA da landing page não sente dissonância ao entrar no app, reforçando a confiança na marca</li>
+            </ul>
+            <div class="quiz-explain">Um Design System unificado — onde landing page e app compartilham os mesmos tokens, componentes e estilos — cria uma experiência coesa. O usuário não "chega ao app e sente que entrou em outro produto". Essa consistência é um pilar de UX e branding de longo prazo.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

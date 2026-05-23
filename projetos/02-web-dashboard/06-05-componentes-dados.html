@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Componentes de dados | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="06-05-componentes-dados" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🖥️ Módulo 6 · Projeto Guiado · Lição 5 de 8</div>
+        <h1>Componentes de dados</h1>
+        <p class="lead">Um dashboard SaaS vive e morre pela qualidade dos seus componentes de dados. Tabelas bem construídas, cards de KPI elegantes, gráficos compreensíveis e um Kanban fluido — nesta lição você vai construir cada um deles como Components profissionais com Variants.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~30 min</span>
+          <span>🎯 Nível: Projeto prático</span>
+          <span>🛠️ Pratique no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Construir uma data table com header, linhas, estados de hover e seleção, e indicadores de sort;</li>
+            <li>Criar cards de KPI/métrica com variações de tendência (alta, baixa, neutro);</li>
+            <li>Desenhar mocks realistas de gráficos de barra e linha para o dashboard;</li>
+            <li>Montar o board Kanban com colunas e cards arrastáveis (interativos no protótipo);</li>
+            <li>Criar Components de apoio: filtros, badges, avatars e tags com Variants.</li>
+          </ul>
+        </div>
+
+        <h2>Card de KPI / Métrica</h2>
+        <p>O card de KPI é o componente mais visto pelos gestores — ele precisa comunicar um número e sua tendência em menos de 2 segundos. A estrutura é simples mas precisa ser flexível: título, valor principal, delta (variação percentual) e sparkline opcional.</p>
+
+        <h3>Estrutura do KPI Card</h3>
+        <ol class="steps">
+          <li>
+            <strong>Crie o frame base do card.</strong>
+            Frame de 240×120 px, Auto Layout vertical, padding 20, gap 8, border-radius 12, fill <code>color/surface/card</code>, Shadow/sm.
+          </li>
+          <li>
+            <strong>Adicione o header do card.</strong>
+            Auto Layout horizontal, gap Auto: label à esquerda (Body/13 Regular, <code>color/text/muted</code>) e ícone de contexto à direita (16×16 px, cor muted).
+          </li>
+          <li>
+            <strong>Adicione o valor principal.</strong>
+            Texto com estilo <code>Display/32 ExtraBold</code>, cor <code>color/text/default</code>. Este é o número em destaque.
+          </li>
+          <li>
+            <strong>Adicione o delta.</strong>
+            Auto Layout horizontal, gap 4: ícone de seta (12×12 px) + texto percentual (Caption/12). Crie 3 Variants de <strong>Trend</strong>: up (ícone ↑, cor success), down (ícone ↓, cor danger), neutral (ícone →, cor muted).
+          </li>
+          <li>
+            <strong>Salve como Component com Variants.</strong>
+            Propriedades: <code>Trend</code> (up/down/neutral) e <code>Has sparkline</code> (true/false). Nomeie <code>KPICard</code>.
+          </li>
+        </ol>
+
+        <div class="figma-mock">
+          <div class="device-browser" style="max-width:680px;">
+            <div class="browser-bar"><i></i><i></i><i></i><span style="flex:1;text-align:center;font-size:12px;color:var(--text-muted);">Components — KPI Cards</span></div>
+            <div style="padding:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;">
+              <!-- KPI 1 -->
+              <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;box-shadow:var(--shadow-sm);">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                  <span style="font-size:12px;color:var(--text-muted);">Projetos ativos</span>
+                  <span style="font-size:14px;color:var(--text-soft);">📁</span>
+                </div>
+                <div style="font-size:30px;font-weight:800;color:var(--text);margin-bottom:4px;">12</div>
+                <div style="display:flex;align-items:center;gap:4px;">
+                  <span style="color:var(--success);font-size:12px;">↑</span>
+                  <span style="font-size:12px;color:var(--success);font-weight:600;">+3 este mês</span>
+                </div>
+              </div>
+              <!-- KPI 2 -->
+              <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;box-shadow:var(--shadow-sm);">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                  <span style="font-size:12px;color:var(--text-muted);">Tarefas abertas</span>
+                  <span style="font-size:14px;color:var(--text-soft);">✅</span>
+                </div>
+                <div style="font-size:30px;font-weight:800;color:var(--text);margin-bottom:4px;">84</div>
+                <div style="display:flex;align-items:center;gap:4px;">
+                  <span style="color:var(--danger);font-size:12px;">↑</span>
+                  <span style="font-size:12px;color:var(--danger);font-weight:600;">+12 vs semana</span>
+                </div>
+              </div>
+              <!-- KPI 3 -->
+              <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;box-shadow:var(--shadow-sm);">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                  <span style="font-size:12px;color:var(--text-muted);">Taxa de conclusão</span>
+                  <span style="font-size:14px;color:var(--text-soft);">📊</span>
+                </div>
+                <div style="font-size:30px;font-weight:800;color:var(--success);margin-bottom:4px;">78%</div>
+                <div style="display:flex;align-items:center;gap:4px;">
+                  <span style="color:var(--success);font-size:12px;">↑</span>
+                  <span style="font-size:12px;color:var(--success);font-weight:600;">+5% vs mês</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">KPI Cards com 3 variações de trend: verde (positivo), vermelho (negativo), e neutro. Cada card é um Component com propriedades Trend e valor configuráveis.</p>
+        </div>
+
+        <h2>Data Table</h2>
+        <p>A tabela de dados é o componente mais complexo de um dashboard — ela precisa lidar com ordenação, seleção, overflow e muitos estados diferentes. A chave é decompô-la em sub-componentes.</p>
+
+        <h3>Componentes da tabela</h3>
+        <ul>
+          <li><strong>TableCell:</strong> célula base com Auto Layout, padding 12×14, alinhamento configurável. Variants: text, number, badge, avatar+text, actions.</li>
+          <li><strong>TableHeaderCell:</strong> como o TableCell mas com fundo <code>surface-2</code>, texto Bold, e ícone de sort (↕ / ↑ / ↓). Variants de <strong>Sort</strong>: none, asc, desc.</li>
+          <li><strong>TableRow:</strong> linha com Auto Layout horizontal, usando instâncias de TableCell. Variants de <strong>State</strong>: default, hover, selected.</li>
+          <li><strong>Table:</strong> container com header row + N linhas de dados.</li>
+        </ul>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie o TableHeaderCell.</strong>
+            Frame 160×44 px, Auto Layout horizontal, padding 12, gap Auto. Texto "Projeto" (Body/13 Bold) à esquerda + ícone sort (16×16) à direita. Fundo: <code>color/surface/2</code>. Variants: sort-none, sort-asc, sort-desc.
+          </li>
+          <li>
+            <strong>Crie o TableCell base.</strong>
+            Frame 160×48 px, Auto Layout horizontal, padding 12, align center. Conteúdo: Text instance property para editar o texto na instância. Fundo: transparente (vem do row).
+          </li>
+          <li>
+            <strong>Crie o TableRow.</strong>
+            Frame Auto Layout horizontal, sem gap (as células se tocam), borda inferior 1 px. Instancie 4 TableCells. Variants de State: default (fundo transparent), hover (fundo <code>surface-2</code>), selected (fundo <code>primary-soft</code>).
+          </li>
+          <li>
+            <strong>Monte a Table.</strong>
+            Frame Auto Layout vertical, gap 0. Primeiro, um TableHeaderRow (com TableHeaderCells). Depois, 5 instâncias de TableRow com dados reais do TaskFlow: nome do projeto, responsável (avatar), prazo, status (badge), ações.
+          </li>
+          <li>
+            <strong>Adicione checkbox de seleção.</strong>
+            No TableHeaderCell à esquerda, adicione um checkbox (16×16, border 1.5 px) com estado "marcar todos". Nas TableRows, o primeiro TableCell é uma célula de checkbox.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Variável de instância: Instance Swap</span>
+          <p>Use a propriedade <strong>Instance Swap</strong> em TableCell para que o conteúdo de cada célula seja trocável. Isso permite ter uma célula com avatar+texto em uma coluna e uma célula com badge em outra — tudo com o mesmo componente base e sem criar variantes para cada combinação.</p>
+        </div>
+
+        <h2>Gráficos: mock realista sem bibliotecas</h2>
+        <p>No Figma, gráficos são desenhados como mocks visuais — não são dados reais. O objetivo é comunicar o tipo de visualização, as proporções e a estética, para que o desenvolvedor saiba qual biblioteca de gráficos usar (Chart.js, Recharts, etc.).</p>
+
+        <h3>Gráfico de barras</h3>
+        <ol class="steps">
+          <li>
+            <strong>Crie o frame do gráfico.</strong>
+            Frame 760×260 px, Auto Layout vertical, gap 16, padding 20. Inclua um título e o gráfico em si.
+          </li>
+          <li>
+            <strong>Desenhe as barras.</strong>
+            Crie 7 retângulos representando os dias da semana. Use largura fixa (60 px) e alturas variáveis para representar os dados (ex.: 80, 130, 100, 170, 120, 160, 90 px). Fill: <code>color/brand/primary</code> com 80% de opacidade.
+          </li>
+          <li>
+            <strong>Organize em Auto Layout.</strong>
+            Agrupe as barras em um frame com Auto Layout horizontal, gap 12, align bottom. Isso alinha todas as barras pela base.
+          </li>
+          <li>
+            <strong>Adicione eixos e labels.</strong>
+            Adicione uma linha horizontal de 1 px na base (eixo X) e labels de dias abaixo de cada barra. Use estilo <code>Caption/12</code> com cor muted.
+          </li>
+        </ol>
+
+        <h3>Gráfico de linha</h3>
+        <p>Para o gráfico de linha, use a ferramenta Vetor (<kbd>P</kbd>) para desenhar a linha de dados como um caminho com curvas suaves (segmentos bezier). Adicione um fill de gradiente da linha até o eixo X para criar o efeito de área preenchida.</p>
+
+        <h2>Board Kanban</h2>
+        <p>O board Kanban é a visualização mais amada pelos times operacionais. Cada coluna representa um status e cada card é uma tarefa. No Figma, o desafio é construir os cards de forma que sejam fáceis de reordenar no protótipo.</p>
+
+        <h3>Estrutura do Kanban</h3>
+        <ol class="steps">
+          <li>
+            <strong>Crie o KanbanCard.</strong>
+            Frame 280×auto, Auto Layout vertical, padding 14, gap 10, border-radius 10, fill surface, sombra Shadow/sm. Conteúdo: tag de projeto (badge), título da tarefa (Body/14 Medium), linha de footer com avatar atribuído + data de prazo. Salve como Component.
+          </li>
+          <li>
+            <strong>Crie a KanbanColumn.</strong>
+            Frame de largura fixa 300 px, Auto Layout vertical, padding 14, gap 10, border-radius 12, fill <code>surface-2</code>. Header: nome do status (h3) + contagem de cards + botão "+". Abaixo: N instâncias de KanbanCard.
+          </li>
+          <li>
+            <strong>Monte o board completo.</strong>
+            Frame com Auto Layout horizontal, gap 16. Instancie 3 KanbanColumns: "A fazer" (cor neutral), "Em progresso" (cor info), "Concluído" (cor success). A cor é aplicada à bolinha no header da coluna e ao top-border da coluna.
+          </li>
+          <li>
+            <strong>Adicione o drag state.</strong>
+            Crie uma Variant do KanbanCard chamada <strong>State: dragging</strong> — o card tem sombra maior (Shadow/lg), leve rotação (2°) e borda tracejada no lugar de onde saiu. No protótipo, conecte o card a uma animação drag-and-drop entre colunas.
+          </li>
+        </ol>
+
+        <div class="figma-mock">
+          <div class="device-browser" style="max-width:700px;">
+            <div class="browser-bar"><i></i><i></i><i></i><span style="flex:1;text-align:center;font-size:12px;color:var(--text-muted);">taskflow.app/projetos/alpha/board</span></div>
+            <div style="padding:16px;display:flex;gap:12px;overflow-x:auto;">
+              <!-- Coluna A fazer -->
+              <div style="flex:none;width:220px;background:var(--surface-2);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                  <div style="width:8px;height:8px;background:var(--border-strong);border-radius:50%;"></div>
+                  <span style="font-size:12px;font-weight:700;">A fazer</span>
+                  <span style="font-size:11px;color:var(--text-muted);background:var(--surface-3);padding:1px 6px;border-radius:99px;">4</span>
+                  <span style="margin-left:auto;font-size:14px;color:var(--text-soft);cursor:pointer;">+</span>
+                </div>
+                <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px;">
+                  <span style="font-size:10px;background:var(--primary-soft);color:var(--primary);padding:2px 7px;border-radius:99px;font-weight:600;">Design</span>
+                  <div style="font-size:12px;font-weight:600;margin:6px 0 8px;">Criar tela de onboarding</div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;">
+                    <div style="width:20px;height:20px;background:var(--primary);border-radius:50%;font-size:10px;color:#fff;display:grid;place-items:center;font-weight:700;">A</div>
+                    <span style="font-size:10px;color:var(--text-muted);">26 mai</span>
+                  </div>
+                </div>
+                <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px;">
+                  <span style="font-size:10px;background:var(--warning-soft);color:var(--warning);padding:2px 7px;border-radius:99px;font-weight:600;">Dev</span>
+                  <div style="font-size:12px;font-weight:600;margin:6px 0 8px;">Refatorar API de auth</div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;">
+                    <div style="width:20px;height:20px;background:var(--success);border-radius:50%;font-size:10px;color:#fff;display:grid;place-items:center;font-weight:700;">M</div>
+                    <span style="font-size:10px;color:var(--danger);">Atrasado</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Coluna Em progresso -->
+              <div style="flex:none;width:220px;background:var(--surface-2);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                  <div style="width:8px;height:8px;background:var(--info);border-radius:50%;"></div>
+                  <span style="font-size:12px;font-weight:700;">Em progresso</span>
+                  <span style="font-size:11px;color:var(--text-muted);background:var(--surface-3);padding:1px 6px;border-radius:99px;">2</span>
+                  <span style="margin-left:auto;font-size:14px;color:var(--text-soft);">+</span>
+                </div>
+                <div style="background:var(--surface);border:1px solid var(--info-border);border-radius:8px;padding:10px;box-shadow:var(--shadow-md);transform:rotate(1.5deg);">
+                  <span style="font-size:10px;background:var(--info-soft);color:var(--info);padding:2px 7px;border-radius:99px;font-weight:600;">Design</span>
+                  <div style="font-size:12px;font-weight:600;margin:6px 0 8px;">Componentes do dashboard</div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;">
+                    <div style="width:20px;height:20px;background:var(--warning);border-radius:50%;font-size:10px;color:#fff;display:grid;place-items:center;font-weight:700;">R</div>
+                    <span style="font-size:10px;color:var(--text-muted);">30 mai</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Coluna Concluído -->
+              <div style="flex:none;width:220px;background:var(--surface-2);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                  <div style="width:8px;height:8px;background:var(--success);border-radius:50%;"></div>
+                  <span style="font-size:12px;font-weight:700;">Concluído</span>
+                  <span style="font-size:11px;color:var(--text-muted);background:var(--surface-3);padding:1px 6px;border-radius:99px;">7</span>
+                </div>
+                <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px;opacity:0.7;">
+                  <span style="font-size:10px;background:var(--success-soft);color:var(--success);padding:2px 7px;border-radius:99px;font-weight:600;">Dev</span>
+                  <div style="font-size:12px;font-weight:600;margin:6px 0 8px;text-decoration:line-through;color:var(--text-muted);">Setup CI/CD pipeline</div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;">
+                    <div style="width:20px;height:20px;background:var(--text-soft);border-radius:50%;font-size:10px;color:#fff;display:grid;place-items:center;font-weight:700;">L</div>
+                    <span style="font-size:10px;color:var(--success);">✓ Concluído</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">Board Kanban do TaskFlow com 3 colunas de status. O card em "Em progresso" está com o estado de drag ativo (rotação + sombra elevada). Cada card e coluna são Components independentes.</p>
+        </div>
+
+        <h2>Componentes de apoio</h2>
+
+        <h3>Badge / Status</h3>
+        <p>Crie um Component <code>Badge</code> com Auto Layout horizontal, padding 3×10, border-radius 999 px. Variants de <strong>Type</strong>: default, success, warning, danger, info, primary. Cada variant muda fill e cor do texto baseado nos tokens semânticos.</p>
+
+        <h3>Avatar</h3>
+        <p>Component <code>Avatar</code> com Variants de <strong>Size</strong> (sm: 24, md: 32, lg: 40, xl: 48) e <strong>Type</strong> (image, initials). Para o tipo initials, use uma letra maiúscula centralizada em fundo colorido. Suporte a avatar grupo (sobreposição): use border branca de 2 px e margin negativa no layout.</p>
+
+        <h3>Tag / Chip</h3>
+        <p>Component <code>Tag</code> com texto + ícone de fechar opcional. Variants de <strong>Color</strong> (mapeando para os tokens semânticos) e <strong>Closeable</strong> (true/false). O ícone X aparece apenas quando Closeable é true — use uma nested Component com visibilidade controlada por propriedade booleana.</p>
+
+        <div class="callout pro">
+          <span class="callout-title">Dica: nomeie os components com /</span>
+          <p>Ao nomear components com barras (<code>Data/Table/Cell</code>, <code>Data/Kanban/Card</code>), o Figma organiza automaticamente uma estrutura hierárquica no painel Assets e no menu de swap de instâncias. Isso facilita enormemente navegar em uma biblioteca com dezenas de componentes.</p>
+        </div>
+
+        <div class="callout warning">
+          <span class="callout-title">Mock de gráfico vs. gráfico real</span>
+          <p>O gráfico que você desenha no Figma é apenas uma <em>representação visual</em> — o desenvolvedor vai implementar com uma biblioteca real (Chart.js, D3, Recharts). Na hora do handoff, documente no Dev Mode quais dados alimentam o gráfico, a biblioteca recomendada e os parâmetros de cor e estilo. O Figma comunica o visual; a lógica de dados vai no código.</p>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>A Atlassian (criadora do Jira e do Trello) mantém o Atlaskit, um design system com centenas de componentes de dados. O princípio que eles usam é o mesmo desta lição: cada componente de dados (tabela, badge, avatar) é um Component com Variants bem definidas e propriedades expostas — nada de copiar e colar e editar na mão.</p>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Criar Component</td><td><kbd>Alt</kbd> + <kbd>Ctrl</kbd> + <kbd>K</kbd></td><td><kbd>⌥</kbd> + <kbd>⌘</kbd> + <kbd>K</kbd></td></tr>
+              <tr><td>Trocar variante selecionada</td><td>painel de propriedades no lado direito</td><td>painel de propriedades no lado direito</td></tr>
+              <tr><td>Ferramenta Vetor (gráficos)</td><td><kbd>P</kbd></td><td><kbd>P</kbd></td></tr>
+              <tr><td>Curva bezier no modo vetor</td><td><kbd>Alt</kbd> ao arrastar o ponto</td><td><kbd>⌥</kbd> ao arrastar o ponto</td></tr>
+              <tr><td>Alinhar à base (eixo X das barras)</td><td>Botão de alinhamento no painel → Align bottom</td><td>Botão de alinhamento → Align bottom</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>KPI Cards devem ter 3 variants de trend (up/down/neutral) usando tokens semânticos de cor.</li>
+          <li>Data Tables são construídas de baixo para cima: Cell → HeaderCell → Row → Table.</li>
+          <li>Use Instance Swap e propriedades de componente para evitar criar uma Variant para cada combinação de conteúdo.</li>
+          <li>Gráficos no Figma são mocks visuais — comunicam o tipo e a estética, mas os dados vêm do código.</li>
+          <li>O board Kanban usa um KanbanCard Component com state:dragging para o protótipo interativo.</li>
+          <li>Nomeie components com <code>Categoria/Subcategoria/Nome</code> para organização automática no Assets.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Construa a biblioteca de componentes de dados</h3>
+          <ol>
+            <li>Crie o <code>KPICard</code> com as 3 variants de trend e dados reais do TaskFlow.</li>
+            <li>Monte um <code>Badge</code> com 6 variants de tipo (default, success, warning, danger, info, primary).</li>
+            <li>Crie um <code>KanbanCard</code> com properties editáveis para título, responsável e tag.</li>
+            <li>Monte 3 colunas de Kanban com 2–3 cards cada e organize em um board de 1200 px de largura.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> todos os componentes estão na página Components com nomenclatura hierárquica. Ao selecionar uma instância do KPICard na tela e mudar a property Trend no painel direito, a seta e a cor mudam instantaneamente sem editar o componente base.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Data table interativa com sort</h3>
+          <p>Construa uma tabela de projetos com pelo menos 5 linhas e 5 colunas (Nome do projeto, Responsável com avatar, Status com badge, Prazo e Progresso com uma barra de progresso visual). Adicione Variants ao TableHeaderCell para os estados de sort (none / asc / desc). No protótipo, conecte o clique em cada header a uma interação que alterna entre os três estados de sort. Adicione também a linha de paginação abaixo da tabela com controles de Anterior / Próxima.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Por que gráficos no Figma são considerados "mocks" e não gráficos reais?</p>
+            <ul class="quiz-options">
+              <li>Porque o Figma não suporta SVG para gráficos</li>
+              <li>Porque gráficos precisam de dados em tempo real, impossíveis no Figma</li>
+              <li>Porque gráficos no Figma são representações visuais estáticas — os dados reais e a lógica de renderização vêm de bibliotecas de código como Chart.js</li>
+              <li>Porque gráficos em Figma são baixa fidelidade por padrão</li>
+            </ul>
+            <div class="quiz-explain">Gráficos no Figma comunicam o <strong>visual e a intenção</strong>, mas são estáticos. O desenvolvedor usa bibliotecas como Recharts, Victory, Chart.js ou D3 para renderizar os dados reais com o mesmo estilo definido no mock.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. Qual propriedade de componente deve ser usada para tornar o conteúdo de uma TableCell trocável sem criar variantes para cada tipo?</p>
+            <ul class="quiz-options">
+              <li>Instance Swap — permite substituir o componente interno por qualquer outro da biblioteca</li>
+              <li>Boolean property — controla a visibilidade de elementos</li>
+              <li>Text property — edita o texto de qualquer nível do componente</li>
+              <li>Variant property — cria novas versões do componente</li>
+            </ul>
+            <div class="quiz-explain"><strong>Instance Swap</strong> é a propriedade certa para conteúdo intercambiável (uma célula pode ter um badge, um avatar ou texto puro). Boolean é para mostrar/ocultar, Text para editar strings, Variant para mudar o "estado" do componente.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">3. Qual benefício a nomenclatura hierárquica de componentes (com /) traz no Figma?</p>
+            <ul class="quiz-options">
+              <li>Melhora a performance de renderização do arquivo</li>
+              <li>Permite que o desenvolvedor gere o código automaticamente</li>
+              <li>É necessária para o Dev Mode funcionar</li>
+              <li>Organiza os componentes em grupos no painel Assets e no menu de Instance Swap, facilitando a navegação em bibliotecas grandes</li>
+            </ul>
+            <div class="quiz-explain">A barra <code>/</code> cria grupos no painel Assets do Figma — <code>Data/Table/Cell</code>, <code>Data/Table/Row</code> e <code>Data/Table/Header</code> ficam todos dentro do grupo "Data/Table". Em bibliotecas com centenas de componentes, essa organização é essencial.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

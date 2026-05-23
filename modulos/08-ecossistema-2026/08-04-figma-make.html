@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figma Make — IA prompt-to-code | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="08-04-figma-make" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">✨ Módulo 8 · Recursos 2025/2026 · Lição 4 de 8</div>
+        <h1>Figma Make — IA prompt-to-code</h1>
+        <p class="lead">Escreva o que você quer em linguagem natural e o Figma Make transforma isso em um protótipo funcional rodando no browser. É a fusão entre ideação e código — acelerada por inteligência artificial.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~17 min</span>
+          <span>🎯 Nível: Intermediário/Avançado</span>
+          <span>🛠️ Experimente no Figma Make</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Entender o que é o Figma Make e como ele difere do Figma Sites;</li>
+            <li>Criar um app funcional a partir de um prompt descritivo;</li>
+            <li>Iterar sobre o resultado conversando com a IA;</li>
+            <li>Reconhecer os pontos fortes e os limites do Figma Make;</li>
+            <li>Decidir quando usar o Make vs. outros fluxos de prototipagem ou desenvolvimento.</li>
+          </ul>
+        </div>
+
+        <h2>O que é o Figma Make?</h2>
+        <p><strong>Figma Make</strong> é a ferramenta de geração de código por IA do Figma, anunciada na Config 2025. Diferente do Figma Sites (que publica HTML estático a partir de um design), o Figma Make <em>gera código funcional</em> — HTML, CSS e JavaScript — a partir de um prompt de texto ou de um design existente no Figma.</p>
+        <p>O resultado é um <strong>web app interativo</strong>: formulários que funcionam, navegação entre telas, animações, lógica condicional básica. Você pode pensar nele como "Cursor/v0 dentro do Figma", voltado especificamente para o fluxo de trabalho de designers.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Figma Make vs. Figma Sites</span>
+          <p>O <strong>Figma Sites</strong> parte de um design visual e o publica como site estático. O <strong>Figma Make</strong> parte de uma descrição em linguagem natural (ou de um design) e <em>gera código funcional com interatividade e lógica</em>. O Make é para prototipagem rápida de apps; o Sites é para publicação de sites de marketing.</p>
+        </div>
+
+        <h2>Como o Figma Make funciona</h2>
+        <p>O Figma Make funciona como um loop de chat com uma IA especializada em geração de UI:</p>
+        <ol>
+          <li>Você descreve o que quer em linguagem natural.</li>
+          <li>A IA gera o código (HTML/CSS/JS ou React, dependendo das opções) e renderiza um preview ao vivo.</li>
+          <li>Você vê o resultado e pode pedir ajustes conversacionalmente.</li>
+          <li>A IA modifica o código e atualiza o preview.</li>
+          <li>Quando estiver satisfeito, você pode exportar o código ou publicar como protótipo.</li>
+        </ol>
+        <p>Você também pode <strong>começar a partir de um frame do Figma Design</strong>: selecione um frame e peça ao Make para transformá-lo em código funcional. A IA usa o design como referência visual e gera o código correspondente.</p>
+
+        <h2>Fluxo prompt → app: exemplo passo a passo</h2>
+        <p>Vamos criar um app de lista de tarefas (to-do list) usando o Figma Make:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Abra o Figma Make.</strong>
+            No arquivo Figma, acesse o menu "Make" (ou via painel lateral). A interface de chat abre ao lado do canvas.
+          </li>
+          <li>
+            <strong>Digite seu prompt inicial.</strong>
+            Escreva algo como: <em>"Crie um app de lista de tarefas com fundo branco. O usuário deve conseguir adicionar tarefas digitando num campo e apertando Enter. Cada tarefa aparece na lista com um checkbox para marcar como concluída. Tarefas concluídas ficam riscadas. Deve haver um botão para limpar as tarefas concluídas. Design minimalista com fonte Inter e cor primária #6C4CF1."</em>
+          </li>
+          <li>
+            <strong>Aguarde a geração.</strong>
+            A IA processa o prompt e em segundos gera o código HTML/CSS/JS. Um preview aparece ao lado do chat.
+          </li>
+          <li>
+            <strong>Teste o app gerado.</strong>
+            Clique no preview, adicione algumas tarefas, marque como concluídas, clique em limpar. Avalie o que funcionou e o que precisa de ajuste.
+          </li>
+          <li>
+            <strong>Itere com mensagens de ajuste.</strong>
+            Digite pedidos específicos no chat: <em>"O checkbox está muito pequeno. Aumente para 20px."</em> ou <em>"Adicione uma contagem de tarefas pendentes no topo da lista."</em> A IA modifica apenas o trecho relevante do código.
+          </li>
+          <li>
+            <strong>Adicione uma feature nova.</strong>
+            <em>"Adicione a possibilidade de editar uma tarefa clicando duas vezes no texto dela."</em> — peça funcionalidades progressivamente.
+          </li>
+          <li>
+            <strong>Exporte ou publique.</strong>
+            Quando estiver satisfeito, use "Export" para baixar o código ou "Publish" para gerar uma URL compartilhável do protótipo.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Prompts mais eficazes</span>
+          <p>Seja <em>específico</em> sobre: (1) o que o app faz, (2) as interações principais, (3) o estilo visual desejado (cores, fontes, feel). Evite prompts vagos como "faça um app bonito". Quanto mais contexto você der, mais próximo do resultado esperado será a primeira geração — e menos iterações você vai precisar.</p>
+        </div>
+
+        <div class="figma-mock">
+          <div class="device-browser" style="max-width:480px;">
+            <div class="browser-bar"><i></i><i></i><i></i></div>
+            <div style="padding:24px;font-family:sans-serif;">
+              <h3 style="margin:0 0 16px;font-size:18px;color:var(--text);">Minhas Tarefas</h3>
+              <p style="font-size:13px;color:var(--text-muted);margin:0 0 16px;">3 pendentes · 2 concluídas</p>
+              <div style="display:flex;gap:8px;margin-bottom:16px;">
+                <input style="flex:1;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;background:var(--surface);color:var(--text);" placeholder="Adicionar tarefa..." readonly/>
+                <span style="background:var(--primary);color:#fff;padding:10px 14px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;">+</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;align-items:center;gap:10px;padding:10px;border:1px solid var(--border);border-radius:8px;background:var(--surface);">
+                  <span style="width:18px;height:18px;border:2px solid var(--border-strong);border-radius:4px;flex:none;"></span>
+                  <span style="font-size:14px;">Revisar design de componentes</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding:10px;border:1px solid var(--success-border);border-radius:8px;background:var(--success-soft);">
+                  <span style="width:18px;height:18px;border-radius:4px;flex:none;background:var(--success);display:grid;place-items:center;font-size:12px;color:#fff;">✓</span>
+                  <span style="font-size:14px;text-decoration:line-through;color:var(--text-muted);">Criar mockup do onboarding</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">Exemplo de app to-do list gerado pelo Figma Make a partir de um prompt descritivo.</p>
+        </div>
+
+        <h2>Pontos fortes do Figma Make</h2>
+        <ul>
+          <li><strong>Velocidade extrema:</strong> de zero a protótipo funcional em minutos, sem escrever uma linha de código manualmente.</li>
+          <li><strong>Iteração conversacional:</strong> em vez de editar código diretamente, você descreve o que quer mudar em linguagem natural.</li>
+          <li><strong>Integração com o design:</strong> pode usar um frame do Figma Design como ponto de partida visual.</li>
+          <li><strong>Prototipagem de alta fidelidade:</strong> o resultado tem interatividade real (formulários, estados, navegação) que o Prototyping nativo do Figma não consegue simular com a mesma facilidade.</li>
+          <li><strong>Validação rápida:</strong> ideal para testar hipóteses de UX com usuários antes de comprometer tempo de desenvolvimento real.</li>
+        </ul>
+
+        <h2>Limites do Figma Make</h2>
+        <ul>
+          <li><strong>Não é produção:</strong> o código gerado é para prototipagem e demonstração, não necessariamente para ir para um ambiente de produção sem revisão de um desenvolvedor.</li>
+          <li><strong>Sem back-end:</strong> não há persistência de dados real. Dados digitados somem ao recarregar a página (a menos que use localStorage, que você pode pedir no prompt).</li>
+          <li><strong>Qualidade do código varia:</strong> a IA pode gerar código funcional mas não otimizado ou não acessível. Revisão técnica é recomendada se o código for para produção.</li>
+          <li><strong>Complexidade tem limites:</strong> apps muito complexos com muitas telas e lógica de negócio acabam saindo do controle da IA. Divida em partes menores.</li>
+          <li><strong>Dependência de créditos de IA:</strong> o uso do Make consome créditos de IA do plano Figma. Planos gratuitos têm limites.</li>
+        </ul>
+
+        <div class="callout warning">
+          <span class="callout-title">Use o Make para aprender e prototipar, não para produção</span>
+          <p>O Figma Make é uma ferramenta de exploração e comunicação, não um substituto para desenvolvimento de software. O código gerado deve ser revisado por um desenvolvedor antes de ir para produção. Pense nele como um "esboço em código" — útil para validar ideias rapidamente.</p>
+        </div>
+
+        <h2>Quando usar o Figma Make?</h2>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Situação</th><th>Use o Figma Make?</th><th>Por quê</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Teste de usabilidade com interação real</td><td>✅ Sim</td><td>O protótipo funcional é mais realista que o Prototyping nativo</td></tr>
+              <tr><td>Demonstração para stakeholders</td><td>✅ Sim</td><td>Impacta mais que um Figma protótipo estático</td></tr>
+              <tr><td>Exploração de interações complexas</td><td>✅ Sim</td><td>Rápido para testar hipóteses antes de desenvolver</td></tr>
+              <tr><td>Landing page de marketing</td><td>⚠️ Talvez</td><td>Figma Sites pode ser mais adequado para publicação</td></tr>
+              <tr><td>Feature de produção em app real</td><td>❌ Não diretamente</td><td>Código precisa de revisão, testes e integração com back-end</td></tr>
+              <tr><td>App com autenticação e banco de dados</td><td>❌ Não</td><td>Fora do escopo do Make — precisa de desenvolvimento real</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout pro">
+          <span class="callout-title">Dica de profissional: design + Make como pitch</span>
+          <p>Um fluxo poderoso: (1) desenhe as principais telas no Figma Design com atenção visual, (2) use o Make para transformar o design em protótipo funcional rápido, (3) apresente aos stakeholders ou ao time de engenharia um demo que "pareça real" sem esperar semanas de desenvolvimento. Isso acelera decisões de produto.</p>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Um time de produto precisava validar se usuários de um app de finanças usariam um recurso de metas de economia. Em vez de esperar o desenvolvedor, o designer usou o Figma Make com o prompt: "Crie a tela de 'Nova Meta de Economia'. O usuário digita o nome da meta, o valor total e a data limite. Ao salvar, aparece um card na lista com um progress bar de 0%. O design deve seguir Material Design 3 com cor primária #1976D2." Em 15 minutos, tinha um protótipo funcional. Testou com 5 usuários no mesmo dia. Com o feedback, voltou ao Make, pediu ajustes e fez mais um round de testes no dia seguinte — tudo antes de qualquer linha de código de produção.</p>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Figma Make gera código funcional (HTML/CSS/JS) a partir de prompts ou designs do Figma.</li>
+          <li>Diferente do Figma Sites (sites estáticos), o Make cria apps interativos com lógica real.</li>
+          <li>A iteração é conversacional: você pede ajustes em linguagem natural.</li>
+          <li>Pontos fortes: velocidade, prototipagem funcional, integração com design.</li>
+          <li>Limites: sem back-end real, qualidade de código variável, não é para produção direta.</li>
+          <li>Ideal para: testes de usabilidade, demos para stakeholders e validação de hipóteses.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Crie um app de clima com prompt</h3>
+          <p>Use o Figma Make para criar um mini-app de previsão do tempo fictício:</p>
+          <ol>
+            <li>Prompt inicial: "Crie um app de clima com fundo gradiente de azul escuro para azul claro. Mostra a cidade atual (use 'São Paulo' como fixo), temperatura em °C, condição do tempo (Ensolarado), e três cards menores com a previsão dos próximos 3 dias. Design moderno e minimalista."</li>
+            <li>Teste o resultado e anote 2–3 pontos que você quer melhorar.</li>
+            <li>Faça pelo menos 3 pedidos de ajuste conversacionais (ex.: mudar cor, adicionar ícone, ajustar tipografia).</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> o app resultante tem o layout de clima descrito, passou por pelo menos 3 iterações e o resultado final ficou visivelmente diferente (e melhor) do que a primeira geração.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Design → Make: transforme um frame em app</h3>
+          <p>Desenhe no Figma Design uma tela de login com email, senha e botão "Entrar". Selecione o frame e use o Figma Make com a instrução "Transforme este design em código funcional. O formulário deve validar se o email é válido e se a senha tem pelo menos 8 caracteres. Exiba mensagens de erro inline. Ao clicar em Entrar com dados válidos, navegue para uma tela de boas-vindas simples." Itere até ter um formulário com validação funcional e navegação entre telas.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Qual é a principal diferença entre o Figma Make e o Figma Sites?</p>
+            <ul class="quiz-options">
+              <li>O Make é gratuito; o Sites é pago</li>
+              <li>O Make gera código funcional com interatividade e lógica; o Sites publica HTML estático de designs visuais</li>
+              <li>O Make funciona só com designs existentes; o Sites aceita prompts de texto</li>
+              <li>O Make é para mobile; o Sites é para desktop</li>
+            </ul>
+            <div class="quiz-explain">O Figma Make parte de um prompt e gera código funcional (com lógica, estados, interações reais). O Figma Sites transforma um design visual em HTML estático publicado. São ferramentas complementares para casos de uso diferentes.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">2. Por que o Figma Make NÃO deve ser usado diretamente para código de produção sem revisão?</p>
+            <ul class="quiz-options">
+              <li>Porque ele gera código apenas em Figma DSL, não em HTML/JS padrão</li>
+              <li>Porque o código gerado tem licença restrita</li>
+              <li>Porque o código pode não ser otimizado, não ser acessível e pode ter falhas de segurança não visíveis na interface</li>
+              <li>Porque o Make não suporta CSS — apenas estilos inline</li>
+            </ul>
+            <div class="quiz-explain">O código gerado por IA pode ser funcional visualmente mas carecer de acessibilidade, otimização de performance, tratamento de erros adequado e padrões de segurança. Revisão por um desenvolvedor é essencial antes de ir para produção.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Qual é o melhor cenário de uso para o Figma Make?</p>
+            <ul class="quiz-options">
+              <li>Criar um protótipo funcional para teste de usabilidade com usuários reais em poucas horas</li>
+              <li>Desenvolver o back-end de um aplicativo SaaS</li>
+              <li>Substituir completamente o trabalho de um desenvolvedor front-end sênior</li>
+              <li>Publicar um site de e-commerce com pagamento real</li>
+            </ul>
+            <div class="quiz-explain">O grande valor do Make está na velocidade de prototipagem: em horas você tem um app interativo funcional o suficiente para testes de usabilidade reais, sem esperar semanas de desenvolvimento.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

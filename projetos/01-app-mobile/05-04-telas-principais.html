@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Construindo as telas principais | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="05-04-telas-principais" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">📱 Módulo 5 · Projeto Guiado · Lição 4 de 8</div>
+        <h1>Construindo as telas principais</h1>
+        <p class="lead">Com wireframes aprovados e tokens definidos, é hora de dar vida ao FinView em alta fidelidade. Nesta lição você vai construir as 4 telas principais do app — Onboarding, Home, Detalhe da Transação e Perfil — usando Auto Layout, variables e as melhores práticas de composição mobile.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~28 min</span>
+          <span>🎯 Nível: Projeto prático</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Construir a tela Home do FinView em alta fidelidade com Auto Layout aninhado;</li>
+            <li>Criar o card de saldo com gradiente, safe area e tipografia hierarquizada;</li>
+            <li>Montar o carrossel de cartões com snap e overflow horizontal;</li>
+            <li>Construir a lista de transações com itens de categorias variadas;</li>
+            <li>Aplicar as variables de cor e tipografia nas 4 telas principais.</li>
+          </ul>
+        </div>
+
+        <h2>Da estrutura à alta fidelidade</h2>
+        <p>Alta fidelidade (hi-fi) significa adicionar, sobre a estrutura do wireframe, todos os detalhes visuais: cor real, tipografia com estilos, ícones corretos, gradientes, sombras, imagens, estados. O resultado deve ser indistinguível de um screenshot do app real.</p>
+        <p>A estratégia é construir as telas usando os tokens da Lição 3 — nenhum valor de cor digitado diretamente. Isso garante que, quando trocarmos o modo para Dark, a tela inteira se adapta automaticamente.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Ordem de construção recomendada</span>
+          <p>Comece pelos elementos <strong>de dentro para fora</strong>: primeiro os átomos menores (ícone, badge, valor), depois os moleculares (item de lista, card), depois os organismos (seção da lista, carrossel), e por último o frame inteiro da tela. Isso evita retrabalho e garante que cada nível seja reutilizável.</p>
+        </div>
+
+        <h2>Tela 1: Onboarding</h2>
+        <p>O onboarding do FinView tem 3 cards de apresentação. Cada card tem: uma ilustração de fundo (gradiente + formas decorativas), um título grande, um subtítulo, indicadores de página (dots) e um botão.</p>
+
+        <div class="figma-mock">
+          <div class="device-phone" style="width:210px;">
+            <div style="background:linear-gradient(160deg,#1a0a3d 0%,#2d1060 50%,#0f1115 100%);min-height:380px;display:flex;flex-direction:column;align-items:center;padding:0 0 16px;">
+              <!-- Notch/Island area -->
+              <div style="height:50px;width:100%;display:flex;justify-content:center;align-items:flex-end;padding-bottom:4px;">
+                <div style="width:80px;height:28px;background:#000;border-radius:99px;"></div>
+              </div>
+              <!-- Illustration area -->
+              <div style="flex:1;display:flex;align-items:center;justify-content:center;width:100%;position:relative;min-height:160px;">
+                <div style="width:100px;height:100px;background:rgba(108,76,241,0.3);border-radius:50%;position:absolute;"></div>
+                <div style="width:70px;height:70px;background:rgba(108,76,241,0.5);border-radius:50%;position:absolute;display:grid;place-items:center;font-size:32px;">💰</div>
+                <div style="position:absolute;top:10px;right:30px;width:24px;height:24px;background:rgba(24,201,138,0.4);border-radius:50%;"></div>
+                <div style="position:absolute;bottom:15px;left:25px;width:16px;height:16px;background:rgba(247,101,75,0.4);border-radius:50%;"></div>
+              </div>
+              <!-- Text content -->
+              <div style="padding:0 20px;text-align:center;">
+                <div style="color:#E8EAEE;font-size:18px;font-weight:700;line-height:1.2;margin-bottom:8px;">Controle suas finanças com clareza</div>
+                <div style="color:#A3ACBA;font-size:11px;line-height:1.5;">Visualize receitas, gastos e metas em uma só tela, de forma simples e motivadora.</div>
+              </div>
+              <!-- Dots indicator -->
+              <div style="display:flex;gap:6px;margin:14px 0 12px;">
+                <div style="width:20px;height:6px;background:#9B81FF;border-radius:3px;"></div>
+                <div style="width:6px;height:6px;background:rgba(255,255,255,0.3);border-radius:3px;"></div>
+                <div style="width:6px;height:6px;background:rgba(255,255,255,0.3);border-radius:3px;"></div>
+              </div>
+              <!-- Button -->
+              <div style="margin:0 20px;width:calc(100% - 40px);background:#6C4CF1;border-radius:12px;height:44px;display:flex;align-items:center;justify-content:center;">
+                <span style="color:#fff;font-size:13px;font-weight:700;">Próximo →</span>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;flex:1;min-width:220px;justify-content:center;">
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;">
+              <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:8px;">Estrutura do Onboarding Card</div>
+              <div style="display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--text-muted);">
+                <div style="padding:4px 8px;background:var(--surface-2);border-radius:6px;">📱 Frame iPhone 16 (390×844)</div>
+                <div style="padding:4px 8px;background:var(--primary-soft);border-radius:6px;margin-left:12px;">🎨 Background gradiente (linear)</div>
+                <div style="padding:4px 8px;background:var(--surface-2);border-radius:6px;margin-left:12px;">🔵 Círculos decorativos (layer opacity)</div>
+                <div style="padding:4px 8px;background:var(--surface-2);border-radius:6px;margin-left:12px;">📝 Grupo de texto (h1 + subtitle)</div>
+                <div style="padding:4px 8px;background:var(--surface-2);border-radius:6px;margin-left:12px;">⚪ Page indicators (dots)</div>
+                <div style="padding:4px 8px;background:var(--success-soft);border-radius:6px;margin-left:12px;">🔲 Botão CTA (Auto Layout)</div>
+                <div style="padding:4px 8px;background:var(--surface-2);border-radius:6px;margin-left:24px;">T Texto "Próximo →"</div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">Primeiro card do Onboarding — fundo com gradiente escuro, formas decorativas com opacidade reduzida, e ação clara de avanço.</p>
+        </div>
+
+        <h2>Passo a passo: construindo a tela Home em hi-fi</h2>
+        <p>A Home é o coração do FinView — é onde o usuário passa mais tempo e toma as principais decisões. Cada detalhe conta.</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Prepare o frame base.</strong>
+            Na page <code>📱 iOS — Telas</code>, crie um frame iPhone 16 (390×844). Renomeie para <code>01 — Home</code>. Aplique o variable mode <strong>Dark</strong> via seletor no painel de layer. Coloque um fill usando a variable <code>color/bg</code>.
+          </li>
+          <li>
+            <strong>Construa o header com Dynamic Island e status bar.</strong>
+            Crie um frame 390×94 px no topo. Dentro, adicione: uma "ilha" simulada (retângulo 120×34 px, fill preto, radius 999, centralizado no topo) e, abaixo, um Auto Layout horizontal com o nome "Olá, Lucas 👋" à esquerda e um avatar circular 36×36 à direita (fill com foto ou placeholder de gradiente).
+          </li>
+          <li>
+            <strong>Monte o card de saldo principal.</strong>
+            Crie um frame 390×180 px. Aplique um fill de gradiente linear: <code>#3D2BA8</code> → <code>#6C4CF1</code> → <code>#9B3FD4</code> em 135°. Adicione:
+            <ul>
+              <li>Texto "Saldo total" — 12 px, Regular, cor branco 70% de opacidade</li>
+              <li>Texto do valor principal "R$ 4.832,50" — 32 px, Bold, branco 100%</li>
+              <li>Row com dois chips: chip "↑ R$ 7.000" (background branco 15%, verde, Regular 12 px) e "↓ R$ 2.168" (vermelho)</li>
+              <li>Barra de progresso sutil mostrando % do mês consumido</li>
+            </ul>
+            Corner radius 0 (a tela inteira tem clip content, então o card toca as bordas).
+          </li>
+          <li>
+            <strong>Crie o carrossel de cartões de conta.</strong>
+            Crie um Auto Layout horizontal com overflow <strong>Scrolling</strong> (nas opções de clip content do frame). Dentro, adicione 3 cards de 140×80 px cada, gap 12, padding horizontal 16. Cada card tem: logo da instituição, nome da conta e saldo. Use gradientes diferentes para cada um (violeta para Nubank, laranja para Itaú, verde para Dinheiro). Corner radius: 12 px.
+          </li>
+          <li>
+            <strong>Adicione o cabeçalho da seção de transações.</strong>
+            Auto Layout horizontal, width fill, padding 16×0: texto "Transações recentes" (text/h2, cor <code>color/text/primary</code>) + texto "Ver tudo" (text/body, cor <code>color/brand/primary</code>). Gap Auto para distribuir nas extremidades.
+          </li>
+          <li>
+            <strong>Construa um item de transação.</strong>
+            Auto Layout horizontal, width fill, padding 16×12, gap 12. Dentro:
+            <ul>
+              <li>Ícone de categoria: frame 44×44, border-radius <code>radius/md</code>, fill <code>color/brand/soft</code>, com emoji de categoria centralizado (20 px)</li>
+              <li>Auto Layout vertical (flex-1): "iFood" texto/body negrito + "Alimentação · Hoje" texto/caption muted</li>
+              <li>Texto do valor "- R$ 54,90" (16 px Bold, cor <code>color/expense</code>) alinhado à direita</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Empilhe 5 itens de transação.</strong>
+            Selecione o item criado e duplique 4x (<kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>D</kbd>). Mude o conteúdo de cada um: Spotify (-R$22, assinatura), Salário (+R$5k, receita em verde), Mercado (-R$312), Uber (-R$18). Selecione todos os 5 e aplique Auto Layout vertical com gap 0. Adicione uma linha divisória (frame 1 px, fill <code>color/border</code>) entre cada item usando o recurso de divider no Auto Layout ou inserindo manualmente.
+          </li>
+          <li>
+            <strong>Construa a Tab Bar.</strong>
+            Frame 390×83 px, posicionado na base do frame. Fill: <code>color/surface</code>. Borda superior: 1 px, stroke <code>color/border</code>. Dentro, Auto Layout horizontal com gap Auto e padding horizontal 16: 5 itens com ícone 24×24 + label caption abaixo. O item Home tem ícone e texto em <code>color/brand/primary</code>; os demais em <code>color/text/secondary</code>.
+          </li>
+          <li>
+            <strong>Verifique o Clip Content e role visual.</strong>
+            Selecione o frame pai iPhone 16. Certifique-se de que <strong>Clip content</strong> está ativado. Tudo que ultrapassar os 844 px de altura estará "scrollável" no protótipo. A tab bar deve ficar sempre visível — use <strong>Constraints: bottom + fixed position</strong> ou, melhor, a posição fixa ao scroll em protótipos (Lição 7).
+          </li>
+        </ol>
+
+        <div class="callout warning">
+          <span class="callout-title">Não use position: absolute para posicionar a tab bar</span>
+          <p>Em designs mobile no Figma, é comum querer posicionar a tab bar manualmente na base do frame. O problema é que isso quebra com scroll no protótipo. A abordagem correta é criar um Auto Layout <strong>vertical</strong> no frame pai, com a seção de conteúdo em <em>Fill</em> (ocupa o espaço disponível) e a tab bar em <em>Hug</em> na base. No protótipo, use a opção de <strong>Fixed position while scrolling</strong> no elemento da tab bar.</p>
+        </div>
+
+        <h2>Tela 2: Detalhe da Transação</h2>
+        <p>A tela de detalhe exibe todas as informações de uma transação específica — data, valor, categoria, conta e nota. É acessada com tap em qualquer item da lista.</p>
+
+        <div class="figma-mock">
+          <div class="device-phone" style="width:210px;">
+            <div style="background:#0C0E12;min-height:380px;display:flex;flex-direction:column;">
+              <!-- Status bar -->
+              <div style="height:50px;display:flex;justify-content:center;align-items:flex-end;padding-bottom:4px;">
+                <div style="width:80px;height:28px;background:#000;border-radius:99px;"></div>
+              </div>
+              <!-- Header nav -->
+              <div style="display:flex;align-items:center;padding:8px 16px;gap:8px;">
+                <div style="width:32px;height:32px;background:#1A1E26;border-radius:8px;display:grid;place-items:center;font-size:14px;">←</div>
+                <span style="font-size:14px;font-weight:600;color:#E8EAEE;flex:1;text-align:center;">Transação</span>
+                <div style="width:32px;height:32px;background:#1A1E26;border-radius:8px;display:grid;place-items:center;font-size:12px;">⋯</div>
+              </div>
+              <!-- Ícone grande -->
+              <div style="display:flex;flex-direction:column;align-items:center;padding:16px;">
+                <div style="width:64px;height:64px;background:#241F3D;border-radius:16px;display:grid;place-items:center;font-size:28px;">🍔</div>
+                <div style="font-size:22px;font-weight:700;color:#F7654B;margin-top:10px;">- R$ 54,90</div>
+                <div style="font-size:12px;color:#A3ACBA;margin-top:2px;">iFood · Alimentação</div>
+              </div>
+              <!-- Campos de detalhe -->
+              <div style="margin:0 16px;background:#1A1E26;border-radius:12px;overflow:hidden;">
+                <div style="display:flex;justify-content:space-between;padding:10px 12px;border-bottom:1px solid #2B313C;">
+                  <span style="font-size:10px;color:#A3ACBA;">Data</span>
+                  <span style="font-size:10px;font-weight:600;color:#E8EAEE;">23 de Maio, 2026</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:10px 12px;border-bottom:1px solid #2B313C;">
+                  <span style="font-size:10px;color:#A3ACBA;">Hora</span>
+                  <span style="font-size:10px;font-weight:600;color:#E8EAEE;">13:42</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:10px 12px;border-bottom:1px solid #2B313C;">
+                  <span style="font-size:10px;color:#A3ACBA;">Categoria</span>
+                  <span style="font-size:10px;font-weight:600;color:#E8EAEE;">Alimentação</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:10px 12px;border-bottom:1px solid #2B313C;">
+                  <span style="font-size:10px;color:#A3ACBA;">Conta</span>
+                  <span style="font-size:10px;font-weight:600;color:#E8EAEE;">Nubank</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:10px 12px;">
+                  <span style="font-size:10px;color:#A3ACBA;">Nota</span>
+                  <span style="font-size:10px;color:#A3ACBA;">Jantar sexta-feira</span>
+                </div>
+              </div>
+              <div style="flex:1;"></div>
+              <div style="margin:12px 16px;background:#6C4CF1;border-radius:12px;height:44px;display:flex;align-items:center;justify-content:center;">
+                <span style="font-size:13px;color:#fff;font-weight:700;">Editar Transação</span>
+              </div>
+              <div style="height:20px;"></div>
+            </div>
+          </div>
+          <div class="device-phone" style="width:210px;">
+            <div style="background:#0C0E12;min-height:380px;display:flex;flex-direction:column;">
+              <!-- Status bar -->
+              <div style="height:50px;display:flex;justify-content:center;align-items:flex-end;padding-bottom:4px;">
+                <div style="width:80px;height:28px;background:#000;border-radius:99px;"></div>
+              </div>
+              <!-- Header -->
+              <div style="display:flex;align-items:center;padding:8px 16px;gap:8px;">
+                <div style="width:32px;height:32px;background:#1A1E26;border-radius:8px;display:grid;place-items:center;font-size:12px;">←</div>
+                <span style="font-size:14px;font-weight:600;color:#E8EAEE;flex:1;text-align:center;">Perfil</span>
+                <div style="width:32px;height:32px;background:#1A1E26;border-radius:8px;display:grid;place-items:center;font-size:12px;">⚙️</div>
+              </div>
+              <!-- Avatar + info -->
+              <div style="display:flex;flex-direction:column;align-items:center;padding:12px;">
+                <div style="width:64px;height:64px;background:linear-gradient(135deg,#6C4CF1,#9B3FD4);border-radius:50%;display:grid;place-items:center;font-size:24px;">L</div>
+                <div style="font-size:16px;font-weight:700;color:#E8EAEE;margin-top:8px;">Lucas Silva</div>
+                <div style="font-size:11px;color:#A3ACBA;">lucas@email.com</div>
+              </div>
+              <!-- Configurações list -->
+              <div style="margin:0 16px;background:#1A1E26;border-radius:12px;overflow:hidden;">
+                <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid #2B313C;">
+                  <span style="font-size:14px;">🔔</span>
+                  <span style="font-size:11px;color:#E8EAEE;flex:1;">Notificações</span>
+                  <span style="font-size:10px;color:#A3ACBA;">›</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid #2B313C;">
+                  <span style="font-size:14px;">🌙</span>
+                  <span style="font-size:11px;color:#E8EAEE;flex:1;">Tema</span>
+                  <span style="font-size:10px;color:#A3ACBA;">Dark ›</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid #2B313C;">
+                  <span style="font-size:14px;">🔒</span>
+                  <span style="font-size:11px;color:#E8EAEE;flex:1;">Segurança</span>
+                  <span style="font-size:10px;color:#A3ACBA;">›</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;">
+                  <span style="font-size:14px;">ℹ️</span>
+                  <span style="font-size:11px;color:#E8EAEE;flex:1;">Sobre o FinView</span>
+                  <span style="font-size:10px;color:#A3ACBA;">›</span>
+                </div>
+              </div>
+              <div style="flex:1;"></div>
+              <div style="margin:12px 16px;background:#2B313C;border-radius:12px;height:40px;display:flex;align-items:center;justify-content:center;">
+                <span style="font-size:12px;color:#F7654B;font-weight:600;">Sair da conta</span>
+              </div>
+              <div style="height:20px;"></div>
+            </div>
+          </div>
+          <p class="mock-label">Tela de Detalhe da Transação (esquerda) e tela de Perfil (direita) — ambas em dark mode com a mesma estrutura de header, lista de informações e ação principal no rodapé.</p>
+        </div>
+
+        <h2>Tela 3: Perfil</h2>
+        <p>A tela de Perfil é mais simples: avatar + nome, lista de configurações estilo "iOS Settings" (chevron à direita em cada item) e botão de logout. A estrutura usa Auto Layout vertical no frame inteiro, com as seções separadas visualmente por cards arredondados.</p>
+
+        <h3>Padrão iOS Settings list</h3>
+        <p>A lista de configurações segue o padrão de "grouped table" do iOS: itens agrupados em cards com corner radius de 12 px, divisórias internas de 1 px, e chevron (<code>›</code>) à direita indicando navegação. No Figma, monte como um Auto Layout vertical com cada item sendo um Auto Layout horizontal: ícone (24×24) + texto (flex-1) + chevron/detalhe.</p>
+
+        <div class="callout pro">
+          <span class="callout-title">Reutilize o padrão de "lista com divisória"</span>
+          <p>O padrão de lista agrupada (card com itens e divisórias internas) aparece em pelo menos 3 telas do FinView: Detalhe da Transação, Perfil e tela de Cartões. Em vez de construir do zero em cada tela, crie um <strong>Component</strong> de "grouped list" agora e reaproveite nas próximas telas. Na Lição 5, componentizaremos tudo — mas se você já viu a oportunidade, adiantá-la aqui poupa retrabalho.</p>
+        </div>
+
+        <h2>Hierarquia visual nas telas do FinView</h2>
+        <p>Cada tela deve ter uma hierarquia visual clara: o olho do usuário deve saber imediatamente <em>o que olhar primeiro</em>. Use estes princípios:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Princípio</th><th>Como aplicar no FinView</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Tamanho relativo</strong></td><td>O saldo (32 px bold) domina a Home; os rótulos de categoria (12 px) ficam discretos</td></tr>
+              <tr><td><strong>Cor e contraste</strong></td><td>Verde para receita, vermelho para despesa — diferenciação instantânea sem precisar ler o sinal</td></tr>
+              <tr><td><strong>Espaço em branco</strong></td><td>Padding generoso (16 px mínimo, 24 px em áreas principais) cria "respiro" e evita sensação de poluição</td></tr>
+              <tr><td><strong>Proximidade</strong></td><td>Nome e categoria de uma transação ficam juntos; separação clara entre itens diferentes</td></tr>
+              <tr><td><strong>Alinhamento</strong></td><td>Todos os textos alinhados à esquerda, valores monetários à direita — padrão financeiro universal</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout tip">
+          <span class="callout-title">Use o atalho para ver o design "de longe"</span>
+          <p>Após montar uma tela, use <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd> para ajustar o zoom e ver o frame inteiro na tela. Depois, "desfoque os olhos" — se a hierarquia principal ainda for visível com visão borrada, ela é forte o suficiente. Se você não consegue identificar rapidamente o elemento mais importante, algo precisa ser ajustado em tamanho ou contraste.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Adicionar Auto Layout</td><td><kbd>Shift</kbd> + <kbd>A</kbd></td><td><kbd>Shift</kbd> + <kbd>A</kbd></td></tr>
+              <tr><td>Duplicar elemento</td><td><kbd>Ctrl</kbd> + <kbd>D</kbd></td><td><kbd>⌘</kbd> + <kbd>D</kbd></td></tr>
+              <tr><td>Ver frame inteiro</td><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd></td><td><kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd></td></tr>
+              <tr><td>Copiar propriedades de estilo</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>C</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>C</kbd></td></tr>
+              <tr><td>Colar propriedades de estilo</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>V</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>V</kbd></td></tr>
+              <tr><td>Agrupar seleção</td><td><kbd>Ctrl</kbd> + <kbd>G</kbd></td><td><kbd>⌘</kbd> + <kbd>G</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Alta fidelidade significa adicionar cor real, tipografia com tokens, ícones e gradientes sobre a estrutura dos wireframes.</li>
+          <li>A Home foi construída em 9 passos: header, card de saldo com gradiente, carrossel de cartões, lista de transações e tab bar.</li>
+          <li>O Detalhe da Transação usa o padrão iOS de "grouped list" com divisórias e campos alinhados.</li>
+          <li>A tela de Perfil aplica o mesmo padrão de lista agrupada com chevrons para configurações.</li>
+          <li>Todos os valores de cor usam variables semânticas — nenhum hex digitado diretamente.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Construir as 4 telas em alta fidelidade</h3>
+          <p>Com o arquivo do FinView aberto, na page <code>📱 iOS — Telas</code>:</p>
+          <ol>
+            <li>Construa a tela <strong>Onboarding</strong> (card 1 de 3) com fundo gradiente escuro, ilustração placeholder, título, subtítulo, dots e botão.</li>
+            <li>Construa a <strong>Home</strong> completa seguindo os 9 passos desta lição.</li>
+            <li>Construa o <strong>Detalhe da Transação</strong> com os campos listados na tabela de wireframes.</li>
+            <li>Construa a tela de <strong>Perfil</strong> com avatar, lista de configurações e botão de logout.</li>
+            <li>Aplique o modo Dark em todos os 4 frames e confirme que as variables funcionam.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> as 4 telas são visualmente consistentes (mesmos espaçamentos, fontes e cores), usam variables semânticas e o modo Dark pode ser alternado em qualquer frame sem quebrar nenhum elemento.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Tela de Metas com progresso visual</h3>
+          <p>Construa a tela de <strong>Metas</strong> — a mais visual do FinView. Cada meta deve ter: um card com o nome da meta, ícone, valor atual e valor total, e uma barra de progresso preenchida de acordo com o percentual atingido. Adicione 3 metas com percentuais diferentes (35%, 78%, 100%). A meta 100% deve ter um tratamento visual especial — um badge "Conquista!" ou um gradiente comemorativo. Use Auto Layout vertical para o frame completo e inclua um botão flutuante "Nova meta" posicionado na base (seguindo o padrão FAB do Material Design — sim, vale pesquisar!).</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Qual é a sequência correta para construir elementos em alta fidelidade no Figma?</p>
+            <ul class="quiz-options">
+              <li>Frame completo → seções → elementos menores</li>
+              <li>Elementos menores (átomos) → moleculares → organismos → frame completo</li>
+              <li>Wireframe → component → variação → high-fi</li>
+              <li>Estilo tipográfico → cor → layout → protótipo</li>
+            </ul>
+            <div class="quiz-explain">Construir <strong>de dentro para fora</strong> (átomos → moléculas → organismos → frame) garante que cada elemento seja reutilizável e bem proporcionado antes de montar o todo. Construir o frame inteiro primeiro tende a gerar problemas de alinhamento e espaçamento que precisam ser corrigidos depois.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">2. No FinView, por que os valores monetários positivos (receitas) usam verde e os negativos (gastos) usam vermelho/laranja?</p>
+            <ul class="quiz-options">
+              <li>É uma exigência técnica do iOS para apps financeiros</li>
+              <li>Porque essas cores ficam melhor no dark mode</li>
+              <li>Porque a diferenciação por cor permite identificação instantânea sem precisar ler o sinal (+/-)</li>
+              <li>Porque verde e vermelho são as cores da marca FinView</li>
+            </ul>
+            <div class="quiz-explain">A <strong>diferenciação por cor</strong> reduz a carga cognitiva: o usuário identifica se é receita ou gasto pelo padrão visual antes mesmo de processar o número. Isso é especialmente importante em listas longas de transações, onde a varredura visual (scan) precisa ser rápida. Note que é preciso também usar outros indicadores (sinal, ícone) para garantir acessibilidade a daltônicos.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">3. Por que NÃO devemos usar position absoluta para fixar a tab bar na base do frame no Figma?</p>
+            <ul class="quiz-options">
+              <li>Porque o Figma não suporta posicionamento absoluto em frames</li>
+              <li>Porque a tab bar precisa estar em um componente separado</li>
+              <li>Porque isso quebra o grid de colunas do mobile</li>
+              <li>Porque no protótipo com scroll, a tab bar precisa de "Fixed position while scrolling" — que é uma propriedade do protótipo, não da posição no frame</li>
+            </ul>
+            <div class="quiz-explain">No Figma, a posição fixa durante o scroll é uma propriedade de prototipagem (<strong>Fixed position while scrolling</strong>), não de layout. Se você simplesmente "arrastar" a tab bar para a base, ela vai ser scrollada junto com o conteúdo no protótipo. A abordagem correta é estruturar com Auto Layout e marcar a tab bar como fixa nas configurações de scroll do protótipo.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

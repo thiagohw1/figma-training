@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio, freelance e carreira | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="09-05-portfolio-freelance" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🎯 Módulo 9 · Profissional · Lição 5 de 6</div>
+        <h1>Portfólio, freelance e carreira</h1>
+        <p class="lead">Seu portfólio não é uma galeria de screenshots bonitos — é o argumento mais importante da sua carreira. Aprenda a construir case studies que vendem sua forma de pensar, e não apenas o resultado final.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~22 min</span>
+          <span>🎯 Nível: Profissional</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Estruturar um case study completo com problema, processo, solução e resultado;</li>
+            <li>Escolher a plataforma de portfólio certa para seus objetivos;</li>
+            <li>Precificar e estruturar projetos freelance de forma profissional;</li>
+            <li>Encontrar clientes para trabalhos independentes usando as ferramentas certas;</li>
+            <li>Criar um processo de contrato e escopo que protege você e o cliente.</li>
+          </ul>
+        </div>
+
+        <h2>O portfólio que recrutadores querem ver</h2>
+        <p>Recrutadores de design passam em média <strong>5 minutos</strong> num portfólio antes de decidir se vão para a próxima etapa. Nesse tempo, eles não estão procurando o design mais bonito — estão procurando evidência de que você resolve problemas.</p>
+        <p>A pergunta que eles fazem ao olhar cada case é: <em>"Esse designer entende o problema antes de abrir o Figma?"</em></p>
+
+        <h3>O que não funciona mais</h3>
+        <ul>
+          <li>Galeria de mockups sem contexto (screenshots em dispositivos 3D sem explicação);</li>
+          <li>Projetos escolares sem resultados reais;</li>
+          <li>Muitos projetos rasos em vez de poucos projetos profundos;</li>
+          <li>Portfólio que exibe apenas o resultado final, sem o processo.</li>
+        </ul>
+
+        <h3>O que funciona</h3>
+        <ul>
+          <li>3–5 case studies completos com narrativa de problema → processo → solução → resultado;</li>
+          <li>Projetos que mostram como você <em>pensou</em>, não apenas o que você criou;</li>
+          <li>Resultados quantificados quando possível: "aumentou a taxa de conversão em 23%", "reduziu o tempo de onboarding em 40%";</li>
+          <li>Projetos reais de trabalho (com NDA devidamente respeitado) ou projetos fictícios bem executados.</li>
+        </ul>
+
+        <h2>Estrutura de um case study que impressiona</h2>
+        <p>Um case study eficiente segue esta estrutura. Adapte conforme o projeto, mas mantenha a lógica narrativa:</p>
+
+        <div class="diagram">
+          <svg viewBox="0 0 560 200" role="img" aria-label="Estrutura de um case study de design">
+            <defs>
+              <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L8,3 z" fill="var(--primary)"/>
+              </marker>
+            </defs>
+            <!-- Blocos -->
+            <rect x="10" y="60" width="80" height="80" rx="8" fill="var(--primary-soft)" stroke="var(--primary-soft-border)" stroke-width="1.5"/>
+            <text x="50" y="96" text-anchor="middle" font-size="11" font-weight="700" fill="var(--primary)" font-family="sans-serif">Contexto</text>
+            <text x="50" y="110" text-anchor="middle" font-size="10" fill="var(--text-muted)" font-family="sans-serif">Empresa,</text>
+            <text x="50" y="123" text-anchor="middle" font-size="10" fill="var(--text-muted)" font-family="sans-serif">objetivo</text>
+            <line x1="90" y1="100" x2="110" y2="100" stroke="var(--primary)" stroke-width="1.5" marker-end="url(#arr)"/>
+
+            <rect x="110" y="60" width="80" height="80" rx="8" fill="var(--warning-soft)" stroke="var(--warning-border)" stroke-width="1.5"/>
+            <text x="150" y="96" text-anchor="middle" font-size="11" font-weight="700" fill="var(--warning)" font-family="sans-serif">Problema</text>
+            <text x="150" y="110" text-anchor="middle" font-size="10" fill="var(--text-muted)" font-family="sans-serif">Dor do</text>
+            <text x="150" y="123" text-anchor="middle" font-size="10" fill="var(--text-muted)" font-family="sans-serif">usuário</text>
+            <line x1="190" y1="100" x2="210" y2="100" stroke="var(--primary)" stroke-width="1.5" marker-end="url(#arr)"/>
+
+            <rect x="210" y="60" width="80" height="80" rx="8" fill="var(--info-soft)" stroke="var(--info-border)" stroke-width="1.5"/>
+            <text x="250" y="96" text-anchor="middle" font-size="11" font-weight="700" fill="var(--info)" font-family="sans-serif">Processo</text>
+            <text x="250" y="110" text-anchor="middle" font-size="10" fill="var(--text-muted)" font-family="sans-serif">Research,</text>
+            <text x="250" y="123" text-anchor="middle" font-size="10" fill="var(--text-muted)" font-family="sans-serif">ideação</text>
+            <line x1="290" y1="100" x2="310" y2="100" stroke="var(--primary)" stroke-width="1.5" marker-end="url(#arr)"/>
+
+            <rect x="310" y="60" width="80" height="80" rx="8" fill="var(--pro-soft)" stroke="var(--pro-border)" stroke-width="1.5"/>
+            <text x="350" y="96" text-anchor="middle" font-size="11" font-weight="700" fill="var(--pro)" font-family="sans-serif">Solução</text>
+            <text x="350" y="110" text-anchor="middle" font-size="10" fill="var(--text-muted)" font-family="sans-serif">Designs,</text>
+            <text x="350" y="123" text-anchor="middle" font-size="10" fill="var(--text-muted)" font-family="sans-serif">protótipo</text>
+            <line x1="390" y1="100" x2="410" y2="100" stroke="var(--primary)" stroke-width="1.5" marker-end="url(#arr)"/>
+
+            <rect x="410" y="60" width="80" height="80" rx="8" fill="var(--success-soft)" stroke="var(--success-border)" stroke-width="1.5"/>
+            <text x="450" y="96" text-anchor="middle" font-size="11" font-weight="700" fill="var(--success)" font-family="sans-serif">Resultado</text>
+            <text x="450" y="110" text-anchor="middle" font-size="10" fill="var(--text-muted)" font-family="sans-serif">Métricas,</text>
+            <text x="450" y="123" text-anchor="middle" font-size="10" fill="var(--text-muted)" font-family="sans-serif">aprendizado</text>
+          </svg>
+          <p class="mock-label">A narrativa de um case study: de onde veio o projeto até o que ele gerou.</p>
+        </div>
+
+        <h3>Detalhando cada seção</h3>
+        <p><strong>Contexto:</strong> Em que empresa/projeto foi? Qual era o produto? Qual era seu papel no time?</p>
+        <p><strong>Problema:</strong> Qual dor do usuário estava sendo resolvida? Qual era o problema de negócio? Use dados quando possível: "Nossa taxa de abandono no checkout era de 68%".</p>
+        <p><strong>Processo:</strong> Como você descobriu a solução? Quais pesquisas foram feitas? Como foi o wireframe? Mostre rascunhos, iterações, protótipos que foram descartados. <em>Este é o diferencial</em> — mostrar que você tem método.</p>
+        <p><strong>Solução:</strong> O que você criou. Aqui cabem os mockups bonitos, os protótipos, os flows. Explique as decisões principais.</p>
+        <p><strong>Resultado:</strong> O que aconteceu depois? Melhorou qual métrica? O que você aprendeu? Se não tem dados de produção, fale sobre o que os testes de usabilidade mostraram.</p>
+
+        <div class="callout pro">
+          <span class="callout-title">O segredo dos melhores portfólios</span>
+          <p>Os case studies que mais impressionam são os que mostram <strong>falhas e aprendizados</strong>. Quando um designer explica "tentei essa abordagem, não funcionou porque X, então pivotei para Y", ele demonstra maturidade e pensamento crítico. Portfólios que mostram apenas sucessos parecem irreais.</p>
+        </div>
+
+        <h2>Onde publicar seu portfólio</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Plataforma</th><th>Melhor para</th><th>Limitações</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Behance</strong></td>
+                <td>Apresentações visuais ricas, discoverability, comunidade brasileira forte</td>
+                <td>Case studies longos ficam truncados; menos valorizado em grandes empresas de tech</td>
+              </tr>
+              <tr>
+                <td><strong>Dribbble</strong></td>
+                <td>Portfolio visual, networking internacional, discoverability para freelance</td>
+                <td>Foco em estética, não em processo; cultura de "pixel art" pode não representar UX</td>
+              </tr>
+              <tr>
+                <td><strong>Figma Community</strong></td>
+                <td>Compartilhar arquivos e sistemas de design; aumentar visibilidade no ecossistema Figma</td>
+                <td>Não é portfólio de carreira; foco em recursos para outros designers</td>
+              </tr>
+              <tr>
+                <td><strong>Site próprio</strong></td>
+                <td>Controle total do conteúdo e formato; diferencial de personalidade; SEO</td>
+                <td>Requer tempo de manutenção; curva de aprendizado para montar</td>
+              </tr>
+              <tr>
+                <td><strong>Notion / Read.cv</strong></td>
+                <td>Portfólio rápido de texto + imagens; ótimo para começar; fácil de atualizar</td>
+                <td>Menos visual; domínio genérico (notion.site)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>Recomendação:</strong> Comece no Notion ou Behance para ter algo no ar rapidamente. Quando tiver 2–3 case studies completos, invista num site próprio (Framer ou Webflow são ótimas opções para designers, sem necessidade de código).</p>
+
+        <h2>Precificação para freelance</h2>
+        <p>Precificar é a parte que mais paralisa designers iniciantes. A lógica é mais simples do que parece — mas exige que você conheça seus números.</p>
+
+        <h3>Os três modelos de precificação</h3>
+        <ul>
+          <li><strong>Por hora:</strong> você cobra X reais por hora trabalhada. Simples, mas incentiva lentidão e cria insegurança para o cliente. Funciona bem no início.</li>
+          <li><strong>Por projeto:</strong> você cobra um valor fixo pelo escopo definido. Melhor para o cliente (previsibilidade) e para você (pode trabalhar mais rápido e lucrar mais). Requer definição clara do escopo.</li>
+          <li><strong>Por retainer (mensalidade):</strong> o cliente paga um valor mensal por N horas ou entregas fixas. Ideal para trabalho recorrente; garante renda estável.</li>
+        </ul>
+
+        <h3>Como calcular seu preço por hora</h3>
+        <ol>
+          <li>Calcule sua despesa mensal total (moradia, alimentação, impostos, ferramentas, margem de lucro);</li>
+          <li>Defina quantas horas faturáveis você tem por mês (geralmente 120–140h, reservando tempo para prospecção, admin e descanso);</li>
+          <li>Divida: despesa mensal ÷ horas faturáveis = seu custo mínimo por hora;</li>
+          <li>Adicione sua margem de lucro desejada (30–50% em cima do custo).</li>
+        </ol>
+        <p>Exemplo: R$ 6.000/mês de despesas ÷ 120h = R$ 50/h de custo. Com 40% de margem: <strong>R$ 70/h</strong>. Pesquise o mercado na sua região para validar se o valor está competitivo.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Reajuste seu preço todo ano</span>
+          <p>Inflação, evolução de habilidades e reputação justificam reajuste anual. Um designer com 3 anos de experiência não deve cobrar o mesmo que cobrava no primeiro freela. Reajuste de 15–30% ao ano é comum no mercado de design.</p>
+        </div>
+
+        <h2>Encontrando clientes para freelance</h2>
+        <p>A maioria dos freelas vem de <strong>indicação</strong> — não de plataformas. Seu network é seu ativo mais valioso.</p>
+
+        <h3>Estratégias que funcionam</h3>
+        <ol class="steps">
+          <li>
+            <strong>Ative seu network imediato.</strong>
+            Avise para todo mundo que você conhece que você aceita projetos. Ex-colegas, familiares, amigos — muitos precisam de design e não sabem que você faz isso.
+          </li>
+          <li>
+            <strong>Crie conteúdo nas redes sociais.</strong>
+            LinkedIn e Instagram são eficazes para designers. Poste bastidores do seu processo, compartilhe aprendizados, mostre projetos. Recrutadores e clientes buscam designers nessas plataformas ativamente.
+          </li>
+          <li>
+            <strong>Participe de comunidades de produto.</strong>
+            Slack do Product Design Brasil, Discord de design, meetups locais. Clientes e indicações surgem de conversas genuínas, não de spam.
+          </li>
+          <li>
+            <strong>Use plataformas de freelance como complemento.</strong>
+            99designs, Workana, Upwork, Toptal. Bom para construir volume inicial de projetos e reviews. Tarifas mais competitivas, mas funcionam para começar.
+          </li>
+          <li>
+            <strong>Cold outreach cirúrgico.</strong>
+            Identifique 10–15 empresas que você admira e que provavelmente precisam de design. Personalize uma mensagem curta explicando como você pode ajudar. Taxa de retorno baixa, mas alta qualidade quando funciona.
+          </li>
+        </ol>
+
+        <h2>Contrato e escopo: proteja você e o cliente</h2>
+        <p>Nunca inicie um projeto sem contrato — nem com amigos. O contrato protege ambas as partes e profissionaliza a relação.</p>
+
+        <h3>O que um contrato de design deve incluir</h3>
+        <ul>
+          <li><strong>Escopo detalhado:</strong> o que exatamente vai ser entregue. Número de telas, fluxos, formatos de entrega, revisões incluídas.</li>
+          <li><strong>O que não está incluído:</strong> tão importante quanto o escopo. "Não inclui desenvolvimento front-end, animações after effects ou textos de copywriting".</li>
+          <li><strong>Cronograma:</strong> data de início, marcos intermediários e data de entrega final.</li>
+          <li><strong>Pagamento:</strong> valor total, forma de pagamento (PIX, TED), e o <strong>cronograma de pagamento</strong> — nunca entregue tudo antes de receber. Um modelo comum: 50% no contrato, 50% na entrega final.</li>
+          <li><strong>Revisões:</strong> quantas rodadas de revisão estão incluídas. Revisões adicionais cobradas por hora.</li>
+          <li><strong>Propriedade intelectual:</strong> o cliente recebe a propriedade total dos arquivos apenas após o pagamento integral.</li>
+          <li><strong>Cláusula de kill fee:</strong> se o cliente cancelar o projeto no meio, ele paga uma porcentagem do valor total (geralmente 25–50% do que restava).</li>
+        </ul>
+
+        <div class="callout warning">
+          <span class="callout-title">Escopo creep: o inimigo do freelancer</span>
+          <p><strong>Escopo creep</strong> é quando o projeto vai crescendo além do combinado, um pedido pequeno por vez. "Pode adicionar só mais uma tela?" "Só mudar esse fluxo rapidinho?" Sem um escopo escrito e cláusulas de revisão, você acaba entregando o dobro pelo preço de um. Seja gentil, mas firme: "Adoraria incluir isso! Seria uma adição ao escopo atual. Posso cotar para você."</p>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Rafael Rodrigues, designer brasileiro com portfólio premiado na Awwwards, conta que seu portfólio mais bem-sucedido tinha apenas <strong>4 projetos</strong> — mas cada um com 15+ minutos de leitura. O case do redesign de um app de saúde incluía: entrevistas com usuários, mapa de jornada, 3 rodadas de wireframe, teste de usabilidade com 8 participantes e resultado de produção (NPS subiu de 32 para 61). Esse único case lhe rendeu 3 propostas de emprego de empresas que normalmente não anunciam vagas publicamente.</p>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Um portfólio forte tem 3–5 case studies profundos com narrativa: contexto, problema, processo, solução e resultado.</li>
+          <li>Mostre seu processo e suas falhas — não apenas o resultado final.</li>
+          <li>Comece no Behance ou Notion, migre para site próprio quando tiver case studies completos.</li>
+          <li>Calcule seu preço por hora antes de aceitar projetos; revise anualmente.</li>
+          <li>A maioria dos freelas vem por indicação — cultive seu network continuamente.</li>
+          <li>Nunca inicie sem contrato; defina escopo, revisões, pagamento e propriedade intelectual.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Escreva o primeiro rascunho de um case study</h3>
+          <p>Escolha um projeto que você fez neste curso (ou qualquer projeto seu) e escreva o rascunho de um case study completo:</p>
+          <ol>
+            <li>Escreva 2–3 parágrafos sobre o contexto e o problema que o projeto resolvia.</li>
+            <li>Documente 3 decisões de design que você tomou durante o processo, com o raciocínio de cada uma.</li>
+            <li>Mostre pelo menos 1 versão descartada e explique por que ela não funcionou.</li>
+            <li>Conclua com o que você aprendeu ou o que mudaria se fosse fazer de novo.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> alguém que não conhece o projeto consegue ler o case study e entender o problema, o processo e por que a solução funciona — mesmo sem ver nenhum design.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Monte um portfólio online hoje</h3>
+          <p>Usando Notion (gratuito e rápido) ou Behance, publique um portfólio com pelo menos 1 case study completo até o final da semana. Inclua: uma página inicial com sua proposta de valor em 2 frases, o case study com todos os elementos da estrutura desta lição, e suas informações de contato. Compartilhe o link com pelo menos 3 pessoas e peça feedback específico: "O processo ficou claro? A narrativa é convincente?"</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Qual é o elemento mais diferenciador de um case study de portfólio, segundo as boas práticas do mercado?</p>
+            <ul class="quiz-options">
+              <li>Mockups em dispositivos 3D com efeitos visuais sofisticados</li>
+              <li>A documentação do processo de design, incluindo tentativas descartadas</li>
+              <li>Quantidade de telas apresentadas no projeto</li>
+              <li>O número de horas dedicadas ao projeto</li>
+            </ul>
+            <div class="quiz-explain">O que realmente diferencia um case study é <strong>mostrar o processo</strong> — como o designer chegou à solução, quais caminhos foram testados e descartados, e o raciocínio por trás das decisões. Recrutadores buscam evidência de método, não apenas resultado final bonito.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">2. O que é "escopo creep" no contexto de projetos freelance?</p>
+            <ul class="quiz-options">
+              <li>Quando o cliente paga antes do combinado</li>
+              <li>Quando o designer entrega além do combinado por iniciativa própria</li>
+              <li>Quando o projeto cresce além do escopo original por pedidos incrementais do cliente</li>
+              <li>Quando o cronograma é adiantado pelo cliente</li>
+            </ul>
+            <div class="quiz-explain"><strong>Escopo creep</strong> é quando o projeto vai crescendo além do combinado, geralmente por pedidos pequenos e aparentemente inofensivos do cliente ("pode adicionar só mais uma tela?"). Sem um escopo escrito e políticas de revisão claras, o designer acaba entregando o dobro pelo preço de um.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Qual é o modelo de pagamento mais recomendado para projetos freelance de design?</p>
+            <ul class="quiz-options">
+              <li>50% no contrato, 50% na entrega — nunca entregar tudo antes de receber</li>
+              <li>100% no início do projeto para garantir o comprometimento do cliente</li>
+              <li>100% na entrega final após aprovação do cliente</li>
+              <li>Pagamento em 12 parcelas mensais iguais</li>
+            </ul>
+            <div class="quiz-explain">O modelo <strong>50% no contrato + 50% na entrega</strong> é o mais equilibrado: protege o designer (não trabalha de graça se o cliente sumir) e o cliente (só paga tudo ao final quando está satisfeito). Nunca inicie trabalho sem ao menos um sinal financeiro.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

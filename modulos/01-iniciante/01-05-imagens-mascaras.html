@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Imagens, máscaras, crop e exportação | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="01-05-imagens-mascaras" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🎨 Módulo 1 · Iniciante · Lição 5 de 8</div>
+        <h1>Imagens, máscaras, crop e exportação</h1>
+        <p class="lead">Saber trabalhar com imagens — inserir, recortar, mascarar e exportar com qualidade — é uma habilidade diária em qualquer projeto de UI ou branding no Figma.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~18 min</span>
+          <span>🎯 Nível: Iniciante</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Inserir imagens de múltiplas formas no Figma (Place image, arrastar, fill);</li>
+            <li>Ajustar o modo de preenchimento: Fill, Fit, Crop e Tile;</li>
+            <li>Criar máscaras para recortar imagens em qualquer forma;</li>
+            <li>Exportar assets em PNG, JPG, SVG e PDF com as escalas corretas;</li>
+            <li>Criar um avatar circular com máscara.</li>
+          </ul>
+        </div>
+
+        <h2>Inserindo imagens no Figma</h2>
+        <p>Há três formas principais de adicionar uma imagem ao seu arquivo:</p>
+
+        <h3>1. Place image (Ctrl/⌘ + Shift + K)</h3>
+        <p>O método mais eficiente. Pressione <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd>, selecione um ou mais arquivos de imagem. Ao selecionar múltiplas imagens, o Figma entra em modo de "stamp" — clique uma vez para cada imagem ou arraste para definir o tamanho. A imagem é inserida como um <strong>retângulo com fill de imagem</strong>.</p>
+
+        <h3>2. Arrastar do desktop</h3>
+        <p>Simplesmente arraste um arquivo de imagem (.jpg, .png, .webp, .gif, .svg) do seu explorador de arquivos diretamente para o canvas do Figma. O Figma cria automaticamente um retângulo com a imagem como fill. Para substituir uma imagem existente, segure <kbd>Alt</kbd>/<kbd>⌥</kbd> ao soltar — a imagem nova substitui a existente mantendo a forma e dimensões.</p>
+
+        <h3>3. Colar do clipboard</h3>
+        <p>Copie uma imagem de qualquer lugar (browser, Photoshop, visualizador de imagens) e cole diretamente no Figma com <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>V</kbd>.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Formatos suportados</span>
+          <p>O Figma suporta JPG, PNG, GIF, WebP, BMP, ICO e SVG. Arquivos SVG importados são vetorizados e editáveis como shapes. Para PSD, AI ou outros formatos proprietários, você precisa exportar para um formato suportado antes.</p>
+        </div>
+
+        <h2>Modos de preenchimento de imagem</h2>
+        <p>Quando uma imagem é usada como fill de uma forma, você controla como ela se encaixa no container. Com a forma selecionada, clique no swatch de fill da imagem e veja os 4 modos:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Modo</th><th>Comportamento</th><th>Equivalente CSS</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Fill</strong></td><td>Preenche todo o espaço; corta o que não cabe. A imagem mantém proporções</td><td><code>object-fit: cover</code></td></tr>
+              <tr><td><strong>Fit</strong></td><td>A imagem inteira fica visível dentro da forma; pode ter espaço vazio</td><td><code>object-fit: contain</code></td></tr>
+              <tr><td><strong>Crop</strong></td><td>Você reposiciona e escala a imagem manualmente dentro da forma</td><td><code>object-fit: none</code> + <code>object-position</code></td></tr>
+              <tr><td><strong>Tile</strong></td><td>A imagem se repete em mosaico; você controla o tamanho de cada tile</td><td><code>background-repeat: repeat</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Modo Crop na prática</h3>
+        <p>Clique no swatch de fill da imagem, selecione <strong>Crop</strong>. Um contorno tracejado aparece na forma. Você pode:</p>
+        <ul>
+          <li><strong>Arrastar a imagem</strong> para reposicionar o enquadramento;</li>
+          <li><strong>Arrastar as alças</strong> para escalar a imagem dentro da forma;</li>
+          <li>Pressionar <kbd>Enter</kbd> para confirmar o recorte.</li>
+        </ul>
+
+        <h2>Máscaras (Use as Mask)</h2>
+        <p>Uma <strong>máscara</strong> no Figma usa a forma de um elemento para recortar os elementos acima dele na pilha de layers. A forma da máscara define <em>o que é visível</em>: tudo dentro da forma aparece, tudo fora fica oculto.</p>
+
+        <h3>Como criar uma máscara</h3>
+        <ol>
+          <li>Coloque a <strong>forma de máscara</strong> abaixo da imagem na pilha de layers (ou selecione primeiro);</li>
+          <li>Selecione a forma de máscara;</li>
+          <li>Clique com botão direito → <strong>Use as Mask</strong> (ou use o atalho <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Alt</kbd>/<kbd>⌥</kbd> + <kbd>M</kbd>).</li>
+        </ol>
+        <p>Uma máscara agrupa automaticamente a forma e os elementos acima em um <strong>Mask Group</strong>. A forma perde seu fill (fica transparente visualmente) e passa a definir apenas o contorno do recorte.</p>
+
+        <div class="callout tip">
+          <span class="callout-title">A ordem importa nas máscaras</span>
+          <p>A forma de máscara deve ser o elemento <strong>mais abaixo</strong> na seleção (ou no grupo). O elemento que você quer mascarar deve estar <em>acima</em> da forma no painel de layers. Lembre: no Figma, "mais acima" no painel = visualmente na frente.</p>
+        </div>
+
+        <h2>Passo a passo: avatar circular com máscara</h2>
+        <p>Vamos criar um avatar de perfil redondo — um dos usos mais comuns de máscaras em UI:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Insira uma foto.</strong>
+            Pressione <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd> e selecione uma foto de rosto. Ou use um placeholder: crie um retângulo e adicione uma imagem como fill.
+          </li>
+          <li>
+            <strong>Crie o círculo de máscara.</strong>
+            Com <kbd>O</kbd>, segurando <kbd>Shift</kbd>, desenhe um círculo perfeito sobre a foto. Tamanho: 80×80 px (padrão para avatares pequenos) ou 120×120 px (médio).
+          </li>
+          <li>
+            <strong>Posicione o círculo sobre a foto.</strong>
+            No painel de layers, garanta que o círculo está <strong>abaixo</strong> da imagem. Se estiver acima, pressione <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>[</kbd> para mover para baixo.
+          </li>
+          <li>
+            <strong>Selecione ambos.</strong>
+            Selecione o círculo e a imagem (ou selecione só o círculo se ele estiver logo abaixo da imagem no grupo).
+          </li>
+          <li>
+            <strong>Aplique a máscara.</strong>
+            Clique com botão direito → <strong>Use as Mask</strong>. Ou pressione <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Alt</kbd> + <kbd>M</kbd>. A foto agora está recortada em círculo!
+          </li>
+          <li>
+            <strong>Adicione o stroke de borda.</strong>
+            Selecione o Mask Group. Adicione uma elipse por cima (mesmo tamanho, 80×80 px), sem fill, com stroke branco de 2 px. Isso simula a borda do avatar.
+          </li>
+        </ol>
+
+        <div class="figma-mock">
+          <div style="padding:24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap;justify-content:center;">
+            <!-- Avatar circular simulado -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+              <div style="width:80px;height:80px;border-radius:50%;overflow:hidden;background:linear-gradient(135deg,#6c4cf1,#b0367a);border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.15);display:flex;align-items:center;justify-content:center;">
+                <span style="font-size:32px;">👩</span>
+              </div>
+              <span style="font-size:12px;color:var(--text-muted);">Avatar 80×80 px</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+              <div style="width:56px;height:56px;border-radius:50%;overflow:hidden;background:linear-gradient(135deg,#f2994a,#f27121);border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center;">
+                <span style="font-size:24px;">👨</span>
+              </div>
+              <span style="font-size:12px;color:var(--text-muted);">Avatar 56×56 px</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+              <div style="width:40px;height:40px;border-radius:50%;background:var(--primary);border:2px solid var(--surface);display:flex;align-items:center;justify-content:center;">
+                <span style="color:#fff;font-weight:700;font-size:14px;">JD</span>
+              </div>
+              <span style="font-size:12px;color:var(--text-muted);">Fallback (iniciais)</span>
+            </div>
+          </div>
+          <p class="mock-label">Avatares circulares criados com máscara — padrão em perfis, comentários e listas de usuários.</p>
+        </div>
+
+        <h2>Exportação de assets</h2>
+        <p>A exportação no Figma é flexível e poderosa. Selecione qualquer elemento (layer, frame, grupo) e use o painel de <strong>Export</strong> na parte inferior do painel direito.</p>
+
+        <h3>Formatos disponíveis</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Formato</th><th>Melhor para</th><th>Observação</th></tr></thead>
+            <tbody>
+              <tr><td><strong>PNG</strong></td><td>Ícones, assets com transparência, screenshots</td><td>Suporta canal alpha (transparência)</td></tr>
+              <tr><td><strong>JPG</strong></td><td>Fotos, banners sem transparência</td><td>Compressão com perda; sem alpha</td></tr>
+              <tr><td><strong>SVG</strong></td><td>Ícones, logos, ilustrações vetoriais</td><td>Escalável; arquivo de texto (XML)</td></tr>
+              <tr><td><strong>PDF</strong></td><td>Apresentações, documentos, print</td><td>Vetorial, suporte a múltiplas páginas</td></tr>
+              <tr><td><strong>WebP</strong></td><td>Web moderna — compressão superior</td><td>Disponível via plugin</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Escalas de exportação (@1x, @2x, @3x)</h3>
+        <p>Para apps mobile, você precisa exportar em múltiplas resoluções para suportar telas de alta densidade (Retina, OLED):</p>
+        <ul>
+          <li><strong>@1x:</strong> tamanho nativo (ex: 24×24 px) — para telas 1:1;</li>
+          <li><strong>@2x:</strong> 48×48 px — para telas Retina (iPhone padrão, Android hdpi);</li>
+          <li><strong>@3x:</strong> 72×72 px — para telas super Retina (iPhone Pro, Android xxxhdpi).</li>
+        </ul>
+        <p>No painel de Export, clique em <strong>+</strong> para adicionar múltiplos exports de uma vez. O Figma vai gerar um arquivo nomeado automaticamente: <code>icon@2x.png</code>, <code>icon@3x.png</code>.</p>
+
+        <h3>Export Settings e Slices</h3>
+        <p>Para projetos grandes, use <strong>Export Settings</strong> na seção de configurações do arquivo para exportar todos os assets de uma vez. Os <strong>Slices</strong> (ferramenta de fatia) permitem definir áreas personalizadas de exportação independentes dos elementos — úteis quando você quer exportar um recorte específico do design.</p>
+
+        <div class="callout warning">
+          <span class="callout-title">Boas práticas de assets</span>
+          <p><strong>1.</strong> Sempre exporte ícones como SVG para web — escalabilidade infinita sem pixelação. <strong>2.</strong> Para apps iOS, exporte PNG em @2x e @3x. Para Android, exporte para as pastas de density (mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi). <strong>3.</strong> Nomeie os frames de export com o nome final do asset: "icon-home" exportará "icon-home.svg".</p>
+        </div>
+
+        <div class="callout pro">
+          <span class="callout-title">Dica: marcar layers para export</span>
+          <p>Você pode definir Export Settings diretamente nos layers durante o design e não apenas na hora de exportar. Assim, quando o desenvolvedor abre o Dev Mode, os assets já aparecem marcados para exportação com as escalas corretas — sem precisar de briefing extra.</p>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Em um card de artigo de blog, você vai usar as técnicas desta lição assim:</p>
+        <ul>
+          <li><strong>Imagem de capa:</strong> retângulo 400×200 px, fill de imagem em modo Fill (cover), recortando a parte que não cabe;</li>
+          <li><strong>Avatar do autor:</strong> elipse 40×40 px com máscara da foto do autor;</li>
+          <li><strong>Exportação:</strong> o card inteiro exportado como PNG @2x para preview; a thumbnail exportada como JPG para o website; os ícones como SVG.</li>
+        </ul>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Place Image (inserir imagem)</td><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd></td><td><kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd></td></tr>
+              <tr><td>Use as Mask</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>M</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>M</kbd></td></tr>
+              <tr><td>Exportar seleção</td><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd></td><td><kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd></td></tr>
+              <tr><td>Substituir imagem (arrastar)</td><td><kbd>Alt</kbd> + soltar arquivo</td><td><kbd>⌥</kbd> + soltar arquivo</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Imagens são inseridas via <kbd>Ctrl/⌘ + Shift + K</kbd>, arrastar do desktop ou colar.</li>
+          <li>Modos de fill: <strong>Fill</strong> (cover), <strong>Fit</strong> (contain), <strong>Crop</strong> (manual) e <strong>Tile</strong> (mosaico).</li>
+          <li>Máscara (<kbd>Ctrl/⌘ + Alt + M</kbd>) usa a forma de um elemento para recortar os elementos acima.</li>
+          <li>A forma de máscara deve estar <strong>abaixo</strong> dos elementos mascarados na pilha de layers.</li>
+          <li>Exportação suporta PNG, JPG, SVG, PDF; escalas @1x/@2x/@3x para mobile.</li>
+          <li>Defina Export Settings durante o design para facilitar o handoff com desenvolvedores.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Crie um card de perfil de usuário</h3>
+          <ol>
+            <li>Crie um Frame de 320×100 px, fill branco, corner radius 12 px, sombra suave.</li>
+            <li>Insira uma imagem de placeholder e crie um avatar circular de 56×56 px usando máscara (elipse + imagem).</li>
+            <li>Ao lado do avatar, adicione o nome do usuário (16px/600) e um subtítulo (13px/400, cor muted).</li>
+            <li>Adicione um botão de "Seguir" no lado direito do card (texto + stroke).</li>
+            <li>Configure o Frame para exportar como PNG @2x e SVG. (Seção Export no painel direito.)</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> o avatar é perfeitamente circular; o painel de Export do Frame mostra dois exports configurados (@2x PNG e SVG).
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Galeria de avatares em formas diversas</h3>
+          <p>Crie um Frame com 5 versões do mesmo avatar, cada um recortado em uma forma diferente usando máscara: círculo, hexágono (polígono 6 lados), quadrado com corner radius 50%, estrela de 5 pontas, e um losango (quadrado rotacionado 45°). Todos devem ter exatamente 80×80 px de bounding box e a mesma foto como fill. Isso demonstra o poder das máscaras para criar identidades visuais diversas.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">1. No modo Fill de imagem, o que acontece quando a imagem tem proporções diferentes da forma?</p>
+            <ul class="quiz-options">
+              <li>A imagem é esticada para preencher a forma</li>
+              <li>A imagem fica inteira dentro da forma com espaço em branco</li>
+              <li>A imagem se repete em mosaico</li>
+              <li>A imagem mantém proporções e o excesso é cortado (como CSS cover)</li>
+            </ul>
+            <div class="quiz-explain">O modo <strong>Fill</strong> preenche todo o espaço da forma mantendo as proporções da imagem — o que não cabe é cortado. É o equivalente ao <code>object-fit: cover</code> do CSS.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. Para criar um avatar circular, qual deve ser a posição da forma de máscara (elipse) na pilha de layers?</p>
+            <ul class="quiz-options">
+              <li>Abaixo da imagem (mais baixo no painel de layers)</li>
+              <li>Acima da imagem (mais alto no painel de layers)</li>
+              <li>Em uma página separada</li>
+              <li>A ordem não importa</li>
+            </ul>
+            <div class="quiz-explain">A forma de máscara deve estar <strong>abaixo</strong> dos elementos que ela vai mascarar no painel de layers. No Figma, "mais abaixo" no painel = visualmente atrás. A máscara define o contorno, e os elementos acima dela ficam recortados à sua forma.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">3. Para exportar ícones para a web com qualidade perfeita em qualquer resolução de tela, qual formato é mais recomendado?</p>
+            <ul class="quiz-options">
+              <li>PNG @3x</li>
+              <li>SVG</li>
+              <li>JPG @2x</li>
+              <li>PDF</li>
+            </ul>
+            <div class="quiz-explain"><strong>SVG</strong> é vetorial — escala infinitamente sem pixelação. É o formato ideal para ícones na web porque é leve, escalável e pode ser estilizado com CSS. PNG @3x é uma boa alternativa para browsers que não suportam SVG, mas o SVG é superior para ícones.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

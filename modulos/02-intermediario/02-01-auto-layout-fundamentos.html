@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto Layout — fundamentos | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="02-01-auto-layout-fundamentos" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">📦 Módulo 2 · Intermediário · Lição 1 de 9</div>
+        <h1>Auto Layout — fundamentos</h1>
+        <p class="lead">Se existe <em>uma</em> ferramenta que separa o iniciante do profissional no Figma, é o Auto Layout. Ele faz seus layouts se ajustarem sozinhos ao conteúdo — exatamente como uma interface real se comporta.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~18 min</span>
+          <span>🎯 Nível: Intermediário</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Explicar o que é Auto Layout e por que ele é tão importante;</li>
+            <li>Transformar qualquer seleção em um frame de Auto Layout;</li>
+            <li>Controlar os três pilares: <strong>direção</strong>, <strong>espaçamento (gap)</strong> e <strong>padding</strong>;</li>
+            <li>Construir um botão e um card que se ajustam automaticamente ao conteúdo.</li>
+          </ul>
+        </div>
+
+        <h2>O que é Auto Layout?</h2>
+        <p><strong>Auto Layout</strong> é um recurso que transforma um frame comum em um <em>container inteligente</em>: em vez de você posicionar cada elemento manualmente com coordenadas X/Y, o frame organiza seus filhos automaticamente em uma linha ou coluna, com espaçamento e margens consistentes.</p>
+        <p>Se você já ouviu falar de <strong>Flexbox</strong> no CSS, o Auto Layout é praticamente a versão visual disso. E não é coincidência: quando o desenvolvedor for transformar seu design em código, um Auto Layout vira um container flex quase 1:1.</p>
+
+        <div class="callout info">
+          <span class="callout-title">A grande mudança de mentalidade</span>
+          <p>Sem Auto Layout, você desenha <em>posições</em>. Com Auto Layout, você descreve <em>regras</em> (“itens empilhados na vertical, com 16 px entre eles, e 24 px de margem”). O Figma cuida do resto — inclusive quando o conteúdo muda de tamanho.</p>
+        </div>
+
+        <h3>Por que isso muda tudo?</h3>
+        <ul>
+          <li><strong>Conteúdo dinâmico:</strong> um botão cresce sozinho quando o texto fica maior — sem você arrastar nada.</li>
+          <li><strong>Consistência:</strong> espaçamentos ficam padronizados em vez de “quase alinhados”.</li>
+          <li><strong>Velocidade:</strong> adicionar, remover ou reordenar itens reorganiza o layout instantaneamente.</li>
+          <li><strong>Componentes de verdade:</strong> a maioria dos componentes profissionais (botões, inputs, cards, listas) só funciona bem com Auto Layout.</li>
+        </ul>
+
+        <h2>A anatomia de um Auto Layout</h2>
+        <p>Todo frame de Auto Layout tem três propriedades essenciais. Veja como elas se encaixam:</p>
+
+        <div class="diagram">
+          <svg viewBox="0 0 520 240" role="img" aria-label="Diagrama mostrando direção, padding e gap em um frame de Auto Layout">
+            <!-- frame externo (auto layout) -->
+            <rect x="20" y="30" width="480" height="180" rx="14" fill="var(--primary-soft)" stroke="var(--primary)" stroke-width="2" stroke-dasharray="6 5"/>
+            <!-- área de padding (linha interna) -->
+            <rect x="56" y="62" width="408" height="116" rx="8" fill="none" stroke="var(--warning)" stroke-width="1.5" stroke-dasharray="3 4"/>
+            <!-- filhos -->
+            <rect x="72" y="80" width="110" height="80" rx="8" fill="var(--surface)" stroke="var(--border-strong)"/>
+            <rect x="206" y="80" width="110" height="80" rx="8" fill="var(--surface)" stroke="var(--border-strong)"/>
+            <rect x="340" y="80" width="110" height="80" rx="8" fill="var(--surface)" stroke="var(--border-strong)"/>
+            <!-- seta de direção -->
+            <line x1="72" y1="200" x2="450" y2="200" stroke="var(--primary)" stroke-width="2"/>
+            <polygon points="450,200 442,196 442,204" fill="var(--primary)"/>
+            <text x="200" y="216" fill="var(--primary)" font-size="12" font-family="sans-serif">direção (horizontal)</text>
+            <!-- rótulo gap -->
+            <text x="184" y="124" fill="var(--text-muted)" font-size="11" font-family="sans-serif">gap</text>
+            <line x1="182" y1="120" x2="206" y2="120" stroke="var(--text-muted)" stroke-width="1"/>
+            <!-- rótulo padding -->
+            <text x="26" y="52" fill="var(--warning)" font-size="12" font-family="sans-serif">padding</text>
+          </svg>
+          <p class="mock-label">Os três pilares: a <strong>direção</strong> (linha ou coluna), o <strong>gap</strong> (espaço entre os filhos) e o <strong>padding</strong> (margem interna do frame).</p>
+        </div>
+
+        <h2>Passo a passo: seu primeiro Auto Layout</h2>
+        <p>Vamos criar um botão simples com um ícone e um texto. Abra um arquivo no Figma e acompanhe:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie os elementos.</strong>
+            Adicione um texto (tecla <kbd>T</kbd>) escrevendo “Continuar” e, ao lado, um pequeno ícone ou um quadrado (<kbd>R</kbd>) de 20×20 px para simular o ícone.
+          </li>
+          <li>
+            <strong>Selecione os dois.</strong>
+            Clique e arraste sobre os elementos, ou segure <kbd>Shift</kbd> e clique em cada um, para selecionar ambos.
+          </li>
+          <li>
+            <strong>Aplique o Auto Layout.</strong>
+            Pressione <kbd>Shift</kbd> + <kbd>A</kbd>. O Figma envolve a seleção em um frame e os organiza lado a lado. Pronto — esse já é um Auto Layout!
+          </li>
+          <li>
+            <strong>Encontre o painel.</strong>
+            Com o frame selecionado, olhe o painel direito: surgiu uma seção <strong>Auto layout</strong> com botões de direção, campos de gap e padding.
+          </li>
+          <li>
+            <strong>Ajuste a aparência.</strong>
+            Dê um fill de cor ao frame, aumente o padding e arredonde os cantos (corner radius). Você acabou de criar um botão que <em>cresce sozinho</em> se o texto mudar.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Atalho que você vai usar o dia inteiro</span>
+          <p><kbd>Shift</kbd> + <kbd>A</kbd> adiciona Auto Layout. Para remover, use <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>A</kbd> (Windows) / <kbd>Shift</kbd> + <kbd>⌥</kbd> + <kbd>A</kbd> (Mac).</p>
+        </div>
+
+        <h2>Os três pilares na prática</h2>
+
+        <h3>1. Direção (horizontal, vertical ou wrap)</h3>
+        <p>Define se os filhos ficam lado a lado (linha) ou empilhados (coluna). No painel, os ícones de direção alternam entre <strong>horizontal</strong> (→) e <strong>vertical</strong> (↓). Existe também o <strong>wrap</strong>, que “quebra” os itens para a próxima linha quando não cabem — útil para grades de tags e galerias (veremos a fundo na próxima lição).</p>
+
+        <h3>2. Espaçamento entre itens (gap)</h3>
+        <p>É a distância entre cada filho. Digite um valor fixo (ex.: <code>16</code>) no campo de gap. Se você definir como <strong>Auto</strong>, o Figma distribui o espaço disponível entre os itens — é assim que se faz, por exemplo, um cabeçalho com o logo na esquerda e o menu na direita (“space between”).</p>
+
+        <h3>3. Padding (margem interna)</h3>
+        <p>É o espaço entre a borda do frame e seus filhos. Você pode definir um valor único para todos os lados, valores separados para horizontal/vertical, ou um valor independente para cada lado clicando no ícone de padding individual.</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Propriedade</th><th>O que controla</th><th>Exemplo de valor</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Direção</strong></td><td>Linha, coluna ou wrap</td><td>Vertical (↓)</td></tr>
+              <tr><td><strong>Gap</strong></td><td>Espaço entre os filhos</td><td><code>16</code> ou <code>Auto</code></td></tr>
+              <tr><td><strong>Padding</strong></td><td>Margem interna do frame</td><td><code>24</code> (todos) ou <code>16/24</code></td></tr>
+              <tr><td><strong>Alinhamento</strong></td><td>Posição dos filhos dentro do frame</td><td>Centro, topo, etc. (próxima lição)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Exemplo de uso real: um card de produto</h2>
+        <p>Imagine um card com imagem, título, preço e botão. Com Auto Layout <strong>vertical</strong>, gap de 12 e padding de 16, o card inteiro se reorganiza sozinho se o título virar duas linhas ou se você adicionar uma tag de “Promoção”. Veja a ideia:</p>
+
+        <div class="figma-mock">
+          <div class="device-browser" style="max-width:280px;">
+            <div style="padding:16px;display:flex;flex-direction:column;gap:12px;">
+              <div style="height:120px;border-radius:8px;background:linear-gradient(135deg,#6c4cf1,#b0367a);"></div>
+              <strong style="font-size:15px;">Fone Bluetooth Pro</strong>
+              <span style="color:var(--text-muted);font-size:13px;">Cancelamento de ruído · 30h de bateria</span>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <b style="font-size:18px;">R$ 499</b>
+                <span style="background:var(--primary);color:#fff;padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;">Comprar</span>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">Card construído com Auto Layout vertical. Mudou o conteúdo? O layout se ajusta sem retrabalho.</p>
+        </div>
+
+        <div class="callout warning">
+          <span class="callout-title">Erros comuns de iniciante</span>
+          <p><strong>1.</strong> Usar Group (<kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>G</kbd>) achando que é Auto Layout — Group só agrupa, não organiza. <strong>2.</strong> Esquecer que o frame com Auto Layout ignora posições manuais: você não “arrasta” mais os filhos livremente, você muda a <em>ordem</em>. <strong>3.</strong> Misturar espaçamentos no olho em vez de usar o gap.</p>
+        </div>
+
+        <div class="callout pro">
+          <span class="callout-title">Dica de profissional</span>
+          <p>Pense em Auto Layout como <strong>caixas dentro de caixas</strong>. Um card é um Auto Layout vertical que contém uma linha (Auto Layout horizontal) com preço e botão. Aninhar Auto Layouts é o segredo para montar telas inteiras que respondem ao conteúdo.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Adicionar Auto Layout</td><td><kbd>Shift</kbd> + <kbd>A</kbd></td><td><kbd>Shift</kbd> + <kbd>A</kbd></td></tr>
+              <tr><td>Remover Auto Layout</td><td><kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>A</kbd></td><td><kbd>Shift</kbd> + <kbd>⌥</kbd> + <kbd>A</kbd></td></tr>
+              <tr><td>Ferramenta Texto</td><td><kbd>T</kbd></td><td><kbd>T</kbd></td></tr>
+              <tr><td>Retângulo</td><td><kbd>R</kbd></td><td><kbd>R</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Auto Layout transforma um frame em um container que organiza os filhos automaticamente.</li>
+          <li>Os três pilares são <strong>direção</strong>, <strong>gap</strong> e <strong>padding</strong>.</li>
+          <li>Use <kbd>Shift</kbd> + <kbd>A</kbd> para aplicar; configure tudo no painel direito.</li>
+          <li>Aninhar Auto Layouts (caixas dentro de caixas) é a base de telas inteiras.</li>
+        </ul>
+
+        <!-- EXERCÍCIO -->
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Crie um botão e um card</h3>
+          <p>Coloque a mão na massa:</p>
+          <ol>
+            <li>Crie um <strong>botão</strong> com ícone + texto usando Auto Layout horizontal (padding 12×20, gap 8, cantos arredondados).</li>
+            <li>Troque o texto por algo bem maior e confirme que o botão cresce sozinho.</li>
+            <li>Crie um <strong>card</strong> vertical com imagem, título e botão, reaproveitando o botão que você fez.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> ao editar qualquer texto, nada quebra nem desalinha — o layout se reajusta sozinho.
+          </div>
+        </div>
+
+        <!-- DESAFIO -->
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Cabeçalho “space between”</h3>
+          <p>Monte o cabeçalho de um app: um logo à esquerda e dois ícones à direita, dentro de um único Auto Layout horizontal que ocupa toda a largura. Use o gap em modo <strong>Auto</strong> para empurrar os grupos para as extremidades. Dica: você vai precisar que o frame tenha largura fixa (veremos resizing na próxima lição).</p>
+        </div>
+
+        <!-- QUIZ -->
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Qual atalho aplica Auto Layout à seleção?</p>
+            <ul class="quiz-options">
+              <li>Ctrl/⌘ + G</li>
+              <li>Ctrl/⌘ + Alt + G</li>
+              <li>Shift + A</li>
+              <li>Shift + Ctrl + L</li>
+            </ul>
+            <div class="quiz-explain"><strong>Shift + A</strong> aplica Auto Layout. Ctrl/⌘ + G cria um Group (que não organiza nada automaticamente).</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">2. O que o valor “Auto” no campo de gap faz?</p>
+            <ul class="quiz-options">
+              <li>Define o gap como 0</li>
+              <li>Distribui o espaço disponível entre os itens (space between)</li>
+              <li>Copia o valor do padding</li>
+              <li>Ativa o modo wrap</li>
+            </ul>
+            <div class="quiz-explain">Gap em <strong>Auto</strong> empurra os itens para as extremidades, distribuindo o espaço livre — perfeito para cabeçalhos com logo de um lado e menu do outro.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">3. Qual conceito do CSS o Auto Layout mais se parece?</p>
+            <ul class="quiz-options">
+              <li>Grid de impressão</li>
+              <li>position: absolute</li>
+              <li>float</li>
+              <li>Flexbox</li>
+            </ul>
+            <div class="quiz-explain">Auto Layout é, na prática, a versão visual do <strong>Flexbox</strong> — por isso vira código tão facilmente no handoff.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

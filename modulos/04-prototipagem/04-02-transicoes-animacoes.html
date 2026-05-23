@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transições e animações | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="04-02-transicoes-animacoes" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">⚡ Módulo 4 · Prototipagem · Lição 2 de 7</div>
+        <h1>Transições e animações</h1>
+        <p class="lead">A diferença entre um protótipo "clicável" e um protótipo que <em>parece real</em> está nas transições. Escolher o tipo certo de animação, a direção correta e o easing adequado transforma uma demo estática em uma experiência que comunica intenção de design.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~18 min</span>
+          <span>🎯 Nível: Intermediário</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Escolher o tipo de animação certo para cada contexto (Instant, Dissolve, Smart Animate, Move, Push, Slide);</li>
+            <li>Configurar direção, easing e duração de cada transição;</li>
+            <li>Explicar a diferença entre os tipos de easing e quando usar cada um;</li>
+            <li>Construir uma navegação entre telas com transições que comunicam hierarquia e direção.</li>
+          </ul>
+        </div>
+
+        <h2>Por que as transições importam?</h2>
+        <p>Quando um usuário toca em "Próximo" e a nova tela simplesmente <em>aparece</em> sem animação, o cérebro precisa de um momento para processar a mudança de contexto — a interface parece quebrada ou abrupta. Uma transição bem escolhida age como pontuação visual: ela diz "você foi para a direita", "isso veio de baixo" ou "este elemento se transformou naquele".</p>
+        <p>Além disso, transições alinhadas com as convenções da plataforma (iOS slide from right, Android fade, etc.) fazem o protótipo parecer "real" para os participantes de um teste de usabilidade — o que torna o feedback mais válido.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Onde configurar as transições</span>
+          <p>Ao criar ou editar uma Connection (seta de protótipo), o modal de interação exibe três áreas: Trigger, Action e — logo abaixo do campo de destino — as opções de <strong>Animation</strong>. É ali que você escolhe o tipo, a direção, o easing e a duração.</p>
+        </div>
+
+        <h2>Os tipos de animação</h2>
+
+        <h3>Instant</h3>
+        <p>Troca o conteúdo imediatamente, sem qualquer animação visual. Parece um "corte" de vídeo. Use apenas quando a mudança de tela deve ser imperceptível (ex.: atualização de dados em background) ou durante prototipagem inicial para ganhar velocidade. Para demos e testes com usuários, prefira sempre algum tipo de animação.</p>
+
+        <h3>Dissolve</h3>
+        <p>A tela atual some gradualmente enquanto a nova tela aparece (cross-fade). É a transição mais neutra e segura: funciona bem quando não há uma relação espacial clara entre as telas (ex.: trocar de aba em um app de navegação inferior). A duração padrão de 300 ms é um bom ponto de partida.</p>
+
+        <h3>Smart Animate</h3>
+        <p>O tipo mais poderoso: o Figma identifica layers com o <em>mesmo nome</em> nos dois frames e anima automaticamente a diferença de posição, tamanho, opacidade, cor e forma entre eles. O resultado é uma transição fluida que parece código real. Vamos explorar Smart Animate a fundo na <strong>Lição 3</strong>.</p>
+
+        <h3>Move In e Move Out</h3>
+        <p><strong>Move In:</strong> a nova tela desliza para dentro enquanto a tela atual permanece parada. A tela que entra "vem de cima", "de baixo", "da esquerda" ou "da direita" dependendo da direção configurada. <strong>Move Out:</strong> a tela atual desliza para fora, revelando a nova tela que estava "atrás". Use esses dois combinados para simular transições de abertura/fechamento de painéis.</p>
+
+        <h3>Push</h3>
+        <p>As duas telas se movem juntas: a nova tela empurra a atual para fora enquanto entra. É a transição clássica de navegação lateral em mobile (iOS "push" de telas). A direção define de qual lado a nova tela empurra (da direita para avançar, da esquerda para voltar).</p>
+
+        <h3>Slide In e Slide Out</h3>
+        <p>Semelhante a Move In/Out, mas com um comportamento de profundidade ligeiramente diferente — a tela que desliza mantém alguma sobreposição visual, como um drawer que aparece por cima do conteúdo. Ideal para painéis laterais, bottom sheets e menus que sobrepõem a tela sem substituí-la completamente.</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Tipo</th><th>Comportamento</th><th>Quando usar</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Instant</strong></td><td>Corte seco, sem animação</td><td>Prototipagem rápida, mudanças imperceptíveis</td></tr>
+              <tr><td><strong>Dissolve</strong></td><td>Cross-fade entre as telas</td><td>Troca de abas, contextos sem relação espacial</td></tr>
+              <tr><td><strong>Smart Animate</strong></td><td>Anima layers de mesmo nome automaticamente</td><td>Microinterações, transições ricas entre variantes</td></tr>
+              <tr><td><strong>Move In</strong></td><td>Nova tela entra; atual fica parada</td><td>Abertura de modal a partir do botão de origem</td></tr>
+              <tr><td><strong>Move Out</strong></td><td>Atual sai; nova estava "atrás"</td><td>Fechar um modal, revelar conteúdo</td></tr>
+              <tr><td><strong>Push</strong></td><td>As duas telas se movem juntas</td><td>Navegação lateral (avançar/voltar), carrosséis</td></tr>
+              <tr><td><strong>Slide In</strong></td><td>Nova tela desliza por cima da atual</td><td>Bottom sheets, drawers laterais</td></tr>
+              <tr><td><strong>Slide Out</strong></td><td>Tela atual desliza para fora</td><td>Fechar drawer, dispensar bottom sheet</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Direção</h2>
+        <p>Para as transições que envolvem movimento (Move In/Out, Push, Slide In/Out), você escolhe a <strong>direção</strong> de entrada ou saída: Left, Right, Top ou Bottom. A regra de ouro da UX é:</p>
+        <ul>
+          <li><strong>Avançar na hierarquia</strong> → tela nova entra pela direita (convenção mobile).</li>
+          <li><strong>Voltar na hierarquia</strong> → tela nova entra pela esquerda.</li>
+          <li><strong>Conteúdo que vem de baixo</strong> (bottom sheets, modais de confirmação) → entra de baixo para cima.</li>
+          <li><strong>Notificações ou toasts</strong> → entram de cima para baixo.</li>
+        </ul>
+        <p>Manter essa consistência faz com que o usuário de um teste de usabilidade (e o desenvolvedor no handoff) entenda a intenção do design sem precisar de explicação.</p>
+
+        <h2>Easing — a aceleração do movimento</h2>
+        <p>O <strong>easing</strong> define como a velocidade da animação muda ao longo do tempo. Uma animação com velocidade constante (Linear) parece mecânica e artificial. Os objetos no mundo físico aceleram ao sair e desaceleram ao chegar — o easing imita isso.</p>
+
+        <h3>Ease In</h3>
+        <p>Começa devagar e acelera até o final. Parece que o elemento está "saindo de cena". Use para objetos que estão saindo da tela — o usuário ainda vê o início do movimento antes de ele sumir.</p>
+
+        <h3>Ease Out</h3>
+        <p>Começa rápido e desacelera até parar. Parece que o elemento "aterrissa" naturalmente. Use para objetos que estão <em>entrando</em> em cena — eles chegam com energia e param suavemente. É o easing mais amigável para transições de navegação.</p>
+
+        <h3>Ease In and Out (Ease In Out)</h3>
+        <p>Começa devagar, acelera no meio e desacelera no final. Ótimo para animações internas (como um elemento que se move de um lado para outro na mesma tela) porque o início e o fim são suaves.</p>
+
+        <h3>Linear</h3>
+        <p>Velocidade constante. Parece mecânico na maioria dos casos, mas funciona bem para loops contínuos (spinner de carregamento, progress bar) onde não faz sentido haver início ou fim perceptível.</p>
+
+        <h3>Custom Bezier</h3>
+        <p>Você controla a curva de aceleração manualmente arrastando as alças de uma curva de Bézier cúbica — exatamente como a propriedade <code>cubic-bezier()</code> do CSS. Use quando nenhum preset serve ou quando você quer replicar exatamente uma curva de animação do código. Ferramentas como <em>easings.net</em> ajudam a encontrar e testar curvas.</p>
+
+        <h3>Spring</h3>
+        <p>Simula física de mola: o elemento ultrapassa ligeiramente o ponto de destino antes de "voltar" e estabilizar. Cria uma sensação orgânica e lúdica. Configure <strong>Mass</strong> (massa do objeto), <strong>Stiffness</strong> (rigidez da mola) e <strong>Damping</strong> (amortecimento). Atenção: valores extremos de Spring podem parecer exagerados em interfaces corporativas.</p>
+
+        <div class="callout tip">
+          <span class="callout-title">Regra rápida de easing</span>
+          <p>Para a maioria das transições de navegação, comece com <strong>Ease Out</strong> em 300 ms. É suave, lê bem em testes e está alinhado com as convenções do Material Design e do Human Interface Guidelines da Apple.</p>
+        </div>
+
+        <h2>Duração</h2>
+        <p>A duração é medida em <strong>milissegundos (ms)</strong>. Recomendações baseadas nas guidelines de animação de iOS, Android e Material Design:</p>
+        <ul>
+          <li><strong>100–150 ms:</strong> microinterações (hover, press feedback) — quase imperceptíveis, apenas responsivas.</li>
+          <li><strong>200–300 ms:</strong> faixa ideal para transições de navegação padrão.</li>
+          <li><strong>400–500 ms:</strong> transições complexas com Smart Animate ou elementos que percorrem grande distância.</li>
+          <li><strong>Acima de 600 ms:</strong> raramente necessário; pode deixar o app "lento" na percepção do usuário.</li>
+        </ul>
+
+        <div class="callout warning">
+          <span class="callout-title">Evite exageros na demo</span>
+          <p>Transições longas ou exageradas podem impressionar em uma apresentação inicial, mas durante um teste de usabilidade com 5+ tarefas, o usuário vai se irritar com cada segundo extra. <strong>Rápido e suave vence lento e espetacular.</strong></p>
+        </div>
+
+        <h2>Passo a passo: navegação com Push e Ease Out</h2>
+        <p>Vamos simular a navegação "Avançar" de um app mobile, com a transição clássica de empurrar da direita:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Prepare dois frames.</strong>
+            Crie dois frames "iPhone 14" (<kbd>F</kbd>, selecione o preset). Nomeie-os "Lista de itens" e "Detalhe do item". Coloque conteúdo simples em cada um (uma lista em um, um card expandido no outro).
+          </li>
+          <li>
+            <strong>Adicione um botão no primeiro frame.</strong>
+            Coloque um botão "Ver detalhes" no frame "Lista de itens". Esse será o elemento de origem da conexão.
+          </li>
+          <li>
+            <strong>Crie a conexão.</strong>
+            Vá para a aba Prototype, selecione o botão, arraste o hotspot azul até o frame "Detalhe do item".
+          </li>
+          <li>
+            <strong>Configure o Trigger.</strong>
+            No modal de interação, confirme que o Trigger é <strong>On click</strong>.
+          </li>
+          <li>
+            <strong>Escolha a Animation.</strong>
+            Na seção de animação, selecione <strong>Push</strong> como tipo e <strong>Left</strong> como direção (a nova tela entra da direita, empurrando a atual para a esquerda — convenção de "avançar").
+          </li>
+          <li>
+            <strong>Defina o easing e duração.</strong>
+            Selecione <strong>Ease Out</strong> e <strong>300 ms</strong>.
+          </li>
+          <li>
+            <strong>Adicione o botão Voltar.</strong>
+            No frame "Detalhe do item", adicione um botão "← Voltar". Conecte-o ao frame "Lista de itens" com <strong>Back</strong> (ou Navigate to + Push Right para 200 ms com Ease In).
+          </li>
+          <li>
+            <strong>Teste no Present mode.</strong>
+            Pressione <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Enter</kbd> e clique nos botões. A navegação deve parecer um app nativo.
+          </li>
+        </ol>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Em um aplicativo de e-commerce:</p>
+        <ul>
+          <li><strong>Tela da lista de produtos → Detalhe do produto:</strong> Push da direita, 300 ms, Ease Out.</li>
+          <li><strong>Detalhe do produto → Carrinho (bottom sheet):</strong> Slide In de baixo, 350 ms, Ease Out.</li>
+          <li><strong>Fechar carrinho:</strong> Slide Out para baixo, 300 ms, Ease In.</li>
+          <li><strong>Trocar abas (Início / Busca / Conta):</strong> Dissolve, 200 ms — sem relação espacial entre abas.</li>
+          <li><strong>Loader → Conteúdo carregado:</strong> Dissolve, 150 ms.</li>
+        </ul>
+        <p>Cada transição comunica uma intenção diferente. Um desenvolvedor que recebe esse protótipo sabe exatamente como implementar cada animação no código.</p>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Abrir Present mode</td><td><kbd>Ctrl</kbd> + <kbd>Enter</kbd></td><td><kbd>⌘</kbd> + <kbd>Enter</kbd></td></tr>
+              <tr><td>Aba Prototype</td><td><kbd>Alt</kbd> + <kbd>8</kbd></td><td><kbd>⌥</kbd> + <kbd>8</kbd></td></tr>
+              <tr><td>Navegar entre frames (Present)</td><td><kbd>←</kbd> <kbd>→</kbd></td><td><kbd>←</kbd> <kbd>→</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li><strong>Instant</strong> é o corte seco — use com parcimônia em demos reais.</li>
+          <li><strong>Dissolve</strong> é o cross-fade neutro — seguro para trocas de contexto sem relação espacial.</li>
+          <li><strong>Push</strong> é a transição de navegação clássica — direita = avançar, esquerda = voltar.</li>
+          <li><strong>Slide In/Out</strong> é ideal para drawers e bottom sheets que sobrepõem a tela.</li>
+          <li><strong>Smart Animate</strong> é o mais poderoso — anima layers de mesmo nome automaticamente (próxima lição).</li>
+          <li>Use <strong>Ease Out</strong> para elementos que entram; <strong>Ease In</strong> para os que saem; <strong>Linear</strong> apenas para loops.</li>
+          <li>Duração ideal: <strong>200–300 ms</strong> para a maioria das transições de navegação.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Navegação com 4 tipos de transição</h3>
+          <p>Crie quatro pares de telas e aplique uma transição diferente em cada par:</p>
+          <ol>
+            <li>Lista → Detalhe: <strong>Push</strong> Left, 300 ms, Ease Out.</li>
+            <li>Home → Tab diferente: <strong>Dissolve</strong>, 200 ms.</li>
+            <li>Qualquer tela → Modal: <strong>Move In</strong> Bottom, 350 ms, Ease Out.</li>
+            <li>Splash → Home: <strong>Dissolve</strong>, 600 ms (lenta, para efeito dramático).</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> cada transição comunica visualmente a relação espacial entre as telas (lateral, vertical, sobreposta). No Present mode, as animações ficam suaves e com a direção correta.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Replicar as transições nativas do iOS ou Android</h3>
+          <p>Pesquise as "Human Interface Guidelines" da Apple ou o "Motion" do Material Design e tente replicar as transições oficiais de navegação: iOS usa Push da direita com Ease In Out e 350 ms para navegação principal, e Slide In de baixo com Spring para modais. Android usa Fade + pequeno Scale para trocas de destino no navigation drawer. Construa um protótipo de 4 telas usando essas especificações e compare a sensação com transições simples.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Qual tipo de transição você usaria para simular a abertura de um bottom sheet (painel que sobe de baixo)?</p>
+            <ul class="quiz-options">
+              <li>Push — Bottom</li>
+              <li>Dissolve</li>
+              <li>Slide In — Bottom</li>
+              <li>Instant</li>
+            </ul>
+            <div class="quiz-explain"><strong>Slide In — Bottom</strong> faz o frame deslizar por cima da tela atual vindo de baixo, replicando o comportamento nativo de bottom sheets. Push moveria as duas telas juntas, o que não corresponde à sensação de "painel por cima".</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. O easing "Ease Out" começa rápido e desacelera. Para qual situação ele é mais adequado?</p>
+            <ul class="quiz-options">
+              <li>Elementos que estão entrando em cena</li>
+              <li>Elementos que estão saindo de cena</li>
+              <li>Loops de carregamento contínuos</li>
+              <li>Quando não há diferença visual de velocidade</li>
+            </ul>
+            <div class="quiz-explain"><strong>Ease Out</strong> é ideal para elementos <em>entrando</em>: eles chegam com energia e "aterrisam" suavemente. Para elementos <em>saindo</em>, use Ease In (começa devagar, acelera para sair). Linear serve para loops contínuos.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">3. Qual é a faixa de duração recomendada para a maioria das transições de navegação padrão em mobile?</p>
+            <ul class="quiz-options">
+              <li>50–100 ms</li>
+              <li>200–300 ms</li>
+              <li>600–800 ms</li>
+              <li>1000–1500 ms</li>
+            </ul>
+            <div class="quiz-explain">A faixa de <strong>200–300 ms</strong> é o padrão recomendado pelas guidelines de iOS e Android para navegação. Mais rápido que 150 ms passa despercebido; mais lento que 400 ms começa a parecer lerdo para o usuário.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

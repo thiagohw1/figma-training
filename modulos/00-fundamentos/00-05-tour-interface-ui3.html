@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tour completo pela interface (UI3) | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="00-05-tour-interface-ui3" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🚀 Módulo 0 · Fundamentos · Lição 5 de 6</div>
+        <h1>Tour completo pela interface (UI3)</h1>
+        <p class="lead">A interface UI3 do Figma, lançada em 2024, reorganizou completamente o workspace. Se você já usou o Figma antes, vai notar diferenças grandes — e se é sua primeira vez, vai aprender o layout definitivo da ferramenta.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~22 min</span>
+          <span>🎯 Nível: Fundamentos</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Identificar todas as regiões da interface UI3 do Figma e descrever o que cada uma faz;</li>
+            <li>Navegar pelo canvas com zoom, pan e as principais ferramentas da toolbar;</li>
+            <li>Criar seu primeiro Frame e se localizar entre layers, pages e assets;</li>
+            <li>Usar os painéis direitos de Design e Prototype para inspecionar elementos;</li>
+            <li>Personalizar o workspace com abas e múltiplos arquivos abertos.</li>
+          </ul>
+        </div>
+
+        <h2>O que mudou na UI3?</h2>
+        <p>Em 2024, o Figma lançou a <strong>UI3</strong> — a maior redesign da interface desde o lançamento da ferramenta. As mudanças mais importantes foram:</p>
+        <ul>
+          <li><strong>Toolbar flutuante inferior:</strong> as ferramentas de criação (retângulo, texto, frame, etc.) migraram da parte superior para uma barra flutuante na parte inferior do canvas.</li>
+          <li><strong>Menu principal consolidado:</strong> o ícone do Figma no canto superior esquerdo concentra todas as ações de arquivo (novo, abrir, salvar, exportar, etc.).</li>
+          <li><strong>Painel esquerdo unificado:</strong> Layers, Pages e Assets foram reorganizados em um único painel lateral esquerdo com ícones de alternância.</li>
+          <li><strong>Abas de arquivo:</strong> você pode abrir múltiplos arquivos em abas separadas dentro do mesmo workspace.</li>
+          <li><strong>Novo painel direito:</strong> o painel de Design foi reorganizado com seções mais claras e o painel de Prototype ficou acessível por uma aba no mesmo painel.</li>
+        </ul>
+
+        <div class="callout warning">
+          <span class="callout-title">Usuários da interface antiga</span>
+          <p>Se você usou o Figma antes de 2024 e está acostumado com a toolbar no topo, leve um tempo para se adaptar à UI3. A lógica é a mesma — os locais das ferramentas é que mudaram. Após alguns dias de uso, a UI3 flui de forma muito mais natural.</p>
+        </div>
+
+        <h2>Mapa da interface UI3</h2>
+        <p>Veja o layout completo do workspace do Figma com todas as regiões nomeadas:</p>
+
+        <div class="diagram">
+          <svg viewBox="0 0 700 440" role="img" aria-label="Mapa da interface UI3 do Figma mostrando todas as regiões">
+            <!-- fundo do workspace -->
+            <rect x="0" y="0" width="700" height="440" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+
+            <!-- topbar -->
+            <rect x="0" y="0" width="700" height="44" rx="12" fill="var(--surface)" stroke="var(--border)" stroke-width="1"/>
+            <rect x="0" y="30" width="700" height="14" fill="var(--surface)"/>
+            <text x="14" y="28" fill="var(--text)" font-size="12" font-family="sans-serif" font-weight="700">☰  Arquivo</text>
+            <text x="100" y="28" fill="var(--text-muted)" font-size="11" font-family="sans-serif">Meu Projeto</text>
+            <rect x="270" y="10" width="160" height="24" rx="6" fill="var(--surface-2)" stroke="var(--border)"/>
+            <text x="350" y="26" text-anchor="middle" fill="var(--text-muted)" font-size="10.5" font-family="sans-serif">🔍 Buscar ações</text>
+            <text x="550" y="28" fill="var(--text-muted)" font-size="11" font-family="sans-serif">72%   Design   Prototype</text>
+            <text x="658" y="28" fill="var(--primary)" font-size="11" font-family="sans-serif" font-weight="700">Share</text>
+            <!-- rótulo topbar -->
+            <rect x="10" y="48" width="90" height="20" rx="4" fill="var(--info-soft)" stroke="var(--info-border)" stroke-width="1"/>
+            <text x="55" y="62" text-anchor="middle" fill="var(--info)" font-size="10" font-family="sans-serif" font-weight="700">① Topbar</text>
+
+            <!-- painel esquerdo -->
+            <rect x="0" y="44" width="220" height="350" fill="var(--surface)" stroke="var(--border-strong)" stroke-width="1"/>
+            <!-- tabs esquerda -->
+            <rect x="0" y="44" width="220" height="32" fill="var(--surface-2)"/>
+            <text x="20" y="64" fill="var(--primary)" font-size="12" font-family="sans-serif">Layers</text>
+            <text x="75" y="64" fill="var(--text-muted)" font-size="12" font-family="sans-serif">Assets</text>
+            <!-- layers mock -->
+            <rect x="12" y="88" width="180" height="16" rx="3" fill="var(--surface-2)"/>
+            <text x="20" y="100" fill="var(--text-muted)" font-size="10" font-family="sans-serif">▾ 📄 Page 1</text>
+            <rect x="20" y="110" width="170" height="14" rx="3" fill="var(--primary-soft)"/>
+            <text x="28" y="121" fill="var(--primary)" font-size="10" font-family="sans-serif">▾ 🖼 Frame 1</text>
+            <rect x="28" y="128" width="160" height="14" rx="3" fill="var(--surface-2)"/>
+            <text x="36" y="139" fill="var(--text-muted)" font-size="10" font-family="sans-serif">⬛ Rectangle</text>
+            <rect x="28" y="146" width="160" height="14" rx="3" fill="var(--surface-2)"/>
+            <text x="36" y="157" fill="var(--text-muted)" font-size="10" font-family="sans-serif">T Text</text>
+            <!-- rótulo painel esq -->
+            <rect x="8" y="335" width="170" height="20" rx="4" fill="var(--success-soft)" stroke="var(--success-border)" stroke-width="1"/>
+            <text x="93" y="349" text-anchor="middle" fill="var(--success)" font-size="10" font-family="sans-serif" font-weight="700">② Painel Esquerdo (Layers/Assets/Pages)</text>
+
+            <!-- pages na parte inferior esq -->
+            <rect x="0" y="394" width="220" height="46" fill="var(--surface)" stroke="var(--border)" stroke-width="1"/>
+            <text x="12" y="412" fill="var(--text-muted)" font-size="10" font-family="sans-serif">PÁGINAS</text>
+            <text x="12" y="428" fill="var(--primary)" font-size="11" font-family="sans-serif">● Page 1  ○ Page 2</text>
+
+            <!-- canvas (centro) -->
+            <rect x="220" y="44" width="280" height="350" fill="var(--bg-subtle)"/>
+            <!-- checkerboard hint -->
+            <text x="360" y="180" text-anchor="middle" fill="var(--text-soft)" font-size="12" font-family="sans-serif">CANVAS</text>
+            <text x="360" y="198" text-anchor="middle" fill="var(--text-soft)" font-size="10" font-family="sans-serif">(área de trabalho infinita)</text>
+            <!-- frame mock no canvas -->
+            <rect x="270" y="220" width="180" height="120" rx="6" fill="var(--surface)" stroke="var(--primary)" stroke-width="1.5"/>
+            <text x="360" y="238" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="sans-serif">Frame — 375 × 812</text>
+            <rect x="286" y="248" width="148" height="80" rx="4" fill="var(--surface-2)"/>
+            <text x="360" y="292" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="sans-serif">[conteúdo]</text>
+            <!-- rótulo canvas -->
+            <rect x="248" y="160" width="224" height="20" rx="4" fill="var(--warning-soft)" stroke="var(--warning-border)" stroke-width="1"/>
+            <text x="360" y="174" text-anchor="middle" fill="var(--warning)" font-size="10" font-family="sans-serif" font-weight="700">③ Canvas (infinito — rolagem e zoom livres)</text>
+
+            <!-- toolbar flutuante inferior -->
+            <rect x="265" y="366" width="190" height="32" rx="16" fill="var(--surface)" stroke="var(--border-strong)" stroke-width="1.5" style="filter:drop-shadow(0 2px 6px rgba(0,0,0,.15))"/>
+            <text x="280" y="386" fill="var(--text-muted)" font-size="11" font-family="sans-serif">V  K  F  R  E  T  P ✏</text>
+            <!-- rótulo toolbar -->
+            <rect x="245" y="400" width="230" height="20" rx="4" fill="var(--danger-soft)" stroke="var(--danger-border)" stroke-width="1"/>
+            <text x="360" y="414" text-anchor="middle" fill="var(--danger)" font-size="10" font-family="sans-serif" font-weight="700">④ Toolbar Flutuante Inferior</text>
+
+            <!-- painel direito -->
+            <rect x="500" y="44" width="200" height="350" fill="var(--surface)" stroke="var(--border-strong)" stroke-width="1"/>
+            <!-- tabs painel dir -->
+            <rect x="500" y="44" width="200" height="32" fill="var(--surface-2)"/>
+            <text x="520" y="64" fill="var(--primary)" font-size="12" font-family="sans-serif" font-weight="700">Design</text>
+            <text x="578" y="64" fill="var(--text-muted)" font-size="12" font-family="sans-serif">Prototype</text>
+            <!-- conteúdo painel dir -->
+            <text x="512" y="94" fill="var(--text-soft)" font-size="10" font-family="sans-serif" font-weight="700">ALINHAMENTO</text>
+            <rect x="512" y="100" width="176" height="22" rx="4" fill="var(--surface-2)"/>
+            <text x="600" y="115" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="sans-serif">⬛◻◻◻◻◻◻◻</text>
+            <text x="512" y="142" fill="var(--text-soft)" font-size="10" font-family="sans-serif" font-weight="700">FRAME</text>
+            <text x="512" y="158" fill="var(--text-muted)" font-size="10" font-family="sans-serif">X 0  Y 0</text>
+            <text x="600" y="158" fill="var(--text-muted)" font-size="10" font-family="sans-serif">W 375  H 812</text>
+            <text x="512" y="184" fill="var(--text-soft)" font-size="10" font-family="sans-serif" font-weight="700">FILL</text>
+            <rect x="512" y="190" width="16" height="16" rx="3" fill="#6c4cf1"/>
+            <text x="534" y="202" fill="var(--text-muted)" font-size="10" font-family="sans-serif">#6C4CF1   100%</text>
+            <text x="512" y="228" fill="var(--text-soft)" font-size="10" font-family="sans-serif" font-weight="700">STROKE</text>
+            <text x="512" y="244" fill="var(--text-muted)" font-size="10" font-family="sans-serif">— Nenhum</text>
+            <text x="512" y="270" fill="var(--text-soft)" font-size="10" font-family="sans-serif" font-weight="700">EFFECTS</text>
+            <text x="512" y="286" fill="var(--text-muted)" font-size="10" font-family="sans-serif">+ Add effect</text>
+            <!-- rótulo painel dir -->
+            <rect x="510" y="335" width="175" height="20" rx="4" fill="var(--pro-soft)" stroke="var(--pro-border)" stroke-width="1"/>
+            <text x="598" y="349" text-anchor="middle" fill="var(--pro)" font-size="10" font-family="sans-serif" font-weight="700">⑤ Painel Direito (Design/Prototype)</text>
+          </svg>
+          <p class="mock-label">Mapa completo da interface UI3: topbar ①, painel esquerdo ②, canvas ③, toolbar flutuante inferior ④ e painel direito ⑤.</p>
+        </div>
+
+        <h2>As 5 regiões em detalhe</h2>
+
+        <h3>① Topbar (barra superior)</h3>
+        <p>A topbar é a faixa horizontal no topo da janela. Ela contém:</p>
+        <ul>
+          <li><strong>Menu principal (ícone ☰):</strong> acesso a File (novo, abrir, salvar, exportar), Edit (copiar, colar, desfazer), View e Help. Também é onde você altera as preferências do app.</li>
+          <li><strong>Abas de arquivo:</strong> cada arquivo aberto aparece como uma aba. Clique no "+" para abrir outro arquivo em paralelo.</li>
+          <li><strong>Barra de ações rápidas:</strong> campo de busca central (atalho <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>/</kbd>) que permite buscar qualquer ação, plugin ou propriedade por nome.</li>
+          <li><strong>Controles de zoom:</strong> percentual de zoom (clique para um valor exato) e botões de view mode.</li>
+          <li><strong>Abas de painel direito:</strong> alterna entre Design Mode e Prototype Mode no painel direito.</li>
+          <li><strong>Botão Share:</strong> compartilha o arquivo ou exibe o link de protótipo.</li>
+          <li><strong>Botão Play (▶):</strong> abre o Present Mode — o protótipo em tela cheia.</li>
+        </ul>
+
+        <h3>② Painel Esquerdo (Layers, Assets, Pages)</h3>
+        <p>O painel esquerdo tem três seções acessadas por ícones ou abas na parte superior:</p>
+
+        <h4>Layers (Camadas)</h4>
+        <p>Exibe a árvore de todos os elementos no arquivo atual: Frames, Groups, Components, Shapes, Texts. A hierarquia aqui é o inverso do que você vê no canvas — elementos no <em>topo</em> da lista ficam na frente visualmente. Você pode reordenar arrastando, renomear com duplo clique e ocultar/travar clicando nos ícones que aparecem ao passar o mouse.</p>
+
+        <h4>Assets (Recursos)</h4>
+        <p>Mostra todos os Components e Styles disponíveis — tanto os do arquivo atual quanto os das Libraries (bibliotecas compartilhadas de equipe). Use a busca do Assets para encontrar componentes rapidamente e arraste-os para o canvas.</p>
+
+        <h4>Pages (Páginas)</h4>
+        <p>Na parte inferior do painel esquerdo ficam as páginas do arquivo. Um arquivo pode ter múltiplas páginas — útil para separar wireframes, design final, guia de componentes, notas para dev, etc. Clique em "+" para adicionar uma página e dê duplo clique para renomear.</p>
+
+        <h3>③ Canvas</h3>
+        <p>O canvas é a área de trabalho infinita onde você coloca Frames, cria elementos e organiza seu design. Ao contrário de softwares tradicionais, o canvas do Figma não tem limite de tamanho — você pode criar dezenas de telas uma ao lado da outra sem se preocupar com "tamanho de documento".</p>
+        <p>O canvas tem uma cor de fundo configurável (cinza-escuro por padrão no tema escuro, cinza-claro no tema claro). Essa cor não faz parte do design — é apenas o ambiente de trabalho.</p>
+
+        <h3>④ Toolbar Flutuante Inferior (a grande mudança da UI3)</h3>
+        <p>A toolbar flutuante aparece no centro-baixo do canvas. Ela contém todas as ferramentas de criação:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Ícone / Atalho</th><th>Ferramenta</th><th>Para que serve</th></tr></thead>
+            <tbody>
+              <tr><td><kbd>V</kbd></td><td>Move (Seleção)</td><td>Selecionar, mover e redimensionar elementos</td></tr>
+              <tr><td><kbd>K</kbd></td><td>Scale</td><td>Escalar mantendo proporções e relações internas</td></tr>
+              <tr><td><kbd>F</kbd></td><td>Frame</td><td>Criar Frames (telas, containers de design)</td></tr>
+              <tr><td><kbd>S</kbd></td><td>Section</td><td>Criar Sections (agrupadores de organização no canvas)</td></tr>
+              <tr><td><kbd>R</kbd></td><td>Rectangle</td><td>Criar retângulos</td></tr>
+              <tr><td><kbd>E</kbd></td><td>Ellipse</td><td>Criar elipses e círculos</td></tr>
+              <tr><td><kbd>T</kbd></td><td>Text</td><td>Criar e editar textos</td></tr>
+              <tr><td><kbd>P</kbd></td><td>Pen</td><td>Criar vetores com o modo Pen (bézier)</td></tr>
+              <tr><td><kbd>B</kbd></td><td>Paint Bucket</td><td>Ferramenta de preenchimento vetorial</td></tr>
+              <tr><td><kbd>I</kbd></td><td>Eyedropper</td><td>Capturar uma cor do canvas</td></tr>
+              <tr><td><kbd>C</kbd></td><td>Comment</td><td>Adicionar comentários a elementos</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout tip">
+          <span class="callout-title">Atalho universal: barra de ações</span>
+          <p>Pressione <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>/</kbd> para abrir a barra de ações rápidas. Digite qualquer coisa — "bold", "flip", "component", "rename" — e o Figma mostra as ações disponíveis. É a forma mais rápida de acessar funcionalidades que você ainda não memorizou o atalho.</p>
+        </div>
+
+        <h3>⑤ Painel Direito (Design e Prototype)</h3>
+        <p>Com um elemento selecionado no canvas, o painel direito mostra todas as suas propriedades e permite editá-las. Ele tem duas abas:</p>
+
+        <h4>Aba Design</h4>
+        <p>Exibe as propriedades visuais do elemento selecionado, organizadas em seções:</p>
+        <ul>
+          <li><strong>Alinhamento:</strong> botões de alinhamento horizontal/vertical relativo ao frame pai ou à seleção múltipla.</li>
+          <li><strong>Posição e tamanho:</strong> campos X, Y (posição), W, H (largura e altura). Para manter proporções, clique no cadeado entre W e H.</li>
+          <li><strong>Rotation:</strong> ângulo de rotação em graus.</li>
+          <li><strong>Corner radius:</strong> arredondamento dos cantos (em px).</li>
+          <li><strong>Fill:</strong> cor, gradiente ou imagem de preenchimento do elemento.</li>
+          <li><strong>Stroke:</strong> borda (cor, espessura, posição: inside/outside/center).</li>
+          <li><strong>Effects:</strong> sombras (Drop Shadow, Inner Shadow), desfoque (Layer Blur, Background Blur).</li>
+          <li><strong>Auto Layout</strong> (se aplicável): gap, padding, direção, alinhamento.</li>
+          <li><strong>Constraints:</strong> como o elemento se comporta quando o frame pai redimensiona.</li>
+        </ul>
+
+        <h4>Aba Prototype</h4>
+        <p>Permite criar interações e fluxos de protótipo. Você define: o gatilho (On Click, On Hover, On Drag, etc.), a ação (Navigate to, Open overlay, etc.), a animação (Smart Animate, Move In, etc.) e o destino (qual Frame abrir).</p>
+
+        <h2>Passo a passo: criar seu primeiro Frame</h2>
+        <p>Vamos colocar a mão na massa e se familiarizar com a interface:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Abra ou crie um arquivo.</strong>
+            Na tela inicial do Figma, clique em <strong>"New design file"</strong>. O canvas em branco abre. Você está no Figma!
+          </li>
+          <li>
+            <strong>Ative a ferramenta Frame.</strong>
+            Pressione <kbd>F</kbd> no teclado. O cursor muda para uma cruz. Olhe na toolbar inferior — o ícone de Frame ficou destacado.
+          </li>
+          <li>
+            <strong>Escolha um preset de dispositivo.</strong>
+            Com a ferramenta Frame ativa (sem ter clicado ainda), olhe o painel direito — ele mostra uma lista de presets (iPhone 16, Pixel 9, Desktop 1440, etc.). Clique em <strong>iPhone 16</strong>. Um Frame de 393 × 852px aparece no canvas.
+          </li>
+          <li>
+            <strong>Explore o painel direito.</strong>
+            Clique no Frame para selecioná-lo. No painel direito você vai ver: posição (X, Y), tamanho (W, H), Fill, e a seção de Frame com Clip Content, etc. Esses são os primeiros campos que você vai usar no curso.
+          </li>
+          <li>
+            <strong>Explore o painel esquerdo.</strong>
+            Olhe o painel esquerdo — o Frame aparece na lista de Layers com o nome "Frame 1". Dê duplo clique no nome e renomeie para "Home Screen".
+          </li>
+          <li>
+            <strong>Adicione um retângulo dentro do Frame.</strong>
+            Pressione <kbd>R</kbd>, clique e arraste <em>dentro</em> do Frame para criar um retângulo. Veja que na lista de Layers, o retângulo aparece aninhado dentro do Frame — isso é a hierarquia de elementos.
+          </li>
+          <li>
+            <strong>Navegue pelo canvas.</strong>
+            Segure <kbd>Espaço</kbd> e arraste para fazer pan (mover a vista). Segure <kbd>Ctrl</kbd>/<kbd>⌘</kbd> e use o scroll do mouse para fazer zoom. Pressione <kbd>Shift</kbd> + <kbd>1</kbd> para zoom no Frame completo.
+          </li>
+        </ol>
+
+        <div class="callout info">
+          <span class="callout-title">Frame vs. Group — a distinção mais importante</span>
+          <p>Um <strong>Frame</strong> é um container com propriedades de layout (tamanho fixo, clip content, Auto Layout, Constraints). Um <strong>Group</strong> é apenas um agrupamento sem propriedades de container — ele se adapta ao tamanho dos seus filhos. Use Frames para telas e seções de design; use Groups apenas para agrupar elementos temporariamente.</p>
+        </div>
+
+        <h2>Navegação e zoom</h2>
+        <p>Saber navegar pelo canvas é tão importante quanto saber usar as ferramentas. Um designer que fica perdendo tempo procurando elementos no canvas perde muito em produtividade.</p>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Zoom in</td><td><kbd>Ctrl</kbd> + <kbd>+</kbd> ou <kbd>Ctrl</kbd> + scroll</td><td><kbd>⌘</kbd> + <kbd>+</kbd> ou <kbd>⌘</kbd> + scroll</td></tr>
+              <tr><td>Zoom out</td><td><kbd>Ctrl</kbd> + <kbd>-</kbd></td><td><kbd>⌘</kbd> + <kbd>-</kbd></td></tr>
+              <tr><td>Zoom 100%</td><td><kbd>Ctrl</kbd> + <kbd>0</kbd></td><td><kbd>⌘</kbd> + <kbd>0</kbd></td></tr>
+              <tr><td>Zoom para encaixar seleção</td><td><kbd>Shift</kbd> + <kbd>2</kbd></td><td><kbd>Shift</kbd> + <kbd>2</kbd></td></tr>
+              <tr><td>Zoom para encaixar tudo</td><td><kbd>Shift</kbd> + <kbd>1</kbd></td><td><kbd>Shift</kbd> + <kbd>1</kbd></td></tr>
+              <tr><td>Pan (mover canvas)</td><td><kbd>Espaço</kbd> + arrastar</td><td><kbd>Espaço</kbd> + arrastar</td></tr>
+              <tr><td>Ferramenta de busca de ações</td><td><kbd>Ctrl</kbd> + <kbd>/</kbd></td><td><kbd>⌘</kbd> + <kbd>/</kbd></td></tr>
+              <tr><td>Ferramenta Move</td><td><kbd>V</kbd></td><td><kbd>V</kbd></td></tr>
+              <tr><td>Ferramenta Frame</td><td><kbd>F</kbd></td><td><kbd>F</kbd></td></tr>
+              <tr><td>Ferramenta Texto</td><td><kbd>T</kbd></td><td><kbd>T</kbd></td></tr>
+              <tr><td>Retângulo</td><td><kbd>R</kbd></td><td><kbd>R</kbd></td></tr>
+              <tr><td>Desfazer</td><td><kbd>Ctrl</kbd> + <kbd>Z</kbd></td><td><kbd>⌘</kbd> + <kbd>Z</kbd></td></tr>
+              <tr><td>Refazer</td><td><kbd>Ctrl</kbd> + <kbd>Y</kbd></td><td><kbd>⌘</kbd> + <kbd>Y</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Exemplo de uso real: o workspace de um designer de produto</h2>
+        <p>Um designer de produto típico num projeto de médio porte organiza o arquivo assim:</p>
+        <ul>
+          <li><strong>Page 1 — Cover:</strong> uma tela bonita com o nome do projeto, versão e data. Serve como capa quando o arquivo é compartilhado.</li>
+          <li><strong>Page 2 — Wireframes:</strong> todos os wireframes low-fi agrupados por fluxo.</li>
+          <li><strong>Page 3 — UI Kit / Tokens:</strong> a paleta de cores, tipografia, ícones e componentes base.</li>
+          <li><strong>Page 4 — Design (main):</strong> as telas finais de alta fidelidade, organizadas em Sections por fluxo (Onboarding, Home, Perfil, etc.).</li>
+          <li><strong>Page 5 — Dev Handoff Notes:</strong> anotações específicas para o time de desenvolvimento, com comportamentos especiais documentados.</li>
+        </ul>
+        <p>Cada página é uma "janela" independente do mesmo arquivo — com seu próprio canvas infinito e sua própria lista de Layers.</p>
+
+        <div class="callout pro">
+          <span class="callout-title">Use Sections para organizar o canvas</span>
+          <p>Pressione <kbd>S</kbd> para criar uma Section — um contêiner de organização do canvas, diferente de Frame. Sections têm título visível no canvas e podem ser recolhidas. Use-as para agrupar logicamente telas relacionadas (ex.: "Fluxo de Onboarding", "Fluxo de Pagamento") sem que isso afete a hierarquia de Layers dos seus designs.</p>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>A UI3 (2024+) trouxe a toolbar para a parte inferior do canvas, reorganizou o painel esquerdo e consolidou o menu principal.</li>
+          <li>As 5 regiões: topbar, painel esquerdo (Layers/Assets/Pages), canvas infinito, toolbar flutuante inferior e painel direito (Design/Prototype).</li>
+          <li>Use <kbd>F</kbd> para Frame, <kbd>R</kbd> para retângulo, <kbd>T</kbd> para texto, <kbd>V</kbd> para selecionar.</li>
+          <li>Pan com <kbd>Espaço</kbd> + arrastar; zoom com scroll + <kbd>Ctrl</kbd>/<kbd>⌘</kbd>; fit com <kbd>Shift</kbd> + <kbd>1</kbd>.</li>
+          <li>Frames são containers com propriedades; Groups são agrupamentos simples. Prefira Frames.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Conheça cada região da interface</h3>
+          <ol>
+            <li>Crie um novo arquivo Design no Figma.</li>
+            <li>Crie um Frame usando o preset <strong>iPhone 16</strong> (tecla <kbd>F</kbd> → clique no preset).</li>
+            <li>Dentro do frame, adicione um retângulo (<kbd>R</kbd>), um texto (<kbd>T</kbd>) e uma elipse (<kbd>E</kbd>).</li>
+            <li>No painel esquerdo (Layers), renomeie cada elemento: "Fundo", "Título" e "Avatar".</li>
+            <li>No painel direito, mude a cor do retângulo para azul (#1D6FD1).</li>
+            <li>Use <kbd>Shift</kbd> + <kbd>1</kbd> para centralizar a visão no frame.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> você tem um Frame "Home Screen" com 3 elementos nomeados na lista de Layers e o retângulo está com fill azul no painel direito.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Recrie um layout de baixa fidelidade</h3>
+          <p>Usando só retângulos, elipses e textos (sem cor, tudo em cinza), recrie o wireframe simplificado de uma tela que você conheça bem — pode ser a tela inicial do WhatsApp, do Instagram ou do Gmail. O objetivo não é ser bonito, mas praticar: criar elementos, renomear na lista de Layers, organizar a hierarquia (o que está "dentro" de quê) e navegar pelo canvas com confiança.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">1. Onde fica a toolbar com as ferramentas de criação (Frame, Retângulo, Texto, etc.) na interface UI3 do Figma?</p>
+            <ul class="quiz-options">
+              <li>No painel esquerdo, abaixo das Layers</li>
+              <li>Na topbar, ao lado do menu principal</li>
+              <li>No painel direito, acima das propriedades</li>
+              <li>Em uma barra flutuante na parte inferior do canvas</li>
+            </ul>
+            <div class="quiz-explain">Na <strong>UI3 (2024+)</strong>, as ferramentas de criação ficam em uma <strong>barra flutuante na parte inferior do canvas</strong> — uma das maiores mudanças em relação à interface anterior, onde a toolbar ficava no topo.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">2. Qual atalho centraliza a visão do canvas no elemento ou frame selecionado?</p>
+            <ul class="quiz-options">
+              <li>Ctrl/⌘ + 0</li>
+              <li>Shift + 2</li>
+              <li>Shift + 1</li>
+              <li>Ctrl/⌘ + 1</li>
+            </ul>
+            <div class="quiz-explain"><kbd>Shift</kbd> + <kbd>2</kbd> dá zoom na seleção atual. <kbd>Shift</kbd> + <kbd>1</kbd> centraliza a visão em <em>tudo</em> que está no canvas. <kbd>Ctrl/⌘</kbd> + <kbd>0</kbd> vai para 100% de zoom.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Qual é a principal diferença entre um Frame e um Group no Figma?</p>
+            <ul class="quiz-options">
+              <li>Frame é um container com propriedades de layout (tamanho fixo, clip, constraints); Group apenas agrupa elementos sem propriedades de container</li>
+              <li>Frame é para mobile e Group é para desktop</li>
+              <li>Group suporta Auto Layout e Frame não</li>
+              <li>Não há diferença prática — são a mesma coisa com nomes diferentes</li>
+            </ul>
+            <div class="quiz-explain">Um <strong>Frame</strong> tem tamanho fixo definido, suporta Clip Content, Constraints, Auto Layout e é o bloco básico de construção de telas. Um <strong>Group</strong> apenas agrupa elementos e se redimensiona para se adequar ao tamanho dos filhos — sem propriedades de layout.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

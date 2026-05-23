@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figma Buzz — assets de marca | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="08-05-figma-buzz" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">✨ Módulo 8 · Recursos 2025/2026 · Lição 5 de 8</div>
+        <h1>Figma Buzz — assets de marca</h1>
+        <p class="lead">Times de marketing vivem num dilema: precisam de dezenas de variações on-brand todo dia, mas não têm designers disponíveis para tudo. O Figma Buzz é a ponte — templates que garantem a marca e empoderam não-designers a criar sem errar.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~15 min</span>
+          <span>🎯 Nível: Intermediário</span>
+          <span>🛠️ Pratique no Figma Buzz</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Entender o que é o Figma Buzz e para quem ele é direcionado;</li>
+            <li>Criar templates editáveis que garantem consistência de marca;</li>
+            <li>Gerar múltiplas variações de um asset a partir de uma tabela de dados;</li>
+            <li>Identificar casos de uso práticos para times de marketing e branding;</li>
+            <li>Configurar permissões para que não-designers usem os templates com segurança.</li>
+          </ul>
+        </div>
+
+        <h2>O que é o Figma Buzz?</h2>
+        <p><strong>Figma Buzz</strong> é a ferramenta do ecossistema Figma voltada para a criação e distribuição de assets de marketing em escala, mantendo a consistência de marca. Foi anunciada na Config 2024/2025 como solução para um problema clássico dos times de design: criar muitas variações de um asset (posts para redes sociais, banners, thumbnails, certificados) de forma rápida sem comprometer a identidade visual.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Para quem é o Figma Buzz?</span>
+          <p>O Figma Buzz tem dois tipos de usuário: (1) o <strong>designer</strong>, que cria e bloqueia os templates garantindo que a marca seja respeitada; (2) o <strong>não-designer</strong> (marketing, vendas, RH), que usa esses templates para criar assets editando apenas os campos permitidos — sem quebrar o layout ou usar as cores erradas.</p>
+        </div>
+
+        <h2>O problema que o Buzz resolve</h2>
+        <p>Imagine uma empresa com 50 filiais que precisam criar posts de Instagram toda semana. Sem uma ferramenta como o Buzz, acontece uma das duas situações:</p>
+        <ul>
+          <li><strong>Gargalo no design:</strong> tudo passa pelo designer, que fica sobrecarregado de pedidos simples e não consegue trabalhar em projetos estratégicos.</li>
+          <li><strong>Caos de marca:</strong> cada pessoa cria do jeito que acha melhor, gerando posts com fontes erradas, proporções incorretas, cores fora da identidade visual.</li>
+        </ul>
+        <p>O Buzz resolve isso criando um sistema onde o designer <em>projeta uma vez</em> e o time <em>usa muitas vezes</em> com segurança.</p>
+
+        <h2>Como funciona o Figma Buzz</h2>
+
+        <h3>1. O designer cria o template</h3>
+        <p>No Figma Buzz, o designer abre a ferramenta e cria um template de asset. O processo é similar ao design no Figma Design: você usa frames, fontes, cores e componentes. A diferença está nas <strong>áreas editáveis</strong>: o designer marca especificamente quais campos podem ser modificados pelo usuário final.</p>
+        <p>Por exemplo, num template de post de promoção, o designer pode bloquear: o logo, as cores de fundo, a fonte e o layout. Mas libera para edição: o título da promoção, a porcentagem de desconto, a data de validade e a imagem do produto.</p>
+
+        <h3>2. A equipe usa o template</h3>
+        <p>Quando um profissional de marketing acessa o template no Figma Buzz, ele vê apenas os campos editáveis — em uma interface simplificada, sem a complexidade do Figma Design completo. Ele preenche os campos, visualiza o resultado e exporta o asset pronto.</p>
+
+        <h3>3. Geração em massa a partir de dados</h3>
+        <p>Este é o recurso mais poderoso do Buzz: você pode <strong>conectar uma tabela de dados</strong> (planilha ou CSV) ao template e gerar <em>todas as variações de uma vez</em>. Por exemplo:</p>
+
+        <div class="callout example">
+          <span class="callout-title">Exemplo prático: 50 crachás em 2 minutos</span>
+          <p>Uma empresa de eventos precisa criar crachás personalizados para 50 participantes. No Figma Buzz, o designer cria um template de crachá com campos: <code>Nome</code>, <code>Cargo</code>, <code>Empresa</code> e <code>Foto</code>. Então conecta uma planilha com os dados dos 50 participantes. O Buzz gera 50 versões do crachá automaticamente, cada uma com os dados corretos — tudo em menos de 2 minutos.</p>
+        </div>
+
+        <h2>Estrutura de um template no Figma Buzz</h2>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Elemento</th><th>Papel no template</th><th>Quem controla</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Campos de texto editáveis</strong></td><td>Título, subtítulo, data, CTA, etc.</td><td>Usuário final (com limites de caracteres)</td></tr>
+              <tr><td><strong>Campos de imagem editáveis</strong></td><td>Foto do produto, foto de perfil, banner</td><td>Usuário final (upload de imagem)</td></tr>
+              <tr><td><strong>Layout e estrutura</strong></td><td>Posicionamento, margens, proporções</td><td>Designer (bloqueado)</td></tr>
+              <tr><td><strong>Cores e fontes</strong></td><td>Paleta da marca, tipografia</td><td>Designer (bloqueado)</td></tr>
+              <tr><td><strong>Logo e elementos fixos</strong></td><td>Logo da empresa, ornamentos, ícones</td><td>Designer (bloqueado)</td></tr>
+              <tr><td><strong>Variantes do template</strong></td><td>Versões para diferentes redes/formatos</td><td>Designer (cria várias proporções)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Casos de uso para times de marca</h2>
+        <p>O Figma Buzz é especialmente útil em situações onde há volume alto de assets recorrentes:</p>
+
+        <h3>Marketing e redes sociais</h3>
+        <ul>
+          <li>Posts semanais de promoção para Instagram, Facebook e LinkedIn</li>
+          <li>Stories e Reels com templates de formato vertical</li>
+          <li>Thumbnails de vídeos do YouTube padronizados</li>
+          <li>Banners de e-mail marketing</li>
+        </ul>
+
+        <h3>Recursos Humanos</h3>
+        <ul>
+          <li>Certificados de conclusão de treinamentos</li>
+          <li>Cartões de boas-vindas para novos funcionários</li>
+          <li>Templates de vagas para divulgar no LinkedIn</li>
+        </ul>
+
+        <h3>Vendas e parcerias</h3>
+        <ul>
+          <li>Propostas comerciais com dados do cliente personalizados</li>
+          <li>Kits de materiais para parceiros com a marca co-branded correta</li>
+          <li>Apresentações de resultados com os dados de cada cliente</li>
+        </ul>
+
+        <h3>Franquias e filiais</h3>
+        <ul>
+          <li>Material de ponto de venda com endereço e dados locais</li>
+          <li>Promoções regionais com preços específicos de cada filial</li>
+        </ul>
+
+        <div class="callout tip">
+          <span class="callout-title">Bloqueie o que não pode mudar</span>
+          <p>Ao criar templates no Figma Buzz, seja conservador nos campos editáveis. Libere apenas o essencial. Um usuário não-designer tende a "explorar" todos os campos disponíveis — quanto menos opções ele tiver, mais consistente será o resultado final.</p>
+        </div>
+
+        <h2>Geração em massa com planilha</h2>
+        <p>O fluxo de geração em massa funciona assim:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie o template no Figma Buzz.</strong>
+            Defina os campos editáveis com nomes descritivos (ex.: <code>nome_evento</code>, <code>data</code>, <code>local</code>).
+          </li>
+          <li>
+            <strong>Prepare a planilha de dados.</strong>
+            Crie um arquivo CSV ou Google Sheets com uma coluna para cada campo editável do template. Cada linha representa uma variação.
+          </li>
+          <li>
+            <strong>Importe a planilha no Buzz.</strong>
+            Na interface de geração em massa, faça o upload do CSV ou cole o link da planilha. O Buzz mapeia automaticamente as colunas aos campos do template.
+          </li>
+          <li>
+            <strong>Revise o mapeamento.</strong>
+            Confirme que cada coluna da planilha está associada ao campo correto. Pré-visualize algumas linhas antes de gerar tudo.
+          </li>
+          <li>
+            <strong>Gere todos os assets.</strong>
+            Clique em "Generate". O Buzz cria uma variação para cada linha da planilha. Você pode exportar todos de uma vez como PNG, JPEG, SVG ou PDF.
+          </li>
+        </ol>
+
+        <h2>Permissões e controle de acesso</h2>
+        <p>Um aspecto importante do Figma Buzz é o gerenciamento de quem pode fazer o quê:</p>
+        <ul>
+          <li><strong>Editor do template:</strong> o designer que cria e modifica a estrutura do template.</li>
+          <li><strong>Usuário do template:</strong> o não-designer que acessa apenas a interface simplificada de preenchimento.</li>
+          <li><strong>Permissão de exportação:</strong> o designer pode controlar em quais formatos e resoluções o usuário pode exportar.</li>
+        </ul>
+        <p>Esse controle garante que mesmo que o usuário tente "editar mais", ele é bloqueado pela interface do Buzz — que não expõe o canvas completo do Figma Design.</p>
+
+        <div class="callout pro">
+          <span class="callout-title">Figma Buzz + Design System</span>
+          <p>O poder real do Buzz está quando os templates são construídos em cima do Design System da empresa. As cores, fontes e componentes do template vêm diretamente das variáveis e estilos do Design System — então qualquer atualização na marca se propaga automaticamente para todos os templates.</p>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Uma rede de academias com 120 unidades usava o WhatsApp para pedir ao time de design central novos materiais semanalmente. O designer ficava sobrecarregado e as academias às vezes esperavam dias por um simples banner de promoção. Depois de implementar o Figma Buzz, o designer central criou templates para os 8 tipos de material mais frequentes (banner de promoção, post de horário de aula, comunicado de evento, etc.). As unidades passaram a criar seus próprios materiais preenchendo apenas os campos variáveis — nome da academia, data, preço — em uma interface simples. O designer revisou os materiais apenas para aprovação final. O volume de pedidos diretos ao design caiu 80% e a consistência de marca aumentou significativamente.</p>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Figma Buzz é a ferramenta de criação de assets de marca em escala do ecossistema Figma.</li>
+          <li>O designer cria templates com campos bloqueados (marca) e campos editáveis (conteúdo variável).</li>
+          <li>Não-designers usam a interface simplificada para preencher os campos sem acesso ao design completo.</li>
+          <li>Geração em massa a partir de planilha/CSV cria dezenas/centenas de variações automaticamente.</li>
+          <li>Ideal para marketing, RH, vendas, franquias e times com alta demanda de assets recorrentes.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Crie um template de post de Instagram</h3>
+          <p>No Figma Buzz (ou simulando no Figma Design), crie um template de post quadrado (1080×1080 px) para promoção de uma loja fictícia:</p>
+          <ol>
+            <li>Defina as partes fixas: logo no canto, cor de fundo da marca, fonte.</li>
+            <li>Crie campos editáveis: título da promoção, desconto (ex.: "50% OFF"), data de validade e imagem do produto (placeholder).</li>
+            <li>Crie uma mini-planilha com dados de 3 promoções diferentes.</li>
+            <li>Se tiver acesso ao Buzz, importe e gere as 3 variações. Senão, crie as 3 manualmente como duplicatas do template.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> as 3 variações têm exatamente o mesmo layout e apenas o conteúdo variável (texto, imagem) é diferente entre elas.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Sistema de templates para uma rede de franquias</h3>
+          <p>Você foi contratado como designer de brand para uma rede fictícia de cafeterias chamada "Café do Bem" com 30 unidades. Crie um sistema de templates no Figma Buzz com: (1) template de post de Instagram para promoção semanal; (2) template de cardápio de mesa (A5); (3) template de stories de contratação. Cada template deve ter campos fixos (logo, cores, fontes) e campos editáveis claramente definidos. Crie uma planilha de exemplo com dados para 5 unidades e gere as variações para pelo menos um dos templates.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Qual é a principal vantagem da geração em massa com planilha no Figma Buzz?</p>
+            <ul class="quiz-options">
+              <li>Permite que o designer edite o código CSS de cada variação</li>
+              <li>Elimina completamente a necessidade de um designer na empresa</li>
+              <li>Gera automaticamente uma variação do template para cada linha de dados, criando dezenas de assets em segundos</li>
+              <li>Sincroniza os assets diretamente com o Instagram e LinkedIn</li>
+            </ul>
+            <div class="quiz-explain">A geração em massa lê cada linha da planilha como uma variação e cria o asset correspondente automaticamente — o que transforma horas de trabalho manual em segundos.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. No Figma Buzz, o que o designer bloqueia nos templates e por quê?</p>
+            <ul class="quiz-options">
+              <li>Layout, cores, fontes e elementos de marca — para garantir consistência visual e identidade de marca</li>
+              <li>Os campos de texto — para que ninguém possa alterar o conteúdo</li>
+              <li>A possibilidade de exportação — para forçar aprovação manual de todos os assets</li>
+              <li>As imagens — porque o Buzz não suporta edição de imagens</li>
+            </ul>
+            <div class="quiz-explain">O designer bloqueia os elementos que definem a marca (cores, fontes, logo, layout) e libera apenas os campos de conteúdo variável (textos informativos, imagens de produto). Isso dá autonomia ao usuário sem risco para a identidade visual.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">3. Qual destes casos de uso é MAIS adequado para o Figma Buzz?</p>
+            <ul class="quiz-options">
+              <li>Criar o Design System de uma empresa do zero</li>
+              <li>Prototipar o fluxo de onboarding de um app mobile</li>
+              <li>Conduzir uma sessão de brainstorm remota com 20 pessoas</li>
+              <li>Gerar 200 certificados de conclusão de curso com nomes e datas diferentes</li>
+            </ul>
+            <div class="quiz-explain">Geração em massa de assets personalizados (certificados, crachás, posts) é exatamente o caso de uso para o qual o Figma Buzz foi criado — volume alto, estrutura fixa, conteúdo variável.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

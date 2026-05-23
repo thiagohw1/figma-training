@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shell responsivo: sidebar e topbar | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="06-04-shell-responsivo" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🖥️ Módulo 6 · Projeto Guiado · Lição 4 de 8</div>
+        <h1>Shell responsivo: sidebar e topbar</h1>
+        <p class="lead">O <strong>app shell</strong> é o esqueleto permanente do produto — a estrutura que permanece em toda navegação enquanto o conteúdo central muda. Construir um shell sólido com Auto Layout e Constraints é o que separa um design de dashboard amador de um profissional.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~28 min</span>
+          <span>🎯 Nível: Projeto prático</span>
+          <span>🛠️ Pratique no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Construir a sidebar de navegação com itens, ícones e estado ativo usando Auto Layout;</li>
+            <li>Criar o comportamento colapsável da sidebar com Variables booleanas e Variants;</li>
+            <li>Montar a topbar com busca, notificações e avatar de usuário;</li>
+            <li>Usar Constraints para que o shell se estique corretamente quando o frame é redimensionado;</li>
+            <li>Organizar o app shell em um Component reutilizável na página Components.</li>
+          </ul>
+        </div>
+
+        <h2>O que é o app shell?</h2>
+        <p>Em arquitetura de aplicações web, o <strong>app shell</strong> é a camada mínima de HTML, CSS e JS que sempre está carregada — o esqueleto que "segura" o conteúdo dinâmico. No design, o app shell é o conjunto de elementos fixos: a <strong>sidebar</strong> (navegação lateral), a <strong>topbar</strong> (barra superior) e a <strong>área de conteúdo</strong> (onde cada tela renderiza).</p>
+
+        <div class="callout info">
+          <span class="callout-title">Por que o shell merece uma lição inteira?</span>
+          <p>O shell é usado em <em>todas</em> as telas do produto. Se ele estiver errado — com Constraints incorretos, sem Auto Layout, com tamanhos fixos que não respondem — você vai precisar consertar em dezenas de frames. Investir 2 horas para montar um shell perfeito poupa 20 horas de retrabalho.</p>
+        </div>
+
+        <h2>Anatomia do shell do TaskFlow</h2>
+
+        <div class="diagram">
+          <svg viewBox="0 0 600 360" role="img" aria-label="Diagrama do app shell: topbar, sidebar e área de conteúdo">
+            <!-- Frame externo (tela completa) -->
+            <rect x="10" y="10" width="580" height="340" rx="10" fill="var(--surface)" stroke="var(--border-strong)" stroke-width="2"/>
+            <!-- Topbar -->
+            <rect x="10" y="10" width="580" height="48" rx="10 10 0 0" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1"/>
+            <rect x="10" y="48" width="580" height="1" fill="var(--border)"/>
+            <text x="30" y="40" fill="var(--text)" font-size="13" font-weight="700" font-family="sans-serif">TaskFlow</text>
+            <rect x="200" y="20" width="140" height="22" rx="6" fill="var(--surface-3)"/>
+            <text x="215" y="35" fill="var(--text-soft)" font-size="11" font-family="sans-serif">🔍 Buscar…</text>
+            <circle cx="540" cy="31" r="12" fill="var(--surface-3)"/>
+            <circle cx="565" cy="31" r="12" fill="var(--surface-3)"/>
+            <!-- Sidebar -->
+            <rect x="10" y="49" width="180" height="301" fill="var(--surface)" stroke="var(--border)" stroke-width="1"/>
+            <text x="24" y="82" fill="var(--text-muted)" font-size="11" font-weight="700" font-family="sans-serif" letter-spacing="1">MENU</text>
+            <!-- Items sidebar -->
+            <rect x="18" y="92" width="164" height="34" rx="6" fill="var(--primary-soft)"/>
+            <text x="36" y="114" fill="var(--primary)" font-size="13" font-weight="600" font-family="sans-serif">📊 Dashboard</text>
+            <rect x="18" y="132" width="164" height="34" rx="6" fill="none"/>
+            <text x="36" y="154" fill="var(--text-muted)" font-size="13" font-family="sans-serif">📁 Projetos</text>
+            <rect x="18" y="172" width="164" height="34" rx="6" fill="none"/>
+            <text x="36" y="194" fill="var(--text-muted)" font-size="13" font-family="sans-serif">✅ Minhas Tarefas</text>
+            <rect x="18" y="212" width="164" height="34" rx="6" fill="none"/>
+            <text x="36" y="234" fill="var(--text-muted)" font-size="13" font-family="sans-serif">👥 Membros</text>
+            <rect x="18" y="252" width="164" height="34" rx="6" fill="none"/>
+            <text x="36" y="274" fill="var(--text-muted)" font-size="13" font-family="sans-serif">⚙️ Configurações</text>
+            <!-- Botão colapsar -->
+            <rect x="18" y="306" width="164" height="34" rx="6" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1"/>
+            <text x="36" y="328" fill="var(--text-soft)" font-size="12" font-family="sans-serif">← Colapsar</text>
+            <!-- Content area -->
+            <rect x="190" y="49" width="400" height="301" fill="var(--bg-subtle)"/>
+            <text x="370" y="210" text-anchor="middle" fill="var(--text-soft)" font-size="13" font-family="sans-serif">Área de conteúdo</text>
+            <text x="370" y="228" text-anchor="middle" fill="var(--text-soft)" font-size="11" font-family="sans-serif">(troca a cada tela)</text>
+            <!-- Seta Constraints -->
+            <text x="195" y="70" fill="var(--primary)" font-size="10" font-family="sans-serif">← Fill / Stretch →</text>
+            <!-- Labels -->
+            <text x="88" y="22" text-anchor="middle" fill="var(--text-soft)" font-size="10" font-family="sans-serif">fixed 240px</text>
+            <text x="390" y="22" text-anchor="middle" fill="var(--text-soft)" font-size="10" font-family="sans-serif">Topbar — Fixed top + Left&amp;Right</text>
+          </svg>
+          <p class="mock-label">App shell do TaskFlow: topbar fixa no topo (constraint Top + Left&amp;Right), sidebar fixa na esquerda (240 px), e área de conteúdo que preenche o espaço restante.</p>
+        </div>
+
+        <h2>Passo a passo: construindo a sidebar</h2>
+        <ol class="steps">
+          <li>
+            <strong>Crie o frame base da sidebar.</strong>
+            No frame Desktop 1440, crie um frame (<kbd>F</kbd>) de 240×900 px posicionado em X: 0, Y: 48 (abaixo da topbar). Nomeie-o <code>Sidebar</code>. Defina o fill com a variable <code>color/surface/default</code> e adicione uma borda direita (<strong>Stroke</strong> → Inside, 1 px, <code>color/border/default</code>).
+          </li>
+          <li>
+            <strong>Adicione Auto Layout à sidebar.</strong>
+            Com o frame Sidebar selecionado, pressione <kbd>Shift</kbd> + <kbd>A</kbd>. Configure:
+            <ul>
+              <li><strong>Direção:</strong> Vertical</li>
+              <li><strong>Gap:</strong> 4</li>
+              <li><strong>Padding:</strong> 12 em todos os lados</li>
+              <li><strong>Align:</strong> Top center</li>
+              <li><strong>Height:</strong> Fill container (para que a sidebar ocupe a altura do frame pai)</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Crie um item de navegação.</strong>
+            Dentro da sidebar, crie um frame de Nav Item com Auto Layout horizontal: ícone (20×20 px) + texto "Dashboard", gap 10, padding horizontal 12, padding vertical 10, border-radius 8. Aplique o fill <code>color/surface/default</code>. Adicione uma variant <strong>State</strong> com valores: default, hover, active.
+          </li>
+          <li>
+            <strong>Configure o estado ativo.</strong>
+            Na variant active: fill do frame com <code>color/brand/primary-soft</code>, cor do texto com <code>color/brand/primary</code>, cor do ícone com <code>color/brand/primary</code>. Salve como Component (<kbd>⌥</kbd>/<kbd>Alt</kbd> + <kbd>⌘</kbd>/<kbd>Ctrl</kbd> + <kbd>K</kbd>).
+          </li>
+          <li>
+            <strong>Adicione todos os items de navegação.</strong>
+            Instancie o componente Nav Item 5 vezes dentro da sidebar. Mude os textos: Dashboard, Projetos, Minhas Tarefas, Membros, Configurações. Defina "Dashboard" como active.
+          </li>
+          <li>
+            <strong>Adicione separador e rodapé da sidebar.</strong>
+            Após os items de menu, adicione um <code>Spacer</code> (frame de 1 px de altura com Fill height) para empurrar o rodapé para baixo. No rodapé, coloque o avatar do usuário + nome + botão de logout com Auto Layout horizontal.
+          </li>
+          <li>
+            <strong>Configure Constraints da sidebar.</strong>
+            Selecione o frame Sidebar. No painel Constraints, defina:
+            <ul>
+              <li><strong>Horizontal:</strong> Left</li>
+              <li><strong>Vertical:</strong> Top and Bottom</li>
+            </ul>
+            Isso faz a sidebar grudar na esquerda e esticar na vertical quando o frame da tela for redimensionado.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Spacer com Fill height</span>
+          <p>Um truque poderoso: dentro de um Auto Layout vertical, crie um frame vazio (sem fill, sem stroke) e defina sua altura como <strong>Fill container</strong>. Ele age como um "mola" que empurra os elementos abaixo para o fundo do container — exatamente como <code>margin-top: auto</code> no Flexbox CSS.</p>
+        </div>
+
+        <h2>Passo a passo: construindo a topbar</h2>
+        <ol class="steps">
+          <li>
+            <strong>Crie o frame da topbar.</strong>
+            Crie um frame de 1440×48 px no topo do frame de tela. Nomeie <code>Topbar</code>. Fill: <code>color/surface/default</code>, borda inferior de 1 px.
+          </li>
+          <li>
+            <strong>Adicione Auto Layout.</strong>
+            Pressione <kbd>Shift</kbd> + <kbd>A</kbd>. Configure: direção horizontal, align center, padding horizontal 20, gap: <strong>Auto</strong> (space between).
+          </li>
+          <li>
+            <strong>Adicione o logotipo e nome.</strong>
+            Crie um grupo com o logo (quadrado de 28×28 px com gradiente brand) + texto "TaskFlow" (24 px, Bold). Agrupe com <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>G</kbd> e aplique Auto Layout ao grupo (horizontal, gap 8, align center).
+          </li>
+          <li>
+            <strong>Adicione o campo de busca.</strong>
+            Crie um frame de input de busca: ícone de lupa + placeholder "Buscar projetos e tarefas…" com Auto Layout horizontal. Largura: 280 px, altura: 36 px, border-radius 8, borda 1 px.
+          </li>
+          <li>
+            <strong>Adicione ações da direita.</strong>
+            Crie um grupo com: ícone de notificações (36×36 px, border-radius 8) + separador vertical (1×24 px) + avatar de usuário (32×32 px, border-radius 50%) + chevron-down. Use Auto Layout horizontal, gap 8.
+          </li>
+          <li>
+            <strong>Configure Constraints da topbar.</strong>
+            Constraints: <strong>Left and Right</strong> + <strong>Top</strong>. A topbar ficará fixa no topo e se estenderá horizontalmente quando o frame for redimensionado.
+          </li>
+        </ol>
+
+        <h2>Montando o app shell completo</h2>
+        <ol class="steps">
+          <li>
+            <strong>Crie o frame-pai (tela completa).</strong>
+            O frame raiz é 1440×900 px. Dentro dele, posicione: Topbar (Y:0), Sidebar (Y:48, X:0), e um frame de Conteúdo (X:240, Y:48, Width: 1200, Height: 852).
+          </li>
+          <li>
+            <strong>Configure o frame de Conteúdo.</strong>
+            Fill: <code>color/background/subtle</code>. Constraints: <strong>Left and Right</strong> + <strong>Top and Bottom</strong>. Isso faz o conteúdo se estender em ambas as direções quando a janela cresce.
+          </li>
+          <li>
+            <strong>Teste redimensionando o frame.</strong>
+            Selecione o frame raiz e arraste a borda direita. Observe: topbar se estica horizontalmente, sidebar mantém a largura e o conteúdo absorve o espaço.
+          </li>
+          <li>
+            <strong>Salve como Component.</strong>
+            Selecione o frame raiz do shell. Use <kbd>Alt</kbd>/<kbd>⌥</kbd> + <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>K</kbd> para criar um Component chamado <code>AppShell/Desktop</code>. Mova-o para a página <em>Components</em>.
+          </li>
+        </ol>
+
+        <div class="callout pro">
+          <span class="callout-title">Dica: sidebar colapsável com Variants</span>
+          <p>Para criar o comportamento de colapsar a sidebar, adicione uma segunda Variant ao Component AppShell: <strong>Sidebar: expanded</strong> (240 px) e <strong>Sidebar: collapsed</strong> (60 px, mostrando apenas ícones). Use uma Variable booleana <code>sidebar/collapsed</code> para controlar qual variante exibir. No protótipo, conecte o botão "Colapsar" a uma ação de <strong>Set variable</strong> que alterna o estado.</p>
+        </div>
+
+        <div class="figma-mock">
+          <div class="device-browser" style="max-width:700px;">
+            <div class="browser-bar"><i></i><i></i><i></i><span style="flex:1;text-align:center;font-size:12px;color:var(--text-muted);">taskflow.app/dashboard</span></div>
+            <div style="display:flex;height:320px;">
+              <!-- Sidebar -->
+              <div style="width:200px;background:var(--surface);border-right:1px solid var(--border);padding:12px;flex:none;display:flex;flex-direction:column;gap:4px;">
+                <div style="display:flex;align-items:center;gap:8px;padding:10px 8px;margin-bottom:8px;border-bottom:1px solid var(--border);">
+                  <div style="width:24px;height:24px;background:linear-gradient(135deg,#6c4cf1,#b0367a);border-radius:6px;flex:none;"></div>
+                  <span style="font-weight:700;font-size:13px;">TaskFlow</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:8px;background:var(--primary-soft);">
+                  <span style="font-size:14px;">📊</span><span style="font-size:12px;font-weight:600;color:var(--primary);">Dashboard</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:8px;">
+                  <span style="font-size:14px;">📁</span><span style="font-size:12px;color:var(--text-muted);">Projetos</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:8px;">
+                  <span style="font-size:14px;">✅</span><span style="font-size:12px;color:var(--text-muted);">Minhas Tarefas</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:8px;">
+                  <span style="font-size:14px;">👥</span><span style="font-size:12px;color:var(--text-muted);">Membros</span>
+                </div>
+                <div style="flex:1;"></div>
+                <div style="display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2);">
+                  <span style="font-size:12px;color:var(--text-soft);">← Colapsar</span>
+                </div>
+              </div>
+              <!-- Main content -->
+              <div style="flex:1;background:var(--bg-subtle);display:flex;flex-direction:column;">
+                <!-- Topbar -->
+                <div style="height:44px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 16px;gap:12px;flex:none;">
+                  <div style="flex:1;height:28px;background:var(--surface-2);border-radius:6px;max-width:200px;display:flex;align-items:center;padding:0 10px;gap:6px;">
+                    <span style="font-size:11px;">🔍</span>
+                    <span style="font-size:11px;color:var(--text-soft);">Buscar…</span>
+                  </div>
+                  <div style="flex:1;"></div>
+                  <div style="width:28px;height:28px;background:var(--surface-2);border-radius:8px;display:grid;place-items:center;font-size:13px;">🔔</div>
+                  <div style="width:28px;height:28px;background:var(--primary);border-radius:50%;display:grid;place-items:center;font-size:12px;color:white;font-weight:700;">A</div>
+                </div>
+                <!-- Content -->
+                <div style="flex:1;padding:16px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px;align-content:start;">
+                  <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;">
+                    <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px;">Projetos ativos</div>
+                    <div style="font-size:22px;font-weight:800;color:var(--primary);">12</div>
+                  </div>
+                  <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;">
+                    <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px;">Tarefas abertas</div>
+                    <div style="font-size:22px;font-weight:800;color:var(--warning);">84</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">App shell completo do TaskFlow: sidebar (200 px fixos) com item ativo destacado, topbar com busca e avatar, e área de conteúdo responsiva. Construído inteiramente com Auto Layout + Constraints.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Criar Component</td><td><kbd>Alt</kbd> + <kbd>Ctrl</kbd> + <kbd>K</kbd></td><td><kbd>⌥</kbd> + <kbd>⌘</kbd> + <kbd>K</kbd></td></tr>
+              <tr><td>Aplicar Auto Layout</td><td><kbd>Shift</kbd> + <kbd>A</kbd></td><td><kbd>Shift</kbd> + <kbd>A</kbd></td></tr>
+              <tr><td>Agrupar layers</td><td><kbd>Ctrl</kbd> + <kbd>G</kbd></td><td><kbd>⌘</kbd> + <kbd>G</kbd></td></tr>
+              <tr><td>Entrar no componente (edição)</td><td><kbd>Enter</kbd> (duplo clique)</td><td><kbd>Enter</kbd> (duplo clique)</td></tr>
+              <tr><td>Sair do componente</td><td><kbd>Esc</kbd></td><td><kbd>Esc</kbd></td></tr>
+              <tr><td>Criar frame de Variant</td><td>clique em "+ Add Variant" no painel Component</td><td>clique em "+ Add Variant" no painel Component</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>O app shell (topbar + sidebar + área de conteúdo) é a fundação de toda interface de dashboard.</li>
+          <li>A sidebar usa Auto Layout vertical com um Spacer de Fill height para empurrar o rodapé para baixo.</li>
+          <li>A topbar usa Auto Layout horizontal com gap Auto (space between) para separar logo e ações.</li>
+          <li>Constraints corretos: topbar (Left&amp;Right + Top), sidebar (Left + Top&amp;Bottom), conteúdo (Left&amp;Right + Top&amp;Bottom).</li>
+          <li>O Nav Item é um Component com variants de estado (default, hover, active) para manter consistência.</li>
+          <li>O shell inteiro deve ser salvo como Component na página de Components e instanciado em cada tela.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Construa o app shell completo</h3>
+          <ol>
+            <li>Crie um frame Desktop 1440×900 px e monte dentro dele: topbar (48 px), sidebar (240 px) e área de conteúdo.</li>
+            <li>Aplique Auto Layout à sidebar com padding 12 e gap 4.</li>
+            <li>Crie o Nav Item como Component com 3 variants de estado (default, hover, active).</li>
+            <li>Adicione 5 itens de menu na sidebar e defina "Dashboard" como active.</li>
+            <li>Configure todos os Constraints corretamente e teste redimensionando o frame raiz.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> ao arrastar a borda direita do frame raiz para 1280 px, a topbar se estica, a sidebar permanece com 240 px e o conteúdo preenche o espaço restante — sem nenhum elemento se deslocando incorretamente.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Sidebar colapsável com protótipo</h3>
+          <p>Adicione uma segunda Variant ao Component AppShell: a versão colapsada, onde a sidebar tem 60 px de largura e exibe apenas ícones (sem texto). Crie um botão de toggle na sidebar (ícone de seta apontando para a esquerda/direita conforme o estado). No modo Protótipo, conecte o botão a uma interação de <strong>Set variable</strong> que alterna entre expanded e collapsed. Teste a animação Smart Animate para suavizar a transição de 240 → 60 px.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Quais Constraints devem ser aplicados à topbar para que ela fique fixa no topo e se estenda horizontalmente?</p>
+            <ul class="quiz-options">
+              <li>Left + Top</li>
+              <li>Left and Right + Bottom</li>
+              <li>Left and Right + Top</li>
+              <li>Scale + Top</li>
+            </ul>
+            <div class="quiz-explain"><strong>Left and Right + Top</strong>: "Left and Right" faz a topbar se esticar horizontalmente; "Top" a mantém ancorada ao topo quando o frame é redimensionado verticalmente.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">2. Como empurrar o rodapé de uma sidebar para o fundo usando Auto Layout vertical?</p>
+            <ul class="quiz-options">
+              <li>Definir o padding-bottom como 999 px para criar espaço manual</li>
+              <li>Adicionar um frame vazio com Height: Fill container entre o menu e o rodapé — ele age como uma mola</li>
+              <li>Usar position absolute no rodapé</li>
+              <li>Desativar o Auto Layout e usar coordenadas Y manuais</li>
+            </ul>
+            <div class="quiz-explain">Um frame de altura <strong>Fill container</strong> dentro de um Auto Layout vertical consome todo o espaço disponível — exatamente como <code>flex: 1</code> ou <code>margin-top: auto</code> no CSS Flexbox. Isso empurra os elementos subsequentes para o fundo.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Por que o Nav Item deve ser criado como Component com Variants em vez de frames comuns?</p>
+            <ul class="quiz-options">
+              <li>Para garantir que todos os estados (default, hover, active) sejam consistentes em todas as instâncias e que mudanças no master se propaguem para todas as telas</li>
+              <li>Porque frames comuns não suportam ícones SVG</li>
+              <li>Porque Variants são mais rápidas de renderizar no Figma</li>
+              <li>Apenas por convenção — não há diferença funcional</li>
+            </ul>
+            <div class="quiz-explain">Components com Variants garantem que todos os estados são gerenciados em um lugar só. Quando você atualiza o estilo do estado ativo no master Component, todas as 5 instâncias na sidebar (e em todas as telas do projeto) se atualizam automaticamente.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

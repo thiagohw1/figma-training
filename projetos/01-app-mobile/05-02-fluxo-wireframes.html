@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fluxo de usuário e wireframes | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="05-02-fluxo-wireframes" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">📱 Módulo 5 · Projeto Guiado · Lição 2 de 8</div>
+        <h1>Fluxo de usuário e wireframes</h1>
+        <p class="lead">Antes de montar pixels coloridos, precisamos entender <em>como</em> o usuário se move pelo FinView. Nesta lição você vai mapear o fluxo completo, construir o sitemap e criar wireframes low-fi no Figma usando frames mobile reais — a base estrutural de tudo que vem a seguir.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~22 min</span>
+          <span>🎯 Nível: Projeto prático</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Construir um user flow completo do FinView no Figma usando formas simples e conectores;</li>
+            <li>Criar um sitemap hierárquico das telas do app;</li>
+            <li>Produzir wireframes low-fi de todas as telas usando frames iPhone 16;</li>
+            <li>Detalhar o wireframe da tela Home com todos os seus elementos estruturais;</li>
+            <li>Usar a convenção de cinzas para wireframes e organizar os frames na page.</li>
+          </ul>
+        </div>
+
+        <h2>Por que planejar antes de prototipar?</h2>
+        <p>A tentação de abrir o Figma e já criar telas bonitas é enorme — e é exatamente aí que a maioria dos designers iniciantes perde tempo. Imagine construir uma casa sem planta baixa: você pode até montar paredes, mas descobrirá no meio do caminho que um quarto ficou sem janela ou que a escada bloqueia a porta.</p>
+        <p>O mesmo vale para apps. Wireframes low-fi são baratos de fazer e baratos de mudar. Uma vez que você investe horas construindo a tela Home em alta fidelidade com gradientes, sombras e components, mudar a hierarquia de informação custa caro — psicologicamente e tecnicamente.</p>
+
+        <div class="callout info">
+          <span class="callout-title">O que é um wireframe low-fi?</span>
+          <p>Um wireframe de <em>baixa fidelidade</em> (low-fi) usa apenas <strong>caixas cinzas, texto em placeholder e formas geométricas</strong> para representar a estrutura de uma tela. Sem cores de marca, sem ícones reais, sem tipografia específica. O objetivo é comunicar <em>o que existe na tela e onde fica</em>, não <em>como fica</em>. Isso mantém o foco na estrutura e evita que stakeholders se distraiam com detalhes visuais prematuros.</p>
+        </div>
+
+        <h2>User Flow: o caminho do usuário</h2>
+        <p>Um <strong>user flow</strong> é um diagrama que mostra os caminhos possíveis que o usuário percorre dentro do app, do ponto de entrada até atingir um objetivo. Para o FinView, o objetivo central é <em>registrar uma transação e ver como isso impacta o saldo</em>.</p>
+
+        <div class="diagram">
+          <svg viewBox="0 0 680 320" role="img" aria-label="User flow do FinView mostrando os caminhos entre telas">
+            <!-- Splash/Onboarding -->
+            <rect x="20" y="130" width="100" height="44" rx="8" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <text x="70" y="148" text-anchor="middle" fill="var(--text)" font-size="10" font-family="sans-serif" font-weight="600">Splash /</text>
+            <text x="70" y="162" text-anchor="middle" fill="var(--text)" font-size="10" font-family="sans-serif" font-weight="600">Onboarding</text>
+            <!-- Seta para Home -->
+            <line x1="120" y1="152" x2="162" y2="152" stroke="var(--primary)" stroke-width="1.5"/>
+            <polygon points="162,152 155,148 155,156" fill="var(--primary)"/>
+            <!-- Home -->
+            <rect x="162" y="110" width="100" height="84" rx="8" fill="var(--primary-soft)" stroke="var(--primary)" stroke-width="2"/>
+            <text x="212" y="145" text-anchor="middle" fill="var(--primary)" font-size="11" font-family="sans-serif" font-weight="700">Home</text>
+            <text x="212" y="160" text-anchor="middle" fill="var(--text-muted)" font-size="9" font-family="sans-serif">(saldo + lista</text>
+            <text x="212" y="172" text-anchor="middle" fill="var(--text-muted)" font-size="9" font-family="sans-serif">+ cartões)</text>
+            <!-- Seta para Detalhe -->
+            <line x1="262" y1="136" x2="304" y2="110" stroke="var(--border-strong)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <polygon points="304,110 296,112 300,120" fill="var(--border-strong)"/>
+            <!-- Detalhe -->
+            <rect x="304" y="80" width="100" height="44" rx="8" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <text x="354" y="98" text-anchor="middle" fill="var(--text)" font-size="10" font-family="sans-serif" font-weight="600">Detalhe da</text>
+            <text x="354" y="112" text-anchor="middle" fill="var(--text)" font-size="10" font-family="sans-serif" font-weight="600">Transação</text>
+            <!-- Seta de volta Home → Add -->
+            <line x1="262" y1="172" x2="304" y2="190" stroke="var(--primary)" stroke-width="1.5"/>
+            <polygon points="304,190 295,187 297,196" fill="var(--primary)"/>
+            <!-- Add transação -->
+            <rect x="304" y="168" width="100" height="44" rx="8" fill="var(--success-soft)" stroke="var(--success)" stroke-width="2"/>
+            <text x="354" y="186" text-anchor="middle" fill="var(--success)" font-size="10" font-family="sans-serif" font-weight="600">Adicionar</text>
+            <text x="354" y="200" text-anchor="middle" fill="var(--success)" font-size="10" font-family="sans-serif" font-weight="600">Transação</text>
+            <!-- Seta Add → Home (confirmação) -->
+            <path d="M 404 190 Q 440 152 262 152" stroke="var(--success)" stroke-width="1.5" fill="none" stroke-dasharray="4 3"/>
+            <polygon points="262,152 270,149 270,156" fill="var(--success)"/>
+            <!-- Tab bar: Metas -->
+            <rect x="446" y="80" width="90" height="44" rx="8" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <text x="491" y="100" text-anchor="middle" fill="var(--text)" font-size="10" font-family="sans-serif" font-weight="600">Metas</text>
+            <text x="491" y="114" text-anchor="middle" fill="var(--text-muted)" font-size="9" font-family="sans-serif">(tab)</text>
+            <!-- Tab bar: Perfil -->
+            <rect x="446" y="160" width="90" height="44" rx="8" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <text x="491" y="180" text-anchor="middle" fill="var(--text)" font-size="10" font-family="sans-serif" font-weight="600">Perfil</text>
+            <text x="491" y="194" text-anchor="middle" fill="var(--text-muted)" font-size="9" font-family="sans-serif">(tab)</text>
+            <!-- Linhas Home → abas -->
+            <line x1="262" y1="130" x2="446" y2="102" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <line x1="262" y1="168" x2="446" y2="182" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <!-- Legenda -->
+            <line x1="30" y1="290" x2="60" y2="290" stroke="var(--primary)" stroke-width="2"/>
+            <text x="66" y="294" fill="var(--text-muted)" font-size="10" font-family="sans-serif">Fluxo principal</text>
+            <line x1="180" y1="290" x2="210" y2="290" stroke="var(--border-strong)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <text x="216" y="294" fill="var(--text-muted)" font-size="10" font-family="sans-serif">Fluxo secundário / tap em item</text>
+          </svg>
+          <p class="mock-label">User flow simplificado do FinView. O fluxo principal é: Onboarding → Home → Adicionar Transação → Home (atualizado). O fluxo secundário inclui tabs da nav bar e detalhe de transação.</p>
+        </div>
+
+        <h3>Notação de user flow no Figma</h3>
+        <p>No Figma, user flows são construídos com formas básicas e conectores:</p>
+        <ul>
+          <li><strong>Retângulo com cantos arredondados:</strong> representa uma tela ou estado.</li>
+          <li><strong>Losango:</strong> representa uma decisão (ex.: "usuário já tem conta? → sim/não").</li>
+          <li><strong>Círculo com borda dupla:</strong> ponto de início ou fim do fluxo.</li>
+          <li><strong>Seta sólida:</strong> fluxo principal (ação esperada do usuário).</li>
+          <li><strong>Seta pontilhada:</strong> fluxo alternativo ou navegação por tab.</li>
+          <li><strong>Ferramenta Connector:</strong> no Figma, use <kbd>Shift</kbd> + <kbd>X</kbd> para ativar o modo conector e ligar frames visualmente.</li>
+        </ul>
+
+        <h2>Sitemap do FinView</h2>
+        <p>O sitemap é a visão hierárquica e estática da arquitetura de informação — mostra quais telas existem e como se relacionam, sem a dimensão temporal do fluxo. É o "mapa do tesouro" do seu app:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Nível 0 (root)</th><th>Nível 1 (tab)</th><th>Nível 2 (sub-telas)</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2"><strong>Onboarding</strong></td>
+                <td>Splash</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Cards de intro (3)</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td rowspan="3"><strong>App (autenticado)</strong></td>
+                <td>Home</td>
+                <td>Detalhe de transação, Adicionar transação (bottom sheet)</td>
+              </tr>
+              <tr>
+                <td>Metas</td>
+                <td>Detalhe de meta, Nova meta</td>
+              </tr>
+              <tr>
+                <td>Perfil</td>
+                <td>Editar perfil, Configurações, Logout</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Criando wireframes no Figma</h2>
+        <p>Na página <code>📐 Wireframes</code> do seu arquivo, vamos criar os wireframes de todas as telas usando a <strong>convenção de cinzas</strong>: tons de cinza para hierarquia (cinza escuro = maior relevância, cinza claro = menos relevante), caixas para imagens/ícones e textos reais onde a hierarquia importa.</p>
+
+        <h3>Convenção de cores para wireframes</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Elemento</th><th>Fill</th><th>Uso</th></tr></thead>
+            <tbody>
+              <tr><td>Background da tela</td><td><code>#F5F6F8</code></td><td>Fundo neutro</td></tr>
+              <tr><td>Card / container</td><td><code>#FFFFFF</code> com borda <code>#E2E6EC</code></td><td>Cards e seções</td></tr>
+              <tr><td>Elemento primário (CTA, título)</td><td><code>#1A1D23</code></td><td>Textos e botões principais</td></tr>
+              <tr><td>Elemento secundário</td><td><code>#5B6573</code></td><td>Subtítulos, labels</td></tr>
+              <tr><td>Placeholder de imagem/ícone</td><td><code>#CDD2D9</code></td><td>Imagens e ícones</td></tr>
+              <tr><td>Linha divisória</td><td><code>#E2E6EC</code></td><td>Separadores</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Passo a passo: wireframe da tela Home</h2>
+        <p>A Home é a tela mais complexa do FinView — saldo, cartões em carrossel, lista de transações e tab bar. Vamos construí-la do zero:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie o frame da tela Home.</strong>
+            Na page <code>📐 Wireframes</code>, pressione <kbd>F</kbd> e selecione <strong>iPhone 16</strong> (390×844) no painel direito. Renomeie o frame para <code>WF-01 — Home</code> com duplo clique no nome.
+          </li>
+          <li>
+            <strong>Adicione a Status Bar (barra de status do iOS).</strong>
+            Crie um retângulo (<kbd>R</kbd>) de 390×50 px no topo. Fill: <code>#1A1D23</code>. Adicione três textos pequenos para simular: horário à esquerda ("9:41"), nome no centro ("FinView") e ícones de bateria/sinal à direita (use textos "●●●" como placeholder).
+          </li>
+          <li>
+            <strong>Construa a seção do card de saldo.</strong>
+            Crie um retângulo 390×160 px logo abaixo da status bar. Fill: <code>#CDD2D9</code> (placeholder — será o gradiente no hi-fi). Dentro, adicione textos:
+            <ul>
+              <li>"Saldo total" — fonte 12 px, cor <code>#5B6573</code></li>
+              <li>"R$ 4.832,50" — fonte 28 px, bold, cor <code>#FFFFFF</code> (simule com <code>#1A1D23</code> no wireframe)</li>
+              <li>Dois badges menores: "↑ Receitas" e "↓ Gastos"</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Adicione a seção de cartões (carrossel).</strong>
+            Abaixo do card de saldo, crie um Auto Layout horizontal (<kbd>Shift</kbd> + <kbd>A</kbd>) com três retângulos de 140×80 px, gap 12, padding 16. Cada retângulo representa um cartão de conta. Adicione texto "Nubank", "Itaú", "Dinheiro" em cada um. Esse é o carrossel de cartões.
+          </li>
+          <li>
+            <strong>Crie o cabeçalho da lista de transações.</strong>
+            Adicione um Auto Layout horizontal com "Transações recentes" (texto negrito) e "Ver tudo" (texto link) nos extremos. Use gap <strong>Auto</strong> para empurrar os dois para os lados. Padding vertical 12, horizontal 16.
+          </li>
+          <li>
+            <strong>Adicione itens da lista.</strong>
+            Crie um item de lista: Auto Layout horizontal, 390×64 px. Dentro: um quadrado 40×40 (ícone placeholder), um Auto Layout vertical com "Nome da transação" (bold 14 px) e "Categoria · Data" (12 px, muted), e "- R$ 00,00" alinhado à direita. Duplique (<kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>D</kbd>) 4 vezes para simular 5 transações.
+          </li>
+          <li>
+            <strong>Construa a Tab Bar (barra de navegação inferior).</strong>
+            Na base do frame, crie um retângulo 390×83 px. Fill: <code>#FFFFFF</code>. Dentro, crie um Auto Layout horizontal com 5 itens iguais, cada um com um quadrado 24×24 (ícone) e um texto pequeno abaixo ("Home", "Metas", "Add", "Cartões", "Perfil"). Um deles (Home) usa cor mais escura para indicar ativo.
+          </li>
+          <li>
+            <strong>Organize tudo em Auto Layout vertical.</strong>
+            Selecione todos os elementos dentro do frame e aplique Auto Layout vertical (<kbd>Shift</kbd> + <kbd>A</kbd>). Garanta que o frame pai (iPhone 16) tem <strong>Clip content</strong> ativado (no painel direito, em Layer). Isso garante que nada ultrapasse os limites da tela.
+          </li>
+          <li>
+            <strong>Adicione uma nota de anotação.</strong>
+            Use a ferramenta de comentário (<kbd>C</kbd>) ou crie um retângulo amarelo ao lado do frame com texto explicando a hierarquia. No wireframe profissional, você anota decisões de UX ("lista rolável até a tab bar", "carrossel de cartões snap a cada item").
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Atalho para duplicar frames lateralmente</span>
+          <p>Ao criar múltiplos wireframes lado a lado, selecione o frame e pressione <kbd>Alt</kbd> + arrastar (Windows) ou <kbd>⌥</kbd> + arrastar (Mac) para clonar. Melhor ainda: selecione e pressione <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>D</kbd>, depois mova com as setas do teclado. Manter um espaçamento consistente de 40 px entre frames é uma boa prática.</p>
+        </div>
+
+        <h2>Wireframes das demais telas</h2>
+        <p>Repita o processo para cada tela do MVP. Aqui está a checklist de elementos por tela:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Tela</th><th>Elementos principais no wireframe</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Onboarding (3 cards)</strong></td>
+                <td>Ilustração placeholder (retângulo 390×300), título h1, subtítulo, botão "Próximo", indicador de página (3 pontos)</td>
+              </tr>
+              <tr>
+                <td><strong>Home</strong></td>
+                <td>Status bar, card de saldo, carrossel de cartões, cabeçalho de lista, 5 itens de transação, tab bar</td>
+              </tr>
+              <tr>
+                <td><strong>Detalhe da Transação</strong></td>
+                <td>Header com botão voltar, ícone grande da categoria, valor em destaque, campos de detalhe (data, categoria, nota, conta), botão "Editar"</td>
+              </tr>
+              <tr>
+                <td><strong>Adicionar Transação (Bottom Sheet)</strong></td>
+                <td>Handle bar (drag indicator), toggle Entrada/Saída, campo de valor numérico grande, seletor de categoria (grid 4×2), campo de nota, botão "Salvar"</td>
+              </tr>
+              <tr>
+                <td><strong>Metas</strong></td>
+                <td>Header, 3 cards de meta (nome + barra de progresso + valores), botão "Nova meta"</td>
+              </tr>
+              <tr>
+                <td><strong>Perfil</strong></td>
+                <td>Avatar + nome + email, lista de configurações (notificações, tema, segurança, sobre), botão "Sair"</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="figma-mock">
+          <div class="device-phone" style="width:200px;">
+            <div style="background:#f5f6f8;min-height:350px;padding:0;display:flex;flex-direction:column;">
+              <!-- Status bar placeholder -->
+              <div style="background:#cdd2d9;height:40px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;">
+                <span style="font-size:9px;color:#1a1d23;">9:41</span>
+                <span style="font-size:9px;color:#1a1d23;">●●●</span>
+              </div>
+              <!-- Saldo placeholder -->
+              <div style="background:#adb4bf;height:130px;margin:0;display:flex;flex-direction:column;justify-content:center;padding:16px;gap:6px;">
+                <span style="font-size:9px;color:#ffffff;opacity:0.7;">Saldo total</span>
+                <span style="font-size:20px;font-weight:700;color:#ffffff;">R$ 4.832,50</span>
+                <div style="display:flex;gap:6px;">
+                  <span style="background:rgba(255,255,255,0.2);color:#fff;font-size:7px;padding:2px 6px;border-radius:99px;">↑ Receitas</span>
+                  <span style="background:rgba(255,255,255,0.2);color:#fff;font-size:7px;padding:2px 6px;border-radius:99px;">↓ Gastos</span>
+                </div>
+              </div>
+              <!-- Cartões placeholder -->
+              <div style="display:flex;gap:8px;padding:10px 12px;overflow:hidden;">
+                <div style="background:#cdd2d9;border-radius:8px;width:80px;height:52px;flex:none;display:flex;align-items:center;justify-content:center;"><span style="font-size:8px;color:#5b6573;">Nubank</span></div>
+                <div style="background:#e2e6ec;border-radius:8px;width:80px;height:52px;flex:none;display:flex;align-items:center;justify-content:center;"><span style="font-size:8px;color:#5b6573;">Itaú</span></div>
+              </div>
+              <!-- Lista title -->
+              <div style="display:flex;justify-content:space-between;padding:4px 12px;">
+                <span style="font-size:9px;font-weight:700;color:#1a1d23;">Transações recentes</span>
+                <span style="font-size:9px;color:#5b6573;">Ver tudo</span>
+              </div>
+              <!-- Lista items -->
+              <div style="display:flex;flex-direction:column;gap:0;flex:1;">
+                <div style="display:flex;align-items:center;gap:8px;padding:7px 12px;border-bottom:1px solid #e2e6ec;">
+                  <div style="background:#cdd2d9;width:28px;height:28px;border-radius:6px;flex:none;"></div>
+                  <div style="flex:1;"><div style="font-size:9px;font-weight:600;color:#1a1d23;">iFood</div><div style="font-size:8px;color:#5b6573;">Alimentação · Hoje</div></div>
+                  <span style="font-size:9px;font-weight:700;color:#1a1d23;">-R$54</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;padding:7px 12px;border-bottom:1px solid #e2e6ec;">
+                  <div style="background:#cdd2d9;width:28px;height:28px;border-radius:6px;flex:none;"></div>
+                  <div style="flex:1;"><div style="font-size:9px;font-weight:600;color:#1a1d23;">Salário</div><div style="font-size:8px;color:#5b6573;">Receita · 01/06</div></div>
+                  <span style="font-size:9px;font-weight:700;color:#1a1d23;">+R$5k</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;padding:7px 12px;">
+                  <div style="background:#cdd2d9;width:28px;height:28px;border-radius:6px;flex:none;"></div>
+                  <div style="flex:1;"><div style="font-size:9px;font-weight:600;color:#1a1d23;">Spotify</div><div style="font-size:8px;color:#5b6573;">Assinatura · Ontem</div></div>
+                  <span style="font-size:9px;font-weight:700;color:#1a1d23;">-R$22</span>
+                </div>
+              </div>
+              <!-- Tab bar -->
+              <div style="background:#ffffff;border-top:1px solid #e2e6ec;display:flex;justify-content:space-around;padding:8px 0;height:52px;align-items:center;">
+                <span style="font-size:7px;text-align:center;color:#1a1d23;">🏠<br>Home</span>
+                <span style="font-size:7px;text-align:center;color:#adb4bf;">📊<br>Metas</span>
+                <span style="font-size:7px;text-align:center;color:#adb4bf;">➕<br>Add</span>
+                <span style="font-size:7px;text-align:center;color:#adb4bf;">💳<br>Cartões</span>
+                <span style="font-size:7px;text-align:center;color:#adb4bf;">👤<br>Perfil</span>
+              </div>
+            </div>
+          </div>
+          <div class="device-phone" style="width:200px;">
+            <div style="background:#f5f6f8;min-height:350px;padding:0;display:flex;flex-direction:column;">
+              <!-- Header com back -->
+              <div style="background:#cdd2d9;height:40px;display:flex;align-items:center;padding:0 12px;gap:8px;">
+                <span style="font-size:9px;color:#1a1d23;">← Voltar</span>
+              </div>
+              <div style="background:#e2e6ec;height:40px;display:flex;align-items:center;justify-content:center;">
+                <span style="font-size:10px;font-weight:700;color:#1a1d23;">Detalhe da Transação</span>
+              </div>
+              <!-- Ícone grande -->
+              <div style="display:flex;flex-direction:column;align-items:center;padding:20px 16px 12px;">
+                <div style="background:#cdd2d9;width:56px;height:56px;border-radius:14px;"></div>
+                <span style="font-size:16px;font-weight:700;color:#1a1d23;margin-top:10px;">- R$ 54,90</span>
+                <span style="font-size:9px;color:#5b6573;">iFood</span>
+              </div>
+              <!-- Detalhes -->
+              <div style="display:flex;flex-direction:column;gap:0;margin:0 12px;border:1px solid #e2e6ec;border-radius:10px;overflow:hidden;">
+                <div style="display:flex;justify-content:space-between;padding:8px 12px;border-bottom:1px solid #e2e6ec;"><span style="font-size:8px;color:#5b6573;">Data</span><span style="font-size:8px;font-weight:600;color:#1a1d23;">23 Mai 2026</span></div>
+                <div style="display:flex;justify-content:space-between;padding:8px 12px;border-bottom:1px solid #e2e6ec;"><span style="font-size:8px;color:#5b6573;">Categoria</span><span style="font-size:8px;font-weight:600;color:#1a1d23;">Alimentação</span></div>
+                <div style="display:flex;justify-content:space-between;padding:8px 12px;border-bottom:1px solid #e2e6ec;"><span style="font-size:8px;color:#5b6573;">Conta</span><span style="font-size:8px;font-weight:600;color:#1a1d23;">Nubank</span></div>
+                <div style="display:flex;justify-content:space-between;padding:8px 12px;"><span style="font-size:8px;color:#5b6573;">Nota</span><span style="font-size:8px;color:#5b6573;">Jantar sexta</span></div>
+              </div>
+              <div style="flex:1;"></div>
+              <div style="margin:12px;background:#1a1d23;border-radius:10px;height:36px;display:flex;align-items:center;justify-content:center;"><span style="font-size:10px;color:#fff;font-weight:700;">Editar Transação</span></div>
+              <div style="height:30px;"></div>
+            </div>
+          </div>
+          <p class="mock-label">Wireframes low-fi da Home (esquerda) e do Detalhe da Transação (direita). Apenas cinzas e estrutura — sem cores de marca.</p>
+        </div>
+
+        <h2>Dicas de organização na page de Wireframes</h2>
+        <p>Uma page de wireframes bem organizada é um entregável de UX em si. Siga estas convenções:</p>
+        <ul>
+          <li><strong>Grade de frames:</strong> alinhe os frames em fileiras, 40 px de espaço entre eles. Use <em>Tidy Up</em> (<kbd>Shift</kbd> + <kbd>Alt</kbd> + clique na grade no painel direito) para alinhar automaticamente.</li>
+          <li><strong>Numeração dos frames:</strong> prefixo <code>WF-</code> seguido de número (WF-01, WF-02...) para identificação fácil ao referenciar em comentários ou documentos.</li>
+          <li><strong>Seções com Section Tool:</strong> agrupe frames relacionados com a ferramenta Section (<kbd>Shift</kbd> + <kbd>S</kbd> no Figma). Ex.: seção "Onboarding", seção "Fluxo principal", seção "Perfil".</li>
+          <li><strong>Conectores entre frames:</strong> use a ferramenta Connector para ligar os wireframes visualmente, mostrando a navegação. Isso transforma a page em um mapa de interação.</li>
+        </ul>
+
+        <div class="callout warning">
+          <span class="callout-title">Wireframe vs. protótipo: não confunda</span>
+          <p>Wireframes são <em>documentos de estrutura</em>, não protótipos clicáveis. Não gaste tempo adicionando interações no Figma nesta etapa — isso é trabalho da Lição 7. O wireframe precisa ser aprovado quanto à estrutura e hierarquia antes de você investir tempo em alta fidelidade. Mostre para alguém e pergunte: "Você entende o que cada parte faz?" — se a resposta for sim, o wireframe cumpriu seu papel.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Ferramenta Frame</td><td><kbd>F</kbd></td><td><kbd>F</kbd></td></tr>
+              <tr><td>Ferramenta Retângulo</td><td><kbd>R</kbd></td><td><kbd>R</kbd></td></tr>
+              <tr><td>Ferramenta Texto</td><td><kbd>T</kbd></td><td><kbd>T</kbd></td></tr>
+              <tr><td>Ferramenta Comentário</td><td><kbd>C</kbd></td><td><kbd>C</kbd></td></tr>
+              <tr><td>Ferramenta Section</td><td><kbd>Shift</kbd> + <kbd>S</kbd></td><td><kbd>Shift</kbd> + <kbd>S</kbd></td></tr>
+              <tr><td>Duplicar seleção</td><td><kbd>Ctrl</kbd> + <kbd>D</kbd></td><td><kbd>⌘</kbd> + <kbd>D</kbd></td></tr>
+              <tr><td>Auto Layout</td><td><kbd>Shift</kbd> + <kbd>A</kbd></td><td><kbd>Shift</kbd> + <kbd>A</kbd></td></tr>
+              <tr><td>Renomear layer</td><td><kbd>Ctrl</kbd> + <kbd>R</kbd></td><td><kbd>⌘</kbd> + <kbd>R</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>User flows mostram os caminhos do usuário no app — use formas e conectores no Figma para construí-los.</li>
+          <li>O sitemap mapeia a hierarquia estática das telas: Onboarding, Home (com sub-telas), Metas e Perfil.</li>
+          <li>Wireframes low-fi usam apenas cinzas, caixas e texto real onde necessário — sem cores de marca.</li>
+          <li>A Home foi construída passo a passo: status bar, card de saldo, carrossel de cartões, lista de transações e tab bar.</li>
+          <li>Use Sections, numeração <code>WF-XX</code> e conectores para organizar a page de wireframes profissionalmente.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Wireframe completo do FinView</h3>
+          <p>Com base nas referências desta lição:</p>
+          <ol>
+            <li>Crie 6 frames iPhone 16 na page <code>📐 Wireframes</code> do seu arquivo.</li>
+            <li>Construa os wireframes low-fi de: Home, Onboarding (1 card), Detalhe da Transação, Bottom Sheet "Adicionar", Metas e Perfil.</li>
+            <li>Nomeie cada frame com o prefixo <code>WF-</code> e número.</li>
+            <li>Agrupe os frames em pelo menos 2 Sections (ex.: "Onboarding" e "Fluxo principal").</li>
+            <li>Adicione um conector entre "Home" e "Detalhe da Transação" mostrando a navegação.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> os 6 wireframes estão organizados na page, sem cores de marca, com nomes corretos, agrupados em Sections e com pelo menos 1 conector de navegação.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>User flow do fluxo de onboarding com decisão</h3>
+          <p>Construa no Figma o user flow completo do onboarding com lógica de decisão: o usuário que já tem conta deve seguir um caminho diferente (Login) do que o usuário novo (Cadastro + Setup inicial). Use losangos para os pontos de decisão, círculos para início/fim, e retângulos para telas. Adicione 2 caminhos alternativos além do fluxo principal. O resultado deve ser um diagrama legível por alguém que nunca viu o FinView antes.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">1. Qual é a principal vantagem de criar wireframes low-fi antes de partir para o design de alta fidelidade?</p>
+            <ul class="quiz-options">
+              <li>Wireframes low-fi são mais rápidos de apresentar para o cliente final</li>
+              <li>O Figma só suporta exportação de wireframes, não de designs coloridos</li>
+              <li>Wireframes eliminam a necessidade de fazer prototipagem</li>
+              <li>Mudanças estruturais são baratas de fazer em wireframes, evitando retrabalho no hi-fi</li>
+            </ul>
+            <div class="quiz-explain">A grande vantagem dos wireframes é o custo de mudança: alterar a hierarquia de uma tela em wireframe leva minutos. Fazer o mesmo após construir o hi-fi com components e estilos custa muito mais tempo. Wireframes permitem validar estrutura antes de investir em detalhes visuais.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">2. No Figma 2025, qual ferramenta é usada para agrupar visualmente frames relacionados dentro de uma page?</p>
+            <ul class="quiz-options">
+              <li>Group (Ctrl/⌘ + G)</li>
+              <li>Section (Shift + S)</li>
+              <li>Frame dentro de Frame</li>
+              <li>Component Set</li>
+            </ul>
+            <div class="quiz-explain"><strong>Sections</strong> (atalho <kbd>Shift</kbd> + <kbd>S</kbd>) são a ferramenta certa para agrupar frames relacionados em uma page — são como "pastas visuais" na canvas. Groups agrupam objetos em uma hierarquia; Sections agrupam frames sem criar um novo container de edição.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">3. Em um user flow, o que um losango representa?</p>
+            <ul class="quiz-options">
+              <li>Uma animação de transição entre telas</li>
+              <li>O ponto de início ou fim do fluxo</li>
+              <li>Um ponto de decisão onde o usuário pode seguir caminhos diferentes</li>
+              <li>Um componente reutilizável de interface</li>
+            </ul>
+            <div class="quiz-explain">Em diagramas de fluxo (flowcharts), o <strong>losango representa uma decisão</strong> com dois ou mais caminhos possíveis (ex.: "Usuário tem conta? → Sim → Login / Não → Cadastro"). O círculo representa início/fim, o retângulo representa uma tela ou ação.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

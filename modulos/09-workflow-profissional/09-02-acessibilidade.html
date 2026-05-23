@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acessibilidade no design | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="09-02-acessibilidade" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🎯 Módulo 9 · Profissional · Lição 2 de 6</div>
+        <h1>Acessibilidade no design</h1>
+        <p class="lead">Design acessível não é um checklist opcional — é a base de qualquer produto que respeita seus usuários. Aprenda a criar interfaces que funcionam para todas as pessoas, inclusive as que dependem de tecnologia assistiva.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~22 min</span>
+          <span>🎯 Nível: Profissional</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Verificar e garantir contraste de cor conforme as diretrizes WCAG AA e AAA;</li>
+            <li>Dimensionar texto e áreas de toque para usuários com diferentes habilidades motoras e visuais;</li>
+            <li>Projetar indicadores de foco e fluxos de navegação por teclado nos seus designs;</li>
+            <li>Nunca usar cor como única forma de transmitir informação;</li>
+            <li>Documentar textos alternativos e labels para leitores de tela diretamente no Figma;</li>
+            <li>Usar os plugins Stark e Contrast para auditar acessibilidade durante o design.</li>
+          </ul>
+        </div>
+
+        <h2>O que são as WCAG e por que você deve seguir?</h2>
+        <p>As <strong>Web Content Accessibility Guidelines (WCAG)</strong> são um conjunto de recomendações do W3C para tornar conteúdo digital acessível a pessoas com deficiências visuais, auditivas, motoras e cognitivas. A versão atual é a 2.2, com a 3.0 em desenvolvimento.</p>
+        <p>As diretrizes têm três níveis de conformidade:</p>
+        <ul>
+          <li><strong>WCAG A:</strong> requisitos mínimos. Não cumprir significa barreira severa de acessibilidade.</li>
+          <li><strong>WCAG AA:</strong> o padrão exigido por lei em muitos países (incluindo a LGPD no Brasil e a ADA nos EUA). <strong>Este é o nível que você deve perseguir.</strong></li>
+          <li><strong>WCAG AAA:</strong> o mais alto nível. Nem sempre possível para todos os elementos, mas desejável quando viável.</li>
+        </ul>
+
+        <div class="callout info">
+          <span class="callout-title">Acessibilidade e SEO andam juntos</span>
+          <p>Muitas práticas de acessibilidade (hierarquia de headings, textos alternativos em imagens, labels em formulários) também melhoram o SEO do produto. Projetar com acessibilidade em mente beneficia todos os usuários, não apenas os com deficiência.</p>
+        </div>
+
+        <h2>Contraste de cor: o princípio mais verificável</h2>
+        <p>O contraste é a relação entre a luminância da cor do texto e do fundo. Ele é expresso como uma razão, como <strong>4,5:1</strong>. Quanto maior o número, mais contraste.</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Tipo de elemento</th>
+                <th>WCAG AA (mínimo)</th>
+                <th>WCAG AAA (ideal)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Texto normal (abaixo de 18pt / 14pt bold)</td>
+                <td><strong>4,5:1</strong></td>
+                <td>7:1</td>
+              </tr>
+              <tr>
+                <td>Texto grande (≥ 18pt regular ou ≥ 14pt bold)</td>
+                <td><strong>3:1</strong></td>
+                <td>4,5:1</td>
+              </tr>
+              <tr>
+                <td>Componentes de UI (bordas de input, ícones informativos)</td>
+                <td><strong>3:1</strong></td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Texto decorativo ou logotipos</td>
+                <td>Sem requisito</td>
+                <td>Sem requisito</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout warning">
+          <span class="callout-title">O erro mais comum: texto cinza claro em fundo branco</span>
+          <p>Designers adoram tons de cinza suave para texto de suporte — mas <code>#999999</code> sobre branco tem contraste de 2,85:1, <strong>abaixo do mínimo AA</strong>. Use <code>#767676</code> ou mais escuro para textos secundários. Sempre verifique com uma ferramenta.</p>
+        </div>
+
+        <h3>Como verificar contraste no Figma</h3>
+        <p>O Figma não exibe a razão de contraste nativo de forma proeminente, por isso você precisa de plugins:</p>
+        <ul>
+          <li><strong>Stark:</strong> Suíte completa de acessibilidade. Verifica contraste, simula visão com daltonismo, analisa a ordem de leitura e gera relatórios de conformidade.</li>
+          <li><strong>Contrast:</strong> Plugin leve e rápido especificamente para verificação de contraste WCAG. Basta selecionar um texto e ele mostra o ratio instantaneamente.</li>
+          <li><strong>A11y — Focus Order:</strong> Permite documentar e verificar a ordem de foco da navegação por teclado.</li>
+        </ul>
+
+        <ol class="steps">
+          <li>
+            <strong>Instale o plugin Stark.</strong>
+            Vá em <kbd>Menu</kbd> → <strong>Plugins</strong> → <strong>Browse plugins in Community</strong> e busque por "Stark". Instale-o gratuitamente.
+          </li>
+          <li>
+            <strong>Selecione um texto ou componente.</strong>
+            Clique sobre o elemento que deseja verificar na tela.
+          </li>
+          <li>
+            <strong>Abra o Stark e execute "Contrast Checker".</strong>
+            O plugin vai detectar automaticamente as cores do texto e do fundo e exibir a razão de contraste com indicação de pass/fail para AA e AAA.
+          </li>
+          <li>
+            <strong>Ajuste as cores até passar.</strong>
+            Se o contraste falhar, ajuste a luminância da cor de texto ou fundo. Escureça o texto ou clareie o fundo até atingir pelo menos 4,5:1 para texto normal.
+          </li>
+          <li>
+            <strong>Rode a varredura de toda a página.</strong>
+            No Stark, use "Run a11y check" para escanear todos os elementos da página e receber um relatório com todos os problemas de contraste.
+          </li>
+        </ol>
+
+        <h2>Tamanho de texto: legibilidade para todos</h2>
+        <p>As WCAG não definem tamanhos mínimos de fonte em pixels diretamente, mas as boas práticas da indústria estabelecem:</p>
+        <ul>
+          <li><strong>Corpo de texto:</strong> mínimo de 16px em interfaces web; 14px para textos secundários com contraste aumentado.</li>
+          <li><strong>Labels e captions:</strong> nunca abaixo de 12px — e se usar 12px, garanta contraste AAA (7:1).</li>
+          <li><strong>Altura de linha:</strong> mínimo de 1,5× o tamanho da fonte para textos de parágrafo (WCAG 1.4.12).</li>
+          <li><strong>Espaçamento entre letras:</strong> não comprima o letter-spacing abaixo de zero; usuários com dislexia dependem de espaçamento adequado.</li>
+        </ul>
+
+        <h2>Áreas de toque: design para dedos reais</h2>
+        <p>Em interfaces mobile, usuários com dificuldades motoras (tremor, paralisia, próteses) dependem de alvos de toque grandes. As diretrizes definem:</p>
+        <ul>
+          <li><strong>WCAG 2.5.5 (AAA):</strong> alvos de toque mínimos de 44×44 px.</li>
+          <li><strong>WCAG 2.5.8 (AA, versão 2.2):</strong> alvos de toque mínimos de 24×24 px (com espaçamento adequado ao redor).</li>
+          <li><strong>Apple HIG:</strong> recomenda 44×44 pt para todos os elementos interativos.</li>
+          <li><strong>Material Design:</strong> recomenda área de toque mínima de 48×48 dp.</li>
+        </ul>
+        <p>No Figma, sempre crie uma área de toque invisível ao redor de ícones e botões pequenos. Um ícone de 16×16 px deve ter um frame "invisível" de 44×44 px ao redor para que o alvo de toque seja adequado.</p>
+
+        <div class="callout tip">
+          <span class="callout-title">Componente de "Hit Area" no design system</span>
+          <p>Crie um componente de hit area (área de toque) no seu design system: um frame 44×44 de fundo transparente que você coloca como camada pai de ícones interativos. Isso documenta visualmente que a área de toque está correta, mesmo quando o ícone é menor.</p>
+        </div>
+
+        <h2>Foco e navegação por teclado</h2>
+        <p>Uma parcela significativa de usuários navega por teclado: pessoas com deficiências motoras, usuários avançados que preferem o teclado, e pessoas que usam leitores de tela. No design, você precisa:</p>
+
+        <h3>Projetar estados de foco visíveis</h3>
+        <p>Todo elemento interativo (botões, links, inputs, checkboxes) deve ter um estado <strong>Focus</strong> visível e distinto. O padrão mínimo da WCAG 2.4.11 (AA) exige:</p>
+        <ul>
+          <li>O indicador de foco deve ser visível (não apenas a borda padrão do browser);</li>
+          <li>Deve ter contraste mínimo de 3:1 entre o indicador e o fundo adjacente;</li>
+          <li>Deve ter área mínima equivalente ao perímetro do componente × 2px.</li>
+        </ul>
+        <p>No Figma, crie um estado <code>State=Focus</code> em cada componente interativo com um anel de foco (outline) de 2–3px em uma cor de alto contraste (geralmente a cor primária da marca).</p>
+
+        <h3>Documentar a ordem de foco</h3>
+        <p>A ordem de navegação por teclado deve ser lógica — geralmente de cima para baixo, da esquerda para a direita. Use o plugin <strong>A11y — Focus Order</strong> para numerar visualmente os elementos na ordem de foco no Figma. Isso documenta a intenção para os desenvolvedores implementarem com <code>tabindex</code> correto.</p>
+
+        <h2>Cor não como única informação</h2>
+        <p>Aproximadamente 8% dos homens têm algum grau de daltonismo (deficiência na percepção de cores). Se você usa cor como <em>único</em> indicador de status, estado ou informação, esses usuários — e usuários de telas em preto e branco — perdem informação crítica.</p>
+
+        <h3>Exemplos de problemas comuns</h3>
+        <ul>
+          <li><strong>Campos de formulário:</strong> somente a borda vermelha indica erro — adicione um ícone de erro e texto descritivo.</li>
+          <li><strong>Gráficos:</strong> somente cor diferencia as linhas — adicione labels, padrões ou formas distintas.</li>
+          <li><strong>Status de pedido:</strong> "verde = entregue, vermelho = cancelado" — adicione texto de status também.</li>
+          <li><strong>Links no texto:</strong> somente a cor diferencia links — use sublinhado também (ou outro indicador não-cor).</li>
+        </ul>
+
+        <div class="callout danger">
+          <span class="callout-title">Teste em escala de cinza</span>
+          <p>Um dos testes mais rápidos de acessibilidade de cor: imprima ou exiba sua tela em escala de cinza (ou use o modo de simulação do Stark) e veja se toda informação ainda é compreensível. Se não for, você está dependendo excessivamente de cor.</p>
+        </div>
+
+        <h2>Hierarquia e leitores de tela: alt text e labels</h2>
+        <p>Leitores de tela (como VoiceOver no iOS/Mac e TalkBack no Android) leem elementos da interface em sequência. No Figma, você pode documentar como os elementos devem ser lidos usando as <strong>anotações de acessibilidade</strong>:</p>
+
+        <h3>Documentando alt text de imagens</h3>
+        <p>Para cada imagem informativa no seu design, adicione uma anotação (usando o plugin Stark ou anotações manuais) descrevendo o conteúdo: <em>"Gráfico de barras mostrando crescimento de vendas de janeiro a junho"</em>. Imagens puramente decorativas devem ser marcadas como <code>aria-hidden</code>.</p>
+
+        <h3>Labels em campos de formulário</h3>
+        <p>Todo input deve ter um label visível acima (não apenas placeholder). Placeholder desaparece quando o usuário começa a digitar — usuários com memória curta ou dificuldades cognitivas perdem a referência. Além disso, leitores de tela associam o label ao input via o atributo <code>for</code>/<code>id</code> no HTML.</p>
+
+        <h3>Hierarquia de headings</h3>
+        <p>Use h1 apenas uma vez por tela, para o título principal. Subtítulos usam h2, h3, etc., em ordem hierárquica. Nunca pule níveis (h1 → h3) apenas por estética. Leitores de tela permitem navegar pela estrutura de headings — se a hierarquia estiver errada, a navegação fica confusa.</p>
+
+        <h2>Exemplo de uso real</h2>
+        <p>O time de design da Microsoft usa um processo chamado <em>Inclusive Design</em> onde cada novo componente do Fluent Design System passa por uma revisão de acessibilidade antes de ser lançado. O checklist inclui: contraste mínimo AA, estados de foco documentados, textos alternativos definidos, e teste com VoiceOver e NVDA.</p>
+        <p>Em projetos menores, um designer pode implementar a mesma rigorosidade rodando o Stark em todos os frames antes de marcar uma tarefa como "Pronto para desenvolvimento".</p>
+
+        <h2>Checklist de acessibilidade</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Item</th><th>Critério WCAG</th><th>Como verificar no Figma</th></tr></thead>
+            <tbody>
+              <tr><td>Contraste de texto normal</td><td>AA: 4,5:1</td><td>Plugin Stark ou Contrast</td></tr>
+              <tr><td>Contraste de texto grande</td><td>AA: 3:1</td><td>Plugin Stark ou Contrast</td></tr>
+              <tr><td>Contraste de UI (bordas, ícones)</td><td>AA: 3:1</td><td>Plugin Stark</td></tr>
+              <tr><td>Tamanho mínimo de toque</td><td>AA 2.5.8: 24×24 px</td><td>Verificação manual no frame</td></tr>
+              <tr><td>Estado de foco visível</td><td>AA 2.4.11</td><td>Componente State=Focus criado</td></tr>
+              <tr><td>Cor não é única informação</td><td>AA 1.4.1</td><td>Teste em escala de cinza (Stark)</td></tr>
+              <tr><td>Textos alternativos documentados</td><td>AA 1.1.1</td><td>Anotações no Figma</td></tr>
+              <tr><td>Labels em todos os inputs</td><td>AA 1.3.1</td><td>Verificação visual no design</td></tr>
+              <tr><td>Hierarquia de headings lógica</td><td>AA 1.3.1</td><td>Revisão manual da tipografia</td></tr>
+              <tr><td>Ordem de foco documentada</td><td>AA 2.4.3</td><td>Plugin A11y Focus Order</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>WCAG AA é o padrão mínimo: texto normal precisa de 4,5:1 de contraste; texto grande e componentes de UI, 3:1.</li>
+          <li>Use os plugins Stark e Contrast para verificar acessibilidade durante o design, não apenas no final.</li>
+          <li>Alvos de toque mínimos: 44×44 px (recomendado) ou 24×24 px (WCAG AA 2.5.8).</li>
+          <li>Crie o estado <code>Focus</code> em todos os componentes interativos com anel de foco visível.</li>
+          <li>Nunca use cor como único indicador de status ou informação — adicione ícone, padrão ou texto.</li>
+          <li>Documente textos alternativos e labels para leitores de tela diretamente no Figma com anotações.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Auditoria de acessibilidade de uma tela</h3>
+          <p>Pegue qualquer tela de design que você tenha (pode ser de módulos anteriores) e faça uma auditoria completa:</p>
+          <ol>
+            <li>Instale o plugin Stark e rode o verificador de contraste em todos os textos da tela.</li>
+            <li>Liste todos os elementos que falharam no contraste AA e corrija as cores.</li>
+            <li>Verifique se alguma informação é transmitida apenas por cor e adicione um indicador alternativo.</li>
+            <li>Certifique-se de que todos os inputs têm labels visíveis (não apenas placeholder).</li>
+            <li>Use o Stark para simular como a tela aparece com protanopia (daltonismo vermelho-verde).</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> a tela passa em todos os itens do checklist de acessibilidade desta lição, e o Stark mostra zero falhas de contraste AA.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Redesign acessível de um formulário</h3>
+          <p>Encontre um formulário de cadastro com problemas de acessibilidade (pode ser um real ou recrie um com problemas intencionais: texto cinza claro, sem labels, campos de erro apenas em vermelho, botão pequeno). Redesenhe-o do zero seguindo todas as diretrizes WCAG AA: contraste, tamanhos de toque, labels visíveis, estados de erro com ícone + texto, foco documentado. Compare o antes e o depois lado a lado.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Qual é a razão de contraste mínima exigida pela WCAG AA para texto normal (abaixo de 18pt)?</p>
+            <ul class="quiz-options">
+              <li>3:1</li>
+              <li>4,5:1</li>
+              <li>7:1</li>
+              <li>2:1</li>
+            </ul>
+            <div class="quiz-explain">A WCAG AA exige contraste mínimo de <strong>4,5:1</strong> para texto normal. Para texto grande (≥ 18pt regular ou ≥ 14pt bold), o mínimo é 3:1.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">2. Por que usar cor como único indicador de status é um problema de acessibilidade?</p>
+            <ul class="quiz-options">
+              <li>Porque aumenta o tamanho do arquivo Figma</li>
+              <li>Porque o Figma não suporta múltiplas cores no mesmo componente</li>
+              <li>Porque desenvolvedores não conseguem implementar cores corretamente</li>
+              <li>Porque pessoas com daltonismo (cerca de 8% dos homens) perdem a informação</li>
+            </ul>
+            <div class="quiz-explain">Aproximadamente 8% dos homens têm algum grau de daltonismo. Se a cor é o único indicador, esses usuários — e usuários de telas em preto e branco — não conseguem perceber a informação. Sempre adicione um segundo indicador (ícone, texto, padrão).</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Qual é o tamanho mínimo recomendado de área de toque para interfaces mobile segundo a Apple HIG e as boas práticas de acessibilidade?</p>
+            <ul class="quiz-options">
+              <li>44×44 px</li>
+              <li>24×24 px</li>
+              <li>32×32 px</li>
+              <li>16×16 px</li>
+            </ul>
+            <div class="quiz-explain">A Apple HIG recomenda <strong>44×44 pt</strong> para todos os elementos interativos. A WCAG 2.5.8 (AA na versão 2.2) exige 24×24 px como mínimo absoluto, mas 44×44 é o padrão de conforto recomendado pela indústria.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

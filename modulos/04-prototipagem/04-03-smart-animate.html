@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Animate e microinterações | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="04-03-smart-animate" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">⚡ Módulo 4 · Prototipagem · Lição 3 de 7</div>
+        <h1>Smart Animate e microinterações</h1>
+        <p class="lead">Smart Animate é o recurso que faz protótipos do Figma parecerem código de verdade. Ao reconhecer layers com o mesmo nome em dois frames, ele anima automaticamente a diferença entre eles — posição, tamanho, cor, opacidade, rotação e muito mais — sem você configurar nada além do nome do layer.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~20 min</span>
+          <span>🎯 Nível: Intermediário/Avançado</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Explicar como o Smart Animate identifica e casa layers entre dois frames;</li>
+            <li>Listar todas as propriedades que o Smart Animate consegue animar;</li>
+            <li>Criar um toggle animado, um botão de like e um card expansível usando Smart Animate;</li>
+            <li>Identificar as armadilhas comuns e saber como evitá-las.</li>
+          </ul>
+        </div>
+
+        <h2>Como o Smart Animate funciona</h2>
+        <p>A lógica é surpreendentemente simples: quando você usa Smart Animate como tipo de transição entre dois frames, o Figma varre o painel de layers dos dois frames buscando layers com <strong>exatamente o mesmo nome</strong>. Para cada par encontrado, ele calcula a diferença nas propriedades e cria uma animação interpolando de um estado para o outro.</p>
+        <p>Imagine que no Frame A você tem um círculo chamado "Toggle knob" na posição X=10, e no Frame B existe outro círculo chamado "Toggle knob" na posição X=30. O Figma vai deslizar o círculo de X=10 para X=30 suavemente — sem você definir keyframes, sem código, sem plugins.</p>
+
+        <div class="callout info">
+          <span class="callout-title">A regra de ouro: nome igual = mesma coisa</span>
+          <p>Dois layers são tratados como "o mesmo objeto" se e somente se tiverem exatamente o mesmo nome — incluindo maiúsculas, minúsculas e espaços. "toggle knob" e "Toggle Knob" são tratados como objetos <em>diferentes</em> pelo Smart Animate.</p>
+        </div>
+
+        <h2>O que o Smart Animate consegue animar</h2>
+        <p>As propriedades interpoladas automaticamente pelo Smart Animate são:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Propriedade</th><th>O que muda</th><th>Exemplo de microinteração</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Posição (X/Y)</strong></td><td>O layer se move de um ponto a outro</td><td>Toggle desliza da esquerda para a direita</td></tr>
+              <tr><td><strong>Tamanho (W/H)</strong></td><td>O layer cresce ou encolhe</td><td>Card expande ao ser clicado</td></tr>
+              <tr><td><strong>Opacidade</strong></td><td>O layer aparece ou desaparece gradualmente</td><td>Label surge ao abrir um menu</td></tr>
+              <tr><td><strong>Cor (Fill e Stroke)</strong></td><td>A cor transiciona suavemente</td><td>Botão muda de cinza para azul ao ativar</td></tr>
+              <tr><td><strong>Rotação</strong></td><td>O layer gira</td><td>Ícone de seta gira 180° ao expandir accordion</td></tr>
+              <tr><td><strong>Corner radius</strong></td><td>Os cantos arredondam ou esquadram</td><td>Retângulo vira círculo ao ativar</td></tr>
+              <tr><td><strong>Escala</strong></td><td>O layer escala de/para um tamanho</td><td>Ícone de coração "pulsa" ao dar like</td></tr>
+              <tr><td><strong>Texto (conteúdo e estilo)</strong></td><td>O texto muda com fade se o conteúdo for diferente</td><td>Contador incrementa de "0" para "1"</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Requisitos para o Smart Animate funcionar</h2>
+        <ol>
+          <li><strong>Tipo de transição = Smart Animate:</strong> no modal de conexão, selecione Smart Animate no dropdown de Animation.</li>
+          <li><strong>Nomes idênticos nos dois frames:</strong> revise o painel de layers dos dois frames e confira que os layers relevantes têm exatamente o mesmo nome.</li>
+          <li><strong>Os layers devem ser do mesmo tipo:</strong> você não pode animar um retângulo virando um texto com Smart Animate — o tipo de layer deve ser o mesmo (ou ambos devem ser frames/grupos com a mesma estrutura interna).</li>
+          <li><strong>Não usar groups com nomes diferentes para wrapping:</strong> se o layer "Toggle knob" estiver dentro de um group chamado "Wrapper A" em um frame e "Wrapper B" em outro, o Figma pode não encontrá-lo. Mantenha a hierarquia de names consistente.</li>
+        </ol>
+
+        <div class="callout warning">
+          <span class="callout-title">Smart Animate não é mágica infinita</span>
+          <p>Ele anima propriedades básicas, mas <em>não</em> anima mudanças de clip path, blur complexo ou efeitos de blending em todos os casos. Se a animação não funcionar como esperado, simplificar a estrutura dos layers quase sempre resolve.</p>
+        </div>
+
+        <h2>Microinteração 1: Toggle animado (passo a passo)</h2>
+        <p>Vamos criar um toggle switch que desliza de desativado para ativado com Smart Animate. Este é o exercício base de toda microinteração com Smart Animate.</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie o frame "Estado OFF".</strong>
+            Crie um frame de 56×32 px. Dê a ele um Fill cinza (<code>#E5E7EB</code>) e Corner radius 16 px. Nomeie o frame de "Toggle OFF".
+          </li>
+          <li>
+            <strong>Adicione o knob.</strong>
+            Dentro do frame, crie um círculo de 24×24 px com fill branco. Posicione em X=4, Y=4. Nomeie-o <strong>"Knob"</strong> — esse nome é crítico.
+          </li>
+          <li>
+            <strong>Crie o frame "Estado ON".</strong>
+            Duplique o frame "Toggle OFF" (pressione <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>D</kbd>). Renomeie para "Toggle ON". Mude o fill do frame para azul (<code>#3B82F6</code>). Mova o "Knob" para X=28, Y=4.
+          </li>
+          <li>
+            <strong>Crie dois frames de tela grandes.</strong>
+            Crie dois frames "iPhone 14" (ou qualquer tamanho fixo). Coloque o "Toggle OFF" em um e o "Toggle ON" no outro. Certifique-se de que o layer dentro do frame de tela se chame "Knob" nos dois.
+          </li>
+          <li>
+            <strong>Conecte os frames.</strong>
+            Vá para a aba Prototype. No frame com Toggle OFF, selecione o elemento do toggle. Arraste o hotspot até o frame com Toggle ON. Trigger: <strong>On click</strong>. Animation: <strong>Smart Animate</strong>. Easing: <strong>Ease Out</strong>. Duração: <strong>250 ms</strong>.
+          </li>
+          <li>
+            <strong>Conecte o retorno.</strong>
+            No frame com Toggle ON, selecione o toggle e conecte de volta ao Toggle OFF com as mesmas configurações.
+          </li>
+          <li>
+            <strong>Teste no Preview.</strong>
+            Clique no botão de play (preview inline) e clique no toggle. Você deve ver o knob deslizando suavemente enquanto o fundo muda de cor. Parece um toggle nativo!
+          </li>
+        </ol>
+
+        <div class="figma-mock">
+          <div style="display:flex;gap:32px;align-items:center;justify-content:center;flex-wrap:wrap;padding:8px;">
+            <!-- Toggle OFF -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+              <div style="width:56px;height:32px;background:#E5E7EB;border-radius:16px;position:relative;">
+                <div style="width:24px;height:24px;background:#fff;border-radius:50%;position:absolute;left:4px;top:4px;box-shadow:0 1px 3px rgba(0,0,0,.25);"></div>
+              </div>
+              <span style="font-size:12px;color:var(--text-muted);">Estado OFF</span>
+            </div>
+            <!-- Seta -->
+            <div style="color:var(--primary);font-size:20px;">⟷</div>
+            <!-- Toggle ON -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+              <div style="width:56px;height:32px;background:#3B82F6;border-radius:16px;position:relative;">
+                <div style="width:24px;height:24px;background:#fff;border-radius:50%;position:absolute;left:28px;top:4px;box-shadow:0 1px 3px rgba(0,0,0,.25);"></div>
+              </div>
+              <span style="font-size:12px;color:var(--text-muted);">Estado ON</span>
+            </div>
+          </div>
+          <p class="mock-label">Toggle OFF e ON. O layer "Knob" tem o mesmo nome nos dois frames — o Smart Animate anima a posição e a cor do fundo automaticamente.</p>
+        </div>
+
+        <h2>Microinteração 2: botão de Like com escala</h2>
+        <p>Criar um coração que "pulsa" ao ser clicado usa o mesmo princípio: dois frames com um layer "Heart icon" — um em tamanho normal, outro ligeiramente maior e com cor diferente:</p>
+        <ul>
+          <li><strong>Frame "Like OFF":</strong> ícone de coração vazio, 24×24 px, fill cinza, chamado "Heart icon".</li>
+          <li><strong>Frame "Like ON":</strong> ícone de coração preenchido, 28×28 px (levemente maior), fill vermelho (#EF4444), chamado "Heart icon" (mesmo nome!).</li>
+          <li>Conexão ON click → Smart Animate, 200 ms, Spring (para o efeito de "pulo").</li>
+        </ul>
+
+        <h2>Microinteração 3: card expansível</h2>
+        <p>Um card que cresce ao ser clicado, revelando mais conteúdo:</p>
+        <ul>
+          <li><strong>Frame "Card fechado":</strong> frame de altura 80 px com título e ícone de seta apontando para baixo (chamado "Arrow icon").</li>
+          <li><strong>Frame "Card aberto":</strong> mesmo frame, mas com altura 240 px, conteúdo extra visível, e o "Arrow icon" rotacionado 180°.</li>
+          <li>Smart Animate anima simultaneamente: a altura do card, o conteúdo que aparece com fade e a seta girando.</li>
+        </ul>
+
+        <div class="callout pro">
+          <span class="callout-title">Dica de profissional: use componentes com variantes</span>
+          <p>Na prática profissional, as microinterações com Smart Animate são criadas dentro de <strong>Component Sets com Variants</strong>. O Interactive Components (Lição 5) permite que essas animações aconteçam <em>dentro</em> do próprio componente, sem precisar criar telas separadas apenas para cada estado. Mas entender Smart Animate em frames separados primeiro é o caminho mais didático.</p>
+        </div>
+
+        <h2>Armadilhas comuns e como evitá-las</h2>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Problema</th><th>Causa</th><th>Solução</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Animação não suave — parece Dissolve</td><td>Os layers têm nomes diferentes nos dois frames</td><td>Abra o painel Layers nos dois frames e confira os nomes um a um</td></tr>
+              <tr><td>Layer errado está animando</td><td>Dois layers com o mesmo nome em locais diferentes da hierarquia</td><td>Use nomes únicos e específicos; evite duplicar nomes genéricos como "icon"</td></tr>
+              <tr><td>Animação começa mas "pula" no final</td><td>O layer existe em um frame mas não no outro</td><td>Certifique-se de que o layer está nos dois frames; se desnecessário no segundo, diminua sua opacidade para 0 em vez de deletá-lo</td></tr>
+              <tr><td>Smart Animate lento/travado no Present</td><td>Muitos layers animando ao mesmo tempo</td><td>Reduza a complexidade; use Smart Animate em elementos chave, não em telas inteiras com dezenas de layers</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout tip">
+          <span class="callout-title">Truque: desaparecer sem deletar</span>
+          <p>Se um elemento deve aparecer na transição (não existe no frame A, mas existe no frame B), crie-o no Frame A com <strong>opacidade 0%</strong>. O Smart Animate vai animá-lo de invisível para visível com fade. Sem isso, o elemento simplesmente "aparece" no destino, quebrando a fluidez.</p>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Em um app de música, um mini-player na barra inferior é clicado e expande para a tela cheia do player. Com Smart Animate:</p>
+        <ul>
+          <li>A capa do álbum (layer "Album art") cresce de 40×40 px para 280×280 px e se move para o centro.</li>
+          <li>O título da música (layer "Track title") se move de baixo da capa para acima dos controles.</li>
+          <li>Os controles de play/pause (layer "Controls") sobem de baixo e ficam visíveis (de opacidade 0 para 100).</li>
+          <li>O fundo (layer "Player bg") expande do rodapé para a tela inteira.</li>
+        </ul>
+        <p>Tudo isso com uma única conexão Smart Animate de 400 ms com Ease Out. O resultado parece uma animação nativa de um app real no iOS ou Android.</p>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Smart Animate casa layers pelo <strong>nome exato</strong> e anima automaticamente a diferença entre eles.</li>
+          <li>Propriedades animadas: posição, tamanho, opacidade, cor, rotação, corner radius e escala.</li>
+          <li>Os três requisitos: tipo = Smart Animate, nomes idênticos, mesmo tipo de layer.</li>
+          <li>Para que um elemento "apareça" na transição, crie-o no frame anterior com <strong>opacidade 0</strong>.</li>
+          <li>Microinterações comuns: toggle, like, accordion, card expansível, mini-player expandido.</li>
+          <li>Em projetos reais, combine Smart Animate com <strong>Interactive Components</strong> (Lição 5) para componentes verdadeiramente reutilizáveis.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Toggle animado completo</h3>
+          <p>Implemente o toggle passo a passo descrito nesta lição:</p>
+          <ol>
+            <li>Crie os dois frames de toggle (OFF e ON) com o layer "Knob" nomeado corretamente.</li>
+            <li>Incorpore os toggles em dois frames de tela completa (iPhone 14).</li>
+            <li>Conecte com Smart Animate, Ease Out, 250 ms.</li>
+            <li>Adicione uma label abaixo do toggle: "Notificações desativadas" / "Notificações ativadas" — também com o mesmo nome nos dois frames (ex.: "Status label") para animá-la com fade.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> ao clicar no toggle no Preview, o knob desliza suavemente e o fundo muda de cor. A label de status também muda com fade, sem corte abrupto.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Mini-player expandido</h3>
+          <p>Recrie a animação de expansão do player de música descrita na seção "Exemplo de uso real". Crie dois frames: "Home com mini-player" (o mini-player fica na parte inferior, pequeno) e "Player expandido" (ocupa a tela inteira). Use Smart Animate com 400 ms e Ease Out. Os layers críticos que precisam de nomes idênticos: "Album art", "Track title", "Artist name", "Controls", "Player bg". Ao clicar no mini-player, todos os elementos devem se reposicionar fluidamente.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Como o Smart Animate decide quais layers animar entre dois frames?</p>
+            <ul class="quiz-options">
+              <li>Pelo tipo do layer (retângulo com retângulo, texto com texto)</li>
+              <li>Pelo nome exato do layer — layers com o mesmo nome são tratados como o mesmo objeto</li>
+              <li>Pela posição relativa dos layers no canvas</li>
+              <li>Pela ordem no painel de layers (primeiro com primeiro, segundo com segundo)</li>
+            </ul>
+            <div class="quiz-explain">O Smart Animate usa o <strong>nome do layer</strong> como chave de identificação. Se o nome for idêntico nos dois frames, o Figma os trata como o mesmo objeto e anima a diferença de propriedades entre eles.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">2. Um elemento existe no frame de destino mas NÃO existe no frame de origem. O que acontece com ele na transição Smart Animate?</p>
+            <ul class="quiz-options">
+              <li>A transição é cancelada e ocorre um Dissolve</li>
+              <li>O elemento aparece no meio da animação, causando um "salto" visual</li>
+              <li>O Smart Animate cria automaticamente uma cópia no frame de origem</li>
+              <li>O elemento simplesmente aparece no destino, sem interpolação — a não ser que você o crie com opacidade 0 no frame de origem</li>
+            </ul>
+            <div class="quiz-explain">Se um layer não existe no frame de origem, o Smart Animate não tem ponto de partida para animar. O elemento <strong>aparece abruptamente</strong> no destino. A solução é criá-lo no frame de origem com <strong>opacidade 0%</strong>, fazendo-o "aparecer" com fade durante a transição.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Qual propriedade NÃO é animada automaticamente pelo Smart Animate?</p>
+            <ul class="quiz-options">
+              <li>Clip path (formas de máscara complexas)</li>
+              <li>Posição (X/Y)</li>
+              <li>Cor do fill</li>
+              <li>Rotação</li>
+            </ul>
+            <div class="quiz-explain">O Smart Animate não anima <strong>clip paths</strong> complexos de forma confiável. Posição, cor, rotação e corner radius são interpolados normalmente. Para efeitos complexos com máscaras, é necessário simplificar a estrutura ou usar outra abordagem.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Princípios de design visual | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="01-08-principios-visuais" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🎨 Módulo 1 · Iniciante · Lição 8 de 8</div>
+        <h1>Princípios de design visual</h1>
+        <p class="lead">Ferramentas se aprendem em horas. Mas o que faz um design ser <em>bom</em> são os princípios por trás das decisões visuais — e eles levam uma vida para dominar. Nesta lição, você aprende os fundamentos que vão guiar cada escolha sua daqui pra frente.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~25 min</span>
+          <span>🎯 Nível: Iniciante</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Aplicar os 7 princípios fundamentais de design visual (hierarquia, contraste, alinhamento, proximidade, repetição, espaço em branco, consistência);</li>
+            <li>Usar teoria básica de cor de forma consciente e intencional;</li>
+            <li>Identificar problemas de design e corrigi-los com os princípios;</li>
+            <li>Redesenhar um card aplicando todos os princípios vistos na lição.</li>
+          </ul>
+        </div>
+
+        <h2>Por que princípios importam?</h2>
+        <p>Ferramentas como o Figma são meios, não fins. Você pode saber usar todos os recursos do Figma e ainda assim criar designs confusos, poluídos e difíceis de usar. Os <strong>princípios de design visual</strong> são as leis que transformam pixels em comunicação eficiente.</p>
+        <p>Eles vêm do design gráfico clássico, da psicologia da Gestalt e de décadas de experiência em UX. Mas não são abstrações: cada princípio tem uma aplicação prática e imediata no Figma.</p>
+
+        <h2>1. Hierarquia Visual</h2>
+        <p>Hierarquia é a organização dos elementos pelo nível de importância. Um bom design guia o olhar do usuário na ordem certa: o que é mais importante é visto primeiro.</p>
+        <p><strong>Como criar hierarquia no Figma:</strong></p>
+        <ul>
+          <li><strong>Tamanho:</strong> textos maiores chamam mais atenção;</li>
+          <li><strong>Peso:</strong> Bold domina Regular;</li>
+          <li><strong>Cor:</strong> cor primária chama mais atenção que cinza;</li>
+          <li><strong>Posição:</strong> elementos no topo ou no centro do campo visual têm hierarquia maior;</li>
+          <li><strong>Contraste:</strong> o elemento mais contrastante com o fundo é o mais percebido.</li>
+        </ul>
+
+        <div class="callout example">
+          <span class="callout-title">Exemplo prático</span>
+          <p>Em um card de produto, a hierarquia ideal é: <strong>Imagem</strong> (chama atenção primeiro) → <strong>Nome do produto</strong> (título grande/bold) → <strong>Preço</strong> (destaque secundário) → <strong>Descrição</strong> (corpo menor/muted) → <strong>Botão CTA</strong> (ação). O usuário percebe nessa sequência sem precisar "ler" o card — o design comunica a ordem.</p>
+        </div>
+
+        <h2>2. Contraste</h2>
+        <p>Contraste é a diferença entre dois elementos. Sem contraste, não há distinção — tudo parece igual e nada se destaca. O contraste pode ser de cor, tamanho, forma, peso ou espaço.</p>
+        <p><strong>Contraste de cor e acessibilidade:</strong> o WCAG (Web Content Accessibility Guidelines) define padrões mínimos de contraste de cor:</p>
+        <ul>
+          <li>Texto normal (&lt;18px): razão mínima de <strong>4.5:1</strong> (AA) ou 7:1 (AAA);</li>
+          <li>Texto grande (≥18px ou 14px bold): razão mínima de <strong>3:1</strong>;</li>
+          <li>Componentes de UI e ícones: razão mínima de <strong>3:1</strong>.</li>
+        </ul>
+        <p>No Figma, você pode usar plugins como "Contrast" ou "A11y - Color Contrast Checker" para verificar automaticamente. Ou use ferramentas online como o WebAIM Contrast Checker.</p>
+
+        <div class="callout warning">
+          <span class="callout-title">Contraste baixo é acessibilidade quebrada</span>
+          <p>Texto cinza claro sobre fundo branco pode parecer elegante, mas é ilegível para pessoas com baixa visão. Aproximadamente <strong>1 em 12 homens</strong> tem algum grau de deficiência de visão de cores. Design inclusivo considera esses usuários desde o início.</p>
+        </div>
+
+        <h2>3. Alinhamento</h2>
+        <p>Alinhamento cria ordem e coesão. Elementos alinhados entre si formam conexões visuais invisíveis — o usuário sente que o design é organizado mesmo sem saber por quê.</p>
+        <p><strong>A regra de ouro:</strong> nenhum elemento deve ser posicionado arbitrariamente. Tudo deve se alinhar a algo — à margem, ao grid, ou a outro elemento. Nem que seja por 1 pixel.</p>
+        <p><strong>Alinhamento à esquerda vs centralizado:</strong> textos longos são mais legíveis alinhados à esquerda. Centralização funciona melhor para títulos curtos, CTAs e elementos isolados. Nunca use justificado em interfaces digitais.</p>
+
+        <h2>4. Proximidade</h2>
+        <p>Elementos próximos entre si são percebidos como relacionados. A distância entre elementos comunica hierarquia e agrupamento.</p>
+        <p><strong>Princípio prático:</strong> o espaço entre grupos de informação deve ser <em>maior</em> que o espaço interno do grupo. Em um card com título, subtítulo e botão — o espaço entre o subtítulo e o botão deve ser maior que entre o título e o subtítulo.</p>
+
+        <div class="callout tip">
+          <span class="callout-title">Proximidade com grid de 8pt</span>
+          <p>Use espaçamentos do grid de 8pt para comunicar proximidade: 4–8 px entre elementos muito relacionados (ícone + label), 16–24 px entre grupos relacionados, 32–48 px entre seções distintas. A consistência dos valores reforça o agrupamento visual.</p>
+        </div>
+
+        <h2>5. Repetição</h2>
+        <p>Repetição cria padrões visuais que o usuário aprende rapidamente. Quando você usa o mesmo estilo de botão em todo o produto, o usuário sabe instantaneamente que aquele elemento é clicável — sem precisar ler o texto.</p>
+        <p><strong>No Figma:</strong> repetição é implementada com Componentes e Text Styles. Um botão como componente garante que todas as instâncias são idênticas — mesma cor, mesmo padding, mesma tipografia. Mudou o componente? Todas as instâncias atualizam.</p>
+
+        <h2>6. Espaço em branco (Whitespace)</h2>
+        <p>O espaço em branco — também chamado de espaço negativo — não é "espaço vazio". É um elemento de design ativo que dá respiro, foco e elegância ao layout. Produtos premium usam muito espaço em branco; produtos baratos tendem a compactar tudo.</p>
+        <p><strong>Funções do espaço em branco:</strong></p>
+        <ul>
+          <li>Aumenta legibilidade — texto com mais espaço é lido mais facilmente;</li>
+          <li>Direciona o foco — elemento com muito espaço ao redor parece mais importante;</li>
+          <li>Comunica qualidade — marcas premium (Apple, Hermès, Rolex) usam espaço em branco abundante;</li>
+          <li>Reduz a carga cognitiva — interfaces com menos elementos por tela são mais fáceis de processar.</li>
+        </ul>
+
+        <h2>7. Consistência</h2>
+        <p>Consistência é a soma de todos os outros princípios aplicados de forma uniforme em todo o produto. Um design consistente parece profissional e confiável; um inconsistente parece descuidado.</p>
+        <p><strong>O que deve ser consistente:</strong> tipografia, cores, espaçamentos, bordas (corner radius), sombras, ícones (mesmo estilo), linguagem visual (tons fotográficos, ilustrações).</p>
+
+        <div class="callout pro">
+          <span class="callout-title">Design System = Consistência em escala</span>
+          <p>Um Design System é a forma mais avançada de garantir consistência: um conjunto de componentes, tokens de cor, tipografia e padrões documentados que toda a equipe usa. No Figma, isso começa com Componentes, Text Styles e agora com <strong>Variables</strong>. Veremos isso no Módulo 3.</p>
+        </div>
+
+        <h2>Teoria básica de cor</h2>
+        <p>Cor comunica emoções, hierarquia e identidade. Você não precisa de um diploma em teoria da cor para criar paletas funcionais — mas precisa entender os fundamentos.</p>
+
+        <h3>Modelo de cor HSL</h3>
+        <p>O HSL (Hue, Saturation, Lightness) é o modelo mais intuitivo para designers:</p>
+        <ul>
+          <li><strong>Hue (matiz):</strong> a cor em si (0°=vermelho, 120°=verde, 240°=azul, etc.);</li>
+          <li><strong>Saturation (saturação):</strong> a intensidade da cor (0% = cinza, 100% = cor pura);</li>
+          <li><strong>Lightness (luminosidade):</strong> do preto (0%) ao branco (100%), com a cor pura em 50%.</li>
+        </ul>
+
+        <h3>Paletas funcionais para UI</h3>
+        <p>Uma paleta de UI mínima e eficiente tem:</p>
+        <ul>
+          <li><strong>1 cor primária</strong> (sua marca — usada em botões, links, destaques);</li>
+          <li><strong>1 cor de superfície</strong> (branco ou cinza muito claro para fundos);</li>
+          <li><strong>Escala de cinza</strong> (8–10 tons do texto ao fundo);</li>
+          <li><strong>3 cores semânticas:</strong> verde (sucesso), amarelo/laranja (atenção), vermelho (erro).</li>
+        </ul>
+
+        <h3>Regra dos 60-30-10</h3>
+        <p>Uma fórmula simples para balancear cores num layout:</p>
+        <ul>
+          <li><strong>60%</strong> — cor dominante (geralmente neutros: branco, cinza);</li>
+          <li><strong>30%</strong> — cor secundária (cor de superfície de cards, fundos de seção);</li>
+          <li><strong>10%</strong> — cor de destaque (a cor primária da marca, usada com parcimônia).</li>
+        </ul>
+
+        <h2>Antes e depois: aplicando os princípios</h2>
+        <p>O melhor jeito de internalizar os princípios é ver a diferença entre um design que os ignora e um que os aplica:</p>
+
+        <div class="figma-mock">
+          <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start;justify-content:center;padding:8px;">
+
+            <!-- ANTES -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;flex:1;min-width:220px;">
+              <span style="font-size:11px;font-weight:700;color:var(--danger);text-transform:uppercase;letter-spacing:.06em;">Antes</span>
+              <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px;width:100%;max-width:240px;">
+                <p style="font-size:15px;margin:0 0 4px;font-weight:400;color:var(--text-soft);">Produto Premium</p>
+                <p style="font-size:13px;margin:0 0 2px;color:var(--text-soft);">R$ 299,00</p>
+                <p style="font-size:13px;margin:0 0 8px;color:var(--text-soft);">Um produto de alta qualidade para os seus momentos especiais do cotidiano.</p>
+                <div style="background:var(--border);color:var(--text-soft);font-size:12px;padding:6px;border-radius:4px;text-align:center;">COMPRAR AGORA</div>
+              </div>
+              <ul style="font-size:11px;color:var(--danger);list-style:none;padding:0;margin:0;text-align:left;width:100%;max-width:240px;">
+                <li>✗ Sem hierarquia — tudo tem o mesmo peso</li>
+                <li>✗ Contraste insuficiente</li>
+                <li>✗ Sem espaço em branco</li>
+                <li>✗ Botão sem destaque</li>
+              </ul>
+            </div>
+
+            <!-- DEPOIS -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;flex:1;min-width:220px;">
+              <span style="font-size:11px;font-weight:700;color:var(--success);text-transform:uppercase;letter-spacing:.06em;">Depois</span>
+              <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;width:100%;max-width:240px;box-shadow:0 4px 16px rgba(0,0,0,.07);">
+                <div style="height:80px;background:linear-gradient(135deg,#6c4cf1,#b0367a);border-radius:10px;margin-bottom:16px;"></div>
+                <p style="font-size:18px;font-weight:700;margin:0 0 4px;line-height:1.2;color:var(--text);">Produto Premium</p>
+                <p style="font-size:13px;margin:0 0 10px;color:var(--text-muted);">Para os seus momentos especiais do cotidiano.</p>
+                <p style="font-size:22px;font-weight:700;margin:0 0 14px;color:var(--primary);">R$ 299</p>
+                <div style="background:var(--primary);color:#fff;font-size:14px;font-weight:600;padding:12px;border-radius:10px;text-align:center;cursor:pointer;">Comprar agora</div>
+              </div>
+              <ul style="font-size:11px;color:var(--success);list-style:none;padding:0;margin:0;text-align:left;width:100%;max-width:240px;">
+                <li>✓ Hierarquia clara: imagem → nome → desc → preço → CTA</li>
+                <li>✓ Contraste adequado</li>
+                <li>✓ Espaço em branco generoso</li>
+                <li>✓ CTA com destaque máximo</li>
+              </ul>
+            </div>
+
+          </div>
+          <p class="mock-label">O mesmo conteúdo, dois resultados opostos. A diferença está nos princípios.</p>
+        </div>
+
+        <h2>Como aplicar os princípios na prática</h2>
+        <p>Uma checklist mental para revisar qualquer design:</p>
+        <ol>
+          <li><strong>Hierarquia:</strong> se eu cobrir tudo e deixar só o mais importante, o que ficaria? Ele está visualmente dominante?</li>
+          <li><strong>Contraste:</strong> o texto de cada elemento passa no teste de contraste 4.5:1?</li>
+          <li><strong>Alinhamento:</strong> algum elemento está solto, sem se alinhar a nada?</li>
+          <li><strong>Proximidade:</strong> elementos relacionados estão próximos? A distância entre grupos é maior que a interna?</li>
+          <li><strong>Repetição:</strong> os mesmos elementos (botões, cards, títulos) têm o mesmo estilo em todo o design?</li>
+          <li><strong>Espaço em branco:</strong> o layout tem espaço para respirar, ou está apertado?</li>
+          <li><strong>Consistência:</strong> corner radius, sombras, tipografia e cores são os mesmos em toda a interface?</li>
+        </ol>
+
+        <div class="callout note">
+          <span class="callout-title">Princípios não são regras rígidas</span>
+          <p>Um designer experiente às vezes quebra um princípio de propósito para criar impacto. Um elemento desalinhado em um design todo alinhado chama muito mais atenção. Uma cor gritante num design todo neutro se destaca instantaneamente. Mas você só pode quebrar regras quando as conhece — e quando sabe por que está quebrando.</p>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li><strong>Hierarquia:</strong> guia o olhar pela ordem de importância — crie com tamanho, peso, cor e posição.</li>
+          <li><strong>Contraste:</strong> torna elementos distintos e garante acessibilidade — razão mínima 4.5:1 para texto.</li>
+          <li><strong>Alinhamento:</strong> todo elemento deve se alinhar a alguma coisa — use o grid e as ferramentas de alinhamento.</li>
+          <li><strong>Proximidade:</strong> o espaço comunica relacionamento — elementos do mesmo grupo ficam próximos.</li>
+          <li><strong>Repetição:</strong> padrões consistentes criam uma linguagem visual aprendível.</li>
+          <li><strong>Espaço em branco:</strong> não é espaço vazio — é elemento de design que cria foco e elegância.</li>
+          <li><strong>Consistência:</strong> a soma de todos os princípios aplicados uniformemente em todo o produto.</li>
+          <li>A regra dos <strong>60-30-10</strong> balanceia cores de forma instintivamente harmônica.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Redesenhe um card aplicando os 7 princípios</h3>
+          <p>Crie dois Frames lado a lado, ambos com o mesmo conteúdo:</p>
+          <ol>
+            <li><strong>Frame 1 — "Antes":</strong> crie um card de artigo com todos os princípios quebrados: texto todo do mesmo tamanho, sem espaçamento, cores sem contraste, sem alinhamento consistente, botão sem destaque.</li>
+            <li><strong>Frame 2 — "Depois":</strong> usando o mesmo conteúdo, aplique todos os 7 princípios: hierarquia tipográfica clara, contraste adequado (verifique com plugin), alinhamento ao grid, proximidade consciente, CTA com destaque de cor primária, espaço em branco generoso.</li>
+            <li>Abaixo de cada frame, adicione um texto explicando quais princípios foram quebrados (Antes) e aplicados (Depois).</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> qualquer pessoa que olhar os dois frames por 3 segundos deve conseguir dizer imediatamente qual é o "Depois" sem ler os rótulos.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Redesign completo de uma tela real</h3>
+          <p>Escolha um app ou site que você usa no dia a dia e considere que tem problemas visuais. Faça uma captura de tela e importe para o Figma como imagem de referência. Ao lado, crie uma versão redesenhada aplicando todos os 7 princípios desta lição. Documente cada decisão: "O título estava sem hierarquia — aumentei para 24px/700"; "O contraste do texto era 2.1:1 — mudei para cinza escuro com 7:1". Este exercício é o que você vai mostrar para recrutadores como prova de raciocínio de design.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Qual princípio afirma que elementos próximos entre si são percebidos como pertencentes ao mesmo grupo?</p>
+            <ul class="quiz-options">
+              <li>Repetição</li>
+              <li>Contraste</li>
+              <li>Proximidade</li>
+              <li>Alinhamento</li>
+            </ul>
+            <div class="quiz-explain">O princípio da <strong>Proximidade</strong> (da Gestalt) diz que elementos próximos são percebidos como relacionados. Por isso, o espaço entre grupos deve ser maior que o espaço interno ao grupo — a distância comunica o agrupamento.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. Segundo as diretrizes WCAG AA, qual é a razão mínima de contraste para texto normal (menor que 18px)?</p>
+            <ul class="quiz-options">
+              <li>4.5:1</li>
+              <li>2:1</li>
+              <li>7:1</li>
+              <li>3:1</li>
+            </ul>
+            <div class="quiz-explain">O WCAG AA exige uma razão mínima de <strong>4.5:1</strong> para texto normal. Para texto grande (≥18px regular ou ≥14px bold), o mínimo é 3:1. O nível AAA exige 7:1 para texto normal.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">3. Na regra dos 60-30-10, o que representa os 10%?</p>
+            <ul class="quiz-options">
+              <li>A cor do texto</li>
+              <li>O fundo da página</li>
+              <li>As cores de estado (erro, sucesso, atenção)</li>
+              <li>A cor de destaque — a cor primária da marca, usada com parcimônia</li>
+            </ul>
+            <div class="quiz-explain">Na regra 60-30-10: <strong>60%</strong> é a cor dominante (neutros, fundo), <strong>30%</strong> é a cor secundária (superfícies, cards) e <strong>10%</strong> é a cor de destaque — a cor primária da marca, usada em CTAs, links e elementos de ação. Usar a cor primária em excesso dilui seu impacto.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

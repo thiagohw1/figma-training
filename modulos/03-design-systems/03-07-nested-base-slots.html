@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nested components, base components e slots | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="03-07-nested-base-slots" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🏗️ Módulo 3 · Avançado · Lição 7 de 9</div>
+        <h1>Nested components, base components e slots</h1>
+        <p class="lead">O poder máximo de um DS no Figma vem de compor componentes dentro de componentes — com padrões claros de base, aninhamento e slots que tornam cada componente flexível sem sacrificar consistência.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~24 min</span>
+          <span>🎯 Nível: Avançado</span>
+          <span>🛠️ Pratique no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Implementar o padrão Base Component para criar variantes de forma eficiente;</li>
+            <li>Aninhar instâncias de componentes dentro de outros componentes;</li>
+            <li>Criar Slots usando Instance Swap para conteúdo flexível;</li>
+            <li>Compor componentes complexos (Card, List Item) a partir de componentes simples;</li>
+            <li>Evitar as armadilhas mais comuns de estrutura de componentes.</li>
+          </ul>
+        </div>
+
+        <h2>O padrão Base Component</h2>
+        <p>O <strong>Base Component</strong> (ou componente âncora) é um padrão de design de componentes onde você cria uma versão interna "mestre" que carrega toda a lógica estrutural, e as variantes públicas são derivadas dela.</p>
+        <p>Sem esse padrão, cada variante é independente — mudança na estrutura exige alterar todas as variantes manualmente. Com ele, uma mudança no Base Component se propaga para todas as variantes automaticamente.</p>
+
+        <h3>Quando usar Base Components</h3>
+        <ul>
+          <li>Componentes com muitas variantes que compartilham a mesma estrutura (Button, Badge, Tag, Chip);</li>
+          <li>Componentes com estados complexos (Input com Default, Focused, Error, Disabled);</li>
+          <li>Qualquer componente onde você prevê que a estrutura vai evoluir com o tempo.</li>
+        </ul>
+
+        <h3>Como implementar</h3>
+        <ol class="steps">
+          <li>
+            <strong>Crie o Base Component.</strong>
+            Crie um componente com todas as <strong>Component Properties</strong> necessárias — variantes (Type, Size, State), booleans (hasIcon, hasLabel), instance swaps (icon). Prefixe o nome com underscore para indicar que é interno: <code>_Button/Base</code>.
+          </li>
+          <li>
+            <strong>Configure todas as props no Base.</strong>
+            Adicione todas as variações como propriedades, não como variantes separadas. Use Variant properties para Type (Primary, Secondary, Danger, Ghost), Size (sm, md, lg) e State (Default, Hover, Focus, Disabled, Loading).
+          </li>
+          <li>
+            <strong>Crie as variantes "públicas" como wrappers.</strong>
+            Para cada variante principal (ex: <code>Button/Primary</code>), crie um componente que contém uma instância do <code>_Button/Base</code> com as props configuradas. Exponha somente as props relevantes para aquela variante usando <strong>Expose nested instance</strong> ou Component Properties expostas.
+          </li>
+          <li>
+            <strong>Publique apenas as variantes públicas.</strong>
+            Quando publicar na Library, marque os componentes <code>_</code> como "Not for publishing" ou coloque-os em uma página oculta. Os consumidores da Library só veem as variantes limpas.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Prefixo underscore como convenção</span>
+          <p>A convenção <code>_ComponentName</code> indica "componente interno, não use diretamente". É amplamente adotada no ecossistema Figma. O Figma Community tem diversos DS open source que seguem essa convenção — estudá-los é uma ótima forma de aprender.</p>
+        </div>
+
+        <h2>Nested Instances — componentes dentro de componentes</h2>
+        <p><strong>Nested instances</strong> são instâncias de componentes colocadas dentro de outros componentes. É o principal mecanismo de composição do Figma.</p>
+        <p>Exemplo: o componente <code>ListItem</code> contém uma instância de <code>Icon</code>, uma instância de <code>Text/Body</code> e uma instância de <code>Badge</code>. Cada uma dessas instâncias pode ser trocada ou configurada individualmente dentro do <code>ListItem</code>.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Instance vs. Detach</span>
+          <p>Nunca use <strong>Detach Instance</strong> (<kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Alt</kbd> + <kbd>B</kbd>) dentro de um componente. Isso quebra a hierarquia e o componente detachado não recebe mais atualizações da biblioteca. Prefira sempre Instance Swap para trocar o conteúdo, e Component Properties para customizar.</p>
+        </div>
+
+        <h2>Slots com Instance Swap</h2>
+        <p>Um <strong>Slot</strong> é um "buraco" em um componente que pode ser preenchido com qualquer outro componente usando <strong>Instance Swap</strong>. No Figma, isso é implementado através da Component Property do tipo <strong>Instance Swap</strong>.</p>
+
+        <h3>Como criar um Slot</h3>
+        <ol class="steps">
+          <li>
+            <strong>Defina o componente placeholder do Slot.</strong>
+            Crie um componente chamado, por exemplo, <code>Slot/Icon/Default</code> — pode ser um ícone genérico ou um frame vazio com as dimensões corretas.
+          </li>
+          <li>
+            <strong>Coloque o placeholder no componente pai.</strong>
+            Dentro do seu componente <code>Card</code>, insira uma instância de <code>Slot/Icon/Default</code> na posição onde o ícone vai ficar.
+          </li>
+          <li>
+            <strong>Crie a Component Property de Instance Swap.</strong>
+            Selecione a instância do Slot no componente. No painel direito, em <strong>Component Properties</strong>, clique em <strong>+</strong> e escolha <strong>Instance Swap</strong>. Nomeie como "Leading Icon". Defina o valor padrão como <code>Slot/Icon/Default</code>.
+          </li>
+          <li>
+            <strong>Teste no consumer.</strong>
+            Coloque uma instância do <code>Card</code> no canvas. No painel de propriedades da instância, você verá o campo "Leading Icon" com um seletor de componente. Selecione qualquer ícone da sua biblioteca para trocar o conteúdo do slot.
+          </li>
+        </ol>
+
+        <div class="diagram">
+          <svg viewBox="0 0 580 160" role="img" aria-label="Diagrama mostrando um componente Card com slots de Icon e de Content Area">
+            <!-- Card frame -->
+            <rect x="30" y="20" width="520" height="120" rx="12" fill="var(--surface)" stroke="var(--primary)" stroke-width="2" stroke-dasharray="5 4"/>
+            <text x="290" y="14" text-anchor="middle" fill="var(--primary)" font-size="11" font-weight="700" font-family="sans-serif">Componente: Card</text>
+            <!-- Slot de ícone -->
+            <rect x="54" y="42" width="60" height="76" rx="8" fill="var(--info-soft)" stroke="var(--info)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <text x="84" y="78" text-anchor="middle" fill="var(--info)" font-size="10" font-weight="700" font-family="sans-serif">Slot</text>
+            <text x="84" y="92" text-anchor="middle" fill="var(--info)" font-size="10" font-family="sans-serif">Image</text>
+            <!-- Content area -->
+            <rect x="130" y="42" width="280" height="76" rx="8" fill="var(--success-soft)" stroke="var(--success)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <text x="270" y="74" text-anchor="middle" fill="var(--success)" font-size="10" font-weight="700" font-family="sans-serif">Slot: Content Area</text>
+            <text x="270" y="89" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="sans-serif">(Qualquer componente: texto, lista, etc.)</text>
+            <!-- Action slot -->
+            <rect x="426" y="42" width="100" height="76" rx="8" fill="var(--warning-soft)" stroke="var(--warning)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <text x="476" y="74" text-anchor="middle" fill="var(--warning)" font-size="10" font-weight="700" font-family="sans-serif">Slot</text>
+            <text x="476" y="89" text-anchor="middle" fill="var(--warning)" font-size="10" font-family="sans-serif">Action</text>
+          </svg>
+          <p class="mock-label">Um Card com três Slots: imagem (pode ser um ícone, uma foto ou nada), área de conteúdo (flexível) e ação (botão ou ícone). Cada slot aceita qualquer componente.</p>
+        </div>
+
+        <h2>Composição: Card com List Item e Slot</h2>
+        <p>Vamos ver um exemplo completo de composição. Você vai criar um <code>Card/Product</code> usando um <code>ListItem</code> como base, com Slots para imagem, título, descrição e ação:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie o componente <code>Icon/Star</code> e <code>Icon/Heart</code>.</strong>
+            Dois ícones simples (podem ser Auto Layout com vetores). Esses serão as opções de slot de ação.
+          </li>
+          <li>
+            <strong>Crie o componente <code>Button/IconOnly</code>.</strong>
+            Um botão com apenas um ícone, com Instance Swap property "Icon" (default: <code>Icon/Star</code>).
+          </li>
+          <li>
+            <strong>Crie o componente <code>ListItem/Base</code>.</strong>
+            Um Auto Layout horizontal com: Slot "Leading" (Instance Swap, default: <code>Icon/Star</code>), uma coluna central de texto (título + descrição) com Auto Layout vertical, Slot "Trailing" (Instance Swap, default: <code>Button/IconOnly</code>).
+          </li>
+          <li>
+            <strong>Crie o componente <code>Card/Product</code>.</strong>
+            Um Auto Layout vertical com: uma área de imagem (Slot Image), um separador, uma instância de <code>ListItem/Base</code> (com as props de Leading/Trailing expostas como Component Properties no Card).
+          </li>
+          <li>
+            <strong>Teste a composição.</strong>
+            No canvas, instancie vários <code>Card/Product</code>. Em cada um, troque o Leading por um ícone diferente, o Trailing por um botão diferente, e confirme que a estrutura se mantém.
+          </li>
+        </ol>
+
+        <div class="callout pro">
+          <span class="callout-title">Expor propriedades de nested instances</span>
+          <p>Quando você tem uma instância aninhada dentro de um componente e quer que o consumidor possa configurar as props dessa instância de fora, use <strong>Expose nested instance</strong>. Selecione a instância aninhada, clique em <strong>Expose properties from [ComponentName]</strong> no painel. As props do nested component ficam acessíveis diretamente no painel do componente pai.</p>
+        </div>
+
+        <h2>Evitando armadilhas comuns</h2>
+
+        <h3>Armadilha 1: Variantes demais no mesmo componente</h3>
+        <p>Um componente com 6 propriedades de 4 valores cada gera 4.096 variantes combinadas — o Figma fica lento e o painel confuso. A solução é usar <strong>Component Properties</strong> ao invés de variantes explícitas para dimensões ortogonais (size e state podem ser props; type pode ser um componente separado).</p>
+
+        <h3>Armadilha 2: Frames normais dentro de componentes</h3>
+        <p>Se você colocar um frame (não componente) no slot de um componente, ele não será trocável via Instance Swap. Todo conteúdo que precisa ser slot deve ser um componente. Verifique se há ícones ou elementos internos que ainda são frames simples.</p>
+
+        <h3>Armadilha 3: Usar grupos onde deveria usar frames</h3>
+        <p>Grupos não têm layout, não respeitam constraints e não aceitam Variables. Converta grupos em frames (<kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>G</kbd> cria grupo, mas você pode converter para frame depois) sempre que um elemento for parte de um componente.</p>
+
+        <div class="callout warning">
+          <span class="callout-title">Cuidado com a profundidade de aninhamento</span>
+          <p>Componentes aninhados demais (5+ níveis) dificultam a navegação e a edição. A regra geral: se você precisa de mais de 3 cliques para chegar ao elemento que quer editar dentro de um componente, a estrutura provavelmente precisa de refatoração.</p>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>O DS de um app de e-commerce usa este padrão de composição:</p>
+        <ul>
+          <li><code>Icon/[Name]</code> — 80 ícones como componentes independentes;</li>
+          <li><code>_Button/Base</code> — base component com Type (Primary, Secondary, Danger, Ghost, Link), Size (sm, md, lg), State (Default, Hover, Loading, Disabled), Boolean (hasLeadingIcon, hasTrailingIcon) e dois Instance Swap slots para ícones;</li>
+          <li><code>Button/Primary/MD</code>, <code>Button/Primary/LG</code> etc. — wrappers públicos com props pré-configuradas;</li>
+          <li><code>ProductCard</code> — composto por <code>Image/Placeholder</code>, um <code>Badge/Promo</code> (Boolean hasPromo), <code>Text/Body</code> (Slot de título), <code>Text/Caption</code> (descrição), <code>PriceDisplay</code> e <code>Button/Primary</code>.</li>
+        </ul>
+        <p>Para criar a versão "out of stock" do card, basta mudar o State do <code>Button/Primary</code> para Disabled e adicionar um <code>Badge/OutOfStock</code> no slot de badge — sem duplicar o componente.</p>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Base Component (<code>_ComponentName</code>) concentra a lógica estrutural; variantes públicas são wrappers que expõem props selecionadas.</li>
+          <li>Nested instances permitem composição: componentes dentro de componentes, trocáveis via Instance Swap.</li>
+          <li>Slots são Instance Swap properties que criam "buracos" no componente para conteúdo flexível.</li>
+          <li>Use Expose nested instance para surfacear props de componentes internos no componente pai.</li>
+          <li>Evite: variantes demais, frames simples onde deveria ter componentes, grupos em vez de frames, aninhamento excessivo.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Componha um List Item com slots</h3>
+          <ol>
+            <li>Crie 4 componentes de ícone simples (pode ser apenas frames com texto de emoji): <code>Icon/Star</code>, <code>Icon/Heart</code>, <code>Icon/Share</code>, <code>Icon/Bookmark</code>;</li>
+            <li>Crie um componente <code>ListItem</code> com Auto Layout horizontal, com 3 zonas: Leading Slot (Instance Swap, default: <code>Icon/Star</code>), Text Area (título obrigatório + descrição Boolean), Trailing Slot (Instance Swap, default: <code>Icon/Heart</code>);</li>
+            <li>No canvas, instancie 5 <code>ListItem</code> diferentes trocando os ícones dos Slots e alternando a visibilidade da descrição;</li>
+            <li>Crie um componente <code>List</code> que contém 3 instâncias de <code>ListItem</code> com Auto Layout vertical.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> cada ListItem aceita qualquer ícone nos dois Slots sem quebrar o layout, e o componente List atualiza automaticamente quando você edita o componente ListItem.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Refatore um componente existente para o padrão Base</h3>
+          <p>Pegue um componente com pelo menos 4 variantes do seu arquivo (ou crie um Button com Primary/Secondary/Danger/Ghost × sm/md/lg). Refatore-o para o padrão Base Component: crie o <code>_Button/Base</code> com todas as props, e 4 componentes públicos wrapper. Confirme que uma mudança no Base (ex: aumentar o font-size) se propaga para todas as variantes públicas.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">1. O que é um "Slot" em componentes Figma e como ele é implementado tecnicamente?</p>
+            <ul class="quiz-options">
+              <li>Uma "área vazia" em um componente que aceita qualquer outro componente, implementada via Instance Swap Component Property</li>
+              <li>Uma variante especial com o nome "Slot" que serve como placeholder</li>
+              <li>Um frame vazio dentro de um componente, usado para posicionar conteúdo livre</li>
+              <li>Uma propriedade de visibilidade que oculta ou mostra partes do componente</li>
+            </ul>
+            <div class="quiz-explain">Slots são implementados como <strong>Instance Swap Component Properties</strong>. Você define um placeholder padrão e permite que o consumidor troque esse placeholder por qualquer componente compatível.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">2. Por que usar o padrão Base Component com prefixo underscore (<code>_Button/Base</code>)?</p>
+            <ul class="quiz-options">
+              <li>Para que o Figma processe esse componente mais rapidamente</li>
+              <li>Para ocultar o componente dos desenvolvedores no Dev Mode</li>
+              <li>Para criar uma cópia de backup automática do componente</li>
+              <li>Para indicar que é um componente interno não destinado ao uso direto pelos consumidores da Library</li>
+            </ul>
+            <div class="quiz-explain">O prefixo <code>_</code> é uma convenção da comunidade que sinaliza "componente interno". O Base Component centraliza a estrutura; as variantes públicas (sem underscore) são os wrappers que os designers consomem.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">3. O que acontece se você usar <strong>Detach Instance</strong> (<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>B</kbd>) em uma instância dentro de um componente?</p>
+            <ul class="quiz-options">
+              <li>O componente pai é automaticamente atualizado para refletir o estado detachado</li>
+              <li>O elemento detachado vira um frame normal e não recebe mais atualizações da biblioteca ou do componente pai</li>
+              <li>O Figma cria uma nova variante do componente com as modificações feitas</li>
+              <li>O Detach Instance não funciona dentro de componentes — só em instâncias no canvas</li>
+            </ul>
+            <div class="quiz-explain">Detach Instance transforma a instância em um frame comum (ou grupo), quebrando definitivamente a conexão com o componente original. As atualizações da library deixam de se propagar para aquele elemento.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

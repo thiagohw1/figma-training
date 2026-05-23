@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code generation e Dev Mode MCP | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="07-04-code-gen-mcp" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🤝 Módulo 7 · Profissional · Lição 4 de 6</div>
+        <h1>Code generation e Dev Mode MCP</h1>
+        <p class="lead">A distância entre design e código está encolhendo. Em 2025/2026, o Figma vai além de exibir specs — ele gera código e conecta o design diretamente a IDEs e agentes de IA através do Dev Mode MCP, tornando o handoff mais preciso e automatizável do que nunca.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~26 min</span>
+          <span>🎯 Nível: Profissional</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Usar a geração de código nativa do Dev Mode (CSS, iOS/SwiftUI, Android/Compose);</li>
+            <li>Entender o que é Code Connect e como ele mapeia componentes Figma a componentes de código;</li>
+            <li>Compreender o que é o Dev Mode MCP e como ele conecta o Figma a IDEs e agentes de IA;</li>
+            <li>Configurar o MCP server para uso com ferramentas de IA em 2025/2026;</li>
+            <li>Exportar assets (ícones, imagens, SVGs) diretamente do Dev Mode.</li>
+          </ul>
+        </div>
+
+        <h2>Geração de código nativa no Dev Mode</h2>
+        <p>Quando você seleciona um elemento no Dev Mode, o painel direito exibe não apenas as propriedades visuais, mas também um snippet de código gerado automaticamente. O Figma oferece três plataformas nativas de geração de código:</p>
+
+        <h3>CSS (Web)</h3>
+        <p>Para elementos HTML/CSS, o Figma gera declarações CSS prontas. Um botão com Auto Layout, por exemplo, gera:</p>
+        <pre>/* Button */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 12px 20px;
+gap: 8px;
+
+background: #6C4CF1;
+border-radius: 8px;
+
+font-family: 'Inter';
+font-weight: 600;
+font-size: 14px;
+line-height: 1.2;
+color: #FFFFFF;</pre>
+        <p>Se o projeto usa <strong>Variables</strong> (design tokens), o Figma pode gerar o código usando os nomes das variáveis em vez de valores literais — por exemplo, <code>color: var(--color-primary-600)</code> em vez de <code>color: #6C4CF1</code>.</p>
+
+        <h3>iOS / SwiftUI</h3>
+        <p>Para projetos mobile Apple, o Figma gera código SwiftUI. Um Text com estilo tipográfico, por exemplo, produz:</p>
+        <pre>Text("Confirmar pedido")
+    .font(.system(size: 14, weight: .semibold))
+    .foregroundColor(.white)
+    .frame(width: 160, height: 44)
+    .background(Color(red: 0.42, green: 0.30, blue: 0.94))
+    .cornerRadius(8)</pre>
+
+        <h3>Android / Jetpack Compose</h3>
+        <p>Para Android moderno, o Figma gera Kotlin com Compose:</p>
+        <pre>Button(
+    onClick = { },
+    colors = ButtonDefaults.buttonColors(
+        containerColor = Color(0xFF6C4CF1)
+    ),
+    shape = RoundedCornerShape(8.dp),
+    contentPadding = PaddingValues(horizontal = 20.dp, vertical = 12.dp)
+) {
+    Text(
+        text = "Confirmar pedido",
+        fontSize = 14.sp,
+        fontWeight = FontWeight.SemiBold
+    )
+}</pre>
+
+        <div class="callout warning">
+          <span class="callout-title">O código gerado é ponto de partida, não código final</span>
+          <p>O código gerado pelo Dev Mode é uma <strong>spec executável</strong>, não um componente pronto para produção. Ele captura as propriedades visuais mas não tem lógica de negócio, acessibilidade, estados interativos nem se encaixa automaticamente na arquitetura do projeto. Trate como uma excelente referência — não como código para copiar diretamente.</p>
+        </div>
+
+        <h3>Plugins de code generation</h3>
+        <p>Além da geração nativa, o ecossistema de plugins do Figma oferece opções mais especializadas:</p>
+        <ul>
+          <li><strong>html.to.design / Builder.io:</strong> tenta gerar HTML/CSS completo a partir de frames;</li>
+          <li><strong>React Code Generator:</strong> gera componentes React com styled-components ou Tailwind;</li>
+          <li><strong>Figma to Flutter:</strong> gera widgets Flutter a partir de componentes;</li>
+          <li><strong>Anima:</strong> gera código React/HTML com fidelidade alta ao design original.</li>
+        </ul>
+        <p>A qualidade varia — quanto mais organizado o arquivo Figma (bom uso de Auto Layout, componentes e variáveis), melhor o código gerado.</p>
+
+        <h2>Code Connect: design e código como um só</h2>
+        <p>O <strong>Code Connect</strong> (lançado em 2024 e expandido em 2025) é uma solução da Figma para resolver um problema fundamental: o Dev Mode mostra o código do Figma, mas na prática os devs usam um <em>componente real do código</em> (ex: um <code>&lt;Button&gt;</code> do design system da empresa), não propriedades CSS literais.</p>
+        <p>Com Code Connect, você mapeia um componente Figma ao componente de código correspondente. Quando o dev seleciona aquele componente no Dev Mode, em vez de ver CSS genérico, ele vê:</p>
+        <pre>&lt;Button variant="primary" size="md"&gt;
+  Confirmar pedido
+&lt;/Button&gt;</pre>
+        <p>Isso é o import exato do componente da biblioteca da empresa. A configuração envolve um arquivo de configuração que vincula o componente Figma (pelo ID) ao componente de código (pelo caminho de import). O Figma publicou um CLI e SDK para facilitar essa configuração.</p>
+
+        <div class="callout example">
+          <span class="callout-title">Por que isso é revolucionário</span>
+          <p>Sem Code Connect: o dev vê "display: flex; background: #6C4CF1; border-radius: 8px..." e precisa lembrar que isso é o componente <code>Button</code> do design system. Com Code Connect: ele vê diretamente <code>&lt;Button variant="primary"&gt;</code>. Elimina a tradução mental e reduz drasticamente o risco de reimplementar algo que já existe.</p>
+        </div>
+
+        <h2>Dev Mode MCP: Figma conectado a IDEs e IA</h2>
+        <p>O capítulo mais recente e transformador da história do Dev Mode é o <strong>MCP server</strong> (Model Context Protocol). Lançado pela Figma em 2025 e expandido em 2026, o Dev Mode MCP permite que ferramentas externas — principalmente IDEs com IA e agentes de IA — leiam o design do Figma diretamente, sem que o desenvolvedor precise alternar entre telas.</p>
+
+        <h3>O que é MCP?</h3>
+        <p>O <strong>Model Context Protocol</strong> é um protocolo aberto desenvolvido pela Anthropic para padronizar como agentes de IA se conectam a fontes de dados e ferramentas externas. Um MCP server expõe recursos (neste caso, os dados do Figma) que qualquer cliente compatível pode consumir.</p>
+        <p>O Figma criou seu próprio MCP server que expõe o conteúdo do arquivo como contexto para IAs. Isso significa que um agente de IA (como o GitHub Copilot, Cursor, Claude Code ou outros) pode "ver" o design e gerar código fiel a ele.</p>
+
+        <h3>Como funciona na prática (2025/2026)</h3>
+        <p>O fluxo típico com o Dev Mode MCP é:</p>
+        <ol class="steps">
+          <li>
+            <strong>Instale o MCP server do Figma.</strong>
+            O Figma disponibiliza um pacote npm (<code>@figma/devtools-mcp</code>) que você instala globalmente ou localmente no projeto. Siga a documentação oficial em <strong>figma.com/developers/mcp</strong>.
+          </li>
+          <li>
+            <strong>Configure sua ferramenta de IA.</strong>
+            No Cursor, VS Code com Copilot ou outra ferramenta compatível com MCP, adicione o servidor Figma na configuração MCP do cliente. Você precisará de um token de API do Figma com permissão de leitura.
+          </li>
+          <li>
+            <strong>Referencie o design na conversa com a IA.</strong>
+            Na interface da IA, você pode dizer algo como: "Implemente o componente do frame 'Button/Primary' do arquivo Figma [link]". A IA acessa o MCP server, lê as specs do frame e gera o código.
+          </li>
+          <li>
+            <strong>Receba código fiel ao design.</strong>
+            A IA gera componentes com as exatas cores, tipografia, espaçamentos e estrutura do design — não uma aproximação genérica. Se o projeto usa Code Connect, a IA também vê o mapeamento para componentes existentes.
+          </li>
+          <li>
+            <strong>Itere diretamente na IDE.</strong>
+            Se o design mudar, você pede para a IA atualizar o código baseado no frame novo — o MCP server lê a versão mais recente do arquivo em tempo real.
+          </li>
+        </ol>
+
+        <div class="callout pro">
+          <span class="callout-title">O impacto do MCP no workflow de 2026</span>
+          <p>Times que adotaram o Dev Mode MCP relatam redução de 40–60% no tempo de handoff. O desenvolvedor não precisa mais alternar entre Figma e IDE para checar valores — a IA tem acesso direto ao design e pode responder perguntas como "qual é o token de cor deste botão?" ou "como fica o componente em estado desabilitado?" sem nenhuma troca de contexto.</p>
+        </div>
+
+        <div class="diagram">
+          <svg viewBox="0 0 560 200" role="img" aria-label="Diagrama mostrando o fluxo do Dev Mode MCP conectando Figma a IDEs e agentes de IA">
+            <!-- Figma -->
+            <rect x="20" y="60" width="120" height="80" rx="10" fill="var(--primary-soft)" stroke="var(--primary)" stroke-width="2"/>
+            <text x="80" y="92" text-anchor="middle" fill="var(--primary)" font-size="12" font-weight="bold" font-family="sans-serif">Figma</text>
+            <text x="80" y="108" text-anchor="middle" fill="var(--primary)" font-size="10" font-family="sans-serif">Dev Mode</text>
+            <text x="80" y="122" text-anchor="middle" fill="var(--text-muted)" font-size="9" font-family="sans-serif">frames, specs, tokens</text>
+            <!-- MCP Server -->
+            <rect x="200" y="70" width="110" height="60" rx="10" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <text x="255" y="96" text-anchor="middle" fill="var(--text)" font-size="11" font-weight="bold" font-family="sans-serif">MCP Server</text>
+            <text x="255" y="112" text-anchor="middle" fill="var(--text-muted)" font-size="9" font-family="sans-serif">@figma/devtools-mcp</text>
+            <!-- IDE com IA -->
+            <rect x="370" y="40" width="120" height="50" rx="10" fill="var(--success-soft)" stroke="var(--success)" stroke-width="2"/>
+            <text x="430" y="62" text-anchor="middle" fill="var(--success)" font-size="11" font-weight="bold" font-family="sans-serif">Cursor / Copilot</text>
+            <text x="430" y="78" text-anchor="middle" fill="var(--text-muted)" font-size="9" font-family="sans-serif">IDE + AI</text>
+            <!-- Agente de IA -->
+            <rect x="370" y="110" width="120" height="50" rx="10" fill="var(--info-soft)" stroke="var(--info)" stroke-width="2"/>
+            <text x="430" y="132" text-anchor="middle" fill="var(--info)" font-size="11" font-weight="bold" font-family="sans-serif">Claude Code</text>
+            <text x="430" y="148" text-anchor="middle" fill="var(--text-muted)" font-size="9" font-family="sans-serif">AI Agent</text>
+            <!-- Setas -->
+            <line x1="140" y1="100" x2="198" y2="100" stroke="var(--primary)" stroke-width="2" marker-end="url(#arr)"/>
+            <line x1="310" y1="90" x2="368" y2="70" stroke="var(--success)" stroke-width="2" marker-end="url(#arr2)"/>
+            <line x1="310" y1="110" x2="368" y2="130" stroke="var(--info)" stroke-width="2" marker-end="url(#arr3)"/>
+            <!-- Rótulos setas -->
+            <text x="162" y="94" fill="var(--text-muted)" font-size="9" font-family="sans-serif">API</text>
+            <defs>
+              <marker id="arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+                <polygon points="0,0 7,3.5 0,7" fill="var(--primary)"/>
+              </marker>
+              <marker id="arr2" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+                <polygon points="0,0 7,3.5 0,7" fill="var(--success)"/>
+              </marker>
+              <marker id="arr3" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+                <polygon points="0,0 7,3.5 0,7" fill="var(--info)"/>
+              </marker>
+            </defs>
+          </svg>
+          <p class="mock-label">O MCP server do Figma conecta o arquivo de design diretamente a IDEs com IA e agentes de IA, que leem specs e geram código fiel ao design.</p>
+        </div>
+
+        <h2>Exportando assets no Dev Mode</h2>
+        <p>Um dos usos mais práticos do Dev Mode é exportar assets sem precisar do designer. Qualquer desenvolvedor com acesso ao arquivo pode:</p>
+        <ol class="steps">
+          <li>
+            <strong>Selecione o elemento a exportar.</strong>
+            No Dev Mode, clique no ícone, ilustração ou imagem que deseja exportar.
+          </li>
+          <li>
+            <strong>Acesse o painel de exportação.</strong>
+            No painel direito, role até a seção <strong>Export</strong>. Se o designer configurou exports no elemento, eles aparecem aqui. Se não, você pode adicionar manualmente.
+          </li>
+          <li>
+            <strong>Escolha o formato.</strong>
+            Para ícones: <strong>SVG</strong> (preferível para web) ou <strong>PDF</strong>. Para imagens: <strong>PNG</strong> com o fator de escala desejado (1x, 2x, 3x para diferentes densidades de tela) ou <strong>WebP</strong>. Para iOS: use os presets de @1x/@2x/@3x. Para Android: dp/mdpi/hdpi/xhdpi/xxhdpi/xxxhdpi.
+          </li>
+          <li>
+            <strong>Clique em Export.</strong>
+            O arquivo é baixado para a sua máquina. Para múltiplos assets, selecione vários elementos (com <kbd>Shift</kbd> + clique) e exporte todos de uma vez.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">SVG acessível por padrão</span>
+          <p>Ao exportar ícones como SVG, verifique se o designer os nomeou corretamente (os nomes das layers viram atributos no SVG). Para ícones exportados do Figma, considere adicionar <code>aria-hidden="true"</code> no código se forem decorativos, ou <code>aria-label</code> se forem funcionais.</p>
+        </div>
+
+        <h2>Comparação: geração de código nativa vs. MCP vs. Code Connect</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Recurso</th><th>O que faz</th><th>Melhor para</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Code gen nativo</strong></td><td>Gera CSS/SwiftUI/Compose a partir de propriedades visuais do elemento</td><td>Specs rápidas, point-in-time</td></tr>
+              <tr><td><strong>Plugins de code gen</strong></td><td>Geram componentes React, Flutter, HTML completo</td><td>Protótipos, primeiras implementações</td></tr>
+              <tr><td><strong>Code Connect</strong></td><td>Mapeia componente Figma ao componente real de código da empresa</td><td>Design systems maduros com biblioteca de componentes</td></tr>
+              <tr><td><strong>Dev Mode MCP</strong></td><td>Expõe o Figma como contexto para agentes de IA e IDEs</td><td>Geração de código assistida por IA, fluxos automatizados</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Uma equipe de produto está lançando um novo feature de notificações. O processo com Dev Mode MCP:</p>
+        <ol>
+          <li>O designer finaliza os componentes de notificação no Figma e marca como "Ready for dev";</li>
+          <li>O desenvolvedor abre o Cursor IDE (com MCP do Figma configurado) e diz: "Implemente o componente NotificationCard do frame 'Notifications/Card' do Figma";</li>
+          <li>O agente de IA acessa o Dev Mode MCP, lê as specs do frame — dimensões, cores (já mapeadas a tokens), tipografia, espaçamentos;</li>
+          <li>O agente também vê o Code Connect configurado e sabe que deve usar o componente <code>&lt;Card&gt;</code> existente como base;</li>
+          <li>O código gerado usa os tokens corretos (<code>--color-feedback-info</code>, <code>--spacing-md</code>) e a estrutura de componentes já estabelecida;</li>
+          <li>O dev faz pequenos ajustes de lógica e acessibilidade — o visual já está correto.</li>
+        </ol>
+
+        <div class="callout note">
+          <span class="callout-title">MCP ainda evolui rapidamente</span>
+          <p>O Dev Mode MCP do Figma foi lançado em 2025 e continua recebendo atualizações frequentes em 2026. Verifique sempre a documentação oficial em <strong>figma.com/developers</strong> para as capacidades mais recentes, as ferramentas de IA compatíveis e as instruções de configuração atualizadas.</p>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>O Dev Mode gera código CSS, SwiftUI e Compose nativamente — útil como spec executável, mas não como código de produção final.</li>
+          <li><strong>Plugins de code gen</strong> estendem a geração para React, Flutter e outros frameworks.</li>
+          <li><strong>Code Connect</strong> mapeia componentes Figma a componentes reais de código, tornando o Dev Mode "consciente" da biblioteca interna.</li>
+          <li>O <strong>Dev Mode MCP</strong> conecta o Figma a IDEs com IA e agentes de IA, que leem specs e geram código fiel sem troca de contexto.</li>
+          <li>Assets (ícones, imagens) podem ser exportados diretamente do Dev Mode em todos os formatos e escalas necessários.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Geração de código e exportação de assets</h3>
+          <p>Pratique a geração de código e a exportação:</p>
+          <ol>
+            <li>No Dev Mode, selecione um botão e copie o snippet CSS gerado. Cole num arquivo <code>button.css</code> e veja o resultado no navegador.</li>
+            <li>Selecione um ícone no design e exporte como SVG. Abra o SVG num editor de texto e examine a estrutura gerada.</li>
+            <li>Se tiver acesso a uma ferramenta de IA com suporte MCP (Cursor, Claude Code ou similar), configure o MCP server do Figma seguindo a documentação oficial e peça para gerar o código de um componente do seu arquivo.</li>
+            <li>Compare o código gerado pela IA com o código gerado pelo Dev Mode nativo — anote as diferenças de qualidade e contexto.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> o CSS gerado reproduz fielmente as propriedades visuais do botão no navegador; o SVG exportado é limpo e utilizável; e você entende a diferença entre geração nativa e assistida por IA.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Pipeline design → código com IA</h3>
+          <p>Configure o Dev Mode MCP em uma ferramenta de IA da sua escolha (Cursor, Claude Code, Copilot) e implemente um componente completo — card, modal ou formulário — usando a IA como gerador principal de código. A IA deve ler as specs do Figma via MCP e gerar o componente. Você só intervém para ajustes de lógica e acessibilidade. Documente o processo: quantas iterações foram necessárias? Qual porcentagem do código visual foi gerado automaticamente? O que ainda precisou de ajuste manual?</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. O que o Code Connect faz no contexto do Dev Mode?</p>
+            <ul class="quiz-options">
+              <li>Gera automaticamente código CSS para todos os elementos do arquivo</li>
+              <li>Conecta o Figma a repositórios Git para controle de versão de designs</li>
+              <li>Mapeia componentes do Figma aos componentes reais de código da empresa, mostrando o import correto no Dev Mode</li>
+              <li>Exporta o arquivo Figma como projeto React completo</li>
+            </ul>
+            <div class="quiz-explain">O <strong>Code Connect</strong> cria um mapeamento entre o componente no Figma e o componente real na base de código da empresa. Quando o dev inspeciona aquele componente no Dev Mode, vê o import e uso correto — não CSS genérico.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">2. O que é o MCP (Model Context Protocol) no contexto do Figma?</p>
+            <ul class="quiz-options">
+              <li>Um formato de arquivo para exportar designs do Figma</li>
+              <li>Um plugin para conectar o Figma ao GitHub</li>
+              <li>Uma extensão do VS Code para inspecionar specs do Figma</li>
+              <li>Um protocolo que permite agentes de IA e IDEs lerem dados do Figma para gerar código fiel ao design</li>
+            </ul>
+            <div class="quiz-explain">O <strong>Dev Mode MCP</strong> expõe o conteúdo do Figma através do Model Context Protocol, permitindo que IDEs com IA (Cursor, Copilot, Claude Code) acessem specs de design diretamente e gerem código sem que o dev precise alternar entre telas.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Qual é a limitação mais importante do código gerado automaticamente pelo Dev Mode?</p>
+            <ul class="quiz-options">
+              <li>Captura propriedades visuais mas não inclui lógica de negócio, estados interativos nem se encaixa automaticamente na arquitetura do projeto</li>
+              <li>Só funciona para projetos com menos de 100 componentes</li>
+              <li>Gera código apenas em CSS, sem suporte a frameworks como React ou Vue</li>
+              <li>O código gerado expira após 30 dias e precisa ser regenerado</li>
+            </ul>
+            <div class="quiz-explain">O código gerado automaticamente é uma <strong>spec executável</strong> — captura fidelmente as propriedades visuais, mas não tem lógica de negócio, estados interativos, acessibilidade completa nem considera a arquitetura específica do projeto. É um excelente ponto de partida, não código de produção.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

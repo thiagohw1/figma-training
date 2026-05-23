@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Componentização do app | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="05-05-componentizacao" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">📱 Módulo 5 · Projeto Guiado · Lição 5 de 8</div>
+        <h1>Componentização do app</h1>
+        <p class="lead">Um design system real não é uma coleção de telas — é uma biblioteca de peças reutilizáveis. Nesta lição você vai transformar os elementos das telas do FinView em Components com Variants e Properties, criando uma base que escala sem retrabalho.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~26 min</span>
+          <span>🎯 Nível: Projeto prático</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Criar componentes com Variants e Component Properties no Figma;</li>
+            <li>Construir a Tab Bar, o Card de Saldo, o List Item de Transação, o Botão e o Header como components;</li>
+            <li>Usar as propriedades Text, Boolean (visible) e Instance Swap para flexibilizar components;</li>
+            <li>Reaproveitar os components nas telas da page iOS;</li>
+            <li>Organizar a page de Components com a hierarquia Atomic Design.</li>
+          </ul>
+        </div>
+
+        <h2>Por que componentizar?</h2>
+        <p>Imagine que o FinView tem 40 itens de transação espalhados por 5 telas. Se você precisar alterar a altura de cada item de 64 para 72 px, sem componentes você editaria 40 instâncias manualmente. <strong>Com um componente</strong>, você muda o master uma vez e todas as 40 instâncias se atualizam instantaneamente.</p>
+        <p>Mas a vantagem vai além da velocidade. Components com Variants permitem que um único "Item de Transação" seja: receita ou despesa, com ou sem nota, compacto ou expandido. E Component Properties tornam cada instância configurável sem entrar na edição interna.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Component Properties vs. Variants — quando usar cada um</span>
+          <p><strong>Variants</strong> são melhores para variações discretas que mudam a estrutura visual do componente (ex.: Size=Small/Medium/Large, State=Default/Active/Disabled). <strong>Component Properties</strong> (Text, Boolean, Instance Swap) são melhores para personalizar o conteúdo sem mudar a estrutura: trocar o label, mostrar/ocultar um elemento, trocar um ícone. Para o FinView, usaremos ambos em conjunto.</p>
+        </div>
+
+        <h2>Planejando a biblioteca de components</h2>
+        <p>Para o FinView, criaremos 6 components principais. Cada um será construído na page <code>🧩 Components</code> do arquivo:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Component</th><th>Variants</th><th>Properties</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Button</strong></td>
+                <td>Type=Primary/Secondary/Ghost, Size=Large/Medium/Small</td>
+                <td>Label (text), Icon Left (bool), Icon Right (bool)</td>
+              </tr>
+              <tr>
+                <td><strong>Tab Bar Item</strong></td>
+                <td>State=Default/Active</td>
+                <td>Label (text), Icon (instance swap)</td>
+              </tr>
+              <tr>
+                <td><strong>Transaction List Item</strong></td>
+                <td>Type=Expense/Income, Size=Default/Compact</td>
+                <td>Name (text), Category (text), Amount (text), Date (text), Show Note (bool)</td>
+              </tr>
+              <tr>
+                <td><strong>Balance Card</strong></td>
+                <td>State=Positive/Negative/Neutral</td>
+                <td>Balance (text), Income (text), Expenses (text), Show Progress (bool)</td>
+              </tr>
+              <tr>
+                <td><strong>Account Card</strong></td>
+                <td>Type=Purple/Orange/Green</td>
+                <td>Bank Name (text), Balance (text)</td>
+              </tr>
+              <tr>
+                <td><strong>Header</strong></td>
+                <td>Type=Home/Navigation/Modal</td>
+                <td>Title (text), Show Back (bool), Show Action (bool)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Passo a passo: criando o Transaction List Item</h2>
+        <p>O List Item de Transação é o component mais usado no FinView — aparece na Home, na tela de Metas e em buscas. Vamos criá-lo com todas as properties:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Vá para a page de Components.</strong>
+            Na page <code>🧩 Components</code>, crie uma Section (<kbd>Shift</kbd> + <kbd>S</kbd>) chamada "Transaction / List Item". Esta será nossa área de trabalho.
+          </li>
+          <li>
+            <strong>Construa o layout base do item.</strong>
+            Crie um Auto Layout horizontal (<kbd>Shift</kbd> + <kbd>A</kbd>): width 390, height hug, padding 16×12, gap 12, align center. Dentro:
+            <ul>
+              <li>Frame de ícone: 44×44, corner radius <code>radius/md (12)</code>, fill <code>color/brand/soft</code>. Dentro, um emoji ou ícone centralizado.</li>
+              <li>Auto Layout vertical (flex-1): texto "iFood" (text/body bold, <code>color/text/primary</code>) + texto "Alimentação · Hoje" (text/caption, <code>color/text/secondary</code>).</li>
+              <li>Auto Layout vertical (align end): texto "- R$ 54,90" (text/body-lg bold, <code>color/expense</code>) + texto "13:42" (text/caption, <code>color/text/secondary</code>).</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Crie o componente master.</strong>
+            Selecione o Auto Layout inteiro e pressione <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Alt</kbd>/<kbd>⌥</kbd> + <kbd>K</kbd> para criar o componente. Renomeie para <code>Transaction/List Item</code>.
+          </li>
+          <li>
+            <strong>Adicione as Component Properties.</strong>
+            Com o componente master selecionado, clique em <strong>Add property</strong> no painel direito. Adicione:
+            <ul>
+              <li><strong>Name</strong> (Text) — vinculado ao texto "iFood"</li>
+              <li><strong>Category</strong> (Text) — vinculado a "Alimentação · Hoje"</li>
+              <li><strong>Amount</strong> (Text) — vinculado a "- R$ 54,90"</li>
+              <li><strong>Show Time</strong> (Boolean) — controla a visibilidade do texto "13:42"</li>
+            </ul>
+            Para vincular, selecione o layer de texto dentro do component e, no painel, clique em "<strong>Apply property</strong>" para conectar a propriedade de texto.
+          </li>
+          <li>
+            <strong>Crie as Variants.</strong>
+            Selecione o componente master e clique em <strong>Add variant</strong> (ícone de losango roxo no painel). Isso cria um Component Set. Agora você tem dois items: modifique o segundo para ser uma <strong>receita</strong> (Income): mude o ícone para 💰, o texto do valor para "+ R$ 5.000,00" e a cor do valor para <code>color/income</code>. Selecione os dois no Component Set, clique no campo de Variant e nomeie: <strong>Type=Expense</strong> e <strong>Type=Income</strong>.
+          </li>
+          <li>
+            <strong>Adicione a variante Compact.</strong>
+            Duplique a variante Expense e reduza o padding vertical para 8 px, removendo o texto de horário. Nomeie como <strong>Type=Expense, Size=Compact</strong>. Repita para Income. Você terá 4 variantes no total.
+          </li>
+          <li>
+            <strong>Teste o component em uma tela.</strong>
+            Vá para a page <code>📱 iOS — Telas</code>, abra a Home e selecione um dos itens de transação que você construiu na Lição 4. Delete-o e, no painel de Assets (<kbd>Alt</kbd>/<kbd>⌥</kbd> + <kbd>2</kbd>), arraste uma instância do <code>Transaction/List Item</code> para o lugar. Altere as properties Name, Amount e Type no painel direito — sem entrar no componente.
+          </li>
+          <li>
+            <strong>Substitua todos os itens da lista.</strong>
+            Repita o processo para os outros 4 itens da lista na Home. Agora você tem uma lista real de components — se alterar o master, todas as instâncias se atualizam.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Atalho para criar componente</span>
+          <p><kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Alt</kbd>/<kbd>⌥</kbd> + <kbd>K</kbd> transforma a seleção em componente. Para criar uma cópia do componente como instância (não editar o master), use <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>D</kbd> ou arraste do painel Assets. Para voltar ao master a partir de uma instância, clique com o botão direito → <strong>Go to main component</strong>.</p>
+        </div>
+
+        <h2>Construindo o Botão</h2>
+        <p>O botão é o component mais simples mas mais crítico — aparece em todas as telas. Para o FinView:</p>
+
+        <div class="figma-mock">
+          <div style="display:flex;flex-direction:column;gap:12px;flex:1;min-width:240px;padding:8px;">
+            <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px;">Variants do Button</div>
+            <!-- Primary Large -->
+            <div style="background:#6C4CF1;border-radius:12px;height:48px;display:flex;align-items:center;justify-content:center;gap:8px;">
+              <span style="color:#fff;font-size:14px;font-weight:700;">Adicionar Transação</span>
+            </div>
+            <!-- Primary Medium -->
+            <div style="background:#6C4CF1;border-radius:10px;height:40px;display:flex;align-items:center;justify-content:center;gap:8px;padding:0 16px;">
+              <span style="color:#fff;font-size:13px;font-weight:700;">Continuar →</span>
+            </div>
+            <!-- Secondary -->
+            <div style="background:transparent;border:1.5px solid #6C4CF1;border-radius:10px;height:40px;display:flex;align-items:center;justify-content:center;">
+              <span style="color:#9B81FF;font-size:13px;font-weight:700;">Cancelar</span>
+            </div>
+            <!-- Ghost / Danger -->
+            <div style="background:transparent;border-radius:10px;height:40px;display:flex;align-items:center;justify-content:center;">
+              <span style="color:#F7654B;font-size:13px;font-weight:600;">Excluir transação</span>
+            </div>
+            <!-- Disabled -->
+            <div style="background:#2B313C;border-radius:10px;height:40px;display:flex;align-items:center;justify-content:center;">
+              <span style="color:#5B6573;font-size:13px;font-weight:700;">Salvar (desativado)</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;min-width:200px;justify-content:center;">
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;">
+              <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:8px;">Component Properties</div>
+              <div style="display:flex;flex-direction:column;gap:6px;font-size:11px;color:var(--text-muted);">
+                <div><strong style="color:var(--text);">Label</strong> — Text property</div>
+                <div><strong style="color:var(--text);">Type</strong> — Variant: Primary / Secondary / Ghost</div>
+                <div><strong style="color:var(--text);">Size</strong> — Variant: Large / Medium / Small</div>
+                <div><strong style="color:var(--text);">State</strong> — Variant: Default / Disabled / Loading</div>
+                <div><strong style="color:var(--text);">Icon Left</strong> — Boolean property</div>
+                <div><strong style="color:var(--text);">Icon Right</strong> — Boolean property</div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">5 variantes visuais do Botão: Primary Large, Primary Medium, Secondary (outlined), Ghost e Disabled. Cada instância permite alterar o label, exibir/ocultar ícones e escolher estado via properties no painel.</p>
+        </div>
+
+        <h2>Construindo a Tab Bar</h2>
+        <p>A Tab Bar é o elemento de navegação principal do FinView. Cada item da tab é um sub-component com variant State=Default/Active. A tab bar em si é um component que agrupa 5 instâncias do Tab Item:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie o componente Tab Bar Item.</strong>
+            Auto Layout vertical, gap 4, padding 8×10: ícone (frame 24×24 com SVG ou emoji) + texto label (text/caption). Variante Default: ícone e texto em <code>color/text/secondary</code>. Variante Active: ícone e texto em <code>color/brand/primary</code>, com um indicador de bolinha acima do ícone (frame 4×4, fill primary, opacity 100%).
+          </li>
+          <li>
+            <strong>Crie o component Tab Bar.</strong>
+            Auto Layout horizontal, width 390, height 83, padding bottom 16 (safe area do iOS), gap Auto. Arraste 5 instâncias de Tab Bar Item. Defina uma propriedade de Instance Swap chamada <strong>Active Tab</strong> para controlar qual item está ativo.
+          </li>
+          <li>
+            <strong>Adicione Instance Swap Properties para os ícones.</strong>
+            Cada Tab Item pode ter seu ícone trocado via Instance Swap. Isso permite usar o mesmo component em contextos diferentes (ex.: uma tab bar de admin com ícones diferentes).
+          </li>
+        </ol>
+
+        <div class="callout pro">
+          <span class="callout-title">Nested components: componente dentro de componente</span>
+          <p>Componentes podem conter outras instâncias de componentes — isso é chamado de <em>nested components</em>. A Tab Bar contém 5 Tab Items; o Tab Item contém um ícone. Quando você altera o Tab Item master, todos os Tab Bars que usam instâncias dele se atualizam. Essa hierarquia espelha exatamente como o desenvolvimento funciona (React: componente-pai usa filhos), tornando o handoff muito mais fácil.</p>
+        </div>
+
+        <h2>Construindo o Header</h2>
+        <p>O Header aparece em quase todas as telas secundárias do FinView. Ele precisa ser flexível: às vezes tem botão de voltar, às vezes apenas um título, às vezes com ação secundária (ícone de configurações, etc.).</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Variante</th><th>Estrutura</th><th>Uso</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Type=Home</strong></td><td>Saudação + avatar (sem botão voltar)</td><td>Tela Home</td></tr>
+              <tr><td><strong>Type=Navigation</strong></td><td>Botão voltar + título centralizado + ação opcional</td><td>Detalhe, Perfil, Nova meta</td></tr>
+              <tr><td><strong>Type=Modal</strong></td><td>Título + botão fechar (X) à direita</td><td>Bottom sheets e modais</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Organizando a page de Components</h2>
+        <p>Na page <code>🧩 Components</code>, use Sections para organizar os components por tipo. Uma convenção comum inspirada no <strong>Atomic Design</strong>:</p>
+        <ul>
+          <li><strong>Atoms:</strong> Icon, Avatar, Badge, Chip — elementos indivisíveis</li>
+          <li><strong>Molecules:</strong> Button, Input, Tab Bar Item, List Item — combinações simples</li>
+          <li><strong>Organisms:</strong> Tab Bar, Header, Balance Card, Transaction List — combinações complexas</li>
+        </ul>
+        <p>Dentro de cada Section, organize os Component Sets lado a lado com espaço de 40 px entre eles. Adicione labels (text frames) acima de cada set identificando o nome e o número de variantes.</p>
+
+        <div class="callout warning">
+          <span class="callout-title">Não componentize tudo de imediato</span>
+          <p>Um erro comum é passar horas criando componentes de coisas que aparecem uma única vez. A regra prática: <em>se um elemento aparece 3 ou mais vezes no projeto ou é provável que mude frequentemente</em>, crie um componente. Caso contrário, deixe como frame comum por ora. Componentização excessiva aumenta a complexidade sem benefício real.</p>
+        </div>
+
+        <h2>Reaproveitando na page iOS</h2>
+        <p>Com a biblioteca montada, volte para a page <code>📱 iOS — Telas</code> e substitua os elementos "soltos" pelos components criados:</p>
+        <ol>
+          <li>Abra o painel de Assets (<kbd>Alt</kbd>/<kbd>⌥</kbd> + <kbd>2</kbd>) e busque os components pelo nome.</li>
+          <li>Arraste instâncias para as posições corretas nos frames de tela.</li>
+          <li>Configure as properties de cada instância (label, variante, booleans) no painel direito — sem entrar dentro do componente.</li>
+          <li>Confira que todas as telas usam a mesma Tab Bar component — ao alterar o master, todas as telas se atualizam.</li>
+        </ol>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Criar componente</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>K</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>K</kbd></td></tr>
+              <tr><td>Ir para o componente master</td><td>Botão direito → Go to main component</td><td>Botão direito → Go to main component</td></tr>
+              <tr><td>Abrir Assets panel</td><td><kbd>Alt</kbd> + <kbd>2</kbd></td><td><kbd>⌥</kbd> + <kbd>2</kbd></td></tr>
+              <tr><td>Desanexar instância</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>B</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>B</kbd></td></tr>
+              <tr><td>Resetar instância para master</td><td>Botão direito → Reset all changes</td><td>Botão direito → Reset all changes</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Components com Variants e Properties tornam o design system escalável — uma mudança no master propaga para todas as instâncias.</li>
+          <li>O Transaction List Item foi construído com 4 variantes (Expense/Income × Default/Compact) e 5 properties (Name, Category, Amount, Date, Show Time).</li>
+          <li>O Botão tem 3 tipos (Primary, Secondary, Ghost), 3 tamanhos e 3 estados, com properties de Label, Icon Left e Icon Right.</li>
+          <li>A Tab Bar usa nested components: 5 instâncias de Tab Bar Item dentro de um Tab Bar master.</li>
+          <li>Organizar a page de Components com Atomic Design (Atoms → Molecules → Organisms) mantém a biblioteca navegável.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Criar e reaproveitar os 6 components</h3>
+          <p>Na page <code>🧩 Components</code> do seu arquivo FinView:</p>
+          <ol>
+            <li>Crie os 6 components: Button, Tab Bar Item, Transaction List Item, Balance Card, Account Card e Header.</li>
+            <li>Cada component deve ter pelo menos 2 variantes e 2 component properties.</li>
+            <li>Organize em Sections com a nomenclatura Atomic Design.</li>
+            <li>Volte para a page iOS e substitua os elementos soltos da Home pelas instâncias dos components.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> ao alterar o texto de label do botão no componente master, todas as instâncias do botão em todas as telas atualizam simultaneamente. A Home usa exclusivamente instâncias de components — nenhum elemento "solto".
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Input de formulário com estados</h3>
+          <p>Crie um component de <strong>Input</strong> para o formulário de "Adicionar Transação". O Input deve ter 5 variantes: Default (vazio), Focused (borda colorida), Filled (com valor digitado), Error (borda vermelha + mensagem de erro abaixo) e Disabled (cinza). Adicione properties: Label (text), Placeholder (text), Value (text), Error Message (text), Show Error (boolean), Show Icon (boolean). Construa o bottom sheet "Adicionar Transação" completo usando instâncias desse Input para os campos de valor, categoria e nota.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Qual é a diferença prática entre Variants e Component Properties no Figma?</p>
+            <ul class="quiz-options">
+              <li>Variants são para mobile; Component Properties são para web</li>
+              <li>Variants mudam o conteúdo de texto; Component Properties mudam a estrutura visual</li>
+              <li>Variants mudam a estrutura/layout do componente; Component Properties personalizam conteúdo sem alterar estrutura</li>
+              <li>São a mesma coisa com nomes diferentes</li>
+            </ul>
+            <div class="quiz-explain"><strong>Variants</strong> existem para variações que afetam a estrutura visual (tamanho, layout, estado visual). <strong>Component Properties</strong> (Text, Boolean, Instance Swap) permitem personalizar o conteúdo de uma instância específica sem criar uma variante nova — ex.: mudar o label de um botão sem criar um variant separado para cada texto possível.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. Quando você altera o componente master (principal), o que acontece com as instâncias usadas nas telas?</p>
+            <ul class="quiz-options">
+              <li>Todas as instâncias que não tiveram substituições locais se atualizam automaticamente</li>
+              <li>Apenas instâncias na mesma page do master se atualizam</li>
+              <li>Nenhuma instância se atualiza — é preciso substituir manualmente</li>
+              <li>Todas as instâncias se atualizam, incluindo as que tiveram substituições locais</li>
+            </ul>
+            <div class="quiz-explain">Quando o master muda, <strong>todas as instâncias que não têm sobrescritas (overrides) locais naquela propriedade se atualizam</strong>. Se uma instância já tem um texto diferente do master (override), essa propriedade específica não é sobrescrita — o Figma preserva customizações locais.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">3. O que são "nested components" (componentes aninhados)?</p>
+            <ul class="quiz-options">
+              <li>Componentes que estão dentro de outros frames, não de components</li>
+              <li>Componentes que contêm instâncias de outros componentes em sua estrutura interna</li>
+              <li>Componentes que só funcionam em uma única tela do projeto</li>
+              <li>Componentes duplicados dentro do mesmo arquivo</li>
+            </ul>
+            <div class="quiz-explain"><strong>Nested components</strong> são componentes que usam instâncias de outros componentes internamente — como a Tab Bar que contém 5 Tab Items. Essa hierarquia espelha o desenvolvimento (React com componentes filhos) e permite que mudanças no componente filho se propaguem para todos os pais que o usam.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

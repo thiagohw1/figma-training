@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plugins e widgets essenciais | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="08-08-plugins-widgets" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">✨ Módulo 8 · Recursos 2025/2026 · Lição 8 de 8</div>
+        <h1>Plugins e widgets essenciais</h1>
+        <p class="lead">O Figma sem plugins é como um smartphone sem aplicativos — funcional, mas muito aquém do potencial. Com os plugins certos, você transforma horas de trabalho em minutos e abre capacidades que a plataforma não entrega nativamente.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~20 min</span>
+          <span>🎯 Nível: Iniciante/Intermediário</span>
+          <span>🛠️ Pratique no Figma Design</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Entender a diferença entre plugins e widgets e como instalar cada um;</li>
+            <li>Conhecer os plugins mais importantes por categoria de uso;</li>
+            <li>Usar os plugins essenciais de conteúdo, ícones e acessibilidade;</li>
+            <li>Identificar widgets úteis para o fluxo de trabalho;</li>
+            <li>Entender o processo básico de criação de um plugin próprio.</li>
+          </ul>
+        </div>
+
+        <h2>O que são plugins?</h2>
+        <p><strong>Plugins</strong> são extensões desenvolvidas por terceiros (ou pela própria Figma) que rodam dentro do Figma Design e adicionam funcionalidades. Eles são escritos em JavaScript e têm acesso à API do Figma — podendo criar, modificar e organizar elementos no canvas.</p>
+        <p>Plugins são executados sob demanda: você abre um plugin, ele faz alguma coisa (gera conteúdo, reorganiza camadas, verifica contraste, etc.) e fecha. O resultado fica no canvas como objetos normais do Figma.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Plugins vs. Widgets (novamente)</span>
+          <p>Lembre-se da distinção que vimos no FigJam: <strong>Plugins</strong> do Figma Design rodam para um usuário de cada vez e produzem objetos estáticos. <strong>Widgets</strong> ficam no canvas como objetos persistentes e interativos que todos podem manipular — mas widgets são mais comuns no FigJam. No Figma Design, plugins são a forma mais comum de extensão.</p>
+        </div>
+
+        <h2>Como instalar e usar plugins</h2>
+
+        <ol class="steps">
+          <li>
+            <strong>Acesse a Figma Community.</strong>
+            Clique no menu principal do Figma (ícone no canto superior esquerdo) → "Plugins" → "Manage plugins" → "Browse plugins in Community". Ou acesse diretamente em <code>figma.com/community</code>.
+          </li>
+          <li>
+            <strong>Encontre um plugin.</strong>
+            Busque pelo nome (ex.: "Unsplash") ou navegue pelas categorias. Veja o número de instalações, avaliações e a descrição.
+          </li>
+          <li>
+            <strong>Instale o plugin.</strong>
+            Clique em "Install" na página do plugin. O plugin fica salvo no seu perfil e aparece no menu de plugins dentro do Figma.
+          </li>
+          <li>
+            <strong>Execute o plugin.</strong>
+            No Figma Design, clique com o botão direito no canvas → "Plugins" → escolha o plugin. Ou use o atalho <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>/</kbd> (Actions) e digite o nome do plugin.
+          </li>
+          <li>
+            <strong>Use a interface do plugin.</strong>
+            A maioria dos plugins abre um painel flutuante com sua própria interface. Interaja com ela conforme o plugin pede e confirme para aplicar ao canvas.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Acesso rápido a plugins recentes</span>
+          <p>O Figma lembra os últimos plugins que você usou. Pressione <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>/</kbd> para abrir o Quick Actions e os últimos plugins aparecem no topo. Isso elimina a necessidade de navegar pelo menu toda vez.</p>
+        </div>
+
+        <h2>Curadoria de plugins por categoria</h2>
+        <p>Há milhares de plugins na Figma Community. Abaixo, os mais usados e confiáveis por categoria:</p>
+
+        <h3>Conteúdo e dados fictícios</h3>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Plugin</th><th>O que faz</th><th>Por que usar</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Unsplash</strong></td>
+                <td>Insere fotos reais de alta qualidade do acervo Unsplash direto no canvas</td>
+                <td>Chega de retângulos cinzas como placeholder — coloque fotos reais imediatamente</td>
+              </tr>
+              <tr>
+                <td><strong>Content Reel</strong></td>
+                <td>Preenche camadas de texto com dados realistas (nomes, e-mails, endereços, datas, avaliações) e imagens de avatares</td>
+                <td>Transforma "John Doe" e "user@email.com" em dados que tornam os mockups muito mais convincentes</td>
+              </tr>
+              <tr>
+                <td><strong>Lorem ipsum</strong></td>
+                <td>Gera texto de placeholder de comprimentos variados</td>
+                <td>Rápido para preencher parágrafos fictícios quando você não precisa de conteúdo real</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Ícones e assets</h3>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Plugin</th><th>O que faz</th><th>Por que usar</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Iconify</strong></td>
+                <td>Acesso a mais de 200 mil ícones de diferentes bibliotecas (Material, Feather, Heroicons, Font Awesome, etc.)</td>
+                <td>Uma única interface para encontrar e inserir qualquer ícone como SVG vetorial — sem precisar baixar assets separados</td>
+              </tr>
+              <tr>
+                <td><strong>Material Symbols</strong></td>
+                <td>Biblioteca oficial de ícones do Google Material Design com variantes (filled, outlined, rounded, sharp)</td>
+                <td>Essencial para projetos com Material Design 3</td>
+              </tr>
+              <tr>
+                <td><strong>SF Symbols</strong></td>
+                <td>Ícones do sistema Apple para design de apps iOS/macOS</td>
+                <td>Necessário para projetos iOS — os ícones nativos da plataforma Apple</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Design Systems e tokens</h3>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Plugin</th><th>O que faz</th><th>Por que usar</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Tokens Studio for Figma</strong></td>
+                <td>Gerencia design tokens (JSON) no Figma, sincroniza com repositório Git e exporta para código</td>
+                <td>Padrão da indústria para times que usam design tokens no fluxo de Design → Código. Integra com Style Dictionary.</td>
+              </tr>
+              <tr>
+                <td><strong>Figma Tokens (nativo)</strong></td>
+                <td>As Variables nativas do Figma (modo 2025) — não é um plugin, mas é a solução integrada para tokens</td>
+                <td>Para projetos novos sem legacy de tokens externos, as Variables nativas podem ser suficientes</td>
+              </tr>
+              <tr>
+                <td><strong>Design Lint</strong></td>
+                <td>Escaneia o arquivo procurando inconsistências: cores fora da biblioteca, fontes não vinculadas a estilos, espaçamentos irregulares</td>
+                <td>Auditoria automática antes do handoff — encontra "sujeiras" que o olho humano passa batido</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Fluxos e diagramação</h3>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Plugin</th><th>O que faz</th><th>Por que usar</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Autoflow</strong></td>
+                <td>Desenha setas e conectores entre frames para ilustrar fluxos de usuário dentro do Figma Design</td>
+                <td>Cria user flows diretamente no arquivo de design, sem precisar ir ao FigJam ou ao Whimsical</td>
+              </tr>
+              <tr>
+                <td><strong>Wireframe</strong></td>
+                <td>Biblioteca de componentes low-fidelity para wireframing rápido</td>
+                <td>Acelera a fase de wireframe com caixas, placeholders e componentes de UI genéricos</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Acessibilidade</h3>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Plugin</th><th>O que faz</th><th>Por que usar</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Stark</strong></td>
+                <td>Verifica contraste de cores (WCAG AA e AAA), simula visões com deficiências (daltonismo, baixa visão), gera relatórios de acessibilidade</td>
+                <td>Indispensável para garantir que o design é acessível antes de ir para desenvolvimento. Um dos plugins mais completos de acessibilidade para Figma.</td>
+              </tr>
+              <tr>
+                <td><strong>A11y — Color Contrast Checker</strong></td>
+                <td>Verifica rapidamente o ratio de contraste entre texto e fundo</td>
+                <td>Mais rápido e direto que o Stark para verificações pontuais de contraste</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Animação e motion</h3>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Plugin</th><th>O que faz</th><th>Por que usar</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Figmotion</strong></td>
+                <td>Editor de animação timeline dentro do Figma — permite criar animações complexas com keyframes e easing</td>
+                <td>Para designs que precisam comunicar motion ao time de desenvolvimento com mais precisão que o Smart Animate</td>
+              </tr>
+              <tr>
+                <td><strong>LottieFiles</strong></td>
+                <td>Importa e exporta animações Lottie (JSON) diretamente no Figma</td>
+                <td>Integra animações Lottie ao fluxo de design para preview e handoff</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout pro">
+          <span class="callout-title">Stark é obrigatório na toolbox de todo designer</span>
+          <p>Acessibilidade não é opcional — é lei em muitos países e é a coisa certa a fazer. O Stark elimina as desculpas: em segundos você sabe se um par de cores passa no WCAG AA ou se um daltônico vai conseguir distinguir os estados do seu sistema de feedback. Use em todo projeto.</p>
+        </div>
+
+        <h2>Tabela resumo: plugins por use case</h2>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Situação</th><th>Plugin recomendado</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Preciso de fotos reais nos mocks</td><td>Unsplash</td></tr>
+              <tr><td>Preciso de dados realistas (nomes, e-mails)</td><td>Content Reel</td></tr>
+              <tr><td>Preciso de ícones vetoriais</td><td>Iconify</td></tr>
+              <tr><td>Preciso verificar acessibilidade de cores</td><td>Stark</td></tr>
+              <tr><td>Preciso mostrar o fluxo de telas no arquivo</td><td>Autoflow</td></tr>
+              <tr><td>Preciso sincronizar design tokens com código</td><td>Tokens Studio</td></tr>
+              <tr><td>Preciso auditar inconsistências antes do handoff</td><td>Design Lint</td></tr>
+              <tr><td>Preciso criar animações com timeline</td><td>Figmotion</td></tr>
+              <tr><td>Preciso integrar animações Lottie</td><td>LottieFiles</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Widgets úteis no Figma Design</h2>
+        <p>Widgets no Figma Design são menos comuns que no FigJam, mas alguns são muito práticos:</p>
+        <ul>
+          <li><strong>Annotations:</strong> adiciona anotações visuais de especificação diretamente no canvas, úteis para comunicar detalhes ao desenvolvedor</li>
+          <li><strong>Color Palette Generator:</strong> gera paletas de cores harmonizadas a partir de uma cor base</li>
+          <li><strong>Changelog:</strong> widget de log de alterações persistente no arquivo — registra o histórico de decisões de design</li>
+          <li><strong>To-do List:</strong> lista de tarefas do projeto visível no canvas para toda a equipe</li>
+        </ul>
+
+        <h2>Como criar seu próprio plugin</h2>
+        <p>Criar plugins é mais acessível do que parece. Se você tem conhecimento básico de JavaScript, pode criar seu próprio plugin para automatizar tarefas específicas do seu fluxo de trabalho.</p>
+
+        <h3>Os ingredientes básicos</h3>
+        <ul>
+          <li><strong>Conhecimento:</strong> JavaScript (nível básico/intermediário)</li>
+          <li><strong>Ferramenta:</strong> Figma Desktop + VS Code</li>
+          <li><strong>Documentação:</strong> <a href="https://www.figma.com/plugin-docs/">Figma Plugin API Docs</a></li>
+        </ul>
+
+        <h3>O processo em alto nível</h3>
+        <ol>
+          <li>Crie um novo plugin via menu "Plugins" → "Development" → "New Plugin"</li>
+          <li>Escolha um template (with UI ou sem UI)</li>
+          <li>Edite o arquivo <code>code.js</code> no VS Code usando a Figma Plugin API</li>
+          <li>Teste em tempo real com o menu "Development" → "Open console"</li>
+          <li>Publique na Figma Community quando estiver pronto (ou use só internamente)</li>
+        </ol>
+
+        <div class="callout example">
+          <span class="callout-title">Ideia de plugin simples para começar</span>
+          <p>Um plugin que seleciona todos os textos de uma tela que estão abaixo de 12px (potencialmente ilegíveis) e os destaca em vermelho. Isso usa a API do Figma para iterar sobre nodes, verificar a propriedade fontSize e modificar fills. Funcional em menos de 30 linhas de JavaScript.</p>
+        </div>
+
+        <div class="callout warning">
+          <span class="callout-title">Segurança e plugins de terceiros</span>
+          <p>Plugins têm acesso ao conteúdo do seu arquivo Figma. Antes de instalar um plugin, verifique: o número de instalações (popularity), as avaliações, o desenvolvedor (empresa conhecida ou dev ativo?) e as permissões solicitadas. Evite plugins com poucas instalações, sem avaliações e de desenvolvedores desconhecidos em arquivos com dados sensíveis do cliente.</p>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Uma designer de UX trabalhando em um Design System para um banco digital usa os seguintes plugins em seu fluxo semanal: (1) <strong>Content Reel</strong> para preencher telas com dados bancários fictícios realistas (saldos, transações, nomes de beneficiários) em vez de Lorem ipsum; (2) <strong>Tokens Studio</strong> para sincronizar os design tokens com o repositório Git do time de desenvolvimento — garantindo que o que está no Figma é exatamente o que vai para o código; (3) <strong>Stark</strong> antes de cada entrega para auditar a acessibilidade dos novos componentes; (4) <strong>Design Lint</strong> para escanear o arquivo antes do handoff e garantir que não ficou nenhuma cor ou fonte fora da biblioteca. Esses quatro plugins economizam horas de trabalho manual por semana.</p>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Abrir Quick Actions (inclui plugins)</td><td><kbd>Ctrl</kbd> + <kbd>/</kbd></td><td><kbd>⌘</kbd> + <kbd>/</kbd></td></tr>
+              <tr><td>Abrir menu de Plugins</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>P</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>P</kbd></td></tr>
+              <tr><td>Re-executar último plugin</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>P</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>P</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Plugins são extensões JavaScript que rodam no Figma e adicionam funcionalidades via API.</li>
+          <li>Para instalar: Figma Community → Install → execute via menu Plugins ou Quick Actions (<kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>/</kbd>).</li>
+          <li>Plugins essenciais: Unsplash (fotos), Content Reel (dados), Iconify (ícones), Stark (acessibilidade), Autoflow (fluxos), Tokens Studio (design tokens), Design Lint (auditoria).</li>
+          <li>Widgets são objetos interativos persistentes no canvas — mais comuns no FigJam, mas existem para o Figma Design também.</li>
+          <li>Criar plugins próprios é viável com JavaScript básico usando a Figma Plugin API.</li>
+          <li>Cuidado com plugins de terceiros desconhecidos — eles têm acesso ao conteúdo dos seus arquivos.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Montar um mockup realista com plugins</h3>
+          <p>Crie uma tela de feed de um app social usando plugins:</p>
+          <ol>
+            <li>Instale Unsplash e Content Reel (se ainda não tiver).</li>
+            <li>Crie um frame mobile (390×844 px) com a estrutura básica de um feed: 3 posts, cada um com foto, nome de usuário, texto e botões de reação.</li>
+            <li>Use o Unsplash para inserir fotos reais nos posts (selecione um retângulo placeholder → rode o Unsplash).</li>
+            <li>Use o Content Reel para preencher os nomes de usuário e textos dos posts com dados realistas.</li>
+            <li>Instale o Stark e verifique o contraste do texto sobre os elementos de cor do seu design.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> a tela tem 3 posts com fotos reais do Unsplash, nomes e textos gerados pelo Content Reel, e o Stark confirma que pelo menos o texto principal passa no WCAG AA (ratio ≥ 4.5:1).
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Auditoria completa de Design System com plugins</h3>
+          <p>Pegue um arquivo Figma complexo (qualquer arquivo de exercício anterior ou um arquivo da Figma Community) e conduza uma auditoria completa com plugins: (1) rode o <strong>Design Lint</strong> e registre quantas inconsistências foram encontradas por tipo (cores fora da biblioteca, fontes desvinculadas, etc.); (2) rode o <strong>Stark</strong> nas principais telas e documente os pares de cores que falham no WCAG AA; (3) use o <strong>Autoflow</strong> para conectar as telas do arquivo criando um user flow visual. Entregue um relatório (pode ser um frame no próprio Figma) com os achados e as correções que você fez.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Qual plugin é considerado indispensável para verificar acessibilidade de cores no Figma?</p>
+            <ul class="quiz-options">
+              <li>Autoflow</li>
+              <li>Content Reel</li>
+              <li>Stark</li>
+              <li>Figmotion</li>
+            </ul>
+            <div class="quiz-explain">O <strong>Stark</strong> é o plugin de acessibilidade mais completo para Figma: verifica contraste WCAG, simula deficiências visuais e gera relatórios — indispensável para qualquer designer que leve acessibilidade a sério.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">2. O que o plugin Tokens Studio (anteriormente Figma Tokens) faz?</p>
+            <ul class="quiz-options">
+              <li>Gera tokens de autenticação para o Figma API</li>
+              <li>Gerencia design tokens em JSON, sincroniza com Git e exporta para código — integrando Figma ao pipeline de desenvolvimento</li>
+              <li>Cria componentes tokenizados automaticamente a partir de frames selecionados</li>
+              <li>Substitui as Variables nativas do Figma por uma versão mais avançada</li>
+            </ul>
+            <div class="quiz-explain">O Tokens Studio é o padrão da indústria para gerenciar design tokens no Figma, com suporte a sincronização Git e exportação para Style Dictionary — permitindo que design e código compartilhem os mesmos tokens.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">3. Por que é importante verificar a reputação de um plugin antes de instalá-lo?</p>
+            <ul class="quiz-options">
+              <li>Plugins populares carregam mais rápido</li>
+              <li>Plugins de desenvolvedores desconhecidos cobram mensalidade automaticamente</li>
+              <li>Plugins novos travam o Figma com mais frequência</li>
+              <li>Plugins têm acesso ao conteúdo dos arquivos Figma — um plugin malicioso poderia expor dados sensíveis do cliente</li>
+            </ul>
+            <div class="quiz-explain">A Figma Plugin API dá aos plugins acesso de leitura e escrita ao conteúdo dos arquivos. Um plugin malicioso poderia enviar dados sensíveis (wireframes de produtos não lançados, dados de clientes em mockups) para servidores externos. Sempre verifique a reputação antes de instalar.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

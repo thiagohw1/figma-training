@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulários e estados | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="06-06-formularios-estados" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🖥️ Módulo 6 · Projeto Guiado · Lição 6 de 8</div>
+        <h1>Formulários e estados</h1>
+        <p class="lead">Formulários são onde os usuários <em>constroem</em> o produto — criam projetos, adicionam tarefas, convidam membros. Projetar formulários bem é projetar a experiência de entrada de dados: clara, tolerante a erros e que dá feedback imediato.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~26 min</span>
+          <span>🎯 Nível: Projeto prático</span>
+          <span>🛠️ Pratique no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Criar um Component de Input com todos os estados (default, focus, filled, error, disabled);</li>
+            <li>Construir Select, Checkbox, Radio Button, Toggle e Date Picker como Components;</li>
+            <li>Projetar mensagens de validação e feedback visual coerentes com os tokens semânticos;</li>
+            <li>Criar os estados de tela mais importantes: Empty State, Loading Skeleton, Error e Success;</li>
+            <li>Montar um Modal e um Drawer (panel lateral) como overlays do sistema.</li>
+          </ul>
+        </div>
+
+        <h2>O Component de Input</h2>
+        <p>O Input é o componente de formulário mais ubíquo — e o mais importante de acertar. Ele precisa comunicar claramente em qual estado está (vazio? preenchido? com erro?) sem poluir a tela com informações desnecessárias.</p>
+
+        <h3>Anatomia do Input</h3>
+        <ul>
+          <li><strong>Label:</strong> texto acima do campo (Body/13 Medium, <code>color/text/default</code>). Obrigatório para acessibilidade.</li>
+          <li><strong>Field:</strong> o input em si — borda, fundo, placeholder/valor, ícones laterais.</li>
+          <li><strong>Helper text:</strong> texto abaixo — instrução (cor muted) ou mensagem de erro (cor danger).</li>
+        </ul>
+
+        <h3>Os 5 estados do Input</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Estado</th><th>Borda</th><th>Fundo</th><th>Texto</th><th>Uso</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Default</strong></td><td>1 px <code>border/default</code></td><td><code>surface/card</code></td><td>Placeholder em muted</td><td>Campo vazio, sem interação</td></tr>
+              <tr><td><strong>Focus</strong></td><td>2 px <code>brand/primary</code></td><td><code>surface/card</code></td><td>Cursor piscando</td><td>Campo ativo, digitando</td></tr>
+              <tr><td><strong>Filled</strong></td><td>1 px <code>border/strong</code></td><td><code>surface/card</code></td><td>Valor em <code>text/default</code></td><td>Campo preenchido</td></tr>
+              <tr><td><strong>Error</strong></td><td>2 px <code>semantic/danger</code></td><td><code>danger-soft</code></td><td>Valor + ícone de alerta</td><td>Validação falhou</td></tr>
+              <tr><td><strong>Disabled</strong></td><td>1 px <code>border/default</code></td><td><code>surface-2</code></td><td>Placeholder/valor em soft, opacidade 50%</td><td>Campo não editável</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie o frame base do Input.</strong>
+            Frame com Auto Layout vertical, gap 6. Dentro: Label (Text property), Field (frame horizontal 360×44 px, padding 12, gap 8), Helper text (Text property + booleana para visibilidade).
+          </li>
+          <li>
+            <strong>Configure o Field.</strong>
+            Auto Layout horizontal, gap Auto, padding 0 12. Conteúdo: ícone esquerdo (opcional, Instance Swap), texto do campo, ícone direito (opcional). O texto usa Instance Swap para alternar entre placeholder e valor digitado. Borda: Stroke Outside 1 px, border-radius 8.
+          </li>
+          <li>
+            <strong>Crie as 5 Variants de State.</strong>
+            Adicione a propriedade <strong>State</strong> com os valores: default, focus, filled, error, disabled. Em cada variant, mude as cores de borda e fundo conforme a tabela acima.
+          </li>
+          <li>
+            <strong>Adicione a propriedade de erro.</strong>
+            Na variant error, o helper text muda de cor (<code>color/semantic/danger</code>) e adicione um ícone de alerta (⚠️ 14×14 px) no lado direito do field. Use uma Boolean property <code>Has error</code> para controlar a visibilidade do helper text de erro.
+          </li>
+          <li>
+            <strong>Salve como Component.</strong>
+            Nomeie <code>Form/Input</code>. Propriedades expostas: Label text, Placeholder text, Value text, State (variant), Has leading icon (boolean), Has trailing icon (boolean), Helper text, Has error.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Label flutuante (floating label)</span>
+          <p>Em produtos SaaS modernos, a label às vezes "flutua" — começa dentro do campo como placeholder e sobe para o topo quando o usuário clica. Isso é elegante mas complexo de implementar no Figma com protótipo. Para começar, use o padrão mais simples: label acima + placeholder dentro. Mais claro para o usuário e mais fácil de codar.</p>
+        </div>
+
+        <h2>Outros componentes de formulário</h2>
+
+        <h3>Select (Dropdown)</h3>
+        <p>Component com o mesmo visual do Input mas com ícone de chevron-down fixo na direita e um dropdown de opções. Variants: closed/open. No estado open, o frame de opções aparece abaixo com sombra Shadow/md.</p>
+
+        <h3>Checkbox</h3>
+        <p>Quadrado de 18×18 px, border-radius 4, borda 1.5 px. Variants de <strong>State</strong>: unchecked (borda border-strong), checked (fundo primary, ícone checkmark branco), indeterminate (traço horizontal branco — para "selecionar todos" parcial), disabled. Crie o <code>CheckboxField</code> combinando Checkbox + Label + Helper text em Auto Layout horizontal.</p>
+
+        <h3>Radio Button</h3>
+        <p>Círculo de 18×18 px, borda 1.5 px. Variants: unchecked, checked (círculo interno de 8 px na cor primary). Sempre use dentro de um RadioGroup — Radio Buttons nunca aparecem isolados.</p>
+
+        <h3>Toggle (Switch)</h3>
+        <p>Track oval de 40×24 px com thumb circular de 18×18 px. Variants: off (track cinza, thumb à esquerda), on (track primary, thumb à direita). Adicione uma animação Smart Animate no protótipo para suavizar a transição.</p>
+
+        <h3>Date Picker</h3>
+        <p>Input com ícone de calendário. No estado open: popover de 280×300 px com cabeçalho de mês/ano, navegação para anterior/próximo, e grid de dias (7 colunas × 5 linhas). Variants do Day Cell: default, hover, today (círculo de fundo muted), selected (círculo primary), range (fundo primary-soft para intervalos de datas).</p>
+
+        <div class="figma-mock">
+          <div class="device-browser" style="max-width:680px;">
+            <div class="browser-bar"><i></i><i></i><i></i><span style="flex:1;text-align:center;font-size:12px;color:var(--text-muted);">Components — Formulários</span></div>
+            <div style="padding:24px;display:flex;flex-direction:column;gap:20px;">
+              <!-- Input states row -->
+              <div>
+                <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;">Input — estados</div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;">
+                  <!-- Default -->
+                  <div style="display:flex;flex-direction:column;gap:5px;">
+                    <span style="font-size:12px;font-weight:500;">Nome do projeto</span>
+                    <div style="height:40px;border:1px solid var(--border);border-radius:8px;padding:0 12px;display:flex;align-items:center;">
+                      <span style="font-size:13px;color:var(--text-soft);">Digite o nome…</span>
+                    </div>
+                    <span style="font-size:11px;color:var(--text-soft);">Default</span>
+                  </div>
+                  <!-- Focus -->
+                  <div style="display:flex;flex-direction:column;gap:5px;">
+                    <span style="font-size:12px;font-weight:500;">Nome do projeto</span>
+                    <div style="height:40px;border:2px solid var(--primary);border-radius:8px;padding:0 12px;display:flex;align-items:center;">
+                      <span style="font-size:13px;color:var(--text);">Projeto Alpha|</span>
+                    </div>
+                    <span style="font-size:11px;color:var(--text-soft);">Focus</span>
+                  </div>
+                  <!-- Error -->
+                  <div style="display:flex;flex-direction:column;gap:5px;">
+                    <span style="font-size:12px;font-weight:500;">Email</span>
+                    <div style="height:40px;border:2px solid var(--danger);border-radius:8px;padding:0 12px;background:var(--danger-soft);display:flex;align-items:center;justify-content:space-between;">
+                      <span style="font-size:13px;color:var(--text);">usuario@</span>
+                      <span style="font-size:13px;">⚠️</span>
+                    </div>
+                    <span style="font-size:11px;color:var(--danger);">Email inválido</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Controls row -->
+              <div>
+                <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;">Controles</div>
+                <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:center;">
+                  <!-- Checkbox -->
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <div style="width:18px;height:18px;border-radius:4px;background:var(--primary);display:grid;place-items:center;">
+                      <span style="color:#fff;font-size:11px;font-weight:700;">✓</span>
+                    </div>
+                    <span style="font-size:13px;">Notificar membros</span>
+                  </div>
+                  <!-- Radio -->
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <div style="width:18px;height:18px;border-radius:50%;border:1.5px solid var(--primary);display:grid;place-items:center;">
+                      <div style="width:8px;height:8px;border-radius:50%;background:var(--primary);"></div>
+                    </div>
+                    <span style="font-size:13px;">Alta prioridade</span>
+                  </div>
+                  <!-- Toggle ON -->
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <div style="width:40px;height:24px;border-radius:99px;background:var(--primary);display:flex;align-items:center;padding:3px;justify-content:flex-end;">
+                      <div style="width:18px;height:18px;border-radius:50%;background:#fff;"></div>
+                    </div>
+                    <span style="font-size:13px;">Público</span>
+                  </div>
+                  <!-- Toggle OFF -->
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <div style="width:40px;height:24px;border-radius:99px;background:var(--surface-3);display:flex;align-items:center;padding:3px;">
+                      <div style="width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:var(--shadow-sm);"></div>
+                    </div>
+                    <span style="font-size:13px;">Privado</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">Componentes de formulário do TaskFlow: Input com estados (default, focus, error), Checkbox checked, Radio checked, Toggle on e Toggle off.</p>
+        </div>
+
+        <h2>Estados de tela do sistema</h2>
+        <p>Todo fluxo de usuário passa por múltiplos estados antes de mostrar o conteúdo final. Projetar esses estados é fundamental para que a interface pareça completa e polida — não apenas na tela "feliz".</p>
+
+        <h3>Empty State</h3>
+        <p>Aparece quando não há dados para exibir (ex.: nenhum projeto criado ainda). Um bom Empty State tem: ícone ou ilustração, título claro, texto explicativo e um CTA primário para resolver o vazio.</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie o frame do Empty State.</strong>
+            Frame com Auto Layout vertical, align center, gap 12, padding 48. Dentro: ícone (48×48 px, border-radius 12, fundo surface-2), título (h2), descrição (Body/14, muted, max-width 360 px, text-align center), botão primário CTA.
+          </li>
+          <li>
+            <strong>Crie Variants por contexto.</strong>
+            Propriedade <strong>Context</strong>: projects (ícone de pasta), tasks (ícone de checklist), members (ícone de grupo), search-results (ícone de lupa). Cada variant muda o ícone e o texto.
+          </li>
+        </ol>
+
+        <h3>Loading Skeleton</h3>
+        <p>O skeleton substitui o conteúdo enquanto os dados carregam — muito melhor que um spinner no centro da tela porque comunica a estrutura da página que está chegando.</p>
+        <p>Para criar um skeleton no Figma: substitua os textos por retângulos arredondados (border-radius 4 px) com fill usando um gradiente shimmer animado (<code>surface-2</code> → <code>surface-3</code> → <code>surface-2</code>). No protótipo, use uma animação de After delay que transita do skeleton para o estado carregado.</p>
+
+        <h3>Error State</h3>
+        <p>Quando uma operação falha (erro de servidor, timeout), mostre uma tela de erro com: ícone de alerta, mensagem clara do que deu errado (sem jargão técnico), e botão "Tentar novamente".</p>
+
+        <div class="callout warning">
+          <span class="callout-title">Nunca mostre mensagens técnicas ao usuário</span>
+          <p>Erros como "Error 500: Internal Server Error" ou "TypeError: Cannot read property of undefined" são para desenvolvedores, não para usuários. No design, escreva mensagens empáticas: <em>"Não conseguimos carregar seus projetos agora. Tente novamente em instantes."</em> O código de erro pode aparecer em menor destaque para suporte técnico.</p>
+        </div>
+
+        <h3>Success State</h3>
+        <p>Confirme ações importantes com feedback visual: toast/snackbar aparece no canto da tela (bottom-right) com ícone de check + mensagem de sucesso (ex.: "Projeto criado com sucesso!"). Desaparece automaticamente após 4 segundos. Para ações críticas (excluir projeto), use um modal de confirmação antes da ação.</p>
+
+        <h2>Modal e Drawer</h2>
+
+        <h3>Modal</h3>
+        <p>O Modal é uma camada de overlay que para o fluxo principal para executar uma ação focada. Estrutura: backdrop escuro (fundo rgba(0,0,0,.5) no frame acima do conteúdo) + painel centralizado (max-width 560 px, padding 28, border-radius 16, Shadow/lg).</p>
+        <p>O painel tem: header (título + botão X de fechar), corpo com formulário ou conteúdo, footer com botões de ação (cancelar + confirmar, alinhados à direita).</p>
+
+        <h3>Drawer (Panel lateral)</h3>
+        <p>O Drawer aparece pela direita (ou esquerda) como um painel que desliza sobre o conteúdo sem substituí-lo completamente. Ideal para detalhes que precisam de mais espaço (detalhe de tarefa, configurações de projeto). Largura: 400–480 px, ocupa 100% da altura da viewport menos a topbar.</p>
+
+        <div class="callout pro">
+          <span class="callout-title">Dica: modal vs. drawer vs. página</span>
+          <p>Use <strong>modal</strong> para ações curtas e destrutivas (confirmar exclusão, criar item com poucos campos). Use <strong>drawer</strong> para detalhes ricos que o usuário precisa referenciar enquanto olha o contexto. Use <strong>página nova</strong> quando o conteúdo é extenso ou precisa de navegação própria (edição completa de um projeto). Misturar os três sem critério cria interfaces confusas.</p>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>A Linear (ferramenta de issue tracking usada por times de engenharia) é famosa pela qualidade dos seus formulários e estados: os skeletons carregam instantaneamente antes dos dados, os empty states são específicos por contexto, e os modais têm atalhos de teclado (<kbd>Esc</kbd> para fechar, <kbd>Enter</kbd> para confirmar). Essas micro-decisões de UX são definidas primeiro no design.</p>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Criar Component</td><td><kbd>Alt</kbd> + <kbd>Ctrl</kbd> + <kbd>K</kbd></td><td><kbd>⌥</kbd> + <kbd>⌘</kbd> + <kbd>K</kbd></td></tr>
+              <tr><td>Adicionar Variant ao Component</td><td>botão "+ Add Variant" no painel</td><td>botão "+ Add Variant" no painel</td></tr>
+              <tr><td>Editar texto na instância</td><td><kbd>Enter</kbd> duas vezes para entrar, depois editar</td><td><kbd>Enter</kbd> duas vezes para entrar, depois editar</td></tr>
+              <tr><td>Copiar propriedades de estilo</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>C</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>C</kbd></td></tr>
+              <tr><td>Colar propriedades de estilo</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>V</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>V</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>O Component Input precisa de 5 variants de estado (default, focus, filled, error, disabled) com propriedades expostas para label, placeholder, value e helper text.</li>
+          <li>Checkbox, Radio, Toggle e Select são components independentes — nunca copie e cole ajustando manualmente.</li>
+          <li>Empty State, Loading Skeleton, Error e Success são estados de tela tão importantes quanto o estado "carregado".</li>
+          <li>Skeletons comunicam estrutura enquanto carregam — muito superiores a spinners centralizados.</li>
+          <li>Modais para ações curtas; Drawers para detalhes ricos; páginas para conteúdo extenso.</li>
+          <li>Nunca mostre mensagens de erro técnicas ao usuário — escreva linguagem empática e clara.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Construa o formulário "Criar Tarefa"</h3>
+          <ol>
+            <li>Crie o Component <code>Form/Input</code> com as 5 variants de estado e todas as propriedades expostas.</li>
+            <li>Monte um Modal de "Criar Tarefa" usando o Input, um Select de responsável, um Date Picker e um Toggle de prioridade.</li>
+            <li>Projete o estado de loading skeleton do painel de tarefas: substitua os cards de tarefa por retângulos arredondados de fundo surface-2.</li>
+            <li>Crie um Empty State para a tela de projetos (quando o usuário ainda não criou nenhum).</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> o Modal de "Criar Tarefa" tem todos os campos com labels visíveis, o estado de error mostra a borda vermelha e o helper text de erro no Input de nome, e o Empty State tem CTA claro que leva ao modal de criação.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Fluxo completo de criação com validação</h3>
+          <p>Monte o fluxo completo de criação de projeto no protótipo: (1) tela de lista de projetos no Empty State → clique no CTA abre o Modal → (2) Modal com formulário no estado default → digitar no campo de nome o muda para focus → (3) clicar em "Criar" sem preencher o nome obrigatório mostra o Input no estado error com helper text → (4) preencher corretamente e clicar confirma, fecha o modal e exibe o Toast de sucesso na tela principal. Use interações de Set variable para gerenciar os estados do Input.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Qual é a principal vantagem do Loading Skeleton sobre um spinner centralizado?</p>
+            <ul class="quiz-options">
+              <li>O skeleton carrega mais rápido no servidor</li>
+              <li>O skeleton comunica a estrutura da página que está chegando, reduzindo a percepção de espera e evitando o salto visual (layout shift) quando os dados chegam</li>
+              <li>O spinner é mais acessível para usuários com deficiências visuais</li>
+              <li>Skeletons são mais fáceis de implementar em código</li>
+            </ul>
+            <div class="quiz-explain">O skeleton elimina o <strong>layout shift</strong> — a página "pula" quando o conteúdo substitui o spinner. Além disso, comunicar a estrutura reduz a percepção de espera (o cérebro processa "está carregando" em vez de "está travado").</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">2. Quando usar um Drawer em vez de um Modal?</p>
+            <ul class="quiz-options">
+              <li>Drawer sempre que o usuário precisar confirmar uma ação destrutiva</li>
+              <li>Modal para formulários com muitos campos; Drawer para ações rápidas</li>
+              <li>Drawer quando o usuário precisa ver o contexto principal enquanto acessa detalhes ricos; Modal para ações focadas e curtas</li>
+              <li>Drawer é exclusivo para mobile; Modal é para desktop</li>
+            </ul>
+            <div class="quiz-explain"><strong>Drawer</strong> desliza sobre o conteúdo sem esconder completamente o contexto — ideal para o detalhe de uma tarefa onde o usuário ainda quer ver o board ao fundo. <strong>Modal</strong> para, bloqueando o fundo, indicando que o usuário deve concluir aquela ação antes de prosseguir.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Um campo de Input está inválido. Qual combinação de mudanças visuais deve ocorrer para comunicar o erro corretamente?</p>
+            <ul class="quiz-options">
+              <li>Borda vermelha (danger) + fundo danger-soft + ícone de alerta à direita + helper text em vermelho abaixo</li>
+              <li>Apenas o texto do placeholder muda para vermelho</li>
+              <li>Um pop-up de alerta abre sobre o campo</li>
+              <li>O campo pisca 3 vezes</li>
+            </ul>
+            <div class="quiz-explain">O estado de erro usa <strong>múltiplas camadas de feedback</strong>: cor (borda + fundo), ícone (alerta), e texto (helper text explicativo). Usar apenas uma camada (ex.: só mudar a cor) falha em acessibilidade — usuários com daltonismo podem não perceber.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checklists | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="rec-checklists" data-root="../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">📚 Recursos · Consulta rápida</div>
+        <h1>Checklists</h1>
+        <p class="lead">Listas de verificação acionáveis para as etapas mais críticas do fluxo de design. Imprima, cole na parede ou abra antes de cada entrega.</p>
+
+        <div class="callout tip">
+          <span class="callout-title">Como usar</span>
+          <p>Percorra cada item antes de avançar de fase. Se um item não se aplica ao seu projeto, marque como N/A e siga em frente — o objetivo é <em>pensar</em> em cada ponto, não travar o projeto.</p>
+        </div>
+
+        <h2>Checklist de Design System</h2>
+        <p>Use ao criar ou avaliar um design system do zero. Serve tanto para sistemas pessoais quanto para times.</p>
+        <ul>
+          <li>☐ Paleta de cores definida: primária, secundária, neutros, semânticas (success, warning, danger, info)</li>
+          <li>☐ Tokens de cor criados como Variables com suporte a modo claro e escuro</li>
+          <li>☐ Tokens de tipografia: tamanhos de fonte, line-height, letter-spacing e peso para cada nível (Display, H1–H4, Body, Caption, Label)</li>
+          <li>☐ Tokens de espaçamento: escala definida (ex.: 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 px)</li>
+          <li>☐ Tokens de border-radius para cada "camada" de arredondamento</li>
+          <li>☐ Tokens de sombra (shadow) para elevações (sm, md, lg)</li>
+          <li>☐ Componentes atômicos construídos: botão, input, checkbox, radio, toggle, badge, avatar, ícone</li>
+          <li>☐ Componentes moleculares: card, modal, tooltip, toast, dropdown, breadcrumb, pagination</li>
+          <li>☐ Componentes usando Auto Layout (não posicionamento manual)</li>
+          <li>☐ Variantes definidas para estados: default, hover, active, disabled, error, loading</li>
+          <li>☐ Component Properties expostas (texto, booleanos, variantes, instance swap)</li>
+          <li>☐ Biblioteca publicada no Figma (Assets → Publish)</li>
+          <li>☐ Documentação de uso: cada componente com anotação de quando e como usar</li>
+          <li>☐ Processo de atualização definido (quem aprova, como é comunicado ao time)</li>
+          <li>☐ Equivalência com o código: componentes espelham os da biblioteca de frontend (React, Vue, etc.)</li>
+        </ul>
+
+        <h2>Checklist de Handoff para Desenvolvedores</h2>
+        <p>Execute antes de compartilhar o link do arquivo com o time de engenharia.</p>
+        <ul>
+          <li>☐ Todos os frames de entrega estão em frames nomeados (não grupos soltos)</li>
+          <li>☐ Camadas nomeadas de forma descritiva (não "Rectangle 47" ou "Group 12")</li>
+          <li>☐ Dev Mode habilitado e o link de inspeção gerado</li>
+          <li>☐ Todos os componentes são instâncias de componentes da biblioteca (não cópias soltas)</li>
+          <li>☐ Imagens e ícones com marcação de exportação (Export) configurada com o formato correto (SVG para ícones, PNG/WebP para fotos)</li>
+          <li>☐ Espaçamentos internos conferidos com a escala do token (múltiplos de 4 ou 8)</li>
+          <li>☐ Comportamento responsivo documentado: qual frame é mobile, tablet, desktop</li>
+          <li>☐ Estados de UI cobertos: vazio (empty state), carregando (loading/skeleton), erro, sucesso</li>
+          <li>☐ Fluxo de protótipo disponível para estados de interação não óbvios</li>
+          <li>☐ Anotações de interação adicionadas onde o comportamento não é visual (ex.: debounce, validação)</li>
+          <li>☐ Fontes verificadas: todas são fontes do Google Fonts, sistema ou licenciadas</li>
+          <li>☐ Cores usando styles/variables (não cores hardcoded em hex avulsas)</li>
+          <li>☐ Contraste de cor conferido (mínimo AA pelo WCAG 2.2: 4,5:1 para texto normal)</li>
+          <li>☐ Tamanhos de toque (touch targets) mínimos respeitados: 44×44 px (Apple HIG) ou 48×48 dp (Material)</li>
+          <li>☐ Revisão do desenvolvedor agendada para tirar dúvidas antes da implementação</li>
+        </ul>
+
+        <h2>Checklist de Acessibilidade</h2>
+        <p>Baseado nas diretrizes WCAG 2.2. Aplique a cada tela antes de aprovar para entrega.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Níveis WCAG</span>
+          <p><strong>Nível A</strong> — obrigatório. <strong>Nível AA</strong> — padrão de mercado e exigência legal em vários países. <strong>Nível AAA</strong> — ideal para acessibilidade máxima. Mire sempre no AA.</p>
+        </div>
+
+        <ul>
+          <li>☐ <strong>Contraste de texto normal:</strong> mínimo 4,5:1 entre cor do texto e fundo (WCAG AA)</li>
+          <li>☐ <strong>Contraste de texto grande (≥18 pt ou ≥14 pt negrito):</strong> mínimo 3:1</li>
+          <li>☐ <strong>Contraste de elementos de UI interativos</strong> (bordas de input, ícones ativos): mínimo 3:1</li>
+          <li>☐ <strong>Informação não depende só de cor:</strong> erros indicados também por ícone/texto, não só por cor vermelha</li>
+          <li>☐ <strong>Tamanho de fonte mínimo:</strong> 16 px para corpo de texto principal</li>
+          <li>☐ <strong>Espaçamento de texto:</strong> design suporta aumento de line-height (1,5×), letter-spacing (0,12 em) e word-spacing (0,16 em) sem quebrar layout</li>
+          <li>☐ <strong>Targets tocáveis:</strong> áreas clicáveis de pelo menos 44×44 px</li>
+          <li>☐ <strong>Foco visível:</strong> todos os elementos interativos têm um estado de foco claramente visível (anel de foco)</li>
+          <li>☐ <strong>Navegação por teclado:</strong> ordem de foco lógica documentada (Tab order anotado nos frames)</li>
+          <li>☐ <strong>Imagens decorativas</strong> anotadas como alt="" para leitores de tela</li>
+          <li>☐ <strong>Imagens informativas</strong> com texto alternativo (alt) descrito na anotação</li>
+          <li>☐ <strong>Ícones sem texto:</strong> possuem label acessível anotado (aria-label)</li>
+          <li>☐ <strong>Formulários:</strong> cada campo tem label visível (não apenas placeholder)</li>
+          <li>☐ <strong>Mensagens de erro:</strong> descrevem o problema e como corrigi-lo</li>
+          <li>☐ <strong>Animações:</strong> há alternativa ou desativação para usuários com prefers-reduced-motion</li>
+        </ul>
+
+        <h2>Checklist "Antes de Entregar" — Revisão Final</h2>
+        <p>O último pente fino antes de apresentar ao cliente, PO ou subir para produção.</p>
+        <ul>
+          <li>☐ Arquivo organizado: páginas nomeadas por fluxo ou sprint, não "Page 1", "Page 2"</li>
+          <li>☐ Frames de entrega ordenados da esquerda para a direita no canvas na ordem do fluxo</li>
+          <li>☐ Sem objetos esquecidos fora dos frames (na área geral do canvas)</li>
+          <li>☐ Sem layers ocultas que não deveriam estar lá (limpe o que não será entregue)</li>
+          <li>☐ Conteúdo real ou realista — sem "Lorem ipsum" em texto visível</li>
+          <li>☐ Imagens de placeholder substituídas por imagens representativas</li>
+          <li>☐ Todos os estados de componente presentes: default, hover, focus, active, disabled</li>
+          <li>☐ Fluxo de prototipagem testado do início ao fim no Preview (<kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Alt</kbd>/<kbd>⌥</kbd> + <kbd>↵</kbd>)</li>
+          <li>☐ Versões mobile e desktop presentes (se o projeto for responsivo)</li>
+          <li>☐ Arquivo salvo e sincronizado (verifique o indicador de status no canto superior)</li>
+          <li>☐ Permissões de acesso configuradas (quem pode editar vs. apenas ver)</li>
+          <li>☐ Link de compartilhamento testado em janela anônima (ou por outro usuário)</li>
+          <li>☐ Changelog ou nota de versão adicionada ao arquivo ou à apresentação</li>
+        </ul>
+
+        <h2>Checklist de Auto Layout e Componentização</h2>
+        <p>Para avaliar a qualidade técnica de componentes e frames construídos com Auto Layout.</p>
+        <ul>
+          <li>☐ Todos os contêineres que precisam crescer/diminuir usam Auto Layout (não posicionamento absoluto)</li>
+          <li>☐ Espaçamentos usam o campo <em>Gap</em> do Auto Layout, não objetos espaçadores invisíveis</li>
+          <li>☐ Padding configurado pelo painel de Auto Layout, não por margin manual dos filhos</li>
+          <li>☐ Direção (horizontal/vertical) escolhida de forma intencional</li>
+          <li>☐ Filhos com resizing correto: "Fixed" para tamanho rígido, "Fill container" para crescer, "Hug contents" para abraçar</li>
+          <li>☐ Componentes com mais de 2 variações organizados em Component Sets (com Variants)</li>
+          <li>☐ Nomes das propriedades de variante em inglês e descritivos (Type, Size, State, Hierarchy…)</li>
+          <li>☐ Valores das propriedades consistentes entre variantes (ex.: todos usam "Small" não misturar "Small" e "sm")</li>
+          <li>☐ Componentes testados com textos curtos E longos (evitar overflow)</li>
+          <li>☐ Componentes testados com conteúdo de imagem faltando (graceful degradation)</li>
+          <li>☐ Nested Auto Layouts (Auto Layout dentro de Auto Layout) usados corretamente para layouts complexos</li>
+          <li>☐ Componentes de layout de página (header, footer, sidebar) construídos com Constraints além do Auto Layout</li>
+          <li>☐ Sem grupos desnecessários dentro de Auto Layouts (Groups não interagem bem com resizing)</li>
+        </ul>
+
+        <div class="callout pro">
+          <span class="callout-title">Dica de time</span>
+          <p>Transforme estas checklists em um arquivo Figma com checkboxes reais (retângulos + estados de componente) e cole na página de "QA" do seu arquivo. Isso torna a revisão visual e rastreável por toda a equipe.</p>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../assets/js/course-data.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estilos: color, text, effect e grid | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="02-07-estilos" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">📦 Módulo 2 · Intermediário · Lição 7 de 9</div>
+        <h1>Estilos: color, text, effect e grid</h1>
+        <p class="lead">Styles são a memória de design do Figma: uma coleção nomeada de propriedades (cor, tipografia, sombra, grid) que você aplica com um clique e atualiza em um único lugar. Eles são o alicerce de qualquer design system consistente.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~20 min</span>
+          <span>🎯 Nível: Intermediário</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Criar, aplicar e editar os quatro tipos de Styles: Color/Paint, Text, Effect e Layout Grid;</li>
+            <li>Organizar styles em grupos e subgrupos com a barra "/";</li>
+            <li>Atualizar um style e ver a propagação em todo o arquivo;</li>
+            <li>Entender a diferença entre Styles e Variables (e quando usar cada um).</li>
+          </ul>
+        </div>
+
+        <h2>O que são Styles?</h2>
+        <p>Um <strong>Style</strong> é um conjunto nomeado de propriedades que pode ser vinculado a elementos do canvas. Quando você aplica um Style a um elemento e depois edita o Style, <em>todos</em> os elementos vinculados a ele se atualizam automaticamente.</p>
+        <p>Pense em Styles como a versão visual de uma variável de design: em vez de usar o hexadecimal <code>#6c4cf1</code> em 200 elementos, você usa o style "Brand/Primary" — e, quando a cor da marca muda, você edita o style uma vez e todo o arquivo reflete.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Styles são para o designer; Variables são para o handoff e responsividade</span>
+          <p>Styles são excelentes para gerenciar propriedades visuais no design. Variables (veja o Módulo 3) vão além: suportam múltiplos modos (tema claro/escuro), se integram a prototipagem com lógica e são lidas diretamente pelos desenvolvedores em ferramentas modernas. Para 90% dos projetos, Styles são suficientes e mais simples. Quando precisar de temas ou lógica condicional, use Variables.</p>
+        </div>
+
+        <h2>Tipo 1: Color / Paint Styles</h2>
+        <p>Um Color Style salva uma cor (sólida, gradiente ou imagem) como um valor nomeado reutilizável. Você pode aplicar color styles em:</p>
+        <ul>
+          <li>Fill (cor de fundo de frames, shapes e textos)</li>
+          <li>Stroke (cor da borda)</li>
+          <li>Elementos de efeito (sombras e blurs — veremos em Effect Styles)</li>
+        </ul>
+
+        <h3>Criando um Color Style</h3>
+        <ol class="steps">
+          <li>
+            <strong>Selecione um elemento</strong> com a cor que quer salvar (ou crie um retângulo com a cor).
+          </li>
+          <li>
+            <strong>No painel Fill,</strong> clique nos quatro pontinhos (<code>⠿</code>) ao lado da cor. Isso abre o gerenciador de styles.
+          </li>
+          <li>
+            <strong>Clique em "+"</strong> para criar um novo style. Digite o nome usando a convenção com "/" para grupos: <code>Brand/Primary</code>, <code>Neutral/100</code>, <code>Semantic/Error</code>.
+          </li>
+          <li>
+            <strong>Clique em "Create style".</strong> O style aparece no painel e fica disponível para o arquivo inteiro.
+          </li>
+        </ol>
+
+        <h3>Aplicando um Color Style</h3>
+        <p>Selecione o elemento, clique no seletor de Fill e, em vez de digitar uma cor, clique nos quatro pontinhos para abrir o seletor de styles. Selecione o style desejado — o elemento fica vinculado.</p>
+
+        <div class="callout tip">
+          <span class="callout-title">Como editar um Color Style</span>
+          <p>No painel Assets (aba Styles) ou no painel Local styles (clique em qualquer fill vinculado a um style), dê duplo clique no style para abrir o editor. Ao alterar a cor, todos os elementos vinculados a esse style se atualizam imediatamente em todo o arquivo.</p>
+        </div>
+
+        <h2>Tipo 2: Text Styles</h2>
+        <p>Text Styles salvam um conjunto de propriedades tipográficas: fonte, peso, tamanho, line-height, letter-spacing, text-transform. São aplicados às camadas de texto.</p>
+        <p>Um scale tipográfico bem organizado é fundamental para consistência. Exemplo de nomenclatura:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Style Name</th><th>Tamanho</th><th>Peso</th><th>Line-height</th><th>Uso</th></tr></thead>
+            <tbody>
+              <tr><td><code>Display/XL</code></td><td>64px</td><td>800</td><td>1.1</td><td>Hero headlines</td></tr>
+              <tr><td><code>Display/Large</code></td><td>48px</td><td>700</td><td>1.15</td><td>Page titles</td></tr>
+              <tr><td><code>Heading/H1</code></td><td>36px</td><td>700</td><td>1.2</td><td>Section headings</td></tr>
+              <tr><td><code>Heading/H2</code></td><td>28px</td><td>700</td><td>1.25</td><td>Sub-headings</td></tr>
+              <tr><td><code>Body/Large</code></td><td>18px</td><td>400</td><td>1.6</td><td>Lead paragraph</td></tr>
+              <tr><td><code>Body/Default</code></td><td>16px</td><td>400</td><td>1.65</td><td>Body text</td></tr>
+              <tr><td><code>Body/Small</code></td><td>14px</td><td>400</td><td>1.5</td><td>Captions, labels</td></tr>
+              <tr><td><code>Label/Bold</code></td><td>12px</td><td>700</td><td>1.4</td><td>Tags, badges, chips</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Criando um Text Style</h3>
+        <ol class="steps">
+          <li>
+            <strong>Selecione uma camada de texto</strong> e configure todas as propriedades tipográficas no painel direito.
+          </li>
+          <li>
+            <strong>No painel Text, clique em quatro pontinhos</strong> ao lado do nome da fonte.
+          </li>
+          <li>
+            <strong>Clique em "+"</strong>, nomeie o style (ex.: <code>Heading/H1</code>) e crie.
+          </li>
+        </ol>
+
+        <h2>Tipo 3: Effect Styles</h2>
+        <p>Effect Styles salvam sombras (<strong>Drop shadow</strong>, <strong>Inner shadow</strong>) e desfocagens (<strong>Layer blur</strong>, <strong>Background blur</strong>). Use para definir a elevação dos seus componentes de forma consistente:</p>
+        <ul>
+          <li><code>Shadow/sm</code> — sombra leve para cards e chips (1-2px)</li>
+          <li><code>Shadow/md</code> — sombra média para dropdowns e menus (4-8px)</li>
+          <li><code>Shadow/lg</code> — sombra forte para modals e popovers (12-24px)</li>
+          <li><code>Blur/frosted</code> — background blur para glassmorphism</li>
+        </ul>
+
+        <h3>Criando um Effect Style</h3>
+        <ol class="steps">
+          <li>
+            <strong>Selecione um frame.</strong> No painel Effects, clique no "+" para adicionar um drop shadow. Configure os valores (offset X/Y, blur, spread, cor e opacidade).
+          </li>
+          <li>
+            <strong>Clique nos quatro pontinhos</strong> ao lado do effect e depois em "+" para criar o style.
+          </li>
+          <li>
+            <strong>Nomeie:</strong> <code>Shadow/md</code>, <code>Shadow/card</code>, <code>Blur/frosted</code>.
+          </li>
+        </ol>
+
+        <h2>Tipo 4: Layout Grid Styles</h2>
+        <p>Layout Grid Styles salvam configurações de grid (colunas, linhas, ou grid uniforme) para reutilização. Isso garante consistência nos grids de layout entre telas e designers. Exemplos:</p>
+        <ul>
+          <li><code>Grid/Mobile</code> — 4 colunas, margin 16, gutter 16</li>
+          <li><code>Grid/Tablet</code> — 8 colunas, margin 24, gutter 20</li>
+          <li><code>Grid/Desktop</code> — 12 colunas, margin 80, gutter 24</li>
+        </ul>
+
+        <h2>Organizando com grupos e subgrupos (/)</h2>
+        <p>A barra <code>/</code> no nome do style cria uma estrutura hierárquica no painel. Por exemplo:</p>
+        <ul>
+          <li><code>Brand/Primary</code>, <code>Brand/Secondary</code>, <code>Brand/Tertiary</code> → grupo "Brand"</li>
+          <li><code>Neutral/50</code>, <code>Neutral/100</code>, ..., <code>Neutral/900</code> → escala de cinzas</li>
+          <li><code>Semantic/Success</code>, <code>Semantic/Warning</code>, <code>Semantic/Error</code> → cores semânticas</li>
+        </ul>
+        <p>Você pode criar quantos níveis quiser: <code>Text/Body/Large</code>, <code>Text/Body/Small</code>, etc.</p>
+
+        <div class="callout warning">
+          <span class="callout-title">Cuidado com nomes genéricos demais</span>
+          <p>Evite nomear styles como <code>Roxo escuro</code> ou <code>Texto grande</code> — são descritivos do valor, não do uso. Prefira nomes semânticos: <code>Brand/Primary</code>, <code>Heading/H1</code>. Assim, ao mudar a cor de "primary" de roxo para azul, você não precisa renomear o style — ele continua chamando <code>Brand/Primary</code> e o valor muda internamente.</p>
+        </div>
+
+        <h2>Styles vs Variables: entendendo a diferença</h2>
+        <p>Com a chegada das <strong>Variables</strong> (Módulo 3), a distinção ficou mais importante. Veja o resumo:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Característica</th><th>Styles</th><th>Variables</th></tr></thead>
+            <tbody>
+              <tr><td>Suporta múltiplos modos (light/dark)</td><td>Não (seria dois styles separados)</td><td>Sim (um variable com dois modos)</td></tr>
+              <tr><td>Tipos suportados</td><td>Cor, Texto, Efeito, Grid</td><td>Cor, Número, String, Boolean</td></tr>
+              <tr><td>Integração com prototipagem</td><td>Limitada</td><td>Ativa (condições, set variable)</td></tr>
+              <tr><td>Leitura por devs (Dev Mode)</td><td>Parcial</td><td>Nativa (nomes de token)</td></tr>
+              <tr><td>Curva de aprendizado</td><td>Baixa</td><td>Média-alta</td></tr>
+              <tr><td>Quando usar</td><td>Projetos simples, times sem temas</td><td>Design systems maduros, temas, tokens</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout note">
+          <span class="callout-title">Teaser: Variables no Módulo 3</span>
+          <p>Variables cobrem o que Styles não conseguem: um mesmo token de cor que muda automaticamente de <code>#6c4cf1</code> (claro) para <code>#9b81ff</code> (escuro) ao trocar de modo. Se você está construindo um produto com suporte a dark mode ou tematização, Variables são o caminho. Vamos explorar tudo no Módulo 3.</p>
+        </div>
+
+        <h2>Exemplo de uso real: paleta e escala tipográfica de um produto</h2>
+        <p>Ao iniciar um projeto, o designer cria a fundação de Styles antes de desenhar qualquer tela:</p>
+
+        <div class="figma-mock">
+          <div style="width:100%;max-width:520px;">
+            <p style="font-size:12px;color:var(--text-muted);margin:0 0 10px;font-weight:700;text-transform:uppercase;">Paleta de Cores (Color Styles)</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <div style="width:48px;height:48px;border-radius:8px;background:#6c4cf1;"></div>
+                <span style="font-size:10px;color:var(--text-muted);">Primary</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <div style="width:48px;height:48px;border-radius:8px;background:#b0367a;"></div>
+                <span style="font-size:10px;color:var(--text-muted);">Secondary</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <div style="width:48px;height:48px;border-radius:8px;background:#18915a;"></div>
+                <span style="font-size:10px;color:var(--text-muted);">Success</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <div style="width:48px;height:48px;border-radius:8px;background:#d23b3b;"></div>
+                <span style="font-size:10px;color:var(--text-muted);">Error</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <div style="width:48px;height:48px;border-radius:8px;background:#b4730a;"></div>
+                <span style="font-size:10px;color:var(--text-muted);">Warning</span>
+              </div>
+            </div>
+            <p style="font-size:12px;color:var(--text-muted);margin:0 0 10px;font-weight:700;text-transform:uppercase;">Escala Tipográfica (Text Styles)</p>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="font-size:28px;font-weight:700;line-height:1.2;color:var(--text);">Display/Large · 48px 700</div>
+              <div style="font-size:22px;font-weight:700;line-height:1.2;color:var(--text);">Heading/H1 · 36px 700</div>
+              <div style="font-size:18px;font-weight:400;line-height:1.6;color:var(--text);">Body/Large · 18px Regular</div>
+              <div style="font-size:14px;font-weight:400;line-height:1.5;color:var(--text-muted);">Body/Small · 14px Regular</div>
+              <div style="font-size:11px;font-weight:700;color:var(--text-soft);letter-spacing:.05em;text-transform:uppercase;">Label/Bold · 12px 700 Uppercase</div>
+            </div>
+          </div>
+          <p class="mock-label">A fundação de Styles de um produto: paleta de cores e escala tipográfica. Criados no início do projeto, garantem que qualquer designer na equipe use os mesmos valores.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Abrir seletor de styles (Fill)</td><td>Clique nos 4 pontinhos ao lado do Fill</td><td>Clique nos 4 pontinhos ao lado do Fill</td></tr>
+              <tr><td>Editar style (duplo clique)</td><td>Duplo clique no style no painel</td><td>Duplo clique no style no painel</td></tr>
+              <tr><td>Desvincular style</td><td>Botão direito → Detach style</td><td>Botão direito → Detach style</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li><strong>Color Styles:</strong> paletas e gradientes reutilizáveis. Nomear como <code>Brand/Primary</code>, <code>Semantic/Error</code>.</li>
+          <li><strong>Text Styles:</strong> escala tipográfica completa. Nomear como <code>Heading/H1</code>, <code>Body/Default</code>.</li>
+          <li><strong>Effect Styles:</strong> sombras e blurs padronizados para manter elevação consistente.</li>
+          <li><strong>Layout Grid Styles:</strong> grids de mobile, tablet e desktop compartilhados.</li>
+          <li>Use <code>/</code> para criar grupos e subgrupos — o painel Assets organiza automaticamente.</li>
+          <li>Styles são ideais para projetos simples; Variables (Módulo 3) para temas e tokens avançados.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Fundação de Styles de um produto</h3>
+          <ol>
+            <li>Crie pelo menos <strong>6 Color Styles</strong> organizados em grupos: <code>Brand/Primary</code>, <code>Brand/Secondary</code>, <code>Neutral/50</code>, <code>Neutral/900</code>, <code>Semantic/Success</code>, <code>Semantic/Error</code>.</li>
+            <li>Crie pelo menos <strong>4 Text Styles:</strong> <code>Heading/H1</code>, <code>Heading/H2</code>, <code>Body/Default</code>, <code>Label/Bold</code>.</li>
+            <li>Crie um <strong>Effect Style</strong> de sombra: <code>Shadow/md</code> (ex.: 0 4px 12px rgba(0,0,0,0.08)).</li>
+            <li>Monte um card simples usando apenas esses styles. Depois, mude a cor do <code>Brand/Primary</code> e observe a propagação no card.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> ao mudar a cor do <code>Brand/Primary</code>, todos os elementos do card que usam esse style se atualizam automaticamente.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Dark mode manual com dois conjuntos de styles</h3>
+          <p>Crie dois conjuntos de Color Styles: <code>Light/Background</code>, <code>Light/Surface</code>, <code>Light/Text</code>, e <code>Dark/Background</code>, <code>Dark/Surface</code>, <code>Dark/Text</code>. Monte uma tela usando os styles Light. Depois, duplique a tela e manualmente troque todos os Color Styles para os equivalentes Dark. (Nota: esse processo manual é justamente o que Variables automatizam — você vai apreciar ainda mais o Módulo 3 depois disso!)</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">1. Você criou o Color Style "Brand/Primary" com cor roxa e aplicou em 80 botões. O cliente quer mudar para azul. O que você deve fazer?</p>
+            <ul class="quiz-options">
+              <li>Editar o Color Style "Brand/Primary" uma única vez — todos os 80 botões se atualizam</li>
+              <li>Selecionar os 80 botões e mudar a cor manualmente em cada um</li>
+              <li>Criar um novo style "Brand/Primary Blue" e reaplicar em cada botão</li>
+              <li>Usar Find & Replace para trocar a cor</li>
+            </ul>
+            <div class="quiz-explain">Esse é o principal benefício dos Styles: editar <strong>o style uma única vez</strong> propaga a mudança para todos os elementos vinculados. Sem styles, você faria a mudança manualmente nos 80 botões.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">2. Qual convenção de nomenclatura é recomendada para organizar styles em grupos no painel?</p>
+            <ul class="quiz-options">
+              <li>Espaço: "Brand Primary"</li>
+              <li>Sublinhado: "Brand_Primary"</li>
+              <li>Barra: "Brand/Primary"</li>
+              <li>Ponto: "Brand.Primary"</li>
+            </ul>
+            <div class="quiz-explain">A <strong>barra /</strong> cria grupos hierárquicos no painel de styles. <code>Brand/Primary</code> e <code>Brand/Secondary</code> aparecem agrupados em "Brand". Espaços, underscores e pontos não criam hierarquia.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">3. Qual recurso é necessário para implementar dark mode automático (trocar todo o tema de claro para escuro com um clique)?</p>
+            <ul class="quiz-options">
+              <li>Styles com grupos Light/ e Dark/</li>
+              <li>Variables com modos Light e Dark</li>
+              <li>Variants com state Light e Dark</li>
+              <li>Effect styles com blur diferente por tema</li>
+            </ul>
+            <div class="quiz-explain"><strong>Variables com modos</strong> é o recurso correto para dark mode automático. Um único variable de cor pode ter valores diferentes para o modo Light e Dark — ao trocar o modo do frame, todas as cores mudam de uma vez. Styles não suportam modos nativos.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

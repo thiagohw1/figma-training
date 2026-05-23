@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fundação visual e tokens do produto | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="06-03-fundacao-visual-web" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🖥️ Módulo 6 · Projeto Guiado · Lição 3 de 8</div>
+        <h1>Fundação visual e tokens do produto</h1>
+        <p class="lead">Antes de desenhar a primeira tela, construímos a <strong>linguagem visual do produto</strong>: um conjunto coerente de cores, tipografia, espaçamentos e efeitos que garante consistência de ponta a ponta — e que escala sem caos.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~25 min</span>
+          <span>🎯 Nível: Projeto prático</span>
+          <span>🛠️ Pratique no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Criar uma paleta de cores completa usando Variables do Figma com dois modos (Light e Dark);</li>
+            <li>Definir uma escala tipográfica para web com Text Styles bem nomeadas;</li>
+            <li>Estabelecer tokens de espaçamento em múltiplos de 4 px com Variables numéricas;</li>
+            <li>Criar Border Radius, Shadow e Opacity como tokens reutilizáveis;</li>
+            <li>Montar a página de fundação visual como documentação viva do Design System do TaskFlow.</li>
+          </ul>
+        </div>
+
+        <h2>O que são design tokens?</h2>
+        <p><strong>Design tokens</strong> são as unidades atômicas de um Design System: valores nomeados (cores, tamanhos, espaçamentos) que encapsulam as decisões de design e podem ser referenciados em qualquer lugar do sistema. Em vez de usar <code>#6c4cf1</code> diretamente em 200 componentes, você define uma variável chamada <code>color/brand/primary</code> e usa essa referência em todo o lugar. Quando a cor mudar, muda em um lugar só.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Variables vs. Styles no Figma</span>
+          <p><strong>Variables</strong> (novo desde 2023) armazenam valores primitivos (cores, números, strings, booleans) com suporte a múltiplos modos. <strong>Styles</strong> armazenam propriedades compostas (texto com fonte + tamanho + peso, sombra, grid). Use Variables para tokens de cor e espaçamento; use Styles para tipografia e sombras compostas.</p>
+        </div>
+
+        <h2>Paleta de cores do TaskFlow</h2>
+        <p>O TaskFlow é um produto profissional para times. A paleta precisa transmitir confiança, clareza e eficiência — com um acento de cor vibrante que diferencia a marca, mas sem cansar os olhos em longas sessões de trabalho.</p>
+
+        <h3>Arquitetura da paleta</h3>
+        <p>Organizamos as cores em quatro camadas semânticas:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Categoria</th><th>Tokens</th><th>Uso</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Brand</strong></td><td><code>brand/primary</code>, <code>brand/secondary</code></td><td>Botões CTA, links, indicadores ativos, logotipo</td></tr>
+              <tr><td><strong>Neutral</strong></td><td><code>neutral/50</code> a <code>neutral/900</code></td><td>Backgrounds, bordas, texto, superfícies</td></tr>
+              <tr><td><strong>Semantic</strong></td><td><code>semantic/success</code>, <code>warning</code>, <code>danger</code>, <code>info</code></td><td>Status de tarefas, alertas, validações</td></tr>
+              <tr><td><strong>Surface</strong></td><td><code>surface/bg</code>, <code>surface/card</code>, <code>surface/overlay</code></td><td>Camadas de profundidade na interface</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="figma-mock">
+          <div class="device-browser" style="max-width:640px;">
+            <div class="browser-bar"><i></i><i></i><i></i><span style="flex:1;text-align:center;font-size:12px;color:var(--text-muted);">Fundação Visual — Cores</span></div>
+            <div style="padding:20px;display:flex;flex-direction:column;gap:16px;">
+              <!-- Brand -->
+              <div>
+                <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Brand</div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                  <div style="text-align:center;">
+                    <div style="width:48px;height:48px;background:#6c4cf1;border-radius:8px;border:1px solid var(--border);"></div>
+                    <div style="font-size:10px;color:var(--text-muted);margin-top:4px;">primary</div>
+                    <div style="font-size:10px;color:var(--text-soft);">#6c4cf1</div>
+                  </div>
+                  <div style="text-align:center;">
+                    <div style="width:48px;height:48px;background:#b0367a;border-radius:8px;border:1px solid var(--border);"></div>
+                    <div style="font-size:10px;color:var(--text-muted);margin-top:4px;">secondary</div>
+                    <div style="font-size:10px;color:var(--text-soft);">#b0367a</div>
+                  </div>
+                  <div style="text-align:center;">
+                    <div style="width:48px;height:48px;background:#efeaff;border-radius:8px;border:1px solid #d8ccff;"></div>
+                    <div style="font-size:10px;color:var(--text-muted);margin-top:4px;">primary-soft</div>
+                    <div style="font-size:10px;color:var(--text-soft);">#efeaff</div>
+                  </div>
+                </div>
+              </div>
+              <!-- Semantic -->
+              <div>
+                <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Semantic</div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                  <div style="text-align:center;"><div style="width:48px;height:48px;background:#18915a;border-radius:8px;"></div><div style="font-size:10px;color:var(--text-muted);margin-top:4px;">success</div></div>
+                  <div style="text-align:center;"><div style="width:48px;height:48px;background:#b4730a;border-radius:8px;"></div><div style="font-size:10px;color:var(--text-muted);margin-top:4px;">warning</div></div>
+                  <div style="text-align:center;"><div style="width:48px;height:48px;background:#d23b3b;border-radius:8px;"></div><div style="font-size:10px;color:var(--text-muted);margin-top:4px;">danger</div></div>
+                  <div style="text-align:center;"><div style="width:48px;height:48px;background:#1d6fd1;border-radius:8px;"></div><div style="font-size:10px;color:var(--text-muted);margin-top:4px;">info</div></div>
+                </div>
+              </div>
+              <!-- Neutral -->
+              <div>
+                <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Neutral</div>
+                <div style="display:flex;gap:4px;">
+                  <div style="text-align:center;flex:1;"><div style="height:32px;background:#ffffff;border-radius:6px;border:1px solid #e2e6ec;"></div><div style="font-size:9px;color:var(--text-soft);margin-top:2px;">50</div></div>
+                  <div style="text-align:center;flex:1;"><div style="height:32px;background:#f5f6f8;border-radius:6px;border:1px solid #e2e6ec;"></div><div style="font-size:9px;color:var(--text-soft);margin-top:2px;">100</div></div>
+                  <div style="text-align:center;flex:1;"><div style="height:32px;background:#e2e6ec;border-radius:6px;"></div><div style="font-size:9px;color:var(--text-soft);margin-top:2px;">200</div></div>
+                  <div style="text-align:center;flex:1;"><div style="height:32px;background:#a3acba;border-radius:6px;"></div><div style="font-size:9px;color:var(--text-soft);margin-top:2px;">400</div></div>
+                  <div style="text-align:center;flex:1;"><div style="height:32px;background:#5b6573;border-radius:6px;"></div><div style="font-size:9px;color:var(--text-soft);margin-top:2px;">600</div></div>
+                  <div style="text-align:center;flex:1;"><div style="height:32px;background:#1a1d23;border-radius:6px;"></div><div style="font-size:9px;color:var(--text-soft);margin-top:2px;">900</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">Paleta de cores do TaskFlow organizada por categoria. Cada swatch é uma Variable no Figma com valor para Light e Dark mode.</p>
+        </div>
+
+        <h2>Passo a passo: criando as Variables de cor</h2>
+        <ol class="steps">
+          <li>
+            <strong>Abra o painel de Variables.</strong>
+            Na página <em>Fundação Visual</em>, vá em <strong>Assets</strong> (painel esquerdo) → <strong>Variables</strong>, ou use o menu <strong>Edit → Variables</strong>. Clique em <strong>+ Collection</strong> e nomeie <code>Primitives</code>.
+          </li>
+          <li>
+            <strong>Adicione dois modos.</strong>
+            Na collection Primitives, clique em <strong>+ Mode</strong>. Crie <strong>Light</strong> e <strong>Dark</strong>. Renomeie o modo padrão para "Light".
+          </li>
+          <li>
+            <strong>Crie o grupo Brand.</strong>
+            Clique em <strong>+ Variable</strong> → <strong>Color</strong>. Nomeie a variável <code>brand/primary</code>. Defina o valor Light como <code>#6c4cf1</code> e o valor Dark como <code>#9b81ff</code> (mais claro para contraste no fundo escuro). Repita para <code>brand/secondary</code> (<code>#b0367a</code> / <code>#e06bab</code>).
+          </li>
+          <li>
+            <strong>Crie os neutrals.</strong>
+            Crie variáveis <code>neutral/50</code> até <code>neutral/900</code>. No modo Light, use tons claros; no modo Dark, inverta a escala (o que era 50 vira 900 e vice-versa, pois backgrounds claros viram escuros).
+          </li>
+          <li>
+            <strong>Crie uma segunda collection: Tokens.</strong>
+            Esta collection vai usar os primitivos como referência — são as variáveis semânticas que os componentes usam. Crie <code>color/text/default</code> e aponte para <code>neutral/900</code> no Light e <code>neutral/50</code> no Dark. Isso é o aliasing de variáveis.
+          </li>
+          <li>
+            <strong>Aplique as variáveis a um retângulo de teste.</strong>
+            Desenhe um retângulo (<kbd>R</kbd>), selecione o fill e clique no ícone de biblioteca para usar uma variable. Troque o modo no painel de Variables e observe a cor mudar instantaneamente — isso é o Dark Mode funcional.
+          </li>
+        </ol>
+
+        <h2>Escala tipográfica para web</h2>
+        <p>Para produtos web/desktop com densidade de informação alta (como dashboards), a escala tipográfica prioriza <strong>legibilidade em tamanhos menores</strong>. Diferente de um site marketing que usa títulos de 64 px, um dashboard raramente precisa de texto maior que 32 px.</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Token</th><th>Tamanho</th><th>Peso</th><th>Line-height</th><th>Uso</th></tr></thead>
+            <tbody>
+              <tr><td><code>type/display</code></td><td>32 px</td><td>800</td><td>1.15</td><td>Títulos de página, números de KPI grandes</td></tr>
+              <tr><td><code>type/h1</code></td><td>24 px</td><td>700</td><td>1.25</td><td>Título principal de seção</td></tr>
+              <tr><td><code>type/h2</code></td><td>20 px</td><td>700</td><td>1.3</td><td>Sub-seção, card header</td></tr>
+              <tr><td><code>type/h3</code></td><td>16 px</td><td>600</td><td>1.4</td><td>Label de grupo, header de tabela</td></tr>
+              <tr><td><code>type/body-lg</code></td><td>15 px</td><td>400</td><td>1.6</td><td>Texto de leitura, descrições longas</td></tr>
+              <tr><td><code>type/body</code></td><td>14 px</td><td>400</td><td>1.6</td><td>Texto padrão da interface</td></tr>
+              <tr><td><code>type/body-sm</code></td><td>13 px</td><td>400</td><td>1.5</td><td>Labels, metadata, chips</td></tr>
+              <tr><td><code>type/caption</code></td><td>12 px</td><td>400</td><td>1.4</td><td>Texto auxiliar, timestamps, tooltips</td></tr>
+              <tr><td><code>type/overline</code></td><td>11 px</td><td>700</td><td>1.4</td><td>Rótulos de categoria em caps</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Passo a passo: criando Text Styles</h3>
+        <ol class="steps">
+          <li>
+            <strong>Crie um frame de tipografia.</strong>
+            Na página <em>Fundação Visual</em>, crie um frame (<kbd>F</kbd>) chamado "Tipografia". Adicione textos de exemplo para cada nível da escala com o texto real de um produto (<em>"Projetos ativos"</em>, <em>"Dashboard de métricas"</em>, etc.).
+          </li>
+          <li>
+            <strong>Configure e salve o primeiro estilo.</strong>
+            Selecione o texto do <code>display</code> (32 px / 800). No painel direito, em <strong>Text</strong>, defina fonte: <strong>Inter</strong>, tamanho 32, weight Extra Bold (800), line-height 120%. Clique nos <strong>4 pontos</strong> ao lado de Text e escolha <strong>Create style</strong>. Nomeie <code>Display/32 ExtraBold</code>.
+          </li>
+          <li>
+            <strong>Repita para todos os níveis.</strong>
+            Crie um Text Style para cada linha da tabela acima. Use a nomenclatura <code>Categoria/Tamanho Peso</code> — ex.: <code>Body/14 Regular</code>, <code>Heading/24 Bold</code>.
+          </li>
+        </ol>
+
+        <h2>Tokens de espaçamento</h2>
+        <p>O TaskFlow usa uma escala de espaçamento baseada em múltiplos de <strong>4 px</strong> — o múltiplo mais comum em design de UI porque divide bem telas de alta densidade (iOS, Material Design e Tailwind usam bases de 4 px). Defina as seguintes Variables numéricas:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Token</th><th>Valor</th><th>Uso típico</th></tr></thead>
+            <tbody>
+              <tr><td><code>space/1</code></td><td>4 px</td><td>Gap mínimo entre ícone e texto</td></tr>
+              <tr><td><code>space/2</code></td><td>8 px</td><td>Gap interno de chips e badges</td></tr>
+              <tr><td><code>space/3</code></td><td>12 px</td><td>Padding de botões small, gap entre items de lista</td></tr>
+              <tr><td><code>space/4</code></td><td>16 px</td><td>Padding de cards pequenos, gap padrão</td></tr>
+              <tr><td><code>space/5</code></td><td>20 px</td><td>Padding de inputs, gap entre seções</td></tr>
+              <tr><td><code>space/6</code></td><td>24 px</td><td>Padding de cards grandes, gutter do grid</td></tr>
+              <tr><td><code>space/8</code></td><td>32 px</td><td>Espaço entre seções de página</td></tr>
+              <tr><td><code>space/10</code></td><td>40 px</td><td>Padding de modal, espaço entre grupos</td></tr>
+              <tr><td><code>space/12</code></td><td>48 px</td><td>Altura de topbar, items de sidebar</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Border Radius, Sombras e Ícones</h2>
+
+        <h3>Border Radius</h3>
+        <p>Crie Variables numéricas para raio de borda:</p>
+        <ul>
+          <li><code>radius/sm</code> → 4 px (chips, badges, separadores)</li>
+          <li><code>radius/md</code> → 8 px (botões, inputs, cards pequenos)</li>
+          <li><code>radius/lg</code> → 12 px (cards padrão, dropdowns)</li>
+          <li><code>radius/xl</code> → 16 px (modais, painéis)</li>
+          <li><code>radius/pill</code> → 999 px (tags arredondadas, avatars com pill)</li>
+        </ul>
+
+        <h3>Sombras (Effect Styles)</h3>
+        <p>Crie três Effect Styles de sombra para diferentes níveis de elevação:</p>
+        <ul>
+          <li><strong>Shadow/sm:</strong> <code>0 1px 3px rgba(0,0,0,.08)</code> — cards, inputs no estado default</li>
+          <li><strong>Shadow/md:</strong> <code>0 4px 12px rgba(0,0,0,.10)</code> — dropdowns, popovers</li>
+          <li><strong>Shadow/lg:</strong> <code>0 12px 32px rgba(0,0,0,.14)</code> — modais, drawers</li>
+        </ul>
+
+        <h3>Ícones</h3>
+        <p>Para o TaskFlow, use ícones do conjunto <strong>Lucide Icons</strong> (disponível como plugin no Figma: <em>Icons8 – Icons & Illustrations</em> ou importe o arquivo de ícones Lucide da comunidade). São ícones de linha com traço de 1.5 px, ideais para interfaces de produto — leves, legíveis e consistentes.</p>
+
+        <div class="callout tip">
+          <span class="callout-title">Densiddade adequada para web/desktop</span>
+          <p>Diferente de mobile (onde tapping targets precisam de no mínimo 44 px), em desktop os alvos de clique podem ser menores: 32–36 px para ações secundárias, 40 px para botões principais. Isso permite mais informação na tela sem a interface parecer espaçosa demais para o contexto de trabalho.</p>
+        </div>
+
+        <div class="callout warning">
+          <span class="callout-title">Nunca use cores brutas nos componentes</span>
+          <p>A regra de ouro: componentes sempre referenciam <em>tokens semânticos</em> (<code>color/text/default</code>), nunca valores primitivos diretos (<code>#1a1d23</code>). Se você usar o valor bruto, quando o Dark Mode for ativado, o componente não vai responder. Tokens são a camada de abstração que torna o tema possível.</p>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>O Figma usa exatamente esse sistema de tokens internamente (é como eles constroem o próprio Figma). Empresas como Airbnb (DLS), IBM (Carbon), Atlassian (Atlaskit) e Shopify (Polaris) publicaram seus sistemas de tokens publicamente — todos seguem a mesma arquitetura de primitivos + tokens semânticos que você está aprendendo aqui.</p>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Abrir painel de Variables</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>V</kbd> (ou menu Assets)</td><td><kbd>⌥</kbd> + <kbd>⌘</kbd> + <kbd>V</kbd></td></tr>
+              <tr><td>Criar Style (qualquer propriedade)</td><td>clique nos 4 pontos ao lado da propriedade</td><td>clique nos 4 pontos ao lado da propriedade</td></tr>
+              <tr><td>Retângulo de teste</td><td><kbd>R</kbd></td><td><kbd>R</kbd></td></tr>
+              <tr><td>Selecionar todos os layers do mesmo tipo</td><td><kbd>Ctrl</kbd> + <kbd>A</kbd></td><td><kbd>⌘</kbd> + <kbd>A</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Design tokens são os valores nomeados que compõem o Visual Foundation — quando um valor muda, muda em todo o sistema.</li>
+          <li>Use Variables para cores (com Light e Dark mode) e espaçamentos numéricos; use Styles para tipografia e sombras.</li>
+          <li>A paleta do TaskFlow tem 4 camadas: Brand, Neutral, Semantic e Surface.</li>
+          <li>A escala tipográfica para web vai de 32 px (display) a 11 px (overline), com Inter como fonte base.</li>
+          <li>Espaçamentos em múltiplos de 4 px garantem alinhamento preciso e consistência com grids de 8 px.</li>
+          <li>Componentes sempre referenciam tokens semânticos, nunca valores primitivos diretamente.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Monte a página de fundação visual</h3>
+          <ol>
+            <li>Crie a collection de Variables <strong>Primitives</strong> com os modos Light e Dark.</li>
+            <li>Defina todas as variáveis de cor Brand (primary, secondary, soft) com valores para os dois modos.</li>
+            <li>Crie os Text Styles para os 9 níveis tipográficos da tabela.</li>
+            <li>Adicione uma collection de espaçamento com pelo menos 6 tokens numéricos.</li>
+            <li>Na página <em>Fundação Visual</em>, monte um frame que exiba todas as cores, tipografias e espaçamentos como documentação visual — como uma folha de estilo visível.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> ao trocar o modo das Variables de Light para Dark no painel, todos os elementos da página de fundação visual mudam de cor instantaneamente sem nenhum ajuste manual.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Tokens semânticos com aliasing</h3>
+          <p>Crie uma segunda collection chamada <strong>Tokens</strong> com variáveis semânticas que fazem referência (aliasing) às variáveis primitivas — por exemplo, <code>color/background/default</code> aponta para <code>neutral/50</code> no Light e <code>neutral/900</code> no Dark. Crie pelo menos 12 tokens semânticos cobrindo: background, surface, border, text default, text muted, brand, success, warning, danger e info. Depois aplique esses tokens a um card de KPI simples e teste trocando os modos.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Qual é a diferença principal entre Variables e Styles no Figma?</p>
+            <ul class="quiz-options">
+              <li>Variables são para cores e Styles são para espaçamentos — não há outra diferença</li>
+              <li>Variables suportam múltiplos modos (Light/Dark) e armazenam valores primitivos; Styles armazenam propriedades compostas como tipografia e sombras</li>
+              <li>Styles são mais modernos e substituíram as Variables completamente</li>
+              <li>Variables só funcionam em Components; Styles funcionam em qualquer layer</li>
+            </ul>
+            <div class="quiz-explain"><strong>Variables</strong> têm suporte a modos (fundamental para temas), enquanto <strong>Styles</strong> armazenam composições de propriedades (fonte + tamanho + peso, por exemplo). Use os dois juntos.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">2. Por que usamos múltiplos de 4 px no sistema de espaçamento?</p>
+            <ul class="quiz-options">
+              <li>Porque o Figma só aceita valores divisíveis por 4</li>
+              <li>Porque 4 px é o menor espaço visível em tela</li>
+              <li>Porque 4 divide bem em diferentes densidades e alinha ao grid de 8 px — padrão de iOS, Material e Tailwind</li>
+              <li>Porque o CSS Box Model usa 4 px como unidade base</li>
+            </ul>
+            <div class="quiz-explain">A base de 4 px é ubíqua no design de UI porque se alinha ao grid de 8 px e divide consistentemente em resoluções e densidades de pixel variadas. Não é uma limitação técnica, é uma convenção de design.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Por que componentes devem referenciar tokens semânticos em vez de valores primitivos?</p>
+            <ul class="quiz-options">
+              <li>Para que o Dark Mode e temas funcionem: ao trocar o modo, os tokens semânticos mudam de valor e todos os componentes se atualizam automaticamente</li>
+              <li>Porque tokens semânticos carregam mais rápido no handoff com desenvolvedores</li>
+              <li>É apenas uma preferência organizacional — não tem impacto técnico</li>
+              <li>Porque o Figma bloqueia valores primitivos em componentes publicados</li>
+            </ul>
+            <div class="quiz-explain">A função dos tokens semânticos é desacoplar o componente do valor concreto. <code>color/text/default</code> pode valer <code>#1a1d23</code> no Light e <code>#e8eaee</code> no Dark — o componente não precisa saber qual é qual, só precisa da referência semântica.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Variables — fundamentos | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="03-03-variables-fundamentos" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🏗️ Módulo 3 · Avançado · Lição 3 de 9</div>
+        <h1>Variables — fundamentos</h1>
+        <p class="lead">Variables é a implementação nativa de design tokens no Figma — e, desde 2023, mudou completamente a forma de trabalhar com temas, espaçamentos e conteúdo dinâmico dentro de qualquer arquivo.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~24 min</span>
+          <span>🎯 Nível: Avançado</span>
+          <span>🛠️ Pratique no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Identificar os quatro tipos de Variables (Color, Number, String, Boolean) e seus casos de uso;</li>
+            <li>Criar uma Collection e organizar variables em grupos lógicos;</li>
+            <li>Aplicar Variables a propriedades de preenchimento, stroke, texto, espaçamento e radius;</li>
+            <li>Usar Number variables para spacing e corner radius sistematizados;</li>
+            <li>Usar Boolean variables para alternar estados de visibilidade;</li>
+            <li>Decidir quando usar Variables e quando usar Styles.</li>
+          </ul>
+        </div>
+
+        <h2>O que são Variables no Figma?</h2>
+        <p><strong>Variables</strong> (lançadas em 2023 e constantemente evoluídas) são a implementação nativa de design tokens dentro do Figma. Elas permitem criar valores nomeados e reutilizáveis que podem ser aplicados a praticamente qualquer propriedade de layer, e — o recurso mais poderoso — podem ter múltiplos valores para diferentes <em>Modes</em> (tema claro/escuro, idioma, densidade…).</p>
+        <p>Antes das Variables, a forma de sistematizar valores no Figma era através de Styles (Color Styles, Text Styles, Effect Styles). Variables não substituem Styles completamente, mas estendem o que é possível com muito mais flexibilidade.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Variables vs. Styles — a diferença fundamental</span>
+          <p><strong>Styles</strong> armazenam definições complexas — um gradiente com múltiplas paradas, um texto com família + tamanho + entrelinha + espaçamento, uma sombra com múltiplas camadas. <strong>Variables</strong> armazenam valores únicos e primitivos: uma cor sólida, um número, uma string, um booleano. Variables suportam <strong>Modes</strong> (temas); Styles não.</p>
+        </div>
+
+        <h2>Os quatro tipos de Variables</h2>
+
+        <h3>1. Color (Cor)</h3>
+        <p>Armazena uma cor sólida (RGBA). Pode ser aplicada a <strong>Fill</strong>, <strong>Stroke</strong>, e propriedades de cor de texto. É o tipo mais usado para design tokens de cor.</p>
+        <p>Limitação: Variables de cor suportam apenas cor sólida — para gradientes, ainda é necessário usar Color Styles.</p>
+
+        <h3>2. Number (Número)</h3>
+        <p>Armazena um valor numérico sem unidade. Pode ser aplicado a: <strong>Width</strong>, <strong>Height</strong>, <strong>Corner Radius</strong>, <strong>Gap</strong> (Auto Layout), <strong>Padding</strong> (Auto Layout), <strong>Stroke Width</strong>, <strong>Opacity</strong> e outros campos numéricos. É perfeito para criar uma escala de espaçamento sistematizada.</p>
+
+        <h3>3. String (Texto)</h3>
+        <p>Armazena uma cadeia de texto. Pode ser aplicada ao <strong>conteúdo de layers de texto</strong>. Muito útil para criar protótipos multilíngues (o texto muda conforme o modo/idioma) ou para preencher dados fictícios de forma consistente (nomes, endereços, datas).</p>
+
+        <h3>4. Boolean (Booleano)</h3>
+        <p>Armazena <code>true</code> ou <code>false</code>. Pode ser aplicado à propriedade <strong>Visibility</strong> de qualquer layer. Permite criar toggles que mostram/ocultam elementos, o que é muito útil para componentes com estados opcionais.</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Tipo</th><th>Propriedades que aceita</th><th>Casos de uso comuns</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Color</strong></td>
+                <td>Fill, Stroke, Font color</td>
+                <td>Tokens de cor, temas claro/escuro, paleta de marca</td>
+              </tr>
+              <tr>
+                <td><strong>Number</strong></td>
+                <td>Width, Height, Gap, Padding, Corner Radius, Stroke Width, Opacity, Font Size…</td>
+                <td>Escala de espaçamento, tokens de radius, tokens de tipografia numérica</td>
+              </tr>
+              <tr>
+                <td><strong>String</strong></td>
+                <td>Conteúdo de texto</td>
+                <td>Protótipos multilíngues, dados fictícios consistentes, labels de UI variantes</td>
+              </tr>
+              <tr>
+                <td><strong>Boolean</strong></td>
+                <td>Visibility (visibilidade)</td>
+                <td>Toggles de estados, mostrar/ocultar elementos em variantes</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Collections e grupos</h2>
+        <p>Variables são organizadas em <strong>Collections</strong> (coleções). Pense em uma Collection como uma "pasta raiz" — você pode ter uma Collection para cores, outra para espaçamento, outra para tipografia. Cada Collection pode ter múltiplos <strong>Modes</strong> (veremos em detalhes na próxima lição).</p>
+        <p>Dentro de uma Collection, você pode criar <strong>grupos</strong> usando a barra (/) no nome da variable: <code>color/bg/brand</code> cria automaticamente a hierarquia Color → bg → brand no painel.</p>
+
+        <div class="callout tip">
+          <span class="callout-title">Nomenclatura com / para criar grupos</span>
+          <p>Ao nomear uma variable <code>spacing/component/sm</code>, o Figma cria automaticamente a hierarquia no painel de variables. Use essa convenção para espelhar a estrutura de tokens que você projetou na lição anterior.</p>
+        </div>
+
+        <h2>Passo a passo: criando sua primeira Collection de cores</h2>
+        <p>Vamos criar uma Collection de cores primitivas do zero. Abra um arquivo no Figma e siga:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Abra o painel de Variables.</strong>
+            No painel direito, clique no ícone de grade na barra lateral — ou vá em <strong>Edit → Variables</strong>. O painel de Variables abre na parte esquerda da interface.
+          </li>
+          <li>
+            <strong>Crie uma nova Collection.</strong>
+            Clique em <strong>+ Collections</strong> (ou o botão <kbd>+</kbd> ao lado de "Collections"). Renomeie a Collection para <code>Primitives/Color</code>.
+          </li>
+          <li>
+            <strong>Adicione a primeira variable.</strong>
+            Clique em <strong>+ Variable</strong> e escolha <strong>Color</strong>. Um campo aparece para você digitar o nome e o valor. Nome: <code>blue/50</code>. Valor: <code>#EEF2FF</code>.
+          </li>
+          <li>
+            <strong>Adicione mais cores na escala.</strong>
+            Repita para <code>blue/100</code>, <code>blue/200</code>, <code>blue/300</code>, <code>blue/400</code>, <code>blue/500</code> (sua cor primária), <code>blue/600</code>, <code>blue/700</code>, <code>blue/800</code>, <code>blue/900</code>.
+          </li>
+          <li>
+            <strong>Crie as cores neutras.</strong>
+            Adicione <code>neutral/0</code> (<code>#FFFFFF</code>), <code>neutral/50</code>, <code>neutral/100</code>… <code>neutral/900</code>, <code>neutral/1000</code> (<code>#000000</code>).
+          </li>
+          <li>
+            <strong>Verifique a hierarquia.</strong>
+            Clique no ícone de expandir ao lado de "blue" no painel — você deve ver todos os 10 tons organizados como subgrupo. O Figma criou a estrutura a partir dos nomes com <code>/</code>.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Atalho: duplicar variables</span>
+          <p>Clique com o botão direito em uma variable existente e escolha <strong>Duplicate Variable</strong>. Útil para criar variações dentro de um grupo sem digitar tudo do zero.</p>
+        </div>
+
+        <h2>Aplicando Variables a propriedades</h2>
+        <p>Com a Collection criada, você pode aplicar variables a qualquer layer:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Selecione um layer.</strong>
+            Clique em qualquer retângulo, frame ou componente no canvas.
+          </li>
+          <li>
+            <strong>Abra o Fill.</strong>
+            No painel direito, clique no swatch de cor no campo <strong>Fill</strong>. O color picker abre.
+          </li>
+          <li>
+            <strong>Aplique a variable.</strong>
+            No canto direito do color picker, clique no ícone de grid (parece quatro quadradinhos). Ele abre o painel de seleção de variables. Clique em <code>Primitives/Color</code> → <code>blue</code> → <code>500</code>.
+          </li>
+          <li>
+            <strong>Confirme a vinculação.</strong>
+            O swatch de cor do layer agora mostra um ícone de "rhombus" (losango) indicando que está vinculado a uma variable. No Dev Mode, o token aparecerá pelo nome.
+          </li>
+        </ol>
+
+        <h2>Number variables para spacing e radius</h2>
+        <p>Um dos casos de uso mais valiosos das Number variables é criar uma <strong>escala de espaçamento</strong> e aplicá-la sistematicamente a todos os componentes via Auto Layout.</p>
+
+        <p>Crie uma nova Collection chamada <code>Primitives/Spacing</code> com variables do tipo Number:</p>
+        <ul>
+          <li><code>spacing/4</code> → <code>4</code></li>
+          <li><code>spacing/8</code> → <code>8</code></li>
+          <li><code>spacing/12</code> → <code>12</code></li>
+          <li><code>spacing/16</code> → <code>16</code></li>
+          <li><code>spacing/24</code> → <code>24</code></li>
+          <li><code>spacing/32</code> → <code>32</code></li>
+          <li><code>spacing/48</code> → <code>48</code></li>
+          <li><code>spacing/64</code> → <code>64</code></li>
+        </ul>
+        <p>Em um frame com Auto Layout, clique no campo de gap ou padding — o mesmo ícone de grid aparece para vincular o valor numérico a uma variable. Agora o espaçamento segue a escala e, se você decidir que <code>spacing/16</code> deveria ser 14 px, um único clique atualiza todos os frames vinculados.</p>
+
+        <h2>String variables para conteúdo e idioma</h2>
+        <p>Crie uma Collection chamada <code>Content/Copy</code> com variables do tipo String:</p>
+        <ul>
+          <li><code>cta/primary</code> → <code>Começar agora</code> (modo Português)</li>
+          <li><code>cta/primary</code> → <code>Get started</code> (modo English)</li>
+        </ul>
+        <p>Aplique essa variable ao conteúdo de um botão de texto. Ao trocar o Modo do frame pai para "English", o texto do botão muda instantaneamente — sem precisar de uma cópia da tela para cada idioma. Isso é transformador para times que trabalham com produtos multilíngues.</p>
+
+        <h2>Boolean variables para toggles</h2>
+        <p>Crie uma variable Boolean chamada <code>state/showBadge</code> com valor <code>true</code>. Selecione um layer de badge em um ícone de menu e vincule a propriedade de visibilidade a essa variable. Agora, ao trocar o valor para <code>false</code> em um Modo, o badge desaparece em todos os frames que usam esse Modo — útil para protótipos que precisam de um estado "sem notificação" e "com notificação".</p>
+
+        <div class="callout example">
+          <span class="callout-title">Boolean como propriedade de componente</span>
+          <p>No Figma, componentes têm <strong>Component Properties</strong>, e uma delas é Boolean. Ao vincular uma Boolean Variable a uma Component Property, você conecta o token à propriedade do componente — o valor do token pode ser sobrescrito na instância, mantendo a vinculação ao sistema de design.</p>
+        </div>
+
+        <h2>Variables vs. Styles — quando usar cada um</h2>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Use Variables quando…</th><th>Use Styles quando…</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Precisar de Modes (temas claro/escuro, idiomas, densidades)</td>
+                <td>Precisar de gradientes ou padrões de imagem em fills</td>
+              </tr>
+              <tr>
+                <td>O valor é primitivo (uma cor sólida, um número, uma string)</td>
+                <td>O estilo é composto: sombra com múltiplas camadas, blend modes</td>
+              </tr>
+              <tr>
+                <td>Quiser que o token apareça pelo nome no Dev Mode / código</td>
+                <td>Precisar de Text Styles com definição completa (família + peso + tamanho + entrelinha)</td>
+              </tr>
+              <tr>
+                <td>Espaçamento, radius, opacidade sistematizados</td>
+                <td>Effects (sombras complexas, blurs) reutilizáveis sem Modes</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout pro">
+          <span class="callout-title">Combinação ideal</span>
+          <p>Na prática, profissionais usam <strong>Variables para tokens de cor, espaçamento e radius</strong> (que precisam de Modes) e <strong>Text Styles + Effect Styles</strong> para definições compostas de tipografia e sombras. As duas features se complementam — você pode inclusive fazer um Text Style usar uma Variable de cor para o fill do texto.</p>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Imagine o app de um banco digital com tema claro e escuro. Sem Variables, você precisaria de dois arquivos separados (ou duplicatas de cada tela). Com Variables:</p>
+        <ul>
+          <li>Uma Collection <code>Semantic/Color</code> com Mode "Light" e Mode "Dark";</li>
+          <li>No Mode Light: <code>color/bg/surface</code> → branco; no Mode Dark: <code>color/bg/surface</code> → cinza escuro;</li>
+          <li>Todos os frames de tela têm o Mode "Light" aplicado por padrão;</li>
+          <li>Para ver a versão dark de qualquer tela, basta trocar o Mode do frame para "Dark" — em um segundo, a tela inteira muda.</li>
+        </ul>
+        <p>Resultado: uma equipe de 10 designers trabalha em um único arquivo e gera as 200+ telas do app em ambos os temas sem duplicação alguma.</p>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Variables são a implementação de tokens no Figma, com quatro tipos: Color, Number, String, Boolean.</li>
+          <li>Collections organizam variables; grupos são criados com a barra (/) no nome.</li>
+          <li>Color → Fill/Stroke; Number → spacing/radius; String → conteúdo de texto; Boolean → visibilidade.</li>
+          <li>Number variables para spacing criam uma escala sistematizada aplicável via Auto Layout.</li>
+          <li>String variables permitem protótipos multilíngues trocando apenas o Mode.</li>
+          <li>Variables são superiores a Styles quando há necessidade de Modes; Styles ainda são melhores para gradientes e definições compostas.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Construa sua primeira Collection de tokens</h3>
+          <ol>
+            <li>Crie um arquivo Figma novo chamado "DS – Variables Fundamentos";</li>
+            <li>Crie a Collection <code>Primitives/Color</code> com uma escala de azul (50–900) e uma escala de neutros (0–1000);</li>
+            <li>Crie a Collection <code>Primitives/Spacing</code> com 8 values (4, 8, 12, 16, 24, 32, 48, 64);</li>
+            <li>Crie a Collection <code>Primitives/Radius</code> com <code>radius/sm</code>=4, <code>radius/md</code>=8, <code>radius/lg</code>=16, <code>radius/full</code>=9999;</li>
+            <li>Desenhe um botão com Auto Layout e vincule o gap, padding e corner radius às variables de spacing e radius.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> ao selecionar o botão, as propriedades numéricas mostram o ícone de variable vinculada. Se você mudar <code>spacing/16</code> de 16 para 14, o padding do botão atualiza automaticamente.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>String variables multilíngue</h3>
+          <p>Crie uma Collection <code>Content</code> com dois Modes: "Português" e "English". Adicione variables String para os textos principais de uma tela de login (título, subtítulo, label do campo de e-mail, label do campo de senha, texto do botão, link de "esqueci minha senha"). Monte a tela aplicando todas as Strings como variables. Alterne entre os Modes e confirme que toda a tela muda de idioma sem nenhuma duplicação.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">1. Qual tipo de Variable você usaria para controlar o padding de um frame com Auto Layout de forma sistematizada?</p>
+            <ul class="quiz-options">
+              <li>Color</li>
+              <li>Boolean</li>
+              <li>String</li>
+              <li>Number</li>
+            </ul>
+            <div class="quiz-explain">Variables do tipo <strong>Number</strong> podem ser vinculadas a campos numéricos como Gap, Padding, Corner Radius e Width — perfeito para criar uma escala de espaçamento sistematizada.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. Por que variáveis de cor no Figma não substituem totalmente os Color Styles?</p>
+            <ul class="quiz-options">
+              <li>Variables de cor suportam apenas cor sólida; gradientes e padrões ainda requerem Color Styles</li>
+              <li>Variables não podem ser aplicadas a Fills, apenas a Strokes</li>
+              <li>Color Styles aparecem no Dev Mode, Variables não</li>
+              <li>Variables de cor só funcionam dentro de Components</li>
+            </ul>
+            <div class="quiz-explain">Variables de cor suportam apenas valores de <strong>cor sólida (RGBA)</strong>. Para gradientes, blend modes ou padrões de imagem em fills, os Color Styles continuam sendo necessários.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">3. Como você cria um grupo dentro de uma Collection de Variables?</p>
+            <ul class="quiz-options">
+              <li>Clicando com o botão direito e escolhendo "Create Group"</li>
+              <li>Usando a barra (/) no nome da variable — ex: <code>color/bg/brand</code></li>
+              <li>Arrastando variables para dentro de uma pasta criada separadamente</li>
+              <li>Usando dois pontos (:) como separador no nome</li>
+            </ul>
+            <div class="quiz-explain">O Figma interpreta a barra (<code>/</code>) no nome de uma variable como separador de hierarquia e cria automaticamente os grupos correspondentes no painel.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

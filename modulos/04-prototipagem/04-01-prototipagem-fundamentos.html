@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fundamentos de prototipagem | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="04-01-prototipagem-fundamentos" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">⚡ Módulo 4 · Prototipagem · Lição 1 de 7</div>
+        <h1>Fundamentos de prototipagem</h1>
+        <p class="lead">Um protótipo transforma telas estáticas em experiências clicáveis — sem escrever uma linha de código. Nesta lição você vai entender como o Figma conecta telas, quais gatilhos e ações existem e como apresentar um fluxo funcional para a sua equipe.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~22 min</span>
+          <span>🎯 Nível: Intermediário</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Navegar pela aba Prototype e entender cada seção do painel;</li>
+            <li>Criar Flows com Starting points para organizar fluxos de múltiplos usuários;</li>
+            <li>Adicionar conexões (Connections) entre frames usando qualquer Trigger disponível;</li>
+            <li>Escolher a Action correta para cada necessidade (Navigate, Overlay, Link, etc.);</li>
+            <li>Apresentar e compartilhar um protótipo clicável pelo Present/Preview.</li>
+          </ul>
+        </div>
+
+        <h2>O que é prototipagem no Figma?</h2>
+        <p>Prototipagem é o processo de conectar frames (telas) com interações para simular o comportamento real de um produto digital. Em vez de descrever em palavras como uma tela leva à outra, você <em>mostra</em> — o usuário clica em um botão e a próxima tela aparece, exatamente como faria no app real.</p>
+        <p>O Figma guarda todas as informações de prototipagem separadas do design: enquanto você estiver na aba <strong>Design</strong> do painel direito, as conexões ficam invisíveis. Ao trocar para a aba <strong>Prototype</strong>, uma seta azul surge entre cada par de frames conectados, revelando toda a "teia" do fluxo.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Por que prototipar antes de desenvolver?</span>
+          <p>Testar um protótipo com usuários reais custa horas de designer. Corrigir o mesmo problema depois de codificado pode custar dias de desenvolvimento. Segundo estudos da Nielsen Norman Group, cada hora de teste de usabilidade economiza em média 6 horas de retrabalho. Prototipar cedo é um investimento, não um extra.</p>
+        </div>
+
+        <h2>A aba Prototype</h2>
+        <p>Para acessar, clique na aba <strong>Prototype</strong> no painel direito (ao lado de Design e Inspect). O painel se reorganiza e passa a mostrar:</p>
+        <ul>
+          <li><strong>Device &amp; Preview:</strong> moldura do dispositivo (iPhone, Android, Desktop, Custom…) e cor de fundo exibida no Present mode.</li>
+          <li><strong>Flows:</strong> lista de Starting points — os "pontos de entrada" do protótipo.</li>
+          <li><strong>Interactions:</strong> quando um frame ou objeto está selecionado, aqui aparecem todas as conexões daquele elemento.</li>
+        </ul>
+
+        <div class="callout tip">
+          <span class="callout-title">Atalho para alternar abas</span>
+          <p>Pressione <kbd>Alt</kbd> + <kbd>8</kbd> (Windows) ou <kbd>⌥</kbd> + <kbd>8</kbd> (Mac) para ir direto à aba Prototype sem usar o mouse.</p>
+        </div>
+
+        <h2>Flows e Starting Points</h2>
+        <p>Um <strong>Flow</strong> é um caminho lógico pelo protótipo: por exemplo, "Onboarding", "Compra" ou "Login". Você pode ter vários flows em um único arquivo — útil quando o mesmo projeto tem fluxos de usuário distintos (usuário comum vs. administrador).</p>
+        <p>O <strong>Starting Point</strong> é o frame inicial de cada Flow. Para definir um:</p>
+        <ol>
+          <li>Selecione um Frame (não um componente solto, mas um frame de nível superior no canvas).</li>
+          <li>Na aba Prototype, clique em <strong>+ Add starting point</strong> na seção Flows.</li>
+          <li>Dê um nome descritivo ao Flow ("Login flow", "Checkout flow").</li>
+        </ol>
+        <p>No Present mode, você poderá escolher qual Flow deseja apresentar, iniciando pela tela certa sem precisar navegar por frames aleatórios.</p>
+
+        <div class="callout note">
+          <span class="callout-title">Starting Point vs. frame selecionado</span>
+          <p>Se você pressionar <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Enter</kbd> sem nenhum Starting Point definido, o Figma apresenta o frame selecionado. Com um Starting Point, ele sempre inicia pelo frame designado — comportamento mais previsível em demos.</p>
+        </div>
+
+        <h2>Connections — conectando telas</h2>
+        <p>Uma <strong>Connection</strong> é uma seta que liga um elemento (ou frame inteiro) a outro frame, dizendo ao Figma: "quando X acontecer aqui, faça Y ali". Para criar uma conexão:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Abra a aba Prototype.</strong>
+            Certifique-se de estar na aba Prototype do painel direito; o painel mostra as opções de interação.
+          </li>
+          <li>
+            <strong>Selecione o elemento de origem.</strong>
+            Clique no botão, ícone ou frame que vai disparar a ação. Se você quiser que o frame inteiro seja clicável, selecione o próprio frame.
+          </li>
+          <li>
+            <strong>Arraste o hotspot azul.</strong>
+            Passe o mouse sobre o elemento selecionado até aparecer um círculo azul (+) na borda direita. Arraste esse círculo até o frame de destino.
+          </li>
+          <li>
+            <strong>Configure o modal de interação.</strong>
+            Um modal flutuante abre automaticamente com opções de Trigger, Action e Transition. Configure cada um conforme a necessidade (veja seções abaixo).
+          </li>
+          <li>
+            <strong>Feche o modal.</strong>
+            Clique fora do modal ou pressione <kbd>Esc</kbd> para fechar. A seta azul permanece no canvas indicando a conexão.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Editar uma conexão existente</span>
+          <p>Para editar, clique na seta azul no canvas — o modal de interação reabre. Para deletar, selecione a seta e pressione <kbd>Delete</kbd> ou <kbd>Backspace</kbd>.</p>
+        </div>
+
+        <h2>Triggers — o que dispara a interação</h2>
+        <p>Um <strong>Trigger</strong> define o gesto ou evento do usuário que ativa a ação. O Figma oferece os seguintes triggers em 2025/2026:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Trigger</th><th>Quando é ativado</th><th>Uso típico</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>On click</strong></td><td>Toque/clique simples no elemento</td><td>Botões, links, cards</td></tr>
+              <tr><td><strong>On drag</strong></td><td>Arrastar o elemento em uma direção</td><td>Swipe para deletar, carrossel</td></tr>
+              <tr><td><strong>While hovering</strong></td><td>Enquanto o cursor está sobre o elemento</td><td>Tooltips, estados hover de menu</td></tr>
+              <tr><td><strong>While pressing</strong></td><td>Enquanto mantém o botão pressionado</td><td>Long press, botões de gravação</td></tr>
+              <tr><td><strong>Key/Gamepad</strong></td><td>Tecla de teclado específica é pressionada</td><td>Navegação por teclado, atalhos</td></tr>
+              <tr><td><strong>After delay</strong></td><td>Após N milissegundos sem interação</td><td>Splash screens, auto-play de slides</td></tr>
+              <tr><td><strong>Mouse enter</strong></td><td>Cursor entra na área do elemento</td><td>Dropdowns, pré-carregamento visual</td></tr>
+              <tr><td><strong>Mouse leave</strong></td><td>Cursor sai da área do elemento</td><td>Fechar tooltip, reverter hover</td></tr>
+              <tr><td><strong>Mouse down</strong></td><td>Botão do mouse é pressionado (antes de soltar)</td><td>Efeito pressed imediato</td></tr>
+              <tr><td><strong>Mouse up</strong></td><td>Botão do mouse é solto</td><td>Confirmação de clique</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Actions — o que acontece quando o trigger é ativado</h2>
+        <p>A <strong>Action</strong> define o que o protótipo faz quando o trigger dispara. Cada action tem parâmetros específicos:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Action</th><th>O que faz</th><th>Parâmetros principais</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Navigate to</strong></td><td>Navega para outro frame (substitui a tela atual)</td><td>Frame de destino, transição</td></tr>
+              <tr><td><strong>Back</strong></td><td>Volta ao frame anterior no histórico de navegação</td><td>Transição de saída</td></tr>
+              <tr><td><strong>Close overlay</strong></td><td>Fecha um overlay aberto</td><td>Transição de saída</td></tr>
+              <tr><td><strong>Open overlay</strong></td><td>Abre um frame por cima da tela atual (modal, drawer, tooltip)</td><td>Frame de destino, posição, backdrop</td></tr>
+              <tr><td><strong>Swap overlay</strong></td><td>Substitui um overlay aberto por outro</td><td>Frame de destino, transição</td></tr>
+              <tr><td><strong>Open link</strong></td><td>Abre uma URL externa no navegador</td><td>URL completa</td></tr>
+              <tr><td><strong>Set variable</strong></td><td>Altera o valor de uma Variable</td><td>Variável, novo valor ou expressão</td></tr>
+              <tr><td><strong>Conditional</strong></td><td>Avalia uma condição e executa uma action diferente dependendo do resultado</td><td>Condição (if/else), actions para cada ramo</td></tr>
+              <tr><td><strong>Scroll to</strong></td><td>Rola até um elemento específico dentro do frame</td><td>Elemento de destino, animação</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout warning">
+          <span class="callout-title">Navigate to vs. Open overlay</span>
+          <p><strong>Navigate to</strong> troca a tela inteira — como navegar entre páginas de um site. <strong>Open overlay</strong> exibe um novo frame <em>por cima</em> da tela atual, mantendo o contexto — como um modal ou um drawer lateral. Usar o errado quebra a sensação de continuidade do protótipo.</p>
+        </div>
+
+        <h2>Diagrama: anatomia de uma Connection</h2>
+
+        <div class="diagram">
+          <svg viewBox="0 0 600 180" role="img" aria-label="Diagrama mostrando a anatomia de uma conexão de protótipo no Figma: elemento de origem, seta de conexão e frame de destino com trigger e action">
+            <!-- Frame origem -->
+            <rect x="20" y="40" width="160" height="100" rx="10" fill="var(--surface)" stroke="var(--border-strong)" stroke-width="2"/>
+            <text x="100" y="80" text-anchor="middle" fill="var(--text-muted)" font-size="11" font-family="sans-serif">Frame de origem</text>
+            <!-- Botão dentro do frame origem -->
+            <rect x="55" y="90" width="90" height="28" rx="6" fill="var(--primary)"/>
+            <text x="100" y="109" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="sans-serif">Botão</text>
+            <!-- Seta de conexão -->
+            <line x1="180" y1="104" x2="330" y2="104" stroke="var(--primary)" stroke-width="2.5"/>
+            <polygon points="330,104 320,99 320,109" fill="var(--primary)"/>
+            <!-- Label da seta -->
+            <rect x="208" y="78" width="95" height="44" rx="7" fill="var(--primary-soft)" stroke="var(--primary-soft-border)" stroke-width="1.5"/>
+            <text x="255" y="97" text-anchor="middle" fill="var(--primary)" font-size="10" font-weight="bold" font-family="sans-serif">Trigger</text>
+            <text x="255" y="112" text-anchor="middle" fill="var(--primary)" font-size="10" font-family="sans-serif">On click</text>
+            <!-- Frame destino -->
+            <rect x="340" y="40" width="160" height="100" rx="10" fill="var(--surface)" stroke="var(--border-strong)" stroke-width="2"/>
+            <text x="420" y="80" text-anchor="middle" fill="var(--text-muted)" font-size="11" font-family="sans-serif">Frame de destino</text>
+            <text x="420" y="105" text-anchor="middle" fill="var(--text)" font-size="12" font-weight="bold" font-family="sans-serif">Próxima tela</text>
+            <!-- Hotspot círculo -->
+            <circle cx="180" cy="104" r="9" fill="var(--primary)" opacity="0.85"/>
+            <text x="180" y="108" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold" font-family="sans-serif">+</text>
+            <!-- Label action embaixo da seta -->
+            <text x="255" y="155" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="sans-serif">Action: Navigate to</text>
+          </svg>
+          <p class="mock-label">Uma Connection: o hotspot (+) azul no frame de origem; a seta com Trigger e Action configurados; o frame de destino.</p>
+        </div>
+
+        <h2>Present mode e Preview</h2>
+        <p>Depois de criar as conexões, é hora de testar. Existem duas formas:</p>
+        <ul>
+          <li><strong>Preview inline:</strong> o pequeno botão de "play" no canto superior direito abre um painel de preview ao lado do canvas. Rápido para checar interações pontuais sem abrir uma nova aba.</li>
+          <li><strong>Present mode (<kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Enter</kbd>):</strong> abre o protótipo em tela cheia ou em uma nova aba do navegador, com moldura do dispositivo e todos os fluxos disponíveis. É o modo ideal para apresentações e testes com usuários.</li>
+        </ul>
+        <p>No Present mode, use as setas de teclado para navegar manualmente entre frames mesmo sem conexões, ou clique nos hotspots para seguir o fluxo real do protótipo.</p>
+
+        <div class="callout pro">
+          <span class="callout-title">Dica de profissional: organize múltiplos flows</span>
+          <p>Em projetos grandes, crie um Starting Point para cada jornada do usuário (onboarding, compra, configurações). No Present mode, um menu de Flows permite selecionar qual jornada apresentar — sem precisar explicar verbalmente para onde ir primeiro. Nomes claros nos Flows economizam tempo em demos com stakeholders.</p>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Imagine o protótipo de um app de delivery. Você tem três fluxos:</p>
+        <ol>
+          <li><strong>Fluxo de Busca:</strong> Home → Resultado de busca → Detalhe do restaurante → Carrinho → Confirmação.</li>
+          <li><strong>Fluxo de Reorder:</strong> Home → Pedido anterior → Confirmação (caminho mais curto).</li>
+          <li><strong>Fluxo de Conta:</strong> Home → Perfil → Editar dados → Salvo.</li>
+        </ol>
+        <p>Cada fluxo tem seu próprio Starting Point. Ao apresentar para o time de produto, você alterna entre os flows em segundos. Ao apresentar para o time de marketing, mostra só o Fluxo de Busca. Um único arquivo, múltiplas narrativas.</p>
+
+        <div class="figma-mock">
+          <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;justify-content:center;">
+            <!-- Tela 1 -->
+            <div style="width:200px;background:var(--surface);border:1.5px solid var(--border-strong);border-radius:12px;overflow:hidden;">
+              <div style="background:var(--primary);padding:14px;color:#fff;">
+                <div style="font-size:11px;opacity:.8;">App de Delivery</div>
+                <div style="font-size:15px;font-weight:700;margin-top:4px;">O que você quer comer?</div>
+              </div>
+              <div style="padding:12px;display:flex;flex-direction:column;gap:8px;">
+                <div style="background:var(--surface-2);border-radius:8px;padding:9px 12px;font-size:12px;color:var(--text-muted);">🔍 Buscar restaurante...</div>
+                <div style="background:var(--primary);border-radius:8px;padding:9px 12px;text-align:center;color:#fff;font-size:12px;font-weight:600;">Buscar</div>
+              </div>
+            </div>
+            <!-- Seta -->
+            <div style="display:flex;align-items:center;color:var(--primary);font-size:22px;padding-top:40px;">→</div>
+            <!-- Tela 2 -->
+            <div style="width:200px;background:var(--surface);border:1.5px solid var(--border-strong);border-radius:12px;overflow:hidden;">
+              <div style="background:var(--surface-2);padding:10px 12px;font-size:12px;font-weight:600;border-bottom:1px solid var(--border);">← Resultados para "Pizza"</div>
+              <div style="padding:10px;display:flex;flex-direction:column;gap:7px;">
+                <div style="display:flex;gap:8px;align-items:center;padding:8px;border:1px solid var(--border);border-radius:8px;">
+                  <div style="width:32px;height:32px;background:linear-gradient(135deg,#f2994a,#f27121);border-radius:6px;"></div>
+                  <div><div style="font-size:12px;font-weight:600;">Pizzaria Roma</div><div style="font-size:11px;color:var(--text-muted);">⭐ 4.8 · 25 min</div></div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;padding:8px;border:1px solid var(--border);border-radius:8px;">
+                  <div style="width:32px;height:32px;background:linear-gradient(135deg,#6c4cf1,#b0367a);border-radius:6px;"></div>
+                  <div><div style="font-size:12px;font-weight:600;">Di Napoli</div><div style="font-size:11px;color:var(--text-muted);">⭐ 4.6 · 30 min</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">Duas telas conectadas: botão "Buscar" no frame 1 navega para o frame de resultados. Cada card de restaurante teria sua própria conexão.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Abrir Present mode</td><td><kbd>Ctrl</kbd> + <kbd>Enter</kbd></td><td><kbd>⌘</kbd> + <kbd>Enter</kbd></td></tr>
+              <tr><td>Ir para aba Prototype</td><td><kbd>Alt</kbd> + <kbd>8</kbd></td><td><kbd>⌥</kbd> + <kbd>8</kbd></td></tr>
+              <tr><td>Deletar conexão selecionada</td><td><kbd>Delete</kbd></td><td><kbd>Delete</kbd></td></tr>
+              <tr><td>Fechar modal de interação</td><td><kbd>Esc</kbd></td><td><kbd>Esc</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>A aba <strong>Prototype</strong> separa as conexões do design, mantendo o painel limpo.</li>
+          <li><strong>Flows</strong> e <strong>Starting Points</strong> organizam múltiplas jornadas em um único arquivo.</li>
+          <li>Uma <strong>Connection</strong> tem três partes: elemento de origem, <strong>Trigger</strong> (evento) e <strong>Action</strong> (o que acontece).</li>
+          <li>Os 10 Triggers cobrem desde clique simples até após delay automático.</li>
+          <li>As Actions incluem navegar entre telas, abrir overlays, voltar, abrir links e até lógica condicional com Variables.</li>
+          <li>O <strong>Present mode</strong> (<kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Enter</kbd>) exibe o protótipo em tela cheia para demos e testes.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Conecte três telas de um app</h3>
+          <p>Crie um mini-fluxo de onboarding com três telas: Boas-vindas → Criar conta → Home.</p>
+          <ol>
+            <li>Crie três frames (use o preset "iPhone 14" no campo de Frame: <kbd>F</kbd>).</li>
+            <li>Nomeie-os "Boas-vindas", "Criar conta" e "Home".</li>
+            <li>Adicione um botão em cada tela e conecte-os em sequência usando <strong>On click → Navigate to</strong>.</li>
+            <li>Defina o frame "Boas-vindas" como Starting Point do Flow "Onboarding".</li>
+            <li>Abra o Present mode e teste o fluxo clicando pelos botões.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> ao clicar nos botões em sequência no Present mode, a navegação Boas-vindas → Criar conta → Home funciona sem travar, e o Flow "Onboarding" aparece no menu de flows.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Fluxo completo com Back e dois Starting Points</h3>
+          <p>Expanda o exercício: crie um segundo fluxo "Login" (Login → Home) no mesmo arquivo. Adicione um botão "Voltar" em cada tela interna com a action <strong>Back</strong>. Na tela de Boas-vindas, adicione dois botões: "Criar conta" e "Já tenho conta" — cada um iniciando seu respectivo flow. No Present mode, confirme que ambos os Flows aparecem no seletor e que o botão Voltar funciona em cada tela.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Qual é a diferença entre as actions "Navigate to" e "Open overlay"?</p>
+            <ul class="quiz-options">
+              <li>Navigate to é para mobile e Open overlay é para desktop</li>
+              <li>Navigate to substitui a tela atual; Open overlay exibe um frame por cima, mantendo o contexto</li>
+              <li>Navigate to só funciona com On click; Open overlay aceita qualquer trigger</li>
+              <li>Não há diferença funcional, apenas de nomenclatura</li>
+            </ul>
+            <div class="quiz-explain"><strong>Navigate to</strong> troca a tela inteira (como trocar de página), enquanto <strong>Open overlay</strong> empilha um frame por cima da tela atual — ideal para modais, drawers e tooltips que precisam manter o contexto visível.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">2. Para que serve um "Starting Point" em um Flow?</p>
+            <ul class="quiz-options">
+              <li>Define o frame que sempre aparece em todas as transições</li>
+              <li>Marca o frame mais importante visualmente no canvas</li>
+              <li>Define o frame inicial de um Flow, permitindo escolher qual jornada apresentar no Present mode</li>
+              <li>Sincroniza o protótipo com um arquivo externo de dados</li>
+            </ul>
+            <div class="quiz-explain">O <strong>Starting Point</strong> é o frame de entrada de um Flow. No Present mode, você pode selecionar qual Flow (e portanto qual Starting Point) iniciar — fundamental quando um arquivo tem múltiplas jornadas de usuário.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">3. Qual trigger você usaria para criar uma splash screen que avança automaticamente após 3 segundos?</p>
+            <ul class="quiz-options">
+              <li>While hovering</li>
+              <li>On drag</li>
+              <li>Mouse enter</li>
+              <li>After delay</li>
+            </ul>
+            <div class="quiz-explain"><strong>After delay</strong> dispara a ação automaticamente após um tempo definido (em milissegundos) sem nenhuma interação do usuário — perfeito para splash screens, tutoriais automáticos e auto-play de slides.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

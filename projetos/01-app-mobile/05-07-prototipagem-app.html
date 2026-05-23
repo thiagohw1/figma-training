@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prototipagem e microinterações | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="05-07-prototipagem-app" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">📱 Módulo 5 · Projeto Guiado · Lição 7 de 8</div>
+        <h1>Prototipagem e microinterações</h1>
+        <p class="lead">Um design estático não convence. Um protótipo clicável que navega suavemente entre telas, abre bottom sheets com animação e responde ao toque — isso convence. Nesta lição você vai conectar todas as telas do FinView, configurar transições e criar microinterações com Smart Animate.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~24 min</span>
+          <span>🎯 Nível: Projeto prático</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Conectar todas as telas do FinView em um fluxo de protótipo coeso;</li>
+            <li>Configurar a navegação da Tab Bar com transições adequadas;</li>
+            <li>Criar o bottom sheet de "Adicionar Transação" com animação de subida;</li>
+            <li>Usar Smart Animate para a transição de abertura de detalhe de transação;</li>
+            <li>Simular o loading skeleton com transição automática;</li>
+            <li>Testar o protótipo em um dispositivo real via Figma Mirror.</li>
+          </ul>
+        </div>
+
+        <h2>O modo Prototype no Figma</h2>
+        <p>O Figma tem dois modos de trabalho: <strong>Design</strong> (onde você constrói) e <strong>Prototype</strong> (onde você conecta). Para entrar no modo Prototype, clique na aba <strong>Prototype</strong> no painel direito. Você verá setas azuis nos frames e elementos quando passar o mouse — essas são as conexões de navegação.</p>
+        <p>Cada conexão tem três partes:</p>
+        <ul>
+          <li><strong>Trigger:</strong> o que aciona a transição (tap, hover, drag, after delay, on key press)</li>
+          <li><strong>Action:</strong> o que acontece (navigate to, open overlay, back, scroll to)</li>
+          <li><strong>Animation:</strong> como a transição visual ocorre (Instant, Dissolve, Smart Animate, Move In, Move Out, Slide In, Slide Out, Push)</li>
+        </ul>
+
+        <div class="callout info">
+          <span class="callout-title">Smart Animate: o motor das animações suaves</span>
+          <p><strong>Smart Animate</strong> é o recurso mais poderoso de prototipagem do Figma. Quando você conecta dois frames e usa Smart Animate, o Figma detecta automaticamente elementos com o <em>mesmo nome de layer</em> nos dois frames e interpola a posição, tamanho, opacidade e outros atributos entre eles — criando uma animação fluida sem você precisar definir cada keyframe. É como ter um sistema de interpolação automática.</p>
+        </div>
+
+        <h2>Conectando o fluxo principal</h2>
+
+        <ol class="steps">
+          <li>
+            <strong>Ative o modo Prototype.</strong>
+            Clique na aba <strong>Prototype</strong> no painel direito. Mude a view para <strong>Flow</strong> para ver todas as conexões existentes (se houver). Defina o frame de <strong>Starting Point</strong> clicando no ícone de play no frame do Onboarding.
+          </li>
+          <li>
+            <strong>Conecte Onboarding → Home.</strong>
+            Selecione o botão "Próximo →" no frame Onboarding Card 3 (o último). No modo Prototype, um ponto azul aparece na borda direita do botão ao passar o mouse. Arraste esse ponto até o frame da Home. Configure: Trigger = <strong>On tap</strong>, Action = <strong>Navigate to</strong>, Animation = <strong>Push →</strong>, Duration = 350ms, Easing = <strong>Spring</strong>.
+          </li>
+          <li>
+            <strong>Configure a navegação entre os 3 cards de onboarding.</strong>
+            No card 1, conecte o botão "Próximo" ao card 2 com Push → (350ms). No card 2, conecte ao card 3. No card 3, ao frame Home. Também conecte os dots de indicação: o dot 2 no card 1 navega para o card 2, etc.
+          </li>
+          <li>
+            <strong>Configure a Tab Bar.</strong>
+            Selecione a instância da Tab Bar na Home. Você precisa tornar cada item da tab um hotspot de navegação. Selecione o Tab Item "Metas" e conecte ao frame de Metas. Repita para "Cartões" → frame Cartões, "Perfil" → frame Perfil. Para o botão "+" central, navegue para o bottom sheet. Use Trigger = On tap, Animation = <strong>Instant</strong> para trocas de tab (troca instantânea é o padrão iOS/Android).
+          </li>
+          <li>
+            <strong>Conecte a lista de transações → Detalhe.</strong>
+            Selecione um item de transação na Home. Conecte ao frame de Detalhe. Use Smart Animate com duration 400ms, easing <strong>Ease In Out</strong>. Para que o Smart Animate funcione corretamente, certifique-se de que o card do item tem o <em>mesmo nome de layer</em> na Home e no Detalhe (ex.: ambos se chamam "Transaction Card").
+          </li>
+          <li>
+            <strong>Configure o botão Voltar no Detalhe.</strong>
+            O botão "← Voltar" no frame Detalhe deve conectar de volta à Home. Use Action = <strong>Navigate back</strong> (não "Navigate to" — "back" mantém o histórico correto). Animation = Push ← (sentido oposto ao de entrada).
+          </li>
+        </ol>
+
+        <h2>Criando o Bottom Sheet de Adicionar Transação</h2>
+        <p>O Bottom Sheet é um padrão mobile onde um painel sobe de baixo para cima sobre a tela atual. No Figma, isso é feito com a Action <strong>Open overlay</strong>.</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Construa o frame do Bottom Sheet.</strong>
+            Crie um frame 390×600 (mais alto que a tela) com fundo <code>color/surface</code>, corner radius top 20×20. Dentro: drag handle (linha 32×4 px centrada no topo), título "Nova Transação", toggle Entrada/Saída, campo de valor grande, grid de categorias (4×2), campo de nota e botão Salvar.
+          </li>
+          <li>
+            <strong>Configure o backdrop escuro.</strong>
+            O backdrop (sobreposição escura atrás do bottom sheet) é criado colocando o frame do bottom sheet em cima de um retângulo 390×844 fill preto 50% de opacidade, dentro do mesmo frame-container.
+          </li>
+          <li>
+            <strong>Conecte o botão "+" ao Bottom Sheet.</strong>
+            No frame da Home, selecione o botão "+" da Tab Bar. Conecte ao frame do Bottom Sheet. Trigger = On tap, Action = <strong>Open overlay</strong>, Overlay position = <strong>Bottom</strong>, Animation = <strong>Move in from bottom</strong>, Duration = 400ms, Easing = <strong>Spring (0.5)</strong>.
+          </li>
+          <li>
+            <strong>Conecte o botão Fechar do Bottom Sheet.</strong>
+            No bottom sheet, selecione o botão "X" ou "Cancelar". Action = <strong>Close overlay</strong>, Animation = Move out to bottom.
+          </li>
+          <li>
+            <strong>Conecte o backdrop para fechar ao tap.</strong>
+            O retângulo de backdrop deve fechar o overlay quando tocado. Selecione-o, conecte com Action = Close overlay.
+          </li>
+        </ol>
+
+        <div class="figma-mock">
+          <div class="device-phone" style="width:210px;">
+            <div style="background:#0C0E12;min-height:380px;display:flex;flex-direction:column;position:relative;overflow:hidden;">
+              <!-- Tela base (Home) -->
+              <div style="background:#0C0E12;flex:1;padding:16px;display:flex;flex-direction:column;gap:8px;opacity:0.4;">
+                <div style="height:50px;"></div>
+                <div style="background:linear-gradient(135deg,#3D2BA8,#6C4CF1);border-radius:14px;height:100px;"></div>
+                <div style="display:flex;gap:8px;">
+                  <div style="background:#1A1E26;border-radius:10px;flex:1;height:50px;"></div>
+                  <div style="background:#1A1E26;border-radius:10px;flex:1;height:50px;"></div>
+                </div>
+              </div>
+              <!-- Backdrop -->
+              <div style="position:absolute;inset:0;background:rgba(0,0,0,0.6);"></div>
+              <!-- Bottom Sheet -->
+              <div style="position:absolute;bottom:0;left:0;right:0;background:#1A1E26;border-radius:20px 20px 0 0;padding:12px 16px 20px;">
+                <!-- Handle -->
+                <div style="width:36px;height:4px;background:#3A414E;border-radius:2px;margin:0 auto 12px;"></div>
+                <div style="font-size:14px;font-weight:700;color:#E8EAEE;text-align:center;margin-bottom:12px;">Nova Transação</div>
+                <!-- Toggle -->
+                <div style="display:flex;background:#0C0E12;border-radius:10px;padding:3px;margin-bottom:12px;">
+                  <div style="flex:1;background:#6C4CF1;border-radius:8px;height:30px;display:flex;align-items:center;justify-content:center;"><span style="font-size:10px;color:#fff;font-weight:700;">Gasto</span></div>
+                  <div style="flex:1;height:30px;display:flex;align-items:center;justify-content:center;"><span style="font-size:10px;color:#A3ACBA;">Receita</span></div>
+                </div>
+                <!-- Valor -->
+                <div style="text-align:center;margin-bottom:12px;">
+                  <span style="font-size:28px;font-weight:700;color:#E8EAEE;">R$ </span>
+                  <span style="font-size:28px;font-weight:700;color:#E8EAEE;">0,00</span>
+                  <div style="width:2px;height:24px;background:#6C4CF1;display:inline-block;animation:blink 1s infinite;vertical-align:middle;margin-left:2px;"></div>
+                </div>
+                <!-- Categorias -->
+                <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px;">
+                  <div style="background:#241F3D;border:1px solid #6C4CF1;border-radius:10px;height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;"><span style="font-size:14px;">🍔</span><span style="font-size:7px;color:#9B81FF;">Comida</span></div>
+                  <div style="background:#222731;border-radius:10px;height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;"><span style="font-size:14px;">🚗</span><span style="font-size:7px;color:#A3ACBA;">Transp.</span></div>
+                  <div style="background:#222731;border-radius:10px;height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;"><span style="font-size:14px;">🎮</span><span style="font-size:7px;color:#A3ACBA;">Lazer</span></div>
+                  <div style="background:#222731;border-radius:10px;height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;"><span style="font-size:14px;">🏥</span><span style="font-size:7px;color:#A3ACBA;">Saúde</span></div>
+                </div>
+                <!-- Salvar -->
+                <div style="background:#6C4CF1;border-radius:12px;height:44px;display:flex;align-items:center;justify-content:center;">
+                  <span style="color:#fff;font-size:13px;font-weight:700;">Salvar Transação</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="flex:1;min-width:220px;display:flex;flex-direction:column;gap:12px;justify-content:center;">
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;">
+              <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:8px;">Configurações do Overlay</div>
+              <div style="display:flex;flex-direction:column;gap:6px;font-size:11px;color:var(--text-muted);">
+                <div><strong style="color:var(--text);">Action:</strong> Open overlay</div>
+                <div><strong style="color:var(--text);">Position:</strong> Bottom</div>
+                <div><strong style="color:var(--text);">Animation:</strong> Move in from bottom</div>
+                <div><strong style="color:var(--text);">Duration:</strong> 400ms</div>
+                <div><strong style="color:var(--text);">Easing:</strong> Spring (stiffness 300)</div>
+                <div><strong style="color:var(--text);">Close when clicking outside:</strong> ✓</div>
+                <div><strong style="color:var(--text);">Background:</strong> rgba(0,0,0,0.6)</div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">Bottom Sheet de "Nova Transação" com configurações de overlay corretas. O backdrop escurece o conteúdo atrás e fecha o sheet ao ser clicado.</p>
+        </div>
+
+        <h2>Smart Animate: a transição de detalhe de transação</h2>
+        <p>O padrão mais sofisticado do FinView é a transição da lista para o detalhe: o card da transação na lista "expande" para ocupar a tela de detalhe — efeito similar ao App Store no iOS. Com Smart Animate, você faz isso no Figma:</p>
+
+        <h3>Como funciona o Smart Animate</h3>
+        <p>O Figma compara os layers de dois frames consecutivos. Layers com <strong>exatamente o mesmo nome</strong> são animados automaticamente entre suas posições/tamanhos/estilos. Por isso, a nomenclatura dos layers é fundamental:</p>
+        <ul>
+          <li>Na Home: o item de transação deve ter um layer chamado <code>Transaction Card</code></li>
+          <li>No Detalhe: o card de informações no topo deve ter o layer <code>Transaction Card</code></li>
+          <li>O valor monetário em ambos deve ter o mesmo nome de layer: <code>Amount Text</code></li>
+          <li>O ícone de categoria: <code>Category Icon</code></li>
+        </ul>
+        <p>Com esses nomes iguais, ao usar Smart Animate, o card "crescerá" da sua posição na lista até ocupar o topo do Detalhe — e o valor e ícone se moverão suavemente para suas novas posições.</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Nomeie os layers corretamente na Home.</strong>
+            Clique duas vezes no item de transação para entrar nele. Renomeie o container principal para <code>Transaction Card</code>, o texto do nome para <code>Merchant Name</code>, o valor para <code>Amount Text</code>, o ícone para <code>Category Icon</code>.
+          </li>
+          <li>
+            <strong>Nomeie os layers correspondentes no Detalhe.</strong>
+            No frame Detalhe, nomeie o card de resumo no topo como <code>Transaction Card</code>. O valor grande como <code>Amount Text</code>. O ícone como <code>Category Icon</code>. O nome da empresa como <code>Merchant Name</code>.
+          </li>
+          <li>
+            <strong>Conecte os frames com Smart Animate.</strong>
+            No modo Prototype, selecione o item de transação na Home. Arraste a conexão para o frame Detalhe. Configure: Trigger = On tap, Animation = <strong>Smart Animate</strong>, Duration = 450ms, Easing = <strong>Spring</strong>.
+          </li>
+          <li>
+            <strong>Teste no Preview.</strong>
+            Pressione <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>P</kbd> para abrir o protótipo. Clique em um item de transação. Observe o card transitando suavemente do tamanho de lista para o detalhe. Ajuste a duração se necessário (400-500ms costuma funcionar bem).
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Dica para Smart Animate mais fluido</span>
+          <p>Para animações mais suaves, use <strong>Spring</strong> como easing (configuração: stiffness 300, damping 25). O Spring cria a sensação de "bounce" natural que aplicativos nativos têm. Evite Linear e Ease puro para animações de UI mobile — elas parecem mecânicas. A maioria dos apps iOS usa algo equivalente ao Spring para modais e sheets.</p>
+        </div>
+
+        <h2>Microinterações: feedback ao toque</h2>
+        <p>Microinterações são as pequenas respostas visuais que confirmam que o toque do usuário foi registrado. No FinView, planejamos 4 microinterações:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Elemento</th><th>Microinteração</th><th>Como fazer no Figma</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Botão primário</td>
+                <td>Scale down (98%) ao pressionar, escurece fill</td>
+                <td>Variante State=Pressed, Smart Animate na volta</td>
+              </tr>
+              <tr>
+                <td>Item de transação</td>
+                <td>Highlight sutil (fundo ligeiramente mais claro) ao hover/press</td>
+                <td>Variante hover com fill diferente + After delay para voltar</td>
+              </tr>
+              <tr>
+                <td>Tab Bar item</td>
+                <td>Ícone sobe e desce (bounce) ao ativar</td>
+                <td>Dois frames intermediários + Smart Animate encadeado</td>
+              </tr>
+              <tr>
+                <td>Toggle Entrada/Saída</td>
+                <td>Slide do pill de seleção</td>
+                <td>Dois frames do toggle + Smart Animate (o pill muda de posição)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Implementando o toggle com Smart Animate</h3>
+        <p>O toggle de Entrada/Saída no bottom sheet é uma microinteração elegante. Para implementar:</p>
+        <ol>
+          <li>Crie duas variantes do Toggle component: <strong>State=Expense</strong> (pill na esquerda, texto Gasto ativo) e <strong>State=Income</strong> (pill na direita, texto Receita ativo).</li>
+          <li>Nomeie o pill de seleção com o mesmo nome em ambas as variantes: <code>Toggle Pill</code>.</li>
+          <li>No protótipo, o tap no label "Receita" muda a variante para State=Income via Smart Animate — o pill desliza suavemente para a direita.</li>
+        </ol>
+
+        <h2>Simulando o loading com transição automática</h2>
+        <p>Para simular o skeleton loading → conteúdo carregado, use a opção <strong>After delay</strong> como trigger:</p>
+        <ol>
+          <li>Defina o frame <code>01 — Home (Loading)</code> como ponto inicial do fluxo de app.</li>
+          <li>Conecte esse frame ao frame <code>01 — Home</code> com Trigger = <strong>After delay</strong>, Delay = 2000ms, Animation = <strong>Dissolve</strong>, Duration = 500ms.</li>
+          <li>No preview, o app começa com o skeleton e, após 2 segundos, dissolve suavemente para a Home com dados. Parece real.</li>
+        </ol>
+
+        <div class="callout pro">
+          <span class="callout-title">Prototype flow: organize por cenário</span>
+          <p>Nos arquivos Figma profissionais, o fluxo de protótipo é organizado em <strong>Flows</strong> separados (clique em "+ Flow" no painel Prototype quando nenhuma conexão está selecionada). Crie flows como "Flow 1: Adicionar Transação", "Flow 2: Consultar Meta", "Flow 3: Onboarding". Isso permite que você apresente cenários específicos sem começar do zero, e o Figma cria links de preview separados para cada flow — perfeito para apresentar para stakeholders diferentes.</p>
+        </div>
+
+        <h2>Testando em dispositivo real com Figma Mirror</h2>
+        <p>Nenhum preview no computador substitui o teste no dispositivo. O <strong>Figma Mirror</strong> (app mobile disponível para iOS e Android) espelha o protótipo em tempo real no seu celular:</p>
+        <ol>
+          <li>Baixe o app Figma Mirror no seu celular.</li>
+          <li>No Figma desktop, abra o protótipo com <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>P</kbd> ou clique no botão "Play" no topo.</li>
+          <li>No app mobile, escaneie o QR code ou faça login — o protótipo aparece no tamanho real da tela do seu celular.</li>
+          <li>Navegue pelas telas com os toques reais. Observe: os toques parecem confortáveis? O conteúdo cabe bem? A tab bar fica na posição certa?</li>
+        </ol>
+
+        <div class="callout warning">
+          <span class="callout-title">Área de toque mínima: 44×44 pt</span>
+          <p>O Apple HIG especifica que toda área interativa deve ter pelo menos <strong>44×44 pt</strong> de área de toque, mesmo que o elemento visual seja menor. Se um ícone de 24×24 pt é clicável, envolva-o em um frame de 44×44 pt invisível. No Figma, você pode criar uma camada "Tap Target" transparente de 44×44 que é o hotspot real do protótipo. Teste no Figma Mirror: se você precisar mirar muito para clicar, a área está pequena.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Abrir modo Prototype</td><td>Clique na aba Prototype</td><td>Clique na aba Prototype</td></tr>
+              <tr><td>Preview do protótipo</td><td><kbd>Ctrl</kbd> + <kbd>P</kbd> (ou botão Play)</td><td><kbd>⌘</kbd> + <kbd>P</kbd> (ou botão Play)</td></tr>
+              <tr><td>Fechar preview</td><td><kbd>Esc</kbd></td><td><kbd>Esc</kbd></td></tr>
+              <tr><td>Ir ao frame de destino de uma conexão</td><td>Clique duplo na seta</td><td>Clique duplo na seta</td></tr>
+              <tr><td>Remover todas as conexões de um frame</td><td>Botão direito → Remove all connections</td><td>Botão direito → Remove all connections</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>O modo Prototype conecta frames com triggers, actions e animações — três componentes de cada conexão.</li>
+          <li>A Tab Bar usa Action = Navigate to com Animation = Instant (troca de tab sem animação é o padrão nativo).</li>
+          <li>O Bottom Sheet de Adicionar usa Open overlay com Move in from bottom e Spring easing.</li>
+          <li>Smart Animate interpola automaticamente elementos com o mesmo nome de layer entre dois frames, criando transições fluidas.</li>
+          <li>Microinterações são criadas com variantes (State=Pressed) e Smart Animate entre elas.</li>
+          <li>Figma Mirror permite testar o protótipo no dispositivo físico em tempo real.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Protótipo completo do FinView</h3>
+          <p>No seu arquivo, na page <code>🔗 Protótipo</code> (ou usando as telas da page iOS):</p>
+          <ol>
+            <li>Defina o frame de Onboarding como Starting Point.</li>
+            <li>Conecte o fluxo completo: Onboarding → Home → Detalhe (Smart Animate) → Voltar.</li>
+            <li>Configure a Tab Bar para navegar para Metas e Perfil.</li>
+            <li>Crie e conecte o Bottom Sheet de Adicionar Transação com Open overlay + Spring.</li>
+            <li>Implemente a simulação de loading com After delay (2s) → Home.</li>
+            <li>Teste o protótipo no Figma Mirror no seu celular.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> é possível percorrer o fluxo completo (Onboarding → Home → Adicionar transação → fechar sheet → abrir detalhe → voltar) sem encontrar nenhuma conexão quebrada. As transições parecem suaves e nativas no teste pelo Figma Mirror.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Microinteração de celebração ao completar meta</h3>
+          <p>Construa uma microinteração para quando uma meta é concluída (100% atingido). Ao clicar em uma meta completa, o app deve: (1) expandir o card da meta com Smart Animate, (2) mostrar um estado de "Conquista!" com um ícone de troféu animado (escala de 0 a 1 via Smart Animate), (3) exibir confetti simulado com formas coloridas espalhadas, e (4) um botão "Criar nova meta" aparece deslizando de baixo. Use encadeamento de frames (cada frame é um "keyframe" da animação) conectados com Smart Animate e After delay curto (100-200ms entre cada etapa). Esse tipo de animação comemorativa é o que diferencia apps mediocres de apps que os usuários adoram.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Para que o Smart Animate funcione corretamente entre dois frames, qual é o requisito fundamental?</p>
+            <ul class="quiz-options">
+              <li>Os dois frames devem estar na mesma page do Figma</li>
+              <li>Os dois frames devem ter exatamente as mesmas dimensões</li>
+              <li>Os layers que serão animados devem ter exatamente o mesmo nome nos dois frames</li>
+              <li>Os elementos devem ser components — frames comuns não funcionam com Smart Animate</li>
+            </ul>
+            <div class="quiz-explain">O Smart Animate funciona comparando <strong>nomes de layers</strong> entre dois frames. Layers com o mesmo nome são interpolados automaticamente em posição, tamanho, rotação e opacidade. Se os nomes forem diferentes, o Figma fará um dissolve simples em vez da animação "matched" desejada.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. Qual Action no Figma Prototype é a correta para criar um Bottom Sheet que aparece sobre a tela atual?</p>
+            <ul class="quiz-options">
+              <li>Open overlay</li>
+              <li>Navigate to</li>
+              <li>Swap with</li>
+              <li>Scroll to</li>
+            </ul>
+            <div class="quiz-explain"><strong>Open overlay</strong> é a action correta para sheets, modais e dialogs — ela exibe o frame de destino <em>sobre</em> a tela atual, sem substituí-la. Quando o overlay é fechado, o usuário volta à tela original. "Navigate to" seria para navegação de tela completa (substituição).</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">3. Qual trigger do Figma Prototype permite simular carregamento automático (skeleton → conteúdo)?</p>
+            <ul class="quiz-options">
+              <li>On hover</li>
+              <li>After delay</li>
+              <li>On scroll</li>
+              <li>On key press</li>
+            </ul>
+            <div class="quiz-explain"><strong>After delay</strong> dispara automaticamente a transição após um tempo definido (em ms), sem precisar de interação do usuário. É perfeito para simular carregamento: o frame de skeleton transita para o frame com dados após 2000ms, imitando o comportamento real de uma request de API.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

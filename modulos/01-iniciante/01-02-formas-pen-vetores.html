@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formas básicas, Pen tool e vetores | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="01-02-formas-pen-vetores" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🎨 Módulo 1 · Iniciante · Lição 2 de 8</div>
+        <h1>Formas básicas, Pen tool e vetores</h1>
+        <p class="lead">Do retângulo mais simples ao ícone mais elaborado, tudo começa com formas e vetores. Dominar a Pen tool é um divisor de águas para qualquer designer.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~20 min</span>
+          <span>🎯 Nível: Iniciante</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Usar todas as ferramentas de forma básica: retângulo, elipse, linha, seta, polígono e estrela;</li>
+            <li>Editar pontos e arredondar cantos com Corner Radius;</li>
+            <li>Usar a Pen tool para criar vetores personalizados;</li>
+            <li>Criar curvas com a técnica de bend (arrastar handles);</li>
+            <li>Usar o Paint Bucket para fechar paths abertas.</li>
+          </ul>
+        </div>
+
+        <h2>Ferramentas de forma básica</h2>
+        <p>O Figma oferece um conjunto de formas geométricas prontas para uso. Você as encontra na barra superior de ferramentas (ou pelos atalhos do teclado). Cada forma pode ser editada em profundidade após criada.</p>
+
+        <h3>Retângulo (R)</h3>
+        <p>A forma mais usada em UI design. Pressione <kbd>R</kbd>, clique e arraste. Segure <kbd>Shift</kbd> para criar um <strong>quadrado perfeito</strong>. No painel direito, além de W, H, X e Y, você controla o <strong>Corner Radius</strong> — o arredondamento dos cantos. Digite um valor único (para todos os cantos) ou clique no ícone de cantos independentes para arredondar cada canto separadamente.</p>
+
+        <div class="callout tip">
+          <span class="callout-title">Corner Radius variável — recurso UI3</span>
+          <p>No Figma atual (UI3), você pode definir corner radius <strong>independente para cada canto</strong>. Clique no ícone de mistura ao lado do campo de corner radius. Isso é perfeito para cards com apenas o topo arredondado ou botões com formas assimétricas.</p>
+        </div>
+
+        <h3>Elipse (O)</h3>
+        <p>Pressione <kbd>O</kbd> e arraste para criar uma elipse. Segure <kbd>Shift</kbd> para um <strong>círculo perfeito</strong>. Circles perfeitos são essenciais para avatares, badges e ícones arredondados. Um truque: para criar um avatar circular, crie uma elipse e use-a como máscara (veremos na Lição 5).</p>
+
+        <h3>Linha (L) e Seta (Shift+L)</h3>
+        <p>A ferramenta <strong>Linha</strong> (<kbd>L</kbd>) cria uma linha reta. A <strong>Seta</strong> (<kbd>Shift</kbd>+<kbd>L</kbd>) cria uma linha com ponta de seta em uma ou ambas as extremidades. Você controla a espessura (stroke weight), o tipo de ponta (<em>cap</em>: flat, round, arrow…) e a cor no painel direito.</p>
+
+        <h3>Polígono e Estrela</h3>
+        <p>Ambas ficam no submenu da ferramenta de elipse (clique e segure o ícone na barra superior). O <strong>Polígono</strong> cria triângulos, pentágonos, hexágonos — controle o número de lados no campo "Count" do painel. A <strong>Estrela</strong> tem dois campos: <em>Count</em> (número de pontas) e <em>Ratio</em> (profundidade das reentrâncias, de 0 a 1).</p>
+
+        <h2>Editando vetores: Vector Edit mode</h2>
+        <p>Toda forma básica é, internamente, um vetor. Para editar os pontos de uma forma, selecione-a e pressione <kbd>Enter</kbd> (ou dê duplo-clique). Você entra no <strong>Vector Edit mode</strong>:</p>
+        <ul>
+          <li><strong>Pontos (nodes):</strong> os círculos que definem os vértices da forma;</li>
+          <li><strong>Handles (alças):</strong> os pontinhos que controlam as curvas de cada segmento;</li>
+          <li><strong>Segmentos:</strong> as linhas entre os pontos — você pode clicar em um segmento para adicionar um ponto nele.</li>
+        </ul>
+        <p>No painel direito, quando em Vector Edit mode, você vê o tipo de cada ponto: <em>Straight</em> (vértice reto), <em>Mirrored</em> (handles simétricos, cria curva suave), <em>Disconnected</em> (handles independentes) e <em>Asymmetric</em> (handles com direções independentes mas com mesma distância).</p>
+
+        <div class="callout info">
+          <span class="callout-title">Corner Smoothing — iOS-style</span>
+          <p>O Figma suporta <strong>Corner Smoothing</strong> (também chamado de "superellipse" ou squircle), que é exatamente o arredondamento suave usado nos ícones do iOS. No painel direito, com o Corner Radius ativado, você verá o campo de smoothing. Valor 100% = estilo iOS perfeito.</p>
+        </div>
+
+        <h2>A Pen tool e Vector Networks</h2>
+        <p>A <strong>Pen tool</strong> (<kbd>P</kbd>) é a ferramenta para criar formas vetoriais personalizadas — ícones, ilustrações, formas orgânicas. O Figma usa um sistema de <strong>Vector Networks</strong>, que é diferente do Illustrator: <em>os segmentos não precisam formar um caminho fechado contínuo</em>. Você pode ter um ponto com 3 ou mais segmentos saindo dele, criando estruturas ramificadas.</p>
+
+        <h3>Como funciona a Pen tool</h3>
+        <ul>
+          <li><strong>Clique simples:</strong> cria um ponto reto (sharp corner);</li>
+          <li><strong>Clique e arraste:</strong> cria um ponto com handles — o arrasto define a curva (técnica Bézier);</li>
+          <li><strong>Fechar o path:</strong> clique no primeiro ponto para fechar a forma;</li>
+          <li><strong>Escape:</strong> termina o caminho sem fechar;</li>
+          <li><strong>Enter:</strong> confirma e sai do modo de edição.</li>
+        </ul>
+
+        <h3>Curvas Bézier — a técnica do bend</h3>
+        <p>Para criar curvas suaves, você usa <em>handles</em> — pares de alças que definem a tangente da curva em cada ponto. A técnica de <strong>bend</strong> no Figma é mais intuitiva: ao passar o mouse sobre um <em>segmento</em> (não sobre um ponto), o cursor mostra uma curva — clique e arraste o segmento para curvá-lo diretamente, sem precisar manipular handles manualmente. Isso é único no Figma e muito mais rápido para iniciantes.</p>
+
+        <div class="callout pro">
+          <span class="callout-title">Paint Bucket — fechar paths abertas</span>
+          <p>Se você criou um caminho aberto (com vários segmentos que não formam uma forma fechada), o <strong>Paint Bucket</strong> (<kbd>B</kbd> no modo de edição vetorial) preenche o espaço delimitado pelos segmentos mesmo que o caminho não esteja formalmente fechado. É como o bucket fill do Photoshop, mas para vetores.</p>
+        </div>
+
+        <h2>Passo a passo: desenhar um ícone de casa com a Pen tool</h2>
+        <p>Vamos criar um ícone de "home" simples — um triângulo de telhado sobre um retângulo de parede:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Ative a Pen tool.</strong>
+            Pressione <kbd>P</kbd>. O cursor vira uma caneta. Você vai criar o telhado (triângulo).
+          </li>
+          <li>
+            <strong>Crie o triângulo do telhado.</strong>
+            Clique para criar o ponto esquerdo do telhado. Clique para o ponto do topo (no meio, acima). Clique para o ponto direito. Clique no primeiro ponto para fechar o triângulo. Pressione <kbd>Enter</kbd> para confirmar.
+          </li>
+          <li>
+            <strong>Crie o retângulo da parede.</strong>
+            Pressione <kbd>R</kbd> e desenhe um retângulo abaixo do triângulo para representar a parede da casa.
+          </li>
+          <li>
+            <strong>Unifique as formas (Boolean Union).</strong>
+            Selecione os dois elementos (<kbd>Shift</kbd>+clique). No menu superior, vá em <strong>Object → Union Selection</strong> (ou use o dropdown de Boolean na barra de ferramentas). As formas se fundem em um único vetor.
+          </li>
+          <li>
+            <strong>Adicione a porta.</strong>
+            Crie um pequeno retângulo com <kbd>R</kbd> na parte inferior da parede. Use <strong>Subtract Selection</strong> para "cortar" a porta da forma unificada.
+          </li>
+          <li>
+            <strong>Ajuste a cor e o tamanho.</strong>
+            Selecione o ícone final e dê um fill escuro. Redimensione para 24×24 px segurando <kbd>Shift</kbd>+<kbd>Alt</kbd>/<kbd>⌥</kbd> ao arrastar para manter proporcional e central.
+          </li>
+        </ol>
+
+        <h2>Boolean Operations — combinar formas</h2>
+        <p>Uma habilidade fundamental para criar ícones é combinar formas usando as <strong>Boolean Operations</strong>. São 4 modos:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Operação</th><th>O que faz</th><th>Atalho (barra superior)</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Union</strong></td><td>Funde as formas em uma só (área combinada)</td><td>Dropdown → Union Selection</td></tr>
+              <tr><td><strong>Subtract</strong></td><td>Remove a forma do topo da forma de baixo</td><td>Dropdown → Subtract Selection</td></tr>
+              <tr><td><strong>Intersect</strong></td><td>Mantém apenas onde as formas se sobrepõem</td><td>Dropdown → Intersect Selection</td></tr>
+              <tr><td><strong>Exclude</strong></td><td>Mantém onde as formas <em>não</em> se sobrepõem</td><td>Dropdown → Exclude Selection</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout warning">
+          <span class="callout-title">Boolean não é destrutivo</span>
+          <p>As Boolean Operations no Figma são <strong>não-destrutivas</strong>: as formas originais continuam existindo dentro do grupo Boolean e podem ser editadas individualmente entrando no grupo com duplo-clique. Para "achatar" em um único vetor, use <strong>Flatten Selection</strong> (<kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>E</kbd>).</p>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Ícones de UI são quase sempre criados com a Pen tool e Boolean Operations. Veja a anatomia de um ícone profissional:</p>
+
+        <div class="figma-mock">
+          <div style="display:flex;gap:24px;align-items:center;padding:8px;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+              <div style="width:48px;height:48px;background:var(--primary);border-radius:12px;display:flex;align-items:center;justify-content:center;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M3 10.5L12 3L21 10.5V20C21 20.55 20.55 21 20 21H15V15H9V21H4C3.45 21 3 20.55 3 20V10.5Z" fill="white"/>
+                </svg>
+              </div>
+              <span style="font-size:11px;color:var(--text-muted);">Home icon</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+              <div style="width:48px;height:48px;background:var(--surface-2);border-radius:12px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <circle cx="11" cy="11" r="7" stroke="var(--text)" stroke-width="2"/>
+                  <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="var(--text)" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <span style="font-size:11px;color:var(--text-muted);">Search icon</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+              <div style="width:48px;height:48px;background:var(--surface-2);border-radius:12px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M20 21V19C20 16.79 18.21 15 16 15H8C5.79 15 4 16.79 4 19V21" stroke="var(--text)" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="12" cy="8" r="4" stroke="var(--text)" stroke-width="2"/>
+                </svg>
+              </div>
+              <span style="font-size:11px;color:var(--text-muted);">Profile icon</span>
+            </div>
+          </div>
+          <p class="mock-label">Ícones criados com Pen tool, elipses e Boolean Operations — base de qualquer system de ícones.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Retângulo</td><td><kbd>R</kbd></td><td><kbd>R</kbd></td></tr>
+              <tr><td>Elipse / Círculo</td><td><kbd>O</kbd></td><td><kbd>O</kbd></td></tr>
+              <tr><td>Linha</td><td><kbd>L</kbd></td><td><kbd>L</kbd></td></tr>
+              <tr><td>Seta</td><td><kbd>Shift</kbd> + <kbd>L</kbd></td><td><kbd>Shift</kbd> + <kbd>L</kbd></td></tr>
+              <tr><td>Pen tool</td><td><kbd>P</kbd></td><td><kbd>P</kbd></td></tr>
+              <tr><td>Entrar em Vector Edit</td><td><kbd>Enter</kbd> (duplo-clique)</td><td><kbd>Enter</kbd> (duplo-clique)</td></tr>
+              <tr><td>Flatten (achatar vetores)</td><td><kbd>Ctrl</kbd> + <kbd>E</kbd></td><td><kbd>⌘</kbd> + <kbd>E</kbd></td></tr>
+              <tr><td>Proporcional ao centro ao redimensionar</td><td><kbd>Shift</kbd> + <kbd>Alt</kbd> + arrastar</td><td><kbd>Shift</kbd> + <kbd>⌥</kbd> + arrastar</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>As formas básicas (<kbd>R</kbd>, <kbd>O</kbd>, <kbd>L</kbd>) são o ponto de partida de qualquer UI.</li>
+          <li>O <strong>Corner Radius</strong> arredonda cantos; no Figma UI3, cada canto pode ter um valor diferente.</li>
+          <li>A <strong>Pen tool</strong> (<kbd>P</kbd>) cria formas vetoriais livres usando o sistema de Vector Networks.</li>
+          <li>Arrastar um <strong>segmento</strong> cria curvas (bend) — mais rápido do que manipular handles manualmente.</li>
+          <li><strong>Boolean Operations</strong> combinam, subtraem e intersectam formas para criar ícones complexos.</li>
+          <li><kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>E</kbd> achata uma boolean em um único vetor.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Crie um set de 4 ícones</h3>
+          <ol>
+            <li>Crie um Frame de 320×120 px para organizar seus ícones.</li>
+            <li>Ícone 1 — <strong>Olho:</strong> elipse principal (40×26 px) + elipse menor no centro (14×14 px) com Subtract.</li>
+            <li>Ícone 2 — <strong>Coração:</strong> dois círculos sobrepostos + triângulo embaixo com Union, depois rotacione 45°.</li>
+            <li>Ícone 3 — <strong>Estrela:</strong> ferramenta Estrela com 5 pontas e Ratio 0.45.</li>
+            <li>Ícone 4 — <strong>Seta de enviar:</strong> triângulo com Pen tool, ponta virada para a direita.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> os 4 ícones têm 24×24 px cada, fill sólido e foram criados vetorialmente (sem texto ou emoji).
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Ilustração de avatar personalizado</h3>
+          <p>Use apenas a Pen tool e as formas básicas para criar um avatar vetorial simples: um rosto redondo com olhos, sorriso e talvez cabelo. Sem usar texto ou imagens — tudo em vetores. Dica: o rosto é uma elipse, os olhos são dois círculos pequenos, a boca é um arco criado com a Pen tool e a técnica de bend. Ao terminar, aplique um gradiente de fill no rosto (próxima lição para os gradientes, mas explore por conta própria!).</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Como você cria uma curva suave com a Pen tool no Figma sem precisar manipular handles manualmente?</p>
+            <ul class="quiz-options">
+              <li>Pressionar Alt ao clicar em um ponto</li>
+              <li>Usar a ferramenta Pencil em vez da Pen</li>
+              <li>Clicar e arrastar diretamente sobre um segmento (bend)</li>
+              <li>Pressionar C para ativar modo curvo</li>
+            </ul>
+            <div class="quiz-explain">No Figma, você pode <strong>arrastar um segmento</strong> (não um ponto) para curvá-lo diretamente. Isso é chamado de "bend" e é exclusivo do Figma — muito mais intuitivo do que manipular handles Bézier tradicionais.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">2. Qual Boolean Operation remove a forma do topo da forma de baixo, criando um "buraco"?</p>
+            <ul class="quiz-options">
+              <li>Union</li>
+              <li>Subtract</li>
+              <li>Intersect</li>
+              <li>Exclude</li>
+            </ul>
+            <div class="quiz-explain"><strong>Subtract Selection</strong> remove a área da forma de cima da forma de baixo — é assim que você cria um "buraco" em uma forma, como a pupila dentro do olho ou a porta dentro da casa.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">3. Qual atalho "achata" um grupo de Boolean Operations em um único vetor simples?</p>
+            <ul class="quiz-options">
+              <li><kbd>Ctrl/⌘</kbd> + <kbd>G</kbd></li>
+              <li><kbd>Ctrl/⌘</kbd> + <kbd>F</kbd></li>
+              <li><kbd>Ctrl/⌘</kbd> + <kbd>B</kbd></li>
+              <li><kbd>Ctrl/⌘</kbd> + <kbd>E</kbd></li>
+            </ul>
+            <div class="quiz-explain"><strong>Ctrl/⌘ + E</strong> (Flatten Selection) converte um grupo de Boolean Operations (ou qualquer seleção de vetores) em um único path simples, removendo a estrutura não-destrutiva.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

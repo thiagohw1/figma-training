@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsividade: desktop → tablet → mobile | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="06-07-responsividade" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🖥️ Módulo 6 · Projeto Guiado · Lição 7 de 8</div>
+        <h1>Responsividade: desktop → tablet → mobile</h1>
+        <p class="lead">Um dashboard que só funciona em 1440 px é um produto incompleto. Nesta lição, você vai aprender a adaptar cada parte do TaskFlow — sidebar, tabela, Kanban — para os três breakpoints, usando Auto Layout e Constraints como sua principal ferramenta de responsividade.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~28 min</span>
+          <span>🎯 Nível: Projeto prático</span>
+          <span>🛠️ Pratique no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Adaptar a sidebar de fixa (desktop) para drawer deslizante (tablet/mobile);</li>
+            <li>Converter a data table em lista de cards para mobile usando o mesmo componente base;</li>
+            <li>Usar Auto Layout com wrap e fill para que grids de cards se adaptem automaticamente;</li>
+            <li>Criar frames de 768 e 375 px com layouts adaptados para cada breakpoint;</li>
+            <li>Aplicar Constraints para que os elementos do shell se comportem corretamente ao redimensionar.</li>
+          </ul>
+        </div>
+
+        <h2>A filosofia da responsividade no design</h2>
+        <p>Responsividade não é "fazer a tela menor". É <strong>rearranjar a informação</strong> para que ela seja igualmente acessível em qualquer tela. Um table de dados em desktop vira uma lista de cards no mobile — não uma tabela com scroll horizontal que o usuário precisa arrastar infinitamente.</p>
+        <p>No Figma, responsividade se implementa em <strong>três camadas</strong>:</p>
+        <ul>
+          <li><strong>Constraints:</strong> definem como os elementos se movem e redimensionam quando o frame pai muda de tamanho.</li>
+          <li><strong>Auto Layout (Fill + Wrap):</strong> os containers redistributem automaticamente os filhos quando o espaço muda.</li>
+          <li><strong>Variantes de breakpoint:</strong> para mudanças estruturais (sidebar vira drawer), criamos Variants separadas do componente.</li>
+        </ul>
+
+        <h2>Mapeando as mudanças por breakpoint</h2>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Elemento</th><th>Desktop (1440)</th><th>Tablet (768)</th><th>Mobile (375)</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Shell / Sidebar</strong></td><td>240 px, sempre visível</td><td>Oculta por padrão → drawer por overlay ao clicar em hamburguer</td><td>Oculta → bottom navigation bar (5 ícones)</td></tr>
+              <tr><td><strong>Topbar</strong></td><td>Logo + Busca + Ações</td><td>Hamburguer + Logo + Ações (busca escondida)</td><td>Hamburguer + Logo + Ícone de busca</td></tr>
+              <tr><td><strong>KPI Cards</strong></td><td>4 colunas (3 col grid cada)</td><td>2 colunas (4 col grid cada)</td><td>1 coluna (full width)</td></tr>
+              <tr><td><strong>Gráfico + Lateral</strong></td><td>8 col + 4 col (lado a lado)</td><td>8 col full width (empilhados)</td><td>Full width (empilhados)</td></tr>
+              <tr><td><strong>Data Table</strong></td><td>Tabela completa (colunas visíveis)</td><td>Tabela com scroll horizontal ou colunas condensadas</td><td>Lista de Cards (sem tabela)</td></tr>
+              <tr><td><strong>Kanban Board</strong></td><td>3 colunas (scroll horizontal)</td><td>1 coluna visível + scroll horizontal</td><td>Lista agrupada por status</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Passo a passo: adaptando para tablet (768 px)</h2>
+
+        <ol class="steps">
+          <li>
+            <strong>Duplique o frame de desktop e redimensione para 768 px.</strong>
+            Selecione o frame <code>01 — Dashboard (Desktop)</code>, pressione <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>D</kbd> para duplicar. Renomeie para <code>01 — Dashboard (Tablet)</code>. Selecione-o e no painel de propriedades mude a largura para 768 px.
+          </li>
+          <li>
+            <strong>Oculte a sidebar e ajuste a topbar.</strong>
+            No frame de tablet, oculte o frame da Sidebar clicando no ícone de olho no painel de layers. Na Topbar, troque o componente AppShell pela Variant <strong>breakpoint: tablet</strong> (que você criará com hamburguer menu à esquerda).
+          </li>
+          <li>
+            <strong>Ajuste o layout dos KPI Cards.</strong>
+            O frame pai dos cards usa Auto Layout horizontal com <strong>wrap</strong> ativo. No desktop eram 4 cards por linha. Ao reduzir para 768 px, o wrap os reorganiza para 2 por linha automaticamente — desde que cada card esteja com <strong>Width: Fill container</strong> e o gap seja 16.
+          </li>
+          <li>
+            <strong>Empilhe o gráfico e o painel lateral.</strong>
+            No layout desktop, o gráfico e o painel lateral estão em Auto Layout horizontal. No tablet, mude a direção para <strong>vertical</strong>. O gráfico ocupa 100% da largura e o painel lateral aparece abaixo.
+          </li>
+          <li>
+            <strong>Adicione o Drawer de sidebar.</strong>
+            Crie um novo frame de 320×768 px sobreposto ao conteúdo (posição X:0), com a sidebar dentro. Adicione um backdrop semitransparente atrás. Este é o estado "sidebar aberta" no tablet. Conecte ao botão hamburguer no protótipo.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Auto Layout Wrap: o segredo do layout responsivo</span>
+          <p>No Figma, ao ativar <strong>Wrap</strong> em um Auto Layout horizontal, os filhos quebram para a próxima linha quando não há espaço. Se cada filho está em <strong>Fixed width</strong> (ex.: 300 px), eles sempre terão o mesmo tamanho. Se estão em <strong>Fill container</strong>, cada filho cresce para ocupar o espaço disponível. A combinação de Wrap + Fixed mínimo é o equivalente ao CSS <code>grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))</code>.</p>
+        </div>
+
+        <h2>Passo a passo: adaptando para mobile (375 px)</h2>
+
+        <ol class="steps">
+          <li>
+            <strong>Duplique o frame de tablet e redimensione para 375 px.</strong>
+            Renomeie para <code>01 — Dashboard (Mobile)</code>. Mude a largura para 375 px.
+          </li>
+          <li>
+            <strong>Substitua a topbar pela versão mobile.</strong>
+            A topbar mobile tem apenas: hamburguer (à esquerda) + logo (centro) + avatar (à direita). A busca migrou para um ícone que abre a busca em tela cheia.
+          </li>
+          <li>
+            <strong>Substitua a sidebar pela bottom navigation.</strong>
+            No mobile, a navegação vai para o fundo da tela (bottom navigation bar): um frame de 375×56 px fixo no bottom, com 5 ícones com labels. No Figma, posicione-o com Constraint <strong>Left and Right + Bottom</strong>.
+          </li>
+          <li>
+            <strong>Ajuste os KPI Cards para 1 coluna.</strong>
+            Com o wrap ativo, ao chegar em 375 px e os cards em Fixed 343 px (375 - 32 de margem), cada card ocupa automaticamente uma linha inteira. Verifique que o padding lateral do container é 16 px.
+          </li>
+          <li>
+            <strong>Substitua a tabela pela lista de cards mobile.</strong>
+            Oculte o componente Table. No lugar, crie uma lista de <code>ProjectCardMobile</code> — um card vertical com nome, status (badge), responsável (avatar) e prazo. Isso substitui as linhas da tabela por cards tocáveis, com padding adequado para touch (mínimo 44 px de altura de hit area).
+          </li>
+          <li>
+            <strong>Ajuste os espaçamentos de toque.</strong>
+            Revise todos os elementos interativos: botões, links, ícones. No mobile, o mínimo para área de toque é 44×44 px (guideline da Apple) / 48×48 dp (guideline do Material). Qualquer coisa menor é difícil de tocar com precisão.
+          </li>
+        </ol>
+
+        <div class="figma-mock">
+          <div style="display:flex;gap:20px;flex-wrap:wrap;justify-content:center;padding:20px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-lg);">
+            <!-- Desktop preview -->
+            <div style="flex:none;text-align:center;">
+              <div style="width:200px;background:var(--surface);border:1.5px solid var(--border-strong);border-radius:8px;overflow:hidden;box-shadow:var(--shadow-md);">
+                <div style="height:28px;background:var(--surface-2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 8px;gap:4px;">
+                  <div style="width:8px;height:8px;border-radius:50%;background:#fc5c65;"></div>
+                  <div style="width:8px;height:8px;border-radius:50%;background:#ffd32a;"></div>
+                  <div style="width:8px;height:8px;border-radius:50%;background:#1dd1a1;"></div>
+                </div>
+                <div style="display:flex;height:120px;">
+                  <div style="width:44px;background:var(--surface);border-right:1px solid var(--border);padding:6px;display:flex;flex-direction:column;gap:3px;">
+                    <div style="height:8px;background:var(--primary-soft);border-radius:3px;"></div>
+                    <div style="height:8px;background:var(--surface-2);border-radius:3px;"></div>
+                    <div style="height:8px;background:var(--surface-2);border-radius:3px;"></div>
+                  </div>
+                  <div style="flex:1;padding:6px;display:grid;grid-template-columns:1fr 1fr;gap:4px;align-content:start;">
+                    <div style="height:28px;background:var(--surface-2);border-radius:4px;"></div>
+                    <div style="height:28px;background:var(--surface-2);border-radius:4px;"></div>
+                    <div style="height:28px;background:var(--surface-2);border-radius:4px;"></div>
+                    <div style="height:28px;background:var(--surface-2);border-radius:4px;"></div>
+                  </div>
+                </div>
+              </div>
+              <div style="font-size:11px;color:var(--text-soft);margin-top:6px;font-weight:600;">Desktop 1440</div>
+              <div style="font-size:10px;color:var(--text-soft);">Sidebar + 4 cards/linha</div>
+            </div>
+            <!-- Tablet preview -->
+            <div style="flex:none;text-align:center;">
+              <div style="width:120px;background:var(--surface);border:1.5px solid var(--border-strong);border-radius:8px;overflow:hidden;box-shadow:var(--shadow-md);">
+                <div style="height:22px;background:var(--surface-2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 8px;gap:4px;">
+                  <span style="font-size:11px;">☰</span>
+                  <div style="flex:1;"></div>
+                  <div style="width:16px;height:16px;border-radius:50%;background:var(--primary);"></div>
+                </div>
+                <div style="padding:6px;display:grid;grid-template-columns:1fr 1fr;gap:4px;">
+                  <div style="height:28px;background:var(--surface-2);border-radius:4px;"></div>
+                  <div style="height:28px;background:var(--surface-2);border-radius:4px;"></div>
+                  <div style="height:40px;background:var(--surface-2);border-radius:4px;grid-column:span 2;"></div>
+                  <div style="height:30px;background:var(--surface-2);border-radius:4px;grid-column:span 2;"></div>
+                </div>
+              </div>
+              <div style="font-size:11px;color:var(--text-soft);margin-top:6px;font-weight:600;">Tablet 768</div>
+              <div style="font-size:10px;color:var(--text-soft);">Drawer + 2 cards/linha</div>
+            </div>
+            <!-- Mobile preview -->
+            <div style="flex:none;text-align:center;">
+              <div style="width:76px;background:var(--surface);border:6px solid #11131a;border-radius:16px;overflow:hidden;box-shadow:var(--shadow-md);">
+                <div style="height:18px;background:var(--surface-2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 5px;justify-content:space-between;">
+                  <span style="font-size:9px;">☰</span>
+                  <div style="width:12px;height:12px;border-radius:50%;background:var(--primary);"></div>
+                </div>
+                <div style="padding:4px;display:flex;flex-direction:column;gap:3px;">
+                  <div style="height:22px;background:var(--surface-2);border-radius:3px;"></div>
+                  <div style="height:22px;background:var(--surface-2);border-radius:3px;"></div>
+                  <div style="height:22px;background:var(--surface-2);border-radius:3px;"></div>
+                </div>
+                <div style="height:18px;background:var(--surface);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-around;">
+                  <span style="font-size:9px;">📊</span>
+                  <span style="font-size:9px;">📁</span>
+                  <span style="font-size:9px;">✅</span>
+                  <span style="font-size:9px;">👥</span>
+                </div>
+              </div>
+              <div style="font-size:11px;color:var(--text-soft);margin-top:6px;font-weight:600;">Mobile 375</div>
+              <div style="font-size:10px;color:var(--text-soft);">Bottom nav + 1 col</div>
+            </div>
+          </div>
+          <p class="mock-label" style="text-align:center;margin-top:8px;font-size:12.5px;color:var(--text-soft);">Os três breakpoints do TaskFlow: a sidebar se transforma conforme o dispositivo — fixa (desktop), drawer (tablet), bottom nav (mobile). O grid de cards responde automaticamente com Auto Layout Wrap.</p>
+        </div>
+
+        <h2>Técnicas avançadas de Auto Layout para responsividade</h2>
+
+        <h3>Fill container vs. Fixed</h3>
+        <p>A combinação mais poderosa para responsividade no Figma:</p>
+        <ul>
+          <li>Elementos com <strong>Fill container</strong> crescem para preencher o espaço disponível no container pai.</li>
+          <li>Elementos com <strong>Fixed</strong> mantêm tamanho absoluto, independente do pai.</li>
+          <li>Use <strong>Fill + min-width</strong> para definir o mínimo antes do wrap acontecer.</li>
+        </ul>
+
+        <h3>Wrap com espaçamento dinâmico</h3>
+        <p>Em Auto Layout horizontal com Wrap, configure:</p>
+        <ul>
+          <li><strong>Horizontal gap:</strong> 16 px (entre colunas)</li>
+          <li><strong>Vertical gap:</strong> 16 px (entre linhas quando há wrap)</li>
+          <li>Cada filho: <strong>Width: Fill container</strong> com valor mínimo (ex.: 260 px)</li>
+        </ul>
+        <p>O resultado é equivalente ao CSS <code>grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px</code> — adaptação automática sem criar frames separados para cada breakpoint.</p>
+
+        <div class="callout warning">
+          <span class="callout-title">Atenção: Constraints só funcionam dentro de frames não-Auto Layout</span>
+          <p>Dentro de um frame com Auto Layout ativo, as Constraints são <em>ignoradas</em> — o Auto Layout controla o posicionamento. Constraints só se aplicam a filhos de frames <em>sem</em> Auto Layout. Use Auto Layout para layouts que precisam de lógica de distribuição; use Constraints para elementos que precisam de ancoragem específica (ex.: botão flutuante no canto inferior direito).</p>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>O Notion — uma das ferramentas de produtividade mais complexas do mercado — usa exatamente essa estratégia: no desktop tem uma sidebar permanente, no tablet o conteúdo ocupa tela cheia e a sidebar aparece como overlay, e no mobile há uma interface completamente repensada com navegação por drawer. O design file oficial da Notion no Figma tem frames nomeados por breakpoint para cada tela principal.</p>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Duplicar frame</td><td><kbd>Ctrl</kbd> + <kbd>D</kbd></td><td><kbd>⌘</kbd> + <kbd>D</kbd></td></tr>
+              <tr><td>Mostrar/ocultar layer</td><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd> (no painel)</td><td>clique no ícone de olho no layer</td></tr>
+              <tr><td>Mudar direção do Auto Layout</td><td>ícones de seta no painel Auto Layout</td><td>ícones de seta no painel Auto Layout</td></tr>
+              <tr><td>Ativar Wrap no Auto Layout</td><td>ícone de seta quebrando linha no painel</td><td>ícone de seta quebrando linha no painel</td></tr>
+              <tr><td>Alternar Fill/Fixed no filho</td><td>ícone de seta no campo W ou H do filho</td><td>ícone de seta no campo W ou H do filho</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Responsividade no Figma usa Constraints, Auto Layout Fill/Wrap e Variants de breakpoint em combinação.</li>
+          <li>A sidebar vira drawer (tablet) e bottom navigation (mobile) — mudanças estruturais exigem Variants de componente.</li>
+          <li>Auto Layout Wrap + filhos com Fill container é o equivalente visual do CSS <code>auto-fill minmax</code>.</li>
+          <li>No mobile, tabelas viram listas de cards e os alvos de toque precisam de no mínimo 44×44 px.</li>
+          <li>Constraints funcionam apenas em frames sem Auto Layout — dentro de Auto Layout, o posicionamento é controlado pela direção e alinhamento.</li>
+          <li>Duplique e adapte, não refaça do zero — o design desktop é a base, as adaptações são camadas sobre ela.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Adapte o Dashboard para os 3 breakpoints</h3>
+          <ol>
+            <li>Duplique o frame do Dashboard desktop e crie as versões 768 e 375 px.</li>
+            <li>Na versão tablet: oculte a sidebar, adicione o hamburguer na topbar e crie o frame do Drawer sobre o conteúdo.</li>
+            <li>Na versão mobile: substitua a sidebar pela bottom navigation bar e os KPI cards por 1 coluna.</li>
+            <li>Certifique-se de que os KPI cards em todos os frames usam Auto Layout Wrap para redistribuição automática.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> os 3 frames do Dashboard estão na página correspondente, a sidebar desaparece corretamente no tablet e mobile, e os KPI cards se redistribuem em 2 colunas no tablet e 1 coluna no mobile sem retrabalho manual.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Protótipo responsivo completo</h3>
+          <p>Monte no modo Protótipo do Figma um fluxo que demonstra a responsividade: use <strong>Device Frames</strong> para mostrar o desktop em um MacBook, o tablet em um iPad e o mobile em um iPhone 14. Conecte os frames com transições Smart Animate e adicione um hotspot no botão hamburguer (tablet e mobile) que abre o drawer/menu com animação de slide. O objetivo é ter uma apresentação que você possa mostrar para um cliente demonstrando como o produto se comporta nos três dispositivos.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Como o Auto Layout Wrap com filhos em Fill container se traduz no CSS?</p>
+            <ul class="quiz-options">
+              <li><code>display: flex; flex-wrap: wrap; justify-content: flex-start</code> com filhos de largura fixa</li>
+              <li><code>display: grid; grid-template-columns: repeat(auto-fill, minmax(Xpx, 1fr))</code> — redistribuição automática com largura mínima</li>
+              <li><code>display: flex; flex-direction: column</code></li>
+              <li><code>display: grid; grid-template-columns: repeat(12, 1fr)</code></li>
+            </ul>
+            <div class="quiz-explain">Auto Layout Wrap + Fill container é equivalente ao <code>auto-fill minmax</code> do CSS Grid — os itens ocupam o espaço disponível e quebram para a próxima linha quando atingem o mínimo. É a técnica mais poderosa para layouts de cards responsivos.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">2. Por que Constraints são ignorados dentro de um Auto Layout?</p>
+            <ul class="quiz-options">
+              <li>É um bug conhecido do Figma que ainda não foi corrigido</li>
+              <li>Constraints só funcionam em frames raiz (top-level), não em filhos</li>
+              <li>Constraints precisam ser ativados manualmente no modo de Auto Layout</li>
+              <li>Porque o Auto Layout controla o posicionamento dos filhos — Constraints e Auto Layout são dois sistemas mutuamente exclusivos de posicionamento</li>
+            </ul>
+            <div class="quiz-explain">Auto Layout e Constraints são sistemas concorrentes: o Auto Layout <strong>toma o controle</strong> do posicionamento dos filhos. Constraints só entram em jogo em frames onde o Auto Layout não está ativo. Dentro de um Auto Layout, você controla a posição via direção, alinhamento e gap.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Qual é o tamanho mínimo de área de toque recomendado para mobile?</p>
+            <ul class="quiz-options">
+              <li>44×44 px (Apple HIG) / 48×48 dp (Material Design)</li>
+              <li>24×24 px — mesma que o ícone visual</li>
+              <li>32×32 px — padrão de cursor para desktop</li>
+              <li>Não há recomendação oficial — depende do contexto</li>
+            </ul>
+            <div class="quiz-explain">A <strong>Apple</strong> recomenda 44×44 pt e o <strong>Material Design</strong> recomenda 48×48 dp como mínimo de área de toque. Elementos menores são difíceis de acionar com precisão — especialmente para usuários com mobilidade reduzida ou dedos maiores.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

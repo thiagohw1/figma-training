@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grids e layout: mobile vs web/desktop | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="02-09-grids-mobile-web" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">📦 Módulo 2 · Intermediário · Lição 9 de 9</div>
+        <h1>Grids e layout: mobile vs web/desktop</h1>
+        <p class="lead">Um grid não é apenas linhas no fundo da tela — é o sistema que garante alinhamento, ritmo visual e consistência entre telas, breakpoints e plataformas. Nesta lição você aprende os padrões de grid para cada contexto e como configurá-los no Figma.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~22 min</span>
+          <span>🎯 Nível: Intermediário</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Configurar grids de coluna para mobile, tablet e desktop no Figma;</li>
+            <li>Compreender margens, gutters e max-width de container;</li>
+            <li>Aplicar os breakpoints mais comuns no design responsivo;</li>
+            <li>Considerar safe areas no mobile e densidade de layout por plataforma.</li>
+          </ul>
+        </div>
+
+        <h2>O que é um sistema de grid?</h2>
+        <p>Um <strong>sistema de grid</strong> divide a largura de uma tela em unidades repetíveis (colunas) separadas por espaços (gutters) e com margens nas bordas. Ele cria uma estrutura invisível que:</p>
+        <ul>
+          <li>Garante que elementos se <strong>alinhem</strong> entre si em diferentes componentes e seções.</li>
+          <li>Define o <strong>ritmo horizontal</strong> da interface — a sensação de ordem e coerência.</li>
+          <li>Facilita o <strong>handoff</strong>: o desenvolvedor sabe exatamente quais larguras e espaçamentos usar.</li>
+          <li>Permite calcular a <strong>largura de elementos</strong> fluidos em relação às colunas (ex.: "este card ocupa 4 de 12 colunas = 33.3%").</li>
+        </ul>
+
+        <div class="callout info">
+          <span class="callout-title">Grid no Figma: Layout Grid</span>
+          <p>Para adicionar um grid a um frame no Figma, selecione o frame e no painel direito, na seção <strong>Layout grid</strong>, clique em "+". Você pode escolher entre Grid (grade uniforme), Columns (colunas) e Rows (linhas). Para colunas responsivas, use sempre <strong>Columns</strong> com a opção de Auto no count ou valores fixos. Salve como um <strong>Grid Style</strong> para reutilizar em toda a equipe (lição anterior).</p>
+        </div>
+
+        <h2>Os três tipos de grid no Figma</h2>
+        <p>No painel de Layout Grid, você configura:</p>
+        <ul>
+          <li><strong>Grid:</strong> uma grade uniforme de quadrados. Útil para verificar alinhamento em 8px ou 4px, mas não é o grid de colunas.</li>
+          <li><strong>Columns:</strong> colunas verticais com count, gutter e margin configuráveis. Este é o grid de layout responsivo.</li>
+          <li><strong>Rows:</strong> linhas horizontais. Menos comum no design de UI, mas útil para verificar espaçamento vertical.</li>
+        </ul>
+
+        <h3>Configurando um grid de colunas</h3>
+        <ol class="steps">
+          <li>
+            <strong>Selecione o frame</strong> que representa sua tela (ex.: Mobile 390×844).
+          </li>
+          <li>
+            <strong>No painel direito, em Layout grid, clique em "+".</strong> Aparece um grid padrão. Clique no ícone de ajuste (quatro quadradinhos) para editar.
+          </li>
+          <li>
+            <strong>Mude de "Grid" para "Columns"</strong> no seletor de tipo. Configure: Count (número de colunas), Type (Stretch para colunas que preenchem a largura, Fixed para largura fixa), Width (se Fixed), Margin e Gutter.
+          </li>
+          <li>
+            <strong>Escolha uma cor de referência.</strong> Defina uma opacidade baixa (10–15%) para o grid ser visível mas discreto. Use rosa/vermelho para mobile, azul para tablet, verde para desktop — convenção comum.
+          </li>
+          <li>
+            <strong>Salve como Grid Style</strong> (<code>Grid/Mobile</code>, <code>Grid/Desktop</code>) clicando no ícone de style ao lado do nome do grid.
+          </li>
+        </ol>
+
+        <h2>Grids por plataforma: a tabela de referência</h2>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Plataforma</th>
+                <th>Largura ref.</th>
+                <th>Colunas</th>
+                <th>Margin</th>
+                <th>Gutter</th>
+                <th>Max-width</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Mobile (pequeno)</strong></td>
+                <td>360px</td>
+                <td>4</td>
+                <td>16px</td>
+                <td>16px</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td><strong>Mobile (grande)</strong></td>
+                <td>390–430px</td>
+                <td>4</td>
+                <td>20–24px</td>
+                <td>16px</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td><strong>Tablet (portrait)</strong></td>
+                <td>768px</td>
+                <td>8</td>
+                <td>24px</td>
+                <td>20px</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td><strong>Tablet (landscape)</strong></td>
+                <td>1024px</td>
+                <td>12</td>
+                <td>32px</td>
+                <td>24px</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td><strong>Desktop (padrão)</strong></td>
+                <td>1440px</td>
+                <td>12</td>
+                <td>80px</td>
+                <td>24px</td>
+                <td>1280px</td>
+              </tr>
+              <tr>
+                <td><strong>Desktop (wide)</strong></td>
+                <td>1920px</td>
+                <td>12</td>
+                <td>auto</td>
+                <td>24px</td>
+                <td>1280–1440px</td>
+              </tr>
+              <tr>
+                <td><strong>TV / large screen</strong></td>
+                <td>1920–3840px</td>
+                <td>12–16</td>
+                <td>80–120px</td>
+                <td>32px</td>
+                <td>1600px</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout tip">
+          <span class="callout-title">Margin auto em desktops largos</span>
+          <p>Em telas de 1920px com max-width de 1280px, as margens ficam simétricas e calculadas automaticamente: (1920 - 1280) / 2 = 320px de cada lado. No Figma, configure Type: <strong>Center</strong> e Width: 1280, deixando margin automática. Isso corresponde ao padrão de <code>max-width: 1280px; margin: 0 auto</code> do CSS.</p>
+        </div>
+
+        <h2>Diagrama: grid de 12 colunas (desktop)</h2>
+
+        <div class="diagram">
+          <svg viewBox="0 0 540 120" role="img" aria-label="Diagrama de grid de 12 colunas em desktop com margens e gutters">
+            <!-- Fundo do frame -->
+            <rect x="0" y="20" width="540" height="80" fill="var(--surface-2)"/>
+            <!-- Margem esquerda -->
+            <rect x="0" y="20" width="36" height="80" fill="var(--warning-soft)" opacity=".7"/>
+            <!-- Margem direita -->
+            <rect x="504" y="20" width="36" height="80" fill="var(--warning-soft)" opacity=".7"/>
+            <!-- 12 colunas com gutters -->
+            <!-- Largura disponível: 540 - 72 = 468px / 12 colunas com 11 gutters de 8px = (468 - 88) / 12 = 31.67px por coluna -->
+            <!-- Simplificado para visualização: colunas de 30px, gutters de 8px -->
+            <rect x="36"  y="20" width="32" height="80" fill="var(--primary)" opacity=".15"/>
+            <rect x="76"  y="20" width="32" height="80" fill="var(--primary)" opacity=".15"/>
+            <rect x="116" y="20" width="32" height="80" fill="var(--primary)" opacity=".15"/>
+            <rect x="156" y="20" width="32" height="80" fill="var(--primary)" opacity=".15"/>
+            <rect x="196" y="20" width="32" height="80" fill="var(--primary)" opacity=".15"/>
+            <rect x="236" y="20" width="32" height="80" fill="var(--primary)" opacity=".15"/>
+            <rect x="276" y="20" width="32" height="80" fill="var(--primary)" opacity=".15"/>
+            <rect x="316" y="20" width="32" height="80" fill="var(--primary)" opacity=".15"/>
+            <rect x="356" y="20" width="32" height="80" fill="var(--primary)" opacity=".15"/>
+            <rect x="396" y="20" width="32" height="80" fill="var(--primary)" opacity=".15"/>
+            <rect x="436" y="20" width="32" height="80" fill="var(--primary)" opacity=".15"/>
+            <rect x="476" y="20" width="28" height="80" fill="var(--primary)" opacity=".15"/>
+            <!-- Rótulos -->
+            <text x="18"  y="14" fill="var(--warning)" font-size="9"  text-anchor="middle" font-family="sans-serif">margin</text>
+            <text x="520" y="14" fill="var(--warning)" font-size="9"  text-anchor="middle" font-family="sans-serif">margin</text>
+            <text x="270" y="14" fill="var(--primary)" font-size="10" text-anchor="middle" font-family="sans-serif" font-weight="600">12 colunas</text>
+            <!-- Seta de gutter -->
+            <line x1="68" y1="108" x2="75" y2="108" stroke="var(--text-muted)" stroke-width="1"/>
+            <text x="71" y="118" fill="var(--text-muted)" font-size="9" text-anchor="middle" font-family="sans-serif">gutter</text>
+            <line x1="68" y1="112" x2="68" y2="106" stroke="var(--text-muted)" stroke-width="1"/>
+            <line x1="76" y1="112" x2="76" y2="106" stroke="var(--text-muted)" stroke-width="1"/>
+          </svg>
+          <p class="mock-label">Grid de 12 colunas com margens laterais (amarelo) e gutters entre colunas. O conteúdo fica nas colunas (azul) — elementos que precisam ser "full-width" ficam dentro das margens; elementos menores ocupam 4, 6 ou 3 colunas conforme o layout.</p>
+        </div>
+
+        <h2>Breakpoints comuns</h2>
+        <p>Breakpoints são os pontos de largura onde o layout muda de configuração. Defina os seus frames de design nesses pontos:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Breakpoint</th><th>Largura</th><th>Alvo</th></tr></thead>
+            <tbody>
+              <tr><td><strong>xs</strong></td><td>até 480px</td><td>Mobile pequeno, relógio</td></tr>
+              <tr><td><strong>sm</strong></td><td>480–768px</td><td>Mobile grande, phablet</td></tr>
+              <tr><td><strong>md</strong></td><td>768–1024px</td><td>Tablet portrait</td></tr>
+              <tr><td><strong>lg</strong></td><td>1024–1440px</td><td>Laptop, tablet landscape</td></tr>
+              <tr><td><strong>xl</strong></td><td>1440–1920px</td><td>Desktop, monitor padrão</td></tr>
+              <tr><td><strong>2xl</strong></td><td>1920px+</td><td>Monitor widescreen, 4K</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout note">
+          <span class="callout-title">Breakpoints são guias, não regras absolutas</span>
+          <p>Os breakpoints da tabela acima são os mais usados (especialmente no contexto do Tailwind CSS e Bootstrap), mas você pode definir os seus próprios. O importante é que a equipe de design e desenvolvimento use os mesmos valores. Documente os breakpoints no arquivo de design ou no CLAUDE.md do projeto.</p>
+        </div>
+
+        <h2>Safe Areas no mobile</h2>
+        <p>Dispositivos modernos têm áreas de tela "reservadas" pelo sistema operacional onde o conteúdo da app não deve aparecer:</p>
+        <ul>
+          <li><strong>Status bar (topo):</strong> onde aparecem hora, bateria, sinal. Em iPhones com Dynamic Island: ~59px. Em Androids: ~24–48px dependendo do modelo.</li>
+          <li><strong>Home indicator / Navigation bar (base):</strong> a barra de gesto home ou os botões de navegação. Em iPhones modernos: 34px de safe area + o indicador visual. Em Androids com gestos: 20–48px.</li>
+          <li><strong>Notch / Dynamic Island:</strong> recorte na parte superior que a câmera frontal ocupa.</li>
+        </ul>
+        <p>No Figma, represente as safe areas com retângulos ou guides no topo e na base do frame. Muitas teams usam um componente de "Device Shell" que já inclui as safe areas.</p>
+
+        <div class="callout warning">
+          <span class="callout-title">Conteúdo interativo nas safe areas</span>
+          <p>Nunca coloque botões, campos de texto ou conteúdo crítico dentro das safe areas. O sistema operacional pode interceptar gestos nessa região. Mantenha o conteúdo da app dentro da área segura — o que está abaixo do status bar e acima do home indicator.</p>
+        </div>
+
+        <h2>Densidade: mobile vs desktop</h2>
+        <p>Mobile e desktop têm densidades de interação muito diferentes, e isso afeta o design do grid:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Aspecto</th><th>Mobile (toque)</th><th>Desktop (mouse)</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Alvo mínimo de toque</strong></td><td>44×44px (Apple) / 48×48dp (Google)</td><td>24×24px (cursor é preciso)</td></tr>
+              <tr><td><strong>Padding de elementos</strong></td><td>Generoso (12–16px mínimo)</td><td>Compacto (4–8px possível)</td></tr>
+              <tr><td><strong>Fonte mínima</strong></td><td>14px body (16px recomendado)</td><td>12px possível em dados densos</td></tr>
+              <tr><td><strong>Espaço entre itens</strong></td><td>8–16px (dedos se confundem)</td><td>4–8px (cursor é preciso)</td></tr>
+              <tr><td><strong>Hover states</strong></td><td>Não existem (sem hover)</td><td>Essenciais para feedback</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Padrões de layout por plataforma</h2>
+        <h3>Mobile: layout de coluna única</h3>
+        <p>Em mobile, o layout é quase sempre de <strong>coluna única</strong>. O conteúdo flui de cima para baixo. As quatro colunas do grid raramente são usadas para criar duas colunas side-by-side — a tela é estreita demais. As colunas servem principalmente para:</p>
+        <ul>
+          <li>Alinhar margens (o conteúdo fica nas colunas 1 a 4).</li>
+          <li>Criar grades de cards 2×N (2 colunas de cards em uma galeria).</li>
+          <li>Calcular larguras de elementos que devem ser 50% ou 100% da área útil.</li>
+        </ul>
+
+        <h3>Tablet: layout híbrido</h3>
+        <p>Com 8 colunas, o tablet permite layouts mais ricos: uma sidebar de 3 colunas + conteúdo de 5 colunas, ou cards de 4 colunas lado a lado. É o breakpoint mais desafiador porque comporta os dois mundos — a interação mobile e a densidade desktop.</p>
+
+        <h3>Desktop: layout multi-coluna</h3>
+        <p>O desktop de 12 colunas é o mais flexível. Padrões comuns:</p>
+        <ul>
+          <li><strong>Layout editorial:</strong> sidebar 3 colunas + conteúdo 6 colunas + aside 3 colunas.</li>
+          <li><strong>Dashboard:</strong> sidebar 2 colunas + área principal 10 colunas.</li>
+          <li><strong>Grid de cards:</strong> 4 cards de 3 colunas cada = 4 × 3 = 12 colunas.</li>
+          <li><strong>Hero full-width:</strong> conteúdo central de 8 colunas centralizado (2 colunas vazias de cada lado).</li>
+        </ul>
+
+        <h2>Exemplo de uso real: configurando grids no Figma para um produto</h2>
+        <p>Ao iniciar o design de um produto responsivo, o workflow recomendado é:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie três frames de referência.</strong>
+            <code>Mobile — 390×844</code>, <code>Tablet — 768×1024</code>, <code>Desktop — 1440×900</code>. Nomeie-os claramente.
+          </li>
+          <li>
+            <strong>Configure o grid em cada frame.</strong>
+            Mobile: 4 colunas, margin 20, gutter 16. Tablet: 8 colunas, margin 24, gutter 20. Desktop: 12 colunas, margin 80, gutter 24.
+          </li>
+          <li>
+            <strong>Salve como Grid Styles.</strong>
+            Renomeie como <code>Grid/Mobile</code>, <code>Grid/Tablet</code>, <code>Grid/Desktop</code>. Agora qualquer designer da equipe aplica o grid correto em um clique.
+          </li>
+          <li>
+            <strong>Adicione as safe areas no mobile.</strong>
+            Crie um retângulo de 59px no topo (Status bar + Dynamic Island) e outro de 34px na base (Home indicator). Use fills com baixa opacidade como guia visual.
+          </li>
+          <li>
+            <strong>Projete desktop primeiro ou mobile first?</strong>
+            Não há resposta única — depende do produto e da audiência. Apps mobile-first: comece pelo mobile. Sistemas de administração e dashboards: comece pelo desktop.
+          </li>
+        </ol>
+
+        <div class="figma-mock">
+          <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:flex-start;width:100%;">
+            <!-- Mobile -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+              <div style="width:80px;height:140px;border:2px solid var(--border-strong);border-radius:10px;background:var(--surface);overflow:hidden;position:relative;">
+                <div style="position:absolute;top:0;left:0;right:0;height:12px;background:rgba(230,100,0,.15);"></div>
+                <div style="position:absolute;bottom:0;left:0;right:0;height:10px;background:rgba(230,100,0,.15);"></div>
+                <div style="position:absolute;top:12px;bottom:10px;left:5px;right:5px;display:flex;gap:3px;">
+                  <div style="flex:1;background:rgba(108,76,241,.1);"></div>
+                  <div style="flex:1;background:rgba(108,76,241,.1);"></div>
+                  <div style="flex:1;background:rgba(108,76,241,.1);"></div>
+                  <div style="flex:1;background:rgba(108,76,241,.1);"></div>
+                </div>
+              </div>
+              <span style="font-size:11px;font-weight:600;color:var(--text-muted);">Mobile</span>
+              <span style="font-size:10px;color:var(--text-soft);">4 colunas · 20/16</span>
+            </div>
+            <!-- Tablet -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+              <div style="width:120px;height:100px;border:2px solid var(--border-strong);border-radius:8px;background:var(--surface);overflow:hidden;position:relative;">
+                <div style="position:absolute;top:0;left:0;right:0;height:10px;background:rgba(230,100,0,.15);"></div>
+                <div style="position:absolute;top:10px;bottom:0;left:6px;right:6px;display:flex;gap:3px;">
+                  <div style="flex:1;background:rgba(108,76,241,.1);"></div>
+                  <div style="flex:1;background:rgba(108,76,241,.1);"></div>
+                  <div style="flex:1;background:rgba(108,76,241,.1);"></div>
+                  <div style="flex:1;background:rgba(108,76,241,.1);"></div>
+                  <div style="flex:1;background:rgba(108,76,241,.1);"></div>
+                  <div style="flex:1;background:rgba(108,76,241,.1);"></div>
+                  <div style="flex:1;background:rgba(108,76,241,.1);"></div>
+                  <div style="flex:1;background:rgba(108,76,241,.1);"></div>
+                </div>
+              </div>
+              <span style="font-size:11px;font-weight:600;color:var(--text-muted);">Tablet</span>
+              <span style="font-size:10px;color:var(--text-soft);">8 colunas · 24/20</span>
+            </div>
+            <!-- Desktop -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+              <div style="width:180px;height:100px;border:2px solid var(--border-strong);border-radius:6px;background:var(--surface);overflow:hidden;position:relative;">
+                <div style="position:absolute;top:0;left:0;right:0;height:10px;background:rgba(230,100,0,.15);"></div>
+                <div style="position:absolute;top:10px;bottom:0;left:18px;right:18px;display:flex;gap:2px;">
+                  <div style="flex:1;background:rgba(108,76,241,.1);"></div>
+                  <div style="flex:1;background:rgba(108,76,241,.1);"></div>
+                  <div style="flex:1;background:rgba(108,76,241,.1);"></div>
+                  <div style="flex:1;background:rgba(108,76,241,.1);"></div>
+                  <div style="flex:1;background:rgba(108,76,241,.1);"></div>
+                  <div style="flex:1;background:rgba(108,76,241,.1);"></div>
+                  <div style="flex:1;background:rgba(108,76,241,.1);"></div>
+                  <div style="flex:1;background:rgba(108,76,241,.1);"></div>
+                  <div style="flex:1;background:rgba(108,76,241,.1);"></div>
+                  <div style="flex:1;background:rgba(108,76,241,.1);"></div>
+                  <div style="flex:1;background:rgba(108,76,241,.1);"></div>
+                  <div style="flex:1;background:rgba(108,76,241,.1);"></div>
+                </div>
+                <div style="position:absolute;top:10px;bottom:0;left:0;width:18px;background:rgba(230,100,0,.12);"></div>
+                <div style="position:absolute;top:10px;bottom:0;right:0;width:18px;background:rgba(230,100,0,.12);"></div>
+              </div>
+              <span style="font-size:11px;font-weight:600;color:var(--text-muted);">Desktop</span>
+              <span style="font-size:10px;color:var(--text-soft);">12 colunas · 80/24</span>
+            </div>
+          </div>
+          <p class="mock-label">Representação dos três grids: mobile (4 cols), tablet (8 cols) e desktop (12 cols). As margens estão em laranja, as colunas em roxo. No desktop, as margens maiores criam a sensação de "container" centrado.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Mostrar/ocultar layout grids</td><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>4</kbd></td><td><kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>4</kbd></td></tr>
+              <tr><td>Criar frame (para nova tela)</td><td><kbd>F</kbd></td><td><kbd>F</kbd></td></tr>
+              <tr><td>Mostrar/ocultar réguas</td><td><kbd>Ctrl</kbd> + <kbd>R</kbd></td><td><kbd>⌘</kbd> + <kbd>R</kbd></td></tr>
+              <tr><td>Mostrar/ocultar guias</td><td><kbd>Ctrl</kbd> + <kbd>'</kbd></td><td><kbd>⌘</kbd> + <kbd>'</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Grids de coluna garantem alinhamento, ritmo e consistência entre designs e desenvolvimento.</li>
+          <li>Mobile: 4 colunas, margin 16–24px, gutter 16px. Tablet: 8 colunas. Desktop: 12 colunas, margin 80px.</li>
+          <li>Breakpoints padrões: sm (480px), md (768px), lg (1024px), xl (1440px), 2xl (1920px).</li>
+          <li>Safe areas no mobile: não coloque conteúdo interativo na status bar (~59px) nem no home indicator (~34px).</li>
+          <li>Mobile exige alvos de toque mínimos de 44–48px; desktop pode ser mais compacto.</li>
+          <li>Salve grids como Grid Styles para reuso fácil em toda a equipe.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Três frames responsivos com grid</h3>
+          <ol>
+            <li>Crie três frames: <strong>Mobile 390×844</strong>, <strong>Tablet 768×1024</strong>, <strong>Desktop 1440×900</strong>.</li>
+            <li>Configure o grid de colunas em cada frame conforme os valores da tabela desta lição.</li>
+            <li>Salve cada grid como um Grid Style: <code>Grid/Mobile</code>, <code>Grid/Tablet</code>, <code>Grid/Desktop</code>.</li>
+            <li>No frame Mobile, marque as safe areas com retângulos de 59px (topo) e 34px (base) em fill vermelho a 10% de opacidade.</li>
+            <li>Em cada frame, desenhe um header simples que respeita as colunas (full-width) e um card que ocupa 2 colunas no mobile, 4 no tablet e 3 no desktop.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> os três frames têm grids salvos como styles, as safe areas estão marcadas no mobile, e o card muda de largura (mas mantém o conteúdo) nos três breakpoints.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Layout responsivo completo de uma landing page</h3>
+          <p>Projete a seção hero de uma landing page nos três breakpoints. No <strong>mobile</strong>: hero de coluna única, headline grande, CTA centralizado, imagem abaixo do texto (stacked). No <strong>tablet</strong>: headline à esquerda (5 colunas), imagem à direita (3 colunas). No <strong>desktop</strong>: headline e subtítulo à esquerda (6 colunas), ilustração animada à direita (6 colunas), CTAs alinhados ao grid. Todos os elementos devem se alinhar às colunas do grid da plataforma respectiva.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">1. Qual é a configuração de grid padrão mais comum para um frame desktop de 1440px?</p>
+            <ul class="quiz-options">
+              <li>12 colunas, margin 80px, gutter 24px</li>
+              <li>4 colunas, margin 20px, gutter 16px</li>
+              <li>8 colunas, margin 40px, gutter 16px</li>
+              <li>16 colunas, margin 60px, gutter 16px</li>
+            </ul>
+            <div class="quiz-explain"><strong>12 colunas, margin 80px, gutter 24px</strong> é o grid desktop mais comum, adotado pela maioria dos design systems (Material Design, Atlassian, IBM Carbon). As 12 colunas permitem dividir o layout em 2, 3 ou 4 partes iguais com facilidade.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">2. Por que o tamanho mínimo de alvo de toque em mobile é 44×44px enquanto em desktop pode ser menor?</p>
+            <ul class="quiz-options">
+              <li>Porque telas mobile têm resolução menor</li>
+              <li>Por convenção, não há razão funcional</li>
+              <li>Porque o dedo é impreciso; o cursor do mouse permite áreas menores</li>
+              <li>Porque o sistema operacional bloqueia cliques menores que 44px</li>
+            </ul>
+            <div class="quiz-explain">O dedo humano cobre uma área de contato de aproximadamente 44–57px. Um cursor de mouse é um ponto exato. Por isso, interfaces mobile precisam de alvos maiores para evitar cliques acidentais no elemento errado — esse é um dos princípios de acessibilidade das HIG da Apple e das diretrizes do Material Design.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">3. O que são "safe areas" em design mobile?</p>
+            <ul class="quiz-options">
+              <li>Regiões de texto que nunca devem mudar de cor</li>
+              <li>Áreas reservadas pelo sistema operacional (barra de status, home indicator) onde conteúdo interativo não deve ficar</li>
+              <li>Zonas de margem do grid que garantem espaçamento consistente</li>
+              <li>Limite da área visível sem scroll na tela inicial</li>
+            </ul>
+            <div class="quiz-explain"><strong>Safe areas</strong> são as regiões ocupadas pelo sistema operacional — barra de status no topo (com hora, bateria, sinal) e home indicator na base (em iPhones sem botão físico). Colocar conteúdo interativo nessas áreas causa problemas de usabilidade, pois o SO pode interceptar gestos.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

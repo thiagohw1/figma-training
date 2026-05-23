@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organização e nomenclatura | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="09-01-organizacao-nomenclatura" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🎯 Módulo 9 · Profissional · Lição 1 de 6</div>
+        <h1>Organização e nomenclatura</h1>
+        <p class="lead">Um arquivo Figma bem nomeado e organizado é a diferença entre um projeto que escala com o time e um caos digital que ninguém quer abrir. Aprenda as convenções usadas nos melhores times do mundo.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~20 min</span>
+          <span>🎯 Nível: Profissional</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Aplicar convenções de nomenclatura consistentes a camadas, frames, componentes, páginas e arquivos;</li>
+            <li>Estruturar as páginas de um arquivo Figma de forma que qualquer pessoa do time entenda ao abrir;</li>
+            <li>Nomear componentes com o padrão <code>Propriedade=Valor</code> que o Figma usa nativamente;</li>
+            <li>Criar um cover de arquivo informativo e cores de seção que organizam visualmente a sidebar;</li>
+            <li>Reconhecer boas práticas de organização que continuam funcionando quando o time cresce.</li>
+          </ul>
+        </div>
+
+        <h2>Por que nomenclatura importa tanto?</h2>
+        <p>Quando você trabalha sozinho, nomes como "Frame 47" ou "Group 3" são inconvenientes mas toleráveis. Num time de 5 ou 15 designers, eles se tornam um problema real: ninguém sabe o que aquele elemento é, qual componente usar, nem onde está o estado que o desenvolvedor precisa inspecionar.</p>
+        <p>Bons nomes são um investimento de segundos que economiza minutos (ou horas) toda semana. Pense assim: seu colega vai abrir esse arquivo às 22h tentando corrigir algo antes de uma entrega. Nomes claros tornam essa situação suportável.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Nomenclatura como documentação viva</span>
+          <p>Num arquivo bem nomeado, a sidebar do Figma já é uma documentação: você vê <strong>Button/Primary/Hover</strong> e entende exatamente o que é. Você não precisa de comentários extras para isso.</p>
+        </div>
+
+        <h2>Camadas e frames: o básico que o time agradece</h2>
+        <p>A regra de ouro é: <strong>qualquer camada que vai para produção precisa de nome descritivo</strong>. Camadas de trabalho temporário podem ter nomes genéricos, mas tudo que entra num componente ou numa tela entregável deve ser explícito.</p>
+
+        <h3>Convenções para camadas</h3>
+        <ul>
+          <li><strong>Use kebab-case ou Title Case de forma consistente.</strong> Escolha uma e não mude. Exemplo: <code>card-header</code> ou <code>Card Header</code> — nunca os dois no mesmo arquivo.</li>
+          <li><strong>Seja específico, não genérico.</strong> <code>icon-arrow-right</code> é melhor que <code>Icon</code>. <code>user-avatar</code> é melhor que <code>Oval</code>.</li>
+          <li><strong>Prefixe grupos funcionais.</strong> Exemplo: todas as camadas de ícones começam com <code>icon-</code>, todas de ilustração com <code>illo-</code>.</li>
+          <li><strong>Nunca deixe "Frame X" ou "Group X" em entregáveis.</strong> Renomeie imediatamente ao criar.</li>
+        </ul>
+
+        <h3>Convenções para frames de tela</h3>
+        <p>Frames de tela (screens) geralmente seguem o padrão: <code>[Plataforma] / [Fluxo] / [Estado]</code>. Por exemplo:</p>
+        <ul>
+          <li><code>Mobile / Checkout / Endereço</code></li>
+          <li><code>Web / Dashboard / Vazio</code></li>
+          <li><code>Mobile / Onboarding / Passo 3</code></li>
+        </ul>
+
+        <div class="callout tip">
+          <span class="callout-title">Use barras para criar hierarquia visual</span>
+          <p>O Figma trata a barra (<code>/</code>) em nomes de camadas como separador de grupo. Em componentes isso cria submenus no painel de propriedades. Em frames, organiza a sidebar de forma legível quando há dezenas de telas.</p>
+        </div>
+
+        <h2>Estrutura de páginas: o mapa do arquivo</h2>
+        <p>Um arquivo Figma pode ter dezenas de páginas. Sem uma estrutura definida, você passa tempo procurando coisas em vez de criando. Adote esta estrutura padrão, adaptando conforme a necessidade:</p>
+
+        <div class="diagram">
+          <svg viewBox="0 0 560 300" role="img" aria-label="Estrutura de páginas recomendada em um arquivo Figma">
+            <!-- Colunas de páginas -->
+            <rect x="20" y="20" width="120" height="260" rx="10" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+            <text x="80" y="44" text-anchor="middle" font-size="12" font-weight="700" fill="var(--text)" font-family="sans-serif">Páginas</text>
+            <!-- itens -->
+            <rect x="30" y="54" width="100" height="32" rx="6" fill="var(--warning-soft)" stroke="var(--warning-border)" stroke-width="1"/>
+            <text x="80" y="74" text-anchor="middle" font-size="11" fill="var(--warning)" font-family="sans-serif" font-weight="600">📋 Cover</text>
+            <rect x="30" y="94" width="100" height="32" rx="6" fill="var(--primary-soft)" stroke="var(--primary-soft-border)" stroke-width="1"/>
+            <text x="80" y="114" text-anchor="middle" font-size="11" fill="var(--primary)" font-family="sans-serif" font-weight="600">🧩 Components</text>
+            <rect x="30" y="134" width="100" height="32" rx="6" fill="var(--success-soft)" stroke="var(--success-border)" stroke-width="1"/>
+            <text x="80" y="154" text-anchor="middle" font-size="11" fill="var(--success)" font-family="sans-serif" font-weight="600">🖼️ Designs</text>
+            <rect x="30" y="174" width="100" height="32" rx="6" fill="var(--surface-3)" stroke="var(--border-strong)" stroke-width="1"/>
+            <text x="80" y="194" text-anchor="middle" font-size="11" fill="var(--text-muted)" font-family="sans-serif" font-weight="600">🔨 WIP</text>
+            <rect x="30" y="214" width="100" height="32" rx="6" fill="var(--surface-3)" stroke="var(--border-strong)" stroke-width="1"/>
+            <text x="80" y="234" text-anchor="middle" font-size="11" fill="var(--text-soft)" font-family="sans-serif" font-weight="600">📦 Archive</text>
+
+            <!-- Descrições -->
+            <line x1="160" y1="70" x2="200" y2="70" stroke="var(--border-strong)" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="205" y="66" font-size="11" fill="var(--text-muted)" font-family="sans-serif">Thumbnail do arquivo,</text>
+            <text x="205" y="80" font-size="11" fill="var(--text-muted)" font-family="sans-serif">links e status</text>
+
+            <line x1="160" y1="110" x2="200" y2="110" stroke="var(--border-strong)" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="205" y="106" font-size="11" fill="var(--text-muted)" font-family="sans-serif">Todos os componentes</text>
+            <text x="205" y="120" font-size="11" fill="var(--text-muted)" font-family="sans-serif">e tokens visuais</text>
+
+            <line x1="160" y1="150" x2="200" y2="150" stroke="var(--border-strong)" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="205" y="146" font-size="11" fill="var(--text-muted)" font-family="sans-serif">Telas entregáveis</text>
+            <text x="205" y="160" font-size="11" fill="var(--text-muted)" font-family="sans-serif">por fluxo</text>
+
+            <line x1="160" y1="190" x2="200" y2="190" stroke="var(--border-strong)" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="205" y="186" font-size="11" fill="var(--text-muted)" font-family="sans-serif">Work in progress,</text>
+            <text x="205" y="200" font-size="11" fill="var(--text-muted)" font-family="sans-serif">rascunhos e testes</text>
+
+            <line x1="160" y1="230" x2="200" y2="230" stroke="var(--border-strong)" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="205" y="226" font-size="11" fill="var(--text-muted)" font-family="sans-serif">Versões antigas,</text>
+            <text x="205" y="240" font-size="11" fill="var(--text-muted)" font-family="sans-serif">não deletar</text>
+          </svg>
+          <p class="mock-label">Estrutura padrão de páginas. Adapte conforme o projeto, mas mantenha a consistência dentro do time.</p>
+        </div>
+
+        <h3>Detalhando cada página</h3>
+        <p><strong>Cover:</strong> A primeira página do arquivo serve como capa. Inclua o nome do projeto, a versão atual, quem é o responsável, status (Em andamento, Em revisão, Aprovado) e links úteis (Jira, Notion, repositório). O Figma usa o frame chamado <code>.cover</code> (com ponto) como thumbnail do arquivo no dashboard.</p>
+        <p><strong>Components:</strong> Todos os componentes do projeto ficam aqui, organizados por categoria. Não misture componentes com telas. Essa separação facilita enormemente o handoff.</p>
+        <p><strong>Designs / Flows:</strong> As telas entregáveis. Divida em subpáginas por fluxo se o projeto for grande: <code>Designs — Onboarding</code>, <code>Designs — Home</code>, etc.</p>
+        <p><strong>WIP (Work in Progress):</strong> Aqui ficam os rascunhos, experimentos e variações em teste. É seu playground — pode ser bagunçado, mas isolado do restante.</p>
+        <p><strong>Archive:</strong> Nunca delete telas antigas — mova para Archive. O histórico de versões é valioso para justificar decisões em reuniões futuras.</p>
+
+        <h2>Nomenclatura de componentes: o sistema Property=Value</h2>
+        <p>O Figma usa a barra (<code>/</code>) para criar hierarquia de componentes e <strong>inferir propriedades automaticamente</strong> quando você usa Variants. A convenção é:</p>
+        <pre><code>ComponentName / Propriedade=Valor / Outra=Valor</code></pre>
+        <p>Exemplos práticos:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Nome do componente</th><th>O que o Figma infere</th></tr></thead>
+            <tbody>
+              <tr><td><code>Button / Type=Primary, Size=Large, State=Default</code></td><td>Cria propriedades Type, Size e State no painel de Variants</td></tr>
+              <tr><td><code>Input / State=Focus, HasLabel=True</code></td><td>Properties State e HasLabel com toggle automático</td></tr>
+              <tr><td><code>Icon / Name=Arrow, Direction=Right</code></td><td>Permite trocar o ícone e a direção pelo painel</td></tr>
+              <tr><td><code>Avatar / Size=MD, HasBadge=False</code></td><td>Propriedade de tamanho e badge boolean</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout pro">
+          <span class="callout-title">Dica de nomenclatura avançada</span>
+          <p>Prefixe propriedades booleanas com verbos: <code>HasIcon</code>, <code>ShowLabel</code>, <code>IsDisabled</code>. Assim fica óbvio que são true/false. E evite abreviações obscuras — escreva <code>State=Disabled</code>, não <code>St=Dis</code>.</p>
+        </div>
+
+        <h3>Organizando componentes com seções no Figma</h3>
+        <p>Use <strong>Sections</strong> (tecla <kbd>S</kbd>) para agrupar componentes por categoria dentro da página Components. Nomeie as seções claramente: <em>Buttons &amp; Links</em>, <em>Form Controls</em>, <em>Navigation</em>, <em>Cards &amp; Lists</em>. Sections aparecem como separadores na busca de componentes.</p>
+
+        <h2>Cover de arquivo: sua primeira impressão</h2>
+        <p>O cover é o que aparece no dashboard do Figma quando alguém abre o projeto. Um bom cover comunica profissionalismo e organização. Crie um frame de 1600×960 px chamado <code>.cover</code> (com ponto no início — isso instrui o Figma a usá-lo como thumbnail) contendo:</p>
+        <ul>
+          <li>Nome do projeto com tipografia clara;</li>
+          <li>Versão atual e data da última atualização;</li>
+          <li>Status visual (badge colorido: Em andamento, Aprovado, Arquivado);</li>
+          <li>Avatar e nome do(s) designer(s) responsável(eis);</li>
+          <li>Links para documentação, Jira ou Notion (como texto ou ícones).</li>
+        </ul>
+
+        <h2>Cores de seção: organização visual na sidebar</h2>
+        <p>O Figma permite colorir frames com cores de marcação (section colors). Clique com o botão direito em um frame na sidebar e escolha <strong>Mark as section</strong> ou use as cores disponíveis. Um sistema comum:</p>
+        <ul>
+          <li><strong>Verde:</strong> aprovado / entregue;</li>
+          <li><strong>Amarelo:</strong> em revisão / aguardando feedback;</li>
+          <li><strong>Cinza:</strong> work in progress;</li>
+          <li><strong>Vermelho:</strong> bloqueado / com problema.</li>
+        </ul>
+
+        <div class="callout warning">
+          <span class="callout-title">Cuidado com convenções pessoais</span>
+          <p>Cores de seção e sistemas de nomenclatura só funcionam se <strong>todo o time</strong> seguir as mesmas regras. Documente sua convenção no cover ou num Notion compartilhado. Sem documentação, cada designer vai criar o próprio sistema.</p>
+        </div>
+
+        <h2>Boas práticas que escalam com o time</h2>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie um "Guia de nomenclatura" no cover.</strong>
+            Inclua um frame na página Cover explicando as convenções adotadas: como nomear camadas, componentes, páginas e frames. Atualize quando o time decidir mudar algo.
+          </li>
+          <li>
+            <strong>Use prefixos de status nos frames de tela.</strong>
+            Exemplo: <code>[WIP] Checkout</code>, <code>[REVIEW] Checkout</code>, <code>[DONE] Checkout</code>. Assim você vê o status de cada tela sem abrir o frame.
+          </li>
+          <li>
+            <strong>Organize componentes antes de iniciar o design de telas.</strong>
+            Crie os componentes base (botões, inputs, tipografia) na página Components primeiro. Designers que criam componentes e telas ao mesmo tempo acabam com duplicatas e inconsistências.
+          </li>
+          <li>
+            <strong>Revise nomes na retrospectiva do sprint.</strong>
+            Reserve 10 minutos ao final de cada sprint para "limpar" o arquivo: renomear frames genéricos, mover WIPs para Archive, atualizar o status no cover.
+          </li>
+          <li>
+            <strong>Ative o plugin "Rename It" para renomeações em lote.</strong>
+            Quando você precisa renomear 30 camadas seguindo um padrão, fazer isso uma a uma é inviável. O plugin Rename It (gratuito) suporta variáveis, numeração e expressões regulares.
+          </li>
+        </ol>
+
+        <h2>Exemplo de uso real</h2>
+        <p>O time de design do Airbnb mantém uma convenção chamada <em>Design Language System (DLS)</em> onde cada componente segue rigorosamente o padrão <code>Component/Variant/State</code>. Quando um desenvolvedor inspeciona o arquivo no Dev Mode, o nome do componente no Figma é exatamente o mesmo do componente no código React. Isso elimina uma camada inteira de comunicação.</p>
+        <p>Em times menores, a mesma lógica se aplica: se o Figma chama o botão de <code>Button/Primary/Default</code> e o CSS chama a classe de <code>.btn-primary</code>, o desenvolvedor precisa mapear manualmente. Se você chamar de <code>Button</code> em ambos, esse mapeamento some.</p>
+
+        <div class="callout example">
+          <span class="callout-title">Exemplo de convenção para um app de finanças</span>
+          <p>
+            <strong>Páginas:</strong> Cover · Components · Tokens · Home · Transações · Cartões · Perfil · WIP · Archive<br>
+            <strong>Componentes:</strong> <code>Card/Type=Transaction, Status=Pending</code><br>
+            <strong>Camadas de ícone:</strong> <code>icon-arrow-up-green</code>, <code>icon-arrow-down-red</code><br>
+            <strong>Frames de tela:</strong> <code>Mobile / Home / Logged In</code>
+          </p>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Use kebab-case ou Title Case de forma consistente em todas as camadas e nunca deixe "Frame X" ou "Group X" em entregáveis.</li>
+          <li>Estruture as páginas como: Cover, Components, Designs (por fluxo), WIP e Archive.</li>
+          <li>Nomeie componentes com <code>Propriedade=Valor</code> para que o Figma infira variants automaticamente.</li>
+          <li>Crie um frame <code>.cover</code> de 1600×960 px como thumbnail informativo do arquivo.</li>
+          <li>Use cores de seção para sinalizar status de frames de forma visual.</li>
+          <li>Documente e compartilhe as convenções — elas só funcionam se o time todo seguir.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Organize um arquivo existente</h3>
+          <p>Pegue qualquer arquivo Figma que você tenha e aplique as convenções desta lição:</p>
+          <ol>
+            <li>Crie a estrutura de páginas: Cover, Components, Designs, WIP, Archive.</li>
+            <li>Renomeie todos os frames genéricos ("Frame 12", etc.) seguindo o padrão <code>Plataforma / Fluxo / Estado</code>.</li>
+            <li>Crie um frame <code>.cover</code> de 1600×960 px com nome do projeto, versão e status.</li>
+            <li>Se o arquivo tiver componentes, renomeie-os seguindo o padrão <code>Componente/Propriedade=Valor</code>.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> uma pessoa do time que nunca viu o arquivo consegue entender a estrutura em menos de 2 minutos sem precisar perguntar nada.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Crie um guia de nomenclatura para o seu time</h3>
+          <p>Escreva um documento (pode ser um frame no Figma mesmo) com as convenções de nomenclatura para um projeto fictício com 5 designers: como nomear camadas, componentes, páginas, frames de tela e cores de seção. Inclua exemplos de nomes corretos e incorretos para cada categoria. Compartilhe com um colega e veja se ele consegue aplicar as regras sozinho.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Qual é o nome especial que um frame deve ter para aparecer como thumbnail do arquivo no dashboard do Figma?</p>
+            <ul class="quiz-options">
+              <li>thumbnail</li>
+              <li>cover-image</li>
+              <li>.cover</li>
+              <li>_preview</li>
+            </ul>
+            <div class="quiz-explain">O frame deve se chamar <strong>.cover</strong> (com ponto no início). O Figma usa esse nome de forma nativa para identificar o thumbnail do arquivo.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">2. Qual convenção de nomenclatura o Figma usa nativamente para inferir propriedades de Variants automaticamente?</p>
+            <ul class="quiz-options">
+              <li>Propriedade:Valor (com dois-pontos)</li>
+              <li>Propriedade=Valor (com sinal de igual)</li>
+              <li>Propriedade—Valor (com traço longo)</li>
+              <li>Propriedade_Valor (com underline)</li>
+            </ul>
+            <div class="quiz-explain">O Figma reconhece o padrão <strong>Propriedade=Valor</strong> (com sinal de igual) para criar automaticamente as propriedades de variantes no painel de design.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">3. Qual é a principal função da página "WIP" na estrutura de páginas recomendada?</p>
+            <ul class="quiz-options">
+              <li>Guardar versões antigas de telas aprovadas</li>
+              <li>Listar todos os componentes do projeto</li>
+              <li>Documentar as decisões de design tomadas</li>
+              <li>Isolar rascunhos e experimentos das telas entregáveis</li>
+            </ul>
+            <div class="quiz-explain">A página <strong>WIP (Work in Progress)</strong> serve como playground isolado para rascunhos, experimentos e variações em teste, mantendo as telas entregáveis limpas na página Designs.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

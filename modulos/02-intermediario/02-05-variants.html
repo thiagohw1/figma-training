@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Variants — estados e variações | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="02-05-variants" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">📦 Módulo 2 · Intermediário · Lição 5 de 9</div>
+        <h1>Variants — estados e variações</h1>
+        <p class="lead">Variants permitem agrupar todas as variações de um componente — tamanhos, estados, cores — em um único <em>Component Set</em>, tornando seu design system organizado, intuitivo e fácil de usar por toda a equipe.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~22 min</span>
+          <span>🎯 Nível: Intermediário</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Criar um Component Set com múltiplas variações;</li>
+            <li>Definir Properties e Values para cada variant;</li>
+            <li>Combinar múltiplas properties (ex.: Size × State) em uma matriz de variants;</li>
+            <li>Navegar e trocar variants no painel direito ao usar uma instance;</li>
+            <li>Nomear variants corretamente seguindo a convenção <code>Property=Value</code>.</li>
+          </ul>
+        </div>
+
+        <h2>O que são Variants?</h2>
+        <p>Antes dos Variants, um designer precisava criar componentes separados para cada variação de um botão: <code>Button/Primary/Default</code>, <code>Button/Primary/Hover</code>, <code>Button/Primary/Disabled</code>, etc. O resultado era uma biblioteca fragmentada, difícil de navegar e de manter.</p>
+        <p>Com <strong>Variants</strong>, você agrupa todas as variações em um único bloco chamado <strong>Component Set</strong>. Cada variação é um componente dentro do set, identificado por um conjunto de <strong>properties</strong> (dimensões de variação) e <strong>values</strong> (valores possíveis para cada dimensão).</p>
+
+        <div class="callout info">
+          <span class="callout-title">Analogia: o selector de roupas</span>
+          <p>Pense em uma loja online: você escolhe a camiseta (componente) e depois seleciona Tamanho: P/M/G e Cor: Azul/Preto/Branco. Variants fazem exatamente isso com componentes. Ao invés de escolher em bibliotecas diferentes, o designer troca properties no painel direito e a instance se transforma na variação correta.</p>
+        </div>
+
+        <h2>Anatomia de um Component Set</h2>
+        <p>Um Component Set contém:</p>
+        <ul>
+          <li><strong>Properties:</strong> as "dimensões" de variação. Ex.: <code>Size</code>, <code>State</code>, <code>Type</code>.</li>
+          <li><strong>Values:</strong> os valores possíveis de cada property. Ex.: Size tem values <code>Small</code>, <code>Medium</code>, <code>Large</code>.</li>
+          <li><strong>Variants:</strong> cada combinação única de property+value. Ex.: Size=Medium, State=Hover é uma variant.</li>
+        </ul>
+        <p>O número total de variants em um set é o produto dos valores: 3 tamanhos × 4 estados = 12 variants.</p>
+
+        <h2>Criando Variants: passo a passo</h2>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie os componentes base.</strong>
+            Crie todas as variações visualmente. Para um botão, faça: Default (fundo roxo), Hover (fundo ligeiramente mais claro), Pressed (fundo mais escuro), Disabled (fundo cinza, texto esmaecido). Cada variação é um frame separado com Auto Layout.
+          </li>
+          <li>
+            <strong>Selecione todos os componentes.</strong>
+            Selecione as quatro variações. É mais fácil se elas já forem Main Components. Se não forem, o Figma criará os componentes automaticamente no próximo passo.
+          </li>
+          <li>
+            <strong>Combine em Component Set.</strong>
+            No painel direito, clique em <strong>Combine as variants</strong>. O Figma envolve tudo em um Component Set (um frame com borda tracejada roxa) e tenta inferir properties automaticamente.
+          </li>
+          <li>
+            <strong>Configure as Properties.</strong>
+            No painel direito, você verá a seção Variant Properties. Edite o nome da property (ex.: renomeie a property padrão para <code>State</code>) e os values para cada componente (<code>Default</code>, <code>Hover</code>, <code>Pressed</code>, <code>Disabled</code>).
+          </li>
+          <li>
+            <strong>Teste a seleção.</strong>
+            Arraste o Component Set para o canvas (isso cria uma instance). Com a instance selecionada, veja no painel direito o menu de Variants — você pode trocar o State com um clique.
+          </li>
+        </ol>
+
+        <h2>Combinando múltiplas Properties: a matriz</h2>
+        <p>O poder real dos Variants aparece quando você combina duas ou mais properties. Um botão profissional pode ter:</p>
+        <ul>
+          <li><strong>Size:</strong> Small, Medium, Large (3 valores)</li>
+          <li><strong>State:</strong> Default, Hover, Pressed, Disabled, Focused (5 valores)</li>
+        </ul>
+        <p>Total: 3 × 5 = <strong>15 variants</strong>. O Figma organiza isso em uma grade (matriz) onde as linhas representam uma property e as colunas outra.</p>
+
+        <div class="diagram">
+          <svg viewBox="0 0 540 260" role="img" aria-label="Matriz de variants mostrando Size vs State de um botão">
+            <!-- Cabeçalho de colunas: States -->
+            <text x="130" y="18" fill="var(--text-muted)" font-size="11" text-anchor="middle" font-family="sans-serif" font-weight="700">Default</text>
+            <text x="238" y="18" fill="var(--text-muted)" font-size="11" text-anchor="middle" font-family="sans-serif" font-weight="700">Hover</text>
+            <text x="346" y="18" fill="var(--text-muted)" font-size="11" text-anchor="middle" font-family="sans-serif" font-weight="700">Pressed</text>
+            <text x="454" y="18" fill="var(--text-muted)" font-size="11" text-anchor="middle" font-family="sans-serif" font-weight="700">Disabled</text>
+            <!-- Cabeçalho de linhas: Sizes -->
+            <text x="52" y="60" fill="var(--text-muted)" font-size="11" text-anchor="middle" font-family="sans-serif" font-weight="700">Small</text>
+            <text x="52" y="140" fill="var(--text-muted)" font-size="11" text-anchor="middle" font-family="sans-serif" font-weight="700">Medium</text>
+            <text x="52" y="220" fill="var(--text-muted)" font-size="11" text-anchor="middle" font-family="sans-serif" font-weight="700">Large</text>
+            <!-- Linha 1: Small -->
+            <rect x="82" y="34" width="96" height="28" rx="6" fill="var(--primary)" opacity=".9"/>
+            <text x="130" y="52" fill="white" font-size="11" text-anchor="middle" font-family="sans-serif">Botão S</text>
+            <rect x="190" y="34" width="96" height="28" rx="6" fill="var(--primary-hover)" opacity=".9"/>
+            <text x="238" y="52" fill="white" font-size="11" text-anchor="middle" font-family="sans-serif">Botão S</text>
+            <rect x="298" y="34" width="96" height="28" rx="6" fill="var(--primary)" opacity=".7"/>
+            <text x="346" y="52" fill="white" font-size="11" text-anchor="middle" font-family="sans-serif">Botão S</text>
+            <rect x="406" y="34" width="96" height="28" rx="6" fill="var(--border-strong)" opacity=".9"/>
+            <text x="454" y="52" fill="var(--text-soft)" font-size="11" text-anchor="middle" font-family="sans-serif">Botão S</text>
+            <!-- Linha 2: Medium -->
+            <rect x="82" y="114" width="96" height="36" rx="8" fill="var(--primary)" opacity=".9"/>
+            <text x="130" y="136" fill="white" font-size="12" text-anchor="middle" font-family="sans-serif">Botão M</text>
+            <rect x="190" y="114" width="96" height="36" rx="8" fill="var(--primary-hover)" opacity=".9"/>
+            <text x="238" y="136" fill="white" font-size="12" text-anchor="middle" font-family="sans-serif">Botão M</text>
+            <rect x="298" y="114" width="96" height="36" rx="8" fill="var(--primary)" opacity=".7"/>
+            <text x="346" y="136" fill="white" font-size="12" text-anchor="middle" font-family="sans-serif">Botão M</text>
+            <rect x="406" y="114" width="96" height="36" rx="8" fill="var(--border-strong)" opacity=".9"/>
+            <text x="454" y="136" fill="var(--text-soft)" font-size="12" text-anchor="middle" font-family="sans-serif">Botão M</text>
+            <!-- Linha 3: Large -->
+            <rect x="82" y="194" width="96" height="44" rx="10" fill="var(--primary)" opacity=".9"/>
+            <text x="130" y="220" fill="white" font-size="13" text-anchor="middle" font-family="sans-serif">Botão L</text>
+            <rect x="190" y="194" width="96" height="44" rx="10" fill="var(--primary-hover)" opacity=".9"/>
+            <text x="238" y="220" fill="white" font-size="13" text-anchor="middle" font-family="sans-serif">Botão L</text>
+            <rect x="298" y="194" width="96" height="44" rx="10" fill="var(--primary)" opacity=".7"/>
+            <text x="346" y="220" fill="white" font-size="13" text-anchor="middle" font-family="sans-serif">Botão L</text>
+            <rect x="406" y="194" width="96" height="44" rx="10" fill="var(--border-strong)" opacity=".9"/>
+            <text x="454" y="220" fill="var(--text-soft)" font-size="13" text-anchor="middle" font-family="sans-serif">Botão L</text>
+            <!-- Borda do Component Set -->
+            <rect x="75" y="26" width="430" height="220" rx="8" fill="none" stroke="var(--pro)" stroke-width="1.5" stroke-dasharray="6 4"/>
+            <text x="290" y="258" fill="var(--pro)" font-size="11" text-anchor="middle" font-family="sans-serif">Component Set: 3 Sizes × 4 States = 12 variants</text>
+          </svg>
+          <p class="mock-label">A matriz de variants. O designer usa uma instance e seleciona Size e State no painel direito — o Figma troca para a variação correta automaticamente.</p>
+        </div>
+
+        <h2>Nomenclatura: a convenção Property=Value</h2>
+        <p>Quando o Figma cria os componentes dentro do set, ele nomeia cada um usando a convenção <code>Property=Value</code>. Exemplos:</p>
+        <ul>
+          <li><code>Size=Small, State=Default</code></li>
+          <li><code>Size=Medium, State=Hover</code></li>
+          <li><code>Size=Large, State=Disabled</code></li>
+        </ul>
+        <p>Siga essa convenção rigorosamente — ela é lida pelo Figma, por ferramentas de handoff (como o Dev Mode) e por plugins de geração de código.</p>
+
+        <div class="callout warning">
+          <span class="callout-title">Atenção ao nomear</span>
+          <p>Evite usar espaços e caracteres especiais nos nomes de properties e values. Prefira PascalCase ou camelCase: <code>State</code>, não <code>estado do botão</code>. Values devem ser consistentes entre componentes do mesmo set: se um componente usa <code>Default</code>, não use <code>Normal</code> em outro — isso cria duas properties diferentes.</p>
+        </div>
+
+        <h2>Estados típicos em design systems</h2>
+        <p>A maioria dos componentes interativos tem um conjunto-padrão de estados. Conheça e use esses nomes na equipe:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>State</th><th>Quando ocorre</th><th>Aparência típica</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Default</strong></td><td>Estado normal, sem interação</td><td>Cor base</td></tr>
+              <tr><td><strong>Hover</strong></td><td>Mouse sobre o elemento</td><td>Levemente mais escuro/claro ou com sombra</td></tr>
+              <tr><td><strong>Pressed</strong></td><td>Click/tap ativo</td><td>Mais escuro, ligeiramente comprimido (scale)</td></tr>
+              <tr><td><strong>Focused</strong></td><td>Foco de teclado/acessibilidade</td><td>Outline visível ao redor do elemento</td></tr>
+              <tr><td><strong>Disabled</strong></td><td>Ação indisponível</td><td>Opacidade reduzida (40–50%), cursor not-allowed</td></tr>
+              <tr><td><strong>Loading</strong></td><td>Processando uma ação</td><td>Spinner no lugar do texto, pointer-events none</td></tr>
+              <tr><td><strong>Error</strong></td><td>Validação falhou (inputs)</td><td>Borda vermelha, ícone de erro</td></tr>
+              <tr><td><strong>Success</strong></td><td>Ação confirmada</td><td>Ícone de check, cor verde</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Exemplo de uso real: botão com Size e State</h2>
+        <p>Um design system de produto real terá um Component Set de botões com pelo menos Size (Small, Medium, Large) e State (Default, Hover, Pressed, Disabled). O fluxo do designer:</p>
+        <ol>
+          <li>Arrasta a instance de <code>Button</code> do painel Assets para a tela.</li>
+          <li>No painel direito, vê os campos: <strong>Size: Medium</strong> e <strong>State: Default</strong>.</li>
+          <li>Troca Size para Large e State para Disabled — a instance muda instantaneamente para a variação correta, sem procurar em listas de camadas.</li>
+        </ol>
+
+        <div class="figma-mock">
+          <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;">
+            <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+              <div style="background:var(--primary);color:white;padding:7px 14px;border-radius:6px;font-weight:600;font-size:12px;">Small · Default</div>
+              <div style="background:var(--primary-hover);color:white;padding:7px 14px;border-radius:6px;font-weight:600;font-size:12px;">Small · Hover</div>
+              <div style="background:var(--border-strong);color:var(--text-soft);padding:7px 14px;border-radius:6px;font-weight:600;font-size:12px;opacity:.6;">Small · Disabled</div>
+            </div>
+            <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+              <div style="background:var(--primary);color:white;padding:11px 20px;border-radius:8px;font-weight:600;font-size:14px;">Medium · Default</div>
+              <div style="background:var(--primary-hover);color:white;padding:11px 20px;border-radius:8px;font-weight:600;font-size:14px;">Medium · Hover</div>
+              <div style="background:var(--border-strong);color:var(--text-soft);padding:11px 20px;border-radius:8px;font-weight:600;font-size:14px;opacity:.6;">Medium · Disabled</div>
+            </div>
+            <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+              <div style="background:var(--primary);color:white;padding:14px 28px;border-radius:10px;font-weight:700;font-size:16px;">Large · Default</div>
+              <div style="background:var(--primary-hover);color:white;padding:14px 28px;border-radius:10px;font-weight:700;font-size:16px;">Large · Hover</div>
+              <div style="background:var(--border-strong);color:var(--text-soft);padding:14px 28px;border-radius:10px;font-weight:700;font-size:16px;opacity:.6;">Large · Disabled</div>
+            </div>
+          </div>
+          <p class="mock-label">Subconjunto da matriz de variants: 3 Sizes × 3 States. Ao usar uma instance, o painel direito mostra menus dropdown para selecionar Size e State — uma experiência muito mais fluida que procurar em dezenas de componentes separados.</p>
+        </div>
+
+        <h2>Boas práticas para Variants</h2>
+        <ul>
+          <li>Use o mesmo estado visual de design para o mesmo State name em todos os componentes (o Hover de um botão e o Hover de um item de menu devem ter o mesmo feeling).</li>
+          <li>Comece com o <strong>Default</strong> e construa as outras variações a partir dele — mude o mínimo possível entre states.</li>
+          <li>Organize o Component Set visualmente na mesma ordem que os usuários pensam: da esquerda para a direita, Default → Hover → Pressed → Disabled.</li>
+          <li>Não crie variants desnecessárias. Se uma variação pode ser feita com um override simples (ex.: mudar o texto), prefira o override a criar uma variant.</li>
+        </ul>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li><strong>Variants</strong> agrupam variações de um componente em um único Component Set.</li>
+          <li><strong>Properties</strong> são as dimensões de variação (Size, State, Type); <strong>Values</strong> são os valores possíveis.</li>
+          <li>A convenção de nomenclatura é <code>Property=Value</code> — siga rigorosamente.</li>
+          <li>Múltiplas properties criam uma matriz de variants. 3 sizes × 4 states = 12 variants.</li>
+          <li>O designer usa um menu dropdown no painel direito para trocar variants — sem procurar em listas.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Botão com Size e State</h3>
+          <ol>
+            <li>Crie visualmente 6 variações de botão: Small/Default, Small/Disabled, Medium/Default, Medium/Hover, Medium/Disabled, Large/Default.</li>
+            <li>Selecione todas e clique em <strong>Combine as variants</strong>.</li>
+            <li>Configure as properties: renomeie para <code>Size</code> (Small, Medium, Large) e <code>State</code> (Default, Hover, Disabled).</li>
+            <li>Arraste uma instance do Component Set para o canvas. No painel direito, troque Size e State e confirme que a instância muda.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> com a instance selecionada, é possível trocar Size e State no painel direito e a instance muda visualmente para a variação correta.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Toggle/Switch com todos os estados</h3>
+          <p>Crie um Component Set para um toggle switch (componente de ligar/desligar) com as properties <code>State</code> (Off, On) e <code>Disabled</code> (False, True). Isso resulta em 4 variants: On/False, On/True, Off/False, Off/True. O toggle "On" deve ser roxo; o "Off", cinza; o "Disabled", opaco. Use Auto Layout em cada variant para garantir que são layouts consistentes.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Um Component Set tem as properties Size (S, M, L) e State (Default, Hover, Pressed, Disabled). Quantas variants ele contém?</p>
+            <ul class="quiz-options">
+              <li>7</li>
+              <li>12</li>
+              <li>8</li>
+              <li>16</li>
+            </ul>
+            <div class="quiz-explain">O número de variants é o produto dos valores: 3 Sizes × 4 States = <strong>12 variants</strong>.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">2. Qual é a convenção de nomenclatura correta para uma variant?</p>
+            <ul class="quiz-options">
+              <li>button-small-hover</li>
+              <li>Small/Hover</li>
+              <li>Size=Small, State=Hover</li>
+              <li>small hover</li>
+            </ul>
+            <div class="quiz-explain">A convenção oficial do Figma é <strong>Property=Value</strong> separado por vírgulas: <code>Size=Small, State=Hover</code>. Essa convenção é usada pelo Figma, Dev Mode e ferramentas de geração de código.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Um designer quer que um botão tenha texto diferente em telas diferentes sem criar uma variant. Como ele deve fazer?</p>
+            <ul class="quiz-options">
+              <li>Usar um override de texto na instance</li>
+              <li>Criar uma nova variant para cada texto</li>
+              <li>Fazer detach da instance</li>
+              <li>Criar um novo componente separado</li>
+            </ul>
+            <div class="quiz-explain"><strong>Override de texto</strong> é a maneira correta: selecione a instance, clique no texto interno e edite. Não é necessário criar variants para conteúdo textual que varia entre instâncias — variants são para variações estruturais e visuais formais.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

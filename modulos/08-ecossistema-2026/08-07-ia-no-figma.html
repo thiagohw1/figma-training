@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA no Figma | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="08-07-ia-no-figma" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">✨ Módulo 8 · Recursos 2025/2026 · Lição 7 de 8</div>
+        <h1>IA no Figma</h1>
+        <p class="lead">A inteligência artificial entrou no Figma não como uma ferramenta separada, mas espalhada pelo fluxo de trabalho: renomeia camadas, remove fundos, gera texto, sugere designs, faz buscas visuais. A era do "clique certo, peça à IA" já chegou ao design.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~19 min</span>
+          <span>🎯 Nível: Intermediário</span>
+          <span>🛠️ Pratique no Figma Design</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Mapear todos os recursos de IA disponíveis no Figma Design em 2025;</li>
+            <li>Usar a busca visual (Find Similar) para encontrar componentes parecidos;</li>
+            <li>Renomear camadas automaticamente com IA;</li>
+            <li>Gerar e editar textos com IA dentro do Figma;</li>
+            <li>Remover fundo de imagens diretamente no canvas;</li>
+            <li>Entender como usar a IA de forma responsável e quando confiar nos resultados.</li>
+          </ul>
+        </div>
+
+        <h2>A IA no Figma: visão geral</h2>
+        <p>A Figma integrou recursos de inteligência artificial ao longo de 2024 e 2025 com uma filosofia clara: a IA deve <em>acelerar tarefas repetitivas e tediosas</em> que existem no fluxo de design, não substituir o julgamento criativo do designer. Os recursos estão distribuídos pelo Figma Design, Dev Mode e outros produtos do ecossistema.</p>
+        <p>A maioria dos recursos de IA do Figma está agrupada sob o menu <strong>"Actions"</strong> no painel direito ou acessível via clique com o botão direito no canvas. Alguns estão integrados diretamente nas ferramentas (como o remove background ao selecionar uma imagem).</p>
+
+        <div class="callout warning">
+          <span class="callout-title">Disponibilidade e planos</span>
+          <p>Os recursos de IA do Figma consomem créditos de IA e estão disponíveis em diferentes níveis dependendo do plano (Starter, Professional, Organization, Enterprise). Alguns recursos podem estar em beta ou ter disponibilidade regional limitada. Sempre confirme o status atual na documentação oficial do Figma.</p>
+        </div>
+
+        <h2>Mapa completo dos recursos de IA</h2>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Recurso de IA</th><th>O que faz</th><th>Onde acessar</th><th>Status (2025)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Find Similar</strong></td><td>Busca camadas/componentes visualmente similares no arquivo</td><td>Clique direito → Find Similar</td><td>Disponível</td></tr>
+              <tr><td><strong>Rename Layers</strong></td><td>Renomeia camadas selecionadas com nomes descritivos automáticos</td><td>Clique direito → Rename Layers</td><td>Disponível</td></tr>
+              <tr><td><strong>Generate Text</strong></td><td>Gera texto de placeholder realista para camadas de texto</td><td>Selecionar texto → painel direito → AI</td><td>Disponível</td></tr>
+              <tr><td><strong>Edit Text (AI)</strong></td><td>Reescreve, resume, expande ou traduz texto selecionado</td><td>Clique direito no texto → Edit with AI</td><td>Disponível</td></tr>
+              <tr><td><strong>Remove Background</strong></td><td>Remove o fundo de imagens diretamente no canvas</td><td>Selecionar imagem → painel direito → Remove background</td><td>Disponível</td></tr>
+              <tr><td><strong>First Draft / Make Designs</strong></td><td>Gera uma tela ou wireframe a partir de uma descrição textual</td><td>Menu Actions → Make Designs</td><td>Disponível (beta em evolução)</td></tr>
+              <tr><td><strong>Translate</strong></td><td>Traduz textos selecionados para outro idioma</td><td>Clique direito no texto → Translate</td><td>Disponível</td></tr>
+              <tr><td><strong>Search (semantic)</strong></td><td>Busca de componentes e assets usando linguagem natural</td><td>Barra de busca de assets</td><td>Em desenvolvimento</td></tr>
+              <tr><td><strong>Auto Alt Text</strong></td><td>Gera texto alternativo descritivo para imagens (acessibilidade)</td><td>Selecionar imagem → Accessibility → Generate alt text</td><td>Disponível</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Busca visual — Find Similar</h2>
+        <p>O <strong>Find Similar</strong> é um recurso de busca visual que usa IA para encontrar elementos com aparência semelhante no arquivo. Para usá-lo, clique com o botão direito em qualquer camada e escolha "Find Similar".</p>
+        <p>O Figma analisa as características visuais do elemento selecionado (forma, cor, tamanho proporcional) e destaca outros elementos parecidos no arquivo. Isso é extremamente útil para:</p>
+        <ul>
+          <li><strong>Auditoria de design:</strong> encontrar todos os botões primários de um arquivo para verificar consistência</li>
+          <li><strong>Encontrar duplicatas acidentais:</strong> localizar variações não-intencionais de um componente</li>
+          <li><strong>Substituição em massa:</strong> selecionar elementos similares para aplicar uma mudança de estilo</li>
+        </ul>
+
+        <div class="callout tip">
+          <span class="callout-title">Find Similar + substituição</span>
+          <p>Use Find Similar para encontrar todos os ícones de um tipo específico no arquivo, selecione-os todos e substitua por uma versão atualizada de uma vez. Isso seria manualmente tedioso em arquivos grandes com dezenas de telas.</p>
+        </div>
+
+        <h2>Renomear camadas — Rename Layers (AI)</h2>
+        <p>Todo designer sabe a dor de um arquivo Figma com camadas chamadas "Rectangle 847", "Group 23", "Frame 2". O recurso <strong>Rename Layers</strong> com IA resolve isso: selecione um conjunto de camadas, clique com o botão direito e escolha "Rename Layers". A IA analisa o conteúdo visual e textual de cada camada e sugere nomes descritivos.</p>
+        <p>Por exemplo:</p>
+        <ul>
+          <li>"Rectangle 847" com fill de cor primária dentro de um botão → renomeado para "Button/Background"</li>
+          <li>"Group 23" contendo um ícone e um texto → "NavItem/Home"</li>
+          <li>"Frame 2" com a estrutura de um card → "Card/Product"</li>
+        </ul>
+        <p>Você pode revisar as sugestões antes de aplicar — o Figma mostra o nome atual e o nome proposto lado a lado.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Rename em grandes arquivos</span>
+          <p>O Rename Layers funciona melhor quando aplicado a uma seleção específica do que ao arquivo inteiro de uma vez. Selecione um frame de tela por vez, renomeie, revise e confirme. Para arquivos legados com milhares de camadas, a abordagem gradual evita revisões exaustivas.</p>
+        </div>
+
+        <h2>Geração e edição de texto com IA</h2>
+        <p>O Figma integra IA para trabalhar com conteúdo textual de duas formas:</p>
+
+        <h3>Generate Text (placeholder realista)</h3>
+        <p>Ao criar mockups com conteúdo fictício, em vez de escrever "Lorem ipsum" ou inventar dados manualmente, você pode pedir à IA que gere conteúdo realista. Selecione uma camada de texto, vá ao painel direito e clique em "Fill with AI". Você escolhe o tipo de conteúdo: nomes de pessoas, endereços, títulos de artigos, descrições de produtos, preços, avaliações de usuários, etc.</p>
+
+        <h3>Edit Text (IA de escrita)</h3>
+        <p>Selecione qualquer texto no canvas, clique com o botão direito e acesse "Edit with AI". Um painel abre com opções:</p>
+        <ul>
+          <li><strong>Rewrite:</strong> reescreve o texto mantendo o significado mas com palavras diferentes</li>
+          <li><strong>Make shorter / Make longer:</strong> ajusta o tamanho do texto</li>
+          <li><strong>Change tone:</strong> muda o tom (formal, casual, empolgante, técnico)</li>
+          <li><strong>Translate:</strong> traduz para o idioma escolhido</li>
+          <li><strong>Custom prompt:</strong> você descreve exatamente o que quer ("reescreva como se fosse um e-mail de boas-vindas para um app de fitness")</li>
+        </ul>
+
+        <div class="callout example">
+          <span class="callout-title">Uso prático: localização de interface</span>
+          <p>Um time de produto precisa testar como a UI fica em espanhol e francês antes de contratar uma tradução profissional. Com "Translate" da IA, você seleciona todas as camadas de texto de uma tela e traduz de uma vez — perfeito para verificar se os textos traduzidos cabem no layout antes de investir na localização oficial.</p>
+        </div>
+
+        <h2>Remoção de fundo de imagens</h2>
+        <p>O <strong>Remove Background</strong> é um dos recursos de IA mais populares do Figma. Para usar: selecione qualquer imagem no canvas, vá ao painel direito e clique em <strong>"Remove background"</strong>. A IA identifica o objeto principal e remove o fundo, deixando apenas o sujeito com transparência nas bordas.</p>
+        <p>Funciona bem para:</p>
+        <ul>
+          <li>Fotos de produtos em fundo branco ou cor sólida</li>
+          <li>Fotos de pessoas para avatares ou cards</li>
+          <li>Ícones com fundo colorido indesejado</li>
+        </ul>
+        <p>Para resultados mais precisos, o fundo deve ter bom contraste com o objeto principal. Fundos muito complexos ou com muitas cores similares ao objeto podem ter bordas menos limpas.</p>
+
+        <div class="callout tip">
+          <span class="callout-title">Remove Background não substitui o Photoshop</span>
+          <p>Para remoções de fundo de alta precisão (cabelos finos, objetos semitransparentes, casos complexos), um profissional usando Photoshop ainda entregará resultados mais refinados. O Remove Background do Figma é excelente para 80% dos casos cotidianos e para prototipar rapidamente.</p>
+        </div>
+
+        <h2>First Draft / Make Designs (geração de UI)</h2>
+        <p>Um dos recursos mais ambiciosos: descreva em texto o que você quer e o Figma gera um wireframe ou layout de tela correspondente. Acesse via <strong>Actions → Make Designs</strong> ou via o menu de IA no canvas.</p>
+
+        <h3>Como funciona</h3>
+        <p>Você digita um prompt descrevendo a tela que quer criar: "Tela de perfil de usuário para um app de fitness. Foto de perfil grande no topo, nome, bio curta, estatísticas (treinos, seguidores, seguindo), lista de treinos recentes." O Figma gera frames com os elementos descritos, usando componentes do seu Design System se disponíveis.</p>
+
+        <h3>Quando é útil</h3>
+        <ul>
+          <li>Criar um wireframe de exploração rápido antes de refinar</li>
+          <li>Gerar múltiplas opções de layout para comparar</li>
+          <li>Começar um arquivo de zero quando você tem a ideia mas não o layout</li>
+        </ul>
+
+        <h3>Limitações</h3>
+        <ul>
+          <li>O resultado geralmente precisa de refinamento — pense como um esboço inicial</li>
+          <li>A qualidade do output depende muito da especificidade do prompt</li>
+          <li>A IA não entende o contexto de negócio nem as boas práticas de UX do seu domínio específico</li>
+        </ul>
+
+        <div class="callout warning">
+          <span class="callout-title">Make Designs não substitui o processo de design</span>
+          <p>A geração de UI por IA é um ponto de partida, não um entregável. O resultado pode ter inconsistências de espaçamento, hierarquia inadequada e violar padrões de acessibilidade. Sempre revise com olho crítico e aplique o conhecimento que você aprendeu ao longo deste curso.</p>
+        </div>
+
+        <h2>Texto alternativo automático (Auto Alt Text)</h2>
+        <p>Para melhorar a acessibilidade dos designs, o Figma pode gerar automaticamente <strong>texto alternativo (alt text)</strong> descritivo para imagens. Selecione uma imagem, vá em "Accessibility" no painel direito e clique em "Generate alt text". A IA descreve o conteúdo da imagem em texto, que é exportado no handoff para desenvolvedores implementarem no código.</p>
+
+        <h2>Uso responsável da IA no design</h2>
+        <p>Com tantos recursos de IA disponíveis, é importante usá-los com consciência:</p>
+
+        <h3>O que a IA faz bem</h3>
+        <ul>
+          <li>Tarefas repetitivas e mecânicas (renomear, preencher, traduzir)</li>
+          <li>Aceleração de um ponto de partida (gerar texto placeholder, criar um wireframe base)</li>
+          <li>Economizar tempo em tarefas que não exigem julgamento criativo</li>
+        </ul>
+
+        <h3>O que ainda exige o designer humano</h3>
+        <ul>
+          <li>Decisões de UX: qual o melhor fluxo para o usuário?</li>
+          <li>Coerência com o Design System e os valores da marca</li>
+          <li>Empatia com o usuário: a IA não sabe quem são seus usuários reais</li>
+          <li>Revisão de acessibilidade: a IA pode gerar contraste inadequado, tamanhos ilegíveis</li>
+          <li>Contexto de negócio: o que faz sentido para o produto e os objetivos da empresa</li>
+        </ul>
+
+        <div class="callout pro">
+          <span class="callout-title">IA como acelerador, não como substituto</span>
+          <p>Pense na IA do Figma como um assistente júnior incansável: rápido, produtivo, mas que precisa de supervisão. Você lidera o projeto, toma as decisões importantes e usa a IA para as tarefas que consomem tempo mas não criatividade. Isso multiplica sua velocidade sem comprometer a qualidade.</p>
+        </div>
+
+        <h2>Passo a passo: usar IA para preparar um arquivo para handoff</h2>
+
+        <ol class="steps">
+          <li>
+            <strong>Selecione todas as camadas do arquivo.</strong>
+            Use <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>A</kbd> para selecionar tudo, ou selecione as telas uma a uma.
+          </li>
+          <li>
+            <strong>Renomeie as camadas com IA.</strong>
+            Clique com o botão direito → "Rename Layers". Revise as sugestões e confirme as que fazem sentido. Corrija manualmente as que a IA errou.
+          </li>
+          <li>
+            <strong>Remova fundos das imagens de produto.</strong>
+            Selecione as imagens que precisam de fundo removido, clique em "Remove background" no painel direito.
+          </li>
+          <li>
+            <strong>Gere alt texts para as imagens.</strong>
+            Para cada imagem, acesse Accessibility → Generate alt text. Revise e ajuste as descrições geradas.
+          </li>
+          <li>
+            <strong>Revise textos de placeholder.</strong>
+            Use "Fill with AI" nos campos de texto que ainda têm Lorem ipsum, substituindo por conteúdo realista para o contexto do app.
+          </li>
+          <li>
+            <strong>Confira o resultado.</strong>
+            Navegue pelo arquivo com a perspectiva de um desenvolvedor — as camadas estão bem nomeadas? Os textos fazem sentido? As imagens estão com fundo correto?
+          </li>
+        </ol>
+
+        <h2>Exemplo de uso real</h2>
+        <p>Um designer estava finalizando um arquivo com 12 telas de um app de saúde para entregar ao time de desenvolvimento. O arquivo tinha sido construído por duas pessoas em 3 semanas — resultado: nomenclatura inconsistente de camadas, alguns textos Lorem ipsum ainda não substituídos, e imagens de produtos com fundo branco que precisavam ser removidos. Em vez de passar horas fazendo isso manualmente, o designer usou: Rename Layers (IA) para normalizar os nomes em 10 minutos, Remove Background para as 15 imagens de produtos, Fill with AI para substituir os placeholders por conteúdo real de saúde. O handoff que levaria um dia foi concluído em 2 horas — e o desenvolvedor recebeu um arquivo muito mais limpo e bem documentado.</p>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>O Figma integrou IA em múltiplos pontos do fluxo de trabalho: busca, nomenclatura, texto, imagens e geração de UI.</li>
+          <li>Find Similar localiza elementos visualmente parecidos — ótimo para auditoria e consistência.</li>
+          <li>Rename Layers sugere nomes descritivos para camadas bagunçadas.</li>
+          <li>Generate/Edit Text cria placeholder realista e reescreve/traduz textos.</li>
+          <li>Remove Background remove fundos de imagens com um clique.</li>
+          <li>Make Designs gera wireframes a partir de prompts — ponto de partida, não entregável final.</li>
+          <li>A IA acelera tarefas mecânicas; o julgamento criativo e de UX ainda é responsabilidade do designer.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Prepare um arquivo para handoff com ajuda da IA</h3>
+          <p>Pegue qualquer arquivo Figma com pelo menos 3 telas (pode ser um arquivo de exercício anterior):</p>
+          <ol>
+            <li>Selecione todas as camadas e use "Rename Layers" com IA. Revise as sugestões e aplique.</li>
+            <li>Se houver imagens, use "Remove background" em pelo menos uma.</li>
+            <li>Se houver textos Lorem ipsum, use "Fill with AI" para substituir por conteúdo realista no contexto do seu projeto fictício.</li>
+            <li>Selecione um texto qualquer e use "Edit with AI" → "Make shorter" para ver a funcionalidade em ação.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> após o exercício, todas as camadas principais têm nomes descritivos (não "Rectangle 23"), não há Lorem ipsum no arquivo, e pelo menos uma imagem foi processada com Remove Background.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Geração de UI e refinamento crítico</h3>
+          <p>Use "Make Designs" do Figma com o prompt: "Tela de checkout de um e-commerce mobile. Resumo do pedido com foto, nome e preço do produto. Endereço de entrega com botão de editar. Método de pagamento com ícone de cartão e últimos 4 dígitos. Botão grande de 'Finalizar pedido'. Total com subtotal, frete e desconto." Analise o resultado gerado: (1) Liste 5 problemas de UX ou acessibilidade que você identificou. (2) Faça as correções manualmente no design gerado, aplicando o que aprendeu nas lições anteriores do curso.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Para que serve o recurso "Find Similar" no Figma?</p>
+            <ul class="quiz-options">
+              <li>Para buscar arquivos no Figma Community com design parecido</li>
+              <li>Para duplicar um elemento selecionado com o mesmo estilo</li>
+              <li>Para encontrar elementos com aparência visual similar no arquivo atual — útil para auditorias de consistência</li>
+              <li>Para criar variantes automaticamente de um componente</li>
+            </ul>
+            <div class="quiz-explain">Find Similar analisa as características visuais do elemento selecionado e encontra outros semelhantes no arquivo — perfeito para auditar consistência e fazer substituições em massa.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. Ao usar "Make Designs" (geração de UI por IA) no Figma, qual é o uso mais adequado do resultado?</p>
+            <ul class="quiz-options">
+              <li>Como ponto de partida para refinamento, pois o resultado geralmente precisa de ajustes de UX e acessibilidade</li>
+              <li>Como entregável final para o desenvolvedor — a IA gera código pronto para produção</li>
+              <li>Apenas para gerar mockups de apresentação para o cliente</li>
+              <li>Como documentação técnica de componentes</li>
+            </ul>
+            <div class="quiz-explain">A geração de UI por IA é um acelerador para o início do processo — o resultado precisa ser revisado e refinado com julgamento humano de UX, acessibilidade e contexto de negócio.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">3. Qual tarefa a IA do Figma NÃO consegue fazer melhor que um designer humano experiente?</p>
+            <ul class="quiz-options">
+              <li>Renomear dezenas de camadas descritivamente em segundos</li>
+              <li>Decidir qual arquitetura de informação faz mais sentido para o público-alvo específico do produto</li>
+              <li>Remover o fundo de uma foto de produto</li>
+              <li>Gerar texto de placeholder realista para um formulário de cadastro</li>
+            </ul>
+            <div class="quiz-explain">Decisões de UX que exigem empatia com o usuário, conhecimento do negócio e contexto do produto ainda pertencem ao designer humano. A IA pode gerar layouts, mas não entende quem são os usuários reais nem quais são seus objetivos.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Briefing, escopo e planejamento | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="05-01-briefing-planejamento" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">📱 Módulo 5 · Projeto Guiado · Lição 1 de 8</div>
+        <h1>Briefing, escopo e planejamento</h1>
+        <p class="lead">Todo grande produto começa em um documento, não em pixels. Antes de abrir o Figma, você vai entender o problema, o público e o escopo do <strong>FinView</strong> — o app de finanças pessoais que construiremos juntos do zero ao protótipo de alta fidelidade.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~20 min</span>
+          <span>🎯 Nível: Projeto prático</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Descrever o produto FinView, o problema que resolve e o público-alvo;</li>
+            <li>Identificar as personas primárias e seus contextos de uso;</li>
+            <li>Listar e priorizar as features do MVP usando a matriz de valor vs. esforço;</li>
+            <li>Definir o escopo visual do projeto (plataformas, telas, estados);</li>
+            <li>Criar a estrutura inicial do arquivo Figma com organização de Pages.</li>
+          </ul>
+        </div>
+
+        <h2>O que é o FinView?</h2>
+        <p><strong>FinView</strong> é um aplicativo mobile de <em>finanças pessoais</em> projetado para ajudar pessoas a visualizarem seu dinheiro de forma simples e motivadora. A premissa é que a maioria das pessoas não abandona o controle financeiro por falta de disciplina — e sim porque as ferramentas são complicadas demais.</p>
+        <p>O nome une <em>Finance</em> + <em>View</em>: a ideia central é dar uma <strong>visão clara</strong> do seu dinheiro, não transformar você em contador. O visual é moderno, colorido e usa dados de forma acessível — parecido com apps de saúde (como o Apple Health ou o Google Fit), mas para o bolso.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Por que um app de finanças?</span>
+          <p>Apps de finanças pessoais são um excelente laboratório de design: eles têm <strong>listas complexas</strong> (transações), <strong>visualização de dados</strong> (gráficos, totais), <strong>formulários</strong> (adicionar transação), <strong>estados variados</strong> (saldo positivo/negativo, metas alcançadas/não), e precisam de <strong>dark mode</strong> para quem olha o saldo às 23h no celular. Tudo o que você precisa para exercitar Figma de verdade.</p>
+        </div>
+
+        <h2>O problema e a oportunidade</h2>
+        <p>Segundo pesquisas de comportamento financeiro no Brasil, mais de 60% dos brasileiros afirmam não saber exatamente quanto gastam por mês. Aplicativos existentes como Guiabolso, Organizze e Mobills resolvem o problema de forma funcional, mas têm interfaces densas e uma curva de aprendizado considerável.</p>
+        <p>A oportunidade do FinView está em três pontos:</p>
+        <ul>
+          <li><strong>Onboarding rápido:</strong> o usuário vê valor nos primeiros 60 segundos, sem precisar conectar o banco logo de cara.</li>
+          <li><strong>Visualização como foco:</strong> em vez de tabelas de dados, cards visuais com cores e ícones que comunicam categorias instantaneamente.</li>
+          <li><strong>Metas motivadoras:</strong> um módulo de metas com progresso visual (como uma barra de progresso gamificada) que mantém o engajamento.</li>
+        </ul>
+
+        <h2>Personas: para quem estamos projetando?</h2>
+        <p>Um bom design começa sempre com uma pessoa real em mente. Para o FinView, identificamos dois perfis principais:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Atributo</th>
+                <th>🧑‍💻 Lucas, 26 anos</th>
+                <th>👩‍🏫 Carla, 38 anos</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Perfil</strong></td>
+                <td>Desenvolvedor júnior, recém-formado, primeiro emprego CLT</td>
+                <td>Professora, casada, dois filhos, renda familiar compartilhada</td>
+              </tr>
+              <tr>
+                <td><strong>Dor</strong></td>
+                <td>Gasta no cartão sem perceber; chega no final do mês sem entender para onde foi o dinheiro</td>
+                <td>Sente que nunca sobra dinheiro; quer economizar para a viagem de aniversário de casamento</td>
+              </tr>
+              <tr>
+                <td><strong>Comportamento</strong></td>
+                <td>100% mobile, usa o celular no metrô para tudo; quer algo rápido de registrar</td>
+                <td>Mais cautelosa com apps novos; prefere ver os dados de forma clara antes de confiar</td>
+              </tr>
+              <tr>
+                <td><strong>Métrica de sucesso</strong></td>
+                <td>Conseguir registrar uma transação em menos de 10 segundos</td>
+                <td>Visualizar se está no caminho da meta de viagem sem cálculo manual</td>
+              </tr>
+              <tr>
+                <td><strong>Dispositivo</strong></td>
+                <td>Android (Samsung Galaxy)</td>
+                <td>iOS (iPhone)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout tip">
+          <span class="callout-title">Personas no design: use com consciência</span>
+          <p>Personas não são dados estatísticos exatos — são <em>modelos mentais</em> que ajudam a tomar decisões de design. Quando você hesitar entre dois caminhos ("botão grande ou pequeno?", "modal ou nova tela?"), pergunte: "O que o Lucas faria com 30 segundos livres no metrô?". As personas do FinView foram simplificadas para o projeto; num projeto real, seriam embasadas em pesquisa qualitativa (entrevistas) e quantitativa (analytics).</p>
+        </div>
+
+        <h2>Features do MVP</h2>
+        <p>MVP (<em>Minimum Viable Product</em>) é a versão mínima do produto que entrega valor real ao usuário. Para o FinView, o critério foi simples: o que o Lucas e a Carla precisam para controlar o mês <em>hoje</em>?</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Descrição curta</th>
+                <th>Telas envolvidas</th>
+                <th>Prioridade</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Saldo total</strong></td>
+                <td>Visão do saldo atual somando receitas e despesas do mês</td>
+                <td>Home</td>
+                <td><span class="badge level-3">Crítico</span></td>
+              </tr>
+              <tr>
+                <td><strong>Lista de transações</strong></td>
+                <td>Histórico rolável com valor, categoria, data e ícone</td>
+                <td>Home, Detalhe</td>
+                <td><span class="badge level-3">Crítico</span></td>
+              </tr>
+              <tr>
+                <td><strong>Adicionar transação</strong></td>
+                <td>Fluxo rápido: valor, tipo (entrada/saída), categoria, nota</td>
+                <td>Bottom Sheet, confirmação</td>
+                <td><span class="badge level-3">Crítico</span></td>
+              </tr>
+              <tr>
+                <td><strong>Cartões de conta</strong></td>
+                <td>Cards visuais mostrando saldo por conta (nubank, itaú, dinheiro)</td>
+                <td>Home (carrossel)</td>
+                <td><span class="badge level-2">Importante</span></td>
+              </tr>
+              <tr>
+                <td><strong>Metas</strong></td>
+                <td>Meta com nome, valor alvo, valor atual e barra de progresso</td>
+                <td>Tela de Metas</td>
+                <td><span class="badge level-2">Importante</span></td>
+              </tr>
+              <tr>
+                <td><strong>Perfil do usuário</strong></td>
+                <td>Nome, foto, configurações básicas</td>
+                <td>Perfil</td>
+                <td><span class="badge level-1">Desejável</span></td>
+              </tr>
+              <tr>
+                <td><strong>Gráfico de gastos</strong></td>
+                <td>Gráfico de pizza ou linha por categoria/período</td>
+                <td>Home (seção)</td>
+                <td><span class="badge level-1">Desejável</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Features de <strong>sincronização bancária automática</strong>, <strong>planejamento orçamentário</strong> e <strong>relatórios avançados</strong> ficam fora do MVP — são complexidades que distraem do valor central e aumentariam muito o escopo.</p>
+
+        <h2>Telas do projeto e escopo visual</h2>
+        <p>O FinView terá <strong>7 telas principais</strong> no arquivo Figma, mais estados e variações. Veja o mapa:</p>
+
+        <div class="figma-mock">
+          <div class="device-phone" style="width:210px;">
+            <div style="background:#1a1e26;padding:10px 14px 0;display:flex;flex-direction:column;gap:0;">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0 0;">
+                <span style="color:#6c4cf1;font-weight:700;font-size:13px;">FinView</span>
+                <span style="color:#a3acba;font-size:10px;">9:41</span>
+              </div>
+              <div style="margin-top:8px;background:linear-gradient(135deg,#6c4cf1,#b0367a);border-radius:14px;padding:14px;">
+                <div style="color:rgba(255,255,255,0.7);font-size:9px;">Saldo total</div>
+                <div style="color:#fff;font-size:20px;font-weight:700;margin:2px 0;">R$ 4.832,50</div>
+                <div style="display:flex;gap:8px;margin-top:6px;">
+                  <span style="background:rgba(255,255,255,0.15);color:#fff;font-size:8px;padding:3px 7px;border-radius:99px;">↑ Receitas R$ 7k</span>
+                  <span style="background:rgba(255,255,255,0.15);color:#fff;font-size:8px;padding:3px 7px;border-radius:99px;">↓ Gastos R$ 2.1k</span>
+                </div>
+              </div>
+              <div style="display:flex;gap:8px;margin-top:10px;">
+                <div style="flex:1;background:#222731;border-radius:10px;padding:10px;display:flex;align-items:center;gap:6px;">
+                  <div style="width:22px;height:22px;background:#6c4cf1;border-radius:6px;display:grid;place-items:center;font-size:10px;">🍔</div>
+                  <div>
+                    <div style="color:#a3acba;font-size:8px;">iFood</div>
+                    <div style="color:#e8eaee;font-size:10px;font-weight:600;">- R$ 54</div>
+                  </div>
+                </div>
+                <div style="flex:1;background:#222731;border-radius:10px;padding:10px;display:flex;align-items:center;gap:6px;">
+                  <div style="width:22px;height:22px;background:#18915a;border-radius:6px;display:grid;place-items:center;font-size:10px;">💰</div>
+                  <div>
+                    <div style="color:#a3acba;font-size:8px;">Salário</div>
+                    <div style="color:#4cce8a;font-size:10px;font-weight:600;">+ R$ 5k</div>
+                  </div>
+                </div>
+              </div>
+              <div style="display:flex;justify-content:space-around;margin-top:10px;padding:8px 0;border-top:1px solid #2b313c;">
+                <span style="color:#6c4cf1;font-size:9px;text-align:center;">🏠<br>Home</span>
+                <span style="color:#788091;font-size:9px;text-align:center;">📊<br>Metas</span>
+                <span style="color:#788091;font-size:9px;text-align:center;">➕<br>Add</span>
+                <span style="color:#788091;font-size:9px;text-align:center;">💳<br>Cartões</span>
+                <span style="color:#788091;font-size:9px;text-align:center;">👤<br>Perfil</span>
+              </div>
+            </div>
+          </div>
+          <div style="flex:1;min-width:200px;display:flex;flex-direction:column;gap:10px;justify-content:center;">
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px;">
+              <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px;">🗺️ Telas do MVP</div>
+              <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px;">
+                <li style="font-size:12px;color:var(--text-muted);">1. Splash / Onboarding (3 cards)</li>
+                <li style="font-size:12px;color:var(--text-muted);">2. Home (saldo + lista + cartões)</li>
+                <li style="font-size:12px;color:var(--text-muted);">3. Detalhe da transação</li>
+                <li style="font-size:12px;color:var(--text-muted);">4. Adicionar transação (bottom sheet)</li>
+                <li style="font-size:12px;color:var(--text-muted);">5. Metas</li>
+                <li style="font-size:12px;color:var(--text-muted);">6. Cartões</li>
+                <li style="font-size:12px;color:var(--text-muted);">7. Perfil</li>
+              </ul>
+            </div>
+            <div style="background:var(--primary-soft);border:1px solid var(--primary-soft-border);border-radius:10px;padding:12px;">
+              <div style="font-size:12px;font-weight:700;color:var(--primary);margin-bottom:4px;">📱 Plataformas</div>
+              <div style="font-size:12px;color:var(--text-muted);">iOS (iPhone 16) e Android (Pixel 8) — frames separados no Figma</div>
+            </div>
+          </div>
+          <p class="mock-label">Visão geral do FinView: a tela Home mostrando o card de saldo, transações recentes e a tab bar de navegação.</p>
+        </div>
+
+        <h2>Plataformas: iOS e Android</h2>
+        <p>O FinView será projetado para <strong>ambas as plataformas</strong>. Isso não significa dobrar o trabalho — significa ter consciência das diferenças e usar o Figma de forma inteligente:</p>
+        <ul>
+          <li><strong>Frame base:</strong> usaremos o preset <em>iPhone 16</em> (390×844 pt) como tela de referência principal. O frame Android (<em>Android Small</em>, 360×800 dp) será adaptado nas lições 7 e 8.</li>
+          <li><strong>Safe areas:</strong> o iOS tem o Dynamic Island no topo e o indicador de Home na base; o Android tem a barra de status e a barra de navegação por gestos. Criaremos componentes que respeitam essas áreas.</li>
+          <li><strong>Componentes nativos diferentes:</strong> tab bar (iOS) vs. bottom navigation (Material Design), botões, inputs e navegação têm padrões distintos — veremos isso em detalhe na Lição 8.</li>
+        </ul>
+
+        <div class="callout warning">
+          <span class="callout-title">Cuidado com "projetar para os dois do mesmo jeito"</span>
+          <p>Um erro clássico é simplesmente exportar o mesmo design para iOS e Android sem ajustes. Usuários de cada plataforma têm expectativas formadas por anos de uso — um bottom sheet que sobe com gesto no iOS pode ser um modal diferente no Android. No FinView, começamos com o iOS como referência e adaptamos para Android na Lição 8.</p>
+        </div>
+
+        <h2>Estrutura do arquivo Figma</h2>
+        <p>Organizar o arquivo Figma corretamente desde o início poupa horas de retrabalho. Para o FinView, criaremos as seguintes <strong>Pages</strong> (abas do arquivo):</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Abra o Figma e crie um novo arquivo.</strong>
+            Acesse <em>figma.com</em>, clique em <strong>New design file</strong>. Renomeie o arquivo para "FinView — Design System &amp; Protótipo" usando <kbd>Ctrl</kbd> + <kbd>R</kbd> (Windows) / <kbd>⌘</kbd> + <kbd>R</kbd> (Mac) no título.
+          </li>
+          <li>
+            <strong>Crie as Pages do projeto.</strong>
+            No painel esquerdo, clique no ícone <strong>+</strong> ao lado de "Pages" para adicionar páginas. Crie as seguintes (renomeie cada uma com duplo clique):
+            <ul>
+              <li><code>🎨 Design Tokens</code> — cores, tipografia, variables</li>
+              <li><code>📐 Wireframes</code> — fluxo e wireframes low-fi</li>
+              <li><code>📱 iOS — Telas</code> — todas as telas em alta fidelidade</li>
+              <li><code>🤖 Android — Telas</code> — adaptações para Android</li>
+              <li><code>🧩 Components</code> — biblioteca de componentes</li>
+              <li><code>🔗 Protótipo</code> — fluxo interativo conectado</li>
+              <li><code>📋 Handoff Notes</code> — anotações para dev</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Configure o grid da página iOS.</strong>
+            Na página <code>iOS — Telas</code>, crie um Frame com o preset <em>iPhone 16</em>: pressione <kbd>F</kbd>, então no painel direito escolha <strong>Phone → iPhone 16</strong> (390×844). Esse será o frame modelo para clonar nas próximas lições. Use <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>D</kbd> para duplicar.
+          </li>
+          <li>
+            <strong>Adicione um coversheet na primeira page.</strong>
+            Na Page <code>🎨 Design Tokens</code>, crie um frame grande (1440×900) com o nome do projeto, a data e os nomes das personas. Isso é uma convenção profissional — o cliente vê um "capa" ao abrir o arquivo.
+          </li>
+          <li>
+            <strong>Salve localmente (Figma salva na nuvem, mas confirme).</strong>
+            Verifique que "Saved" aparece no canto superior esquerdo. Use <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>S</kbd> para forçar um save manual.
+          </li>
+        </ol>
+
+        <div class="callout pro">
+          <span class="callout-title">Convenção de nomes que todo time usa</span>
+          <p>Profissionais usam emojis nas Pages para identificação visual rápida (🎨 = design tokens, 📱 = telas, 🧩 = componentes). No nome dos frames dentro das pages, use o formato <code>[número] — Nome da Tela</code> (ex.: <code>01 — Home</code>, <code>02 — Detalhe</code>). Isso mantém a ordem na timeline do protótipo e facilita o handoff.</p>
+        </div>
+
+        <h2>Definindo a identidade visual (preview)</h2>
+        <p>Antes de partir para os wireframes, vale ter um norte visual. O FinView usa:</p>
+        <ul>
+          <li><strong>Cor primária:</strong> <code>#6C4CF1</code> — violeta-azulado moderno, transmite confiança e tecnologia sem ser corporativo demais.</li>
+          <li><strong>Acento de sucesso:</strong> <code>#18C98A</code> — verde-esmeralda para valores positivos (receitas, metas alcançadas).</li>
+          <li><strong>Acento de alerta:</strong> <code>#F7654B</code> — laranja-vermelho para gastos elevados e alertas.</li>
+          <li><strong>Tipografia:</strong> <em>Inter</em> — limpa, legível em telas pequenas, disponível no Figma.</li>
+          <li><strong>Modo escuro por padrão:</strong> o app terá dark mode nativo, pois usuários de finanças costumam usar o app à noite.</li>
+        </ul>
+        <p>Vamos construir esses tokens de forma estruturada com <strong>Variables</strong> do Figma na Lição 3. Por ora, registre essas cores num post-it (Text frame) na página <code>Design Tokens</code>.</p>
+
+        <div class="callout note">
+          <span class="callout-title">Sobre o escopo das próximas lições</span>
+          <p>Cada lição deste módulo apoia a seguinte. <strong>Lição 2</strong>: fluxo de usuário e wireframes low-fi. <strong>Lição 3</strong>: tokens visuais com Variables. <strong>Lição 4</strong>: telas em alta fidelidade. <strong>Lição 5</strong>: componentização. <strong>Lição 6</strong>: dark mode e estados. <strong>Lição 7</strong>: prototipagem e animações. <strong>Lição 8</strong>: diretrizes iOS vs Android. Ao final do módulo você terá um portfólio real.</p>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>O FinView é um app de finanças pessoais focado em visualização clara e onboarding rápido.</li>
+          <li>As duas personas principais são Lucas (Android, velocidade) e Carla (iOS, clareza de dados).</li>
+          <li>O MVP cobre 7 telas: Onboarding, Home, Detalhe, Adicionar, Metas, Cartões e Perfil.</li>
+          <li>Criamos o arquivo Figma com 7 Pages organizadas por propósito (tokens, wireframes, telas iOS/Android, components, protótipo, handoff).</li>
+          <li>A identidade visual usa violeta como primária, verde para positivo, laranja para alerta, Inter como tipografia e dark mode como padrão.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Configurar o arquivo do projeto</h3>
+          <p>Agora é sua vez. Coloque a mão na massa:</p>
+          <ol>
+            <li>Crie um novo arquivo no Figma chamado <strong>"FinView — [seu nome]"</strong>.</li>
+            <li>Adicione as 7 Pages listadas nesta lição, com os emojis e nomes exatos.</li>
+            <li>Na Page <code>iOS — Telas</code>, crie um frame iPhone 16 vazio e anote nos comentários (tecla <kbd>C</kbd>) "Frame modelo — não editar, duplicar".</li>
+            <li>Na Page <code>🎨 Design Tokens</code>, crie um frame 1440×900 com um retângulo de cada cor da identidade visual (violeta, verde, laranja) com o hex anotado abaixo.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> o arquivo tem exatamente 7 pages, o frame iPhone 16 está na page correta e as 3 cores da identidade visual estão documentadas com seus códigos hex.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Pesquisa de benchmarking</h3>
+          <p>Escolha dois apps de finanças reais (Nubank, Guiabolso, Mobills, YNAB, Mint, Money Manager — o que tiver no seu celular) e faça capturas de tela da tela Home de cada um. No Figma, crie um frame chamado "Benchmarking" na Page de Design Tokens e organize as capturas lado a lado. Anote com caixas de texto o que cada app faz bem e o que você melhoraria no FinView. Esse exercício é o que designers UX chamam de <em>análise competitiva</em> e costuma ser o primeiro entregável de um projeto real.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Qual é o significado prático de um MVP no contexto de design de produto?</p>
+            <ul class="quiz-options">
+              <li>O produto com o maior número de funcionalidades possível</li>
+              <li>Um protótipo de baixa fidelidade sem nenhuma tela real</li>
+              <li>A versão mínima do produto que entrega valor real ao usuário</li>
+              <li>Um documento de requisitos sem design visual</li>
+            </ul>
+            <div class="quiz-explain">MVP (Minimum Viable Product) é a versão <strong>mais simples do produto que ainda entrega valor real</strong> ao usuário. O objetivo é validar hipóteses com o menor custo possível, evitando desenvolver features que ninguém vai usar.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">2. Por que o FinView usa dark mode como padrão visual?</p>
+            <ul class="quiz-options">
+              <li>Porque dark mode sempre carrega mais rápido que light mode</li>
+              <li>Porque usuários de apps de finanças costumam usar o app à noite, e dark mode é mais confortável em ambientes escuros</li>
+              <li>Porque o Figma só suporta design com fundo escuro</li>
+              <li>Porque dark mode usa menos cores e simplifica o design system</li>
+            </ul>
+            <div class="quiz-explain">A decisão de dark mode como padrão é baseada no <strong>comportamento do usuário</strong>: pessoas checam finanças frequentemente à noite, e dark mode é mais confortável para os olhos em ambientes escuros. Além disso, fundos escuros criam contraste visual que destaca valores financeiros.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. No Figma, qual é a função das "Pages" (abas) dentro de um arquivo?</p>
+            <ul class="quiz-options">
+              <li>Separar o trabalho em categorias lógicas dentro do mesmo arquivo (tokens, telas, components, etc.)</li>
+              <li>Representar cada tela individual do aplicativo a ser projetado</li>
+              <li>Criar versões do arquivo para controle de mudanças (como branches no Git)</li>
+              <li>Definir as permissões de acesso para cada colaborador do projeto</li>
+            </ul>
+            <div class="quiz-explain"><strong>Pages</strong> no Figma são como abas em uma planilha: separam o conteúdo do mesmo arquivo em categorias lógicas. Usar pages por propósito (tokens, telas, components) é uma convenção profissional que mantém o arquivo organizado e navegável.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

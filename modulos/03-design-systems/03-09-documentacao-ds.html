@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentação do Design System | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="03-09-documentacao-ds" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🏗️ Módulo 3 · Avançado · Lição 9 de 9</div>
+        <h1>Documentação do Design System</h1>
+        <p class="lead">Um Design System sem documentação é uma caixa preta. A documentação é o que transforma seu DS de "aquele arquivo que o time não sabe como usar" em uma ferramenta que autonomiza designers e desenvolvedores.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~24 min</span>
+          <span>🎯 Nível: Avançado</span>
+          <span>🛠️ Pratique no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Adicionar descriptions em components e variables para documentação inline no Figma;</li>
+            <li>Criar páginas de documentação visual dentro do arquivo de DS (Do's &amp; Don'ts, exemplos de uso);</li>
+            <li>Usar Annotations para comunicar intenção de design diretamente nas telas;</li>
+            <li>Avaliar ferramentas externas de documentação (Zeroheight, Supernova, Storybook);</li>
+            <li>Estabelecer um processo para manter a documentação atualizada ao longo do tempo.</li>
+          </ul>
+        </div>
+
+        <h2>Por que documentar?</h2>
+        <p>Imagine um botão primário no seu DS. Você sabe que deve ser usado para a ação principal de uma tela, que deve aparecer apenas uma vez por página, e que nunca deve ser usado em contextos destrutivos. Mas se isso não estiver documentado, cada designer vai tomar essa decisão por conta própria — e o resultado será inconsistente.</p>
+        <p>Documentação não é overhead: é o multiplicador do seu DS. Cada hora que você investe em documentar bem economiza dezenas de horas em perguntas, erros e retrabalho do time.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Os três públicos da documentação</span>
+          <p><strong>Designers</strong> precisam entender quando e como usar cada componente. <strong>Desenvolvedores</strong> precisam entender as propriedades, tokens e comportamentos. <strong>Product managers e stakeholders</strong> precisam entender os princípios e o porquê das decisões. Uma boa documentação fala com os três.</p>
+        </div>
+
+        <h2>Documentação inline no Figma</h2>
+        <p>O Figma oferece campos de documentação diretamente na interface que aparecem nos painéis do inspector e do Dev Mode — sem precisar de nenhuma ferramenta externa.</p>
+
+        <h3>Descriptions em Components</h3>
+        <p>Cada componente tem um campo de <strong>Description</strong> acessível ao clicar no componente no painel de Assets ou ao selecionar o Main Component. Para adicionar:</p>
+        <ol class="steps">
+          <li>
+            <strong>Selecione o Main Component.</strong>
+            No canvas, clique duas vezes até selecionar o componente principal (não uma instância). O painel direito mostra as propriedades do componente.
+          </li>
+          <li>
+            <strong>Localize o campo Description.</strong>
+            Na seção superior do painel direito, há um campo "Description" com placeholder "Add description". Clique nele para editar.
+          </li>
+          <li>
+            <strong>Escreva a documentação.</strong>
+            Inclua: para que serve o componente, quando usá-lo, quando NÃO usá-lo, variantes disponíveis e quaisquer regras de uso. Markdown básico é suportado (bold, listas).
+          </li>
+          <li>
+            <strong>Adicione links relevantes.</strong>
+            Abaixo do Description, há um campo para um <strong>Link</strong> (Documentation link). Cole a URL da documentação externa correspondente (Zeroheight, Storybook, Confluence…).
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Description no Dev Mode</span>
+          <p>A Description que você escreve no componente aparece diretamente no <strong>Dev Mode</strong> quando um desenvolvedor inspeciona uma instância. Isso significa que a documentação viaja junto com o componente — sem precisar abrir outro documento.</p>
+        </div>
+
+        <h3>Descriptions em Variables</h3>
+        <p>Variables também têm campo de Description, acessível via <strong>Edit Variable</strong> (clique direito na variable). Use para documentar:</p>
+        <ul>
+          <li>O propósito do token (<em>"Cor de fundo para superfícies elevadas (cards, modais)"</em>);</li>
+          <li>Quando usar vs. quando usar outro token similar;</li>
+          <li>Qual contraste mínimo esperar com tokens de texto sobre esse fundo;</li>
+          <li>Referências ao token equivalente no código (<em>"CSS: --color-bg-surface"</em>).</li>
+        </ul>
+
+        <h2>Páginas de documentação no Figma</h2>
+        <p>Além da documentação inline, crie páginas dedicadas no arquivo de DS para cada categoria de componente. A estrutura clássica de uma página de documentação de componente:</p>
+
+        <h3>Anatomia da página de documentação</h3>
+        <ol>
+          <li><strong>Header:</strong> nome do componente, status (stable/beta/deprecated), versão e quem mantém;</li>
+          <li><strong>Overview:</strong> o que o componente faz, em 1–2 frases;</li>
+          <li><strong>Anatomia:</strong> o componente com setas e labels identificando cada parte;</li>
+          <li><strong>Variantes:</strong> grade com todas as variantes lado a lado com nome e quando usar cada;</li>
+          <li><strong>Do's &amp; Don'ts:</strong> exemplos corretos e incorretos de uso (veja abaixo);</li>
+          <li><strong>Comportamento:</strong> estados (hover, focus, active, disabled, loading, error), responsividade;</li>
+          <li><strong>Acessibilidade:</strong> notas de ARIA, navegação por teclado, contraste mínimo;</li>
+          <li><strong>Conteúdo:</strong> guia de microcopy — como escrever os textos dos componentes;</li>
+          <li><strong>Uso em contexto:</strong> o componente em telas reais, não em isolamento.</li>
+        </ol>
+
+        <h3>Do's e Don'ts</h3>
+        <p>A seção mais impactante de qualquer documentação. O padrão visual é: dois frames lado a lado, um com uma borda verde e rótulo "Do" (correto), outro com borda vermelha e rótulo "Don't" (incorreto), cada um com uma breve explicação.</p>
+
+        <div class="figma-mock">
+          <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
+            <!-- Do -->
+            <div style="border:2px solid var(--success);border-radius:10px;padding:14px;min-width:200px;flex:1;max-width:240px;">
+              <div style="background:var(--success-soft);color:var(--success);font-size:11px;font-weight:700;padding:3px 8px;border-radius:99px;display:inline-block;margin-bottom:10px;">✓ Do</div>
+              <div style="background:var(--primary);color:#fff;border-radius:8px;padding:9px 16px;text-align:center;font-size:13px;font-weight:600;display:inline-block;width:100%;">Salvar alterações</div>
+              <p style="color:var(--text-muted);font-size:12px;margin:8px 0 0;">Use rótulos de ação claros e específicos que descrevem o que acontece ao clicar.</p>
+            </div>
+            <!-- Don't -->
+            <div style="border:2px solid var(--danger);border-radius:10px;padding:14px;min-width:200px;flex:1;max-width:240px;">
+              <div style="background:var(--danger-soft);color:var(--danger);font-size:11px;font-weight:700;padding:3px 8px;border-radius:99px;display:inline-block;margin-bottom:10px;">✗ Don't</div>
+              <div style="background:var(--primary);color:#fff;border-radius:8px;padding:9px 16px;text-align:center;font-size:13px;font-weight:600;display:inline-block;width:100%;">OK</div>
+              <p style="color:var(--text-muted);font-size:12px;margin:8px 0 0;">Evite rótulos genéricos que não comunicam a consequência da ação.</p>
+            </div>
+          </div>
+          <p class="mock-label">Padrão visual de Do's & Don'ts: borda verde para correto, vermelha para incorreto, explicação curta abaixo de cada exemplo.</p>
+        </div>
+
+        <h2>Annotations — comunicação inline nas telas</h2>
+        <p><strong>Annotations</strong> (Figma 2024+) são marcadores que você pode adicionar diretamente sobre frames e componentes para comunicar intenção de design sem precisar usar sticky notes ou setas manuais. Elas ficam visíveis no <strong>Dev Mode</strong> com informações estruturadas:</p>
+
+        <ul>
+          <li>Para acessar: com um elemento selecionado, vá em <strong>Inspect → Add annotation</strong>, ou use o ícone de Annotation na toolbar;</li>
+          <li>Você pode anotar propriedades específicas (padding, radius, interaction) com campos estruturados;</li>
+          <li>Annotations aparecem como balões numerados no canvas — o desenvolvedor clica para ver o detalhe;</li>
+          <li>Use para documentar comportamentos que não ficam óbvios pelo visual: "ao rolar 80 px, este header colapsa"; "este input valida em blur, não em keypress".</li>
+        </ul>
+
+        <div class="callout pro">
+          <span class="callout-title">Annotations vs. Dev Mode specs</span>
+          <p>O Dev Mode já extrai automaticamente valores de spacing, tamanho e cores das variables. Use Annotations para complementar com informações que o Dev Mode <strong>não captura automaticamente</strong>: comportamentos interativos, regras de negócio, limites de conteúdo, dependências com outros sistemas.</p>
+        </div>
+
+        <h2>Exemplos de uso contextual</h2>
+        <p>Um dos maiores problemas de documentação de DS é mostrar componentes sempre em isolamento — o designer entende o botão, mas não sabe como combiná-lo com um Input para fazer um form válido. Crie páginas de <strong>Uso em Contexto</strong>:</p>
+        <ul>
+          <li><strong>Telas de exemplo:</strong> telas completas (não wireframes) mostrando os componentes em uso real — tela de login, tela de configurações, tela de checkout;</li>
+          <li><strong>Patterns documentados:</strong> como combinar componentes para criar flows — "Form de múltiplos passos", "Lista com filtros e paginação";</li>
+          <li><strong>Anti-patterns:</strong> exemplos do que não fazer em nível de pattern (não só componente individual).</li>
+        </ul>
+
+        <h2>Ferramentas externas de documentação</h2>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Ferramenta</th><th>O que faz</th><th>Melhor para</th><th>Integração Figma</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Zeroheight</strong></td>
+                <td>Site de documentação gerado a partir do Figma. Embedda componentes, mostra tokens, suporta conteúdo escrito.</td>
+                <td>DS públicos ou com audiência grande; quando o público é misto (design + dev + produto)</td>
+                <td>Plugin oficial; sincroniza componentes e styles automaticamente</td>
+              </tr>
+              <tr>
+                <td><strong>Supernova</strong></td>
+                <td>Plataforma completa de DS — documentação + exportação de tokens + geração de código</td>
+                <td>Times que querem DS-as-code: tokens exportados para múltiplas plataformas + documentação centralizada</td>
+                <td>Plugin + sync direto com Figma Variables e Styles</td>
+              </tr>
+              <tr>
+                <td><strong>Storybook</strong></td>
+                <td>Documentação de componentes de código — não de design. Mas pode ser linkado ao Figma</td>
+                <td>Times com DS forte em código que querem mostrar os componentes reais em playground interativo</td>
+                <td>Plugin Figma for Storybook — link bidirecional entre componente Figma e componente de código</td>
+              </tr>
+              <tr>
+                <td><strong>Confluence / Notion</strong></td>
+                <td>Wikis genéricas com embed de Figma</td>
+                <td>Times que já usam Confluence/Notion e querem manter tudo centralizado</td>
+                <td>Embed via link público do Figma</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout note">
+          <span class="callout-title">Comece dentro do Figma</span>
+          <p>Para a maioria dos times pequenos e médios, documentar dentro do próprio arquivo Figma (descriptions + páginas de docs) é suficiente e tem a vantagem de ficar junto dos componentes, sempre atualizado. Ferramentas externas adicionam overhead de manutenção — só adote quando a necessidade for clara.</p>
+        </div>
+
+        <h2>Mantendo a documentação atualizada</h2>
+        <p>A maior dívida técnica de um DS é a documentação desatualizada. Um componente muda, mas a docs continua mostrando o comportamento antigo — criando confusão e desconfiança.</p>
+
+        <h3>Processo para manter a consistência</h3>
+        <ul>
+          <li><strong>Docs como parte da Definition of Done:</strong> nenhum componente é considerado "done" até que a description, a página de docs e os Do's &amp; Don'ts estejam completos e revisados;</li>
+          <li><strong>Update docs junto com o componente:</strong> quando um componente é modificado, atualizar a documentação faz parte da mesma tarefa — não é uma tarefa separada opcional;</li>
+          <li><strong>Revisão periódica de docs:</strong> a cada trimestre, percorra as páginas de documentação e verifique se ainda refletem a realidade dos componentes;</li>
+          <li><strong>Responsável pela documentação:</strong> designar uma pessoa como "dono" de cada seção do DS garante que há accountability;</li>
+          <li><strong>Feedback loop:</strong> crie um canal (Slack, GitHub Issues, Notion) onde consumidores do DS possam reportar documentação incorreta ou ausente.</li>
+        </ul>
+
+        <div class="callout warning">
+          <span class="callout-title">Documentação desatualizada é pior que nenhuma</span>
+          <p>Se um designer lê que o botão primário deve ser usado "sempre que houver uma ação principal", mas o botão que ele está usando já tem 3 variantes novas com regras diferentes, a documentação não apenas não ajuda — ela ativamente causa erros. Prefira documentação simples e correta a documentação completa e errada.</p>
+        </div>
+
+        <h2>Exemplo de uso real</h2>
+        <p>O DS "Aurora" de uma startup de SaaS tem a seguinte estratégia de documentação:</p>
+        <ul>
+          <li><strong>Descriptions em todos os componentes</strong> — disponíveis no Dev Mode sem nenhuma ferramenta externa;</li>
+          <li><strong>Descriptions em todas as Variables</strong> — incluindo a convenção de uso e o equivalente CSS;</li>
+          <li><strong>Páginas de docs no Figma</strong> para os 20 componentes mais usados, com anatomia, variantes e Do's &amp; Don'ts;</li>
+          <li><strong>Zeroheight</strong> para a documentação pública — usada onboarding de novos designers e apresentações para stakeholders;</li>
+          <li><strong>Changelog no Figma</strong> — uma página "What's New" atualizada a cada release com data, componentes afetados e links para os componentes;</li>
+          <li><strong>Processo:</strong> "Docs as DoD" — toda PR de componente inclui atualização de docs como item obrigatório na checklist.</li>
+        </ul>
+        <p>Resultado: o tempo médio de onboarding de novos designers caiu de 3 semanas para 5 dias. Perguntas repetidas sobre uso de componentes caíram 70%.</p>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Descriptions em components e variables são a forma mais eficiente de documentar — aparecem inline no Dev Mode.</li>
+          <li>Páginas de docs dentro do Figma: anatomia, variantes, Do's &amp; Don'ts, comportamentos, acessibilidade.</li>
+          <li>Annotations documentam comportamentos interativos e regras que o Dev Mode não captura.</li>
+          <li>Ferramentas externas (Zeroheight, Supernova) são ótimas para DS públicos ou com audiência grande, mas têm overhead.</li>
+          <li>Docs atualizada é responsabilidade contínua: "Docs as DoD", revisão periódica, responsável designado.</li>
+          <li>Documentação desatualizada é pior que nenhuma — prefira menos, mas correto.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Documente 3 componentes do seu DS</h3>
+          <p>Escolha 3 componentes do DS que você construiu ao longo deste módulo. Para cada um:</p>
+          <ol>
+            <li>Escreva uma <strong>Description</strong> no componente com: o que é, quando usar, quando NÃO usar;</li>
+            <li>Adicione o <strong>Documentation Link</strong> apontando para qualquer URL relevante (pode ser um artigo, o próprio Figma, ou um link fictício por enquanto);</li>
+            <li>Crie uma <strong>página de docs</strong> no arquivo com: nome + status, anatomia com labels, e pelo menos um par de Do's &amp; Don'ts;</li>
+            <li>Adicione uma <strong>Annotation</strong> em um frame de exemplo com uma regra de comportamento (ex: "máximo de 50 caracteres neste campo").</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> ao inspecionar um componente no Dev Mode, a Description aparece completa. A página de docs é clara o suficiente para que alguém que nunca usou o componente saiba exatamente quando e como usá-lo sem fazer perguntas.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Mini site de documentação com Zeroheight</h3>
+          <p>Crie uma conta gratuita no <strong>Zeroheight</strong> (zeroheight.com) e conecte seu arquivo de DS do Figma. Publique uma página de documentação para pelo menos 2 componentes usando o Figma embed — mostre o componente ao vivo, as variantes e um texto de quando usar. Compartilhe o link com um colega (ou cole no exercício do curso) para feedback. Documente as diferenças entre documentar no Figma e no Zeroheight: quais são as vantagens de cada abordagem?</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Onde a Description de um componente aparece no Figma sem precisar de ferramentas externas?</p>
+            <ul class="quiz-options">
+              <li>Somente quando o designer abre o Main Component diretamente</li>
+              <li>No Dev Mode, quando um desenvolvedor inspeciona uma instância do componente</li>
+              <li>No painel de Assets ao passar o mouse sobre o componente</li>
+              <li>Apenas em ferramentas externas como Zeroheight ou Supernova</li>
+            </ul>
+            <div class="quiz-explain">A Description do componente aparece diretamente no <strong>Dev Mode</strong> do Figma, tornando-a acessível a desenvolvedores sem precisar de nenhuma outra ferramenta. Esse é um dos argumentos mais fortes para documentar descriptions cuidadosamente.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">2. O que são Annotations no Figma e para que servem?</p>
+            <ul class="quiz-options">
+              <li>Comentários de texto colados como sticky notes no canvas</li>
+              <li>Labels automáticos que o Figma gera com base nos valores das Variables</li>
+              <li>Marcadores estruturados que aparecem no Dev Mode para documentar comportamentos interativos e regras que o inspector não captura automaticamente</li>
+              <li>Notas visíveis somente durante apresentações de Prototype</li>
+            </ul>
+            <div class="quiz-explain">Annotations são marcadores estruturados criados sobre frames ou componentes. Eles aparecem no Dev Mode e servem para documentar <strong>comportamentos</strong> que as specs visuais não capturam — como "este header colapsa ao rolar 80 px" ou "validação acontece em blur".</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">3. Qual é o risco de ter documentação desatualizada em um Design System?</p>
+            <ul class="quiz-options">
+              <li>O Figma nega a publicação da Library até que a documentação seja atualizada</li>
+              <li>Os componentes ficam bloqueados para edição até que a documentação seja revisada</li>
+              <li>O DS passa a exigir mais espaço de armazenamento</li>
+              <li>Designers seguem regras incorretas, criando inconsistências — documentação errada causa mais dano do que ausência de documentação</li>
+            </ul>
+            <div class="quiz-explain">Documentação desatualizada induz designers a cometer erros com confiança — eles acreditam estar seguindo as regras, mas estão seguindo regras obsoletas. Isso cria inconsistência sistêmica que é difícil de rastrear e corrigir.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

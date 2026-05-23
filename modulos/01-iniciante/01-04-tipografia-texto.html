@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tipografia e a ferramenta de texto | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="01-04-tipografia-texto" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🎨 Módulo 1 · Iniciante · Lição 4 de 8</div>
+        <h1>Tipografia e a ferramenta de texto</h1>
+        <p class="lead">Mais de 90% do conteúdo de uma interface é texto. Dominar tipografia no Figma não é opcional — é o que dá hierarquia, ritmo e clareza a qualquer design.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~22 min</span>
+          <span>🎯 Nível: Iniciante</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Usar a ferramenta Texto e seus três modos de dimensionamento;</li>
+            <li>Configurar família, peso, tamanho, line-height, letter-spacing e alinhamento;</li>
+            <li>Aplicar decoração, truncamento e listas ao texto;</li>
+            <li>Usar fontes do Google Fonts e fontes locais no Figma;</li>
+            <li>Montar uma escala tipográfica básica aplicando princípios de hierarquia.</li>
+          </ul>
+        </div>
+
+        <h2>A ferramenta Texto</h2>
+        <p>Pressione <kbd>T</kbd> para ativar a ferramenta de texto. Você tem dois modos de criação:</p>
+        <ul>
+          <li><strong>Clique simples:</strong> cria um texto de <em>Auto Width</em> — o campo cresce horizontalmente conforme você digita. Bom para títulos e labels curtos.</li>
+          <li><strong>Clique e arraste:</strong> cria um texto de <em>Fixed Width</em> com a largura que você definiu — o texto quebra de linha automaticamente. Bom para parágrafos e textos longos.</li>
+        </ul>
+
+        <h3>Três modos de dimensionamento</h3>
+        <p>Com o texto selecionado, no painel direito você encontra o ícone de redimensionamento. São 3 modos:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Modo</th><th>Comportamento</th><th>Quando usar</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Auto Width</strong></td><td>W e H crescem com o conteúdo; o texto nunca quebra linha</td><td>Títulos, botões, labels de uma linha</td></tr>
+              <tr><td><strong>Auto Height</strong></td><td>W é fixo (você define); H cresce conforme linhas aumentam</td><td>Parágrafos com largura definida pelo layout</td></tr>
+              <tr><td><strong>Fixed Size</strong></td><td>W e H são fixos; conteúdo excedente fica invisível</td><td>Quando você precisa de uma caixa exata; use truncation</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Propriedades tipográficas no Figma</h2>
+
+        <h3>Família e peso (Font Family e Weight)</h3>
+        <p>O campo de fonte no topo do painel de texto. Digite o nome da família para buscar. O Figma carrega automaticamente todas as fontes disponíveis no <strong>Google Fonts</strong> — mais de 1.400 famílias. O campo de peso lista os variants disponíveis: Thin (100), Light (300), Regular (400), Medium (500), SemiBold (600), Bold (700), ExtraBold (800), Black (900). Nem todas as famílias têm todos os pesos.</p>
+
+        <h3>Tamanho e escala</h3>
+        <p>O campo de tamanho (<strong>Font Size</strong>) é em pixels. Para UI digital, os tamanhos mais comuns são:</p>
+        <ul>
+          <li><strong>12–13 px:</strong> captions, labels secundários, timestamps;</li>
+          <li><strong>14–15 px:</strong> texto de suporte, corpo secundário;</li>
+          <li><strong>16 px:</strong> corpo de texto principal (tamanho padrão do browser);</li>
+          <li><strong>18–20 px:</strong> texto de destaque, leads;</li>
+          <li><strong>24–32 px:</strong> subtítulos, títulos de cards;</li>
+          <li><strong>40–64 px:</strong> títulos de seção, hero headings;</li>
+          <li><strong>72–96+ px:</strong> display, headings heroicos.</li>
+        </ul>
+
+        <h3>Line Height (altura de linha)</h3>
+        <p>A distância vertical entre as linhas de texto. No Figma, você pode definir em pixels ou em porcentagem relativa ao tamanho. Diretrizes gerais:</p>
+        <ul>
+          <li>Textos grandes (títulos): line-height de <strong>1.1 a 1.3</strong> (110–130%);</li>
+          <li>Textos de corpo: line-height de <strong>1.5 a 1.6</strong> (150–160%);</li>
+          <li>Captions: line-height de <strong>1.3 a 1.4</strong>.</li>
+        </ul>
+
+        <h3>Letter Spacing (espaçamento entre letras)</h3>
+        <p>Também chamado de <em>tracking</em>. No Figma, em pixels ou percentagem. Regras práticas:</p>
+        <ul>
+          <li><strong>Textos pequenos (caps, labels):</strong> adicione um letter-spacing positivo (5–10%) para melhorar a legibilidade;</li>
+          <li><strong>Textos de corpo:</strong> 0 ou levemente negativo (−1%);</li>
+          <li><strong>Títulos grandes (36px+):</strong> letter-spacing negativo (−2% a −4%) melhora o impacto visual.</li>
+        </ul>
+
+        <h3>Alinhamento</h3>
+        <p>Horizontal: esquerda, centro, direita e justificado. Vertical (em Fixed Size): topo, meio e base. Use alinhamento justificado com cuidado — funciona bem em print, mas pode criar espaços irregulares em layouts digitais responsivos.</p>
+
+        <h3>Decoração e transformação</h3>
+        <ul>
+          <li><strong>Underline / Strikethrough:</strong> sublinhado e tachado, respectivamente;</li>
+          <li><strong>Uppercase / Lowercase / Capitalize:</strong> no painel de texto, seção "Transform";</li>
+          <li><strong>Superscript / Subscript:</strong> para notas de rodapé e fórmulas.</li>
+        </ul>
+
+        <h3>Listas</h3>
+        <p>O Figma suporta listas com marcadores (<em>bulleted list</em>) e numeradas (<em>ordered list</em>) diretamente no painel de texto. Clique nos ícones de lista no painel direito, com o cursor dentro do campo de texto.</p>
+
+        <h2>Truncation (truncamento)</h2>
+        <p>Em modo <strong>Fixed Size</strong>, o Figma permite ativar o <strong>Truncate text</strong> — o texto excedente é cortado com "…" (ellipsis). Isso simula exatamente o comportamento de <code>text-overflow: ellipsis</code> no CSS, essencial para cards, listas e qualquer UI com texto dinâmico. Ative nas opções avançadas de texto no painel direito.</p>
+
+        <div class="callout warning">
+          <span class="callout-title">Cuidado com texto em Auto Width em componentes</span>
+          <p>Se você criar um botão com texto em Auto Width dentro de um Frame e o texto crescer, o Frame pai não vai crescer junto a menos que tenha Auto Layout ativado. Para componentes de botão reutilizáveis, sempre use Auto Layout + texto em Auto Width.</p>
+        </div>
+
+        <h2>Fontes no Figma</h2>
+
+        <h3>Google Fonts (nativas)</h3>
+        <p>O Figma integra todas as fontes do Google Fonts sem necessidade de instalação. Você pode usar Inter, Roboto, Poppins, DM Sans, Plus Jakarta Sans e milhares de outras diretamente. Apenas pesquise o nome no campo de família.</p>
+
+        <h3>Fontes locais (desktop app)</h3>
+        <p>Se você usar o <strong>Figma Desktop App</strong> (não o browser), ele detecta automaticamente todas as fontes instaladas no seu sistema operacional. Fontes da Adobe Fonts, fontes pagas ou fontes personalizadas da marca aparecem na lista quando instaladas localmente.</p>
+
+        <h3>Fontes compartilhadas em projetos de time</h3>
+        <p>Quando você abre um arquivo com fontes que não estão no Google Fonts e não estão instaladas localmente, o Figma mostra um aviso "Missing fonts". Cada membro do time precisa ter a fonte instalada para visualizá-la corretamente. Para projetos corporativos, use sempre fontes do Google Fonts ou distribua os arquivos de fonte para o time.</p>
+
+        <div class="callout tip">
+          <span class="callout-title">Fontes recomendadas para UI em 2025</span>
+          <p><strong>Interface:</strong> Inter, DM Sans, Plus Jakarta Sans. <strong>Display:</strong> Instrument Serif, Clash Display. <strong>Monospace:</strong> JetBrains Mono, Fira Code. Todas no Google Fonts, gratuitas e com suporte a múltiplos pesos.</p>
+        </div>
+
+        <h2>Fundamentos de tipografia para design</h2>
+
+        <h3>Escala tipográfica</h3>
+        <p>Uma <strong>escala tipográfica</strong> é um conjunto predefinido de tamanhos que formam uma progressão harmônica. A escala mais usada em UI é baseada em uma razão de 1.25 (Major Third):</p>
+
+        <div class="diagram">
+          <svg viewBox="0 0 520 320" role="img" aria-label="Escala tipográfica com 6 níveis de tamanho">
+            <text x="20" y="40" fill="var(--text)" font-size="36" font-family="sans-serif" font-weight="700">Display — 36px</text>
+            <text x="20" y="86" fill="var(--text)" font-size="28" font-family="sans-serif" font-weight="700">H1 — 28px</text>
+            <text x="20" y="124" fill="var(--text)" font-size="22" font-family="sans-serif" font-weight="600">H2 — 22px</text>
+            <text x="20" y="156" fill="var(--text)" font-size="18" font-family="sans-serif" font-weight="600">H3 — 18px</text>
+            <text x="20" y="184" fill="var(--text-muted)" font-size="16" font-family="sans-serif" font-weight="400">Body — 16px · Regular</text>
+            <text x="20" y="208" fill="var(--text-soft)" font-size="13" font-family="sans-serif" font-weight="400">Caption — 13px · Regular</text>
+            <line x1="400" y1="20" x2="400" y2="220" stroke="var(--border)" stroke-width="1" stroke-dasharray="4 3"/>
+            <text x="410" y="40" fill="var(--text-muted)" font-size="11" font-family="sans-serif">Bold / 700</text>
+            <text x="410" y="86" fill="var(--text-muted)" font-size="11" font-family="sans-serif">Bold / 700</text>
+            <text x="410" y="124" fill="var(--text-muted)" font-size="11" font-family="sans-serif">SemiBold / 600</text>
+            <text x="410" y="156" fill="var(--text-muted)" font-size="11" font-family="sans-serif">SemiBold / 600</text>
+            <text x="410" y="184" fill="var(--text-muted)" font-size="11" font-family="sans-serif">Regular / 400</text>
+            <text x="410" y="208" fill="var(--text-muted)" font-size="11" font-family="sans-serif">Regular / 400</text>
+          </svg>
+          <p class="mock-label">Escala tipográfica simples: 6 tamanhos, 2 pesos — suficiente para a maioria dos apps.</p>
+        </div>
+
+        <h3>Hierarquia tipográfica</h3>
+        <p>Hierarquia é o que guia o olhar do usuário. Você cria hierarquia com <strong>quatro ferramentas</strong>:</p>
+        <ol>
+          <li><strong>Tamanho:</strong> elementos maiores chamam mais atenção;</li>
+          <li><strong>Peso:</strong> Bold/SemiBold se destaca sobre Regular;</li>
+          <li><strong>Cor:</strong> cor primária ou texto escuro para informação principal; <code>--text-muted</code> para informação secundária;</li>
+          <li><strong>Espaçamento:</strong> mais espaço acima de um título reforça sua importância.</li>
+        </ol>
+
+        <h3>Legibilidade</h3>
+        <p>Regras práticas para texto legível em telas:</p>
+        <ul>
+          <li>Comprimento ideal de linha: <strong>50–75 caracteres</strong> por linha;</li>
+          <li>Contraste mínimo WCAG AA: <strong>4.5:1</strong> para texto normal, 3:1 para texto grande;</li>
+          <li>Evite texto sobre fundos muito complexos sem overlay de cor;</li>
+          <li>Tamanho mínimo legível em mobile: <strong>12 px</strong> (14 px recomendado).</li>
+        </ul>
+
+        <h2>Exemplo de uso real: montando uma escala tipográfica</h2>
+        <p>Vamos criar um guia de estilos tipográficos básico:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie um Frame de 600×700 px.</strong>
+            Renomeie para "Type Scale – Inter". Dê um fill de fundo claro (<code>#F5F6F8</code>).
+          </li>
+          <li>
+            <strong>Crie o Display.</strong>
+            Ferramenta <kbd>T</kbd>, clique dentro do Frame. Digite "O design começa aqui". Família: Inter, Peso: Bold (700), Tamanho: 40 px. Letter-spacing: -1 px. Posicione no topo com 40 px de margem.
+          </li>
+          <li>
+            <strong>Adicione os demais níveis.</strong>
+            Crie mais 4 textos com as seguintes configurações: H1 (28px, SemiBold), H2 (22px, SemiBold), Body (16px, Regular, line-height 24px), Caption (13px, Regular, cor <code>#5B6573</code>).
+          </li>
+          <li>
+            <strong>Alinhe e distribua.</strong>
+            Selecione todos os textos. Use o painel de alinhamento: alinhe à esquerda. Distribua verticalmente com espaçamento uniforme.
+          </li>
+          <li>
+            <strong>Salve como Text Styles.</strong>
+            Selecione o texto H1. No painel direito, seção Text, clique em <strong>+</strong> ao lado de "Text Styles". Nomeie "Heading/H1". Repita para cada nível. Agora você tem estilos reutilizáveis.
+          </li>
+        </ol>
+
+        <div class="figma-mock">
+          <div class="device-browser" style="max-width:480px;">
+            <div class="browser-bar"><i></i><i></i><i></i></div>
+            <div style="padding:32px;background:var(--surface);">
+              <p style="font-size:11px;color:var(--text-soft);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin:0 0 8px;">Type Scale · Inter</p>
+              <p style="font-size:36px;font-weight:700;line-height:1.1;letter-spacing:-.02em;margin:0 0 12px;color:var(--text);">Display · 36px</p>
+              <p style="font-size:26px;font-weight:700;line-height:1.2;margin:0 0 10px;color:var(--text);">Heading 1 · 26px</p>
+              <p style="font-size:20px;font-weight:600;line-height:1.3;margin:0 0 10px;color:var(--text);">Heading 2 · 20px</p>
+              <p style="font-size:16px;font-weight:400;line-height:1.6;margin:0 0 8px;color:var(--text);">Body text · 16px · Regular. A legibilidade é fundamental para uma boa experiência de leitura.</p>
+              <p style="font-size:13px;font-weight:400;color:var(--text-muted);margin:0;">Caption · 13px · Texto secundário, timestamps, metadados.</p>
+            </div>
+          </div>
+          <p class="mock-label">Escala tipográfica com Inter — 5 níveis, hierarquia clara.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Ferramenta Texto</td><td><kbd>T</kbd></td><td><kbd>T</kbd></td></tr>
+              <tr><td>Bold</td><td><kbd>Ctrl</kbd> + <kbd>B</kbd></td><td><kbd>⌘</kbd> + <kbd>B</kbd></td></tr>
+              <tr><td>Italic</td><td><kbd>Ctrl</kbd> + <kbd>I</kbd></td><td><kbd>⌘</kbd> + <kbd>I</kbd></td></tr>
+              <tr><td>Underline</td><td><kbd>Ctrl</kbd> + <kbd>U</kbd></td><td><kbd>⌘</kbd> + <kbd>U</kbd></td></tr>
+              <tr><td>Selecionar tudo no texto</td><td><kbd>Ctrl</kbd> + <kbd>A</kbd> (modo edição)</td><td><kbd>⌘</kbd> + <kbd>A</kbd></td></tr>
+              <tr><td>Aumentar tamanho de fonte</td><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>&gt;</kbd></td><td><kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>&gt;</kbd></td></tr>
+              <tr><td>Diminuir tamanho de fonte</td><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>&lt;</kbd></td><td><kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>&lt;</kbd></td></tr>
+              <tr><td>Alinhar ao centro</td><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd> (em edição)</td><td><kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>A ferramenta Texto (<kbd>T</kbd>) tem 3 modos: Auto Width, Auto Height e Fixed Size.</li>
+          <li>As propriedades tipográficas fundamentais são família, peso, tamanho, line-height, letter-spacing e alinhamento.</li>
+          <li>Truncation (<code>text-overflow: ellipsis</code>) funciona apenas em modo Fixed Size.</li>
+          <li>O Figma carrega automaticamente todas as fontes do Google Fonts; fontes locais aparecem via desktop app.</li>
+          <li>Uma escala tipográfica com 5–6 tamanhos e 2 pesos é suficiente para a maioria dos apps.</li>
+          <li>Hierarquia tipográfica é criada com tamanho, peso, cor e espaçamento.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Monte a escala tipográfica da sua marca</h3>
+          <ol>
+            <li>Crie um Frame de 640×800 px chamado "Type System".</li>
+            <li>Escolha uma família do Google Fonts (sugestão: "Plus Jakarta Sans" ou "DM Sans").</li>
+            <li>Crie 6 camadas de texto com os seguintes níveis: Display (40px/700), H1 (30px/700), H2 (22px/600), H3 (18px/600), Body (16px/400, line-height 1.6), Caption (13px/400, cor secondary).</li>
+            <li>Salve cada um como Text Style (<strong>+</strong> no painel de texto).</li>
+            <li>Crie um card simples ao lado com título, subtítulo e parágrafo usando os Text Styles que você criou.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> o painel de Text Styles do arquivo mostra todos os 6 estilos nomeados; o card usa apenas estilos da escala, sem valores customizados avulsos.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Landing page hero com tipografia expressiva</h3>
+          <p>Crie um Frame Desktop (1440×900 px) com uma seção hero completa: headline de impacto em Display (~72 px, Bold, letter-spacing negativo), subtítulo em H2, parágrafo body, e dois botões. A tipografia deve contar uma história — o tamanho e peso deve guiar o olho do headline para o CTA. Use apenas 1 família tipográfica com variações de peso. Bônus: experimente misturar uma fonte Serif para o headline e uma Sans para o corpo.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Em qual modo de dimensionamento o texto nunca quebra linha e a caixa cresce conforme você digita?</p>
+            <ul class="quiz-options">
+              <li>Fixed Size</li>
+              <li>Auto Height</li>
+              <li>Auto Width</li>
+              <li>Clip Content</li>
+            </ul>
+            <div class="quiz-explain">No modo <strong>Auto Width</strong>, o campo de texto cresce horizontalmente para acomodar todo o conteúdo em uma única linha — ideal para títulos e labels que nunca devem quebrar.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">2. Qual line-height é recomendado para texto de corpo (16px) em interfaces digitais?</p>
+            <ul class="quiz-options">
+              <li>1.0 (sem espaço extra)</li>
+              <li>1.5 a 1.6</li>
+              <li>2.0</li>
+              <li>0.8</li>
+            </ul>
+            <div class="quiz-explain">Para texto de corpo em telas, um <strong>line-height de 1.5 a 1.6</strong> (150–160%) é o ideal para legibilidade. Menos que isso comprime as linhas; mais cria um ritmo muito espaçado.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Para títulos grandes (36px+), qual ajuste de letter-spacing geralmente melhora o impacto visual?</p>
+            <ul class="quiz-options">
+              <li>Letter-spacing negativo (−2% a −4%)</li>
+              <li>Letter-spacing positivo (+10%)</li>
+              <li>Letter-spacing zero</li>
+              <li>Não faz diferença para títulos grandes</li>
+            </ul>
+            <div class="quiz-explain">Títulos grandes com <strong>letter-spacing negativo</strong> ficam mais compactos e com mais impacto visual — exatamente como fazem as grandes marcas e sistemas de design modernos (Apple, Google, etc.).</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

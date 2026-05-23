@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diretrizes iOS vs Android | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="05-08-ios-android-guidelines" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">📱 Módulo 5 · Projeto Guiado · Lição 8 de 8</div>
+        <h1>Diretrizes iOS vs Android</h1>
+        <p class="lead">Um app que parece nativo transmite qualidade e confiança. Nesta lição final do projeto você vai entender as diferenças fundamentais entre o Apple Human Interface Guidelines e o Material Design 3, e adaptar o FinView para que se sinta em casa em ambas as plataformas.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~26 min</span>
+          <span>🎯 Nível: Projeto prático</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Identificar as principais diferenças de padrões de UX entre iOS (HIG) e Android (Material Design 3);</li>
+            <li>Adaptar a navegação, componentes e tipografia do FinView para cada plataforma;</li>
+            <li>Respeitar as safe areas, notches e Dynamic Island no iOS e a barra de status/gesto no Android;</li>
+            <li>Aplicar as áreas de toque mínimas (44 pt iOS / 48 dp Android) no design;</li>
+            <li>Organizar a page Android do arquivo Figma com os frames adaptados.</li>
+          </ul>
+        </div>
+
+        <h2>Por que as plataformas importam?</h2>
+        <p>Usuários de iOS e Android passaram anos aprendendo padrões específicos de cada plataforma. Um usuário iOS espera tocar no canto superior esquerdo para voltar; um usuário Android usa um swipe a partir da borda. Ignorar esses padrões não é apenas uma questão estética — é uma questão de <em>expectativa quebrada</em>, o que gera confusão e abandono.</p>
+        <p>Apps de sucesso como o Nubank, Spotify e WhatsApp têm versões levemente diferentes para iOS e Android, respeitando as convenções nativas de cada plataforma enquanto mantêm a identidade visual da marca.</p>
+
+        <div class="callout info">
+          <span class="callout-title">As bíblias de design mobile</span>
+          <p><strong>Human Interface Guidelines (HIG)</strong> é o documento da Apple que define os padrões de design para iOS, macOS, watchOS e tvOS — disponível em developer.apple.com/design. <strong>Material Design 3 (M3)</strong> é o sistema da Google para Android e web — em m3.material.io. Ambos estão em constante evolução e são referências obrigatórias para qualquer designer mobile.</p>
+        </div>
+
+        <h2>Comparação: navegação e estrutura</h2>
+        <p>A diferença mais visível entre iOS e Android está na estrutura de navegação:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Aspecto</th>
+                <th>iOS (HIG)</th>
+                <th>Android (Material Design 3)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Navegação principal</strong></td>
+                <td>Tab Bar (barra na base com ícone + label, 5 itens máx.)</td>
+                <td>Navigation Bar (base) ou Navigation Rail (tablet/foldable) ou Navigation Drawer</td>
+              </tr>
+              <tr>
+                <td><strong>Voltar</strong></td>
+                <td>Botão "Voltar" no canto superior esquerdo da nav bar + swipe da borda esquerda</td>
+                <td>Swipe de qualquer borda (Android 10+) ou botão de seta no nav bar da tela</td>
+              </tr>
+              <tr>
+                <td><strong>Ação primária flutuante</strong></td>
+                <td>Não tem padrão equivalente — usa botões inline ou na nav bar</td>
+                <td>FAB (Floating Action Button) — botão circular ou extendido no canto inferior direito</td>
+              </tr>
+              <tr>
+                <td><strong>Modais e sheets</strong></td>
+                <td>Bottom Sheet (partial / full screen), Action Sheet, Alert (com 2 botões em coluna)</td>
+                <td>Bottom Sheet, Modal Bottom Sheet, Dialog (botões em linha, texto "OK" à direita)</td>
+              </tr>
+              <tr>
+                <td><strong>Top navigation</strong></td>
+                <td>Navigation Bar (título centralizado, botões nas extremidades)</td>
+                <td>Top App Bar (título alinhado à esquerda, ações à direita)</td>
+              </tr>
+              <tr>
+                <td><strong>Busca</strong></td>
+                <td>Search Bar no topo (puxando a tela para baixo ou na nav bar)</td>
+                <td>Search Bar sempre visível no topo ou FAB de busca — padrão mais proeminente</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="figma-mock">
+          <div class="device-phone" style="width:200px;">
+            <div style="background:#0C0E12;min-height:380px;display:flex;flex-direction:column;">
+              <!-- iOS Dynamic Island -->
+              <div style="height:54px;background:#000;display:flex;justify-content:center;align-items:flex-end;padding-bottom:8px;">
+                <div style="width:90px;height:30px;background:#0a0a0a;border-radius:20px;display:flex;align-items:center;justify-content:center;">
+                  <div style="width:8px;height:8px;background:#1a1a1a;border-radius:50%;margin:0 4px;"></div>
+                  <div style="width:4px;height:4px;background:#333;border-radius:50%;"></div>
+                </div>
+              </div>
+              <!-- iOS Nav Bar -->
+              <div style="display:flex;align-items:center;padding:8px 16px;gap:8px;background:#0C0E12;">
+                <span style="color:#9B81FF;font-size:12px;font-weight:600;">← Voltar</span>
+                <span style="flex:1;text-align:center;font-size:14px;font-weight:600;color:#E8EAEE;">Transação</span>
+                <span style="color:#9B81FF;font-size:12px;">⋯</span>
+              </div>
+              <!-- Content -->
+              <div style="flex:1;padding:16px;display:flex;flex-direction:column;gap:8px;">
+                <div style="background:#1A1E26;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:6px;">
+                  <div style="display:flex;justify-content:space-between;"><span style="font-size:9px;color:#A3ACBA;">Data</span><span style="font-size:9px;color:#E8EAEE;font-weight:600;">23 Mai 2026</span></div>
+                  <div style="display:flex;justify-content:space-between;"><span style="font-size:9px;color:#A3ACBA;">Valor</span><span style="font-size:9px;color:#F7654B;font-weight:700;">-R$ 54,90</span></div>
+                </div>
+                <div style="background:#6C4CF1;border-radius:12px;height:44px;display:flex;align-items:center;justify-content:center;"><span style="color:#fff;font-size:12px;font-weight:700;">Editar</span></div>
+              </div>
+              <!-- iOS Tab Bar -->
+              <div style="background:#1A1E26;border-top:1px solid #2B313C;display:flex;justify-content:space-around;padding:6px 0 26px;align-items:center;">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:2px;"><span style="font-size:16px;">🏠</span><span style="font-size:8px;color:#9B81FF;">Home</span></div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:2px;"><span style="font-size:16px;">📊</span><span style="font-size:8px;color:#788091;">Metas</span></div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:2px;"><span style="font-size:16px;">➕</span><span style="font-size:8px;color:#788091;">Add</span></div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:2px;"><span style="font-size:16px;">💳</span><span style="font-size:8px;color:#788091;">Cartões</span></div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:2px;"><span style="font-size:16px;">👤</span><span style="font-size:8px;color:#788091;">Perfil</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="device-phone" style="width:200px;">
+            <div style="background:#0C0E12;min-height:380px;display:flex;flex-direction:column;">
+              <!-- Android status bar -->
+              <div style="height:28px;background:#0C0E12;display:flex;align-items:center;padding:0 12px;justify-content:space-between;">
+                <span style="font-size:9px;color:#A3ACBA;">9:41</span>
+                <div style="display:flex;gap:4px;">
+                  <span style="font-size:8px;color:#A3ACBA;">📶</span>
+                  <span style="font-size:8px;color:#A3ACBA;">🔋</span>
+                </div>
+              </div>
+              <!-- Android Top App Bar (título à esquerda) -->
+              <div style="display:flex;align-items:center;padding:8px 16px;gap:8px;background:#0C0E12;">
+                <span style="color:#E8EAEE;font-size:14px;">←</span>
+                <span style="flex:1;text-align:left;font-size:15px;font-weight:600;color:#E8EAEE;">Transação</span>
+                <span style="color:#A3ACBA;font-size:12px;">⋮</span>
+              </div>
+              <!-- Content (mesmo do iOS) -->
+              <div style="flex:1;padding:16px;display:flex;flex-direction:column;gap:8px;">
+                <div style="background:#1A1E26;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:6px;">
+                  <div style="display:flex;justify-content:space-between;"><span style="font-size:9px;color:#A3ACBA;">Data</span><span style="font-size:9px;color:#E8EAEE;font-weight:600;">23 Mai 2026</span></div>
+                  <div style="display:flex;justify-content:space-between;"><span style="font-size:9px;color:#A3ACBA;">Valor</span><span style="font-size:9px;color:#F7654B;font-weight:700;">-R$ 54,90</span></div>
+                </div>
+                <!-- Android: botão com ripple, formato diferente -->
+                <div style="border:1.5px solid #6C4CF1;border-radius:100px;height:40px;display:flex;align-items:center;justify-content:center;"><span style="color:#9B81FF;font-size:12px;font-weight:700;">Editar</span></div>
+              </div>
+              <!-- Android Bottom Navigation (sem label por padrão em M3) -->
+              <div style="background:#1A1E26;border-top:1px solid #2B313C;display:flex;justify-content:space-around;padding:8px 0 16px;align-items:center;">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+                  <div style="background:#241F3D;border-radius:16px;width:48px;height:28px;display:grid;place-items:center;"><span style="font-size:14px;">🏠</span></div>
+                  <span style="font-size:8px;color:#9B81FF;">Home</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+                  <div style="width:48px;height:28px;display:grid;place-items:center;"><span style="font-size:14px;">📊</span></div>
+                  <span style="font-size:8px;color:#788091;">Metas</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+                  <div style="width:48px;height:28px;display:grid;place-items:center;"><span style="font-size:14px;">💳</span></div>
+                  <span style="font-size:8px;color:#788091;">Cartões</span>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+                  <div style="width:48px;height:28px;display:grid;place-items:center;"><span style="font-size:14px;">👤</span></div>
+                  <span style="font-size:8px;color:#788091;">Perfil</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">iOS (esquerda) vs Android (direita): nota as diferenças no Dynamic Island (iOS) vs. status bar simples (Android), título centralizado (iOS) vs. alinhado à esquerda (Android), botão pill (Android), indicador de item ativo na nav (Android usa pill highlight, iOS usa apenas cor).</p>
+        </div>
+
+        <h2>Tipografia: SF Pro vs. Roboto</h2>
+        <p>Cada plataforma tem sua fonte de sistema. No Figma, você pode baixar ambas:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Aspecto</th><th>iOS (SF Pro)</th><th>Android (Roboto / Google Sans)</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Fonte principal</strong></td><td>SF Pro Text, SF Pro Display</td><td>Roboto (padrão), Google Sans (Pixel)</td></tr>
+              <tr><td><strong>Onde obter</strong></td><td>developer.apple.com/fonts</td><td>fonts.google.com</td></tr>
+              <tr><td><strong>Tamanho mínimo de texto</strong></td><td>11 pt (caption)</td><td>12 sp (caption)</td></tr>
+              <tr><td><strong>Unidade</strong></td><td>pt (points)</td><td>sp (scale-independent pixels)</td></tr>
+              <tr><td><strong>Dynamic Type</strong></td><td>Sim — usuário pode aumentar o tamanho de fonte no sistema</td><td>Sim — Font Scale nas configurações de acessibilidade</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Para o FinView, mantemos <strong>Inter</strong> como fonte de marca nos dois (é uma fonte neutro que funciona bem em ambas as plataformas). Em um projeto real de app totalmente nativo, usaríamos SF Pro para iOS e Roboto para Android. O Figma suporta ambas via assets de fonte.</p>
+
+        <h2>Componentes nativos: as diferenças críticas</h2>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Componente</th><th>iOS (HIG)</th><th>Android (Material Design 3)</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Botão primário</strong></td>
+                <td>Retângulo com cantos arredondados (radius 10–14 pt), sem sombra</td>
+                <td>Filled Button (pill com radius 100, sombra leve) ou Filled Tonal Button</td>
+              </tr>
+              <tr>
+                <td><strong>Botão secundário</strong></td>
+                <td>Plain button (texto puro, sem borda)</td>
+                <td>Outlined Button (borda 1dp) ou Text Button</td>
+              </tr>
+              <tr>
+                <td><strong>Inputs de texto</strong></td>
+                <td>Borda arredondada sutil, label externo acima do campo</td>
+                <td>Outlined (borda) ou Filled (fundo colorido), label flutuante (move para cima ao focar)</td>
+              </tr>
+              <tr>
+                <td><strong>Toggle/Switch</strong></td>
+                <td>UISwitch: pill verde com círculo branco, sem texto</td>
+                <td>Switch M3: pill com icon check/X, thumb colorido</td>
+              </tr>
+              <tr>
+                <td><strong>Alerts e Dialogs</strong></td>
+                <td>Título + mensagem + botões em coluna (destrutivo em vermelho)</td>
+                <td>Título + mensagem + botões em linha na base (Cancel | OK, text buttons)</td>
+              </tr>
+              <tr>
+                <td><strong>Picker / Selector</strong></td>
+                <td>Wheel picker ou Action Sheet</td>
+                <td>DropdownMenu ou ModalBottomSheet com lista</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Safe areas e notch: guia completo</h2>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Área</th><th>iOS</th><th>Android</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Notch / câmera frontal</strong></td>
+                <td>Dynamic Island (iPhone 14 Pro+): capsula 37×126 pt. Older: Notch estático</td>
+                <td>Punch-hole (buraco circular no canto). Varia por fabricante</td>
+              </tr>
+              <tr>
+                <td><strong>Status bar</strong></td>
+                <td>54–62 pt de altura (com Dynamic Island). Light/Dark adaptável</td>
+                <td>24 dp de altura. Pode ser transparente ou colorida</td>
+              </tr>
+              <tr>
+                <td><strong>Home indicator (base)</strong></td>
+                <td>34 pt de padding mínimo na base para não cobrir o indicador de Home</td>
+                <td>Barra de gestos transparente — adicionar 16 dp de padding na base</td>
+              </tr>
+              <tr>
+                <td><strong>Conteúdo interativo próximo ao Dynamic Island</strong></td>
+                <td>Elementos interativos devem ficar a pelo menos 8 pt do Dynamic Island</td>
+                <td>Punch-hole não interage como Dynamic Island — menos restrições</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout warning">
+          <span class="callout-title">O Dynamic Island não é apenas decoração</span>
+          <p>O Dynamic Island no iPhone 14 Pro+ é uma área interativa que expande para mostrar notificações ao vivo (timer, música, Uber, etc.). No design, isso significa: (1) nunca coloque botões críticos diretamente sob o Dynamic Island; (2) considere como seu app se integra com Live Activities se relevante; (3) a ilha pode <em>expandir</em> durante o uso do app, deslocando levemente o conteúdo abaixo. No FinView, o header da Home está a 8 pt abaixo da ilha por segurança.</p>
+        </div>
+
+        <h2>Áreas de toque mínimas</h2>
+        <p>Telas touchscreen têm uma limitação física: o dedo humano tem uma área de contato de 10–14 mm. Elementos muito pequenos são difíceis de tocar com precisão. Por isso, ambas as plataformas definem tamanhos mínimos:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Plataforma</th><th>Tamanho mínimo de toque</th><th>Recomendado</th></tr></thead>
+            <tbody>
+              <tr><td><strong>iOS (HIG)</strong></td><td>44×44 pt</td><td>44×44 pt a 60×60 pt para ações críticas</td></tr>
+              <tr><td><strong>Android (Material)</strong></td><td>48×48 dp</td><td>48×48 dp, com 4 dp de espaçamento entre elementos tocáveis</td></tr>
+              <tr><td><strong>Web (WCAG)</strong></td><td>24×24 px (mínimo), 44×44 px (recomendado)</td><td>48×48 px para WCAG 2.5.5 AAA</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>No FinView, isso significa:</p>
+        <ul>
+          <li>O ícone de 24 pt da Tab Bar fica dentro de um "tap target" invisível de 44×44 pt.</li>
+          <li>Os botões de ação sempre têm pelo menos 44 pt de altura (usamos 48 pt como padrão).</li>
+          <li>Os itens da lista têm 64 pt de altura — bem acima do mínimo.</li>
+          <li>O botão de fechar (X) em sheets tem 44×44 pt mesmo que o X visual seja apenas 20 pt.</li>
+        </ul>
+
+        <div class="callout tip">
+          <span class="callout-title">Como verificar tap targets no Figma</span>
+          <p>Use o plugin <strong>Accessibility Checker</strong> ou <strong>A11y - Color Contrast Checker</strong> para auditar tap targets automaticamente. Para verificar manualmente: no frame, use o plugin <strong>Measure</strong> ou o Inspect mode para medir elementos. Outra técnica: crie um frame de 44×44 pt como guia e sobreponha sobre o elemento para verificar visualmente se a área de toque é suficiente.</p>
+        </div>
+
+        <h2>Gestos: as convenções de cada plataforma</h2>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Gesto</th><th>iOS</th><th>Android</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Voltar</strong></td><td>Swipe da borda esquerda para direita</td><td>Swipe de qualquer borda (predictive back desde Android 13)</td></tr>
+              <tr><td><strong>Fechar modal</strong></td><td>Swipe para baixo no sheet</td><td>Swipe para baixo no sheet (comportamento similar)</td></tr>
+              <tr><td><strong>Refresh</strong></td><td>Pull to refresh (puxar a lista para baixo)</td><td>Pull to refresh com indicador Material (spinner no topo)</td></tr>
+              <tr><td><strong>Delete em lista</strong></td><td>Swipe horizontal no item (revela botão Delete)</td><td>Swipe horizontal (comportamento similar em listas gerenciáveis)</td></tr>
+              <tr><td><strong>App switcher</strong></td><td>Swipe para cima e segurar</td><td>Swipe para cima (variável por launcher)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Adaptando o FinView para Android</h2>
+        <p>Com base em tudo que vimos, aqui está o checklist de adaptações para a page Android do FinView:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie frames Android na page <code>🤖 Android — Telas</code>.</strong>
+            Use o preset <strong>Android Small</strong> (360×800 dp) ou <strong>Pixel 8</strong> (393×851 dp). Duplique os frames iOS como base e redimensione.
+          </li>
+          <li>
+            <strong>Adapte o Header: centralizado → alinhado à esquerda.</strong>
+            Na versão Android, o título do header (ex.: "Transações") fica alinhado à esquerda com padding 16 dp. O botão voltar fica à esquerda também, mas sem o texto "← Voltar" — apenas a seta. As ações ficam empilhadas em um menu de 3 pontos (⋮) à direita.
+          </li>
+          <li>
+            <strong>Adapte a Tab Bar para Navigation Bar Material.</strong>
+            O item ativo no Android M3 usa um pill highlight (oval colorido) em torno do ícone, sem label em alguns casos. Ajuste o componente Tab Bar Item para ter a variante Android com o pill.
+          </li>
+          <li>
+            <strong>Substitua o botão "+" central por um FAB.</strong>
+            No Android, o padrão para a ação principal de adicionar é o FAB (Extended ou padrão). Adicione um FAB no canto inferior direito da Home Android: 56×56 dp, corner radius 16 dp, ícone + (ou Extended FAB com ícone + "Nova transação").
+          </li>
+          <li>
+            <strong>Adapte os botões para o formato Material.</strong>
+            Botão primário: corner radius 100 dp (pill). Botão secundário: Outlined Button com borda e radius 100 dp. Todos os botões têm height 40 dp (mais compacto que os 48 pt do iOS).
+          </li>
+          <li>
+            <strong>Ajuste a status bar.</strong>
+            No Android, a barra de status tem 24 dp de altura (sem Dynamic Island). Remova o componente de Dynamic Island e substitua por uma status bar simples com hora, rede e bateria.
+          </li>
+          <li>
+            <strong>Verifique o home indicator bottom padding.</strong>
+            Adicione 16 dp de padding na base da Tab Bar para respeitar a gesture bar do Android.
+          </li>
+          <li>
+            <strong>Adicione a variante ripple ao botão.</strong>
+            O ripple effect (onda que se expande do ponto de toque) é o feedback visual padrão do Android. No Figma, crie uma variante <code>State=Pressed</code> do botão com um círculo de raio expandido em branco 20% de opacidade centralizado no centro — simula visualmente o ripple.
+          </li>
+        </ol>
+
+        <div class="callout pro">
+          <span class="callout-title">Trabalhe com Design Tokens para facilitar a adaptação</span>
+          <p>O motivo pelo qual o FinView usa Variables semânticas desde a Lição 3 é exatamente este: ao criar a página Android, você reutiliza os mesmos tokens de cor, espaçamento e tipografia. A adaptação se resume às <em>diferenças de padrão de componente</em> (radius, alinhamento), não aos valores de cor. Em times grandes, a versão Android e iOS de um app compartilham o mesmo design token package — apenas as "receitas" de como montar os componentes diferem.</p>
+        </div>
+
+        <h2>Tabela comparativa completa iOS vs Android</h2>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Elemento</th>
+                <th>iOS (Human Interface Guidelines)</th>
+                <th>Android (Material Design 3)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Fonte do sistema</strong></td><td>SF Pro (San Francisco)</td><td>Roboto / Google Sans</td></tr>
+              <tr><td><strong>Unidade de medida</strong></td><td>pt (points) — 1 pt = 1 pixel em tela 1x</td><td>dp (density-independent pixels) — 1 dp = 1 pixel em 160 dpi</td></tr>
+              <tr><td><strong>Raio de botão primário</strong></td><td>10–14 pt (retangular arredondado)</td><td>100 dp (pill)</td></tr>
+              <tr><td><strong>Altura de botão</strong></td><td>44–50 pt</td><td>40 dp</td></tr>
+              <tr><td><strong>Toque mínimo</strong></td><td>44×44 pt</td><td>48×48 dp</td></tr>
+              <tr><td><strong>Input de texto</strong></td><td>Label externo + campo com borda sutil</td><td>Outlined ou Filled com label flutuante</td></tr>
+              <tr><td><strong>Navegação principal</strong></td><td>Tab Bar (base), max 5 itens</td><td>Navigation Bar (base) ou Navigation Rail</td></tr>
+              <tr><td><strong>Item ativo na nav</strong></td><td>Ícone + label em cor primária</td><td>Ícone com pill indicator + label (M3)</td></tr>
+              <tr><td><strong>Título da tela</strong></td><td>Centralizado na nav bar</td><td>Alinhado à esquerda na top app bar</td></tr>
+              <tr><td><strong>Botão de voltar</strong></td><td>← Voltar (texto + seta, canto esquerdo)</td><td>← (apenas seta, canto esquerdo)</td></tr>
+              <tr><td><strong>Menu de ações</strong></td><td>Ícones individuais na nav bar (3 máx.)</td><td>Ícones individuais + overflow ⋮ (3 pontos)</td></tr>
+              <tr><td><strong>Ação flutuante</strong></td><td>Não há padrão equivalente</td><td>FAB: 56×56 dp, radius 16 dp</td></tr>
+              <tr><td><strong>Feedback de toque</strong></td><td>Escurecimento/clareamento do elemento</td><td>Ripple (onda se expandindo)</td></tr>
+              <tr><td><strong>Área superior reservada</strong></td><td>54–62 pt (Dynamic Island)</td><td>24 dp (status bar)</td></tr>
+              <tr><td><strong>Área inferior reservada</strong></td><td>34 pt (home indicator)</td><td>16 dp (gesture bar)</td></tr>
+              <tr><td><strong>Alert buttons</strong></td><td>Em coluna (Cancel / Action)</td><td>Em linha à direita (Cancel | OK)</td></tr>
+              <tr><td><strong>Picker</strong></td><td>UIPickerView (wheel), Action Sheet</td><td>DropdownMenu, ModalBottomSheet com lista</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout note">
+          <span class="callout-title">O FinView está completo — e agora?</span>
+          <p>Parabéns por chegar até aqui! Você construiu um app de finanças pessoais completo do briefing ao protótipo interativo com dark mode, estados, components e versão iOS e Android. O próximo passo natural é fazer o <strong>handoff para desenvolvimento</strong> — usar o Dev Mode do Figma para inspecionar specs, exportar assets e escrever as anotações de comportamento. O módulo seguinte do treinamento cobre exatamente isso.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Ativar Dev Mode</td><td>Clique em "Dev" no canto superior direito</td><td>Clique em "Dev" no canto superior direito</td></tr>
+              <tr><td>Inspecionar especs de um elemento</td><td>Clique no elemento em Dev Mode</td><td>Clique no elemento em Dev Mode</td></tr>
+              <tr><td>Exportar asset selecionado</td><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd></td><td><kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd></td></tr>
+              <tr><td>Copiar CSS de um elemento</td><td>Dev Mode → clique direito → Copy CSS</td><td>Dev Mode → clique direito → Copy CSS</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>iOS e Android têm padrões de UX distintos: tab bar vs. navigation bar, título centralizado vs. alinhado à esquerda, botão pill (Android) vs. retangular arredondado (iOS).</li>
+          <li>A adaptação do FinView para Android envolve: header à esquerda, NAV bar com pill indicator, FAB em vez de "+" central, botões pill e ripple feedback.</li>
+          <li>Áreas de toque mínimas: 44×44 pt (iOS) e 48×48 dp (Android) — sempre respeite, mesmo quando o elemento visual é menor.</li>
+          <li>Safe areas variam por plataforma e modelo: Dynamic Island (54–62 pt) no iOS mais recente vs. status bar simples (24 dp) no Android.</li>
+          <li>O uso de Design Tokens (variables) desde o início facilita a adaptação entre plataformas — apenas os padrões de componente mudam, não as cores e espaçamentos.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Adaptar a Home para Android</h3>
+          <p>Na page <code>🤖 Android — Telas</code> do seu arquivo:</p>
+          <ol>
+            <li>Crie um frame Android (360×800 dp ou 393×851 dp).</li>
+            <li>Adapte a Home do FinView com: status bar de 24 dp, title à esquerda, Navigation Bar com pill indicator, FAB no canto inferior direito e botão de nova transação no formato pill (radius 100).</li>
+            <li>Crie as variantes Android dos components Button e Header com as specs do Material Design 3.</li>
+            <li>Coloque as versões iOS e Android lado a lado na canvas para comparação visual.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> ao olhar as versões iOS e Android lado a lado, as diferenças de plataforma são claras (título, botão, FAB, nav indicator) enquanto a identidade visual do FinView (paleta, tipografia Inter, tokens) é mantida consistente nos dois.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Auditoria completa de acessibilidade</h3>
+          <p>Faça uma auditoria de acessibilidade do seu arquivo FinView com foco em três áreas: (1) <strong>Contraste de cor</strong> — verifique que todos os textos têm ratio mínimo 4.5:1 (AA) em ambos os modos com uma ferramenta de contraste; (2) <strong>Tap targets</strong> — audite todos os elementos interativos e confirme que nenhum tem área de toque abaixo de 44×44 pt; (3) <strong>Acessibilidade para leitores de tela</strong> — no Dev Mode do Figma, adicione labels de acessibilidade (accessibility annotations) em todos os elementos interativos e imagens decorativas. Documente as falhas encontradas e as correções aplicadas em um frame na page de Handoff Notes. Esse tipo de auditoria é o que separa um design "bonito" de um design profissional e inclusivo.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Qual é a principal diferença visual entre um botão primário iOS e um botão primário Android (Material Design 3)?</p>
+            <ul class="quiz-options">
+              <li>iOS usa fundo sólido; Android usa borda sem fundo</li>
+              <li>iOS usa fonte SemiBold; Android usa fonte Bold</li>
+              <li>iOS tem cantos levemente arredondados (10–14 pt); Android usa pill (radius 100 dp)</li>
+              <li>iOS tem sombra; Android não tem nenhum tratamento de elevação</li>
+            </ul>
+            <div class="quiz-explain">O botão primário iOS tem <strong>cantos moderadamente arredondados</strong> (8–14 pt de radius), enquanto o Material Design 3 usa o formato <strong>pill</strong> (radius tão alto que resulta em cápsulas arredondadas). Essa diferença de forma é um dos sinais mais imediatos de que um app "parece nativo" ou "parece genérico" em cada plataforma.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. Qual é a área de toque mínima recomendada pela Apple Human Interface Guidelines?</p>
+            <ul class="quiz-options">
+              <li>44×44 pt</li>
+              <li>24×24 pt</li>
+              <li>48×48 pt</li>
+              <li>36×36 pt</li>
+            </ul>
+            <div class="quiz-explain">A Apple HIG especifica <strong>44×44 pt</strong> como a área de toque mínima para elementos interativos. O Android Material Design usa 48×48 dp. Ambos estão alinhados com as diretrizes de acessibilidade WCAG para interfaces touch. Um elemento visual menor pode ter um tap target maior (frame transparente) para cumprir esse requisito.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">3. Qual é o padrão Android equivalente ao botão "+" centralizado na Tab Bar do iOS do FinView?</p>
+            <ul class="quiz-options">
+              <li>Um item especial com ícone diferente no centro da Navigation Bar</li>
+              <li>Um Action Sheet acessível pelo menu ⋮</li>
+              <li>Um item de menu no Top App Bar</li>
+              <li>Um FAB (Floating Action Button) posicionado fora da Navigation Bar, no canto inferior direito</li>
+            </ul>
+            <div class="quiz-explain">No Material Design, a ação principal de uma tela é representada pelo <strong>FAB</strong> — um botão circular (56×56 dp) ou estendido que fica sobre o conteúdo, no canto inferior direito. Colocar uma ação de "adicionar" como item central da Navigation Bar não é um padrão Android e parecerá "fora do lugar" para usuários Android. O FAB é o componente correto para essa finalidade.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

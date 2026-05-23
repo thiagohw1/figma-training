@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Component Properties | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="02-06-component-properties" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">📦 Módulo 2 · Intermediário · Lição 6 de 9</div>
+        <h1>Component Properties</h1>
+        <p class="lead">Component Properties são a evolução das variações no Figma: em vez de criar uma variant para cada combinação possível, você expõe controles diretamente no painel da instance — mostrar/ocultar elementos, trocar ícones, editar textos — tudo sem sair da tela que está desenhando.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~20 min</span>
+          <span>🎯 Nível: Intermediário</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Criar e configurar os quatro tipos de Component Property: Boolean, Instance swap, Text e Variant;</li>
+            <li>Expor properties de instâncias aninhadas para o nível superior;</li>
+            <li>Decidir quando usar cada tipo de property;</li>
+            <li>Construir um card configurável com imagem, ícone e texto editáveis.</li>
+          </ul>
+        </div>
+
+        <h2>Por que Component Properties?</h2>
+        <p>Antes das Component Properties, para criar um card que podia ou não ter uma imagem, você criava duas variants: "with image" e "without image". Para um card com 5 elementos opcionais, você precisaria de 2⁵ = 32 variants. Impraticável.</p>
+        <p>Com Component Properties, você declara no componente: "este elemento pode ser mostrado ou oculto" (Boolean), "este ícone pode ser trocado" (Instance swap), "este texto pode ser editado" (Text). O resultado: um único componente com um painel de configuração rico e claro.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Onde ficam as Component Properties?</span>
+          <p>Ao selecionar um <strong>Main Component</strong>, você vê a seção <strong>Component properties</strong> no painel direito. Clique em "+" para adicionar uma property. Ao selecionar uma <strong>Instance</strong>, você vê os controles das properties expostas — menus, toggles e campos de texto diretamente no painel.</p>
+        </div>
+
+        <h2>Tipo 1: Boolean Property — mostrar ou ocultar</h2>
+        <p>A Boolean Property associa uma camada (ou grupo de camadas) a um toggle true/false. Quando <code>false</code>, a camada fica oculta; quando <code>true</code>, fica visível. O Auto Layout do componente se ajusta automaticamente ao aparecer ou desaparecer do espaço.</p>
+
+        <h3>Como criar</h3>
+        <ol class="steps">
+          <li>
+            <strong>Selecione o elemento no Main Component</strong> que você quer tornar opcional. Ex.: o ícone à esquerda do texto do botão.
+          </li>
+          <li>
+            <strong>No painel direito, encontre "Layer".</strong> Ao lado do ícone de visibilidade (olho), clique no ícone de property (<code>◈</code>). Se não aparecer, selecione o Main Component e adicione uma Boolean property na seção Component properties, depois associe-a à camada.
+          </li>
+          <li>
+            <strong>Nomeie a property</strong> de forma descritiva: <code>Show icon</code>, <code>Has badge</code>, <code>Show label</code>.
+          </li>
+          <li>
+            <strong>Teste na instance.</strong> Ao usar uma instance, você verá no painel um toggle para essa property. Ativar/desativar mostra ou oculta a camada.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Boolean substitui muitas variants</span>
+          <p>Um botão com/sem ícone, com/sem badge, com/sem tooltip — sem Boolean Properties, seriam 2³ = 8 variants. Com Boolean Properties, é <strong>um único componente</strong> com 3 toggles. O painel fica mais limpo e intuitivo para os membros da equipe.</p>
+        </div>
+
+        <h2>Tipo 2: Instance Swap — trocar sub-componentes</h2>
+        <p>Instance Swap permite trocar qual componente está sendo usado em uma posição específica dentro do componente. O caso de uso mais comum: <strong>trocar ícones</strong>.</p>
+        <p>Imagine um botão com ícone. Em vez de criar uma variant para cada ícone possível (seriam centenas), você usa Instance Swap: o painel da instance mostra um seletor de componente, e o designer pode escolher qualquer ícone da biblioteca sem sair do painel.</p>
+
+        <h3>Como criar</h3>
+        <ol class="steps">
+          <li>
+            <strong>No Main Component, selecione o sub-componente</strong> que será intercambiável. Ex.: o ícone dentro do botão (que já é uma instance de um componente de ícone).
+          </li>
+          <li>
+            <strong>Clique no ícone de property</strong> ao lado do nome da layer, ou vá ao painel do Main Component e adicione uma Instance swap property.
+          </li>
+          <li>
+            <strong>Nomeie a property:</strong> <code>Icon</code>, <code>Left icon</code>, <code>Avatar</code>.
+          </li>
+          <li>
+            <strong>Defina os preferred values</strong> (opcional mas recomendado): uma lista curada dos ícones mais comuns para aquela posição. Eles aparecem como sugestões rápidas no seletor.
+          </li>
+        </ol>
+
+        <h2>Tipo 3: Text Property — texto editável controlado</h2>
+        <p>Text Property expõe um campo de texto do componente como uma property com nome. Ao usar a instance, em vez de precisar clicar no texto interno para editar, o campo aparece diretamente no painel de configuração da instance.</p>
+        <p>Isso é especialmente útil em:</p>
+        <ul>
+          <li>Componentes de notificação ou toast com mensagem configurável.</li>
+          <li>Cards com título e descrição editáveis expostos no painel.</li>
+          <li>Badges com contagem (ex.: <code>3</code> notificações).</li>
+        </ul>
+
+        <h3>Como criar</h3>
+        <ol class="steps">
+          <li>
+            <strong>No Main Component, selecione a camada de texto.</strong>
+          </li>
+          <li>
+            <strong>Clique no ícone de property</strong> ao lado do campo de texto no painel direito (parece um campo com símbolo de property).
+          </li>
+          <li>
+            <strong>Nomeie:</strong> <code>Label</code>, <code>Title</code>, <code>Count</code>, <code>Description</code>.
+          </li>
+          <li>
+            <strong>Na instance,</strong> você verá um campo de texto editável com esse nome no painel — sem precisar entrar na hierarquia de camadas.
+          </li>
+        </ol>
+
+        <h2>Tipo 4: Variant Property — integração com Component Set</h2>
+        <p>Variant Property é a própria troca de variant, mas exposta formalmente no painel de configuração. Se você já criou um Component Set com Variants (lição anterior), as Variant Properties aparecem automaticamente. Você pode combiná-las com Boolean, Instance Swap e Text Properties no mesmo componente.</p>
+
+        <h2>Expondo properties de instâncias aninhadas</h2>
+        <p>Quando um componente contém outros componentes (aninhados), as properties do sub-componente ficam "escondidas" no segundo nível. Para facilitar o uso, você pode <strong>expor</strong> essas properties no nível superior.</p>
+        <p>Exemplo: um Card component contém uma instance de Button. O Button tem uma property de texto ("Label"). Você pode expor essa property no Card para que o designer edite o texto do botão diretamente no painel do Card, sem precisar entrar no Button.</p>
+
+        <h3>Como expor</h3>
+        <ol class="steps">
+          <li>
+            <strong>Selecione o Main Component do Card.</strong>
+          </li>
+          <li>
+            <strong>Na seção Component properties, clique em "+"</strong> e escolha o tipo da property que quer expor.
+          </li>
+          <li>
+            <strong>Selecione a sub-instance</strong> (Button) e associe a property ao campo correspondente do Button.
+          </li>
+          <li>
+            <strong>Na instance do Card,</strong> o campo "Button label" aparecerá diretamente no painel — o designer não precisa saber que existe um Button aninhado.
+          </li>
+        </ol>
+
+        <div class="callout pro">
+          <span class="callout-title">Filosofia de exposição de properties</span>
+          <p>Pense em um componente como uma <strong>API</strong>. O painel de properties é a interface pública — o que você expõe lá é o que a equipe vai usar. Detalhes internos (como a estrutura exata do layout) ficam encapsulados. Exponha apenas o que precisa ser configurado; esconda a complexidade interna.</p>
+        </div>
+
+        <h2>Quando usar cada tipo</h2>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Tipo</th><th>Use quando</th><th>Alternativa evitada</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Boolean</strong></td>
+                <td>Um elemento é opcional (ícone, badge, label de erro)</td>
+                <td>Variant "with icon" / "without icon"</td>
+              </tr>
+              <tr>
+                <td><strong>Instance Swap</strong></td>
+                <td>Uma posição aceita diferentes componentes (ícone, avatar, thumbnail)</td>
+                <td>Dezenas de variants para cada ícone possível</td>
+              </tr>
+              <tr>
+                <td><strong>Text</strong></td>
+                <td>O texto muda entre instâncias mas não altera a aparência</td>
+                <td>Override manual de camada de texto</td>
+              </tr>
+              <tr>
+                <td><strong>Variant</strong></td>
+                <td>A aparência visual muda estruturalmente (cor, tamanho, forma)</td>
+                <td>Componentes completamente separados</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Exemplo de uso real: card configurável</h2>
+        <p>Um card de produto de e-commerce pode ter:</p>
+        <ul>
+          <li><strong>Boolean:</strong> <code>Show image</code> (com/sem foto do produto)</li>
+          <li><strong>Instance Swap:</strong> <code>Badge icon</code> (ícone de promoção, novidade, melhor avaliado)</li>
+          <li><strong>Text:</strong> <code>Product name</code>, <code>Price</code></li>
+          <li><strong>Variant:</strong> <code>Size</code> (compact, default, featured)</li>
+        </ul>
+
+        <div class="figma-mock">
+          <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;width:180px;">
+              <div style="height:100px;background:linear-gradient(135deg,#6c4cf1,#b0367a);position:relative;">
+                <span style="position:absolute;top:8px;left:8px;background:var(--warning);color:white;padding:3px 8px;border-radius:6px;font-size:11px;font-weight:700;">🔥 Oferta</span>
+              </div>
+              <div style="padding:12px;">
+                <div style="font-weight:700;font-size:13px;">Fone Bluetooth Pro</div>
+                <div style="color:var(--primary);font-weight:700;font-size:15px;margin-top:4px;">R$ 299</div>
+                <div style="background:var(--primary);color:white;padding:8px;border-radius:6px;text-align:center;font-size:12px;font-weight:600;margin-top:8px;">Comprar</div>
+              </div>
+            </div>
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;width:180px;">
+              <div style="padding:12px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                  <div style="font-weight:700;font-size:13px;">Cabo USB-C</div>
+                  <span style="background:var(--success-soft);color:var(--success);padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;">✓ Novo</span>
+                </div>
+                <div style="color:var(--primary);font-weight:700;font-size:15px;">R$ 49</div>
+                <div style="background:var(--primary);color:white;padding:8px;border-radius:6px;text-align:center;font-size:12px;font-weight:600;margin-top:8px;">Comprar</div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">Dois cards com a mesma estrutura de componente: o da esquerda tem <code>Show image=True</code> e badge de oferta; o da direita tem <code>Show image=False</code> e badge de novo. O texto e o ícone do badge foram trocados via properties — sem criar novas variants.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Ir para o Main Component</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + clique no link</td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + clique no link</td></tr>
+              <tr><td>Editar componente (entrar)</td><td>Duplo clique</td><td>Duplo clique</td></tr>
+              <tr><td>Sair do componente</td><td><kbd>Esc</kbd></td><td><kbd>Esc</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li><strong>Boolean Property</strong> mostra/oculta camadas — substitui variants "with/without".</li>
+          <li><strong>Instance Swap Property</strong> troca sub-componentes (ícones, avatars) sem variants extras.</li>
+          <li><strong>Text Property</strong> expõe textos editáveis diretamente no painel da instance.</li>
+          <li><strong>Variant Property</strong> é a troca formal de variant, integrada ao painel de properties.</li>
+          <li>Expose properties de sub-componentes para simplificar a interface de uso do componente.</li>
+          <li>Pense no componente como uma API: exponha só o que precisa ser configurado.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Botão com ícone opcional e Instance Swap</h3>
+          <ol>
+            <li>Crie um componente de botão com texto e um ícone à esquerda (use qualquer símbolo como placeholder de ícone — um frame 20×20 com uma letra).</li>
+            <li>Adicione uma <strong>Boolean Property</strong> chamada <code>Show icon</code> associada ao ícone. Valor padrão: <code>True</code>.</li>
+            <li>Adicione uma <strong>Text Property</strong> chamada <code>Label</code> associada ao texto. Valor padrão: <code>Continuar</code>.</li>
+            <li>Crie uma instance, troque o Label para "Enviar" e desative Show icon. O botão deve se ajustar automaticamente.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> o painel da instance mostra os controles Label (texto) e Show icon (toggle), e ambos funcionam sem necessidade de entrar na hierarquia de camadas do componente.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Card de usuário configurável</h3>
+          <p>Crie um componente <code>Card/User</code> com as seguintes properties: <code>Show avatar</code> (Boolean), <code>Avatar</code> (Instance Swap — conectado a um componente de avatar), <code>Name</code> (Text), <code>Role</code> (Text), <code>Show actions</code> (Boolean — controla visibilidade de dois botões de ação). Use o card em 3 instâncias com configurações diferentes. Verifique que alterar o avatar no Main Component de avatar atualiza todas as instances do card que usam a instância padrão.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Você tem um componente de botão que pode ou não exibir um spinner de carregamento à direita do texto. Qual tipo de Component Property resolver isso?</p>
+            <ul class="quiz-options">
+              <li>Text Property</li>
+              <li>Boolean Property</li>
+              <li>Instance Swap</li>
+              <li>Variant Property</li>
+            </ul>
+            <div class="quiz-explain"><strong>Boolean Property</strong> é ideal para mostrar/ocultar elementos opcionais, como um spinner que aparece apenas durante o carregamento. Evita criar duas variants (Default e Loading) só por causa de um elemento opcional.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">2. Um componente de item de menu pode usar diferentes ícones à esquerda (home, search, profile...). Qual tipo de property permite trocar o ícone no painel da instance?</p>
+            <ul class="quiz-options">
+              <li>Boolean Property</li>
+              <li>Text Property</li>
+              <li>Instance Swap</li>
+              <li>Variant Property</li>
+            </ul>
+            <div class="quiz-explain"><strong>Instance Swap</strong> permite substituir um sub-componente por outro da biblioteca. No caso de ícones, o designer pode escolher qualquer ícone diretamente no painel — sem criar dezenas de variants para cada ícone possível.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. O que significa "expor a property de uma instância aninhada"?</p>
+            <ul class="quiz-options">
+              <li>Tornar uma property de um sub-componente visível no painel do componente pai</li>
+              <li>Tornar um componente visível na biblioteca da equipe</li>
+              <li>Converter uma instance em Main Component</li>
+              <li>Publicar as properties da library</li>
+            </ul>
+            <div class="quiz-explain">Expor uma property de instância aninhada significa que uma property que existe em um sub-componente passa a aparecer no painel do componente pai. Isso simplifica o uso: o designer configura tudo no nível superior, sem entrar nos sub-componentes.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

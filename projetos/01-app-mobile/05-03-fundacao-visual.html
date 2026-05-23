@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fundação visual: cores, tipografia e variables | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="05-03-fundacao-visual" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">📱 Módulo 5 · Projeto Guiado · Lição 3 de 8</div>
+        <h1>Fundação visual: cores, tipografia e Variables</h1>
+        <p class="lead">Uma interface coesa começa com tokens bem definidos. Nesta lição você vai construir o sistema de design do FinView do zero — criando Variables para cores, tipografia, espaçamentos e raios, com suporte a light e dark mode de verdade.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~24 min</span>
+          <span>🎯 Nível: Projeto prático</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Criar uma coleção de Variables de cor com dois modos (Light e Dark) no Figma;</li>
+            <li>Organizar os tokens em grupos semânticos (surface, text, brand, semantic);</li>
+            <li>Definir variables de número para spacing, border-radius e font-size;</li>
+            <li>Configurar a grade de 4 colunas para mobile no Figma;</li>
+            <li>Aplicar as variables nos elementos da tela e alternar modos com um clique.</li>
+          </ul>
+        </div>
+
+        <h2>Por que Variables e não Styles?</h2>
+        <p>O Figma tinha apenas <strong>Color Styles</strong> por anos, e eles ainda existem — mas <strong>Variables</strong> (lançadas em 2023, aprimoradas em 2024/2025) são uma camada mais poderosa. A diferença fundamental:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Característica</th><th>Color Styles</th><th>Variables</th></tr></thead>
+            <tbody>
+              <tr><td>Múltiplos modos (light/dark)</td><td>Não — você cria styles separados</td><td>Sim — um único nome, N valores por modo</td></tr>
+              <tr><td>Tipos de dado</td><td>Apenas cor</td><td>Cor, número, string, booleano</td></tr>
+              <tr><td>Referência a outras variables</td><td>Não</td><td>Sim — token aliases (semantic sobre primitive)</td></tr>
+              <tr><td>Uso em Auto Layout (spacing)</td><td>Não</td><td>Sim — espaçamentos com variável numérica</td></tr>
+              <tr><td>Handoff para Dev Mode</td><td>Parcial</td><td>Total — nome do token aparece no Dev Mode</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Para o FinView, usaremos Variables em todas as camadas — o resultado será um design system que troca de tema com um único clique e que, quando entregue ao desenvolvedor, já vem com os nomes de tokens corretos.</p>
+
+        <div class="callout info">
+          <span class="callout-title">Arquitetura de dois níveis: Primitive → Semantic</span>
+          <p>A prática profissional usa dois níveis de tokens: <strong>Primitive</strong> (os valores brutos, ex.: <code>purple/500: #6C4CF1</code>) e <strong>Semantic</strong> (significado, ex.: <code>color/brand/primary: {purple/500}</code>). Os semantic tokens apontam para os primitivos. Com isso, trocar a cor primária de todo o produto é alterar um único primitive — todos os semantic tokens que o referenciam se atualizam automaticamente.</p>
+        </div>
+
+        <h2>A paleta do FinView</h2>
+        <p>Definimos as cores com base em princípios de acessibilidade (contraste mínimo WCAG AA) e na psicologia das cores para finanças:</p>
+
+        <div class="figma-mock">
+          <div style="display:flex;flex-direction:column;gap:12px;flex:1;min-width:280px;">
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;">Primitivos — Brand</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <div style="width:48px;height:48px;border-radius:10px;background:#3D2BA8;"></div>
+                <span style="font-size:9px;color:var(--text-muted);">violet/700</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <div style="width:48px;height:48px;border-radius:10px;background:#6C4CF1;"></div>
+                <span style="font-size:9px;color:var(--text-muted);">violet/500 ★</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <div style="width:48px;height:48px;border-radius:10px;background:#9B81FF;"></div>
+                <span style="font-size:9px;color:var(--text-muted);">violet/300</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <div style="width:48px;height:48px;border-radius:10px;background:#EDE8FF;"></div>
+                <span style="font-size:9px;color:var(--text-muted);">violet/100</span>
+              </div>
+            </div>
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-top:4px;">Primitivos — Success</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <div style="width:48px;height:48px;border-radius:10px;background:#0B7A4B;"></div>
+                <span style="font-size:9px;color:var(--text-muted);">green/700</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <div style="width:48px;height:48px;border-radius:10px;background:#18C98A;"></div>
+                <span style="font-size:9px;color:var(--text-muted);">green/500 ★</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <div style="width:48px;height:48px;border-radius:10px;background:#6BEBB5;"></div>
+                <span style="font-size:9px;color:var(--text-muted);">green/300</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <div style="width:48px;height:48px;border-radius:10px;background:#D6F7EC;"></div>
+                <span style="font-size:9px;color:var(--text-muted);">green/100</span>
+              </div>
+            </div>
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-top:4px;">Primitivos — Danger</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <div style="width:48px;height:48px;border-radius:10px;background:#C73320;"></div>
+                <span style="font-size:9px;color:var(--text-muted);">red/700</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <div style="width:48px;height:48px;border-radius:10px;background:#F7654B;"></div>
+                <span style="font-size:9px;color:var(--text-muted);">red/500 ★</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <div style="width:48px;height:48px;border-radius:10px;background:#FFA590;"></div>
+                <span style="font-size:9px;color:var(--text-muted);">red/300</span>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <div style="width:48px;height:48px;border-radius:10px;background:#FFF0ED;"></div>
+                <span style="font-size:9px;color:var(--text-muted);">red/100</span>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;min-width:200px;">
+            <div style="font-size:13px;font-weight:700;color:var(--text);">Semânticos — Dark Mode</div>
+            <div style="background:#0F1115;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:10px;color:#a3acba;">bg</span>
+                <div style="display:flex;align-items:center;gap:6px;"><div style="width:20px;height:20px;border-radius:4px;background:#0F1115;border:1px solid #3a414e;"></div><span style="font-size:9px;color:#a3acba;">#0F1115</span></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:10px;color:#a3acba;">surface</span>
+                <div style="display:flex;align-items:center;gap:6px;"><div style="width:20px;height:20px;border-radius:4px;background:#1A1E26;border:1px solid #3a414e;"></div><span style="font-size:9px;color:#a3acba;">#1A1E26</span></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:10px;color:#a3acba;">brand/primary</span>
+                <div style="display:flex;align-items:center;gap:6px;"><div style="width:20px;height:20px;border-radius:4px;background:#9B81FF;"></div><span style="font-size:9px;color:#a3acba;">#9B81FF</span></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:10px;color:#a3acba;">text/primary</span>
+                <div style="display:flex;align-items:center;gap:6px;"><div style="width:20px;height:20px;border-radius:4px;background:#E8EAEE;border:1px solid #3a414e;"></div><span style="font-size:9px;color:#a3acba;">#E8EAEE</span></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:10px;color:#a3acba;">income/positive</span>
+                <div style="display:flex;align-items:center;gap:6px;"><div style="width:20px;height:20px;border-radius:4px;background:#4CCE8A;"></div><span style="font-size:9px;color:#a3acba;">#4CCE8A</span></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:10px;color:#a3acba;">expense/negative</span>
+                <div style="display:flex;align-items:center;gap:6px;"><div style="width:20px;height:20px;border-radius:4px;background:#F7654B;"></div><span style="font-size:9px;color:#a3acba;">#F7654B</span></div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-label">Esquerda: escala de primitivos com 4 pesos por cor. Direita: tokens semânticos no dark mode — note que o violet/300 (#9B81FF) é usado como primary no escuro para garantir contraste adequado.</p>
+        </div>
+
+        <h2>Passo a passo: criando as Variables no Figma</h2>
+
+        <ol class="steps">
+          <li>
+            <strong>Abra o painel de Variables.</strong>
+            Na page <code>🎨 Design Tokens</code>, pressione <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Alt</kbd>/<kbd>⌥</kbd> + <kbd>V</kbd> ou clique no ícone de grade no canto superior esquerdo do Figma e selecione <strong>Local variables</strong>. Um painel flutuante se abrirá.
+          </li>
+          <li>
+            <strong>Crie a coleção "Primitive/Colors".</strong>
+            Clique em <strong>+ New collection</strong> e nomeie como <code>Primitive/Colors</code>. Esta coleção terá apenas um modo (sem light/dark — primitivos são valores absolutos). Mantenha o modo padrão como "Mode 1" ou renomeie para "Base".
+          </li>
+          <li>
+            <strong>Adicione os grupos de cores primitivas.</strong>
+            Clique em <strong>+ New variable → Color</strong>. Nomeie com a barra como separador de grupo: <code>violet/100</code>, <code>violet/300</code>, <code>violet/500</code>, <code>violet/700</code>. O Figma agrupa automaticamente por prefixo. Repita para <code>green</code>, <code>red</code>, <code>neutral</code> (escala de cinzas de 100 a 950).
+          </li>
+          <li>
+            <strong>Crie a coleção "Semantic/Colors" com dois modos.</strong>
+            Nova coleção: <code>Semantic/Colors</code>. Clique em <strong>+ Add mode</strong> e crie dois modos: <strong>Light</strong> e <strong>Dark</strong>. Agora você terá duas colunas para cada variável.
+          </li>
+          <li>
+            <strong>Adicione os tokens semânticos e referencie os primitivos.</strong>
+            Crie variável <code>color/bg</code>. No modo Light, clique no campo de cor e, em vez de digitar um hex, clique em <strong>Library</strong> e escolha <code>Primitive/Colors/neutral/50</code>. No modo Dark, referencie <code>Primitive/Colors/neutral/950</code>. Repita para todos os tokens semânticos da tabela abaixo.
+          </li>
+          <li>
+            <strong>Crie a coleção "Semantic/Spacing" com number variables.</strong>
+            Nova coleção: <code>Semantic/Spacing</code>. Adicione variáveis do tipo <strong>Number</strong>: <code>spacing/xs: 4</code>, <code>spacing/sm: 8</code>, <code>spacing/md: 16</code>, <code>spacing/lg: 24</code>, <code>spacing/xl: 32</code>, <code>spacing/2xl: 48</code>. Essas serão usadas como padding e gap nos Auto Layouts.
+          </li>
+          <li>
+            <strong>Crie a coleção "Semantic/Radius".</strong>
+            Mesma lógica, tipo Number: <code>radius/sm: 8</code>, <code>radius/md: 12</code>, <code>radius/lg: 16</code>, <code>radius/xl: 20</code>, <code>radius/pill: 999</code>. Use <code>radius/pill</code> para badges e tags.
+          </li>
+          <li>
+            <strong>Aplique uma variable a um elemento.</strong>
+            Selecione um retângulo na canvas. No painel direito, clique no campo de Fill e veja o ícone de biblioteca (losango) ao lado do seletor de cor. Clique nele e escolha a variable <code>color/bg</code>. Pronto — o elemento agora usa o token semântico e vai mudar automaticamente quando você trocar o modo.
+          </li>
+          <li>
+            <strong>Troque o modo de um frame inteiro.</strong>
+            Selecione o frame iPhone. No painel direito, em <strong>Layer</strong>, aparece um seletor de variable mode. Clique e escolha entre <strong>Light</strong> e <strong>Dark</strong>. Todos os elementos que usam variables semânticas trocam de cor instantaneamente.
+          </li>
+        </ol>
+
+        <div class="callout tip">
+          <span class="callout-title">Nome de variável com "/" cria agrupamento automático</span>
+          <p>A barra (<code>/</code>) no nome da variável cria hierarquia visual no painel: <code>color/bg</code> e <code>color/surface</code> aparecem agrupados sob <code>color</code>. Use até 3 níveis: <code>color/brand/primary</code>. Isso é fundamental para variáveis de cor — você terá dezenas delas e o agrupamento mantém o painel organizado.</p>
+        </div>
+
+        <h2>Tabela completa de tokens semânticos do FinView</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Token</th><th>Modo Light</th><th>Modo Dark</th><th>Uso</th></tr></thead>
+            <tbody>
+              <tr><td><code>color/bg</code></td><td><code>neutral/50: #F8F9FA</code></td><td><code>neutral/950: #0C0E12</code></td><td>Background da página</td></tr>
+              <tr><td><code>color/surface</code></td><td><code>neutral/0: #FFFFFF</code></td><td><code>neutral/900: #1A1E26</code></td><td>Cards, sheets, modais</td></tr>
+              <tr><td><code>color/surface-2</code></td><td><code>neutral/100: #F0F2F5</code></td><td><code>neutral/800: #222731</code></td><td>Surface elevado, input bg</td></tr>
+              <tr><td><code>color/border</code></td><td><code>neutral/200: #E2E6EC</code></td><td><code>neutral/700: #2B313C</code></td><td>Bordas suaves</td></tr>
+              <tr><td><code>color/text/primary</code></td><td><code>neutral/900: #1A1D23</code></td><td><code>neutral/50: #E8EAEE</code></td><td>Textos principais</td></tr>
+              <tr><td><code>color/text/secondary</code></td><td><code>neutral/500: #5B6573</code></td><td><code>neutral/400: #A3ACBA</code></td><td>Labels, subtítulos</td></tr>
+              <tr><td><code>color/brand/primary</code></td><td><code>violet/500: #6C4CF1</code></td><td><code>violet/300: #9B81FF</code></td><td>Cor de marca, CTAs</td></tr>
+              <tr><td><code>color/brand/soft</code></td><td><code>violet/100: #EDE8FF</code></td><td><code>violet/900: #241F3D</code></td><td>Backgrounds de destaque</td></tr>
+              <tr><td><code>color/income</code></td><td><code>green/500: #18C98A</code></td><td><code>green/400: #4CCE8A</code></td><td>Receitas, saldo positivo</td></tr>
+              <tr><td><code>color/expense</code></td><td><code>red/500: #F7654B</code></td><td><code>red/400: #F7654B</code></td><td>Gastos, saldo negativo</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Tipografia do FinView</h2>
+        <p>O FinView usa <strong>Inter</strong> como fonte principal. Ela é gratuita, amplamente usada em apps mobile e tem excelente legibilidade em telas pequenas. No Figma, acesse <em>Main menu → Resources → Fonts</em> ou simplesmente comece a digitar "Inter" no campo de fonte.</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Token</th><th>Tamanho</th><th>Peso</th><th>Line height</th><th>Uso</th></tr></thead>
+            <tbody>
+              <tr><td><code>text/display</code></td><td>32 px</td><td>700 (Bold)</td><td>1.2 (38 px)</td><td>Saldo principal, valores grandes</td></tr>
+              <tr><td><code>text/h1</code></td><td>24 px</td><td>700</td><td>1.25 (30 px)</td><td>Títulos de tela</td></tr>
+              <tr><td><code>text/h2</code></td><td>20 px</td><td>600 (SemiBold)</td><td>1.3 (26 px)</td><td>Seções, subtítulos</td></tr>
+              <tr><td><code>text/body-lg</code></td><td>16 px</td><td>400 (Regular)</td><td>1.5 (24 px)</td><td>Texto de corpo, listas</td></tr>
+              <tr><td><code>text/body</code></td><td>14 px</td><td>400</td><td>1.5 (21 px)</td><td>Labels, descrições</td></tr>
+              <tr><td><code>text/caption</code></td><td>12 px</td><td>400</td><td>1.4 (17 px)</td><td>Timestamps, metadados, tab labels</td></tr>
+              <tr><td><code>text/amount</code></td><td>28 px</td><td>700</td><td>1.2</td><td>Valores monetários de destaque</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Crie <strong>Text Styles</strong> no Figma para cada token tipográfico: selecione um texto com as propriedades corretas e clique em <strong>+</strong> no painel de texto para salvar como estilo. Nomeie com a mesma convenção de barras: <code>FinView/Display</code>, <code>FinView/H1</code>, etc.</p>
+
+        <div class="callout note">
+          <span class="callout-title">Por que não criar variables de string para tipografia?</span>
+          <p>No Figma 2025/2026, as variables de tipo <strong>String</strong> ainda não se conectam diretamente aos estilos de texto de forma nativa (font family, size, weight juntos). Por isso, tipografia segue usando <strong>Text Styles</strong> tradicionais. Variables numéricas podem ser usadas para font-size individual se necessário. Acompanhe o roadmap do Figma — isso pode mudar.</p>
+        </div>
+
+        <h2>Grid mobile no Figma</h2>
+        <p>O grid de um app mobile iOS usa <strong>4 colunas</strong> com gutters de 16 px e margens de 16 px em cada lado. Para configurar no Figma:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Selecione o frame iPhone 16.</strong>
+            Clique no frame (não em um elemento dentro dele).
+          </li>
+          <li>
+            <strong>Adicione o grid de colunas.</strong>
+            No painel direito, em <strong>Layout grid</strong>, clique em <strong>+</strong>. Clique no ícone de grade e mude de <em>Grid</em> para <em>Columns</em>.
+          </li>
+          <li>
+            <strong>Configure as colunas.</strong>
+            Count: <strong>4</strong>, Margin: <strong>16</strong>, Gutter: <strong>16</strong>, Type: <strong>Stretch</strong>. Ative a visibilidade do grid com <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>G</kbd> (ou o ícone de olho no painel).
+          </li>
+          <li>
+            <strong>Adicione a row guide (opcional mas recomendado).</strong>
+            Adicione um segundo grid do tipo <em>Rows</em> com height 8 px e color com 10% de opacidade. Isso cria uma grade de 8 px para alinhar elementos verticalmente — o famoso "grid de 8 pt".
+          </li>
+        </ol>
+
+        <div class="callout pro">
+          <span class="callout-title">O sistema de 8 pt: o padrão da indústria mobile</span>
+          <p>Basicamente todo app mobile sério (iOS, Android) usa múltiplos de 8 para todos os espaçamentos: 8, 16, 24, 32, 48... Isso garante que os elementos sempre caem em pixels inteiros (em telas 2x/3x retina), mantém consistência e facilita o handoff — o desenvolvedor já sabe que padding é sempre múltiplo de 8. No FinView, nossos spacing tokens já seguem isso: xs=4, sm=8, md=16, lg=24, xl=32, 2xl=48.</p>
+        </div>
+
+        <h2>Exemplo de uso real: aplicando tokens na prática</h2>
+        <p>Para ver o sistema funcionando, vamos aplicar os tokens em um card de transação simples:</p>
+
+        <div class="figma-mock">
+          <div style="display:flex;flex-direction:column;gap:14px;flex:1;min-width:260px;max-width:400px;">
+            <!-- Light mode card -->
+            <div>
+              <div style="font-size:11px;font-weight:700;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em;">Light Mode</div>
+              <div style="background:#FFFFFF;border:1px solid #E2E6EC;border-radius:12px;padding:14px;display:flex;align-items:center;gap:12px;">
+                <div style="width:40px;height:40px;background:#EDE8FF;border-radius:10px;display:grid;place-items:center;font-size:18px;flex:none;">🍔</div>
+                <div style="flex:1;">
+                  <div style="font-size:14px;font-weight:600;color:#1A1D23;">iFood</div>
+                  <div style="font-size:12px;color:#5B6573;">Alimentação · Hoje, 13:42</div>
+                </div>
+                <div style="font-size:16px;font-weight:700;color:#F7654B;">- R$ 54,90</div>
+              </div>
+            </div>
+            <!-- Dark mode card -->
+            <div>
+              <div style="font-size:11px;font-weight:700;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em;">Dark Mode</div>
+              <div style="background:#1A1E26;border:1px solid #2B313C;border-radius:12px;padding:14px;display:flex;align-items:center;gap:12px;">
+                <div style="width:40px;height:40px;background:#241F3D;border-radius:10px;display:grid;place-items:center;font-size:18px;flex:none;">🍔</div>
+                <div style="flex:1;">
+                  <div style="font-size:14px;font-weight:600;color:#E8EAEE;">iFood</div>
+                  <div style="font-size:12px;color:#A3ACBA;">Alimentação · Hoje, 13:42</div>
+                </div>
+                <div style="font-size:16px;font-weight:700;color:#F7654B;">- R$ 54,90</div>
+              </div>
+            </div>
+            <!-- Token annotations -->
+            <div style="background:var(--surface-2);border-radius:10px;padding:12px;font-size:11px;color:var(--text-muted);">
+              <div style="font-weight:700;color:var(--text);margin-bottom:6px;">Tokens usados neste card:</div>
+              <div><code style="font-size:10px;">color/surface</code> → background</div>
+              <div><code style="font-size:10px;">color/border</code> → borda</div>
+              <div><code style="font-size:10px;">color/brand/soft</code> → ícone bg</div>
+              <div><code style="font-size:10px;">color/text/primary</code> → nome</div>
+              <div><code style="font-size:10px;">color/text/secondary</code> → categoria</div>
+              <div><code style="font-size:10px;">color/expense</code> → valor</div>
+            </div>
+          </div>
+          <p class="mock-label">O mesmo card de transação nos dois modos. Todos os valores de cor são controlados pelos tokens semânticos — trocar o modo atualiza o card inteiro automaticamente.</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Abrir Variables</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>V</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>V</kbd></td></tr>
+              <tr><td>Toggle grid da canvas</td><td><kbd>Ctrl</kbd> + <kbd>G</kbd></td><td><kbd>⌘</kbd> + <kbd>G</kbd></td></tr>
+              <tr><td>Salvar como Text Style</td><td>Clique no <strong>+</strong> no painel de texto</td><td>Clique no <strong>+</strong> no painel de texto</td></tr>
+              <tr><td>Renomear layer</td><td><kbd>Ctrl</kbd> + <kbd>R</kbd></td><td><kbd>⌘</kbd> + <kbd>R</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Variables superam Color Styles por suportarem múltiplos modos, tipos de dado variados e referências entre tokens.</li>
+          <li>A arquitetura de dois níveis (Primitive → Semantic) permite trocar a identidade visual do produto alterando apenas os primitivos.</li>
+          <li>Criamos 4 coleções: <code>Primitive/Colors</code>, <code>Semantic/Colors</code> (com modos Light e Dark), <code>Semantic/Spacing</code> e <code>Semantic/Radius</code>.</li>
+          <li>Tipografia usa Text Styles tradicionais (7 estilos), seguindo o sistema de 8 pt.</li>
+          <li>O grid mobile usa 4 colunas, margem 16 px, gutter 16 px — grid de 8 pt na vertical.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Montar os tokens do FinView</h3>
+          <p>No seu arquivo Figma, na page <code>🎨 Design Tokens</code>:</p>
+          <ol>
+            <li>Crie a coleção <code>Primitive/Colors</code> com as escalas <code>violet</code> (4 tons) e <code>green</code> (4 tons).</li>
+            <li>Crie a coleção <code>Semantic/Colors</code> com os modos Light e Dark e pelo menos 6 tokens semânticos (<code>color/bg</code>, <code>color/surface</code>, <code>color/text/primary</code>, <code>color/brand/primary</code>, <code>color/income</code>, <code>color/expense</code>).</li>
+            <li>Crie a coleção <code>Semantic/Spacing</code> com os 6 tokens numéricos listados nesta lição.</li>
+            <li>Aplique os tokens em um card de transação e troque o modo do frame para Dark — confirme que todas as cores mudam corretamente.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> o card de transação muda todas as suas cores ao alternar entre Light e Dark, sem precisar editar nenhum elemento manualmente.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Sistema de cores para categorias</h3>
+          <p>O FinView precisa de cores para cada categoria de transação: Alimentação, Transporte, Lazer, Saúde, Moradia, Assinaturas, Salário. Crie uma coleção <code>Category/Colors</code> com um token para cada categoria (fill + soft background), nos dois modos Light e Dark. Use a psicologia das cores: vermelho/laranja para gastos pesados, verde para receita, azul para lazer, etc. Ao final, construa um grid de categorias no Figma mostrando o ícone placeholder com o fundo colorido de cada categoria — como seria no seletor de categorias ao adicionar uma transação.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">1. Qual é a diferença principal entre um token "primitive" e um token "semantic" no sistema de design?</p>
+            <ul class="quiz-options">
+              <li>Primitivos são para tipografia; semânticos são para cores</li>
+              <li>Primitivos têm suporte a dark mode; semânticos são fixos</li>
+              <li>Primitivos são valores brutos (ex.: violet/500 = #6C4CF1); semânticos têm significado contextual (ex.: color/brand/primary) e apontam para primitivos</li>
+              <li>Primitivos são criados pelos desenvolvedores; semânticos pelos designers</li>
+            </ul>
+            <div class="quiz-explain"><strong>Primitivos</strong> são os valores brutos da paleta (a cor em si, sem contexto). <strong>Semânticos</strong> têm significado de uso e apontam para primitivos como aliases — isso permite trocar todo o sistema de cores alterando apenas os primitivos, sem tocar em nenhum elemento da tela.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. Por que usamos múltiplos de 8 para espaçamentos em design mobile?</p>
+            <ul class="quiz-options">
+              <li>Porque telas retina (2x/3x) renderizam múltiplos de 8 sem frações de pixel, garantindo nitidez</li>
+              <li>Porque o Figma só aceita valores múltiplos de 8 em suas variáveis numéricas</li>
+              <li>Porque 8 pt é o tamanho mínimo de fonte legível em dispositivos iOS</li>
+              <li>É apenas uma convenção estética sem razão técnica</li>
+            </ul>
+            <div class="quiz-explain">Em telas de alta densidade (Retina 2x, 3x), cada ponto virtual corresponde a 2 ou 3 pixels físicos. <strong>Múltiplos de 8</strong> sempre resultam em números inteiros ao multiplicar por 2 ou 3, evitando anti-aliasing e garantindo bordas nítidas. Também cria um ritmo visual consistente.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="3">
+            <p class="q-text">3. No Figma 2025, qual recurso permite que um mesmo elemento mude todas as suas cores ao alternar entre Light e Dark com um único clique no frame pai?</p>
+            <ul class="quiz-options">
+              <li>Color Styles com suffixo "/dark"</li>
+              <li>Conditional logic em componentes</li>
+              <li>Múltiplas páginas com os mesmos frames</li>
+              <li>Variable Modes aplicados ao frame — todos os elementos usando semantic variables trocam de valor</li>
+            </ul>
+            <div class="quiz-explain"><strong>Variable Modes</strong> é o mecanismo correto: quando você aplica um modo (Light ou Dark) em um frame, todos os elementos dentro dele que usam variables semânticas da coleção configurada trocam seus valores automaticamente. É o coração do dark mode dinâmico no Figma.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

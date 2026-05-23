@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cor: fills, strokes, gradientes e blend modes | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="01-03-cor-fills-strokes" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">🎨 Módulo 1 · Iniciante · Lição 3 de 8</div>
+        <h1>Cor: fills, strokes, gradientes e blend modes</h1>
+        <p class="lead">Cor é comunicação. Saber manipular fills, strokes e gradientes no Figma com precisão é o que separa um design amador de um profissional polido.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~18 min</span>
+          <span>🎯 Nível: Iniciante</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Aplicar fills sólidos e múltiplos fills a um elemento;</li>
+            <li>Criar e configurar gradientes linear, radial, angular e diamond;</li>
+            <li>Usar imagem como fill de uma forma;</li>
+            <li>Configurar strokes com posição, dashes e caps/joins;</li>
+            <li>Entender e usar blend modes e a diferença entre opacidade de camada e de fill;</li>
+            <li>Usar o conta-gotas (eyedropper) para amostrar cores.</li>
+          </ul>
+        </div>
+
+        <h2>Fills — preenchimentos</h2>
+        <p>O <strong>Fill</strong> é o preenchimento interno de um elemento. No Figma, você pode ter <strong>múltiplos fills empilhados</strong> em um único elemento — cada fill tem sua própria cor, opacidade e blend mode. Isso é incrivelmente poderoso para efeitos visuais complexos.</p>
+
+        <h3>Fill sólido</h3>
+        <p>O tipo mais básico. Clique no swatch de cor no painel direito para abrir o <strong>Color Picker</strong>. O picker do Figma tem:</p>
+        <ul>
+          <li><strong>Espectro de saturação/brilho</strong> (grande quadrado);</li>
+          <li><strong>Slider de matiz (hue)</strong>;</li>
+          <li><strong>Slider de opacidade</strong>;</li>
+          <li><strong>Campos de entrada:</strong> HEX, RGB, CSS (RGBA/HSLA), HSL e HSB;</li>
+          <li><strong>Hex com 8 dígitos</strong> para incluir o canal alpha (ex: <code>#FF5500CC</code>).</li>
+        </ul>
+
+        <h3>Múltiplos fills</h3>
+        <p>Clique no <strong>+</strong> na seção Fill para adicionar um segundo fill. Os fills são empilhados de cima para baixo — o que está no topo da lista fica visualmente na frente. Use a opacidade e os blend modes de cada fill individualmente para criar efeitos como sobreposição de textura, gradiente sobre imagem, etc.</p>
+
+        <div class="callout tip">
+          <span class="callout-title">Múltiplos fills = efeitos sem plugins</span>
+          <p>Uma técnica muito usada: adicione uma imagem como fill base, depois adicione um gradiente semitransparente acima. O resultado é uma foto com overlay de cor suave — sem Photoshop ou plugins.</p>
+        </div>
+
+        <h2>Gradientes</h2>
+        <p>O Figma oferece 4 tipos de gradiente, todos acessíveis no seletor de tipo dentro do Color Picker:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Tipo</th><th>Como funciona</th><th>Uso típico</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Linear</strong></td><td>Transição em linha reta de um ponto a outro</td><td>Botões, banners, fundos de tela</td></tr>
+              <tr><td><strong>Radial</strong></td><td>Transição circular a partir de um centro</td><td>Halos, brilhos, efeitos de foco</td></tr>
+              <tr><td><strong>Angular</strong></td><td>Transição em arco ao redor de um centro (cônico)</td><td>Gradientes "arco-íris", ícones metálicos</td></tr>
+              <tr><td><strong>Diamond</strong></td><td>Transição em losango a partir do centro</td><td>Fundos com ponto de luz central</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Editando um gradiente</h3>
+        <p>Ao selecionar um tipo de gradiente, a forma recebe <strong>handles de gradiente</strong> diretamente no canvas:</p>
+        <ul>
+          <li>Arraste os handles para reposicionar e redimensionar o gradiente;</li>
+          <li>Clique na <strong>barra de cor</strong> no picker para adicionar color stops intermediários;</li>
+          <li>Arraste um color stop para fora da barra para deletá-lo;</li>
+          <li>Clique em um color stop para mudar sua cor individualmente.</li>
+        </ul>
+
+        <h2>Imagem como fill</h2>
+        <p>Qualquer forma pode ter uma imagem como fill. Clique no seletor de tipo de fill e escolha <strong>Image</strong>. Você pode arrastar uma imagem do seu computador direto para o Fill, ou usar o botão "Choose image". Há 4 modos de ajuste:</p>
+        <ul>
+          <li><strong>Fill:</strong> a imagem preenche todo o espaço, cortando o que não cabe (como <code>object-fit: cover</code> no CSS);</li>
+          <li><strong>Fit:</strong> a imagem fica inteira dentro da forma, podendo deixar espaços vazios;</li>
+          <li><strong>Crop:</strong> você controla manualmente o recorte da imagem dentro da forma;</li>
+          <li><strong>Tile:</strong> a imagem se repete em mosaico (para padrões e texturas).</li>
+        </ul>
+
+        <h2>Strokes — contornos</h2>
+        <p>O <strong>Stroke</strong> é o contorno de um elemento. No Figma, você configura:</p>
+
+        <h3>Posição do stroke</h3>
+        <ul>
+          <li><strong>Inside:</strong> o stroke cresce para dentro da forma (não altera o tamanho externo);</li>
+          <li><strong>Center:</strong> metade dentro, metade fora;</li>
+          <li><strong>Outside:</strong> o stroke cresce para fora (não altera o tamanho interno).</li>
+        </ul>
+
+        <h3>Peso e estilo</h3>
+        <p>O campo <strong>Weight</strong> controla a espessura em pixels. O dropdown de estilo permite escolher entre stroke contínuo, tracejado (<em>dashed</em>) ou pontilhado. Para dashes, você configura o comprimento do traço e o comprimento do espaço.</p>
+
+        <h3>Caps e Joins</h3>
+        <p>Para linhas e paths abertos, as <strong>Caps</strong> definem o formato das extremidades: <em>None</em> (plana), <em>Round</em> (arredondada) ou <em>Square</em> (quadrada saliente). Os <strong>Joins</strong> definem os cantos: <em>Miter</em> (ângulo afiado), <em>Bevel</em> (cortado) ou <em>Round</em> (arredondado).</p>
+
+        <div class="callout info">
+          <span class="callout-title">Stroke e exportação para CSS</span>
+          <p>No Dev Mode (ou no handoff), um stroke <em>inside</em> em um botão é exportado como <code>border: Xpx solid #COLOR</code>. Já um stroke <em>outside</em> pode ser mapeado para <code>outline</code> ou <code>box-shadow</code>. Usar <em>inside</em> é o mais previsível para componentes com dimensões exatas.</p>
+        </div>
+
+        <h2>Opacidade de camada vs opacidade de fill</h2>
+        <p>Essa distinção é crucial e confunde muitos iniciantes:</p>
+        <ul>
+          <li><strong>Opacidade de camada (Layer Opacity):</strong> controla a transparência do elemento inteiro — fills, strokes, efeitos e conteúdo filho. Fica no campo de "%" no painel direito, ao lado do blend mode. Afeta tudo.</li>
+          <li><strong>Opacidade de fill:</strong> controla apenas a transparência do fill específico. Fica no slider dentro do Color Picker daquele fill. Não afeta stroke nem efeitos.</li>
+        </ul>
+        <p>Exemplo prático: um botão com fill azul 100% e stroke preto 100% — se você colocar a opacidade da camada em 50%, tanto o fill quanto o stroke ficam 50% transparentes. Se você colocar apenas a opacidade do fill em 50%, o stroke continua sólido.</p>
+
+        <h2>Blend modes</h2>
+        <p>Os <strong>Blend modes</strong> definem como uma camada interage visualmente com o que está abaixo. Funciona exatamente como no Photoshop. Os mais usados em UI design são:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Blend mode</th><th>Efeito</th><th>Uso típico em UI</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Normal</strong></td><td>Sem mistura (padrão)</td><td>—</td></tr>
+              <tr><td><strong>Multiply</strong></td><td>Escurece — branco vira transparente</td><td>Sombras realistas, overlays escuros</td></tr>
+              <tr><td><strong>Screen</strong></td><td>Clareia — preto vira transparente</td><td>Halos de luz, efeitos de brilho</td></tr>
+              <tr><td><strong>Overlay</strong></td><td>Aumenta contraste (Multiply + Screen)</td><td>Texturas sobre fotos</td></tr>
+              <tr><td><strong>Soft Light</strong></td><td>Overlay mais suave</td><td>Gradientes delicados sobre imagens</td></tr>
+              <tr><td><strong>Color</strong></td><td>Aplica apenas a matiz e saturação</td><td>Colorir fotos em P&amp;B</td></tr>
+              <tr><td><strong>Luminosity</strong></td><td>Aplica apenas o brilho</td><td>Manter detalhes de foto com nova paleta</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>O conta-gotas (Eyedropper)</h2>
+        <p>A ferramenta de <strong>Eyedropper</strong> (<kbd>I</kbd>) permite amostrar qualquer cor visível na tela — de outros elementos, de imagens ou até de fora do Figma (o picker pode capturar cores de qualquer aplicativo na tela). Use-a com frequência para manter consistência de cores no projeto.</p>
+
+        <div class="callout pro">
+          <span class="callout-title">Dica de profissional: use variáveis de cor</span>
+          <p>No Figma 2025, o sistema de <strong>Variables</strong> permite criar tokens de cor reutilizáveis. Em vez de clicar no eyedropper toda vez, defina suas cores na biblioteca e vincule fills diretamente a variáveis. Mudou a cor primária? Atualiza em todo o projeto automaticamente. Veremos Variables no Módulo 3.</p>
+        </div>
+
+        <h2>Exemplo de uso real: botão com gradiente</h2>
+        <p>Vamos criar um botão profissional com gradiente e stroke sutil:</p>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie o frame do botão.</strong>
+            Pressione <kbd>R</kbd> e crie um retângulo de 160×48 px. Corner radius: 12 px.
+          </li>
+          <li>
+            <strong>Aplique um gradiente linear.</strong>
+            No painel direito, clique no swatch de Fill. Mude o tipo para <strong>Linear</strong>. Defina o primeiro stop como <code>#6C4CF1</code> e o segundo como <code>#B0367A</code>. Arraste o handle de gradiente na forma para que vá da esquerda para a direita.
+          </li>
+          <li>
+            <strong>Adicione um stroke sutil.</strong>
+            Clique em <strong>+</strong> na seção Stroke. Posição: Inside. Cor: branco com 20% de opacidade (<code>#FFFFFF33</code>). Peso: 1 px. Isso cria uma borda luminosa elegante.
+          </li>
+          <li>
+            <strong>Adicione o texto.</strong>
+            Pressione <kbd>T</kbd> e escreva "Continuar". Cor branca, peso: 600. Centralize sobre o botão.
+          </li>
+          <li>
+            <strong>Adicione sombra (Drop Shadow).</strong>
+            Na seção Effects, clique em <strong>+</strong> e configure: Drop Shadow, cor <code>#6C4CF1</code> com 40% de opacidade, blur 16 px, Y offset 4 px. O botão ganha profundidade.
+          </li>
+        </ol>
+
+        <div class="figma-mock">
+          <div style="padding:32px;display:flex;gap:24px;flex-wrap:wrap;align-items:center;justify-content:center;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+              <div style="width:160px;height:48px;background:linear-gradient(90deg,#6c4cf1,#b0367a);border-radius:12px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(108,76,241,.4);border:1px solid rgba(255,255,255,.2);">
+                <span style="color:#fff;font-weight:600;font-size:14px;">Continuar</span>
+              </div>
+              <span style="font-size:11px;color:var(--text-muted);">Gradiente + stroke + sombra</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+              <div style="width:160px;height:48px;background:transparent;border-radius:12px;border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;">
+                <span style="color:var(--primary);font-weight:600;font-size:14px;">Cancelar</span>
+              </div>
+              <span style="font-size:11px;color:var(--text-muted);">Stroke only (ghost button)</span>
+            </div>
+          </div>
+          <p class="mock-label">Dois botões: um com fill gradiente + stroke + sombra; outro apenas com stroke (ghost button).</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Eyedropper / Conta-gotas</td><td><kbd>I</kbd></td><td><kbd>I</kbd></td></tr>
+              <tr><td>Abrir Color Picker (fill)</td><td>Clique no swatch de Fill</td><td>Clique no swatch de Fill</td></tr>
+              <tr><td>Opacidade rápida (10–100%)</td><td><kbd>1</kbd>–<kbd>0</kbd> (no teclado numérico)</td><td><kbd>1</kbd>–<kbd>0</kbd></td></tr>
+              <tr><td>50% de opacidade</td><td><kbd>5</kbd></td><td><kbd>5</kbd></td></tr>
+              <tr><td>100% de opacidade</td><td><kbd>0</kbd> (dois zeros rápidos = 100)</td><td><kbd>0</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li>Um elemento pode ter <strong>múltiplos fills</strong> empilhados, cada um com cor, opacidade e blend mode próprios.</li>
+          <li>Gradientes são de 4 tipos: Linear, Radial, Angular e Diamond — editados por handles diretamente no canvas.</li>
+          <li>Imagem como fill suporta 4 modos: Fill, Fit, Crop e Tile.</li>
+          <li>Strokes têm posição (inside/center/outside), dashes, caps e joins.</li>
+          <li><strong>Opacidade de camada</strong> afeta tudo; <strong>opacidade de fill</strong> afeta apenas aquele fill.</li>
+          <li>Blend modes misturam a camada com o que está abaixo, como no Photoshop.</li>
+          <li>O Eyedropper (<kbd>I</kbd>) amostra qualquer cor visível na tela.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Crie uma paleta de cartões coloridos</h3>
+          <ol>
+            <li>Crie um Frame de 800×200 px.</li>
+            <li>Dentro, crie 5 retângulos de 140×140 px com corner radius 16 px.</li>
+            <li>Card 1: fill sólido <code>#6C4CF1</code>.</li>
+            <li>Card 2: gradiente linear de <code>#6C4CF1</code> para <code>#B0367A</code>.</li>
+            <li>Card 3: gradiente radial de <code>#F2994A</code> (centro, 100%) para <code>#F27121</code> (borda, 0%).</li>
+            <li>Card 4: imagem como fill (use qualquer foto de fundo) + um fill gradiente preto com 50% de opacidade acima.</li>
+            <li>Card 5: fill sólido branco + stroke outside de 2 px cor <code>#6C4CF1</code>.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> os 5 cards demonstram os 5 diferentes tipos/técnicas de fill descritas nesta lição.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Banner "glassmorphism"</h3>
+          <p>Crie um banner de 600×300 px com efeito glassmorphism (vidro fosco): um fundo com gradiente angular vibrante, sobre ele um retângulo com fill branco em 15% de opacidade + stroke branco 1 px inside em 30% de opacidade + Background Blur de 20 px (efeito). Adicione um título em branco no topo. Dica: o Background Blur fica em <strong>Effects → Background Blur</strong>, e só funciona em elementos sobre outros elementos coloridos — não sobre o canvas vazio.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Qual é a diferença entre opacidade de camada e opacidade de fill no Figma?</p>
+            <ul class="quiz-options">
+              <li>São idênticas; ambas afetam o elemento inteiro</li>
+              <li>Opacidade de camada afeta tudo (fills, strokes, efeitos); opacidade de fill afeta apenas aquele fill específico</li>
+              <li>Opacidade de fill afeta os filhos; opacidade de camada não</li>
+              <li>A opacidade de camada não funciona em Frames</li>
+            </ul>
+            <div class="quiz-explain">A <strong>opacidade de camada</strong> (campo % no painel direito, ao lado do blend mode) afeta o elemento inteiro — fills, strokes e efeitos. A <strong>opacidade de fill</strong> (dentro do Color Picker do fill) afeta apenas aquele fill, sem tocar nos strokes.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">2. Qual tipo de gradiente cria uma transição circular a partir de um ponto central?</p>
+            <ul class="quiz-options">
+              <li>Radial</li>
+              <li>Angular</li>
+              <li>Diamond</li>
+              <li>Linear</li>
+            </ul>
+            <div class="quiz-explain">O gradiente <strong>Radial</strong> cria uma transição circular de dentro para fora. Já o Angular cria um efeito cônico ao redor do centro, e o Diamond produz uma forma de losango.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">3. Qual blend mode faz o branco se tornar transparente e escurece proporcionalmente ao overlay?</p>
+            <ul class="quiz-options">
+              <li>Screen</li>
+              <li>Overlay</li>
+              <li>Multiply</li>
+              <li>Color</li>
+            </ul>
+            <div class="quiz-explain"><strong>Multiply</strong> multiplica os valores de cor — o branco (1,1,1) vira transparente e preto (0,0,0) permanece preto. É o modo ideal para sombras realistas porque o branco some e o preto escurece.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

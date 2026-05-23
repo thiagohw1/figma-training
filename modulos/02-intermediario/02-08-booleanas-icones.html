@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operações booleanas e ícones | Figma do Zero ao Avançado</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="02-08-booleanas-icones" data-root="../../">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <article class="lesson">
+
+        <div class="lesson-eyebrow">📦 Módulo 2 · Intermediário · Lição 8 de 9</div>
+        <h1>Operações booleanas e ícones</h1>
+        <p class="lead">Operações booleanas são a tesoura e a cola do design vetorial: combinando formas simples você cria ícones sofisticados sem precisar de ferramentas externas. Aprenda a fazer, organizar e distribuir ícones como um designer de sistema.</p>
+
+        <div class="lesson-meta">
+          <span>⏱️ Leitura: ~22 min</span>
+          <span>🎯 Nível: Intermediário</span>
+          <span>🛠️ Pratique junto no Figma</span>
+        </div>
+
+        <div class="objectives">
+          <h2>Ao final desta lição você será capaz de</h2>
+          <ul>
+            <li>Usar as quatro operações booleanas: Union, Subtract, Intersect e Exclude;</li>
+            <li>Usar Flatten para simplificar vetores compostos;</li>
+            <li>Criar ícones consistentes em uma grade de 24×24 px com espessura e alinhamento óptico corretos;</li>
+            <li>Transformar ícones em componentes e usar Instance Swap para trocar ícones em outros componentes.</li>
+          </ul>
+        </div>
+
+        <h2>As quatro operações booleanas</h2>
+        <p>Operações booleanas combinam duas ou mais formas vetoriais usando lógica de conjuntos. O resultado é uma nova forma derivada da interseção, diferença ou soma das formas originais.</p>
+        <p>Para usar: selecione duas ou mais shapes, vá ao menu <strong>Object → Boolean operations</strong>, ou use o menu suspenso no ícone de operações booleanas na barra superior.</p>
+
+        <div class="diagram">
+          <svg viewBox="0 0 560 200" role="img" aria-label="Diagrama das quatro operações booleanas com dois círculos">
+            <!-- União -->
+            <text x="70" y="20" fill="var(--text)" font-size="12" text-anchor="middle" font-family="sans-serif" font-weight="700">Union</text>
+            <circle cx="56" cy="90" r="32" fill="var(--primary)" opacity=".85"/>
+            <circle cx="84" cy="90" r="32" fill="var(--primary)" opacity=".85"/>
+            <text x="70" y="148" fill="var(--text-muted)" font-size="10" text-anchor="middle" font-family="sans-serif">A ∪ B (soma)</text>
+            <!-- Subtract -->
+            <text x="210" y="20" fill="var(--text)" font-size="12" text-anchor="middle" font-family="sans-serif" font-weight="700">Subtract</text>
+            <circle cx="196" cy="90" r="32" fill="var(--primary)" opacity=".85"/>
+            <circle cx="224" cy="90" r="32" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <text x="210" y="148" fill="var(--text-muted)" font-size="10" text-anchor="middle" font-family="sans-serif">A − B (corte)</text>
+            <!-- Intersect -->
+            <text x="350" y="20" fill="var(--text)" font-size="12" text-anchor="middle" font-family="sans-serif" font-weight="700">Intersect</text>
+            <circle cx="336" cy="90" r="32" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <circle cx="364" cy="90" r="32" fill="var(--surface-2)" stroke="var(--border-strong)" stroke-width="1.5"/>
+            <path d="M350,60 A32,32 0 0,1 374,100 A32,32 0 0,1 326,100 A32,32 0 0,1 350,60 Z" fill="var(--primary)" opacity=".85"/>
+            <text x="350" y="148" fill="var(--text-muted)" font-size="10" text-anchor="middle" font-family="sans-serif">A ∩ B (interseção)</text>
+            <!-- Exclude -->
+            <text x="490" y="20" fill="var(--text)" font-size="12" text-anchor="middle" font-family="sans-serif" font-weight="700">Exclude</text>
+            <circle cx="476" cy="90" r="32" fill="var(--primary)" opacity=".85"/>
+            <circle cx="504" cy="90" r="32" fill="var(--primary)" opacity=".85"/>
+            <path d="M490,60 A32,32 0 0,1 514,100 A32,32 0 0,1 466,100 A32,32 0 0,1 490,60 Z" fill="var(--surface-2)"/>
+            <text x="490" y="148" fill="var(--text-muted)" font-size="10" text-anchor="middle" font-family="sans-serif">A Δ B (exclusivo)</text>
+          </svg>
+          <p class="mock-label">As quatro operações booleanas aplicadas a dois círculos sobrepostos. Union une; Subtract remove B de A; Intersect mantém apenas a sobreposição; Exclude remove a sobreposição.</p>
+        </div>
+
+        <h3>Union — Soma</h3>
+        <p><strong>Union</strong> combina todas as formas em uma única shape que é a soma de todas. Formas sobrepostas se fundem. A cor do resultado é a da forma mais ao fundo. Use para criar formas compostas onde partes se unem — como o body de uma notificação + a "cauda" do balão de chat.</p>
+        <p><strong>Atalho:</strong> <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>O</kbd> (Windows) / <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>O</kbd> (Mac).</p>
+
+        <h3>Subtract — Corte</h3>
+        <p><strong>Subtract</strong> remove a área da forma superior da forma inferior. O resultado é a forma de baixo com um "buraco" no formato da forma de cima. Use para criar buracos e recortes — o fundo branco de um ícone de câmera, o olho de uma agulha, o interior de um aro.</p>
+        <p><strong>Atalho:</strong> <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd> (Windows) / <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>S</kbd> (Mac).</p>
+
+        <h3>Intersect — Interseção</h3>
+        <p><strong>Intersect</strong> mantém apenas a área onde as formas se sobrepõem. Tudo que está fora da sobreposição desaparece. Use para criar shapes complexos que surgem da sobreposição — o ícone de "lente" que corta um círculo em curva.</p>
+        <p><strong>Atalho:</strong> <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>I</kbd> (Windows) / <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>I</kbd> (Mac).</p>
+
+        <h3>Exclude — Exclusão</h3>
+        <p><strong>Exclude</strong> mantém tudo exceto a área de sobreposição. É o oposto do Intersect. Use para criar formas em anel (donut) ou shapes com "janelas" de formas irregulares.</p>
+        <p><strong>Atalho:</strong> <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>X</kbd> (Windows) / <kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>X</kbd> (Mac).</p>
+
+        <div class="callout tip">
+          <span class="callout-title">Operações booleanas são não-destrutivas</span>
+          <p>Ao aplicar uma operação booleana, as formas originais ainda existem como camadas filhas do grupo booleano — você pode editá-las a qualquer momento. Para tornar o resultado definitivo e simplificar o arquivo, use <strong>Flatten</strong> (veja abaixo).</p>
+        </div>
+
+        <h2>Flatten — simplificar</h2>
+        <p><strong>Flatten</strong> (<kbd>Ctrl</kbd> + <kbd>E</kbd> / <kbd>⌘</kbd> + <kbd>E</kbd>) converte um grupo booleano (ou qualquer combinação de shapes) em um único caminho vetorial. O resultado é um vetor simples, sem hierarquia de camadas — mais leve e fácil de exportar.</p>
+        <p>Use Flatten quando:</p>
+        <ul>
+          <li>Terminou de editar o ícone e quer uma forma limpa para exportar como SVG.</li>
+          <li>Precisa de um único path para fazer mais operações booleanas.</li>
+          <li>Quer reduzir a complexidade de camadas em um componente de ícone.</li>
+        </ul>
+
+        <div class="callout warning">
+          <span class="callout-title">Flatten é destrutivo</span>
+          <p>Ao dar Flatten, as formas individuais se fundem permanentemente. Você perde a capacidade de editar cada shape separadamente. Use com frequência o <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Z</kbd> (undo) se quiser voltar atrás, ou mantenha uma cópia do grupo booleano em uma página de rascunho.</p>
+        </div>
+
+        <h2>Vector networks: edição de nós</h2>
+        <p>O Figma usa um sistema de <strong>Vector Networks</strong> que vai além dos paths tradicionais do SVG: um path não precisa ser uma curva fechada — você pode ter caminhos abertos que se ramificam como uma árvore.</p>
+        <p>Para entrar no modo de edição vetorial, pressione <kbd>Enter</kbd> sobre uma shape ou clique no ícone de "Edit vector" (lápis) na barra superior. Você verá os <strong>nós</strong> (pontos âncora) e as <strong>alças de Bézier</strong>. Operações possíveis:</p>
+        <ul>
+          <li><strong>Adicionar nó:</strong> clique em qualquer ponto do caminho.</li>
+          <li><strong>Deletar nó:</strong> selecione e pressione <kbd>Delete</kbd>.</li>
+          <li><strong>Converter nó:</strong> <kbd>Ctrl</kbd> + clique no nó (Win) / <kbd>⌘</kbd> + clique (Mac) — alterna entre curvo e anguloso.</li>
+          <li><strong>Mover nó:</strong> selecione e arraste, ou use as setas do teclado.</li>
+        </ul>
+
+        <h2>Criando ícones consistentes</h2>
+        <p>Ícones de qualidade profissional seguem regras rigorosas de consistência. Aqui estão os padrões:</p>
+
+        <h3>A grade do ícone (24×24 px)</h3>
+        <p>O tamanho mais comum para ícones de interface é <strong>24×24 px</strong> (também chamado de "base unit"). Algumas libraries usam 16px (pequenos) e 32px (grandes). A grade de ícone define:</p>
+        <ul>
+          <li><strong>Área de segurança:</strong> a área interna onde o ícone deve estar. Em 24×24, geralmente é 20×20 (2px de margem em cada lado).</li>
+          <li><strong>Key shapes:</strong> formas-guia (quadrado 18×18, círculo 20px de diâmetro) que ajudam a equilibrar o peso visual entre ícones de formas diferentes.</li>
+        </ul>
+
+        <h3>Espessura de stroke</h3>
+        <p>Para ícones de linha (outline), use espessura consistente em toda a biblioteca. O padrão mais comum é <strong>1.5px</strong> para ícones de 24×24 (leve e elegante) ou <strong>2px</strong> (mais bold e acessível). Nunca misture 1px e 2px na mesma biblioteca.</p>
+        <p>Configure o stroke com <strong>Align: Center</strong> (stroke centralizado na borda do path, não dentro nem fora). Isso garante que a bounding box do ícone seja exatamente 24×24.</p>
+
+        <h3>Alinhamento óptico</h3>
+        <p>Formas geométricas diferentes têm pesos visuais diferentes. Um ícone circular parece menor que um quadrado do mesmo tamanho. Para compensar, designers de ícones usam o <strong>alinhamento óptico</strong>: círculos são um ou dois pixels maiores que a key shape, e triângulos são maiores ainda. Use as key shapes como guia, não como limite absoluto.</p>
+
+        <div class="callout pro">
+          <span class="callout-title">Dica de ícone profissional: corner radius consistente</span>
+          <p>Defina um corner radius padrão para todos os ícones da biblioteca — ex.: 2px para round, 0px para sharp. Isso cria uma identidade de estilo coerente. No Figma, você pode aplicar corner radius em nós individuais do vetor: selecione um nó no modo de edição vetorial e ajuste o "Corner radius" no painel direito.</p>
+        </div>
+
+        <h2>Passo a passo: criando um ícone de sino (notificação) do zero</h2>
+
+        <ol class="steps">
+          <li>
+            <strong>Crie o frame do ícone.</strong>
+            Pressione <kbd>F</kbd> e crie um frame <strong>24×24 px</strong>. Ative o layout grid (Grade de 8px) para facilitar o alinhamento. Defina o fill como "none" (o ícone é transparente por padrão).
+          </li>
+          <li>
+            <strong>Desenhe o corpo do sino.</strong>
+            Crie uma elipse (<kbd>O</kbd>) de 16×18 px centralizada. Aplique <strong>Subtract</strong> com um retângulo de 16×8 px na base para criar o formato de sino. Alternativa: crie um retângulo com as alças arredondadas no topo usando o editor vetorial.
+          </li>
+          <li>
+            <strong>Adicione o cabo.</strong>
+            Crie um retângulo pequeno de 4×2 px no topo centralizado. Aplique <strong>Union</strong> com o corpo do sino.
+          </li>
+          <li>
+            <strong>Adicione o badalo (base).</strong>
+            Crie uma elipse de 6×4 px na parte inferior. Aplique <strong>Union</strong> ao conjunto.
+          </li>
+          <li>
+            <strong>Aplique o stroke.</strong>
+            Em vez de fill, use apenas Stroke: cor preto (ou a cor do ícone), espessura 1.5 px, Align Center. Remova qualquer fill.
+          </li>
+          <li>
+            <strong>Flatten e limpar.</strong>
+            Selecione todo o ícone e pressione <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>E</kbd> (Flatten) para ter um único path limpo.
+          </li>
+          <li>
+            <strong>Transforme em componente.</strong>
+            Selecione o ícone (dentro do frame 24×24), pressione <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Alt</kbd>/<kbd>⌥</kbd> + <kbd>K</kbd>. Nomeie: <code>Icon/Bell</code>.
+          </li>
+        </ol>
+
+        <h2>Ícones como componentes: Instance Swap na prática</h2>
+        <p>Com cada ícone transformado em componente (<code>Icon/Bell</code>, <code>Icon/Home</code>, <code>Icon/Search</code>...), você pode usar <strong>Instance Swap</strong> (visto na lição anterior) para trocar ícones em outros componentes sem precisar criar variants para cada possibilidade.</p>
+        <p>Exemplo: um componente <code>Nav/Item</code> tem uma property Instance Swap chamada "Icon". O designer arrasta o Nav/Item para a tela, seleciona a instance e troca o ícone no painel direito — sem entrar na hierarquia de camadas, sem fazer detach.</p>
+
+        <div class="figma-mock">
+          <div style="display:flex;gap:0;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;max-width:360px;width:100%;">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;padding:12px 8px;gap:4px;background:var(--primary-soft);">
+              <span style="font-size:22px;">🏠</span>
+              <span style="font-size:11px;font-weight:600;color:var(--primary);">Início</span>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;padding:12px 8px;gap:4px;">
+              <span style="font-size:22px;">🔍</span>
+              <span style="font-size:11px;color:var(--text-muted);">Busca</span>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;padding:12px 8px;gap:4px;">
+              <span style="font-size:22px;">🔔</span>
+              <span style="font-size:11px;color:var(--text-muted);">Alertas</span>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;padding:12px 8px;gap:4px;">
+              <span style="font-size:22px;">👤</span>
+              <span style="font-size:11px;color:var(--text-muted);">Perfil</span>
+            </div>
+          </div>
+          <p class="mock-label">Barra de navegação com 4 instâncias do componente Nav/Item, cada uma com Instance Swap apontando para um ícone diferente. Trocar o ícone do "Busca" é questão de selecionar a instance e mudar a property "Icon".</p>
+        </div>
+
+        <h2>Atalhos desta lição</h2>
+        <div class="table-wrap">
+          <table class="shortcut-table">
+            <thead><tr><th>Ação</th><th>Windows</th><th>Mac</th></tr></thead>
+            <tbody>
+              <tr><td>Union</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>O</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>O</kbd></td></tr>
+              <tr><td>Subtract</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>S</kbd></td></tr>
+              <tr><td>Intersect</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>I</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>I</kbd></td></tr>
+              <tr><td>Exclude</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>X</kbd></td><td><kbd>⌘</kbd> + <kbd>⌥</kbd> + <kbd>X</kbd></td></tr>
+              <tr><td>Flatten</td><td><kbd>Ctrl</kbd> + <kbd>E</kbd></td><td><kbd>⌘</kbd> + <kbd>E</kbd></td></tr>
+              <tr><td>Editar vetor (modo nó)</td><td><kbd>Enter</kbd></td><td><kbd>Enter</kbd></td></tr>
+              <tr><td>Elipse</td><td><kbd>O</kbd></td><td><kbd>O</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Resumo</h2>
+        <ul>
+          <li><strong>Union</strong> une formas; <strong>Subtract</strong> corta; <strong>Intersect</strong> mantém a sobreposição; <strong>Exclude</strong> remove a sobreposição.</li>
+          <li>Operações booleanas são não-destrutivas — as shapes originais ficam editáveis como camadas filhas.</li>
+          <li><strong>Flatten</strong> simplifica para um único path — use ao final da criação.</li>
+          <li>Ícones de 24×24 px com stroke de 1.5-2 px e Align Center garantem consistência.</li>
+          <li>Converta cada ícone em componente e use Instance Swap para trocar ícones em outros componentes.</li>
+        </ul>
+
+        <div class="exercise">
+          <span class="tag">✍️ Exercício</span>
+          <h3>Crie 4 ícones básicos do zero</h3>
+          <ol>
+            <li>Crie 4 frames de 24×24 px.</li>
+            <li>No primeiro, crie um ícone de <strong>lupa</strong> (Search): círculo de 14px com Subtract de um retângulo para criar o cabo.</li>
+            <li>No segundo, crie um ícone de <strong>coração</strong>: dois círculos + um triângulo, unidos com Union.</li>
+            <li>No terceiro, crie um ícone de <strong>cadeado</strong>: retângulo + Subtract de arco superior + círculo no meio.</li>
+            <li>No quarto, crie qualquer ícone à sua escolha usando pelo menos uma operação booleana.</li>
+            <li>Transforme cada ícone em componente: <code>Icon/Search</code>, <code>Icon/Heart</code>, <code>Icon/Lock</code>, <code>Icon/Custom</code>.</li>
+          </ol>
+          <div class="success-criteria">
+            <strong>Critério de sucesso:</strong> os 4 ícones têm tamanho 24×24 px, stroke de 1.5px (Align Center), foram criados com operações booleanas visíveis na hierarquia de camadas, e estão como componentes no painel Assets.
+          </div>
+        </div>
+
+        <div class="challenge">
+          <span class="tag">🏆 Desafio</span>
+          <h3>Mini biblioteca de 12 ícones com Instance Swap</h3>
+          <p>Crie uma mini biblioteca de ícones com 12 ícones organizados como componentes (<code>Icon/Home</code>, <code>Icon/Search</code>, <code>Icon/Bell</code>, <code>Icon/User</code>, <code>Icon/Settings</code>, <code>Icon/Heart</code>, <code>Icon/Cart</code>, <code>Icon/Share</code>, <code>Icon/Edit</code>, <code>Icon/Trash</code>, <code>Icon/Check</code>, <code>Icon/Close</code>). Depois crie um componente <code>Button/Icon</code> com uma Instance Swap property chamada "Icon". Crie 5 instances do botão, cada uma com um ícone diferente usando a property — sem criar 5 componentes separados de botão.</p>
+        </div>
+
+        <div class="quiz">
+          <div class="quiz-head"><span class="tag">Quiz</span><strong>Teste seu conhecimento</strong></div>
+
+          <div class="quiz-q" data-correct="1">
+            <p class="q-text">1. Você quer criar um ícone de donut (anel) usando operações booleanas. Dois círculos sobrepostos no centro. Qual operação usar?</p>
+            <ul class="quiz-options">
+              <li>Union</li>
+              <li>Exclude</li>
+              <li>Intersect</li>
+              <li>Subtract</li>
+            </ul>
+            <div class="quiz-explain"><strong>Exclude</strong> mantém tudo exceto a área de sobreposição. Com dois círculos concêntricos (um grande e um pequeno no centro), Exclude resulta no anel (donut). Subtract também funciona se o círculo menor for a "forma de cima" na hierarquia.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="2">
+            <p class="q-text">2. Qual é a diferença principal entre uma operação booleana e o Flatten?</p>
+            <ul class="quiz-options">
+              <li>Flatten aceita mais de duas shapes; booleanas só duas</li>
+              <li>Booleanas só funcionam com circles; Flatten com qualquer shape</li>
+              <li>Booleanas são não-destrutivas (editáveis); Flatten é destrutivo (único path)</li>
+              <li>Flatten adiciona efeitos; booleanas não</li>
+            </ul>
+            <div class="quiz-explain">Operações booleanas mantêm as formas originais como filhos do grupo booleano — não-destrutivo. <strong>Flatten</strong> converte tudo em um único path definitivo — destrutivo. Use booleanas para editar; Flatten para finalizar.</div>
+          </div>
+
+          <div class="quiz-q" data-correct="0">
+            <p class="q-text">3. Qual espessura de stroke e alinhamento é recomendado para ícones de 24×24 px em uma biblioteca profissional?</p>
+            <ul class="quiz-options">
+              <li>1.5px ou 2px, Align Center</li>
+              <li>1px, Align Inside</li>
+              <li>3px, Align Outside</li>
+              <li>Qualquer espessura, desde que seja consistente</li>
+            </ul>
+            <div class="quiz-explain"><strong>1.5px ou 2px com Align Center</strong> é o padrão profissional para ícones de 24px. Align Center garante que a bounding box seja exatamente 24×24, sem overflow. Align Inside ou Outside deslocam o stroke para dentro/fora do path, afetando o tamanho final.</div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn primary quiz-check">Verificar respostas</button>
+            <span class="quiz-score"></span>
+          </div>
+        </div>
+
+      </article>
+      <nav id="prevnext" class="prevnext"></nav>
+    </main>
+  </div>
+
+  <script src="../../assets/js/course-data.js"></script>
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

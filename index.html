@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figma do Zero ao Avançado — Treinamento completo de UI/UX</title>
+  <meta name="description" content="Treinamento completo de Figma do zero ao avançado: interfaces, layouts e funcionalidades para apps mobile, desktop e web.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>try{var t=localStorage.getItem('figma-course-theme');if(!t){t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-lesson="home" data-root="">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar"></aside>
+    <main class="content" id="content">
+      <div class="home-wrap">
+
+        <!-- HERO -->
+        <section class="home-hero">
+          <div class="logo-xl">Fi</div>
+          <h1>Figma do Zero ao Avançado</h1>
+          <p>O treinamento mais completo, em português, para você criar <strong>interfaces, layouts e protótipos funcionais</strong> de apps mobile, desktop e web — começando do absoluto zero e chegando ao nível profissional.</p>
+          <div class="home-cta">
+            <a class="btn primary" href="modulos/00-fundamentos/00-01-como-usar.html">Começar do zero →</a>
+            <a class="btn ghost" href="#curriculo">Ver currículo completo</a>
+          </div>
+        </section>
+
+        <div class="home-stats">
+          <div class="center"><b id="stat-modulos">—</b>módulos</div>
+          <div class="center"><b id="stat-licoes">—</b>lições</div>
+          <div class="center"><b>2</b>projetos guiados</div>
+          <div class="center"><b id="home-pct">0%</b>concluído por você</div>
+        </div>
+
+        <!-- COMO USAR -->
+        <h2 class="section-title">Como usar este treinamento</h2>
+        <div class="cols-2">
+          <div class="callout info" style="margin:8px 0;">
+            <span class="callout-title">Siga a ordem dos módulos</span>
+            <p>O conteúdo foi desenhado como uma trilha: cada módulo usa o que você aprendeu no anterior. Se você é iniciante, comece pelo <strong>Módulo 0</strong> e siga em frente.</p>
+          </div>
+          <div class="callout tip" style="margin:8px 0;">
+            <span class="callout-title">Pratique enquanto lê</span>
+            <p>Mantenha o Figma aberto em outra janela e <strong>refaça cada passo</strong>. Ao fim de cada lição há exercícios, desafios e um quiz para fixar.</p>
+          </div>
+          <div class="callout pro" style="margin:8px 0;">
+            <span class="callout-title">Acompanhe seu progresso</span>
+            <p>Use o botão <em>“Marcar lição como concluída”</em> no fim de cada página. Seu progresso fica salvo neste navegador e aparece na barra do topo.</p>
+          </div>
+          <div class="callout note" style="margin:8px 0;">
+            <span class="callout-title">Dicas de navegação</span>
+            <p>Use a busca no topo (atalho <kbd>/</kbd>), a barra lateral para pular entre lições e <kbd>Alt</kbd> + <kbd>←</kbd>/<kbd>→</kbd> para avançar. Há também um botão de <strong>tema claro/escuro</strong>.</p>
+          </div>
+        </div>
+
+        <!-- TRILHA -->
+        <h2 class="section-title">Trilha de aprendizado</h2>
+        <p class="muted mt-0">Do conceito à entrega profissional, em 4 níveis + 2 projetos práticos:</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0 4px;">
+          <span class="badge level-0">Nível 0 · Fundamentos</span> →
+          <span class="badge level-1">Nível 1 · Iniciante</span> →
+          <span class="badge level-2">Nível 2 · Intermediário</span> →
+          <span class="badge level-3">Nível 3 · Avançado</span> →
+          <span class="badge">📱 Projeto Mobile</span> +
+          <span class="badge">🖥️ Projeto Web</span> →
+          <span class="badge">🎯 Pro</span>
+        </div>
+
+        <!-- CURRÍCULO -->
+        <h2 class="section-title" id="curriculo">Currículo completo</h2>
+        <p class="muted mt-0">Você já concluiu <strong id="home-done-count">0</strong> lições. Clique em um módulo para começar.</p>
+        <div class="module-grid" id="module-grid"></div>
+
+        <!-- PROJETOS -->
+        <h2 class="section-title">O que você vai construir</h2>
+        <div class="cols-2">
+          <div class="module-card" style="cursor:default;">
+            <div class="ico">📱</div>
+            <h3>FinView — App Mobile de Finanças</h3>
+            <p>Um app completo, do briefing ao protótipo navegável: onboarding, dashboard, dark mode, componentes reutilizáveis e microinterações — seguindo diretrizes de iOS e Android.</p>
+            <a class="btn ghost" href="projetos/01-app-mobile/05-01-briefing-planejamento.html">Ver projeto mobile →</a>
+          </div>
+          <div class="module-card" style="cursor:default;">
+            <div class="ico">🖥️</div>
+            <h3>TaskFlow — Dashboard SaaS Web</h3>
+            <p>Um web app responsivo de gestão de projetos: grids e breakpoints, sidebar e topbar, tabelas e gráficos, formulários com estados e uma landing page — desktop, tablet e mobile.</p>
+            <a class="btn ghost" href="projetos/02-web-dashboard/06-01-briefing-arquitetura.html">Ver projeto web →</a>
+          </div>
+        </div>
+
+        <!-- RECURSOS -->
+        <h2 class="section-title">Recursos de consulta rápida</h2>
+        <div class="module-grid">
+          <a class="module-card" href="recursos/atalhos.html"><div class="ico">⌨️</div><h3>Atalhos de teclado</h3><p>Tabela completa para Windows e Mac.</p></a>
+          <a class="module-card" href="recursos/glossario.html"><div class="ico">📖</div><h3>Glossário</h3><p>Todos os termos do Figma e de UI/UX.</p></a>
+          <a class="module-card" href="recursos/checklists.html"><div class="ico">✅</div><h3>Checklists</h3><p>Design system, handoff, acessibilidade e entrega.</p></a>
+          <a class="module-card" href="recursos/templates.html"><div class="ico">🎁</div><h3>Templates e kits</h3><p>Curadoria de recursos gratuitos da Community.</p></a>
+        </div>
+
+        <!-- COMO ACOMPANHAR / LIMITAÇÃO -->
+        <div class="callout info" style="margin-top:34px;">
+          <span class="callout-title">Como acompanhar na prática</span>
+          <p>Este é um curso <strong>instrucional</strong>: cada passo descreve exatamente o que fazer no seu próprio Figma (web ou desktop). Não distribuímos arquivos <code>.fig</code> prontos — você aprende construindo. Quando útil, indicamos arquivos e kits <strong>gratuitos da Figma Community</strong> para acelerar. Tudo o que você precisa para começar é uma conta gratuita do Figma.</p>
+        </div>
+
+        <hr>
+        <p class="center muted" style="font-size:13px;">Feito com 💜 para quem quer dominar o Figma. Conteúdo atualizado para a interface <strong>UI3</strong> e os recursos de <strong>2025/2026</strong> (Variables, Figma Sites, Figma Make, Dev Mode e mais).</p>
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/course-data.js"></script>
+  <script>
+    /* Preenche estatísticas e gera os cartões de módulo a partir do COURSE. */
+    (function () {
+      document.getElementById("stat-modulos").textContent = COURSE.modules.filter(function(m){return m.id!=="recursos";}).length;
+      document.getElementById("stat-licoes").textContent = COURSE.totalContentLessons;
+      var grid = document.getElementById("module-grid");
+      COURSE.modules.filter(function (m) { return m.id !== "recursos"; }).forEach(function (m) {
+        var first = m.lessons[0];
+        var card = document.createElement("a");
+        card.className = "module-card";
+        card.setAttribute("data-module", m.id);
+        card.href = first.url;
+        card.innerHTML =
+          '<div class="ico">' + (m.icon || "📘") + '</div>' +
+          '<h3>' + m.title + '</h3>' +
+          '<p>' + (m.goal || "") + '</p>' +
+          '<div class="mc-foot"><span class="mc-count">0/' + m.lessons.length + '</span><span>' + m.lessons.length + ' lições</span></div>' +
+          '<div class="mc-bar"><i></i></div>';
+        grid.appendChild(card);
+      });
+    })();
+  </script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
